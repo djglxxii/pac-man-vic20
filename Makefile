@@ -46,6 +46,7 @@ test: $(PRG) tools/vicsim/vicsim reference
 	$(PY) tests/arcade.py
 	$(PY) tests/native.py
 	$(PY) tests/render.py
+	$(PY) tests/flash.py
 	$(PY) tests/smoke.py
 
 performance: $(PRG) tools/vicsim/vicsim

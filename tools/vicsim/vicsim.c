@@ -33,6 +33,7 @@ static uint64_t profile_cycles[65536], profile_hits[65536];
 static int profiling;
 static FILE *profile_trace;
 static uint16_t render_begin_addr, render_end_addr, audio_addr;
+static uint16_t flash_request_addr, flash_present_addr;
 #define CYC_LINE 65
 #define LINES 261
 #define CYC_FRAME (CYC_LINE * LINES)
@@ -170,6 +171,10 @@ static int illegal;
 
 static void step(void) {
     uint16_t instruction_pc = pc;
+    if (profile_trace && flash_request_addr && pc == flash_request_addr)
+        fprintf(profile_trace, "%llu flash-%s\n", (unsigned long long)cycles, a == 2 ? "white" : "blue");
+    if (profile_trace && flash_present_addr && pc == flash_present_addr)
+        fprintf(profile_trace, "%llu present-%s\n", (unsigned long long)cycles, mem[0x840] == 31 ? "white" : "blue");
     if (profile_trace && (pc == render_begin_addr || pc == render_end_addr || pc == audio_addr))
         fprintf(profile_trace, "%llu %s\n", (unsigned long long)cycles,
                 pc == audio_addr ? "logic" : pc == render_begin_addr ? "begin" : "end");
@@ -451,6 +456,8 @@ int main(int argc, char **argv) {
         find_label("video_frame_begin", &render_begin_addr);
         find_label("video_frame_end", &render_end_addr);
         find_label("audio_update", &audio_addr);
+        find_label("video_flash_palette", &flash_request_addr);
+        find_label("maze_colour_done", &flash_present_addr);
     }
     mem[0x9002] = 0x96; mem[0x9003] = 0x2e; mem[0x9005] = 0xf0; mem[0x900f] = 0x1b;
     mem[0x9122] = 0xff;

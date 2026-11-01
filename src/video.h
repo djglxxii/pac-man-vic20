@@ -5,6 +5,7 @@
 #ifdef VIC20
 void video_store(uint8_t *p, uint8_t value);
 void video_fill(uint8_t *p, uint8_t value, uint16_t count);
+void video_flash_palette(uint8_t param);
 #else
 #include <string.h>
 static inline void video_store(uint8_t *p, uint8_t value) { *p = value; }

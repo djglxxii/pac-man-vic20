@@ -30,7 +30,7 @@ SECTIONS {
   *(.rodata.updateGhostStates_1017)
  } >bank
  .screen_work (NOLOAD) : { *(.screen_work) } >screen_work
- .video_bits (NOLOAD) : { *(.video_bits) *(.sprite_cache) } >video_bits
+ .video_bits (NOLOAD) : { *(.video_bits) *(.sprite_cache) *(.maze_cells) } >video_bits
  .work (NOLOAD) : { *(.work) } >work
  .scratch (NOLOAD) : { *(.noinit.*) } >work
  INCLUDE c.ld

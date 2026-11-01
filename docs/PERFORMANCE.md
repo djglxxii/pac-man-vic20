@@ -21,11 +21,16 @@ Representative results on 2026-11-01:
 
 | Sample | Completed renders per second | Mean rendering time | Longest draw interval |
 | --- | ---: | ---: | ---: |
-| Early first-board play | 49.0 | 9.91 ms | 45.21 ms |
-| Frightened movement | 53.0 | 8.47 ms | 45.95 ms |
-| Attract chase | 45.3 | 10.29 ms | 60.51 ms |
-| First intermission | 60.1 | 3.42 ms | 22.00 ms |
-| Board transition | 22.1 | 21.20 ms | 1600.21 ms |
+| Early first-board play | 48.9 | 9.96 ms | 38.38 ms |
+| Frightened movement | 53.0 | 8.47 ms | 50.35 ms |
+| Attract chase | 44.5 | 10.43 ms | 51.28 ms |
+| First intermission | 60.1 | 3.41 ms | 22.01 ms |
+| Board transition | 42.0 | 7.33 ms | 1277.65 ms |
+
+The [maze flash](MAZE_FLASH.md) now recolours existing pixels. All eight
+phases appear about 198 ms apart, within 17 ms of their requests. The board
+transition sample also includes drawing the next maze, which still stalls
+separately.
 
 The timer still schedules 60.606 logic ticks per second. Short measurement
 windows round tick counts at their boundaries. The frightened and intermission
@@ -66,16 +71,18 @@ these changes. The game clock and the number of gameplay updates are retained.
 ## Remaining budget
 
 A 60.606 Hz update allows 16.50 ms, or 16,875 CPU cycles, for **all** work.
-Rendering alone still averages roughly 9.9 ms in the gameplay sample,
-leaving about 6.6 ms for input, game logic and sound. Their combined cost still
+Rendering alone still averages roughly 10.0 ms in the gameplay sample,
+leaving about 6.5 ms for input, game logic and sound. Their combined cost still
 exceeds that budget, so gameplay has not reached sustained 60 FPS.
 
-The full-screen rebuild is a separate problem: one render in the transition
-sample takes about 787 ms, and logic catch-up increases the visible gap to
-about 1.6 seconds. A bounded rebuild job that yields between tile batches is
-the next architectural step. Palette changes need separate handling so each
-flash does not restart pixel reconstruction. Hot game-state routines and the
-remaining generic sprite paths also need work for sustained 60 FPS gameplay.
+The full-screen rebuild remains a separate problem: one render in the
+transition sample takes about 829 ms, with a visible draw gap of about
+1.28 seconds. This occurs after the last flash, during the next-board work.
+The completed maze's blue/white colour changes now have their own bounded
+path and do not trigger those rebuilds. A bounded rebuild job that yields
+between tile batches would address actual screen changes, but is outside
+this flash-only revision. Hot game-state routines and the remaining generic
+sprite paths also need work for sustained 60 FPS gameplay.
 
 Increasing emulator speed would also increase game speed and would not
 establish the target frame rate on an ordinary VIC-20.

@@ -6,6 +6,10 @@ is unchanged by this pass. Graphics optimizations are checked against the
 independent bitmap renderer, and all 25 regression tests and the VICE smoke
 check pass.
 
+This document records the earlier guide pass. The subsequent
+[maze-flash revision](MAZE_FLASH.md) adds three tests and resolves repeated
+rebuilds during flashing; [PERFORMANCE.md](PERFORMANCE.md) has current figures.
+
 ## Retained changes
 
 | Guide section | Change | Cost or constraint |
@@ -44,18 +48,21 @@ timing reports and profiles to `build/performance/current/`.
 
 ## Further work
 
-The new transition sample exposes the largest remaining pause: a full rebuild
-can occupy roughly 787 ms, with logic catch-up extending the draw gap to about
-1.6 seconds. The guide's bounded-work approach is the next substantial change:
+At the end of the guide pass, the transition sample exposed full rebuilds
+of roughly 787 ms and draw gaps around 1.6 seconds. The later maze-flash
+revision removes repeated rebuilds from flashing itself; actual next-board
+drawing still stalls separately. The guide's bounded-work approach is the
+next substantial change:
 process a limited tile batch, yield to input/logic/audio, and finish a hidden
-rebuild before presenting it. Palette flashes need a separate design so a
-color change does not repeatedly restart that work.
+rebuild before presenting it. The dedicated maze-flash path now handles those
+palette changes without reconstructing pixels.
 
 Combining erase and draw per cell could help further, but the 4×6 logical
 tiles do not align with 8×16 display cells. A background bitmap cache would
-need 3,136 extra bytes. The current link has only 159 bytes free across its
-two code/data regions. More extensive pre-shifting and double-buffering
-therefore require a memory-layout or renderer redesign.
+need 3,136 extra bytes. The guide-pass link had only 159 bytes free across its
+two code/data regions; the subsequent flash fix leaves 58 bytes. More extensive
+pre-shifting and double-buffering therefore require a memory-layout or renderer
+redesign.
 
 Several guide recommendations are already in use: a column-major bitmap,
 dirty tile writes, unchanged-actor caching, independent logic/render clocks,

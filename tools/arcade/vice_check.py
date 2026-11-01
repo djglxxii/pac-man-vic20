@@ -42,6 +42,11 @@ class Monitor:
     def memory(self, start, size):
         return self.cmd(1, struct.pack("<BHHBH", 0, start, start + size - 1, 0, 0))[2:]
 
+    def store(self, start, data):
+        self.cmd(
+            2, struct.pack("<BHHBH", 0, start, start + len(data) - 1, 0, 0) + data
+        )
+
     def joy(self, value, port=0):
         self.cmd(0xA2, struct.pack("<HH", port, 255 ^ value))
         self.resume()
@@ -74,6 +79,7 @@ class Monitor:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--output", default="build/preview")
+    ap.add_argument("--maze-flash", action="store_true")
     args = ap.parse_args()
     out = ROOT / args.output
     out.mkdir(parents=True, exist_ok=True)
@@ -112,7 +118,7 @@ def main():
         "-soundrecarg",
         str(raw),
         "-speed",
-        "0",
+        "100" if args.maze_flash else "0",
         "-autostart",
         str(ROOT / "build/pacman.prg"),
     ]
@@ -192,6 +198,48 @@ def main():
             "display": screen,
             "emulator": "VICE NTSC VIC-20, full expansion",
         }
+        if args.maze_flash:
+            # Prepare a completed board without making the user play through
+            # 244 dots. The original state machine supplies all flash phases.
+            maze = bytearray(mon.memory(0x400, 1024))
+            for i, tile in enumerate(maze):
+                if tile in (0x10, 0x12, 0x14):
+                    maze[i] = 0x40
+            mon.store(0x400, maze)
+            mon.store(labels["full_dirty"], b"\x02")
+            mon.store(0xE0E, b"\xf4")
+            mon.resume()
+            phases = []
+            pictures = []
+            for phase, level in enumerate(range(15, 30, 2)):
+                colour = 1 if phase % 2 == 0 else 6
+                deadline = time.monotonic() + 15
+                while True:
+                    state = mon.memory(0xE00, 9)
+                    pending = mon.memory(labels["maze_flash"], 1)[0]
+                    actual = mon.memory(0x960E, 1)[0] & 7
+                    if state[4] == level and not pending and actual == colour:
+                        break
+                    mon.resume()
+                    if time.monotonic() >= deadline:
+                        raise RuntimeError(
+                            f"VICE missed maze flash {phase}: {state.hex()}"
+                        )
+                    time.sleep(0.005)
+                path = out / f"vice-flash-{phase}.png"
+                mon.screenshot(path)
+                with Image.open(path) as picture:
+                    pictures.append(picture.copy())
+                phases.append({"level_state": level, "colour": actual})
+                mon.resume()
+            pictures[0].save(
+                out / "vice-maze-flash.gif",
+                save_all=True,
+                append_images=pictures[1:],
+                duration=198,
+                loop=0,
+            )
+            report["maze_flash"] = phases
         mon.cmd(0xBB)
         p.wait(timeout=5)
         mon = None

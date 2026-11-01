@@ -2736,7 +2736,12 @@ void clearPillArrays_24c9() {
     memset(P1_PILL_ARRAY, 0xff, 0x1e);
     memset(P1_POWERUP_ARRAY, 0x14, 0x4);
 }
+#ifdef VIC20
+/* The native entry dispatches flash-only updates before this full path. */
+void mazeColours_full(uint8_t param) {
+#else
 void mazeColours_24d7(uint8_t param) {
+#endif
     int a;
     if (param == 2)
         a = 0x1f;

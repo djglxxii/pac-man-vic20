@@ -27,6 +27,11 @@ bounded exact frightened-random data, and native display/audio interfaces.
 The test suite compares these routines against a separate runner executing
 the unmodified original Z80 program.
 
+On the VIC, the maze-colour entry has an assembly wrapper for end-of-board
+flashes. It performs the original palette writes and requests a colour-only
+render; other calls enter the unchanged full C routine as `mazeColours_full`.
+The original game-state transitions, task parameters and timers remain intact.
+
 `tools/arcade/z80.h` is Andre Weissflog's chips Z80 core, retrieved from
 https://github.com/floooh/chips/blob/master/chips/z80.h. Its embedded zlib
 license is retained. It is used only by the local reference runner.

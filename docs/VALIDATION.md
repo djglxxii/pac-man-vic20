@@ -20,8 +20,9 @@ make -j2 test
 make vice-test
 ```
 
-Result on 2026-11-01: **15 ROM comparison tests, six native tests and four
-renderer tests passed**, followed by the frontend smoke run and the VICE check.
+Result on 2026-11-01: **15 ROM comparison tests, six native tests, four
+renderer tests and three maze-flash tests passed**, followed by the frontend
+smoke run and the VICE check.
 The smoke run exceeded 7,000 logical ticks with its IRQ vector and stack guard
 intact; its clock measurement matched 180.96 ticks across 180 NTSC video frames
 within the boundary tolerance. VICE
@@ -79,6 +80,12 @@ drains that task queue together. Tests therefore begin animation and maze
 traces after those setup tasks finish. They do not claim that every
 intermediate screen-building write occurs at the same wall-clock time.
 
+`tests/flash.py` adds 64 palette/pixel/underlay comparisons against full
+redraws, covering all fruit types and history lengths. It checks the complete
+four-pair flash sequence, request-to-display timing, continued audio updates,
+and wall coverage after incremental dot removal. Captures and timing reports
+are in `build/maze-flash/`; see [MAZE_FLASH.md](MAZE_FLASH.md).
+
 ## VIC frontend checks
 
 `tests/smoke.py` boots the PRG, inserts a coin, starts a game, triggers a
@@ -99,11 +106,14 @@ and verifies active gameplay. It saves actual emulator screenshots, a
 48 kHz WAV containing the start tune and play, and `vice-validation.json`.
 The audio check verifies valid, non-silent output; waveform fidelity is
 limited by the VIC hardware and is not asserted by that check.
+The optional `--maze-flash` mode of `tools/arcade/vice_check.py` also forces
+board completion, verifies all eight physical blue/white phases, and saves
+`vice-maze-flash.gif`. This mode runs VICE at normal speed for reliable capture.
 
 `make performance` counts completed renders and records frame intervals from
 emulated CPU cycles. Current gameplay samples reach about 49–53 FPS; the sampled
 intermission reaches 60 FPS. [PERFORMANCE.md](PERFORMANCE.md) records the method,
-changes and remaining frame budget, including the long board-transition stall.
+changes and remaining frame budget, including the remaining next-board rebuild stall.
 The game timer rate alone does not establish
 the display refresh rate.
 

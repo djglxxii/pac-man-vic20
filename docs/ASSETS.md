@@ -55,6 +55,8 @@ all affected underlays before tile writes. Rendering is skipped when the
 game clock has pending work.
 
 The dirty-tile bitset uses `$0F00–$0F7F`; sprite caches occupy `$0F80–$0FE1`.
+Maze-wall coverage for the [stage flash](MAZE_FLASH.md) uses `$0FE2–$0FFA`,
+with its pending flag at `$0FFB`.
 Frequently tested arcade flags at virtual `$4DA0–$4DFF` use native zero page
 `$A0–$FF`. These memory choices leave the game values and coordinates intact.
 

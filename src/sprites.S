@@ -110,6 +110,12 @@ video_sprites:
  jsr sprite_mark
  jsr sprite_force_all
 video_update_end:
+ lda maze_flash
+ beq sprite_flash_done
+ jsr bitmap_maze_flash
+ lda #0
+ sta maze_flash
+sprite_flash_done:
  lda #0
  sta v_actor
  lda #12
@@ -423,6 +429,7 @@ mark_x_ready:
  sta new_y,x
  lda dirty_count
  ora full_dirty
+ ora maze_flash
  bne mark_dirty
  lda $0c20,x
  cmp cache_attr,x

@@ -68,6 +68,10 @@ Game logic retains its 60.606 Hz clock. Gameplay is not yet a sustained
 60 FPS; see [performance measurements](docs/PERFORMANCE.md) and the
 [optimization-guide review](docs/OPTIMIZATION_REVIEW.md).
 
+The [end-of-stage maze flash](docs/MAZE_FLASH.md) changes colours without
+rebuilding the bitmap. Its four blue/white pairs retain the arcade timing;
+full drawing of the next board can still pause separately.
+
 The original music, effect tables, priorities and sequencing drive the VIC's
 three tone voices. Square waves approximate the arcade waveform PROMs; timbre
 and individual voice envelopes differ because the VIC shares one volume

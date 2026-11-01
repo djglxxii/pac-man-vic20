@@ -489,14 +489,14 @@ tile_color_ready:
  beq tile_color_done
  lda v_shift
  ldy #0
- sta (v_right),y
+ jsr bitmap_cell_colour
  lda v_lo
  and #15
  cmp #11
  bcc tile_color_done
  ldy #14
  lda v_shift
- sta (v_right),y
+ jsr bitmap_cell_colour
 tile_color_done:
  lda v_saved_right
  and #1
@@ -552,6 +552,110 @@ tile_pixel:
  bne tile_pixel_done
  inc v_addr+1
 tile_pixel_done:
+ rts
+/* Remember every cell touched by the fixed maze walls. Dots may temporarily
+   supply a shared cell's colour; removing the last dot must not lose its wall.
+   A real screen rebuild resets this coverage before any new scene is drawn. */
+.section .maze_cells,"aw",@nobits
+.global maze_cells
+maze_cells: .zero 25
+.section .cold,"ax",@progbits
+.global mazeColours_24d7
+mazeColours_24d7:
+ cmp #1
+ beq maze_palette_full
+ ldx $0e04
+ cpx #15
+ bcc maze_palette_full
+ cpx #30
+ bcc video_flash_palette
+maze_palette_full:
+ jmp mazeColours_full
+.global video_flash_palette
+video_flash_palette:
+ cmp #2
+ bne maze_palette_blue
+ lda #31
+ bne maze_palette_value
+maze_palette_blue:
+ lda #16
+maze_palette_value:
+ ldx #0
+maze_palette_pages:
+ sta $0840,x
+ sta $0940,x
+ sta $0a40,x
+ inx
+ bne maze_palette_pages
+ ldx #127
+maze_palette_tail:
+ sta $0b40,x
+ dex
+ bpl maze_palette_tail
+ lda #15
+ ldx #63
+maze_palette_hud:
+ sta $0bc0,x
+ dex
+ bpl maze_palette_hud
+ lda #1
+ sta maze_flash
+ rts
+.section .text.bitmap_cell_colour,"ax",@progbits
+bitmap_cell_colour:
+ sta (v_right),y
+ lda v_hi
+ cmp #$c0
+ bcc cell_colour_done
+ tya
+ clc
+ adc v_right
+ tax
+ and #7
+ tay
+ lda bit_masks,y
+ sta v_row
+ txa
+ lsr
+ lsr
+ lsr
+ tay
+ lda maze_cells,y
+ ora v_row
+ sta maze_cells,y
+cell_colour_done:
+ rts
+.section .text.bitmap_maze_flash,"ax",@progbits
+.global bitmap_maze_flash
+bitmap_maze_flash:
+ lda $0840
+ cmp #31
+ bne maze_colour_blue
+ lda #1
+ bne maze_colour_ready
+maze_colour_blue:
+ lda #6
+maze_colour_ready:
+ sta v_flags
+ ldx #199
+ ldy #24
+maze_colour_byte:
+ lda maze_cells,y
+ sta v_row
+ lda #8
+ sta v_lo
+ lda v_flags
+maze_colour_cell:
+ asl v_row
+ bcc maze_colour_next
+ sta $9600,x
+maze_colour_next:
+ dex
+ dec v_lo
+ bne maze_colour_cell
+ dey
+ bpl maze_colour_byte
+maze_colour_done:
  rts
 .section .rodata.bitmap_columns,"a",@progbits
 .global column_lo,column_hi,row_times_14

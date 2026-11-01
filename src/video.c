@@ -12,12 +12,14 @@
 static uint8_t dirty_bits[128] __attribute__((section(".video_bits")));
 static uint16_t dirty_queue[20] __attribute__((section(".screen_work")));
 uint8_t dirty_count, full_dirty;
+uint8_t maze_flash __attribute__((section(".maze_cells")));
+extern uint8_t maze_cells[25];
 extern uint8_t under[216];
 extern uint8_t *v_addr, *v_save;
 extern const uint8_t *v_data;
 extern uint8_t v_flags, v_shift, v_flip;
 void bitmap_erase(void), bitmap_draw(void);
-static uint8_t bit_masks[8] = {1, 2, 4, 8, 16, 32, 64, 128};
+uint8_t bit_masks[8] = {1, 2, 4, 8, 16, 32, 64, 128};
 void video_init(void) {
     memset(BITMAP, 0, 0xc40);
     memset(COLORS, 0, 196);
@@ -26,6 +28,7 @@ void video_init(void) {
             ((uint8_t *)0x200)[r * 14 + c] = c * 14 + r;
     memset(under, 0, sizeof under);
     memset(dirty_bits, 0, sizeof dirty_bits);
+    maze_flash = 0;
     full_dirty = 2;
     dirty_count = 0;
 }
@@ -50,7 +53,7 @@ void video_store(uint8_t *p, uint8_t value) {
     }
     dirty_queue[dirty_count++] = i;
 }
-void video_fill(uint8_t *p, uint8_t value, uint16_t count) {
+__attribute__((noinline)) void video_fill(uint8_t *p, uint8_t value, uint16_t count) {
     memset(p, value, count);
     full_dirty = 2;
     dirty_count = 0;
@@ -64,6 +67,7 @@ static __attribute__((noinline)) void video_rebuild(void) {
     if (full_dirty == 2) {
         memset(BITMAP, 0, 0xc40);
         memset(COLORS, 0, 196);
+        memset(maze_cells, 0, 25);
         for (uint16_t i = 0; i < 1024; i++) {
             uint8_t t = SCREEN[i];
             if ((COLOUR[i] & 31) && t != 0x40 && t != 0xfc && t != 0xfd)
