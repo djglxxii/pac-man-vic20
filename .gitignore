@@ -1,0 +1,5 @@
+/build/
+/tools/cc65/
+/tools/vicsim/vicsim
+__pycache__/
+*.py[cod]
