@@ -1,138 +1,107 @@
-# SNAPBUG
+# Pac-Man for the VIC-20
 
-A maze-chase game for the Commodore VIC-20 (NTSC), written in 6502 assembly.
-You're a beetle eating seeds in a maze while four spiders hunt you. Eat a
-honey drop and the spiders turn blue for a few seconds, and you can eat them.
+A private, local homebrew conversion of the original Midway Pac-Man ROM set
+for an NTSC VIC-20 with full RAM expansion. The target is arcade behavior,
+including its maze, ghost rules, attract sequence, intermissions and quirks.
 
-The maze and enemy behaviors are original. Graphics use arcade Pac-Man
-silhouettes adapted to the VIC-20's 8×8, single-color sprites. Music and
-effects adapt arcade pitch and timing data to the VIC's tone voices.
-
-## Requirements
-
-- An NTSC VIC-20 with the full memory expansion: 3K at `$0400`, 8K blocks at
-  `$2000`/`$4000`/`$6000` and 8K at `$A000`. In VICE that's `-memory all`.
-- A joystick in port 1.
-
-## Building and running
+## Start it
 
 ```sh
-make            # builds build/snapbug.prg (needs python3 + Pillow, ca65/ld65)
-make run        # launches VICE (xvic) as an NTSC VIC-20 with full RAM
-make test       # headless play test: bot plays ~8 minutes of game time
+make run
 ```
 
-cc65 is unpacked locally in `tools/cc65` (from the Ubuntu `cc65` package). If
-it's missing, the Makefile falls back to the `ca65`/`ld65` on your PATH.
+This builds `build/pacman.prg` and launches VICE (`xvic`) with all required
+RAM blocks enabled. The first build installs a pinned LLVM-MOS toolchain
+locally if it is missing; the current workspace already has it.
 
-**Controls in VICE:** arrow keys move, space is fire (press it to start).
-This joystick-on-keyboard mapping comes from `tools/vice-keys.vrc`; a USB
-gamepad can be picked instead under Settings → Joystick.
+- **Arrow keys:** move, using joystick port 1's keyboard mapping.
+- **5:** insert a coin. **1:** start one player. **2:** start two players
+  after inserting two coins.
+- **Space / joystick fire:** insert a coin when there are no credits;
+  release and press again to start. Down + fire adds another coin;
+  up + fire starts two players.
 
-**ROMs:** Debian/Ubuntu's `vice` package ships without the Commodore ROMs.
-Copy `data/VIC20/*.bin` and `data/DRIVES/*.bin` from the official VICE source
-release (vice-emu.sourceforge.net) into `~/.local/share/vice/VIC20/` and
-`~/.local/share/vice/DRIVES/`.
+On a real expanded VIC-20, load the PRG as `PACMAN`:
 
-On a real machine: `LOAD"SNAPBUG",8` then `RUN`.
+```basic
+LOAD"PACMAN",8,1
+RUN
+```
 
-## How to play
+The machine needs +3K at `$0400` and 8K blocks at `$2000`, `$4000`, `$6000`
+and `$A000`. PAL timing is not supported.
 
-| Item           | Points                   |
-|----------------|--------------------------|
-| Seed           | 10                       |
-| Honey drop     | 50                       |
-| Spiders eaten  | 200, 400, 800, 1600      |
-| Bonus item     | 100 to 5000, by level    |
+## Arcade behavior
 
-You get an extra life at 10,000. A bonus item appears below the nest after
-60 and 140 seeds. The tunnel at the sides wraps around and slows spiders down.
+The conversion uses the original 28×31 maze, 240 dots and four energizers.
+The arcade routines provide movement patterns, early turns, tunnel behavior,
+ghost-house release, scatter/chase transitions, frightened movement, Cruise
+Elroy, scoring, three starting lives and the extra life at 10,000 points.
+Pinky and Inky retain the original upward-target overflow behavior.
 
-### The cast
+Fruit appears after 70 and 170 dots. All eight fruit/item types follow the
+original board progression, including the key from board 13 onward. The
+original character introductions, credit/start screens, demonstration play,
+death animation, two-player turns and all three intermissions are included.
+Intermissions occur after boards 2, 5, 9, 13 and 17. The board-256 fruit-history
+overflow is retained.
 
-Each spider makes its decisions at tile centers and never reverses on its own.
+Movement stays in arcade pixels and runs from a 60.606 Hz VIA timer. Tests
+compare game state against the original Z80 program and compare input traces
+on the compiled 6502 program. This supports arcade pattern compatibility;
+every published pattern and physical joystick timing have not been certified.
 
-- **STALKER** (red) heads for the tile you're on.
-- **PROWLER** (purple) charges if it can see you in a straight, open row or
-  column. Otherwise it patrols, alternating left-hand and right-hand turns at
-  each junction.
-- **MIRROR** (cyan) heads for your position mirrored through the center of the
-  maze. It's far away when you're near the edges and closes in as you cross
-  the middle.
-- **TRACKER** (yellow) follows your scent: it heads for where you were about
-  two seconds ago.
+## VIC compromises
 
-Frightened spiders pick exits with a pseudo-random generator that is reseeded
-at the start of every life. All movement uses fixed-point speeds advanced once
-per frame, so the game is deterministic: the same joystick input always
-produces the same game, and routes you work out can be repeated.
+Graphics are decoded from the local ROMs. Original tiles become 4×6 pixels
+and sprites become 8×12 pixels. The full portrait screen occupies 112×216
+native pixels; NTSC's wide pixels restore the original proportions.
 
-## Technical notes
+The VIC has no hardware sprites. Its eight foreground colors and one color
+per 8×16 character cause color clashes, and small facial details are reduced.
+Drawing can skip refreshes to let the game logic catch up. These are visible
+differences from an arcade board.
 
-**Display.** The screen is 21×24 characters at `$1000`, with the character set
-at `$1800`. These are the only places the VIC chip can see when RAM is
-expanded. Rows 0–1 hold the score, rows 2–22 the 21×21 maze, and row 23 shows
-spare lives and level items.
+The current CPU-cycle benchmark measures about 49 FPS in normal play,
+53 FPS when frightened, 45 FPS in the attract chase and 60 FPS in an intermission.
+Game logic retains its 60.606 Hz clock. Gameplay is not yet a sustained
+60 FPS; see [performance measurements](docs/PERFORMANCE.md) and the
+[optimization-guide review](docs/OPTIMIZATION_REVIEW.md).
 
-**Smooth movement with characters.** The renderer is in `src/render.s`.
+The original music, effect tables, priorities and sequencing drive the VIC's
+three tone voices. Square waves approximate the arcade waveform PROMs; timbre
+and individual voice envelopes differ because the VIC shares one volume
+control. See [the asset notes](docs/ASSETS.md) and
+[validation details](docs/VALIDATION.md).
 
-- Character codes `$C0–$FF` are two pools of 32 "dynamic" characters.
-- Each frame, every actor is drawn into the pool that is *not* on screen. For
-  each 8×8 cell an actor overlaps (up to 2×2), it takes a free dynamic
-  character, copies in the background tile, then merges the sprite using
-  `(background AND NOT mask) OR image`.
-- Actors that share a cell are drawn into the same character.
-- Once the raster passes the bottom of the display, `flip` points those cells
-  at the new characters, restores cells that are no longer covered, and swaps
-  pools. This gives tear-free, one-pixel movement.
+## Build and test
 
-**Pre-shifted sprites.** All 36 sprite images are pre-shifted into all 8
-horizontal positions, with their masks, when the game starts. They fill the
-8K block at `$A000` plus `$7000`. Each image gets one 256-byte page, so a
-sprite's data address is just `page:shift*32`.
+```sh
+make            # build the single self-extracting PRG
+make test       # original-ROM comparisons and compiled-6502 checks
+make performance # completed render rates and frame intervals at NTSC CPU speed
+make vice-test  # optional real VICE boot, coin/start, video and audio capture
+```
 
-**Timing.** Game logic and drawing finish before the next frame. The play
-test measured normal play at no more than about 68% of an NTSC frame (261
-lines × 65 cycles). The overall peak, about 82%, happens during the
-level-clear transition (wall flash and maze redraw).
+Dependencies: Python 3 with Pillow, a C compiler, ca65/ld65, and the pinned
+LLVM-MOS SDK. The Makefile uses the local `tools/cc65` installation or tools
+on `PATH`. `tools/bootstrap-llvm-mos.py` installs LLVM-MOS v23.4.0 under
+`tools/llvm-mos`; downloaded toolchains and generated files are ignored by git.
+VICE also needs its VIC-20 BASIC, KERNAL and character ROMs installed.
 
-**Memory map.**
+The supplied `pacman.zip` remains the asset and reference source. Nothing in
+the build publishes the project or sends its ROMs to a service.
 
-| Address       | Contents                                              |
-|---------------|-------------------------------------------------------|
-| `$0002–$00FF` | zero-page variables                                   |
-| `$0400–$09FF` | background map, color map, overlay map (3K block)     |
-| `$0A00–$0FFF` | other variables                                       |
-| `$1000–$11F7` | screen                                                |
-| `$1201`       | BASIC `SYS 8192` stub                                 |
-| `$1800–$1FFF` | character set                                         |
-| `$2000–$6FFF` | code and data                                         |
-| `$7000–$7FFF` | pre-shifted sprite pages 32 and up                    |
-| `$A000–$BFFF` | pre-shifted sprite pages 0–31                         |
+## Source
 
-**Sound.** The engine is in `src/sound.s`. Each of the VIC's voices plays a
-one-shot effect when one is active, otherwise its looping background sound
-(the siren, fright warble or eyes returning). All sound data comes from
-`tools/mksound.py`.
+- `src/arcade/`: native adaptation of the original game routines, with
+  upstream MIT notices and [provenance](src/arcade/UPSTREAM.md).
+- `src/pacman.c`, `src/platform.c`, `src/clock.S`, `src/audio.S`: VIC startup,
+  controls, game clock and sound-register conversion.
+- `src/video.c`, `src/bitmap.S`, `src/sprites.S`: bitmap display and incremental
+  native sprite compositor.
+- `tools/arcade/`: local asset extraction, PRG packing and original-ROM runner.
+- `tests/`: comparisons with the Z80 reference and the built VIC program.
 
-## Source layout
-
-| Path                    | Contents                                               |
-|-------------------------|--------------------------------------------------------|
-| `src/snapbug.s`         | startup, main loop, game modes (title, ready, play, death, level clear, game over) |
-| `src/render.s`          | soft-sprite compositor, flip, background cell writes, printing |
-| `src/actors.s`          | player movement and cornering, spider AI, nest release, fright, collisions, bonus |
-| `src/screen.s`          | score, high score, status line, maze setup             |
-| `src/sound.s`           | sound engine                                           |
-| `src/tables.s`          | lookup tables and per-level tuning (speeds, fright time, release rules) |
-| `tools/mkdata.py`       | maze definition and checks (symmetry, no dead ends, connected), wall autotiling, font, tiles, sprites, eyes-return pathfinding table |
-| `tools/mksound.py`      | music and sound effects                                |
-| `tools/vicsim/`         | headless VIC-20 test emulator: 6502 core that passes Klaus Dormann's functional test, raster timing, joystick, screenshots |
-| `tests/bot.py`          | automated play test                                    |
-| `tests/sound.py`        | sound stream timing, looping, voice routing and priority checks |
-
-To change the maze, edit `MAZE` in `tools/mkdata.py` and run `make`. The
-generator rejects mazes that aren't symmetric, have dead ends or aren't fully
-connected.
-
-To make your own sprites, tiles, font or sound, see [docs/ASSETS.md](docs/ASSETS.md).
+The [baseline audit](docs/ARCADE_PARITY_AUDIT.md) records the custom engine
+that this revision replaces; its findings are historical.

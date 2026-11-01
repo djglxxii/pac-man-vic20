@@ -4,7 +4,7 @@
  * Emulates a 6502 with flat 64K RAM, the VIC raster counter, joystick
  * ports, and renders the VIC text display to PPM.  It has no ROMs: the
  * program is started directly at a given address.  Good enough to run
- * SNAPBUG (which takes over the machine with SEI) for automated tests.
+ * the native Pac-Man port and its VIA timer IRQ for automated tests.
  *
  * usage: vicsim PRG START_HEX SCRIPT [LABELS]
  * script commands (one per line, '#' comments):
@@ -16,6 +16,8 @@
  *   timing on|off    print per-frame busy cycles (needs label "frame_wait")
  *   sound on|off     print sound register writes per frame
  *   until LABEL N    run until PC hits label (max N frames)
+ *   profile reset|off|FILE  collect instruction cycles and execution counts
+ *   call LABEL [A X] execute a subroutine in isolation, retaining CPU state
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -27,12 +29,24 @@ static uint8_t mem[65536];
 static uint16_t pc;
 static uint8_t a, x, y, sp, p;
 static uint64_t cycles;
+static uint64_t profile_cycles[65536], profile_hits[65536];
+static int profiling;
+static FILE *profile_trace;
+static uint16_t render_begin_addr, render_end_addr, audio_addr;
 #define CYC_LINE 65
 #define LINES 261
 #define CYC_FRAME (CYC_LINE * LINES)
 
 enum { FC = 1, FZ = 2, FI = 4, FD = 8, FB = 16, FU = 32, FV = 64, FN = 128 };
 static uint8_t joy;       /* bit0 up 1 down 2 left 3 right 4 fire (1 = pressed) */
+static uint8_t keys, via2_ier;
+static uint16_t timer_latch;
+static uint64_t timer_epoch, timer_ack;
+static int timer_running;
+static uint64_t timer_periods(void) {
+    return timer_running ? (cycles - timer_epoch) / ((unsigned)timer_latch + 2) : 0;
+}
+static int timer_pending(void) { return timer_running && timer_periods() > timer_ack; }
 
 static int nlabels;
 static struct { char name[64]; uint16_t addr; } labels[8192];
@@ -65,7 +79,20 @@ static uint8_t rd(uint16_t addr) {
         if ((joy & 8) && !(mem[0x9122] & 0x80)) v &= ~0x80;
         return v;
     }
-    if (addr == 0x9121) return 0xff;          /* no keys pressed */
+    if (addr == 0x9121) {
+        uint8_t v = 255;
+        if (!(mem[0x9120] & 1)) { if (keys & 1) v &= ~1; if (keys & 2) v &= ~128; }
+        if (!(mem[0x9120] & 4) && (keys & 4)) v &= ~1;
+        return v;
+    }
+    if (addr == 0x9124 || addr == 0x9125) {
+        unsigned elapsed = timer_running ? (cycles - timer_epoch) % ((unsigned)timer_latch + 2) : 0;
+        uint16_t count = timer_latch - elapsed;
+        if (addr == 0x9124) { timer_ack = timer_periods(); return count; }
+        return count >> 8;
+    }
+    if (addr == 0x912d) return timer_pending() ? (0x40 | ((via2_ier & 0x40) ? 0x80 : 0)) : 0;
+    if (addr == 0x912e) return via2_ier | 128;
     return mem[addr];
 }
 
@@ -76,6 +103,12 @@ static void wr(uint16_t addr, uint8_t v) {
     if (addr >= 0xc000) return;                        /* BASIC/KERNAL ROM */
     if (addr >= 0x9400 && addr < 0x9800) v &= 0x0f;   /* colour nibbles */
     if (addr >= 0x900a && addr <= 0x900e) sndregs[addr - 0x9000] = v;
+    if (addr == 0x9124 || addr == 0x9126) timer_latch = (timer_latch & 0xff00) | v;
+    if (addr == 0x9125 || addr == 0x9127) {
+        timer_latch = (timer_latch & 255) | ((unsigned)v << 8);
+        if (addr == 0x9125) { timer_epoch = cycles; timer_ack = 0; timer_running = 1; }
+    }
+    if (addr == 0x912e) { if (v & 128) via2_ier |= v & 127; else via2_ier &= ~v; }
     mem[addr] = v;
 }
 
@@ -136,6 +169,10 @@ static uint16_t rd16zp(uint8_t ad) { return rd(ad) | (rd((uint8_t)(ad + 1)) << 8
 static int illegal;
 
 static void step(void) {
+    uint16_t instruction_pc = pc;
+    if (profile_trace && (pc == render_begin_addr || pc == render_end_addr || pc == audio_addr))
+        fprintf(profile_trace, "%llu %s\n", (unsigned long long)cycles,
+                pc == audio_addr ? "logic" : pc == render_begin_addr ? "begin" : "end");
     uint8_t op = rd(pc++);
     uint16_t ad = 0;
     uint8_t v;
@@ -289,6 +326,7 @@ static void step(void) {
         break;
     }
     cycles += c;
+    if (profiling) { profile_cycles[instruction_pc] += c; profile_hits[instruction_pc]++; }
 }
 
 /* ---------------------------------------------------------------- render */
@@ -350,6 +388,8 @@ static uint16_t parse_addr(const char *s) {
 static int timing;
 static uint16_t wait_addr;
 static int have_wait;
+static uint16_t tick_addr;
+static int have_tick;
 static uint64_t frame_no;
 
 static void run_frames(long n, int stop_at, uint16_t stop_pc) {
@@ -357,6 +397,10 @@ static void run_frames(long n, int stop_at, uint16_t stop_pc) {
     uint64_t fstart = cycles / CYC_FRAME;
     int marked = 0;
     while (cycles < end) {
+        if (!(p & FI) && (via2_ier & 0x40) && timer_pending()) {
+            push(pc >> 8); push(pc); push(p & ~FB); p |= FI;
+            pc = rd16(0xfffe); cycles += 7;
+        }
         if (have_wait && pc == wait_addr && !marked) {
             marked = 1;
             if (timing) {
@@ -365,7 +409,8 @@ static void run_frames(long n, int stop_at, uint16_t stop_pc) {
                        (unsigned long long)(cycles % CYC_FRAME));
             }
         }
-        if (stop_at && pc == stop_pc) { printf("hit $%04X at frame %llu\n", stop_pc, (unsigned long long)(cycles / CYC_FRAME)); return; }
+        if (stop_at == 1 && pc == stop_pc) { printf("hit $%04X at frame %llu\n", stop_pc, (unsigned long long)(cycles / CYC_FRAME)); return; }
+        if (stop_at == 2 && rd16(tick_addr) == stop_pc) { printf("hit tick %u at frame %llu\n", stop_pc, (unsigned long long)(cycles / CYC_FRAME)); return; }
         uint16_t opc = pc;
         step();
         if (pc == opc && getenv("TRAPSTOP")) { printf("trap at $%04X\n", pc); exit(3); }
@@ -396,15 +441,24 @@ int main(int argc, char **argv) {
         while (lf && fgets(line, sizeof line, lf)) {
             unsigned v; char nm[128];
             if (sscanf(line, "al %x .%127s", &v, nm) == 2 && nlabels < 8192) {
-                strncpy(labels[nlabels].name, nm, 63);
+                snprintf(labels[nlabels].name, sizeof labels[nlabels].name, "%.63s", nm);
                 labels[nlabels++].addr = (uint16_t)v;
             }
         }
         if (lf) fclose(lf);
         have_wait = find_label("frame_wait", &wait_addr);
+        have_tick = find_label("arcade_ticks", &tick_addr);
+        find_label("video_frame_begin", &render_begin_addr);
+        find_label("video_frame_end", &render_end_addr);
+        find_label("audio_update", &audio_addr);
     }
     mem[0x9002] = 0x96; mem[0x9003] = 0x2e; mem[0x9005] = 0xf0; mem[0x900f] = 0x1b;
     mem[0x9122] = 0xff;
+    /* The VIC KERNAL saves A/X/Y before dispatching the RAM IRQ vector.
+       Tests need this entry convention, rather than a complete KERNAL ROM. */
+    const uint8_t irq_stub[] = {0x48,0x8a,0x48,0x98,0x48,0x6c,0x14,0x03};
+    memcpy(mem + 0xff72, irq_stub, sizeof irq_stub);
+    mem[0xfffe] = 0x72; mem[0xffff] = 0xff;
     pc = parse_addr(argv[2]);
     sp = 0xfd; p = FU | FI;
     FILE *sf = strcmp(argv[3], "-") ? fopen(argv[3], "r") : stdin;
@@ -416,14 +470,47 @@ int main(int argc, char **argv) {
         int k = sscanf(line, "%31s %127s %63s", cmd, a1, a2);
         if (k < 1 || cmd[0] == '#') continue;
         if (!strcmp(cmd, "run")) run_frames(atol(a1), 0, 0);
+        else if (!strcmp(cmd, "call")) {
+            uint64_t call_cycles = cycles;
+            uint16_t saved_pc = pc;
+            uint8_t saved_a = a, saved_x = x, saved_y = y, saved_sp = sp, saved_p = p;
+            unsigned av = 0, xv = 0;
+            sscanf(line, "%*s %*s %u %u", &av, &xv);
+            a = av; x = xv; p |= FI;
+            push(0xff); push(0xef); pc = parse_addr(a1);
+            unsigned count = 0;
+            while (pc != 0xfff0 && !illegal && count++ < 1000000) step();
+            if (pc != 0xfff0) { fprintf(stderr, "call did not return: %s", line); return 1; }
+            printf("returned %02x %02x cycles=%llu\n", a, x, (unsigned long long)(cycles-call_cycles));
+            pc = saved_pc; a = saved_a; x = saved_x; y = saved_y; sp = saved_sp; p = saved_p;
+        }
         else if (!strcmp(cmd, "until")) run_frames(atol(a2), 1, parse_addr(a1));
+        else if (!strcmp(cmd, "tick") && have_tick) run_frames(10000, 2, (uint16_t)strtoul(a1, 0, 0));
         else if (!strcmp(cmd, "joy")) {
             joy = 0;
             for (char *c = a1; *c; c++) {
                 if (*c == 'U') joy |= 1; if (*c == 'D') joy |= 2;
                 if (*c == 'L') joy |= 4; if (*c == 'R') joy |= 8; if (*c == 'F') joy |= 16;
             }
+        } else if (!strcmp(cmd, "key")) {
+            keys = 0;
+            if (strchr(a1, '1')) keys |= 1;
+            if (strchr(a1, '2')) keys |= 2;
+            if (strchr(a1, '5')) keys |= 4;
         } else if (!strcmp(cmd, "shot")) shot(a1);
+        else if (!strcmp(cmd, "load")) {
+            FILE *lf = fopen(a2, "rb");
+            if (!lf) { perror(a2); return 1; }
+            uint16_t ad = parse_addr(a1);
+            size_t loaded = fread(mem + ad, 1, 65536 - ad, lf);
+            if (loaded < 65536 - ad && ferror(lf)) { perror(a2); fclose(lf); return 1; }
+            fclose(lf);
+        } else if (!strcmp(cmd, "dump")) {
+            FILE *df = fopen(a1, "wb");
+            if (!df) { perror(a1); return 1; }
+            fwrite(mem, 1, sizeof mem, df);
+            fclose(df);
+        }
         else if (!strcmp(cmd, "peek")) {
             uint16_t ad = parse_addr(a1); int cnt = a2[0] ? atoi(a2) : 1;
             printf("%s:", a1);
@@ -432,6 +519,26 @@ int main(int argc, char **argv) {
         } else if (!strcmp(cmd, "poke")) wr(parse_addr(a1), (uint8_t)strtoul(a2, 0, 0));
         else if (!strcmp(cmd, "timing")) timing = !strcmp(a1, "on");
         else if (!strcmp(cmd, "sound")) sound_log = !strcmp(a1, "on");
+        else if (!strcmp(cmd, "stats")) printf("cycles %llu\n", (unsigned long long)cycles);
+        else if (!strcmp(cmd, "trace")) {
+            if (profile_trace) fclose(profile_trace);
+            profile_trace = strcmp(a1, "off") ? fopen(a1, "w") : NULL;
+            if (strcmp(a1, "off") && !profile_trace) { perror(a1); return 1; }
+        }
+        else if (!strcmp(cmd, "profile")) {
+            if (!strcmp(a1, "reset")) {
+                memset(profile_cycles, 0, sizeof profile_cycles);
+                memset(profile_hits, 0, sizeof profile_hits);
+                profiling = 1;
+            } else if (!strcmp(a1, "off")) profiling = 0;
+            else {
+                FILE *pf = fopen(a1, "w");
+                if (!pf) { perror(a1); return 1; }
+                for (unsigned i = 0; i < 65536; i++) if (profile_hits[i])
+                    fprintf(pf, "%04x %llu %llu\n", i, (unsigned long long)profile_cycles[i], (unsigned long long)profile_hits[i]);
+                fclose(pf);
+            }
+        }
         else if (!strcmp(cmd, "echo")) printf("%s", line + 5);
         else if (!strcmp(cmd, "sync")) printf("ok %llu\n", (unsigned long long)(cycles / CYC_FRAME));
         else if (!strcmp(cmd, "quit")) break;
@@ -439,5 +546,6 @@ int main(int argc, char **argv) {
         fflush(stdout);
     }
     printf("end at frame %llu, PC=$%04X\n", (unsigned long long)(cycles / CYC_FRAME), pc);
+    if (profile_trace) fclose(profile_trace);
     return 0;
 }

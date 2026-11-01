@@ -3,3 +3,4 @@
 /tools/vicsim/vicsim
 __pycache__/
 *.py[cod]
+/tools/llvm-mos/

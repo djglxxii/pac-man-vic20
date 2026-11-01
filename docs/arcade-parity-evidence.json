@@ -1,0 +1,363 @@
+{
+  "commit": "beb08f2ae49502a09cb652033d50a3a11125e542",
+  "scope": "Source audit and targeted emulator probes at the named commit. Forced board transitions are not full playthroughs.",
+  "maze": {
+    "width": 21,
+    "height": 21,
+    "dots": 167,
+    "energizers": 4,
+    "base_points": 1870
+  },
+  "idle_samples": [
+    {
+      "emulated_frame": 120,
+      "mode": 0,
+      "actor_x": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "actor_y": [
+        40,
+        56,
+        72,
+        88
+      ]
+    },
+    {
+      "emulated_frame": 600,
+      "mode": 0,
+      "actor_x": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "actor_y": [
+        40,
+        56,
+        72,
+        88
+      ]
+    },
+    {
+      "emulated_frame": 3600,
+      "mode": 0,
+      "actor_x": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "actor_y": [
+        40,
+        56,
+        72,
+        88
+      ]
+    },
+    {
+      "emulated_frame": 18000,
+      "mode": 0,
+      "actor_x": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "actor_y": [
+        40,
+        56,
+        72,
+        88
+      ]
+    }
+  ],
+  "forced_board_transitions": [
+    {
+      "completed_board": 2,
+      "observed_modes": [
+        5,
+        1
+      ],
+      "next_board": 3
+    },
+    {
+      "completed_board": 5,
+      "observed_modes": [
+        5,
+        1
+      ],
+      "next_board": 6
+    },
+    {
+      "completed_board": 9,
+      "observed_modes": [
+        5,
+        1
+      ],
+      "next_board": 10
+    },
+    {
+      "completed_board": 13,
+      "observed_modes": [
+        5,
+        1
+      ],
+      "next_board": 14
+    },
+    {
+      "completed_board": 17,
+      "observed_modes": [
+        5,
+        1
+      ],
+      "next_board": 18
+    },
+    {
+      "completed_board": 21,
+      "observed_modes": [
+        5,
+        1
+      ],
+      "next_board": 22
+    }
+  ],
+  "tuning_samples": [
+    {
+      "board": 1,
+      "table_index": 0,
+      "fruit": "CHERRY",
+      "fruit_points": 100,
+      "fright_frames": 360,
+      "player_speed_256": 205,
+      "ghost_speed_256": 184
+    },
+    {
+      "board": 2,
+      "table_index": 1,
+      "fruit": "BERRY",
+      "fruit_points": 300,
+      "fright_frames": 300,
+      "player_speed_256": 217,
+      "ghost_speed_256": 200
+    },
+    {
+      "board": 3,
+      "table_index": 2,
+      "fruit": "ORANGE",
+      "fruit_points": 500,
+      "fright_frames": 240,
+      "player_speed_256": 225,
+      "ghost_speed_256": 212
+    },
+    {
+      "board": 5,
+      "table_index": 4,
+      "fruit": "MELON",
+      "fruit_points": 1000,
+      "fright_frames": 150,
+      "player_speed_256": 235,
+      "ghost_speed_256": 225
+    },
+    {
+      "board": 8,
+      "table_index": 7,
+      "fruit": "KEY",
+      "fruit_points": 5000,
+      "fright_frames": 60,
+      "player_speed_256": 243,
+      "ghost_speed_256": 235
+    },
+    {
+      "board": 9,
+      "table_index": 7,
+      "fruit": "KEY",
+      "fruit_points": 5000,
+      "fright_frames": 60,
+      "player_speed_256": 243,
+      "ghost_speed_256": 235
+    },
+    {
+      "board": 17,
+      "table_index": 7,
+      "fruit": "KEY",
+      "fruit_points": 5000,
+      "fright_frames": 60,
+      "player_speed_256": 243,
+      "ghost_speed_256": 235
+    },
+    {
+      "board": 19,
+      "table_index": 7,
+      "fruit": "KEY",
+      "fruit_points": 5000,
+      "fright_frames": 60,
+      "player_speed_256": 243,
+      "ghost_speed_256": 235
+    },
+    {
+      "board": 21,
+      "table_index": 7,
+      "fruit": "KEY",
+      "fruit_points": 5000,
+      "fright_frames": 60,
+      "player_speed_256": 243,
+      "ghost_speed_256": 235
+    }
+  ],
+  "reference_program_roms": [
+    {
+      "file": "pacman.6e",
+      "crc32": "c1e6ab10",
+      "sha1": "e87e059c5be45753f7e9f33dff851f16d6751181"
+    },
+    {
+      "file": "pacman.6f",
+      "crc32": "1a6fb2d4",
+      "sha1": "674d3a7f00d8be5e38b1fdc208ebef5a92d38329"
+    },
+    {
+      "file": "pacman.6h",
+      "crc32": "bcdd1beb",
+      "sha1": "8e47e8c2c4d6117d174cdac150392042d3e0a881"
+    },
+    {
+      "file": "pacman.6j",
+      "crc32": "817d94e3",
+      "sha1": "d4a70d56bb01d27d094d73db8667ffb00ca69cb9"
+    }
+  ],
+  "arcade_fruit_rom_table_0efd": [
+    {
+      "board": 1,
+      "sprite": 0,
+      "name": "CHERRY",
+      "palette": 20
+    },
+    {
+      "board": 2,
+      "sprite": 1,
+      "name": "BERRY",
+      "palette": 15
+    },
+    {
+      "board": 3,
+      "sprite": 2,
+      "name": "ORANGE",
+      "palette": 21
+    },
+    {
+      "board": 4,
+      "sprite": 2,
+      "name": "ORANGE",
+      "palette": 21
+    },
+    {
+      "board": 5,
+      "sprite": 4,
+      "name": "APPLE",
+      "palette": 20
+    },
+    {
+      "board": 6,
+      "sprite": 4,
+      "name": "APPLE",
+      "palette": 20
+    },
+    {
+      "board": 7,
+      "sprite": 5,
+      "name": "MELON",
+      "palette": 23
+    },
+    {
+      "board": 8,
+      "sprite": 5,
+      "name": "MELON",
+      "palette": 23
+    },
+    {
+      "board": 9,
+      "sprite": 6,
+      "name": "GALAX",
+      "palette": 9
+    },
+    {
+      "board": 10,
+      "sprite": 6,
+      "name": "GALAX",
+      "palette": 9
+    },
+    {
+      "board": 11,
+      "sprite": 3,
+      "name": "BELL",
+      "palette": 22
+    },
+    {
+      "board": 12,
+      "sprite": 3,
+      "name": "BELL",
+      "palette": 22
+    },
+    {
+      "board": 13,
+      "sprite": 7,
+      "name": "KEY",
+      "palette": 22
+    },
+    {
+      "board": 14,
+      "sprite": 7,
+      "name": "KEY",
+      "palette": 22
+    }
+  ],
+  "arcade_intermission_rom_table_0a45": [
+    {
+      "completed_board": 2,
+      "scene": 1
+    },
+    {
+      "completed_board": 5,
+      "scene": 2
+    },
+    {
+      "completed_board": 9,
+      "scene": 3
+    },
+    {
+      "completed_board": 13,
+      "scene": 3
+    },
+    {
+      "completed_board": 17,
+      "scene": 3
+    }
+  ],
+  "level_counter_wrap": {
+    "zero_based_level": 0,
+    "tuning_index": 0
+  },
+  "timing": {
+    "baseline_test_frames": 30004,
+    "baseline_highest_board": 5,
+    "peak_raster_lines": 212,
+    "frame_raster_lines": 261,
+    "ntsc_hz": 60.284526967285586,
+    "arcade_hz": 60.60606060606061
+  },
+  "main_code_data": {
+    "start": 8192,
+    "end_inclusive": 17056,
+    "free_bytes_before_0x7000": 11615
+  },
+  "probe_method": {
+    "idle": "No joystick input; sample title mode and actor positions at the listed CPU frames.",
+    "board_transition": "Start a new game, stop at update_mode, set mode=LEVEL, timer=156, and the listed zero-based board/tuning index; sample each CPU frame for 160 frames.",
+    "tuning": "Read compiled tuning tables at min(board-1,7), and compare with generator fruit definitions.",
+    "counter_wrap": "At update_mode set mode=LEVEL, timer=1, level=255; read level and tuning index after three CPU frames."
+  }
+}

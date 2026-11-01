@@ -1,0 +1,25 @@
+home/djglxxii/.local/bin is already on PATH
+==> Current terminal: codex
+==> Future terminals: open a new terminal and run: codex
+Codex CLI 0.166.0 installed successfully.
+djglxxii@XPS-13-7390:~/src/vic-man$ codex --yolo
+Disconnected from this task. Any running work continues.
+To reconnect, run:
+  codex resume 01a19464-5ef8-71e1-8370-a0ac9b0edb26
+Stop the current turn: run codex agents, select this task, and press x.
+Token usage so far: total=1,110,537 input=863,473 (+ 41,555,072 cached) output=247,064 (reasoning 147,196)
+djglxxii@XPS-13-7390:~/src/vic-man$ ^C
+djglxxii@XPS-13-7390:~/src/vic-man$ ^C
+djglxxii@XPS-13-7390:~/src/vic-man$ 
+
+
+glxxii@XPS-13-7390:~/src/vic-man$ codex resume 01a19464-5ef8-71e1-8370-a0ac9b0edb26 --yolo
+djglxxii@XPS-13-7390:~/src/vic-man$ codex resume 01a19464-5ef8-71e1-8370-a0ac9b0edb26 --yolo
+Disconnected from this task. The current turn was stopped.
+To reconnect, run:
+  codex resume 01a19464-5ef8-71e1-8370-a0ac9b0edb26 --yolo
+Token usage: total=1,621,777 input=1,302,432 (+ 61,107,328 cached) output=319,345 (reasoning 198,612)
+djglxxii@XPS-13-7390:~/src/vic-man$ 
+
+
+
