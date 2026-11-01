@@ -67,6 +67,8 @@ The current CPU-cycle benchmark measures about 49 FPS in normal play,
 Game logic retains its 60.606 Hz clock. Gameplay is not yet a sustained
 60 FPS; see [performance measurements](docs/PERFORMANCE.md) and the
 [optimization-guide review](docs/OPTIMIZATION_REVIEW.md).
+The [research optimization plan](docs/RESEARCH_OPTIMIZATION_PLAN.md) records
+the next changes in priority order, starting with bounded next-board work.
 
 The [end-of-stage maze flash](docs/MAZE_FLASH.md) changes colours without
 rebuilding the bitmap. Its four blue/white pairs retain the arcade timing;

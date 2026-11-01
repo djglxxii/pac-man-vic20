@@ -1,0 +1,284 @@
+{
+  "recorded_on": "2026-11-01",
+  "source_revision": "4c5f726d74acfde959baca587558655c3a802fcb",
+  "source_tree": "05e456f5178f2d854ce8a9e678ece131dc377346",
+  "measurement_command": "python3 tests/performance.py --output build/performance/research-baseline",
+  "raw_artifact_directory": "build/performance/research-baseline/",
+  "target": "NTSC VIC-20 with +3K and BLK1/2/3/5 RAM",
+  "toolchain": {
+    "sdk_pin": "23.4.0",
+    "compiler": "clang version 24.0.0git (https://github.com/llvm-mos/llvm-mos a40207a371b60ff787ece46817d9c0f62eada719)",
+    "native_cflags": "-Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -Tsrc/pacman.ld"
+  },
+  "validation": {
+    "command": "make test",
+    "result": "passed",
+    "rom_tests": 15,
+    "native_tests": 6,
+    "renderer_tests": 4,
+    "maze_flash_tests": 3,
+    "smoke": {
+      "screens": [
+        "attract",
+        "credits",
+        "maze",
+        "cherry",
+        "intermission-1",
+        "intermission-2",
+        "intermission-3"
+      ],
+      "clock": {
+        "video_frames": 180,
+        "arcade_ticks": 182,
+        "expected": 180.96
+      },
+      "long_run_ticks": 7185,
+      "irq_vector_intact": true,
+      "stack_guard_intact": true
+    },
+    "maze_flash_renderer": {
+      "comparisons": 64,
+      "palette_cycles_max": 7083,
+      "recolour_cycles_max": 4772
+    },
+    "maze_flash_timing": {
+      "phases": [
+        "white",
+        "blue",
+        "white",
+        "blue",
+        "white",
+        "blue",
+        "white",
+        "blue"
+      ],
+      "request_to_present_ms": [
+        15.563293039100365,
+        13.651736973796526,
+        13.6556480859506,
+        16.540093299580434,
+        13.6556480859506,
+        13.651736973796526,
+        13.6556480859506,
+        16.680893337127113
+      ],
+      "flash_spacing_ms": [
+        196.101207849211,
+        197.99907502197556,
+        201.5151648484884,
+        194.551429658159,
+        197.92867500320222,
+        198.01080835843777,
+        201.6461871056499
+      ],
+      "audio_update_gap_ms_max": 25.013517781382518
+    },
+    "vice_rerun_during_preparation": false,
+    "user_confirmed_maze_flash": true
+  },
+  "memory": {
+    "blk1_3_end_exclusive": "0x7fe1",
+    "blk1_3_free_bytes": 31,
+    "blk5_end_exclusive": "0xbfe5",
+    "blk5_free_bytes": 27,
+    "note": "Free bytes in these regions are separate allocations; stack and low RAM require an independent lifetime audit."
+  },
+  "artifact_sha256": {
+    "build/pacman.prg": "44a1588b8b9e337e6dcc8798eb2bf246ad37ad1e75707c4434dbf5c544b7c12a",
+    "build/arcade/pacman-native.bin": "e3b8133b3beaecc5e072ca44a56011e9ba8b8cdc3cd2fd4818a9891801bde674",
+    "build/arcade/rom-manifest.json": "2a8cd55db7c6443b63824d41df07a4d2a23a2079087dc5bb0a6debe7b5253b4f"
+  },
+  "performance": {
+    "cpu_hz": 1022727,
+    "video_frames_per_sample": 180,
+    "samples": [
+      {
+        "scene": "play",
+        "seconds": 2.9829,
+        "completed_renders": 146,
+        "fps": 48.94,
+        "logic_hz": 61.01,
+        "render_ms_mean": 9.96,
+        "render_ms_max": 16.9,
+        "frame_interval_ms_p95": 33.05,
+        "frame_interval_ms_max": 38.38,
+        "start_state": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_state": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "start_board": 0,
+        "end_board": 0,
+        "video_frames": 180
+      },
+      {
+        "scene": "frightened",
+        "seconds": 2.9829,
+        "completed_renders": 158,
+        "fps": 52.97,
+        "logic_hz": 61.01,
+        "render_ms_mean": 8.47,
+        "render_ms_max": 17.39,
+        "frame_interval_ms_p95": 29.39,
+        "frame_interval_ms_max": 50.35,
+        "start_state": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_state": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "start_board": 0,
+        "end_board": 0,
+        "video_frames": 180
+      },
+      {
+        "scene": "attract-chase",
+        "seconds": 2.9858,
+        "completed_renders": 133,
+        "fps": 44.54,
+        "logic_hz": 60.96,
+        "render_ms_mean": 10.43,
+        "render_ms_max": 13.78,
+        "frame_interval_ms_p95": 43.96,
+        "frame_interval_ms_max": 51.28,
+        "start_state": [
+          1,
+          0,
+          34,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_state": [
+          1,
+          0,
+          34,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "start_board": 0,
+        "end_board": 0,
+        "video_frames": 180
+      },
+      {
+        "scene": "intermission",
+        "seconds": 2.9799,
+        "completed_renders": 179,
+        "fps": 60.07,
+        "logic_hz": 60.4,
+        "render_ms_mean": 3.41,
+        "render_ms_max": 12.41,
+        "frame_interval_ms_p95": 20.84,
+        "frame_interval_ms_max": 22.01,
+        "start_state": [
+          3,
+          0,
+          0,
+          0,
+          32,
+          0,
+          4,
+          0,
+          0
+        ],
+        "end_state": [
+          3,
+          0,
+          0,
+          0,
+          32,
+          0,
+          5,
+          0,
+          0
+        ],
+        "start_board": 1,
+        "end_board": 1,
+        "video_frames": 180
+      },
+      {
+        "scene": "board-transition",
+        "seconds": 5.9688,
+        "completed_renders": 251,
+        "fps": 42.05,
+        "logic_hz": 60.65,
+        "render_ms_mean": 7.33,
+        "render_ms_max": 828.87,
+        "frame_interval_ms_p95": 30.88,
+        "frame_interval_ms_max": 1277.65,
+        "start_state": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_state": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "start_board": 0,
+        "end_board": 1,
+        "video_frames": 360
+      }
+    ]
+  },
+  "limits": [
+    "Emulated CPU-cycle measurements; no new physical-hardware validation.",
+    "Frightened, intermission and transition samples inject setup state.",
+    "Short sample windows round logical tick counts at their boundaries.",
+    "IRQ ticks alone do not establish timely input, logic or audio service.",
+    "Completed-render metrics must remain distinct from future rebuild-batch metrics."
+  ]
+}
