@@ -54,6 +54,12 @@ new footprints share pixels or color cells. Background changes invalidate
 all affected underlays before tile writes. Rendering is skipped when the
 game clock has pending work.
 
+[Full rebuilds](BOUNDED_REBUILD.md) now use bounded progressive slices. Actors
+are restored once and redrawn from current state at completion; input, logic
+and audio continue. Partial batches are separate from coherent completed
+refreshes. Continuation state uses 16 spare bytes in the existing
+`$02C4-$02FF` screen-work region; no larger expansion is required.
+
 The dirty-tile bitset uses `$0F00–$0F7F`; sprite caches occupy `$0F80–$0FE1`.
 Maze-wall coverage for the [stage flash](MAZE_FLASH.md) uses `$0FE2–$0FFA`,
 with its pending flag at `$0FFB`.

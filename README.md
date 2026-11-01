@@ -62,17 +62,20 @@ per 8×16 character cause color clashes, and small facial details are reduced.
 Drawing can skip refreshes to let the game logic catch up. These are visible
 differences from an arcade board.
 
-The current CPU-cycle benchmark measures about 49 FPS in normal play,
-53 FPS when frightened, 45 FPS in the attract chase and 60 FPS in an intermission.
+The current CPU-cycle benchmark measures about 50 FPS in normal play,
+54 FPS when frightened, 44 FPS in the attract chase and 60 FPS in an intermission.
 Game logic retains its 60.606 Hz clock. Gameplay is not yet a sustained
 60 FPS; see [performance measurements](docs/PERFORMANCE.md) and the
 [optimization-guide review](docs/OPTIMIZATION_REVIEW.md).
 The [research optimization plan](docs/RESEARCH_OPTIMIZATION_PLAN.md) records
-the next changes in priority order, starting with bounded next-board work.
+the changes in priority order. Its first item,
+[bounded next-board work](docs/BOUNDED_REBUILD.md), now keeps input, logic and
+sound serviced while the next board draws progressively.
 
 The [end-of-stage maze flash](docs/MAZE_FLASH.md) changes colours without
 rebuilding the bitmap. Its four blue/white pairs retain the arcade timing;
-full drawing of the next board can still pause separately.
+the next board takes longer to become fully coherent than the old blocking
+draw, with a measured gap of about 1.8 seconds between completed refreshes.
 
 The original music, effect tables, priorities and sequencing drive the VIC's
 three tone voices. Square waves approximate the arcade waveform PROMs; timbre
@@ -104,8 +107,8 @@ the build publishes the project or sends its ROMs to a service.
   upstream MIT notices and [provenance](src/arcade/UPSTREAM.md).
 - `src/pacman.c`, `src/platform.c`, `src/clock.S`, `src/audio.S`: VIC startup,
   controls, game clock and sound-register conversion.
-- `src/video.c`, `src/bitmap.S`, `src/sprites.S`: bitmap display and incremental
-  native sprite compositor.
+- `src/video.c`, `src/bitmap.S`, `src/rebuild.S`, `src/tasks.S`, `src/sprites.S`:
+  bitmap display, bounded board construction and incremental sprite compositor.
 - `tools/arcade/`: local asset extraction, PRG packing and original-ROM runner.
 - `tests/`: comparisons with the Z80 reference and the built VIC program.
 

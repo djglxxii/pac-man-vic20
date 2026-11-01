@@ -17,7 +17,7 @@ sprites retain their normal colours and priority. A sprite sharing a wall cell
 still causes the usual VIC colour clash.
 
 The map uses `$0FE2–$0FFA`; its pending flag uses `$0FFB`. General bulk fills
-remain out of line to fit the additional code. The final link has 31 bytes free
+remain out of line to fit the additional code. The flash revision's link had 31 bytes free
 in BLK1–3 and 27 bytes in BLK5.
 
 ## Verification
@@ -47,6 +47,7 @@ Board completion is injected for these checks; it is not a natural playthrough.
 `build/maze-flash/vice/vice-maze-flash.gif` is the VICE capture. Timing reports
 and the 64-case renderer report are beside them.
 
-This change addresses flashing only. Drawing the next board still uses the
-full rebuild path and can pause separately; the current transition benchmark
-records an approximately 1.28-second draw gap during that later work.
+This revision addressed flashing only. The later
+[bounded rebuild](BOUNDED_REBUILD.md) services input, logic and audio during
+progressive next-board construction. Its coherent draw gap is longer, about
+1.8 seconds, while audio updates continue within about 30 ms in the sample.

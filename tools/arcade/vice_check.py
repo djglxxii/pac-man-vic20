@@ -201,6 +201,7 @@ def main():
         if args.maze_flash:
             # Prepare a completed board without making the user play through
             # 244 dots. The original state machine supplies all flash phases.
+            board = mon.memory(0xE13, 1)[0]
             maze = bytearray(mon.memory(0x400, 1024))
             for i, tile in enumerate(maze):
                 if tile in (0x10, 0x12, 0x14):
@@ -231,7 +232,10 @@ def main():
                 with Image.open(path) as picture:
                     pictures.append(picture.copy())
                 phases.append({"level_state": level, "colour": actual})
-                mon.resume()
+                # Keep the last capture paused while encoding the GIF, so
+                # host-side image work cannot consume the transition we test.
+                if phase < 7:
+                    mon.resume()
             pictures[0].save(
                 out / "vice-maze-flash.gif",
                 save_all=True,
@@ -240,6 +244,37 @@ def main():
                 loop=0,
             )
             report["maze_flash"] = phases
+            # Follow the real next-board rebuild after the final flash. Keep
+            # intermediate captures separate from completed presentation.
+            deadline = time.monotonic() + 15
+            partial = []
+            seen_ticks = set()
+            while True:
+                state = mon.memory(0xE00, 0x20)
+                phase = mon.memory(labels["rebuild_phase"], 1)[0]
+                dirty = mon.memory(labels["full_dirty"], 1)[0]
+                active = mon.memory(labels["bulk_active"], 1)[0]
+                tick = int.from_bytes(mon.memory(labels["arcade_ticks"], 2), "little")
+                if phase and tick // 12 not in seen_ticks and len(partial) < 12:
+                    seen_ticks.add(tick // 12)
+                    path = out / f"vice-rebuild-{len(partial)}.png"
+                    mon.screenshot(path)
+                    partial.append({"tick": tick, "phase": phase})
+                if state[0x13] == (board + 1) & 255 and state[4] == 3 and not (phase or dirty or active):
+                    mon.screenshot(out / "vice-next-board.png")
+                    report["board_transition"] = {
+                        "from_board": board,
+                        "to_board": state[0x13],
+                        "settled": True,
+                        "partial_captures": partial,
+                    }
+                    break
+                mon.resume()
+                if time.monotonic() >= deadline:
+                    raise RuntimeError("VICE next board did not settle")
+                time.sleep(0.005)
+            if not partial:
+                raise RuntimeError("VICE did not observe bounded rebuild work")
         mon.cmd(0xBB)
         p.wait(timeout=5)
         mon = None

@@ -9,6 +9,8 @@ check pass.
 This document records the earlier guide pass. The subsequent
 [maze-flash revision](MAZE_FLASH.md) adds three tests and resolves repeated
 rebuilds during flashing; [PERFORMANCE.md](PERFORMANCE.md) has current figures.
+The later [bounded-rebuild implementation](BOUNDED_REBUILD.md) completes the
+next scheduling step and records its service gain and presentation cost.
 
 ## Retained changes
 
@@ -56,6 +58,10 @@ next substantial change:
 process a limited tile batch, yield to input/logic/audio, and finish a hidden
 rebuild before presenting it. The dedicated maze-flash path now handles those
 palette changes without reconstructing pixels.
+
+The later [bounded implementation](BOUNDED_REBUILD.md) uses progressive drawing
+in the visible bitmap. The earlier suggestion of finishing a hidden rebuild
+does not fit this memory layout without a renderer redesign.
 
 Combining erase and draw per cell could help further, but the 4×6 logical
 tiles do not align with 8×16 display cells. A background bitmap cache would

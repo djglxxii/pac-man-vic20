@@ -37,7 +37,7 @@ class MazeFlash(unittest.TestCase):
             self.call("fruitHistoryLevelCheck_2bea")
             self.call("mazeColours_24d7", 0)
             sim.cmd("poke full_dirty 2")
-            self.call("video_rebuild")
+            sim.finish_background()
             background = sim.dump()[0x1000:0x1C40]
             self.call("video_sprites")
             sim.cmd("poke $e04 15")
@@ -65,7 +65,7 @@ class MazeFlash(unittest.TestCase):
                     # The original, expensive path is an independent oracle
                     # for cell colours, including mixed cells and the HUD.
                     sim.cmd("poke full_dirty 2")
-                    self.call("video_rebuild")
+                    sim.finish_background()
                     full_underlay = sim.dump()
                     self.assertEqual(
                         fast_underlay[0x9600:0x9700], full_underlay[0x9600:0x9700]
@@ -151,7 +151,7 @@ class MazeFlash(unittest.TestCase):
         # Exercise the ordinary dirty-bit path, retaining wall coverage from
         # the original dot-filled maze instead of forcing a fresh full rebuild.
         self.assertEqual(sim.peek("full_dirty"), b"\x01")
-        self.call("video_rebuild")
+        sim.finish_background()
         sim.cmd("poke $e04 15")
         for param in (2, 0):
             self.call("mazeColours_24d7", param)
@@ -161,7 +161,7 @@ class MazeFlash(unittest.TestCase):
             fast = sim.dump()
             self.call("video_restore")
             sim.cmd("poke full_dirty 2")
-            self.call("video_rebuild")
+            sim.finish_background()
             self.call("video_sprites")
             full = sim.dump()
             self.assertEqual(fast[0x1000:0x1C40], full[0x1000:0x1C40])

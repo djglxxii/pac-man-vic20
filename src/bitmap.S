@@ -1,6 +1,6 @@
 /* Vertical bitmap columns make each sprite's twelve scanlines contiguous. */
 .section .zp.bss,"aw",@nobits
-.global v_addr,v_save,v_data,v_flags,v_shift,v_flip
+.global v_addr,v_save,v_data,v_flags,v_shift,v_flip,v_lo,v_hi
 v_addr: .zero 2
 v_save: .zero 2
 v_data: .zero 2

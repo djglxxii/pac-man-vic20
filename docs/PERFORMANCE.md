@@ -14,23 +14,28 @@ Run `make performance` to save instruction profiles, render timestamps and
 `build/performance/current/summary.json`. Samples use the NTSC VIC-20 CPU
 clock of 1,022,727 Hz and count **completed** renders over 180 video frames.
 They measure emulated CPU time, independently of the host's execution speed.
-The board-transition sample runs for 360 video frames. Reports include the
-longest render and the longest interval between completed renders.
+The board-transition sample runs for at least 360 video frames and extends
+until pending rebuild/setup work settles. Reports include the longest refresh
+and coherent draw interval, individual batch durations and input/audio gaps.
+Bounded-refresh elapsed time includes yields to other work.
 
 Representative results on 2026-11-01:
 
-| Sample | Completed renders per second | Mean rendering time | Longest draw interval |
+| Sample | Completed renders per second | Mean refresh elapsed | Longest coherent draw interval |
 | --- | ---: | ---: | ---: |
-| Early first-board play | 48.9 | 9.96 ms | 38.38 ms |
-| Frightened movement | 53.0 | 8.47 ms | 50.35 ms |
-| Attract chase | 44.5 | 10.43 ms | 51.28 ms |
-| First intermission | 60.1 | 3.41 ms | 22.01 ms |
-| Board transition | 42.0 | 7.33 ms | 1277.65 ms |
+| Early first-board play | 49.74 | 9.90 ms | 44.80 ms |
+| Frightened movement | 53.73 | 8.71 ms | 45.21 ms |
+| Attract chase | 44.37 | 10.57 ms | 59.83 ms |
+| First intermission | 60.30 | 3.35 ms | 24.11 ms |
+| Board transition | 42.38 | 10.03 ms | 1800.99 ms |
 
 The [maze flash](MAZE_FLASH.md) now recolours existing pixels. All eight
 phases appear about 198 ms apart, within 17 ms of their requests. The board
-transition sample also includes drawing the next maze, which still stalls
-separately.
+transition sample also includes [bounded next-maze drawing](BOUNDED_REBUILD.md).
+Its background calls take at most 6.08 ms, with input and audio gaps of at
+most 28.95 and 29.73 ms. The board draws progressively; the longest coherent
+refresh spans 1695.57 ms across many calls. The longer coherent draw interval
+is a visible tradeoff for continued service.
 
 The timer still schedules 60.606 logic ticks per second. Short measurement
 windows round tick counts at their boundaries. The frightened and intermission
@@ -61,6 +66,9 @@ stall. Full-raster presentation and physical hardware have not been measured.
   without mask reads or redundant pixel writes.
 - Aligned the square and bit-reversal tables to pages, unrolled sprite restore
   loops by two rows, and moved large background rebuilds into a separate function.
+- Split background conversion and bulk board tasks into bounded calls, using
+  idle cycles between ticks. Preserved task order and replayed writes behind
+  the cursor; retained the separate maze-flash path.
 
 The [optimization review](OPTIMIZATION_REVIEW.md) maps these changes to the
 new guide and records experiments that did not improve the result.
@@ -71,18 +79,16 @@ these changes. The game clock and the number of gameplay updates are retained.
 ## Remaining budget
 
 A 60.606 Hz update allows 16.50 ms, or 16,875 CPU cycles, for **all** work.
-Rendering alone still averages roughly 10.0 ms in the gameplay sample,
-leaving about 6.5 ms for input, game logic and sound. Their combined cost still
+Rendering alone still averages roughly 9.9 ms in the gameplay sample,
+leaving about 6.6 ms for input, game logic and sound. Their combined cost still
 exceeds that budget, so gameplay has not reached sustained 60 FPS.
 
-The full-screen rebuild remains a separate problem: one render in the
-transition sample takes about 829 ms, with a visible draw gap of about
-1.28 seconds. This occurs after the last flash, during the next-board work.
-The completed maze's blue/white colour changes now have their own bounded
-path and do not trigger those rebuilds. A bounded rebuild job that yields
-between tile batches would address actual screen changes, but is outside
-this flash-only revision. Hot game-state routines and the remaining generic
-sprite paths also need work for sustained 60 FPS gameplay.
+The previous full rebuild took about 829 ms in one call, with a 1.28-second
+draw gap. Bounded work removes that input/audio blockage but takes about
+1.8 seconds between coherent refreshes while drawing progressively. Reducing
+total construction time remains useful. The flash retains its color-only
+path. Hot game-state routines and the generic sprite paths also need work
+for sustained 60 FPS gameplay.
 
 Increasing emulator speed would also increase game speed and would not
 establish the target frame rate on an ordinary VIC-20.

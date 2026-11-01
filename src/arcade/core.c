@@ -2613,6 +2613,11 @@ void arcade_tasks(void) {
         }
         int task = arcade_byte(TASK_LIST_BEGIN);
         int param = arcade_byte(TASK_LIST_BEGIN + 1);
+#ifdef VIC20
+        uint8_t bulk = arcade_bulk_step(task, param);
+        if (bulk == 1)
+            return;
+#endif
         arcade_byte(TASK_LIST_BEGIN) = 0xff;
         arcade_byte(TASK_LIST_BEGIN + 1) = 0xff;
         TASK_LIST_BEGIN += 2;
@@ -2652,8 +2657,22 @@ void arcade_tasks(void) {
                                                       resetPositions_2675,
                                                       showBonusLifeScore_26b2};
         ((void)0);
+#ifdef VIC20
+        if (!bulk)
+            func[task](param);
+        /* Retain a bulk queue head until completion. Return after each step
+           so the scheduler checks the clock before doing more work. */
+        if (bulk)
+            return;
+        if (bulk_drain && clock_ticks != last_tick)
+            return;
+#else
         func[task](param);
+#endif
     }
+#ifdef VIC20
+    bulk_drain = 0;
+#endif
 }
 void advanceLevelState_23e8(uint8_t param) { LEVEL_STATE++; }
 void jumpClearScreen_23ed(uint8_t param) {
@@ -2672,6 +2691,7 @@ void clearColour_240d(uint8_t param) {
     video_fill(COLOUR, 0, 0x400);
     ((void)0);
 }
+#ifndef VIC20
 void drawMaze_2419(uint8_t param) {
     ((void)0);
     uint16_t hl = 0;
@@ -2713,6 +2733,7 @@ void drawPills_2448(uint8_t param) {
     video_store(&SCREEN[0x384], P1_POWERUP_ARRAY[2]);
     video_store(&SCREEN[0x398], P1_POWERUP_ARRAY[3]);
 }
+#endif
 void updatePillsFromScreen_2487(uint8_t param) {
     int hl = 0;
     uint8_t *ix = P1_PILL_ARRAY;
@@ -2736,12 +2757,8 @@ void clearPillArrays_24c9() {
     memset(P1_PILL_ARRAY, 0xff, 0x1e);
     memset(P1_POWERUP_ARRAY, 0x14, 0x4);
 }
-#ifdef VIC20
-/* The native entry dispatches flash-only updates before this full path. */
-void mazeColours_full(uint8_t param) {
-#else
+#ifndef VIC20
 void mazeColours_24d7(uint8_t param) {
-#endif
     int a;
     if (param == 2)
         a = 0x1f;
@@ -2775,6 +2792,7 @@ void mazeColours_24d7(uint8_t param) {
     video_store(&COLOUR[0x1ed], 0x18);
     video_store(&COLOUR[0x20d], 0x18);
 }
+#endif
 void initialisePositions_25d3(uint8_t intro) {
     BLINKY_SPRITE = 0x20;
     PINKY_SPRITE = 0x20;
@@ -2872,10 +2890,12 @@ void resetGameState_2698() {
     MAIN_STATE = MAIN_STATE_DEMO;
     RESET_STATE = RESET_STATE_RESET;
 }
+#ifndef VIC20
 void clearGhostState_26a2() {
     for (int i = 0x4d00; i < 0x4e00; i++)
         arcade_byte(i) = 0;
 }
+#endif
 void showBonusLifeScore_26b2() {
     int digit = BONUS_LIFE;
     video_store(&SCREEN[0x136], (digit & 0xf) + 0x30);
@@ -3118,6 +3138,7 @@ uint8_t random_2a23(void) {
     return arcade_byte(RND_VAL_PTR);
 #endif
 }
+#ifndef VIC20
 void clearPillsScreen_2a35() {
     int de = 0x40;
     while (de != 0x3c0) {
@@ -3129,6 +3150,7 @@ void clearPillsScreen_2a35() {
         }
     }
 }
+#endif
 void addToScore_2a5a(uint8_t b) {
     if (MAIN_STATE == MAIN_STATE_DEMO)
         return;

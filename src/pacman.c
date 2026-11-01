@@ -19,10 +19,19 @@ void showTarget(XYPOS a, XYPOS b, int col) {}
 void arcade_tasks(void);
 void controls(void), audio_update(void), clock_init(void);
 extern volatile uint8_t clock_ticks;
-void video_init(void), video_update_begin(void), video_background(void), video_update_end(void);
+extern uint8_t rebuild_phase;
+extern uint8_t bulk_active;
+extern uint8_t bulk_drain;
+void video_init(void), video_refresh(void);
 __attribute__((noinline)) void frame_wait(void) {
     extern uint8_t last_tick;
     while (clock_ticks == last_tick) {
+        /* Use otherwise idle cycles for a bounded slice. A tick can delay
+           input only by one slice; logic and sound still run in the main loop. */
+        if (bulk_active || bulk_drain)
+            arcade_tasks();
+        else if (rebuild_phase)
+            video_refresh();
     }
     last_tick++;
 }
@@ -51,13 +60,8 @@ int main(void) {
         arcade_tasks();
         arcade_ticks++;
         audio_update();
-        if (clock_ticks == last_tick) {
-            __asm__ volatile(".global video_frame_begin\nvideo_frame_begin:");
-            video_update_begin();
-            video_background();
-            video_update_end();
-            __asm__ volatile(".global video_frame_end\nvideo_frame_end:");
-        }
+        if (clock_ticks == last_tick && !bulk_active)
+            video_refresh();
     }
     return 0;
 }

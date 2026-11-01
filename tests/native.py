@@ -51,6 +51,16 @@ class Sim:
         self.cmd("dump " + str(p))
         return p.read_bytes()
 
+    def finish_background(self):
+        """Drain bounded slices for tests comparing a settled background."""
+        costs = []
+        for _ in range(1024):
+            if not self.peek("full_dirty")[0]:
+                return costs
+            result = self.cmd("call video_rebuild")[-1]
+            costs.append(int(result.split("cycles=")[1]))
+        raise AssertionError("Background rebuild did not converge")
+
     def close(self):
         if self.p.poll() is None:
             self.p.stdin.write("quit\n")

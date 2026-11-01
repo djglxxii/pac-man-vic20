@@ -25,6 +25,28 @@ v_attr: .zero 1
 v_base: .zero 2
 v_temp: .zero 1
 .section .text.sprites,"ax",@progbits
+.global video_refresh,video_frame_begin,video_frame_end,video_batch_begin,video_batch_end
+/* Full rebuilds are progressive. Remove actors once, then keep their underlays
+   invalid until the background converges. Only completion counts as a frame. */
+video_refresh:
+ lda rebuild_phase
+ beq video_frame_begin
+ jsr video_background
+ lda full_dirty
+ bne video_batch_end
+ jsr video_sprites
+ jmp video_frame_end
+video_frame_begin:
+ jsr video_update_begin
+video_batch_begin:
+ jsr video_background
+ lda full_dirty
+ bne video_batch_end
+ jsr video_update_end
+video_frame_end:
+ rts
+video_batch_end:
+ rts
 .global video_restore,video_sprites,video_update_begin,video_update_end
 video_restore:
  jsr sprite_force_all

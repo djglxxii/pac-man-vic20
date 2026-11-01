@@ -18,6 +18,7 @@
  *   until LABEL N    run until PC hits label (max N frames)
  *   profile reset|off|FILE  collect instruction cycles and execution counts
  *   call LABEL [A X] execute a subroutine in isolation, retaining CPU state
+ *   watch LABEL NAME trace a routine's entry and return without guest overhead
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -34,6 +35,14 @@ static int profiling;
 static FILE *profile_trace;
 static uint16_t render_begin_addr, render_end_addr, audio_addr;
 static uint16_t flash_request_addr, flash_present_addr;
+static uint16_t dirty_addr, rebuild_addr, bulk_active_addr, bulk_task_addr;
+static struct {
+    uint16_t entry, ret;
+    uint8_t return_sp;
+    int active;
+    char name[64];
+} watches[24];
+static unsigned watch_count;
 #define CYC_LINE 65
 #define LINES 261
 #define CYC_FRAME (CYC_LINE * LINES)
@@ -100,6 +109,12 @@ static uint8_t rd(uint16_t addr) {
 static int sound_log;
 static uint8_t sndregs[16];
 static void wr(uint16_t addr, uint8_t v) {
+    if (profile_trace && dirty_addr && addr == dirty_addr && v == 2)
+        fprintf(profile_trace, "%llu rebuild-request\n", (unsigned long long)cycles);
+    if (profile_trace && rebuild_addr && addr == rebuild_addr && mem[addr] != v)
+        fprintf(profile_trace, "%llu rebuild-phase-%u\n", (unsigned long long)cycles, v);
+    if (profile_trace && bulk_active_addr && addr == bulk_active_addr && mem[addr] != v)
+        fprintf(profile_trace, "%llu task-%u-%s\n", (unsigned long long)cycles, mem[bulk_task_addr], v ? "begin" : "end");
     if (addr >= 0x8000 && addr < 0x9000) return;     /* char ROM */
     if (addr >= 0xc000) return;                        /* BASIC/KERNAL ROM */
     if (addr >= 0x9400 && addr < 0x9800) v &= 0x0f;   /* colour nibbles */
@@ -171,6 +186,19 @@ static int illegal;
 
 static void step(void) {
     uint16_t instruction_pc = pc;
+    if (profile_trace) for (unsigned i = 0; i < watch_count; i++) {
+        if (watches[i].active && pc == watches[i].ret && sp == watches[i].return_sp) {
+            fprintf(profile_trace, "%llu %s-end\n", (unsigned long long)cycles, watches[i].name);
+            watches[i].active = 0;
+        }
+        if (!watches[i].active && pc == watches[i].entry) {
+            watches[i].ret = (uint16_t)(mem[0x100 + (uint8_t)(sp + 1)] |
+                                (mem[0x100 + (uint8_t)(sp + 2)] << 8)) + 1;
+            watches[i].return_sp = sp + 2;
+            watches[i].active = 1;
+            fprintf(profile_trace, "%llu %s-begin\n", (unsigned long long)cycles, watches[i].name);
+        }
+    }
     if (profile_trace && flash_request_addr && pc == flash_request_addr)
         fprintf(profile_trace, "%llu flash-%s\n", (unsigned long long)cycles, a == 2 ? "white" : "blue");
     if (profile_trace && flash_present_addr && pc == flash_present_addr)
@@ -458,6 +486,10 @@ int main(int argc, char **argv) {
         find_label("audio_update", &audio_addr);
         find_label("video_flash_palette", &flash_request_addr);
         find_label("maze_colour_done", &flash_present_addr);
+        find_label("full_dirty", &dirty_addr);
+        find_label("rebuild_phase", &rebuild_addr);
+        find_label("bulk_active", &bulk_active_addr);
+        find_label("bulk_task", &bulk_task_addr);
     }
     mem[0x9002] = 0x96; mem[0x9003] = 0x2e; mem[0x9005] = 0xf0; mem[0x900f] = 0x1b;
     mem[0x9122] = 0xff;
@@ -527,8 +559,14 @@ int main(int argc, char **argv) {
         else if (!strcmp(cmd, "timing")) timing = !strcmp(a1, "on");
         else if (!strcmp(cmd, "sound")) sound_log = !strcmp(a1, "on");
         else if (!strcmp(cmd, "stats")) printf("cycles %llu\n", (unsigned long long)cycles);
+        else if (!strcmp(cmd, "watch") && watch_count < 24 && a2[0]) {
+            watches[watch_count].entry = parse_addr(a1);
+            snprintf(watches[watch_count].name, sizeof watches[watch_count].name, "%s", a2);
+            watch_count++;
+        }
         else if (!strcmp(cmd, "trace")) {
             if (profile_trace) fclose(profile_trace);
+            for (unsigned i = 0; i < watch_count; i++) watches[i].active = 0;
             profile_trace = strcmp(a1, "off") ? fopen(a1, "w") : NULL;
             if (strcmp(a1, "off") && !profile_trace) { perror(a1); return 1; }
         }

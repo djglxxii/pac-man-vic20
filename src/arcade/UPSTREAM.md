@@ -29,8 +29,11 @@ the unmodified original Z80 program.
 
 On the VIC, the maze-colour entry has an assembly wrapper for end-of-board
 flashes. It performs the original palette writes and requests a colour-only
-render; other calls enter the unchanged full C routine as `mazeColours_full`.
-The original game-state transitions, task parameters and timers remain intact.
+render. Other native calls use bounded palette-fill steps, and native maze,
+pill and clear tasks preserve their video writes in resumable slices. The
+host reference retains the full C routines. Game-state transitions, task
+parameters and timers remain intact; setup writes now interleave with ticks.
+See [the bounded-rebuild validation](../../docs/BOUNDED_REBUILD.md).
 
 `tools/arcade/z80.h` is Andre Weissflog's chips Z80 core, retrieved from
 https://github.com/floooh/chips/blob/master/chips/z80.h. Its embedded zlib

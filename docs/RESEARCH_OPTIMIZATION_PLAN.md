@@ -6,8 +6,9 @@ Prepared on 2026-11-01 from the
 and CPU-cycle profiles. This document selects useful techniques for this
 conversion; the report is a reference, not a checklist to apply wholesale.
 
-Repository preparation is complete. Implementation has not started.
-The first implementation branch is `optimization/bounded-board-rebuild`.
+Preparation and the first implementation are complete on
+`optimization/bounded-board-rebuild`. See [the implementation and measured
+tradeoff](BOUNDED_REBUILD.md). The remaining items are still queued.
 
 ## Baseline
 
@@ -51,7 +52,7 @@ so later work does not repeat them.
 
 | Order | Useful research | Application and expected benefit | Status |
 | --- | --- | --- | --- |
-| 1 | Bounded work and scheduling, sections 7.4 and 10 | Remove long synchronous next-board work. This addresses the largest visible stall and gaps in input/audio service. | Next |
+| 1 | Bounded work and scheduling, sections 7.4 and 10 | Service input/logic/audio during progressive next-board construction. Coherent completion takes longer; see the measured tradeoff. | Implemented |
 | 2 | Lifetime-based memory reuse, section 7.1 | Audit initialization routines and data lifetimes; reclaim space for faster kernels and tables. Measure stack use before considering spare-looking RAM. | Queued |
 | 3 | Specialized blitters, pre-shifting and self-modifying addressing, section 4.6 | Optimize common Pac-Man, returning-eye and clipping cases that still use the generic path. Compare setup overhead and code size against cycles saved. | Queued |
 | 4 | Profile-guided C/assembly work, sections 7.2 and 8 | Optimize hot native logic and sound routines while preserving results, update count and ordering. | Queued |
@@ -170,3 +171,4 @@ and commit compact findings and comparable measurement summaries.
 | Date | Change | Result |
 | --- | --- | --- |
 | 2026-11-01 | Checkpoint existing work; freeze baseline; document priorities and item 1 acceptance criteria. | Preparation only; no new game, test or build code. |
+| 2026-11-01 | Implement bounded background/bulk slices, cursor replay and idle-time servicing. | Input/audio gaps below 30 ms in the transition sample; coherent draw gap increases from 1.28 to 1.80 seconds. See [validation](BOUNDED_REBUILD.md). |
