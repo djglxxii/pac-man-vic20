@@ -31,6 +31,11 @@ RUN
 The machine needs +3K at `$0400` and 8K blocks at `$2000`, `$4000`, `$6000`
 and `$A000`. PAL timing is not supported.
 
+This is +35 KB of expansion RAM, or 40 KB including the built-in RAM.
+The hardware target must remain period-correct; future hardware requirements
+need contemporary evidence. See the
+[hardware constraint](docs/RESEARCH_OPTIMIZATION_PLAN.md#constraints-and-recommendations-to-adapt).
+
 ## Arcade behavior
 
 The conversion uses the original 28×31 maze, 240 dots and four energizers.
@@ -65,9 +70,11 @@ temporarily recolor a shared cell. Aligned sprites leave their empty neighboring
 column's color alone.
 Drawing can skip refreshes to let the game logic catch up. These are visible
 differences from an arcade board.
+The [first flicker reduction](docs/SPRITE_FLICKER.md) keeps stationary actors
+visible during unrelated background changes; moving actors can still flicker.
 
-The current CPU-cycle benchmark measures about 48 FPS in normal play,
-54 FPS when frightened, 44 FPS in the attract chase and 60 FPS in an intermission.
+The current CPU-cycle benchmark measures about 50 FPS in normal play,
+54 FPS when frightened, 43 FPS in the attract chase and 60 FPS in an intermission.
 Game logic retains its 60.606 Hz clock. Gameplay is not yet a sustained
 60 FPS; see [performance measurements](docs/PERFORMANCE.md) and the
 [optimization-guide review](docs/OPTIMIZATION_REVIEW.md).
@@ -79,7 +86,7 @@ sound serviced while the next board draws progressively.
 The [end-of-stage maze flash](docs/MAZE_FLASH.md) changes colours without
 rebuilding the bitmap. Its four blue/white pairs retain the arcade timing;
 the next board takes longer to become fully coherent than the old blocking
-draw, with a measured gap of about 1.84 seconds between completed refreshes.
+draw, with a measured gap of about 1.94 seconds between completed refreshes.
 
 The original music, effect tables, priorities and sequencing drive the VIC's
 three tone voices. Square waves approximate the arcade waveform PROMs; timbre

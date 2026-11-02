@@ -1,0 +1,82 @@
+{
+  "title": "Pac-Man on the VIC-20 | Homebrew Conversion Gameplay",
+  "description": "Pac-Man on an expanded VIC-20! This work-in-progress homebrew conversion adapts the original arcade game logic into native 6502 code, with graphics and sound built around the VIC-20's limits.\n\nThis computer-controlled playthrough clears the first two boards and reaches the complete first intermission. It was captured in the VICE emulator using normal joystick input, with original game audio and no commentary. The game handles movement, collisions, scoring and progression throughout.\n\nWHY THE WHITE MAZE?\nThe VIC-20 shares one foreground color across each 8x16 display cell. White walls and pellets give the maze a consistent appearance, while completion flashes blue and white four times. Colored characters can still tint nearby pixels sharing their cell.\n\nUNDER THE HOOD\nThe conversion combines C compiled with LLVM-MOS and handwritten 6502 assembly. Artwork, music, effect data and difficulty tables come from the arcade ROM set. Gameplay retains its approximately 60.606 Hz update clock, including the original ghost behavior and intermissions.\n\nRendering currently measures around 48 FPS in normal play and 54 FPS with frightened ghosts. Flicker is still visible. Our next priority is reducing the gaps between erasing and redrawing sprites, followed by memory reuse and further rendering optimizations.\n\nCHAPTERS\n00:00 Start and board 1\n01:08 Board 2\n02:04 First intermission\n\nTECHNICAL NOTES\nTarget: NTSC VIC-20 with +3K and BLK1/2/3/5 RAM expansion.\nCapture: VICE, with a joystick-driven bot. Both boards reach 244 eaten pellets through gameplay.\nThe video includes one lost life and a brief look at the third board after the intermission.\n\nCREDITS\nOriginal game: Pac-Man (Namco), using the Midway arcade ROM set as the reference.\nGame logic adapted from Mark Burkley's C translation:\nhttps://github.com/mburkley/pacman-c\nEmulator: VICE\nhttps://vice-emu.sourceforge.io/\n\nHow does the flicker look on your display? Feedback from VIC-20 owners and homebrew developers is welcome.\n\n#VIC20 #PacMan #RetroGaming",
+  "tags": [
+    "VIC-20",
+    "VIC20",
+    "Commodore VIC-20",
+    "Pac-Man",
+    "Pacman",
+    "Pac Man",
+    "VIC-20 Pac-Man",
+    "homebrew",
+    "homebrew games",
+    "arcade conversion",
+    "retro gaming",
+    "retro computing",
+    "6502",
+    "Commodore",
+    "VICE emulator",
+    "game development",
+    "Pac-Man intermission",
+    "LLVM-MOS"
+  ],
+  "chapters": [
+    {
+      "time": "00:00",
+      "title": "Start and board 1"
+    },
+    {
+      "time": "01:08",
+      "title": "Board 2"
+    },
+    {
+      "time": "02:04",
+      "title": "First intermission"
+    }
+  ],
+  "recommended_category": "Gaming",
+  "game_search": "Pac-Man (1980)",
+  "playlist_title": "VIC-20 Homebrew: Pac-Man Conversion",
+  "playlist_description": "Development updates and gameplay from a homebrew arcade Pac-Man conversion for an expanded NTSC VIC-20, covering graphics, sound, performance and the compromises of bringing the arcade game to Commodore hardware.",
+  "pinned_comment": "The white maze is deliberate: the VIC-20 shares one foreground color across each 8x16 cell. It keeps walls and pellets consistent, although colored sprites can still tint a shared cell.\n\nNext up is reducing the visible erase/redraw flicker. How distracting does it look on your screen?",
+  "video_file": "build/youtube/vic20-pacman-first-intermission-1080p.mp4",
+  "original_portrait_video": "build/playthrough/first-intermission.mp4",
+  "thumbnail": "youtube/vic20-pacman-thumbnail.png",
+  "thumbnail_info": {
+    "width": 1672,
+    "height": 941,
+    "bytes": 1108866,
+    "format": "PNG",
+    "generation_tool": "built-in imagegen",
+    "prompt_file": "youtube/thumbnail-prompt.txt",
+    "reference_image": "build/white-maze/vice/vice-game.png"
+  },
+  "suggested_settings": {
+    "category": "Gaming",
+    "game_search": "Pac-Man (1980)",
+    "audience": "General audience; not made for kids",
+    "age_restriction": false,
+    "video_language": "English",
+    "title_description_language": "English",
+    "recording_date": "2026-11-01",
+    "recording_location": null,
+    "license": "Standard YouTube License",
+    "allow_embedding": true,
+    "notify_subscribers": true,
+    "automatic_chapters": false,
+    "automatic_featured_places": false,
+    "shorts_remixing": false,
+    "comments": "On, Basic moderation",
+    "comment_sort": "Top comments",
+    "show_like_count": true,
+    "cards": [],
+    "end_screen": null,
+    "visibility": "Public",
+    "premiere": false,
+    "paid_promotion": "Use actual sponsorship status",
+    "monetization": "Use channel setting"
+  },
+  "upload_format": "standard_video",
+  "shorts_alternative": "youtube/upload-metadata-shorts.json"
+}

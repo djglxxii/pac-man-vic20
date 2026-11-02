@@ -1,0 +1,3 @@
+The white maze is deliberate: the VIC-20 shares one foreground color across each 8x16 cell. It keeps walls and pellets consistent, although colored sprites can still tint a shared cell.
+
+Next up is reducing the visible erase/redraw flicker. How distracting does it look on your screen?

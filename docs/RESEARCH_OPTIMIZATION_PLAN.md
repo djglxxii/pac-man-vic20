@@ -8,7 +8,7 @@ conversion; the report is a reference, not a checklist to apply wholesale.
 
 Preparation and the first implementation are complete on
 `optimization/bounded-board-rebuild`. See [the implementation and measured
-tradeoff](BOUNDED_REBUILD.md). The remaining items are still queued.
+tradeoff](BOUNDED_REBUILD.md). Further work is tracked below.
 The separate [color-priority experiment](COLOR_PRIORITIES.md) followed the
 user's request to preserve white pellets. The subsequent
 [all-white maze](WHITE_MAZE.md) removes its neighbor scans/cache and recovers
@@ -54,13 +54,28 @@ Complete and validate one item before moving to the next. Keep changes in
 separate commits, retain measured improvements, and record rejected experiments
 so later work does not repeat them.
 
+Sprite-flicker work remains the immediate presentation priority. The
+[first retained change](SPRITE_FLICKER.md) avoids erasing stationary actors
+for unrelated background changes; shorter moving-actor update gaps remain.
+Score readability is also queued from user feedback: the current numbers are
+difficult to read. The score work below preserves the current hires resolution
+and period-correct hardware target.
+
 | Order | Useful research | Application and expected benefit | Status |
 | --- | --- | --- | --- |
 | 1 | Bounded work and scheduling, sections 7.4 and 10 | Service input/logic/audio during progressive next-board construction. Coherent completion takes longer; see the measured tradeoff. | Implemented |
-| 2 | Lifetime-based memory reuse, section 7.1 | Audit initialization routines and data lifetimes; reclaim space for faster kernels and tables. Measure stack use before considering spare-looking RAM. | Queued |
-| 3 | Specialized blitters, pre-shifting and self-modifying addressing, section 4.6 | Optimize common Pac-Man, returning-eye and clipping cases that still use the generic path. Compare setup overhead and code size against cycles saved. | Queued |
-| 4 | Profile-guided C/assembly work, sections 7.2 and 8 | Optimize hot native logic and sound routines while preserving results, update count and ordering. | Queued |
-| 5 | VIC shift-register waveforms, section 6.2 | Explore closer timbres using offline comparison and listening tests; preserve original effect sequencing. | Deferred until performance work is stable |
+| 2 | Sprite-flicker reduction | Avoid unrelated actor erases; measure visible update windows and evaluate complete-region composition within the memory budget. | First increment implemented; further work queued |
+| 3 | Lifetime-based memory reuse, section 7.1 | Audit initialization routines and data lifetimes; reclaim space for faster kernels and tables. Measure stack use before considering spare-looking RAM. | Queued; prerequisite for larger flicker changes |
+| 4 | Specialized blitters, pre-shifting and self-modifying addressing, section 4.6 | Optimize common Pac-Man, returning-eye and clipping cases that still use the generic path. Compare setup overhead and code size against cycles saved. | Queued |
+| 5 | Profile-guided C/assembly work, sections 7.2 and 8 | Optimize hot native logic and sound routines while preserving results, update count and ordering. | Queued |
+| 6 | Score readability, user feedback | Evaluate purpose-drawn numeral glyphs and spacing for player scores and the high score; make digits easier to distinguish at the current display size. | Queued |
+| 7 | VIC shift-register waveforms, section 6.2 | Explore closer timbres using offline comparison and listening tests; preserve original effect sequencing. | Deferred until performance work is stable |
+
+For score readability, compare the existing scaled ROM digits with hand-tuned
+numerals at the actual NTSC display proportions. Check all ten digits in
+single-digit and full-width scores, including similar shapes such as 3/8/9
+and 5/6. Preserve score values, formatting, alignment and update behavior;
+evaluate any glyph or spacing changes visually before retaining them.
 
 Item 1 may require a small space-saving prerequisite because the current link
 is nearly full. Keep that prerequisite narrow and separately reviewable;
@@ -68,7 +83,7 @@ extensive overlays and additional sprite tables belong to later items.
 
 The saved normal-play instruction profile attributes about 6.7% of total
 cycles directly to `updateGhostStates_1017()`, excluding callees, and 3.8%
-directly to `soundEffectOneChannel_2dee()`. These are candidates for item 4,
+directly to `soundEffectOneChannel_2dee()`. These are candidates for item 5,
 not predicted speedups. Re-profile after each retained rendering change.
 
 ## First item: bounded next-board work
@@ -122,6 +137,17 @@ new scheduling scheme pass.
 
 ## Constraints and recommendations to adapt
 
+- Keep the hardware target period-correct. The current configuration uses
+  +35 KB of conventional expansion RAM: +3K at `$0400` and 8K each at
+  `$2000`, `$4000`, `$6000` and `$A000`. A contemporary capacity reference is
+  *Softline*, September/October 1983 (PDF page 5): its
+  [Compuscope Supermother announcement](https://mirrors.apple2.org.za/ftp.apple.asimov.net/documentation/magazines/softline/Softline_1983_09_10.pdf#page=5)
+  specifies support for up to 35K of add-on memory. This establishes period
+  availability of the capacity, not a physical-hardware test of this build.
+  Prefer reclaiming space within the current target. Any proposed hardware
+  change must have contemporary product, manual or circuit evidence showing
+  that the required capacity and memory mapping were available in the
+  original VIC-20 era; modern-only expansion features are outside scope.
 - Preserve the arcade timer: VIA2 T1 latch `$41E9`, period 16,875 CPU cycles,
   approximately 60.606 Hz. The report's raster-locked latch `$4243` gives
   approximately 60.285 Hz on this NTSC target. Use separate presentation timing

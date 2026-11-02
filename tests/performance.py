@@ -31,8 +31,8 @@ def start_game(sim):
     sim.cmd("run 30")
 
 
-def measure(scene, output, frames):
-    sim = Sim()
+def measure(scene, output, frames, prg=None):
+    sim = Sim(prg)
     try:
         if scene == "attract-chase":
             sim.cmd("run 1000")
@@ -154,6 +154,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", default="build/performance/current")
     parser.add_argument("--frames", type=int, default=180)
+    parser.add_argument("--prg", type=Path, help="Measure a saved PRG and its sibling .lbl")
     parser.add_argument(
         "--scenes",
         nargs="+",
@@ -185,6 +186,7 @@ def main():
                 scene,
                 output,
                 max(360, args.frames) if scene == "board-transition" else args.frames,
+                args.prg,
             )
             for scene in args.scenes
         ],

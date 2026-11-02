@@ -11,6 +11,9 @@ cache_pal: .zero 14
 new_x: .zero 14
 new_y: .zero 14
 cache_dirty: .zero 14
+/* Index zero is unused by the six even actor slots. A bit covers two
+   hardware colour rows, so the seven visible bands fit in one byte. */
+.set dirty_bands,cache_x
 .section .zp.bss,"aw",@nobits
 v_actor: .zero 1
 v_off: .zero 1
@@ -428,6 +431,14 @@ sprites_done:
 sprite_mark:
  lda #0
  sta v_actor
+ sta dirty_bands
+ lda full_dirty
+ ora maze_flash
+ bne mark_no_background
+ lda dirty_count
+ beq mark_no_background
+ jsr sprite_background_bands
+mark_no_background:
  ldx #12
 mark_actor:
  lda #239
@@ -454,8 +465,7 @@ mark_x_ready:
  sec
  sbc v_sy
  sta new_y,x
- lda dirty_count
- ora full_dirty
+ lda full_dirty
  ora maze_flash
  bne mark_dirty
  lda $0c20,x
@@ -471,6 +481,13 @@ mark_x_ready:
  lda new_y,x
  cmp cache_y,x
  bne mark_dirty
+ /* HUD/dot writes elsewhere must not erase an otherwise unchanged actor.
+    A conservative row test also covers colour-cell sharing. */
+ lda dirty_count
+ beq mark_underlay
+ jsr sprite_background_overlap
+ bne mark_dirty
+mark_underlay:
  /* An explicit restore can have erased a still-current cached actor. */
  ldy v_actor
  lda under+3,y
@@ -569,6 +586,98 @@ mark_commit:
  dex
  dex
  bne mark_commit
+ rts
+/* Build the dirty tile bands once, while all actors are still visible.
+   The arcade's side columns map to the top/bottom HUD. */
+sprite_background_bands:
+ lda dirty_count
+ asl
+ tax
+background_band_tile:
+ dex
+ dex
+ stx v_off
+ lda dirty_queue+1,x
+ asl
+ asl
+ asl
+ sta v_sy
+ lda dirty_queue,x
+ lsr
+ lsr
+ lsr
+ lsr
+ lsr
+ ora v_sy
+ cmp #2
+ bcc background_overlap_bottom
+ cmp #30
+ bcs background_overlap_top
+ lda dirty_queue,x
+ and #31
+ clc
+ adc #2
+ jmp background_overlap_y
+background_overlap_bottom:
+ clc
+ adc #34
+ bne background_overlap_y
+background_overlap_top:
+ sec
+ sbc #30
+background_overlap_y:
+ asl
+ sta v_sy
+ asl
+ clc
+ adc v_sy
+ sta v_sx
+ lsr
+ lsr
+ lsr
+ lsr
+ lsr
+ tay
+ lda bit_masks,y
+ sta v_sy
+ lda v_sx
+ and #31
+ cmp #27
+ bcc background_band_single
+ lda v_sy
+ asl
+ ora v_sy
+ sta v_sy
+background_band_single:
+ lda v_sy
+ ora dirty_bands
+ sta dirty_bands
+ ldx v_off
+ bne background_band_tile
+ rts
+/* X is the actor slot. Pixel spans imply all of their shared colour rows
+   because band boundaries coincide with hardware cell boundaries. */
+sprite_background_overlap:
+ lda new_y,x
+ lsr
+ lsr
+ lsr
+ lsr
+ lsr
+ tay
+ lda bit_masks,y
+ sta v_sx
+ lda new_y,x
+ and #31
+ cmp #21
+ bcc background_overlap_done
+ lda v_sx
+ asl
+ ora v_sx
+ sta v_sx
+background_overlap_done:
+ lda v_sx
+ and dirty_bands
  rts
 sprite_force_all:
  ldx #12

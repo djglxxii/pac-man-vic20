@@ -36,6 +36,7 @@ static FILE *profile_trace;
 static uint16_t render_begin_addr, render_end_addr, audio_addr;
 static uint16_t flash_request_addr, flash_present_addr;
 static uint16_t dirty_addr, rebuild_addr, bulk_active_addr, bulk_task_addr;
+static uint16_t erase_addr, draw_addr, ghost_addr, sprite_save_addr, under_addr;
 static struct {
     uint16_t entry, ret;
     uint8_t return_sp;
@@ -186,6 +187,16 @@ static int illegal;
 
 static void step(void) {
     uint16_t instruction_pc = pc;
+    /* Host-only observation: identify each actor without adding guest cycles.
+       Keep two-column trace records compatible with the other profilers. */
+    if (profile_trace && sprite_save_addr && under_addr &&
+        (pc == erase_addr || pc == draw_addr || pc == ghost_addr)) {
+        int offset = (int)rd16(sprite_save_addr) - under_addr - 8;
+        if (offset >= 0 && offset < 216 && offset % 36 == 0)
+            fprintf(profile_trace, "%llu actor-%d-%s\n",
+                    (unsigned long long)cycles, offset / 36,
+                    pc == erase_addr ? "erase" : "paint");
+    }
     if (profile_trace) for (unsigned i = 0; i < watch_count; i++) {
         if (watches[i].active && pc == watches[i].ret && sp == watches[i].return_sp) {
             fprintf(profile_trace, "%llu %s-end\n", (unsigned long long)cycles, watches[i].name);
@@ -483,6 +494,11 @@ int main(int argc, char **argv) {
         have_tick = find_label("arcade_ticks", &tick_addr);
         find_label("video_frame_begin", &render_begin_addr);
         find_label("video_frame_end", &render_end_addr);
+        find_label("bitmap_erase", &erase_addr);
+        find_label("bitmap_draw", &draw_addr);
+        find_label("bitmap_draw_ghost", &ghost_addr);
+        find_label("v_save", &sprite_save_addr);
+        find_label("under", &under_addr);
         find_label("audio_update", &audio_addr);
         find_label("video_flash_palette", &flash_request_addr);
         find_label("maze_colour_done", &flash_present_addr);

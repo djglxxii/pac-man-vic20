@@ -1,0 +1,26 @@
+{
+  "video": "build/youtube/vic20-pacman-first-intermission-1080p.mp4",
+  "frames": 8336,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "duration_seconds": 138.27760487402796,
+  "audio_matches_original": true,
+  "decoded_audio_sha256": "5b8b1d9f7acb3dada14d400e45fa049a04358707858de271eec6f4e2064b7930",
+  "thumbnail": "youtube/vic20-pacman-thumbnail.png",
+  "thumbnail_dimensions": [
+    1672,
+    941
+  ],
+  "thumbnail_bytes": 1108866,
+  "title_characters": 52,
+  "description_characters": 2019,
+  "chapters_seconds": [
+    0,
+    68,
+    124
+  ],
+  "video_sha256": "2f6fcfccee2026fe4beffa50bfe607b8922f94f452fa494ce4b11b44cd2c6da6",
+  "thumbnail_sha256": "2f3222217ae83bbb475ee7882bac995d5178f8b5816347d77a4ea53be278ba54"
+}

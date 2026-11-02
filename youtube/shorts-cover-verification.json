@@ -1,0 +1,25 @@
+{
+  "file": "youtube/vic20-pacman-shorts-cover.png",
+  "dimensions": [
+    941,
+    1672
+  ],
+  "bytes": 826640,
+  "mode": "RGB",
+  "sha256": "4175b6c45f4b75b6ea03d8fa836dbaa46efdf9de039322b64648df2e7c5897f9",
+  "generation_tool": "built-in imagegen",
+  "prompt_file": "youtube/thumbnail-shorts-prompt.txt",
+  "bright_title_and_maze_bounds": [
+    212,
+    401,
+    715,
+    1325
+  ],
+  "centered_4_5_preview_crop": [
+    0,
+    247.875,
+    941,
+    1424.125
+  ],
+  "title_and_maze_inside_4_5_crop": true
+}

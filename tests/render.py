@@ -4,6 +4,7 @@ import random
 import re
 import unittest
 from native import Sim, BUILD, WORK
+from performance import start_game
 
 
 class Renderer(unittest.TestCase):
@@ -89,7 +90,8 @@ class Renderer(unittest.TestCase):
             self.sim.cmd(f"load ${address:x} {p}")
         if incremental:
             if background_change:
-                self.sim.cmd("poke dirty_count 1")
+                # This fixture replaces the whole bitmap, not one queued tile.
+                self.sim.cmd("poke full_dirty 1")
             self.sim.cmd("call video_update_begin")
             if background_change:
                 for address, data in (
@@ -99,7 +101,7 @@ class Renderer(unittest.TestCase):
                     p = WORK / "bg.bin"
                     p.write_bytes(data)
                     self.sim.cmd(f"load ${address:x} {p}")
-                self.sim.cmd("poke dirty_count 0")
+                self.sim.cmd("poke full_dirty 0")
             self.sim.cmd("call video_update_end")
         else:
             self.sim.cmd("call video_sprites")
@@ -225,6 +227,73 @@ class Renderer(unittest.TestCase):
             for a, cycles, h in map(str.split, path.read_text().splitlines())
         }
         self.assertEqual(hits[self.sim.labels["bitmap_draw_ghost"]], 8 * 8 * 4)
+
+    def test_05_dirty_tiles_preserve_actors_and_shared_colours(self):
+        sim = Sim()
+        try:
+            start_game(sim)
+            sim.cmd("until frame_wait 100")
+            sim.cmd("call video_restore")
+            # A white-only background isolates actor restoration from the
+            # pre-existing last-writer colour rule for unrelated HUD art.
+            path = WORK / "fbg.bin"
+            path.write_bytes(bytes([64]) * 1024 + bytes([14]) * 1024)
+            sim.cmd(f"load $0400 {path}")
+            sim.cmd("poke full_dirty 2")
+            sim.finish_background()
+            attrs, positions = bytearray(16), bytearray(16)
+            # Visible body at x=32, y=42, with two overlapping neighbours.
+            for off, code, pal, raw_x, raw_y in (
+                (12, 32, 1, 175, 216), (10, 33, 3, 171, 214),
+                (8, 34, 5, 157, 200),
+            ):
+                attrs[off:off+2] = bytes((code * 4, pal))
+                positions[off:off+2] = bytes((raw_x, raw_y))
+            for address, data in ((0xC20, attrs), (0xC30, positions)):
+                path = WORK / "fa.bin"
+                path.write_bytes(data)
+                sim.cmd(f"load ${address:x} {path}")
+            sim.cmd("call video_sprites")
+            sim.cmd("watch bitmap_erase erase")
+
+            # Include both HUD orientations and a tile at y=36..41 sharing
+            # an actor's colour row without overlapping its actual pixels.
+            cases = [(30 * 32 + 21, True), (21 * 32 + 4, False),
+                     (21 * 32 + 5, False), (21, False),
+                     (19 * 32 + 8, False), (21 * 32 + 3, False)]
+            rng = random.Random(9400)
+            candidates = [i for i, code in enumerate(sim.peek(0x400, 1024))
+                          if code < 192]
+            cases += [(rng.choice(candidates), False) for _ in range(94)]
+            for trial, (index, unrelated_hud) in enumerate(cases):
+                code = sim.peek(0x400 + index)[0] if trial % 5 == 2 else trial % 10
+                palette = 31 if sim.peek(0x800 + index)[0] == 14 else 14
+                for address, value in ((0x400 + index, code),
+                                       (0x800 + index, palette)):
+                    sim.cmd(f"poke __rc2 {address & 255}")
+                    sim.cmd(f"poke __rc3 {address >> 8}")
+                    sim.cmd(f"call video_store {value}")
+                trace = WORK / "fa.trace"
+                sim.cmd(f"trace {trace}")
+                sim.cmd("call video_refresh")
+                sim.cmd("trace off")
+                if unrelated_hud:
+                    self.assertNotIn("erase-begin", trace.read_text())
+                actual = sim.dump()
+                sim.cmd("call video_restore")
+                sim.cmd("poke full_dirty 2")
+                sim.finish_background()
+                sim.cmd("call video_sprites")
+                expected = sim.dump()
+                self.assertEqual(actual[0x1000:0x1C40], expected[0x1000:0x1C40], trial)
+                for cell in range(196):
+                    row, col = divmod(cell, 14)
+                    offset = 0x1000 + col * 224 + row * 16
+                    if any(expected[offset:offset+16]):
+                        self.assertEqual(actual[0x9600+cell], expected[0x9600+cell],
+                                         (trial, cell))
+        finally:
+            sim.close()
 
 
 if __name__ == "__main__":

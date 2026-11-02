@@ -19,22 +19,23 @@ until pending rebuild/setup work settles. Reports include the longest refresh
 and coherent draw interval, individual batch durations and input/audio gaps.
 Bounded-refresh elapsed time includes yields to other work.
 
-Representative results on 2026-11-01 with an all-white maze:
+Representative results on 2026-11-02 with the
+[first sprite-flicker reduction](SPRITE_FLICKER.md):
 
 | Sample | Completed renders per second | Mean refresh elapsed | Longest coherent draw interval |
 | --- | ---: | ---: | ---: |
-| Early first-board play | 48.10 | 10.22 ms | 37.22 ms |
-| Frightened movement | 53.81 | 8.46 ms | 40.74 ms |
-| Attract chase | 44.00 | 10.66 ms | 59.63 ms |
-| First intermission | 60.32 | 3.36 ms | 24.13 ms |
-| Board transition | 41.74 | 10.38 ms | 1843.77 ms |
+| Early first-board play | 49.61 | 9.80 ms | 37.84 ms |
+| Frightened movement | 53.96 | 8.65 ms | 41.79 ms |
+| Attract chase | 43.43 | 8.58 ms | 62.40 ms |
+| First intermission | 60.06 | 3.42 ms | 23.09 ms |
+| Board transition | 40.82 | 10.54 ms | 1939.77 ms |
 
 The [maze flash](MAZE_FLASH.md) now recolours existing pixels. All eight
 phases appear about 198 ms apart, within 17 ms of their requests. The board
 transition sample also includes [bounded next-maze drawing](BOUNDED_REBUILD.md).
-Its background calls take at most 6.36 ms, with input and audio gaps of at
-most 28.90 and 27.16 ms. The board draws progressively; the longest coherent
-refresh spans 1738.32 ms across many calls. The longer coherent draw interval
+Its background calls take at most 6.41 ms, with input and audio gaps of at
+most 28.78 and 26.36 ms. The board draws progressively; the longest coherent
+refresh spans 1834.37 ms across many calls. The longer coherent draw interval
 is a visible tradeoff for continued service.
 
 The previous [bounded-rebuild revision](baselines/bounded-board-rebuild.json)
@@ -44,6 +45,15 @@ The intermediate [pellet-priority experiment](COLOR_PRIORITIES.md) measured
 logical tiles. The [all-white maze](WHITE_MAZE.md) removes those checks and
 recovers most of that cost. A coverage-map check keeps background art sharing
 wall cells white. Earlier baseline records remain unchanged.
+
+The preceding white-maze build measured 48.10/53.81 FPS in normal/frightened
+play and a 1843.77 ms transition gap. The current change keeps stationary actors
+visible for background updates in unrelated vertical bands. Normal-play mean
+erase-to-paint time falls from 6.641 to 6.065 ms and its 95th percentile from
+13.412 to 11.605 ms. Attract's actor erase count falls from 555 to 333 in the
+standard sample. This is a partial flicker reduction with a roughly 96 ms
+longer transition in this sample; it does not improve every scene or worst-case
+interval. See [the frozen results](baselines/sprite-flicker.json).
 
 The timer still schedules 60.606 logic ticks per second. Short measurement
 windows round tick counts at their boundaries. The frightened and intermission
@@ -81,6 +91,9 @@ stall. Full-raster presentation and physical hardware have not been measured.
   for shared background cells and completion flashing. Remove the experimental
   pellet-neighbor scans/cache. Avoid recoloring an aligned sprite's empty right
   column. Completion flashes blue/white against the white maze.
+- Keep stationary actors visible when queued background changes occupy
+  unrelated 32-pixel bands. Preserve colour-cell and sprite-overlap propagation,
+  and continue to invalidate every actor for rebuilds and maze flashing.
 
 The [optimization review](OPTIMIZATION_REVIEW.md) maps these changes to the
 new guide and records experiments that did not improve the result.
@@ -91,13 +104,13 @@ these changes. The game clock and the number of gameplay updates are retained.
 ## Remaining budget
 
 A 60.606 Hz update allows 16.50 ms, or 16,875 CPU cycles, for **all** work.
-Rendering alone still averages roughly 10.2 ms in the gameplay sample,
-leaving about 6.3 ms for input, game logic and sound. Their combined cost still
+Rendering alone still averages roughly 9.8 ms in the gameplay sample,
+leaving about 6.7 ms for input, game logic and sound. Their combined cost still
 exceeds that budget, so gameplay has not reached sustained 60 FPS.
 
 The previous full rebuild took about 829 ms in one call, with a 1.28-second
 draw gap. Bounded work removes that input/audio blockage but takes about
-1.84 seconds between coherent refreshes while drawing progressively. Reducing
+1.94 seconds between coherent refreshes while drawing progressively. Reducing
 total construction time remains useful. The flash retains its color-only
 path. Hot game-state routines and the generic sprite paths also need work
 for sustained 60 FPS gameplay.

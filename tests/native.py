@@ -2,23 +2,25 @@
 """Execute the built 6502 PRG and compare complete logical ticks to the ROM."""
 import subprocess
 import unittest
+from pathlib import Path
 from arcade import Runner, compare, BUILD, WORK, ROOT
 
 
 class Sim:
-    def __init__(self):
+    def __init__(self, prg=None):
+        prg = Path(prg) if prg is not None else ROOT / "build/pacman.prg"
         self.labels = {
             p[2][1:]: int(p[1], 16)
-            for line in (ROOT / "build/pacman.lbl").read_text().splitlines()
+            for line in prg.with_suffix(".lbl").read_text().splitlines()
             if len(p := line.split()) == 3
         }
         self.p = subprocess.Popen(
             [
                 str(ROOT / "tools/vicsim/vicsim"),
-                str(ROOT / "build/pacman.prg"),
+                str(prg),
                 "loader_start",
                 "-",
-                str(ROOT / "build/pacman.lbl"),
+                str(prg.with_suffix(".lbl")),
             ],
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,

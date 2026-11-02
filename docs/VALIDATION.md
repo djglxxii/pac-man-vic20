@@ -20,9 +20,9 @@ make -j2 test
 make vice-test
 ```
 
-Result on 2026-11-01: **15 ROM comparison tests, six native tests, four
+Result on 2026-11-02: **15 ROM comparison tests, six native tests, five
 renderer tests, six maze-color tests, three maze-flash tests and eight
-bounded-rebuild tests passed** (42 total),
+bounded-rebuild tests passed** (43 total),
 followed by the frontend
 smoke run and the VICE check.
 The smoke run exceeded 7,000 logical ticks with its IRQ vector and stack guard
@@ -75,6 +75,10 @@ overlap scenes, and 360 consecutive incremental frames, including background
 changes. Each comparison covers pixel data, color data and underlay restoration.
 The fast-ghost test adds 256 visible frame/shift/flip cases and checks that
 each executes the pre-shifted path, alongside the independent pixel model.
+The fifth renderer check compares 100 queued background changes against full
+redraws with overlapping actors, including HUD addressing and colour-cell
+sharing without pixel overlap. It also checks that an unrelated HUD write
+does not erase stationary actors; see [SPRITE_FLICKER.md](SPRITE_FLICKER.md).
 
 `tests/colors.py` derives pellet coverage from the decoded source pixels. It
 checks a real maze's white walls/pellets and unchanged bitmap, shuffled tile
@@ -135,7 +139,7 @@ completion. The MP4 contains 8,336 actual VICE video frames and non-silent audio
 it preserves intermediate drawing for visual flicker review.
 
 `make performance` counts completed renders and records frame intervals from
-emulated CPU cycles. Current gameplay samples reach about 48–54 FPS; the sampled
+emulated CPU cycles. Current gameplay samples reach about 50–54 FPS; the sampled
 intermission reaches 60 FPS. [PERFORMANCE.md](PERFORMANCE.md) records the method,
 changes and remaining frame budget, including the longer coherent draw interval
 during progressive next-board construction.
