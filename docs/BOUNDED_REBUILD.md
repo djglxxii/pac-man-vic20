@@ -5,10 +5,10 @@ based on preparation commit `aebb093`. Input, logic and sound are now serviced
 while rebuilding a board. The full-expansion NTSC target and 16,875-cycle
 arcade clock are retained.
 
-The measurements below describe commit `249bb5a`. Subsequent
-[white-pellet priorities](COLOR_PRIORITIES.md) retain bounded servicing but add
-neighbor checks: current construction takes about 2.1 seconds, and the resident
-program now fills BLK1-3. The older measurements are preserved for comparison.
+The measurements below describe commit `249bb5a`. The later
+[white-pellet experiment](COLOR_PRIORITIES.md) added neighbor checks; the
+current [all-white maze](WHITE_MAZE.md) removes those checks while retaining
+bounded servicing. These original measurements are preserved for comparison.
 
 ## Behavior and measured tradeoff
 

@@ -42,10 +42,11 @@ final game colors. `make vice-test` captures actual VICE screenshots under
 
 The display remains one foreground color per 8×16 cell. Ghosts sharing a cell
 can recolor each other, and a sprite can temporarily recolor nearby pellets,
-walls or text. [Background color priorities](COLOR_PRIORITIES.md) keep every
-visible standing pellet white, including cells with blue walls. Those walls
-must share the white color. Removing the last pellet restores the wall's blue;
-the arcade's power-pellet blinking and end-board flash remain intact.
+walls or text. The [maze and standing pellets are white](WHITE_MAZE.md),
+including walls left behind after pellets are eaten. Power pellets retain
+their original blinking. Completion alternates blue/white for four pairs,
+starting blue against the normally white maze. Existing wall coverage keeps
+background art sharing a wall cell in the wall's color.
 An aligned sprite no longer recolors its empty right-hand column.
 Pink and orange cannot be reproduced exactly in this high-resolution
 mode. Eyes, pupils, fruit stems and small lettering lose detail when scaled.
@@ -70,8 +71,8 @@ Maze-wall coverage for the [stage flash](MAZE_FLASH.md) uses `$0FE2–$0FFA`,
 with its pending flag at `$0FFB`.
 Frequently tested arcade flags at virtual `$4DA0–$4DFF` use native zero page
 `$A0–$FF`. These memory choices leave the game values and coordinates intact.
-Two additional zero-page bytes cache the last background color lookup. Every
-changed logical screen/palette write and fresh full rebuild invalidates it.
+The earlier pellet-neighbor checks and their two-byte zero-page cache have
+been removed; no extra color-priority state is needed.
 
 Two normal ghost masks cover source frames 32–37; frames 28–29 provide two
 frightened masks. All four are horizontally symmetric with transparent first

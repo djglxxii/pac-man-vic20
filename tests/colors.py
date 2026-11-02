@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check pellet colour ownership from source pixels, independently of assembly."""
+"""Check white maze/pellet colors from source pixels and completion states."""
 import json
 import random
 import re
@@ -8,7 +8,7 @@ import unittest
 from native import Sim, ROOT, BUILD
 from performance import start_game
 
-OUT = ROOT / "build/color-priorities"
+OUT = ROOT / "build/white-maze"
 
 
 def offset(x, y):
@@ -73,7 +73,7 @@ class Colors(unittest.TestCase):
                 )
         return cells
 
-    def assert_priorities(self):
+    def assert_white_background(self):
         mem = self.sim.dump()
         white = self.pellet_cells(mem)
         walls = mem[self.sim.labels["maze_cells"]:][:25]
@@ -81,12 +81,12 @@ class Colors(unittest.TestCase):
             if cell in white:
                 self.assertEqual(mem[0x9600 + cell], 1, f"pellet cell {cell}")
             elif walls[cell // 8] & (1 << (cell & 7)):
-                self.assertEqual(mem[0x9600 + cell], 6, f"wall cell {cell}")
+                self.assertEqual(mem[0x9600 + cell], 1, f"wall cell {cell}")
         return mem, white
 
-    def test_01_real_maze_white_pellets_and_unchanged_pixels(self):
+    def test_01_real_maze_white_walls_pellets_and_unchanged_pixels(self):
         self.rebuild()
-        mem, cells = self.assert_priorities()
+        mem, cells = self.assert_white_background()
         self.assertGreater(len(cells), 100)
         # A separate tile rasterizer verifies that ownership never changes art.
         bitmap = bytearray(3136)
@@ -106,34 +106,39 @@ class Colors(unittest.TestCase):
         (OUT / "pellets.json").write_text(json.dumps({
             "visible_pellet_cells": len(cells), "white_pellet_cells": len(cells),
         }, indent=2) + "\n")
-        self.sim.cmd("shot build/color-priorities/after.ppm")
+        self.sim.cmd("shot build/white-maze/after.ppm")
 
-    def test_02_tile_order_does_not_change_priorities(self):
+    def test_02_tile_order_does_not_change_white_maze(self):
         self.rebuild()
-        expected, _ = self.assert_priorities()
+        expected, _ = self.assert_white_background()
         order = list(range(1024))
         random.Random(6560).shuffle(order)
         for i in order:
             self.sim.cmd(f"poke v_save {i & 255}")
             self.sim.cmd(f"poke ${self.sim.labels['v_save'] + 1:x} {i >> 8}")
             self.sim.cmd("call bitmap_tile")
-        actual, _ = self.assert_priorities()
+        actual, _ = self.assert_white_background()
         self.assertEqual(actual[0x1000:0x1c40], expected[0x1000:0x1c40])
 
-    def test_03_last_dot_releases_wall_and_power_pellet_blinks(self):
+    def test_03_wall_stays_white_after_last_dot_and_power_pellet_blinks(self):
         self.fixture(((8, 11, 0xd2, 16), (9, 11, 16, 16), (9, 12, 16, 16)))
-        self.assert_priorities()
+        self.assert_white_background()
         for y in (11, 12):
             self.store(0x400 + offset(9, y), 64)
             self.sim.cmd("call video_background")
-            self.assert_priorities()
-        self.assertEqual(self.sim.peek(0x9600 + 4 * 14 + 4), b"\x06")
+            self.assert_white_background()
+        self.assertEqual(self.sim.peek(0x9600 + 4 * 14 + 4), b"\x01")
         self.store(0x400 + offset(9, 11), 20)
         self.sim.cmd("call video_background")
         for pal in (0, 16, 0, 16):
             self.store(0x800 + offset(9, 11), pal)
             self.sim.cmd("call video_background")
-            self.assert_priorities()
+            mem, _ = self.assert_white_background()
+            pixel = 0x1000 + 4 * 224 + 11 * 6
+            self.assertEqual(
+                [b & 15 for b in mem[pixel:pixel + 6]],
+                self.tiles[20] if pal else [0] * 6,
+            )
 
     def test_04_pellet_ink_at_every_cell_boundary(self):
         rng = random.Random(216)
@@ -141,11 +146,11 @@ class Colors(unittest.TestCase):
             entries = [(x, y, 0xd2, 16) for x in range(28) for y in range(2, 34)]
             entries += [(rng.randrange(28), y, code, 16) for y in range(2, 34)]
             self.fixture(entries)
-            self.assert_priorities()
+            self.assert_white_background()
             for x, y, _, _ in entries[-32:]:
                 self.store(0x400 + offset(x, y), 64)
             self.sim.finish_background()
-            self.assert_priorities()
+            self.assert_white_background()
 
     def test_05_actor_releases_white_pellets_and_keeps_aligned_neighbor(self):
         self.fixture(((8, 11, 0xd2, 16), (9, 11, 16, 16), (11, 11, 16, 16)))
@@ -162,9 +167,24 @@ class Colors(unittest.TestCase):
         self.assertEqual(mem[0x9600 + cell], 2)
         self.assertEqual(mem[0x9600 + cell + 1], 1)
         self.sim.cmd("call video_restore")
-        mem, _ = self.assert_priorities()
+        mem, _ = self.assert_white_background()
         self.assertEqual(mem[0x1000:0x1c40], background[0x1000:0x1c40])
         self.assertEqual(mem[0x9600:0x96c4], background[0x9600:0x96c4])
+
+    def test_06_blue_is_limited_to_completion_flash(self):
+        self.sim.cmd("call clearPillsScreen_2a35")
+        for level in (3, 14, 15, 29, 30):
+            for param in (0, 2):
+                with self.subTest(level=level, param=param):
+                    self.sim.cmd(f"poke $e04 {level}")
+                    self.sim.cmd(f"call mazeColours_24d7 {param}")
+                    self.rebuild()
+                    mem = self.sim.dump()
+                    walls = mem[self.sim.labels["maze_cells"]:][:25]
+                    expected = 6 if 15 <= level < 30 and param == 2 else 1
+                    for cell in range(196):
+                        if walls[cell // 8] & (1 << (cell & 7)):
+                            self.assertEqual(mem[0x9600 + cell], expected, cell)
 
 
 if __name__ == "__main__":

@@ -21,8 +21,8 @@ make vice-test
 ```
 
 Result on 2026-11-01: **15 ROM comparison tests, six native tests, four
-renderer tests, five color-priority tests, three maze-flash tests and eight
-bounded-rebuild tests passed** (41 total),
+renderer tests, six maze-color tests, three maze-flash tests and eight
+bounded-rebuild tests passed** (42 total),
 followed by the frontend
 smoke run and the VICE check.
 The smoke run exceeded 7,000 logical ticks with its IRQ vector and stack guard
@@ -77,9 +77,11 @@ The fast-ghost test adds 256 visible frame/shift/flip cases and checks that
 each executes the pre-shifted path, alongside the independent pixel model.
 
 `tests/colors.py` derives pellet coverage from the decoded source pixels. It
-checks a real maze's white pellets and unchanged bitmap, shuffled tile order,
-last-pellet removal, power-pellet blinking, all vertical cell boundaries,
-dirty-map overflow and sprite color restoration. The compositor oracle checks
+checks a real maze's white walls/pellets and unchanged bitmap, shuffled tile
+order, white walls after last-pellet removal, power-pellet blinking, all vertical
+cell boundaries, dirty-map overflow and sprite color restoration. Its sixth
+check limits blue wall rendering to completion-flash states, including a full
+redraw. The compositor oracle checks
 that an aligned sprite leaves its empty right column's color unchanged.
 
 The comparisons load shared reference snapshots at stable points. Large
@@ -127,7 +129,7 @@ board completion, verifies all eight physical blue/white phases, and saves
 the new board settles. This mode runs VICE at normal speed for reliable capture.
 
 `make performance` counts completed renders and records frame intervals from
-emulated CPU cycles. Current gameplay samples reach about 46–52 FPS; the sampled
+emulated CPU cycles. Current gameplay samples reach about 48–54 FPS; the sampled
 intermission reaches 60 FPS. [PERFORMANCE.md](PERFORMANCE.md) records the method,
 changes and remaining frame budget, including the longer coherent draw interval
 during progressive next-board construction.

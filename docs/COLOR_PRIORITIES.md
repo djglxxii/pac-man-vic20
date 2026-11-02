@@ -1,5 +1,9 @@
 # White-pellet color priorities
 
+Historical experiment at `38c5750`. The subsequent [all-white maze](WHITE_MAZE.md)
+removes the neighbor checks/cache, restores rendering throughput and keeps the
+aligned-sprite fix. The measurements below describe this earlier experiment.
+
 Implemented after `249bb5a`, on `optimization/color-priorities`, following the
 user's preference that standing pellets remain white. The NTSC display stays
 112×216 pixels with one foreground color per 8×16 hardware cell.

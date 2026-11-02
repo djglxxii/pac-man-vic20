@@ -308,7 +308,6 @@ bit_reverse:
 .byte 15,143,79,207,47,175,111,239,31,159,95,223,63,191,127,255
 .section .text.bitmap_tile,"ax",@progbits
 .global bitmap_tile
-.zeropage __rc2,__rc3,__rc4,__rc5,__rc6,__rc7,__rc8
 bitmap_tile:
  /* v_save is an original 0..1023 arcade video offset. */
  lda v_save
@@ -442,10 +441,8 @@ tile_shape_ready:
  lda v_hi
  cmp #$c0
  bcc tile_nonwall
- cpx #31
- beq tile_dot
- lda #6
- bne tile_color_ready
+ jsr bitmap_wall_colour
+ jmp tile_color_ready
 tile_nonwall:
  sec
  sbc #$10
@@ -501,21 +498,6 @@ tile_color_ready:
  lda v_shift
  jsr bitmap_cell_colour
 tile_color_done:
- /* Pellets win background colour ties even when a wall was drawn last.
-    Recheck logical neighbours on erases too, so the last eaten dot releases
-    its cell back to the wall. The helper preserves all v_* tile scratch. */
- lda v_lo
- cmp #12
- bcc tile_priority_done
- ldy #0
- jsr bitmap_cell_priority
- lda v_lo
- and #15
- cmp #11
- bcc tile_priority_done
- ldy #14
- jsr bitmap_cell_priority
-tile_priority_done:
  lda v_saved_right
  and #1
  sta v_flip
@@ -571,9 +553,8 @@ tile_pixel:
  inc v_addr+1
 tile_pixel_done:
  rts
-/* Remember every cell touched by the fixed maze walls. Dots may temporarily
-   supply a shared cell's colour; removing the last dot must not lose its wall.
-   A real screen rebuild resets this coverage before any new scene is drawn. */
+/* Remember every cell touched by the fixed maze walls, including cells shared
+   with dots or the HUD. A full rebuild resets coverage before the new scene. */
 .section .maze_cells,"aw",@nobits
 .global maze_cells
 maze_cells: .zero 25
@@ -622,9 +603,6 @@ maze_palette_hud:
 .section .text.bitmap_cell_colour,"ax",@progbits
 bitmap_cell_colour:
  sta (v_right),y
- lda v_hi
- cmp #$c0
- bcc cell_colour_done
  tya
  clc
  adc v_right
@@ -638,153 +616,48 @@ bitmap_cell_colour:
  lsr
  lsr
  tay
+ lda v_hi
+ cmp #$c0
+ bcc cell_colour_shared
  lda maze_cells,y
  ora v_row
  sta maze_cells,y
+ rts
+cell_colour_shared:
+ lda maze_cells,y
+ and v_row
+ beq cell_colour_done
+ /* Shared background art adopts the wall colour without scanning pellets. */
+ jsr bitmap_wall_colour
+ sta $9600,x
 cell_colour_done:
  rts
-.section .text.bitmap_cell_priority,"ax",@progbits
-bitmap_cell_priority:
- tya
- clc
- adc v_right
- sta __rc4
- cmp priority_last_cell
- bne cell_priority_miss
- lda priority_last_white
- bne cell_priority_white
-cell_priority_wall:
- lda __rc4
- and #7
- tay
- lda __rc4
- lsr
- lsr
- lsr
- tax
- lda maze_cells,x
- and bit_masks,y
- beq cell_priority_done
- lda $0840
- cmp #31
- beq cell_priority_white
- lda #6
- bne cell_priority_store
-cell_priority_pill_white:
- inc priority_last_white
-cell_priority_white:
+.section .text.bitmap_wall_colour,"ax",@progbits
+bitmap_wall_colour:
+ /* Keep arcade palette values unchanged. Only completion palette 31 is blue;
+    normal play and the alternating completion palette 16 are white. */
  lda #1
-cell_priority_store:
- ldx __rc4
- sta $9600,x
-cell_priority_done:
+ ldy $0e04
+ cpy #15
+ bcc wall_colour_done
+ cpy #30
+ bcs wall_colour_done
+ ldy $0840
+ cpy #31
+ bne wall_colour_done
+ lda #6
+wall_colour_done:
  rts
-cell_priority_miss:
- sta priority_last_cell
- lda #0
- sta priority_last_white
- lda v_lo
- lsr
- lsr
- lsr
- lsr
- tax
- tya
- beq cell_priority_row
- inx
-cell_priority_row:
- lda cell_pill_rows,x
- sta __rc5
- and #31
- sta __rc2
- lda __rc5
- lsr
- lsr
- lsr
- lsr
- lsr
- sta __rc8
- beq cell_priority_no_pill
- /* One hardware column covers two arcade columns. The right arcade
-    column's even ROM column index makes the left neighbour exactly +32. */
- lda v_saved_right+1
- asl
- eor #255
- clc
- adc #29
- pha
- asl
- asl
- asl
- asl
- asl
- ora __rc2
- sta __rc2
- sta __rc6
- pla
- lsr
- lsr
- lsr
- ora #4
- sta __rc3
- eor #12
- sta __rc7
- ldy #0
-cell_priority_pill:
- lda (__rc2),y
- cmp #16
- beq cell_priority_dot
- cmp #18
- beq cell_priority_palette
- cmp #20
- bne cell_priority_next
-cell_priority_palette:
- lda (__rc6),y
- and #31
- bne cell_priority_pill_white
- beq cell_priority_next
-cell_priority_dot:
- /* Every third cell begins/ends on transparent rows of the small dot.
-    Power pellets have ink on those boundary rows and still count there. */
- lda __rc5
- bpl cell_priority_palette
- /* CMP #16 left carry set; Y+1 selects only interior rows 1 and 2. */
- tya
- adc #0
- and #2
- bne cell_priority_palette
-cell_priority_next:
- iny
- cpy __rc8
- bne cell_priority_pill
- cpy #32
- bcs cell_priority_no_pill
- ldy #32
- lda __rc8
- ora #32
- sta __rc8
- bne cell_priority_pill
-cell_priority_no_pill:
- jmp cell_priority_wall
 .section .arcade_data,"a",@progbits
-/* Low five bits: first arcade row minus two. High bits: rows to inspect.
-   A four-row span (bit 7) excludes small dots at either transparent edge.
-   The HUD outside arcade rows 2..33 never participates. */
-cell_pill_rows:
-.byte $20,$80,$63,$66,$88,$6b,$6e,$90,$73,$76,$98,$7b,$5e,$00
 .global bit_masks
 bit_masks:
 .byte 1,2,4,8,16,32,64,128
-.section .zp.bss,"aw",@nobits
-.global priority_last_cell,priority_last_white
-priority_last_cell: .zero 1
-priority_last_white: .zero 1
 .section .text.bitmap_maze_flash,"ax",@progbits
 .global bitmap_maze_flash
 bitmap_maze_flash:
  lda $0840
  cmp #31
- bne maze_colour_blue
+ beq maze_colour_blue
  lda #1
  bne maze_colour_ready
 maze_colour_blue:

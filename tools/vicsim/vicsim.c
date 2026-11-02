@@ -200,9 +200,9 @@ static void step(void) {
         }
     }
     if (profile_trace && flash_request_addr && pc == flash_request_addr)
-        fprintf(profile_trace, "%llu flash-%s\n", (unsigned long long)cycles, a == 2 ? "white" : "blue");
+        fprintf(profile_trace, "%llu flash-%s\n", (unsigned long long)cycles, a == 2 ? "blue" : "white");
     if (profile_trace && flash_present_addr && pc == flash_present_addr)
-        fprintf(profile_trace, "%llu present-%s\n", (unsigned long long)cycles, mem[0x840] == 31 ? "white" : "blue");
+        fprintf(profile_trace, "%llu present-%s\n", (unsigned long long)cycles, (mem[0x960e] & 7) == 6 ? "blue" : "white");
     if (profile_trace && (pc == render_begin_addr || pc == render_end_addr || pc == audio_addr))
         fprintf(profile_trace, "%llu %s\n", (unsigned long long)cycles,
                 pc == audio_addr ? "logic" : pc == render_begin_addr ? "begin" : "end");

@@ -213,7 +213,7 @@ def main():
             phases = []
             pictures = []
             for phase, level in enumerate(range(15, 30, 2)):
-                colour = 1 if phase % 2 == 0 else 6
+                colour = 6 if phase % 2 == 0 else 1
                 deadline = time.monotonic() + 15
                 while True:
                     state = mon.memory(0xE00, 9)

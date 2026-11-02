@@ -1,5 +1,11 @@
 # End-of-stage maze flash
 
+The current [all-white maze](WHITE_MAZE.md) uses this same color-only mechanism
+with four **blue/white** pairs. Blue comes first so the change is visible
+against the white maze. Arcade palette values, state transitions and timing
+remain unchanged; only their native display colors are remapped. The original
+flash implementation and measurements below predate this palette change.
+
 The end-of-stage blue/white flash now changes VIC colour cells while retaining
 all maze pixels. Previously each palette fill triggered a full bitmap rebuild,
 which took roughly 787 ms and could stretch the gap between draws to 1.6 seconds.
@@ -12,8 +18,8 @@ A 25-byte coverage map records which VIC cells contain maze walls. Dot removal
 cannot discard a wall that shared its cell. Full scene rebuilds clear and
 recreate the map. Before recolouring, the compositor restores all actor
 underlays, processes any ordinary background changes, updates covered cells,
-and redraws the actors. Score text and fruit history retain their colours;
-sprites retain their normal colours and priority. A sprite sharing a wall cell
+and redraws the actors. Score text and fruit history keep their palette outside
+wall-sharing cells; sprites retain their normal colours and priority. A sprite sharing a wall cell
 still causes the usual VIC colour clash.
 
 The map uses `$0FE2–$0FFA`; its pending flag uses `$0FFB`. General bulk fills

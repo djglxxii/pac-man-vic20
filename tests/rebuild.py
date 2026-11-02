@@ -205,10 +205,8 @@ class Rebuild(unittest.TestCase):
             self.assertLess(max(gaps), 33.01)
         self.assertEqual([k for c, k in events if k.startswith("task-") and k.endswith("-begin")],
                          [f"task-{task}-begin" for task in (0, 6, 19, 0, 1, 2, 19, 3)])
-        self.assertEqual([k for c, k in events if k.startswith("present-")], ["present-white", "present-blue"] * 4)
-        # White-pellet ownership adds bounded neighbour checks during drawing.
-        # Keep a completion bound as well as the unchanged service-gap limits.
-        self.assertLess(report["settled_board_ms"], 2250)
+        self.assertEqual([k for c, k in events if k.startswith("present-")], ["present-blue", "present-white"] * 4)
+        self.assertLess(report["settled_board_ms"], 2000)
         (OUT / "transition.json").write_text(json.dumps(report, indent=2) + "\n")
 
     def test_07_coin_is_serviced_during_rebuild(self):

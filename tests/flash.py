@@ -108,8 +108,8 @@ class MazeFlash(unittest.TestCase):
         events = [(int(c), k) for c, k in map(str.split, trace.read_text().splitlines())]
         requests = [(c, k[6:]) for c, k in events if k.startswith("flash-")]
         presents = [(c, k[8:]) for c, k in events if k.startswith("present-")]
-        self.assertEqual([k for c, k in requests], ["white", "blue"] * 4)
-        self.assertEqual([k for c, k in presents], ["white", "blue"] * 4)
+        self.assertEqual([k for c, k in requests], ["blue", "white"] * 4)
+        self.assertEqual([k for c, k in presents], ["blue", "white"] * 4)
         delays = [(p - r) * 1000 / CPU_HZ for (r, _), (p, _) in zip(requests, presents)]
         # A colour change must finish within two arcade ticks, without a
         # blocked rebuild or a burst of skipped flash phases.
