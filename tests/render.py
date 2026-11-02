@@ -81,7 +81,7 @@ class Renderer(unittest.TestCase):
             for lower in (0, 14) if y & 15 > 4 else (0,):
                 if col >= 0:
                     colors[(cell + lower) & 255] = color
-                if col < 13:
+                if col < 13 and shift:
                     colors[(cell + lower + 1) & 255] = color
         for address, data in ((0xC20, attrs), (0xC30, positions)):
             p = WORK / "actors.bin"

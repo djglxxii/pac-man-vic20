@@ -3,7 +3,7 @@
    Phases: 0 idle, 1 clear bitmap, 2 full tile pass, 3 dirty tile pass. */
 .section .screen_work,"aw",@nobits
 rebuild_budget: .zero 1
-.zeropage __rc2,__rc3,v_addr,v_save,v_lo,v_hi,dirty_count,full_dirty
+.zeropage __rc2,__rc3,v_addr,v_save,v_lo,v_hi,dirty_count,full_dirty,priority_last_cell
 .section .text.rebuild,"ax",@progbits
 .global video_store
 /* LLVM-MOS: A is the byte, __rc2/__rc3 the pointer. This saves enough resident
@@ -18,6 +18,9 @@ video_store:
  bcc store_done
  cmp #12
  bcs store_done
+ /* Any logical write invalidates the adjacent-tile colour lookup cache. */
+ ldx #255
+ stx priority_last_cell
  ldx full_dirty
  cpx #2
  beq store_done
@@ -134,6 +137,8 @@ video_rebuild:
  lda full_dirty
  cmp #2
  bne rebuild_resume
+ ldx #255
+ stx priority_last_cell
  lda #0
  sta rebuild_cursor
  sta rebuild_cursor+1

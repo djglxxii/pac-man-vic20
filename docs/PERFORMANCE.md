@@ -19,23 +19,30 @@ until pending rebuild/setup work settles. Reports include the longest refresh
 and coherent draw interval, individual batch durations and input/audio gaps.
 Bounded-refresh elapsed time includes yields to other work.
 
-Representative results on 2026-11-01:
+Representative results on 2026-11-01 with white-pellet color priorities:
 
 | Sample | Completed renders per second | Mean refresh elapsed | Longest coherent draw interval |
 | --- | ---: | ---: | ---: |
-| Early first-board play | 49.74 | 9.90 ms | 44.80 ms |
-| Frightened movement | 53.73 | 8.71 ms | 45.21 ms |
-| Attract chase | 44.37 | 10.57 ms | 59.83 ms |
-| First intermission | 60.30 | 3.35 ms | 24.11 ms |
-| Board transition | 42.38 | 10.03 ms | 1800.99 ms |
+| Early first-board play | 45.58 | 10.66 ms | 37.74 ms |
+| Frightened movement | 51.61 | 9.22 ms | 43.92 ms |
+| Attract chase | 43.56 | 10.89 ms | 62.88 ms |
+| First intermission | 60.08 | 3.44 ms | 22.21 ms |
+| Board transition | 39.30 | 11.30 ms | 2073.70 ms |
 
 The [maze flash](MAZE_FLASH.md) now recolours existing pixels. All eight
 phases appear about 198 ms apart, within 17 ms of their requests. The board
 transition sample also includes [bounded next-maze drawing](BOUNDED_REBUILD.md).
-Its background calls take at most 6.08 ms, with input and audio gaps of at
-most 28.95 and 29.73 ms. The board draws progressively; the longest coherent
-refresh spans 1695.57 ms across many calls. The longer coherent draw interval
+Its background calls take at most 7.52 ms, with input and audio gaps of at
+most 28.80 and 26.04 ms. The board draws progressively; the longest coherent
+refresh spans 1852.34 ms across many calls. The longer coherent draw interval
 is a visible tradeoff for continued service.
+
+The previous [bounded-rebuild revision](baselines/bounded-board-rebuild.json)
+measured 49.74 FPS in normal play and a 1800.99 ms coherent transition gap.
+Keeping stationary pellets white requires inspecting neighboring logical tiles;
+the added work reduces throughput and increases construction time. See
+[the color-priority measurements](COLOR_PRIORITIES.md) for the visual benefit,
+memory cost and focused checks. The older baseline remains unchanged.
 
 The timer still schedules 60.606 logic ticks per second. Short measurement
 windows round tick counts at their boundaries. The frightened and intermission
@@ -69,6 +76,9 @@ stall. Full-raster presentation and physical hardware have not been measured.
 - Split background conversion and bulk board tasks into bounded calls, using
   idle cycles between ticks. Preserved task order and replayed writes behind
   the cursor; retained the separate maze-flash path.
+- Give visible standing pellets white background priority, rechecking neighboring
+  logical tiles after erases and palette changes. Cache adjacent lookups and
+  avoid recoloring an aligned sprite's empty right-hand column.
 
 The [optimization review](OPTIMIZATION_REVIEW.md) maps these changes to the
 new guide and records experiments that did not improve the result.
@@ -79,13 +89,13 @@ these changes. The game clock and the number of gameplay updates are retained.
 ## Remaining budget
 
 A 60.606 Hz update allows 16.50 ms, or 16,875 CPU cycles, for **all** work.
-Rendering alone still averages roughly 9.9 ms in the gameplay sample,
-leaving about 6.6 ms for input, game logic and sound. Their combined cost still
+Rendering alone still averages roughly 10.7 ms in the gameplay sample,
+leaving about 5.8 ms for input, game logic and sound. Their combined cost still
 exceeds that budget, so gameplay has not reached sustained 60 FPS.
 
 The previous full rebuild took about 829 ms in one call, with a 1.28-second
 draw gap. Bounded work removes that input/audio blockage but takes about
-1.8 seconds between coherent refreshes while drawing progressively. Reducing
+2.1 seconds between coherent refreshes while drawing progressively. Reducing
 total construction time remains useful. The flash retains its color-only
 path. Hot game-state routines and the generic sprite paths also need work
 for sustained 60 FPS gameplay.

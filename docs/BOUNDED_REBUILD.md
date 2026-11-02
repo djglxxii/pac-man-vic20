@@ -5,6 +5,11 @@ based on preparation commit `aebb093`. Input, logic and sound are now serviced
 while rebuilding a board. The full-expansion NTSC target and 16,875-cycle
 arcade clock are retained.
 
+The measurements below describe commit `249bb5a`. Subsequent
+[white-pellet priorities](COLOR_PRIORITIES.md) retain bounded servicing but add
+neighbor checks: current construction takes about 2.1 seconds, and the resident
+program now fills BLK1-3. The older measurements are preserved for comparison.
+
 ## Behavior and measured tradeoff
 
 The old renderer blocked in one full redraw. The new renderer progressively
@@ -35,8 +40,8 @@ host-side routine watches; the original performance summary is in the
 performance samples, the focused transition check, memory figures and artifact
 hashes. These are emulator measurements, not physical-hardware guarantees.
 
-Normal-play throughput is 49.74 FPS, frightened play 53.73, attract chase
-44.37 and the intermission 60.30 in the current short samples. Positions at
+Normal-play throughput was 49.74 FPS, frightened play 53.73, attract chase
+44.37 and the intermission 60.30 in that revision's short samples. Positions at
 the beginning of a sample can differ because setup now runs cooperatively.
 Gameplay remains below sustained 60 FPS; this change addresses transition
 service rather than general gameplay rendering throughput.

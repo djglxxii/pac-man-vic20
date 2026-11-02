@@ -11,8 +11,8 @@ PRG := build/pacman.prg
 CORE := src/arcade/core.c
 NATIVE := src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/sprites.S src/audio.S src/pacman.c src/platform.c src/video.c $(CORE)
 # $A0-$FF holds arcade flags. Of the remaining 126 zero-page bytes, assembly
-# reserves 34; the compiler may allocate at most 92 more.
-CFLAGS := -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -I$(GEN) -Tsrc/pacman.ld
+# reserves 36; the compiler may allocate at most 90 more.
+CFLAGS := -Oz -gline-tables-only -mlto-zp=90 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -I$(GEN) -Tsrc/pacman.ld
 
 all: $(PRG)
 
@@ -46,6 +46,7 @@ test: $(PRG) tools/vicsim/vicsim reference
 	$(PY) tests/arcade.py
 	$(PY) tests/native.py
 	$(PY) tests/render.py
+	$(PY) tests/colors.py
 	$(PY) tests/flash.py
 	$(PY) tests/rebuild.py
 	$(PY) tests/smoke.py

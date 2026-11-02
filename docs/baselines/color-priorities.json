@@ -1,0 +1,453 @@
+{
+  "parent_commit": "249bb5a",
+  "branch": "optimization/color-priorities",
+  "target": "NTSC VIC-20, existing 3K + BLK1/2/3/5 expansion",
+  "source_sha256": {
+    "Makefile": "04348725bf128cad60229b14acb65ade168ca5aa45c144c4f1b5ffa26a63c920",
+    "src/arcade/consts.h": "e1a656cdb20bcdc4312f4caf4e62b2a62b6a4dfbb16c0ee8b94585ba28ead2f8",
+    "src/arcade/core.c": "edffc23c34a8cc2ba62c6c0e26ea6ef779ff52713c943e36fbef7011fb09e1e1",
+    "src/arcade/cpu.h": "fc2a802b514f79936d50836e134ab7818c6dbffbf7cbbcedb235112e985bff0f",
+    "src/arcade/data.h": "dcff0dc5c5278e6fc7b7a7f5dcda8492a69d987f3ce0cba55024d6aaf00db64e",
+    "src/arcade/memmap.h": "d5546c9a3f837e901d3d7caf8cded0f7eef1ccf22fe7bf9f6aabe36930f931bf",
+    "src/arcade/protos.h": "57d8ebb76072b17289bcc653cd4f0131343368e88a7627c6c7e66079c592c728",
+    "src/arcade/structs.h": "6b91a014d6aa84d64c2264a8d07013ebf0c6d6229fe4cb98e7d4e255778e9f04",
+    "src/audio.S": "c945327887cfcb267ec5a63403bd6dd5d5ca977490c551a8641d20209b732c28",
+    "src/bitmap.S": "a35a08d9c6be997ec684dc87473d4e909e7958b0b2141d98e9ffa08027488db4",
+    "src/clock.S": "846a95af6904c9edbccf64e60084287de05b375d8ec48f713864299bdb8f029c",
+    "src/pacman.c": "b33d3ac24e61598b7253c975124d62321dffffdec55b53c41ff156628128589a",
+    "src/pacman.ld": "7cf9c3d3665c55d7875339d5aaeff4493edea3df085b0bce9d76e56f2945ac09",
+    "src/platform.c": "70f529c49af6ab26367e3f0c05b4afcd5e5427110645f8e53b7d8709efdaa9d6",
+    "src/rebuild.S": "922bb4b580771602c419451b00bb860dc655f48bf13a2120dadeb251cfff23d4",
+    "src/sprites.S": "9f6a22c4c2ab4917a684ce1d4df4078cb94583bbe15582e2e49ad9bccb97c339",
+    "src/start.S": "dca46e1b216970d556f0ec1d57ee0e2288e05f0a11cf453a8bdc53d944d41e19",
+    "src/tasks.S": "17196c39d44aa4caf3cf76bb56f2138567a2c57e3185354b014d554c5655aa6e",
+    "src/video.c": "bb9720eac6f04072d4970bdb421f7ce5a3a7efe39b38ed5cfc8f90c640f73ad7",
+    "src/video.h": "968962c7e5f714eb5b1e1d0e5305983309abc8833629e1d7d0b28c1a9ac00d68"
+  },
+  "artifact_sha256": {
+    "build/pacman.prg": "371676ec1ce3010db2a920af6ec3317d5726671ea0ef75355b42b86b0530aaa0",
+    "build/arcade/pacman-native.bin": "31694befd397d610192131293e6400512b5b4d69604c82c47a63995ccf9036d8",
+    "build/arcade/rom-manifest.json": "2a8cd55db7c6443b63824d41df07a4d2a23a2079087dc5bb0a6debe7b5253b4f"
+  },
+  "memory": {
+    "blk1_3_free_bytes": 0,
+    "blk5_free_bytes": 1,
+    "added_zero_page_bytes": 2,
+    "zero_page_allocated_end_exclusive": "0x0085",
+    "compiler_zp_cap": 90,
+    "screen_work_used_bytes": 56
+  },
+  "fixed_scene": {
+    "remaining_pellet_tiles": 237,
+    "pellet_cells": 113,
+    "white_cells_before": 41,
+    "white_cells_after": 113,
+    "logical_video_unchanged": true,
+    "bitmap_unchanged": true,
+    "bitmap_sha256": "c15ffd98a0f91abb56789de9090b513f60ff53c8a5768b11d71b9b6e2736a01a"
+  },
+  "validation": {
+    "unit_tests": 41,
+    "smoke": {
+      "screens": [
+        "attract",
+        "credits",
+        "maze",
+        "cherry",
+        "intermission-1",
+        "intermission-2",
+        "intermission-3"
+      ],
+      "clock": {
+        "video_frames": 180,
+        "arcade_ticks": 182,
+        "expected": 180.96
+      },
+      "long_run_ticks": 7199,
+      "irq_vector_intact": true,
+      "stack_guard_intact": true
+    },
+    "focused_transition": {
+      "queue_entries_max": 11,
+      "settled_board_ms": 2057.7925487446796,
+      "audio_update_gap_ms_max": 23.820628574389843,
+      "input_service_gap_ms_max": 23.030583919266824
+    },
+    "flash_renderer": {
+      "comparisons": 64,
+      "palette_cycles_max": 7083,
+      "recolour_cycles_max": 4748
+    },
+    "flash_timing": {
+      "phases": [
+        "white",
+        "blue",
+        "white",
+        "blue",
+        "white",
+        "blue",
+        "white",
+        "blue"
+      ],
+      "request_to_present_ms": [
+        15.653248618644076,
+        13.742670331378754,
+        13.746581443532829,
+        16.428626603189315,
+        13.746581443532829,
+        13.742670331378754,
+        13.746581443532829,
+        16.569426640735994
+      ],
+      "flash_spacing_ms": [
+        196.10903007351914,
+        197.99027501962888,
+        201.11232029661875,
+        194.95818532218274,
+        197.9110749985089,
+        198.02449725097705,
+        201.2364981075106
+      ],
+      "audio_update_gap_ms_max": 24.93725109437807
+    },
+    "vice": {
+      "boot": true,
+      "coin_and_start": true,
+      "game_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tick": 722,
+      "display": {
+        "width": 520,
+        "height": 234,
+        "inner": [
+          0,
+          0,
+          520,
+          234
+        ]
+      },
+      "emulator": "VICE NTSC VIC-20, full expansion",
+      "maze_flash": [
+        {
+          "level_state": 15,
+          "colour": 1
+        },
+        {
+          "level_state": 17,
+          "colour": 6
+        },
+        {
+          "level_state": 19,
+          "colour": 1
+        },
+        {
+          "level_state": 21,
+          "colour": 6
+        },
+        {
+          "level_state": 23,
+          "colour": 1
+        },
+        {
+          "level_state": 25,
+          "colour": 6
+        },
+        {
+          "level_state": 27,
+          "colour": 1
+        },
+        {
+          "level_state": 29,
+          "colour": 6
+        }
+      ],
+      "board_transition": {
+        "from_board": 0,
+        "to_board": 1,
+        "settled": true,
+        "partial_captures": [
+          {
+            "tick": 948,
+            "phase": 1
+          },
+          {
+            "tick": 962,
+            "phase": 1
+          },
+          {
+            "tick": 976,
+            "phase": 1
+          },
+          {
+            "tick": 990,
+            "phase": 2
+          },
+          {
+            "tick": 1002,
+            "phase": 2
+          },
+          {
+            "tick": 1014,
+            "phase": 2
+          },
+          {
+            "tick": 1020,
+            "phase": 2
+          },
+          {
+            "tick": 1034,
+            "phase": 2
+          },
+          {
+            "tick": 1049,
+            "phase": 2
+          }
+        ]
+      },
+      "audio": {
+        "channels": 1,
+        "rate": 48000,
+        "frames": 773913,
+        "peak": 19978
+      }
+    }
+  },
+  "performance": {
+    "cpu_hz": 1022727,
+    "video_frames_per_sample": 180,
+    "samples": [
+      {
+        "scene": "play",
+        "seconds": 2.984,
+        "completed_renders": 136,
+        "fps": 45.58,
+        "logic_hz": 60.99,
+        "render_ms_mean": 10.66,
+        "render_ms_max": 18.12,
+        "frame_interval_ms_p95": 33.03,
+        "frame_interval_ms_max": 37.74,
+        "start_state": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_state": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "start_board": 0,
+        "end_board": 0,
+        "video_frames": 180,
+        "requested_video_frames": 180,
+        "audio_update_gap_ms_max": 27.69,
+        "input_service_gap_ms_max": 29.3,
+        "render_batch_ms_max": 18.13,
+        "background_slice_ms_max": 0,
+        "bulk_slice_ms_max": 0.04,
+        "pending_rebuild_at_end": false
+      },
+      {
+        "scene": "frightened",
+        "seconds": 2.984,
+        "completed_renders": 154,
+        "fps": 51.61,
+        "logic_hz": 60.99,
+        "render_ms_mean": 9.22,
+        "render_ms_max": 19.05,
+        "frame_interval_ms_p95": 30.8,
+        "frame_interval_ms_max": 43.92,
+        "start_state": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_state": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "start_board": 0,
+        "end_board": 0,
+        "video_frames": 180,
+        "requested_video_frames": 180,
+        "audio_update_gap_ms_max": 28.85,
+        "input_service_gap_ms_max": 28.28,
+        "render_batch_ms_max": 19.06,
+        "background_slice_ms_max": 0,
+        "bulk_slice_ms_max": 0.04,
+        "pending_rebuild_at_end": false
+      },
+      {
+        "scene": "attract-chase",
+        "seconds": 2.9846,
+        "completed_renders": 130,
+        "fps": 43.56,
+        "logic_hz": 60.98,
+        "render_ms_mean": 10.89,
+        "render_ms_max": 14.86,
+        "frame_interval_ms_p95": 48.66,
+        "frame_interval_ms_max": 62.88,
+        "start_state": [
+          1,
+          0,
+          34,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_state": [
+          1,
+          0,
+          34,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "start_board": 0,
+        "end_board": 0,
+        "video_frames": 180,
+        "requested_video_frames": 180,
+        "audio_update_gap_ms_max": 30.98,
+        "input_service_gap_ms_max": 26.28,
+        "render_batch_ms_max": 14.88,
+        "background_slice_ms_max": 0,
+        "bulk_slice_ms_max": 0.04,
+        "pending_rebuild_at_end": false
+      },
+      {
+        "scene": "intermission",
+        "seconds": 2.9796,
+        "completed_renders": 179,
+        "fps": 60.08,
+        "logic_hz": 60.41,
+        "render_ms_mean": 3.44,
+        "render_ms_max": 12.49,
+        "frame_interval_ms_p95": 18.92,
+        "frame_interval_ms_max": 22.21,
+        "start_state": [
+          3,
+          0,
+          0,
+          0,
+          32,
+          0,
+          4,
+          0,
+          0
+        ],
+        "end_state": [
+          3,
+          0,
+          0,
+          0,
+          32,
+          0,
+          5,
+          0,
+          0
+        ],
+        "start_board": 1,
+        "end_board": 1,
+        "video_frames": 180,
+        "requested_video_frames": 180,
+        "audio_update_gap_ms_max": 19.26,
+        "input_service_gap_ms_max": 18.88,
+        "render_batch_ms_max": 12.5,
+        "background_slice_ms_max": 0,
+        "bulk_slice_ms_max": 0.04,
+        "pending_rebuild_at_end": false
+      },
+      {
+        "scene": "board-transition",
+        "seconds": 5.9798,
+        "completed_renders": 235,
+        "fps": 39.3,
+        "logic_hz": 60.7,
+        "render_ms_mean": 11.3,
+        "render_ms_max": 1852.34,
+        "frame_interval_ms_p95": 30.32,
+        "frame_interval_ms_max": 2073.7,
+        "start_state": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_state": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "start_board": 0,
+        "end_board": 1,
+        "video_frames": 360,
+        "requested_video_frames": 360,
+        "audio_update_gap_ms_max": 26.04,
+        "input_service_gap_ms_max": 28.8,
+        "render_batch_ms_max": 19.36,
+        "background_slice_ms_max": 7.52,
+        "bulk_slice_ms_max": 6.39,
+        "pending_rebuild_at_end": false
+      }
+    ]
+  },
+  "limitations": [
+    "Shared walls turn white with standing pellets.",
+    "Actors can recolor pellets sharing a hardware cell even without pixel overlap.",
+    "Only the entirely empty right column of aligned sprites is excluded from their color footprint.",
+    "Color ownership adds CPU work: lower gameplay rendering throughput and longer progressive construction.",
+    "Resident BLK1-3 space is exhausted.",
+    "No physical-hardware verification."
+  ]
+}

@@ -382,6 +382,9 @@ sprite_no_left_color:
  lda v_flags
  and #2
  beq sprite_no_right_color
+ /* An aligned mask has no pixels in the right-hand cell. */
+ lda v_shift
+ beq sprite_no_right_color
  iny
  lda v_color
  sta $9600,y
@@ -402,6 +405,8 @@ sprite_no_right_color:
 sprite_no_lower_left_color:
  lda v_flags
  and #2
+ beq sprite_advance
+ lda v_shift
  beq sprite_advance
  iny
  lda v_color

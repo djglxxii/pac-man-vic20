@@ -9,6 +9,9 @@ conversion; the report is a reference, not a checklist to apply wholesale.
 Preparation and the first implementation are complete on
 `optimization/bounded-board-rebuild`. See [the implementation and measured
 tradeoff](BOUNDED_REBUILD.md). The remaining items are still queued.
+The separate [color-priority change](COLOR_PRIORITIES.md) follows the user's
+request to preserve white pellets. It adds rendering cost and exhausts BLK1-3
+headroom, strengthening the case for the queued memory-lifetime audit.
 
 ## Baseline
 
@@ -172,3 +175,4 @@ and commit compact findings and comparable measurement summaries.
 | --- | --- | --- |
 | 2026-11-01 | Checkpoint existing work; freeze baseline; document priorities and item 1 acceptance criteria. | Preparation only; no new game, test or build code. |
 | 2026-11-01 | Implement bounded background/bulk slices, cursor replay and idle-time servicing. | Input/audio gaps below 30 ms in the transition sample; coherent draw gap increases from 1.28 to 1.80 seconds. See [validation](BOUNDED_REBUILD.md). |
+| 2026-11-01 | Prioritize white standing pellets and avoid an aligned sprite's empty right color column. | All 113 pellet cells in a fixed snapshot become white, versus 41. Shared walls also become white. Normal play measures 45.58 FPS and the coherent transition gap 2.07 seconds. See [measurements](COLOR_PRIORITIES.md). |

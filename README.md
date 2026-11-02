@@ -59,11 +59,15 @@ native pixels; NTSC's wide pixels restore the original proportions.
 
 The VIC has no hardware sprites. Its eight foreground colors and one color
 per 8×16 character cause color clashes, and small facial details are reduced.
+The [color-priority rule](docs/COLOR_PRIORITIES.md) keeps visible standing
+pellets white. Walls sharing their cells also become white; an actor can
+temporarily recolor a shared cell. Aligned sprites leave the empty neighboring
+column's color alone.
 Drawing can skip refreshes to let the game logic catch up. These are visible
 differences from an arcade board.
 
-The current CPU-cycle benchmark measures about 50 FPS in normal play,
-54 FPS when frightened, 44 FPS in the attract chase and 60 FPS in an intermission.
+The current CPU-cycle benchmark measures about 46 FPS in normal play,
+52 FPS when frightened, 44 FPS in the attract chase and 60 FPS in an intermission.
 Game logic retains its 60.606 Hz clock. Gameplay is not yet a sustained
 60 FPS; see [performance measurements](docs/PERFORMANCE.md) and the
 [optimization-guide review](docs/OPTIMIZATION_REVIEW.md).
@@ -75,7 +79,7 @@ sound serviced while the next board draws progressively.
 The [end-of-stage maze flash](docs/MAZE_FLASH.md) changes colours without
 rebuilding the bitmap. Its four blue/white pairs retain the arcade timing;
 the next board takes longer to become fully coherent than the old blocking
-draw, with a measured gap of about 1.8 seconds between completed refreshes.
+draw, with a measured gap of about 2.1 seconds between completed refreshes.
 
 The original music, effect tables, priorities and sequencing drive the VIC's
 three tone voices. Square waves approximate the arcade waveform PROMs; timbre
