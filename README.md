@@ -36,6 +36,10 @@ The hardware target must remain period-correct; future hardware requirements
 need contemporary evidence. See the
 [hardware constraint](docs/RESEARCH_OPTIMIZATION_PLAN.md#constraints-and-recommendations-to-adapt).
 
+The [memory-reuse pass](docs/MEMORY_REUSE.md) runs one-time startup code in
+logical screen RAM, then releases that area to the game. This reclaims 358
+resident bytes within the same hardware configuration and load procedure.
+
 ## Arcade behavior
 
 The conversion uses the original 28×31 maze, 240 dots and four energizers.

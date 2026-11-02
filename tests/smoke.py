@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
 """Exercise the complete VIC frontend and all cutscenes; save review images."""
 import json
+import argparse
 from pathlib import Path
 from PIL import Image
 from native import Sim, ROOT
 
-OUT = ROOT / "build/preview"
-
-
 def main():
-    OUT.mkdir(parents=True, exist_ok=True)
-    sim = Sim()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--prg", type=Path)
+    parser.add_argument("--output", default="build/preview")
+    args = parser.parse_args()
+    out = ROOT / args.output
+    out.mkdir(parents=True, exist_ok=True)
+    sim = Sim(args.prg)
     report = {"screens": []}
     try:
 
@@ -26,13 +29,15 @@ def main():
 
         def shot(name):
             sim.cmd("until frame_wait 100")
-            sim.cmd("dump " + str(OUT / (name + ".ram")))
-            p = OUT / (name + ".ppm")
+            sim.cmd("dump " + str(out / (name + ".ram")))
+            p = out / (name + ".ppm")
             sim.cmd("shot " + str(p))
-            Image.open(p).save(OUT / (name + ".png"))
+            Image.open(p).save(out / (name + ".png"))
             p.unlink()
             report["screens"].append(name)
+            report.setdefault("stack_by_scene", {})[name] = json.loads(sim.cmd("stack")[0])
 
+        sim.cmd("stack reset")
         sim.cmd("run 1000")
         shot("attract")
         for i in range(16):
@@ -77,15 +82,17 @@ def main():
             shot(title)
             wait(0xE13, lambda s: s[0] == level + 1, limit=2500)
             wait(0xE04, lambda s: s[0] == 3)
+        sim.cmd("run 3000")
         for i in range(16):
             assert sim.peek(0x1D40 + i)[0] == 165, "C stack overwrote its lower guard"
         irq = int.from_bytes(sim.peek(0x314, 2), "little")
         assert irq == sim.labels["clock_irq"], "Sprite storage overwrote IRQ vector"
-        sim.cmd("run 3000")
         report["long_run_ticks"] = int.from_bytes(sim.peek("arcade_ticks", 2), "little")
+        report["stack"] = json.loads(sim.cmd("stack")[0])
+        report["boot"] = json.loads(sim.cmd("boot")[0])
         report["irq_vector_intact"] = True
         report["stack_guard_intact"] = True
-        (OUT / "native-validation.json").write_text(json.dumps(report, indent=2) + "\n")
+        (out / "native-validation.json").write_text(json.dumps(report, indent=2) + "\n")
         print(json.dumps(report, indent=2))
     finally:
         sim.close()

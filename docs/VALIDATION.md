@@ -20,9 +20,9 @@ make -j2 test
 make vice-test
 ```
 
-Result on 2026-11-02: **15 ROM comparison tests, six native tests, five
-renderer tests, six maze-color tests, three maze-flash tests and eight
-bounded-rebuild tests passed** (43 total),
+Result on 2026-11-02: **15 ROM comparison tests, six native tests, three memory
+tests, five renderer tests, six maze-color tests, three maze-flash tests and
+eight bounded-rebuild tests passed** (46 total),
 followed by the frontend
 smoke run and the VICE check.
 The smoke run exceeded 7,000 logical ticks with its IRQ vector and stack guard
@@ -30,9 +30,10 @@ intact; its clock measurement matched 180.96 ticks across 180 NTSC video frames
 within the boundary tolerance. VICE
 accepted coin/start and recorded non-silent 48 kHz mono audio.
 
-The PRG loads below `$8000` before unpacking into BLK1/2/3/5. The packer
-verifies both decompressed banks and checks that its
-output cannot overwrite unread compressed data.
+The PRG loads below `$8000` before unpacking into BLK1/2/3/5 and a temporary
+startup image at `$0400–$07FF`. The packer verifies all three decompressed
+images and checks that output cannot overwrite its loader or unread compressed
+data. After startup, the temporary image becomes logical screen RAM.
 
 The reference runner executes the unmodified Z80 program, using a separate
 CPU implementation. It does not call the converted game routines. The
@@ -69,6 +70,10 @@ smaller native lookup table.
 
 Native audio tests check the threshold-based divider around every rounding
 boundary and the complete five-register VIC output for 160 varied inputs.
+`tests/memory.py` checks the actual 6502 loader's three output regions, cold
+logical RAM, the one-time startup handoff and stack observations. Simulator
+execution guards reject any return to the temporary startup range once resident
+`main()` has begun; see [the memory-lifetime audit](MEMORY_REUSE.md).
 `tests/render.py` compares the assembly compositor against an independent
 bitmap model: 2,048 frame/shift/flip combinations, 160 six-actor clipping and
 overlap scenes, and 360 consecutive incremental frames, including background
@@ -116,6 +121,9 @@ playthrough to board 10. The run continues for more than 7,000 logical ticks
 and checks that the IRQ vector and software-stack guard remain intact.
 It also measures the VIA clock against the NTSC video clock: 180 video
 frames should contain about 180.96 arcade ticks, allowing boundary rounding.
+The smoke report includes observed software/hardware stack stores and the boot
+handoff. Host fixture writes do not count as stack use, and the canary is
+checked after the long run. Stack reservations remain unchanged.
 
 Images, RAM captures and `native-validation.json` are written to
 `build/preview/`. Simulator images are captured between completed renders

@@ -49,7 +49,7 @@ game logic and audio continue while the next maze draws progressively.
 Completion flashing changes colors directly without rebuilding the bitmap.
 The build produces a single loadable PRG for the existing full RAM expansion.
 
-The current build passes 43 automated checks covering arcade behavior, native
+The current build passes 46 automated checks covering arcade behavior, native
 6502 execution, graphics, sound conversion, maze colors and board transitions.
 VICE checks confirm startup, controls, sound and presentation. We also recorded
 a computer-controlled playthrough that cleared both initial boards and
@@ -75,6 +75,10 @@ initialization-lifetime analysis; specializing Pac-Man, returning-eye and
 clipped-sprite drawing; and optimizing expensive gameplay and sound routines
 identified by profiling. Closer sound timbres remain a later possibility.
 Hardware changes must remain compatible with documented period equipment.
+
+The first memory-reuse change runs one-time startup code in logical screen RAM
+before the game uses it, reclaiming 358 resident bytes for future improvements.
+The existing RAM expansion and stack allocations are retained.
 
 Further changes will be introduced and measured individually, preserving the
 accepted white-maze appearance and the original arcade behavior.

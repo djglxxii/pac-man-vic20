@@ -24,7 +24,7 @@ extern uint8_t *v_addr, *v_save;
 extern const uint8_t *v_data;
 extern uint8_t v_flags, v_shift, v_flip;
 void bitmap_erase(void), bitmap_draw(void);
-void video_init(void) {
+__attribute__((section(".boot.text"))) void video_init(void) {
     memset(BITMAP, 0, 0xc40);
     memset(COLORS, 0, 196);
     for (uint8_t c = 0; c < 14; c++)

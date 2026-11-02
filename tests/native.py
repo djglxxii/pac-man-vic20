@@ -153,7 +153,8 @@ class NativeParity(unittest.TestCase):
 
     def test_03_build_memory_limits(self):
         # Native code and data must stay within the five real expansion blocks.
-        self.assertEqual(len((BUILD / "pacman-native.bin").read_bytes()), 32768)
+        # BLK1-3 + BLK5, followed by the temporary $0400-$07ff boot image.
+        self.assertEqual(len((BUILD / "pacman-native.bin").read_bytes()), 33792)
         p = (ROOT / "build/pacman.prg").read_bytes()
         self.assertEqual(p[:2], b"\x01\x12")
         self.assertLessEqual(0x1201 + len(p) - 2, 0x8000)

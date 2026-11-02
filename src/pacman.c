@@ -36,7 +36,8 @@ __attribute__((noinline)) void frame_wait(void) {
     last_tick++;
 }
 uint8_t last_tick;
-int main(void) {
+/* Called once by boot_start, before logical screen RAM is released to main. */
+__attribute__((used, noinline, section(".boot.text"))) void platform_init(void) {
     HW(0x900f) = 8;
     HW(0x9002) = 14 | 128;
     HW(0x9003) = 29;
@@ -47,9 +48,12 @@ int main(void) {
     HW(0x9122) = 0x7f;
     HW(0x9123) = 0;
     arcade_ticks = 0;
-    memset((void *)0x400, 0, 0xc00);
     memset((void *)0x1c40, 0, 0x100);
     video_init();
+}
+int main(void) {
+    /* No boot return address or live code remains in $0400-$07ff. */
+    memset((void *)0x400, 0, 0xc00);
     mainTaskLoop_234b();
     last_tick = 0;
     clock_init();

@@ -19,23 +19,23 @@ until pending rebuild/setup work settles. Reports include the longest refresh
 and coherent draw interval, individual batch durations and input/audio gaps.
 Bounded-refresh elapsed time includes yields to other work.
 
-Representative results on 2026-11-02 with the
-[first sprite-flicker reduction](SPRITE_FLICKER.md):
+Representative results on 2026-11-02 after the
+[memory-reuse pass](MEMORY_REUSE.md), retaining the first sprite-flicker change:
 
 | Sample | Completed renders per second | Mean refresh elapsed | Longest coherent draw interval |
 | --- | ---: | ---: | ---: |
-| Early first-board play | 49.61 | 9.80 ms | 37.84 ms |
-| Frightened movement | 53.96 | 8.65 ms | 41.79 ms |
-| Attract chase | 43.43 | 8.58 ms | 62.40 ms |
-| First intermission | 60.06 | 3.42 ms | 23.09 ms |
-| Board transition | 40.82 | 10.54 ms | 1939.77 ms |
+| Early first-board play | 49.64 | 9.82 ms | 45.50 ms |
+| Frightened movement | 54.00 | 8.68 ms | 41.80 ms |
+| Attract chase | 42.91 | 8.62 ms | 62.24 ms |
+| First intermission | 60.15 | 3.47 ms | 23.09 ms |
+| Board transition | 40.89 | 10.55 ms | 1939.72 ms |
 
 The [maze flash](MAZE_FLASH.md) now recolours existing pixels. All eight
 phases appear about 198 ms apart, within 17 ms of their requests. The board
 transition sample also includes [bounded next-maze drawing](BOUNDED_REBUILD.md).
 Its background calls take at most 6.41 ms, with input and audio gaps of at
-most 28.78 and 26.36 ms. The board draws progressively; the longest coherent
-refresh spans 1834.37 ms across many calls. The longer coherent draw interval
+most 28.79 and 26.28 ms. The board draws progressively; the longest coherent
+refresh spans 1834.35 ms across many calls. The longer coherent draw interval
 is a visible tradeoff for continued service.
 
 The previous [bounded-rebuild revision](baselines/bounded-board-rebuild.json)
@@ -47,13 +47,19 @@ recovers most of that cost. A coverage-map check keeps background art sharing
 wall cells white. Earlier baseline records remain unchanged.
 
 The preceding white-maze build measured 48.10/53.81 FPS in normal/frightened
-play and a 1843.77 ms transition gap. The current change keeps stationary actors
+play and a 1843.77 ms transition gap. The first flicker change keeps stationary actors
 visible for background updates in unrelated vertical bands. Normal-play mean
 erase-to-paint time falls from 6.641 to 6.065 ms and its 95th percentile from
 13.412 to 11.605 ms. Attract's actor erase count falls from 555 to 333 in the
 standard sample. This is a partial flicker reduction with a roughly 96 ms
 longer transition in this sample; it does not improve every scene or worst-case
 interval. See [the frozen results](baselines/sprite-flicker.json).
+
+The memory-reuse change reclaims 358 resident bytes, bringing BLK1–3 free space
+to 371 bytes. Its average frame rates remain similar to the flicker checkpoint,
+and its sampled normal-play maximum draw interval is higher. This pass creates
+room for future rendering work; it does not establish steadier presentation.
+See [the frozen memory results](baselines/memory-reuse.json).
 
 The timer still schedules 60.606 logic ticks per second. Short measurement
 windows round tick counts at their boundaries. The frightened and intermission
@@ -94,6 +100,8 @@ stall. Full-raster presentation and physical hardware have not been measured.
 - Keep stationary actors visible when queued background changes occupy
   unrelated 32-pixel bands. Preserve colour-cell and sprite-overlap propagation,
   and continue to invalidate every actor for rebuilds and maze flashing.
+- Execute one-time platform setup from temporary logical screen RAM, then
+  release that area to the game. Retain stack reservations and the hardware target.
 
 The [optimization review](OPTIMIZATION_REVIEW.md) maps these changes to the
 new guide and records experiments that did not improve the result.

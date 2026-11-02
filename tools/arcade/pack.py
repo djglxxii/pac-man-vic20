@@ -39,7 +39,7 @@ loader_start:
  sta dst
  lda #$bf
  sta dst+1
- lda #2
+ lda #3
  sta blocks
 next_command:
  jsr get_byte
@@ -87,7 +87,14 @@ block_end:
  beq complete
  lda #$ff
  sta dst
+ ldx blocks
+ cpx #2
+ bne boot_block
  lda #$7f
+ bne block_address
+boot_block:
+ lda #$07
+block_address:
  sta dst+1
  jmp next_command
 complete:
@@ -158,9 +165,14 @@ def compress(raw):
     return out
 
 
-def verify(stream, main, bank, payload_base):
+def verify(stream, main, bank, boot, payload_base):
     pos = 0
-    for expected, top in ((bank, 0xBFFF), (main, 0x7FFF)):
+    def check_destination(destination):
+        assert not 0x1201 <= destination < payload_base, "depacker would overwrite its loader"
+        assert (destination < payload_base or
+                destination > payload_base + len(stream) - pos - 1), "compressed payload would be overwritten"
+
+    for expected, top in ((bank, 0xBFFF), (main, 0x7FFF), (boot, 0x07FF)):
         output = bytearray()
         while True:
             control = stream[pos]
@@ -171,17 +183,13 @@ def verify(stream, main, bank, payload_base):
                 for _ in range(control):
                     v = stream[pos]
                     pos += 1
-                    assert (
-                        top - len(output) > payload_base + len(stream) - pos - 1
-                    ), "compressed payload would be overwritten"
+                    check_destination(top - len(output))
                     output.append(v)
             else:
                 distance = stream[pos] | (stream[pos + 1] << 8)
                 pos += 2
                 for _ in range((control & 127) + 3):
-                    assert (
-                        top - len(output) > payload_base + len(stream) - pos - 1
-                    ), "compressed payload would be overwritten"
+                    check_destination(top - len(output))
                     output.append(output[-distance])
         assert output[::-1] == expected, "depacker round trip failed"
     assert pos == len(stream)
@@ -199,13 +207,13 @@ def main():
     out = Path(args.output)
     work = binary.parent
     raw = binary.read_bytes()
-    assert len(raw) == 32768
-    main, bank = raw[:24576], raw[24576:]
-    stream = compress(bank) + compress(main)
+    assert len(raw) == 33792
+    main, bank, boot = raw[:24576], raw[24576:32768], raw[32768:]
+    stream = compress(bank) + compress(main) + compress(boot)
     (work / "packed.bin").write_bytes(stream[::-1])
     symbols = subprocess.check_output([args.nm, "-n", str(binary) + ".elf"], text=True)
     parsed = [line.split() for line in symbols.splitlines() if len(line.split()) == 3]
-    entry = next(int(v, 16) for v, t, n in parsed if n == "_start")
+    entry = next(int(v, 16) for v, t, n in parsed if n == "boot_start")
     (work / "loader.s").write_text(LOADER.replace("ENTRY", f"${entry:04x}"))
     (work / "loader.cfg").write_text(
         "MEMORY { H: start=$0000,size=$0002,file=%O; R: start=$1201,size=$6dff,file=%O; }\nSEGMENTS { LOADADDR: load=H,type=ro; CODE: load=R,type=ro; }\n"
@@ -236,7 +244,7 @@ def main():
     )
     prg = out.read_bytes()
     payload_base = 0x1201 + len(prg) - 2 - len(stream)
-    verify(stream, main, bank, payload_base)
+    verify(stream, main, bank, boot, payload_base)
     labels = "".join(
         f"al {int(v,16):06X} .{n}\n" for v, t, n in parsed if int(v, 16) < 65536
     )

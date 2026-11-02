@@ -45,6 +45,7 @@ reference: $(GEN)/rom.stamp $(GEN)/oracle $(GEN)/native
 test: $(PRG) tools/vicsim/vicsim reference
 	$(PY) tests/arcade.py
 	$(PY) tests/native.py
+	$(PY) tests/memory.py
 	$(PY) tests/render.py
 	$(PY) tests/colors.py
 	$(PY) tests/flash.py

@@ -19,6 +19,9 @@
  *   profile reset|off|FILE  collect instruction cycles and execution counts
  *   call LABEL [A X] execute a subroutine in isolation, retaining CPU state
  *   watch LABEL NAME trace a routine's entry and return without guest overhead
+ *   stack reset      start measuring guest stack stores (host pokes excluded)
+ *   stack            report lowest software/hardware stack stores as JSON
+ *   boot             report startup entries and release status as JSON
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,6 +40,11 @@ static uint16_t render_begin_addr, render_end_addr, audio_addr;
 static uint16_t flash_request_addr, flash_present_addr;
 static uint16_t dirty_addr, rebuild_addr, bulk_active_addr, bulk_task_addr;
 static uint16_t erase_addr, draw_addr, ghost_addr, sprite_save_addr, under_addr;
+static uint16_t c_stack_low = 0x2000, hw_stack_low = 0x0200;
+static int stack_tracking;
+static uint16_t boot_addr, boot_limit, main_addr;
+static unsigned boot_entries;
+static int boot_released;
 static struct {
     uint16_t entry, ret;
     uint8_t return_sp;
@@ -110,6 +118,12 @@ static uint8_t rd(uint16_t addr) {
 static int sound_log;
 static uint8_t sndregs[16];
 static void wr(uint16_t addr, uint8_t v) {
+    /* Actual guest stores avoid torn software-SP values and loader pointers
+       that temporarily occupy LLVM-MOS's software-SP zero-page addresses. */
+    if (stack_tracking) {
+        if (addr >= 0x1d40 && addr < c_stack_low) c_stack_low = addr;
+        if (addr >= 0x0100 && addr < hw_stack_low) hw_stack_low = addr;
+    }
     if (profile_trace && dirty_addr && addr == dirty_addr && v == 2)
         fprintf(profile_trace, "%llu rebuild-request\n", (unsigned long long)cycles);
     if (profile_trace && rebuild_addr && addr == rebuild_addr && mem[addr] != v)
@@ -187,6 +201,17 @@ static int illegal;
 
 static void step(void) {
     uint16_t instruction_pc = pc;
+    /* main takes over only after the temporary startup call has returned.
+       Guard the released screen-RAM window for every native regression run. */
+    if (boot_addr) {
+        if (pc == boot_addr) boot_entries++;
+        if (pc == main_addr) boot_released = 1;
+        if (boot_released && pc >= boot_addr && pc < boot_limit) {
+            fprintf(stderr, "Executed released startup RAM at $%04x\n", pc);
+            illegal = 1;
+            return;
+        }
+    }
     /* Host-only observation: identify each actor without adding guest cycles.
        Keep two-column trace records compatible with the other profilers. */
     if (profile_trace && sprite_save_addr && under_addr &&
@@ -499,6 +524,9 @@ int main(int argc, char **argv) {
         find_label("bitmap_draw_ghost", &ghost_addr);
         find_label("v_save", &sprite_save_addr);
         find_label("under", &under_addr);
+        find_label("boot_start", &boot_addr);
+        find_label("__boot_limit", &boot_limit);
+        find_label("main", &main_addr);
         find_label("audio_update", &audio_addr);
         find_label("video_flash_palette", &flash_request_addr);
         find_label("maze_colour_done", &flash_present_addr);
@@ -571,7 +599,25 @@ int main(int argc, char **argv) {
             printf("%s:", a1);
             for (int i = 0; i < cnt; i++) printf(" %02X", mem[(uint16_t)(ad + i)]);
             printf("\n");
-        } else if (!strcmp(cmd, "poke")) wr(parse_addr(a1), (uint8_t)strtoul(a2, 0, 0));
+        } else if (!strcmp(cmd, "poke")) {
+            int tracking = stack_tracking;
+            stack_tracking = 0; /* Monitor fixtures/canaries are not guest stores. */
+            wr(parse_addr(a1), (uint8_t)strtoul(a2, 0, 0));
+            stack_tracking = tracking;
+        }
+        else if (!strcmp(cmd, "stack")) {
+            if (!strcmp(a1, "reset")) {
+                c_stack_low = 0x2000;
+                hw_stack_low = 0x0200;
+                stack_tracking = 1;
+            } else printf("{\"software_lowest_write\":%u,\"software_bytes_written\":%u,"
+                          "\"hardware_lowest_write\":%u,\"hardware_bytes_written\":%u}\n",
+                          c_stack_low, 0x2000-c_stack_low,
+                          hw_stack_low, 0x0200-hw_stack_low);
+        }
+        else if (!strcmp(cmd, "boot"))
+            printf("{\"entries\":%u,\"released\":%s}\n",
+                   boot_entries, boot_released ? "true" : "false");
         else if (!strcmp(cmd, "timing")) timing = !strcmp(a1, "on");
         else if (!strcmp(cmd, "sound")) sound_log = !strcmp(a1, "on");
         else if (!strcmp(cmd, "stats")) printf("cycles %llu\n", (unsigned long long)cycles);

@@ -12,7 +12,8 @@ tradeoff](BOUNDED_REBUILD.md). Further work is tracked below.
 The separate [color-priority experiment](COLOR_PRIORITIES.md) followed the
 user's request to preserve white pellets. The subsequent
 [all-white maze](WHITE_MAZE.md) removes its neighbor scans/cache and recovers
-resident headroom. The queued memory-lifetime audit remains useful.
+resident headroom. The [memory-lifetime audit](MEMORY_REUSE.md) now reclaims
+another 358 resident bytes by reusing startup storage.
 
 ## Baseline
 
@@ -65,7 +66,7 @@ and period-correct hardware target.
 | --- | --- | --- | --- |
 | 1 | Bounded work and scheduling, sections 7.4 and 10 | Service input/logic/audio during progressive next-board construction. Coherent completion takes longer; see the measured tradeoff. | Implemented |
 | 2 | Sprite-flicker reduction | Avoid unrelated actor erases; measure visible update windows and evaluate complete-region composition within the memory budget. | First increment implemented; further work queued |
-| 3 | Lifetime-based memory reuse, section 7.1 | Audit initialization routines and data lifetimes; reclaim space for faster kernels and tables. Measure stack use before considering spare-looking RAM. | Queued; prerequisite for larger flicker changes |
+| 3 | Lifetime-based memory reuse, section 7.1 | Audit initialization routines and data lifetimes; reclaim space for faster kernels and tables. Measure stack use before considering spare-looking RAM. | Implemented: startup overlay reclaims 358 bytes; stack allocation retained |
 | 4 | Specialized blitters, pre-shifting and self-modifying addressing, section 4.6 | Optimize common Pac-Man, returning-eye and clipping cases that still use the generic path. Compare setup overhead and code size against cycles saved. | Queued |
 | 5 | Profile-guided C/assembly work, sections 7.2 and 8 | Optimize hot native logic and sound routines while preserving results, update count and ordering. | Queued |
 | 6 | Score readability, user feedback | Evaluate purpose-drawn numeral glyphs and spacing for player scores and the high score; make digits easier to distinguish at the current display size. | Queued |
@@ -204,3 +205,5 @@ and commit compact findings and comparable measurement summaries.
 | 2026-11-01 | Implement bounded background/bulk slices, cursor replay and idle-time servicing. | Input/audio gaps below 30 ms in the transition sample; coherent draw gap increases from 1.28 to 1.80 seconds. See [validation](BOUNDED_REBUILD.md). |
 | 2026-11-01 | Prioritize white standing pellets and avoid an aligned sprite's empty right color column. | All 113 pellet cells in a fixed snapshot become white, versus 41. Shared walls also become white. Normal play measures 45.58 FPS and the coherent transition gap 2.07 seconds. See [measurements](COLOR_PRIORITIES.md). |
 | 2026-11-01 | Make the maze white and completion flash blue/white; remove pellet-neighbor scans/cache. | Normal play measures 48.10 FPS, frightened 53.81 and the coherent transition gap 1.84 seconds. Reclaims two zero-page bytes and 191 resident bytes. See [measurements](WHITE_MAZE.md). |
+| 2026-11-02 | Avoid unrelated actor erases and measure actor update windows. | First flicker reduction; normal play 49.61 FPS, with moving-actor flicker remaining. See [measurements](SPRITE_FLICKER.md). |
+| 2026-11-02 | Reuse logical screen RAM for startup code and audit buffer/stack lifetimes. | Reclaims 358 resident bytes: BLK1–3 free space grows from 13 to 371 bytes; BLK5 retains 15. Stack reservations unchanged; 46 regression tests and VICE pass. See [audit](MEMORY_REUSE.md). |

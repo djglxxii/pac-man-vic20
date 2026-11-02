@@ -1,5 +1,8 @@
-/* KERNAL/BASIC are no longer used once the loader jumps here. */
-.section .init.0,"ax",@progbits
+/* Loaded temporarily into logical screen RAM. The final jump transfers all
+   execution to resident code before main clears/reuses this boot image. */
+.section .boot.start,"ax",@progbits
+.global boot_start
+boot_start:
   sei
   cld
   ldx #$ff
@@ -20,4 +23,5 @@ startup_copy:
   cpx #0
   bne startup_copy
 startup_done:
+  jsr platform_init
   jmp main

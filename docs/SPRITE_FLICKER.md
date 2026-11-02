@@ -27,8 +27,9 @@ Full rebuilds and maze flashes still invalidate every actor.
 
 The map uses index zero of the existing position cache, which the six even
 actor slots do not use. No additional RAM or zero-page storage is allocated.
-The extra native code leaves 13 bytes in BLK1–3 and 15 in BLK5. Memory reuse
-is a prerequisite for substantially larger rendering changes.
+At this checkpoint, the extra native code leaves 13 bytes in BLK1–3 and 15
+in BLK5. The subsequent [memory-reuse pass](MEMORY_REUSE.md) raises BLK1–3
+headroom to 371 bytes in preparation for larger rendering changes.
 
 ## Measurements
 
