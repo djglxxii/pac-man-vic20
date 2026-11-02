@@ -96,6 +96,10 @@ make performance # completed render rates and frame intervals at NTSC CPU speed
 make vice-test  # optional real VICE boot, coin/start, video and audio capture
 ```
 
+An [automated playthrough recorder](docs/PLAYTHROUGH_CAPTURE.md) can drive
+the unchanged game through the first intermission and save an MP4 with sound:
+`python3 tools/arcade/record_playthrough.py`. It needs VICE and FFmpeg.
+
 Dependencies: Python 3 with Pillow, a C compiler, ca65/ld65, and the pinned
 LLVM-MOS SDK. The Makefile uses the local `tools/cc65` installation or tools
 on `PATH`. `tools/bootstrap-llvm-mos.py` installs LLVM-MOS v23.4.0 under

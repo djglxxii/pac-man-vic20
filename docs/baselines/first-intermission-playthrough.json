@@ -1,0 +1,48 @@
+{
+  "game_commit": "ed6ca44",
+  "game_prg_sha256": "4736790596df483154f05f66a685447ad562c7626bfd9edb1c314ba09d2864f4",
+  "capture_tool_sha256": "3b8babc5d3adba24ac9d70e809ea6f937244dc422b1a6dd4cf90a06875fffc1c",
+  "emulator": "VICE NTSC VIC-20, full expansion",
+  "joystick_only": true,
+  "forced_board_completion": false,
+  "completed_boards": [
+    1,
+    2
+  ],
+  "remaining_lives": 2,
+  "video": {
+    "path": "build/playthrough/first-intermission.mp4",
+    "sha256": "aa2965ff2bf50f3e7ca182ad0fcee07d2be421669234a4b69ebaa989fc66d547",
+    "frames": 8336,
+    "fps": "340909/5655",
+    "width": 360,
+    "height": 464,
+    "duration_seconds": 138.27760487402796,
+    "size_bytes": 5594495,
+    "video_codec": "H.264",
+    "audio_codec": "AAC"
+  },
+  "audio": {
+    "sample_rate": 48000,
+    "channels": 1,
+    "duration_seconds": 138.25866666666667
+  },
+  "audio_duration_difference_seconds": -0.018938207361287596,
+  "intermission_start_frame": 7477,
+  "intermission_finished_frame": 8215,
+  "inputs_sha256": "c5eb894b0debd28a51c2d4e728bc65339d5f9279ff987d5b4aaaeff1b5d34e83",
+  "policy": {
+    "hazard_radius": 5,
+    "decision_interval_frames": 2
+  },
+  "verification": {
+    "decoded_frames": 8336,
+    "decode_passed": true,
+    "audio_max_volume_db": -3.8,
+    "audio_video_duration_difference_ms": -18.938207361287596,
+    "intermission_start_seconds": 124.0285090742691,
+    "intermission_finished_seconds": 136.27045633878836,
+    "file_size_bytes": 5594495,
+    "unchanged_game_prg": true
+  }
+}

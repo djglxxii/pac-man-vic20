@@ -128,6 +128,12 @@ board completion, verifies all eight physical blue/white phases, and saves
 `vice-maze-flash.gif`. It also captures progressive next-board work and verifies
 the new board settles. This mode runs VICE at normal speed for reliable capture.
 
+The separate [automated playthrough capture](PLAYTHROUGH_CAPTURE.md) drives
+ordinary joystick input through both initial boards and the complete first
+intermission. Both boards reach 244 eaten pellets without RAM edits or forced
+completion. The MP4 contains 8,336 actual VICE video frames and non-silent audio;
+it preserves intermediate drawing for visual flicker review.
+
 `make performance` counts completed renders and records frame intervals from
 emulated CPU cycles. Current gameplay samples reach about 48–54 FPS; the sampled
 intermission reaches 60 FPS. [PERFORMANCE.md](PERFORMANCE.md) records the method,
