@@ -1,0 +1,1218 @@
+{
+  "date": "2026-11-02",
+  "status": "rejected-main-restored",
+  "parent_commit": "cf81d64c69899a71488c40f45ec55ab61f13794e",
+  "baseline_note": "Parent plus the accepted, uncommitted generic sprite-kernel and ghost-state passes. Actual baseline identified by PRG/native hashes; earlier rejected renderer experiments absent.",
+  "hypothesis": "Prepare shared bitmap columns and cell colours while dirty actors remain visible, then publish completed pixels, including overlapping ghosts and Pac-Man.",
+  "hardware": "NTSC VIC-20, conventional +35 KB expansion; original 16875-cycle VIA timer retained",
+  "toolchain": "clang version 24.0.0git (https://github.com/llvm-mos/llvm-mos a40207a371b60ff787ece46817d9c0f62eada719)",
+  "limits": [
+    "Whole render transaction falls back for queued background changes, full rebuild, maze flash, clipped dirty actors, scratch capacity and insufficient stack room; gameplay intermissions retain the live renderer.",
+    "Host CPU publication/erase windows are not individual VIC-fetch or perceptual-flicker measurements.",
+    "Fixed-duration samples select different updates as renderer speed changes; not identical-input kernel comparisons.",
+    "No physical hardware validation; observed stack use is not a formal maximum.",
+    "Rejected after user visual review found no significant difference in the flicker itself; measured throughput loss does not justify retention."
+  ],
+  "archived_source_sha256": {
+    "src/compose.S": "ac5cf87cf5adc31473def86d00701d0a80ccd6d7aced6a87eb72cd858abc89ba",
+    "src/sprites.S": "0b16f84591160714f3172fe6768176ed1e4d1683662d131c6d78133987fe1ad1",
+    "src/bitmap.S": "ae0a7ee4c246eec98696b2094f544368600e79df1ccf045ebbcc48bf666a66d4",
+    "src/pacman.ld": "0e5eb60f268402a580117ac4ef2601d88a25ba35edfbac53e7269cedee97031c",
+    "Makefile": "59a9dae68b73a15120578d8a3d8138ef4c4fa6a85ac744c79b11355ec6542ef2",
+    "tests/render.py": "db8aaf1004af4f440ec2f238aa3fbcc9ea72bacf356bab909b21ee3ac27cda1c",
+    "tests/flicker.py": "dcfa2c5412b16eb77abd252c9e6005836a8c9c30db7e34b8267f3c57f4c172e8",
+    "tools/vicsim/vicsim.c": "b7f3fbec33f8a2b032767f52c4c41dc931a0388ebe2a118b71ec51687ab8a73e"
+  },
+  "before": {
+    "prg_sha256": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+    "prg_bytes": 26715,
+    "native_sha256": "e30a02d7327331808d9a4ad494777040423d5f483303e8fc5afee8b4ff8ab142",
+    "resident_bss_end": 32052,
+    "resident_free_bytes": 716,
+    "bank5_free_bytes": 15,
+    "performance": {
+      "cpu_hz": 1022727,
+      "video_frames_per_sample": 180,
+      "samples": [
+        {
+          "scene": "play",
+          "seconds": 2.985,
+          "completed_renders": 155,
+          "fps": 51.93,
+          "logic_hz": 60.97,
+          "render_ms_mean": 9.29,
+          "render_ms_max": 19.21,
+          "frame_interval_ms_p95": 30.61,
+          "frame_interval_ms_max": 36.7,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 26.58,
+          "input_service_gap_ms_max": 27.56,
+          "render_batch_ms_max": 19.23,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "frightened",
+          "seconds": 2.985,
+          "completed_renders": 163,
+          "fps": 54.61,
+          "logic_hz": 60.97,
+          "render_ms_mean": 8.04,
+          "render_ms_max": 18.32,
+          "frame_interval_ms_p95": 27.51,
+          "frame_interval_ms_max": 46.06,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 29.92,
+          "input_service_gap_ms_max": 26.46,
+          "render_batch_ms_max": 18.33,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "attract-chase",
+          "seconds": 2.9782,
+          "completed_renders": 130,
+          "fps": 43.65,
+          "logic_hz": 60.77,
+          "render_ms_mean": 8.68,
+          "render_ms_max": 14.34,
+          "frame_interval_ms_p95": 45.71,
+          "frame_interval_ms_max": 52.02,
+          "start_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 32.64,
+          "input_service_gap_ms_max": 27.32,
+          "render_batch_ms_max": 14.35,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "intermission",
+          "seconds": 2.982,
+          "completed_renders": 179,
+          "fps": 60.03,
+          "logic_hz": 60.36,
+          "render_ms_mean": 3.39,
+          "render_ms_max": 12.13,
+          "frame_interval_ms_p95": 21.72,
+          "frame_interval_ms_max": 22.6,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            32,
+            0,
+            4,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            32,
+            0,
+            5,
+            0,
+            0
+          ],
+          "start_board": 1,
+          "end_board": 1,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 19.04,
+          "input_service_gap_ms_max": 18.46,
+          "render_batch_ms_max": 12.14,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "board-transition",
+          "seconds": 5.9727,
+          "completed_renders": 250,
+          "fps": 41.86,
+          "logic_hz": 60.61,
+          "render_ms_mean": 9.98,
+          "render_ms_max": 1737.75,
+          "frame_interval_ms_p95": 20.5,
+          "frame_interval_ms_max": 1843.16,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 1,
+          "video_frames": 360,
+          "requested_video_frames": 360,
+          "audio_update_gap_ms_max": 27.59,
+          "input_service_gap_ms_max": 27.94,
+          "render_batch_ms_max": 16.64,
+          "background_slice_ms_max": 6.38,
+          "bulk_slice_ms_max": 5.56,
+          "pending_rebuild_at_end": false
+        }
+      ]
+    },
+    "flicker": {
+      "cpu_hz": 1022727,
+      "video_frames_per_sample": 180,
+      "metric": "bitmap_erase entry to matching bitmap_draw return",
+      "prg_sha256": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+      "samples": [
+        {
+          "scene": "play",
+          "completed_renders": 155,
+          "seconds": 2.985,
+          "actor_erases": 500,
+          "actor_updates": 497,
+          "actor_window_ms_per_second": 942.81,
+          "erase_to_paint_ms_mean": 5.662,
+          "erase_to_paint_ms_p95": 10.74,
+          "erase_to_paint_ms_max": 17.082
+        },
+        {
+          "scene": "frightened",
+          "completed_renders": 163,
+          "seconds": 2.985,
+          "actor_erases": 467,
+          "actor_updates": 463,
+          "actor_window_ms_per_second": 780.28,
+          "erase_to_paint_ms_mean": 5.03,
+          "erase_to_paint_ms_p95": 9.951,
+          "erase_to_paint_ms_max": 16.079
+        },
+        {
+          "scene": "attract-chase",
+          "completed_renders": 130,
+          "seconds": 2.9782,
+          "actor_erases": 361,
+          "actor_updates": 355,
+          "actor_window_ms_per_second": 784.9,
+          "erase_to_paint_ms_mean": 6.585,
+          "erase_to_paint_ms_p95": 10.601,
+          "erase_to_paint_ms_max": 12.425
+        },
+        {
+          "scene": "intermission",
+          "completed_renders": 179,
+          "seconds": 2.982,
+          "actor_erases": 90,
+          "actor_updates": 89,
+          "actor_window_ms_per_second": 88.73,
+          "erase_to_paint_ms_mean": 2.973,
+          "erase_to_paint_ms_p95": 6.09,
+          "erase_to_paint_ms_max": 10.477
+        }
+      ]
+    }
+  },
+  "preview": {
+    "archive": "build/precompose/preview",
+    "prg_sha256": "e740679dd78c7e5816be7d94b59e8eedbf20b0cc1e793dd2dba2de6c332a3723",
+    "prg_bytes": 27198,
+    "native_sha256": "e720ab77332e1cd5764d2fab7b22646295c2bf395e580e73c99962258a5440e1",
+    "resident_bss_end": 32671,
+    "resident_free_bytes": 97,
+    "aligned_heap_free_bytes": 96,
+    "bank5_free_bytes": 15,
+    "resident_bytes_added": 619,
+    "temporary_software_stack_frame_bytes": 512,
+    "colour_shadow_bytes": 196,
+    "pixel_capacity_bytes": 316,
+    "descriptor_bytes": 57,
+    "additional_assembly_zero_page_bytes": 2,
+    "compiler_zero_page_ceiling_before": 92,
+    "compiler_zero_page_ceiling_after": 90,
+    "performance": {
+      "cpu_hz": 1022727,
+      "video_frames_per_sample": 180,
+      "samples": [
+        {
+          "scene": "play",
+          "seconds": 2.9716,
+          "completed_renders": 87,
+          "fps": 29.28,
+          "logic_hz": 60.91,
+          "render_ms_mean": 17.4,
+          "render_ms_max": 24.92,
+          "frame_interval_ms_p95": 43.9,
+          "frame_interval_ms_max": 51.65,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 33.08,
+          "input_service_gap_ms_max": 33.27,
+          "render_batch_ms_max": 24.93,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "frightened",
+          "seconds": 2.9716,
+          "completed_renders": 102,
+          "fps": 34.32,
+          "logic_hz": 60.91,
+          "render_ms_mean": 14.96,
+          "render_ms_max": 24.15,
+          "frame_interval_ms_p95": 43.61,
+          "frame_interval_ms_max": 59.9,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 37.35,
+          "input_service_gap_ms_max": 33.09,
+          "render_batch_ms_max": 24.16,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "attract-chase",
+          "seconds": 2.9765,
+          "completed_renders": 132,
+          "fps": 44.35,
+          "logic_hz": 60.81,
+          "render_ms_mean": 8.53,
+          "render_ms_max": 14.32,
+          "frame_interval_ms_p95": 47.9,
+          "frame_interval_ms_max": 52.42,
+          "start_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 31.5,
+          "input_service_gap_ms_max": 25.51,
+          "render_batch_ms_max": 14.33,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "intermission",
+          "seconds": 2.9696,
+          "completed_renders": 179,
+          "fps": 60.28,
+          "logic_hz": 60.28,
+          "render_ms_mean": 3.51,
+          "render_ms_max": 12.21,
+          "frame_interval_ms_p95": 21.71,
+          "frame_interval_ms_max": 22.58,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            32,
+            0,
+            4,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            32,
+            0,
+            5,
+            0,
+            0
+          ],
+          "start_board": 1,
+          "end_board": 1,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 19.02,
+          "input_service_gap_ms_max": 18.55,
+          "render_batch_ms_max": 12.23,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "board-transition",
+          "seconds": 5.9617,
+          "completed_renders": 247,
+          "fps": 41.43,
+          "logic_hz": 60.72,
+          "render_ms_mean": 10.13,
+          "render_ms_max": 1737.29,
+          "frame_interval_ms_p95": 20.56,
+          "frame_interval_ms_max": 1842.64,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 1,
+          "video_frames": 360,
+          "requested_video_frames": 360,
+          "audio_update_gap_ms_max": 29.64,
+          "input_service_gap_ms_max": 29.49,
+          "render_batch_ms_max": 22.7,
+          "background_slice_ms_max": 6.41,
+          "bulk_slice_ms_max": 5.56,
+          "pending_rebuild_at_end": false
+        }
+      ]
+    },
+    "flicker": {
+      "cpu_hz": 1022727,
+      "video_frames_per_sample": 180,
+      "metric": "Live bitmap_erase to painter return; shadow publication measured separately",
+      "prg_sha256": "e740679dd78c7e5816be7d94b59e8eedbf20b0cc1e793dd2dba2de6c332a3723",
+      "samples": [
+        {
+          "scene": "play",
+          "completed_renders": 87,
+          "seconds": 2.9716,
+          "actor_erases": 146,
+          "actor_updates": 146,
+          "shadow_actor_erases": 217,
+          "composed_transactions": 56,
+          "shadow_erase_fraction": 0.5978,
+          "publish_ms_mean": 3.387,
+          "publish_ms_p95": 4.446,
+          "publish_ms_max": 4.948,
+          "actor_window_ms_per_second": 466.01,
+          "erase_to_paint_ms_mean": 9.485,
+          "erase_to_paint_ms_p95": 14.204,
+          "erase_to_paint_ms_max": 16.939
+        },
+        {
+          "scene": "frightened",
+          "completed_renders": 102,
+          "seconds": 2.9716,
+          "actor_erases": 123,
+          "actor_updates": 120,
+          "shadow_actor_erases": 233,
+          "composed_transactions": 73,
+          "shadow_erase_fraction": 0.6545,
+          "publish_ms_mean": 2.878,
+          "publish_ms_p95": 5.014,
+          "publish_ms_max": 5.208,
+          "actor_window_ms_per_second": 345.8,
+          "erase_to_paint_ms_mean": 8.563,
+          "erase_to_paint_ms_p95": 13.235,
+          "erase_to_paint_ms_max": 18.761
+        },
+        {
+          "scene": "attract-chase",
+          "completed_renders": 132,
+          "seconds": 2.9765,
+          "actor_erases": 348,
+          "actor_updates": 345,
+          "shadow_actor_erases": 0,
+          "composed_transactions": 0,
+          "shadow_erase_fraction": 0.0,
+          "publish_ms_mean": null,
+          "publish_ms_p95": null,
+          "publish_ms_max": null,
+          "actor_window_ms_per_second": 764.15,
+          "erase_to_paint_ms_mean": 6.593,
+          "erase_to_paint_ms_p95": 10.611,
+          "erase_to_paint_ms_max": 12.48
+        },
+        {
+          "scene": "intermission",
+          "completed_renders": 179,
+          "seconds": 2.9696,
+          "actor_erases": 90,
+          "actor_updates": 90,
+          "shadow_actor_erases": 0,
+          "composed_transactions": 0,
+          "shadow_erase_fraction": 0.0,
+          "publish_ms_mean": null,
+          "publish_ms_p95": null,
+          "publish_ms_max": null,
+          "actor_window_ms_per_second": 92.17,
+          "erase_to_paint_ms_mean": 3.041,
+          "erase_to_paint_ms_p95": 6.157,
+          "erase_to_paint_ms_max": 10.496
+        }
+      ]
+    },
+    "validation": {
+      "regression_groups": [
+        15,
+        6,
+        1,
+        3,
+        9,
+        6,
+        3,
+        8
+      ],
+      "regression_tests": 51,
+      "native": {
+        "screens": [
+          "attract",
+          "credits",
+          "maze",
+          "cherry",
+          "intermission-1",
+          "intermission-2",
+          "intermission-3"
+        ],
+        "stack_by_scene": {
+          "attract": {
+            "software_lowest_write": 8169,
+            "software_bytes_written": 23,
+            "hardware_lowest_write": 494,
+            "hardware_bytes_written": 18
+          },
+          "credits": {
+            "software_lowest_write": 8160,
+            "software_bytes_written": 32,
+            "hardware_lowest_write": 494,
+            "hardware_bytes_written": 18
+          },
+          "maze": {
+            "software_lowest_write": 7732,
+            "software_bytes_written": 460,
+            "hardware_lowest_write": 494,
+            "hardware_bytes_written": 18
+          },
+          "cherry": {
+            "software_lowest_write": 7674,
+            "software_bytes_written": 518,
+            "hardware_lowest_write": 490,
+            "hardware_bytes_written": 22
+          },
+          "intermission-1": {
+            "software_lowest_write": 7674,
+            "software_bytes_written": 518,
+            "hardware_lowest_write": 490,
+            "hardware_bytes_written": 22
+          },
+          "intermission-2": {
+            "software_lowest_write": 7674,
+            "software_bytes_written": 518,
+            "hardware_lowest_write": 490,
+            "hardware_bytes_written": 22
+          },
+          "intermission-3": {
+            "software_lowest_write": 7674,
+            "software_bytes_written": 518,
+            "hardware_lowest_write": 490,
+            "hardware_bytes_written": 22
+          }
+        },
+        "clock": {
+          "video_frames": 180,
+          "arcade_ticks": 181,
+          "expected": 180.96
+        },
+        "long_run_ticks": 7183,
+        "stack": {
+          "software_lowest_write": 7674,
+          "software_bytes_written": 518,
+          "hardware_lowest_write": 488,
+          "hardware_bytes_written": 24
+        },
+        "boot": {
+          "entries": 1,
+          "released": true
+        },
+        "irq_vector_intact": true,
+        "stack_guard_intact": true
+      },
+      "vice": {
+        "boot": true,
+        "coin_and_start": true,
+        "game_state": [
+          3,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ],
+        "tick": 741,
+        "display": {
+          "width": 520,
+          "height": 234,
+          "inner": [
+            0,
+            0,
+            520,
+            234
+          ]
+        },
+        "emulator": "VICE NTSC VIC-20, full expansion",
+        "maze_flash": [
+          {
+            "level_state": 15,
+            "colour": 6
+          },
+          {
+            "level_state": 17,
+            "colour": 1
+          },
+          {
+            "level_state": 19,
+            "colour": 6
+          },
+          {
+            "level_state": 21,
+            "colour": 1
+          },
+          {
+            "level_state": 23,
+            "colour": 6
+          },
+          {
+            "level_state": 25,
+            "colour": 1
+          },
+          {
+            "level_state": 27,
+            "colour": 6
+          },
+          {
+            "level_state": 29,
+            "colour": 1
+          }
+        ],
+        "board_transition": {
+          "from_board": 0,
+          "to_board": 1,
+          "settled": true,
+          "partial_captures": [
+            {
+              "tick": 976,
+              "phase": 1
+            },
+            {
+              "tick": 984,
+              "phase": 1
+            },
+            {
+              "tick": 997,
+              "phase": 1
+            },
+            {
+              "tick": 1015,
+              "phase": 2
+            },
+            {
+              "tick": 1026,
+              "phase": 2
+            },
+            {
+              "tick": 1036,
+              "phase": 2
+            },
+            {
+              "tick": 1048,
+              "phase": 2
+            },
+            {
+              "tick": 1061,
+              "phase": 2
+            },
+            {
+              "tick": 1070,
+              "phase": 2
+            }
+          ]
+        },
+        "audio": {
+          "channels": 1,
+          "rate": 48000,
+          "frames": 783401,
+          "peak": 20693
+        }
+      }
+    }
+  },
+  "variants": [
+    {
+      "name": "prototype-1",
+      "note": "Initial full-colour shadow",
+      "prg_sha256": "0fea25809bc804fa6af0c3f0a8dc4fa0c59b62d5901e85ec0de8096f76c2b876",
+      "samples": [
+        {
+          "scene": "play",
+          "fps": 25.92,
+          "render_ms_mean": 19.57,
+          "shadow_erase_fraction": 0.5646,
+          "publish_ms_mean": 4.189,
+          "publish_ms_max": 6.23
+        },
+        {
+          "scene": "frightened",
+          "fps": 26.93,
+          "render_ms_mean": 19.23,
+          "shadow_erase_fraction": 0.6344,
+          "publish_ms_mean": 4.201,
+          "publish_ms_max": 6.33
+        },
+        {
+          "scene": "attract-chase",
+          "fps": 43.35,
+          "render_ms_mean": 8.67,
+          "shadow_erase_fraction": 0.0,
+          "publish_ms_mean": null,
+          "publish_ms_max": null
+        },
+        {
+          "scene": "intermission",
+          "fps": 60.28,
+          "render_ms_mean": 3.51,
+          "shadow_erase_fraction": 0.0,
+          "publish_ms_mean": null,
+          "publish_ms_max": null
+        },
+        {
+          "scene": "board-transition",
+          "fps": 40.46,
+          "render_ms_mean": 10.76
+        }
+      ]
+    },
+    {
+      "name": "prototype-2",
+      "note": "Optimized full-colour preview",
+      "prg_sha256": "e740679dd78c7e5816be7d94b59e8eedbf20b0cc1e793dd2dba2de6c332a3723",
+      "samples": [
+        {
+          "scene": "play",
+          "fps": 29.28,
+          "render_ms_mean": 17.4,
+          "shadow_erase_fraction": 0.5978,
+          "publish_ms_mean": 3.387,
+          "publish_ms_max": 4.948
+        },
+        {
+          "scene": "frightened",
+          "fps": 34.32,
+          "render_ms_mean": 14.96,
+          "shadow_erase_fraction": 0.6545,
+          "publish_ms_mean": 2.878,
+          "publish_ms_max": 5.208
+        },
+        {
+          "scene": "attract-chase",
+          "fps": 44.35,
+          "render_ms_mean": 8.53,
+          "shadow_erase_fraction": 0.0,
+          "publish_ms_mean": null,
+          "publish_ms_max": null
+        },
+        {
+          "scene": "intermission",
+          "fps": 60.28,
+          "render_ms_mean": 3.51,
+          "shadow_erase_fraction": 0.0,
+          "publish_ms_mean": null,
+          "publish_ms_max": null
+        },
+        {
+          "scene": "board-transition",
+          "fps": 41.43,
+          "render_ms_mean": 10.13
+        }
+      ]
+    },
+    {
+      "name": "prototype-3",
+      "note": "Reject pixel spans over 128 bytes before snapshot",
+      "prg_sha256": "8892d36a7737f5a4e324e935d37896201e4d5f2a80dea2b3e411ccc26d3ec190",
+      "samples": [
+        {
+          "scene": "play",
+          "fps": 35.58,
+          "render_ms_mean": 14.39,
+          "shadow_erase_fraction": 0.3457,
+          "publish_ms_mean": 2.627,
+          "publish_ms_max": 3.546
+        },
+        {
+          "scene": "frightened",
+          "fps": 42.63,
+          "render_ms_mean": 12.07,
+          "shadow_erase_fraction": 0.35,
+          "publish_ms_mean": 1.902,
+          "publish_ms_max": 3.566
+        },
+        {
+          "scene": "attract-chase",
+          "fps": 44.03,
+          "render_ms_mean": 8.53,
+          "shadow_erase_fraction": 0.0,
+          "publish_ms_mean": null,
+          "publish_ms_max": null
+        },
+        {
+          "scene": "intermission",
+          "fps": 60.29,
+          "render_ms_mean": 3.5,
+          "shadow_erase_fraction": 0.0,
+          "publish_ms_mean": null,
+          "publish_ms_max": null
+        },
+        {
+          "scene": "board-transition",
+          "fps": 41.8,
+          "render_ms_mean": 10.09
+        }
+      ]
+    },
+    {
+      "name": "limit-96",
+      "note": "Reject pixel spans over 96 bytes before snapshot",
+      "prg_sha256": "9ee18ed98453e8e028d885e0a0831dd57b7da797d764cec808ec6b227c592d94",
+      "samples": [
+        {
+          "scene": "play",
+          "fps": 40.28,
+          "render_ms_mean": 12.68,
+          "shadow_erase_fraction": 0.1644,
+          "publish_ms_mean": 1.845,
+          "publish_ms_max": 3.046
+        },
+        {
+          "scene": "frightened",
+          "fps": 47.66,
+          "render_ms_mean": 10.74,
+          "shadow_erase_fraction": 0.1491,
+          "publish_ms_mean": 1.292,
+          "publish_ms_max": 2.814
+        },
+        {
+          "scene": "attract-chase",
+          "fps": 44.03,
+          "render_ms_mean": 8.53,
+          "shadow_erase_fraction": 0.0,
+          "publish_ms_mean": null,
+          "publish_ms_max": null
+        },
+        {
+          "scene": "intermission",
+          "fps": 60.29,
+          "render_ms_mean": 3.5,
+          "shadow_erase_fraction": 0.0,
+          "publish_ms_mean": null,
+          "publish_ms_max": null
+        },
+        {
+          "scene": "board-transition",
+          "fps": 41.8,
+          "render_ms_mean": 10.09
+        }
+      ]
+    },
+    {
+      "name": "limit-64",
+      "note": "Reject pixel spans over 64 bytes before snapshot",
+      "prg_sha256": "9fc4f20a7c051c3c755024f02bbd17527c7feb33869c8278efe4bff2a61dac80",
+      "samples": [
+        {
+          "scene": "play",
+          "fps": 43.63,
+          "render_ms_mean": 11.71,
+          "shadow_erase_fraction": 0.0635,
+          "publish_ms_mean": 1.295,
+          "publish_ms_max": 2.042
+        },
+        {
+          "scene": "frightened",
+          "fps": 50.34,
+          "render_ms_mean": 10.11,
+          "shadow_erase_fraction": 0.1103,
+          "publish_ms_mean": 0.997,
+          "publish_ms_max": 1.878
+        },
+        {
+          "scene": "attract-chase",
+          "fps": 44.03,
+          "render_ms_mean": 8.53,
+          "shadow_erase_fraction": 0.0,
+          "publish_ms_mean": null,
+          "publish_ms_max": null
+        },
+        {
+          "scene": "intermission",
+          "fps": 60.29,
+          "render_ms_mean": 3.5,
+          "shadow_erase_fraction": 0.0,
+          "publish_ms_mean": null,
+          "publish_ms_max": null
+        },
+        {
+          "scene": "board-transition",
+          "fps": 41.84,
+          "render_ms_mean": 10.07
+        }
+      ]
+    },
+    {
+      "name": "live-colour",
+      "note": "Shadow pixels only; permit intermediate live colour updates",
+      "prg_sha256": "6cb3fd39762e9641adb25b8f9f1573e5fbd11d840d42be5ebeab7ef2c9dc12bb",
+      "samples": [
+        {
+          "scene": "play",
+          "fps": 31.91,
+          "render_ms_mean": 16.01,
+          "shadow_erase_fraction": 0.6402,
+          "publish_ms_mean": 2.417,
+          "publish_ms_max": 3.951
+        },
+        {
+          "scene": "frightened",
+          "fps": 36.24,
+          "render_ms_mean": 14.23,
+          "shadow_erase_fraction": 0.6919,
+          "publish_ms_mean": 2.001,
+          "publish_ms_max": 3.951
+        },
+        {
+          "scene": "attract-chase",
+          "fps": 44.02,
+          "render_ms_mean": 8.63,
+          "shadow_erase_fraction": 0.0,
+          "publish_ms_mean": null,
+          "publish_ms_max": null
+        },
+        {
+          "scene": "intermission",
+          "fps": 60.26,
+          "render_ms_mean": 3.51,
+          "shadow_erase_fraction": 0.0,
+          "publish_ms_mean": null,
+          "publish_ms_max": null
+        },
+        {
+          "scene": "board-transition",
+          "fps": 40.66,
+          "render_ms_mean": 10.72
+        }
+      ]
+    }
+  ],
+  "video": {
+    "path": "build/precompose/comparison.mp4",
+    "sha256": "9f7eb63e0f55646e0b9b39927c69b7d91a4ea8dae5028b10dc421a514209b94b",
+    "width": 720,
+    "height": 496,
+    "frames": 600,
+    "audio": false,
+    "left": "before",
+    "right": "optimized full-colour preview",
+    "identical_joystick_inputs": true,
+    "guest_state_patches": false,
+    "ticks_before": [
+      431,
+      1033
+    ],
+    "ticks_preview": [
+      431,
+      1033
+    ],
+    "pellets_before": [
+      3,
+      73
+    ],
+    "pellets_preview": [
+      3,
+      73
+    ]
+  },
+  "restored": {
+    "binaries": {
+      "build/pacman.prg": {
+        "sha256": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+        "bytes": 26715,
+        "identical_to_baseline": true
+      },
+      "build/arcade/pacman-native.bin": {
+        "sha256": "e30a02d7327331808d9a4ad494777040423d5f483303e8fc5afee8b4ff8ab142",
+        "bytes": 33792,
+        "identical_to_baseline": true
+      }
+    },
+    "regression_tests": 48,
+    "regression_groups": [
+      15,
+      6,
+      1,
+      3,
+      6,
+      6,
+      3,
+      8
+    ],
+    "native": {
+      "screens": [
+        "attract",
+        "credits",
+        "maze",
+        "cherry",
+        "intermission-1",
+        "intermission-2",
+        "intermission-3"
+      ],
+      "stack_by_scene": {
+        "attract": {
+          "software_lowest_write": 8169,
+          "software_bytes_written": 23,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "credits": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "maze": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "cherry": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-1": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-2": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-3": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        }
+      },
+      "clock": {
+        "video_frames": 180,
+        "arcade_ticks": 181,
+        "expected": 180.96
+      },
+      "long_run_ticks": 7183,
+      "stack": {
+        "software_lowest_write": 8160,
+        "software_bytes_written": 32,
+        "hardware_lowest_write": 488,
+        "hardware_bytes_written": 24
+      },
+      "boot": {
+        "entries": 1,
+        "released": true
+      },
+      "irq_vector_intact": true,
+      "stack_guard_intact": true
+    },
+    "vice_rerun": false,
+    "vice_note": "Byte-identical to the accepted ghost-state build already validated with VICE."
+  },
+  "user_review": {
+    "date": "2026-11-02",
+    "feedback": "for the flicker itself, I can see no significant difference.",
+    "decision": "Reject the shared-column ghost-precomposition experiment.",
+    "runtime_action": "None required: faster main source and binaries were already restored before review."
+  }
+}

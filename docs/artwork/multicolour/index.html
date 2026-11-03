@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VIC-MAN multicolour artwork prototype</title><style>
+body{background:#111820;color:#edf2f7;font:16px system-ui,sans-serif;margin:0;padding:28px;max-width:1816px;margin-inline:auto}
+h1{font-size:clamp(24px,4vw,36px);margin:0 0 10px}p{line-height:1.6;color:#bac9d8;max-width:90ch}a{color:#88e4cc}
+.controls{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin:24px 0}select{font:inherit;padding:6px;background:#202c38;color:white;border:1px solid #5c7285;border-radius:4px}
+.pair{display:grid;grid-template-columns:2fr 3fr;gap:28px;align-items:start}.card h2{font-size:19px}.card:last-child h2{color:#88e4cc}
+canvas{display:block;width:100%;height:auto;image-rendering:pixelated;background:#000}.art{width:min(100%,1104px);height:auto;image-rendering:pixelated}
+.notes{margin-top:26px;padding-top:14px;border-top:1px solid #34404e}
+@media(max-width:850px){body{padding:18px}.pair{grid-template-columns:1fr}}
+</style><h1>Blue walls. White pellets. Custom VIC artwork.</h1>
+<p>The same maze routes in a wider presentation, with six-pixel ghost faces and separate hires score digits.
+The two panels use the same NTSC dot proportions.</p>
+<div class="controls"><label>View <select id="view"><option value="normal">Original starting positions</option><option value="maze">Maze only</option>
+<option value="frightened">Frightened artwork</option><option value="overlap">Actor colour-sharing example</option><option value="digits">Full-width score examples</option></select></label>
+<label><input id="pellets" type="checkbox" checked> Pellets present</label><label><input id="grid" type="checkbox"> Character grid</label></div>
+<div class="pair"><section class="card"><h2>Current artwork and geometry</h2><canvas id="current" width="672" height="864"></canvas></section>
+<section class="card"><h2>Wider multicolour design</h2><canvas id="proposed" width="1008" height="864"></canvas></section></div>
+<div class="notes"><p>This is a static artwork study. It does not demonstrate game speed or reduced flicker. Blue walls and white dots use shared colours;
+two actors sharing a colour cell can still share their body colour. The frightened and overlap views illustrate artwork rather than simulated game states.</p>
+<p><a href="../../MULTICOLOUR_PROTOTYPE.md">Read the memory budget and validation</a> · <a href="comparison.png">Save comparison</a>
+ · <a href="../../MULTICOLOUR_MOTION.md">Moving renderer test</a></p></div>
+<h2>Actor and numeral detail</h2><img class="art" src="actors-and-digits.png" alt="Custom directional ghost faces, Pac-Man mouth frames and digits zero through nine">
+<script>
+const cache={};for(const name of ['normal','maze','frightened','overlap','digits'])for(const suffix of ['','-empty']){
+ const im=new Image();im.onload=draw;im.src=name+suffix+'.png';cache[name+suffix]=im;
+}for(const name of ['current','current-empty']){const im=new Image();im.onload=draw;im.src=name+'.png';cache[name]=im}
+function draw(){
+ const suffix=document.querySelector('#pellets').checked?'':'-empty';
+ for(const [id,key,cols,ch] of [['current','current'+suffix,14,16],['proposed',document.querySelector('#view').value+suffix,21,8]]){
+  const c=document.getElementById(id),ctx=c.getContext('2d');ctx.imageSmoothingEnabled=false;ctx.clearRect(0,0,c.width,c.height);
+  if(cache[key]?.complete)ctx.drawImage(cache[key],0,0,c.width,c.height);
+  if(document.querySelector('#grid').checked){ctx.strokeStyle='rgba(80,220,200,.55)';ctx.lineWidth=1;ctx.beginPath();
+   for(let x=0;x<=c.width;x+=48){ctx.moveTo(x+.5,0);ctx.lineTo(x+.5,c.height)}
+   for(let y=0;y<=c.height;y+=ch*4){ctx.moveTo(0,y+.5);ctx.lineTo(c.width,y+.5)}ctx.stroke()}
+ }
+}document.querySelectorAll('input,select').forEach(el=>el.addEventListener('change',draw));
+</script></html>

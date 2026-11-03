@@ -40,7 +40,10 @@ static uint16_t render_begin_addr, render_end_addr, audio_addr;
 static uint16_t flash_request_addr, flash_present_addr;
 static uint16_t dirty_addr, rebuild_addr, bulk_active_addr, bulk_task_addr;
 static uint16_t erase_addr, draw_addr, ghost_addr, sprite_save_addr, under_addr;
+static uint16_t beam_begin_addr, beam_end_addr, beam_index_addr, beam_mask_addr;
+static uint16_t beam_early_addr, beam_top_addr, beam_bottom_addr, beam_budget_addr;
 static uint16_t c_stack_low = 0x2000, hw_stack_low = 0x0200;
+static uint16_t c_stack_bottom = 0x1d40;
 static int stack_tracking;
 static uint16_t boot_addr, boot_limit, main_addr;
 static unsigned boot_entries;
@@ -121,7 +124,7 @@ static void wr(uint16_t addr, uint8_t v) {
     /* Actual guest stores avoid torn software-SP values and loader pointers
        that temporarily occupy LLVM-MOS's software-SP zero-page addresses. */
     if (stack_tracking) {
-        if (addr >= 0x1d40 && addr < c_stack_low) c_stack_low = addr;
+        if (addr >= c_stack_bottom && addr < c_stack_low) c_stack_low = addr;
         if (addr >= 0x0100 && addr < hw_stack_low) hw_stack_low = addr;
     }
     if (profile_trace && dirty_addr && addr == dirty_addr && v == 2)
@@ -201,6 +204,15 @@ static int illegal;
 
 static void step(void) {
     uint16_t instruction_pc = pc;
+    if (profile_trace && beam_begin_addr && pc == beam_begin_addr) {
+        unsigned group = mem[beam_index_addr];
+        fprintf(profile_trace, "%llu beam-begin-%u-%u-%u-%u-%u\n",
+                (unsigned long long)cycles, mem[beam_mask_addr],
+                mem[beam_early_addr + group], mem[beam_top_addr + group],
+                mem[beam_bottom_addr + group], mem[beam_budget_addr + group]);
+    }
+    if (profile_trace && beam_end_addr && pc == beam_end_addr)
+        fprintf(profile_trace, "%llu beam-end\n", (unsigned long long)cycles);
     /* main takes over only after the temporary startup call has returned.
        Guard the released screen-RAM window for every native regression run. */
     if (boot_addr) {
@@ -524,9 +536,18 @@ int main(int argc, char **argv) {
         find_label("bitmap_draw_ghost", &ghost_addr);
         find_label("v_save", &sprite_save_addr);
         find_label("under", &under_addr);
+        find_label("beam_group_begin", &beam_begin_addr);
+        find_label("beam_group_end", &beam_end_addr);
+        find_label("beam_group", &beam_index_addr);
+        find_label("beam_mask", &beam_mask_addr);
+        find_label("beam_early", &beam_early_addr);
+        find_label("beam_tops", &beam_top_addr);
+        find_label("beam_ends", &beam_bottom_addr);
+        find_label("beam_budgets", &beam_budget_addr);
         find_label("boot_start", &boot_addr);
         find_label("__boot_limit", &boot_limit);
         find_label("main", &main_addr);
+        find_label("__stack_bottom", &c_stack_bottom);
         find_label("audio_update", &audio_addr);
         find_label("video_flash_palette", &flash_request_addr);
         find_label("maze_colour_done", &flash_present_addr);

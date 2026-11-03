@@ -1,0 +1,1102 @@
+{
+  "date": "2026-11-02",
+  "status": "retained",
+  "parent_commit": "cf81d64c69899a71488c40f45ec55ab61f13794e",
+  "baseline_note": "Parent plus accepted, uncommitted generic sprite-kernel pass; rejected compositor and raster code absent. The before PRG hash identifies the actual measured baseline.",
+  "branch": "optimization/sprite-kernels",
+  "hypothesis": "Avoid redundant temporary rotations when testing ghost speed-mask bit 16; retain original mask selection, movement count, update order and timing.",
+  "hardware": "NTSC VIC-20 with conventional +35 KB RAM expansion; 16875-cycle arcade tick; memory layout unchanged",
+  "toolchain": "clang version 24.0.0git (https://github.com/llvm-mos/llvm-mos a40207a371b60ff787ece46817d9c0f62eada719)",
+  "changes": [
+    "Use the original 32-bit rotation, followed by a volatile byte reload of bit 16 on the little-endian VIC target",
+    "Apply helper to all 14 ghost pattern-selection sites; Pac-Man movement path unchanged",
+    "Add 528 actual-6502/Z80 ghost-update comparisons and identical-input routine timings"
+  ],
+  "source_sha256": {
+    "src/arcade/core.c": "13039f5186cf81030b03c14c8a56f7f09f95f1a1b5d69886cbf7bcab71bcbf82",
+    "tests/ghosts.py": "7e3c6fb1f2b38baedb07a0d35d2876cd17d0ed05a2f2b38ae3d8024de815e851",
+    "Makefile": "a4e594a3ebe58a4cd059c83408959c4a0090805a896c744b8f04412bfdd2b3f6",
+    "src/bitmap.S": "bc52c28a1faadc7737141bba88ee5429b2933943ac1ddc570ae4ea04ba2a1fde"
+  },
+  "before": {
+    "prg_sha256": "34a552f6377bf64ec3373882464c028244b43697a1471cbc3d6e06ede4dbc442",
+    "prg_bytes": 26848,
+    "native_sha256": "f61c997ca193f204dd52a0f9af36436fe3fa956cc4950333a291e2ed603e1450",
+    "core_sha256": "edffc23c34a8cc2ba62c6c0e26ea6ef779ff52713c943e36fbef7011fb09e1e1",
+    "resident_bss_end": 32377,
+    "resident_free_bytes": 391,
+    "bank5_free_bytes": 15,
+    "performance": {
+      "cpu_hz": 1022727,
+      "video_frames_per_sample": 180,
+      "samples": [
+        {
+          "scene": "play",
+          "seconds": 2.9781,
+          "completed_renders": 153,
+          "fps": 51.38,
+          "logic_hz": 60.78,
+          "render_ms_mean": 9.31,
+          "render_ms_max": 16.42,
+          "frame_interval_ms_p95": 31.17,
+          "frame_interval_ms_max": 44.77,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 27.75,
+          "input_service_gap_ms_max": 26.11,
+          "render_batch_ms_max": 16.43,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "frightened",
+          "seconds": 2.9804,
+          "completed_renders": 161,
+          "fps": 54.02,
+          "logic_hz": 60.73,
+          "render_ms_mean": 8.64,
+          "render_ms_max": 18.33,
+          "frame_interval_ms_p95": 30.53,
+          "frame_interval_ms_max": 41.55,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 30.33,
+          "input_service_gap_ms_max": 28.98,
+          "render_batch_ms_max": 18.34,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "attract-chase",
+          "seconds": 2.9828,
+          "completed_renders": 132,
+          "fps": 44.25,
+          "logic_hz": 60.68,
+          "render_ms_mean": 8.38,
+          "render_ms_max": 14.22,
+          "frame_interval_ms_p95": 38.96,
+          "frame_interval_ms_max": 61.8,
+          "start_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 32.75,
+          "input_service_gap_ms_max": 26.54,
+          "render_batch_ms_max": 14.23,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "intermission",
+          "seconds": 2.9761,
+          "completed_renders": 179,
+          "fps": 60.15,
+          "logic_hz": 60.48,
+          "render_ms_mean": 3.44,
+          "render_ms_max": 12.13,
+          "frame_interval_ms_p95": 21.7,
+          "frame_interval_ms_max": 22.61,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            32,
+            0,
+            4,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            32,
+            0,
+            5,
+            0,
+            0
+          ],
+          "start_board": 1,
+          "end_board": 1,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 19.02,
+          "input_service_gap_ms_max": 18.52,
+          "render_batch_ms_max": 12.14,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "board-transition",
+          "seconds": 5.9717,
+          "completed_renders": 250,
+          "fps": 41.86,
+          "logic_hz": 60.62,
+          "render_ms_mean": 9.98,
+          "render_ms_max": 1737.74,
+          "frame_interval_ms_p95": 20.5,
+          "frame_interval_ms_max": 1843.18,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 1,
+          "video_frames": 360,
+          "requested_video_frames": 360,
+          "audio_update_gap_ms_max": 27.59,
+          "input_service_gap_ms_max": 27.94,
+          "render_batch_ms_max": 16.64,
+          "background_slice_ms_max": 6.38,
+          "bulk_slice_ms_max": 5.56,
+          "pending_rebuild_at_end": false
+        }
+      ]
+    },
+    "long_performance": {
+      "cpu_hz": 1022727,
+      "video_frames_per_sample": 1800,
+      "samples": [
+        {
+          "scene": "play",
+          "seconds": 29.8507,
+          "completed_renders": 1550,
+          "fps": 51.93,
+          "logic_hz": 60.64,
+          "render_ms_mean": 8.64,
+          "render_ms_max": 1474.3,
+          "frame_interval_ms_p95": 29.07,
+          "frame_interval_ms_max": 1569.62,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 1800,
+          "requested_video_frames": 1800,
+          "audio_update_gap_ms_max": 39.78,
+          "input_service_gap_ms_max": 28.8,
+          "render_batch_ms_max": 17.92,
+          "background_slice_ms_max": 6.37,
+          "bulk_slice_ms_max": 6.24,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "frightened",
+          "seconds": 29.853,
+          "completed_renders": 1499,
+          "fps": 50.21,
+          "logic_hz": 60.63,
+          "render_ms_mean": 8.87,
+          "render_ms_max": 1474.38,
+          "frame_interval_ms_p95": 30.91,
+          "frame_interval_ms_max": 1569.63,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 1800,
+          "requested_video_frames": 1800,
+          "audio_update_gap_ms_max": 39.76,
+          "input_service_gap_ms_max": 29.26,
+          "render_batch_ms_max": 19.77,
+          "background_slice_ms_max": 6.37,
+          "bulk_slice_ms_max": 6.24,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "attract-chase",
+          "seconds": 29.8553,
+          "completed_renders": 1134,
+          "fps": 37.98,
+          "logic_hz": 60.59,
+          "render_ms_mean": 11.38,
+          "render_ms_max": 1313.35,
+          "frame_interval_ms_p95": 39.17,
+          "frame_interval_ms_max": 1743.24,
+          "start_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            1,
+            0,
+            35,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 1800,
+          "requested_video_frames": 1800,
+          "audio_update_gap_ms_max": 32.75,
+          "input_service_gap_ms_max": 30.77,
+          "render_batch_ms_max": 19.14,
+          "background_slice_ms_max": 6.44,
+          "bulk_slice_ms_max": 4.18,
+          "pending_rebuild_at_end": false
+        }
+      ]
+    },
+    "routine": {
+      "prg_sha256": "34a552f6377bf64ec3373882464c028244b43697a1471cbc3d6e06ede4dbc442",
+      "fixture_sha256": "e5c2476313353a23255f8878d452c31501c9ef55c6a30b8454fb78bf120a1c40",
+      "method": "call updateGhostStates_1017 with IRQs masked; compare Z80 call $1017",
+      "cases": 528,
+      "groups": {
+        "all": {
+          "min": 107,
+          "mean": 1543.060606060606,
+          "max": 3394
+        },
+        "normal": {
+          "min": 1363,
+          "mean": 1703.3333333333333,
+          "max": 3388
+        },
+        "frightened": {
+          "min": 1523,
+          "mean": 1804.3333333333333,
+          "max": 3194
+        },
+        "tunnel": {
+          "min": 1331,
+          "mean": 1671.3333333333333,
+          "max": 3356
+        },
+        "tunnel-frightened": {
+          "min": 1496,
+          "mean": 1777.3333333333333,
+          "max": 3167
+        },
+        "elroy-1": {
+          "min": 1369,
+          "mean": 1709.3333333333333,
+          "max": 3394
+        },
+        "elroy-2": {
+          "min": 1328,
+          "mean": 1668.3333333333333,
+          "max": 3353
+        },
+        "frightened-elroy-2": {
+          "min": 1493,
+          "mean": 1774.3333333333333,
+          "max": 3164
+        },
+        "tunnel-frightened-elroy-2": {
+          "min": 1466,
+          "mean": 1747.3333333333333,
+          "max": 3137
+        },
+        "in-house": {
+          "min": 503,
+          "mean": 503.0,
+          "max": 503
+        },
+        "returning": {
+          "min": 2508,
+          "mean": 2508.0,
+          "max": 2508
+        },
+        "death-pause": {
+          "min": 107,
+          "mean": 107.0,
+          "max": 107
+        }
+      }
+    }
+  },
+  "after": {
+    "prg_sha256": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+    "prg_bytes": 26715,
+    "native_sha256": "e30a02d7327331808d9a4ad494777040423d5f483303e8fc5afee8b4ff8ab142",
+    "core_sha256": "13039f5186cf81030b03c14c8a56f7f09f95f1a1b5d69886cbf7bcab71bcbf82",
+    "resident_bss_end": 32052,
+    "resident_free_bytes": 716,
+    "bank5_free_bytes": 15,
+    "performance": {
+      "cpu_hz": 1022727,
+      "video_frames_per_sample": 180,
+      "samples": [
+        {
+          "scene": "play",
+          "seconds": 2.985,
+          "completed_renders": 155,
+          "fps": 51.93,
+          "logic_hz": 60.97,
+          "render_ms_mean": 9.29,
+          "render_ms_max": 19.21,
+          "frame_interval_ms_p95": 30.61,
+          "frame_interval_ms_max": 36.7,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 26.58,
+          "input_service_gap_ms_max": 27.56,
+          "render_batch_ms_max": 19.23,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "frightened",
+          "seconds": 2.985,
+          "completed_renders": 163,
+          "fps": 54.61,
+          "logic_hz": 60.97,
+          "render_ms_mean": 8.04,
+          "render_ms_max": 18.32,
+          "frame_interval_ms_p95": 27.51,
+          "frame_interval_ms_max": 46.06,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 29.92,
+          "input_service_gap_ms_max": 26.46,
+          "render_batch_ms_max": 18.33,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "attract-chase",
+          "seconds": 2.9782,
+          "completed_renders": 130,
+          "fps": 43.65,
+          "logic_hz": 60.77,
+          "render_ms_mean": 8.68,
+          "render_ms_max": 14.34,
+          "frame_interval_ms_p95": 45.71,
+          "frame_interval_ms_max": 52.02,
+          "start_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 32.64,
+          "input_service_gap_ms_max": 27.32,
+          "render_batch_ms_max": 14.35,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "intermission",
+          "seconds": 2.982,
+          "completed_renders": 179,
+          "fps": 60.03,
+          "logic_hz": 60.36,
+          "render_ms_mean": 3.39,
+          "render_ms_max": 12.13,
+          "frame_interval_ms_p95": 21.72,
+          "frame_interval_ms_max": 22.6,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            32,
+            0,
+            4,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            32,
+            0,
+            5,
+            0,
+            0
+          ],
+          "start_board": 1,
+          "end_board": 1,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 19.04,
+          "input_service_gap_ms_max": 18.46,
+          "render_batch_ms_max": 12.14,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "board-transition",
+          "seconds": 5.9727,
+          "completed_renders": 250,
+          "fps": 41.86,
+          "logic_hz": 60.61,
+          "render_ms_mean": 9.98,
+          "render_ms_max": 1737.75,
+          "frame_interval_ms_p95": 20.5,
+          "frame_interval_ms_max": 1843.16,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 1,
+          "video_frames": 360,
+          "requested_video_frames": 360,
+          "audio_update_gap_ms_max": 27.59,
+          "input_service_gap_ms_max": 27.94,
+          "render_batch_ms_max": 16.64,
+          "background_slice_ms_max": 6.38,
+          "bulk_slice_ms_max": 5.56,
+          "pending_rebuild_at_end": false
+        }
+      ]
+    },
+    "long_performance": {
+      "cpu_hz": 1022727,
+      "video_frames_per_sample": 1800,
+      "samples": [
+        {
+          "scene": "play",
+          "seconds": 29.8575,
+          "completed_renders": 1564,
+          "fps": 52.38,
+          "logic_hz": 60.65,
+          "render_ms_mean": 8.64,
+          "render_ms_max": 1474.3,
+          "frame_interval_ms_p95": 28.07,
+          "frame_interval_ms_max": 1569.59,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 1800,
+          "requested_video_frames": 1800,
+          "audio_update_gap_ms_max": 39.81,
+          "input_service_gap_ms_max": 27.56,
+          "render_batch_ms_max": 19.23,
+          "background_slice_ms_max": 6.37,
+          "bulk_slice_ms_max": 6.24,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "frightened",
+          "seconds": 29.8575,
+          "completed_renders": 1581,
+          "fps": 52.95,
+          "logic_hz": 60.62,
+          "render_ms_mean": 8.43,
+          "render_ms_max": 1476.15,
+          "frame_interval_ms_p95": 28.07,
+          "frame_interval_ms_max": 1571.35,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 1800,
+          "requested_video_frames": 1800,
+          "audio_update_gap_ms_max": 39.8,
+          "input_service_gap_ms_max": 28.39,
+          "render_batch_ms_max": 18.33,
+          "background_slice_ms_max": 6.37,
+          "bulk_slice_ms_max": 6.24,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "attract-chase",
+          "seconds": 29.8508,
+          "completed_renders": 1157,
+          "fps": 38.76,
+          "logic_hz": 60.6,
+          "render_ms_mean": 11.33,
+          "render_ms_max": 1313.2,
+          "frame_interval_ms_p95": 37.72,
+          "frame_interval_ms_max": 1743.03,
+          "start_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            1,
+            0,
+            35,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 1800,
+          "requested_video_frames": 1800,
+          "audio_update_gap_ms_max": 32.64,
+          "input_service_gap_ms_max": 30.59,
+          "render_batch_ms_max": 19.18,
+          "background_slice_ms_max": 6.44,
+          "bulk_slice_ms_max": 4.18,
+          "pending_rebuild_at_end": false
+        }
+      ]
+    },
+    "routine": {
+      "prg_sha256": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+      "fixture_sha256": "e5c2476313353a23255f8878d452c31501c9ef55c6a30b8454fb78bf120a1c40",
+      "method": "call updateGhostStates_1017 with IRQs masked; compare Z80 call $1017",
+      "cases": 528,
+      "groups": {
+        "all": {
+          "min": 107,
+          "mean": 1443.6969696969697,
+          "max": 3256
+        },
+        "normal": {
+          "min": 1228,
+          "mean": 1564.8333333333333,
+          "max": 3249
+        },
+        "frightened": {
+          "min": 1389,
+          "mean": 1666.8333333333333,
+          "max": 3056
+        },
+        "tunnel": {
+          "min": 1199,
+          "mean": 1535.8333333333333,
+          "max": 3220
+        },
+        "tunnel-frightened": {
+          "min": 1364,
+          "mean": 1641.8333333333333,
+          "max": 3031
+        },
+        "elroy-1": {
+          "min": 1235,
+          "mean": 1571.8333333333333,
+          "max": 3256
+        },
+        "elroy-2": {
+          "min": 1194,
+          "mean": 1530.8333333333333,
+          "max": 3215
+        },
+        "frightened-elroy-2": {
+          "min": 1359,
+          "mean": 1636.8333333333333,
+          "max": 3026
+        },
+        "tunnel-frightened-elroy-2": {
+          "min": 1334,
+          "mean": 1611.8333333333333,
+          "max": 3001
+        },
+        "in-house": {
+          "min": 505,
+          "mean": 505.0,
+          "max": 505
+        },
+        "returning": {
+          "min": 2508,
+          "mean": 2508.0,
+          "max": 2508
+        },
+        "death-pause": {
+          "min": 107,
+          "mean": 107.0,
+          "max": 107
+        }
+      }
+    }
+  },
+  "routine_comparison": {
+    "cases": 528,
+    "faster": 384,
+    "equal": 96,
+    "slower": 48,
+    "cycle_delta_min": -139,
+    "cycle_delta_max": 2,
+    "mean_cycle_reduction_percent": 6.439386500657873,
+    "weights": "48 patterns per mode across eight active and three inactive scenarios; not gameplay frequency",
+    "active_cases": 384,
+    "active_cycle_delta_min": -139,
+    "active_cycle_delta_max": -132
+  },
+  "validation": {
+    "regression_groups": [
+      15,
+      6,
+      1,
+      3,
+      6,
+      6,
+      3,
+      8
+    ],
+    "regression_total": 48,
+    "all_passed": true,
+    "ghost_fixture_cases": 528,
+    "native_smoke": {
+      "screens": [
+        "attract",
+        "credits",
+        "maze",
+        "cherry",
+        "intermission-1",
+        "intermission-2",
+        "intermission-3"
+      ],
+      "stack_by_scene": {
+        "attract": {
+          "software_lowest_write": 8169,
+          "software_bytes_written": 23,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "credits": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "maze": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "cherry": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-1": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-2": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-3": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        }
+      },
+      "clock": {
+        "video_frames": 180,
+        "arcade_ticks": 181,
+        "expected": 180.96
+      },
+      "long_run_ticks": 7183,
+      "stack": {
+        "software_lowest_write": 8160,
+        "software_bytes_written": 32,
+        "hardware_lowest_write": 488,
+        "hardware_bytes_written": 24
+      },
+      "boot": {
+        "entries": 1,
+        "released": true
+      },
+      "irq_vector_intact": true,
+      "stack_guard_intact": true
+    },
+    "vice": {
+      "boot": true,
+      "coin_and_start": true,
+      "game_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tick": 735,
+      "display": {
+        "width": 520,
+        "height": 234,
+        "inner": [
+          0,
+          0,
+          520,
+          234
+        ]
+      },
+      "emulator": "VICE NTSC VIC-20, full expansion",
+      "maze_flash": [
+        {
+          "level_state": 15,
+          "colour": 6
+        },
+        {
+          "level_state": 17,
+          "colour": 1
+        },
+        {
+          "level_state": 19,
+          "colour": 6
+        },
+        {
+          "level_state": 21,
+          "colour": 1
+        },
+        {
+          "level_state": 23,
+          "colour": 6
+        },
+        {
+          "level_state": 25,
+          "colour": 1
+        },
+        {
+          "level_state": 27,
+          "colour": 6
+        },
+        {
+          "level_state": 29,
+          "colour": 1
+        }
+      ],
+      "board_transition": {
+        "from_board": 0,
+        "to_board": 1,
+        "settled": true,
+        "partial_captures": [
+          {
+            "tick": 973,
+            "phase": 2
+          },
+          {
+            "tick": 987,
+            "phase": 1
+          },
+          {
+            "tick": 1001,
+            "phase": 1
+          },
+          {
+            "tick": 1008,
+            "phase": 2
+          },
+          {
+            "tick": 1022,
+            "phase": 2
+          },
+          {
+            "tick": 1034,
+            "phase": 2
+          },
+          {
+            "tick": 1048,
+            "phase": 2
+          },
+          {
+            "tick": 1061,
+            "phase": 2
+          }
+        ]
+      },
+      "audio": {
+        "channels": 1,
+        "rate": 48000,
+        "frames": 780037,
+        "peak": 17791
+      }
+    },
+    "physical_hardware_tested": false
+  },
+  "limits": [
+    "Visible flicker remains; no perceptual improvement claimed",
+    "Short attract throughput regresses and frightened maximum draw interval grows",
+    "Long 1800-frame runs include mode changes, deaths and screen construction",
+    "In-house routine fixtures take two more cycles each; returning/death-pause unchanged"
+  ],
+  "local_artifacts": "build/ghost-state/"
+}

@@ -9,14 +9,16 @@ MOSNM := $(MOSROOT)/bin/llvm-nm
 GEN := build/arcade
 PRG := build/pacman.prg
 CORE := src/arcade/core.c
-NATIVE := src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/sprites.S src/audio.S src/pacman.c src/platform.c src/video.c $(CORE)
+NATIVE := src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/sprites.S src/audio.S src/pacman.c src/platform.c src/video.c $(CORE) src/score.S
+MULTI := build/multicolour-game
+MULTI_NATIVE := src/start.S src/clock.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/multicolour.S src/multicolour.c $(CORE)
 # $A0-$FF holds arcade flags. Of the remaining 126 zero-page bytes, assembly
 # reserves 34; the compiler may allocate at most 92 more.
 CFLAGS := -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -I$(GEN) -Tsrc/pacman.ld
 
 all: $(PRG)
 
-$(GEN)/rom.stamp: tools/arcade/mkrom.py pacman.zip
+$(GEN)/rom.stamp: tools/arcade/mkrom.py tools/arcade/hires_font.py docs/artwork/hires-font.json pacman.zip
 	$(PY) tools/arcade/mkrom.py --output $(GEN)
 	@touch $@
 
@@ -28,6 +30,78 @@ $(GEN)/pacman-native.bin: $(NATIVE) $(wildcard src/arcade/*.h) src/video.h src/p
 
 $(PRG): $(GEN)/pacman-native.bin tools/arcade/pack.py
 	$(PY) tools/arcade/pack.py $< $@ --ca65 $(CA65) --ld65 $(LD65) --nm $(MOSNM)
+
+$(MULTI)/assets.stamp: tools/arcade/build_multicolour_assets.py tools/arcade/build_multicolour_motion.py tools/arcade/multicolour_mockup.py docs/artwork/multicolour/actors-and-font.json docs/artwork/maze-wall-tiles.json $(GEN)/rom.stamp
+	$(PY) tools/arcade/build_multicolour_assets.py
+	@touch $@
+
+$(MULTI)/pacman-native.bin: $(MULTI_NATIVE) $(wildcard src/arcade/*.h) src/video.h src/multicolour.ld $(MULTI)/assets.stamp $(MOSCC)
+	$(MOSCC) $(filter-out -mlto-zp=92 -Tsrc/pacman.ld,$(CFLAGS)) -mlto-zp=88 -DMULTICOLOUR -I$(MULTI) -Tsrc/multicolour.ld $(MULTI_NATIVE) $(GEN)/rom.c $(MULTI)/assets.c -Wl,-Map,$(MULTI)/pacman.map -o $@
+
+build/pacman-multicolour.prg: $(MULTI)/pacman-native.bin tools/arcade/pack.py
+	$(PY) tools/arcade/pack.py $< $@ --ca65 $(CA65) --ld65 $(LD65) --nm $(MOSNM)
+
+multicolour: build/pacman-multicolour.prg
+
+build/beam-follow/pacman-native.bin: $(NATIVE) src/beam_follow.S src/beam_follow.ld src/pacman.ld $(wildcard src/arcade/*.h) src/video.h $(GEN)/rom.stamp $(MOSCC)
+	@mkdir -p build/beam-follow
+	$(MOSCC) $(filter-out -Tsrc/pacman.ld,$(CFLAGS)) -DBEAM_FOLLOW -Tsrc/beam_follow.ld $(NATIVE) src/beam_follow.S $(GEN)/rom.c -Wl,-Map,build/beam-follow/pacman.map -o $@
+
+build/pacman-beam.prg: build/beam-follow/pacman-native.bin tools/arcade/pack.py
+	$(PY) tools/arcade/pack.py $< $@ --ca65 $(CA65) --ld65 $(LD65) --nm $(MOSNM)
+
+beam: build/pacman-beam.prg
+
+run-beam: build/pacman-beam.prg
+	xvic $(VICEFLAGS) -autostart $<
+
+test-beam: beam tools/vicsim/vicsim reference
+	$(PY) tests/arcade.py
+	$(PY) tests/beam.py
+	$(PY) tests/smoke.py --prg build/pacman-beam.prg --output build/beam-follow/smoke
+
+build/ghost-shadow/pacman-native.bin: $(NATIVE) src/ghost_shadow.S src/ghost_shadow.ld src/pacman.ld $(wildcard src/arcade/*.h) src/video.h $(GEN)/rom.stamp $(MOSCC)
+	@mkdir -p build/ghost-shadow
+	$(MOSCC) $(filter-out -Tsrc/pacman.ld,$(CFLAGS)) -DGHOST_SHADOW -Tsrc/ghost_shadow.ld $(NATIVE) src/ghost_shadow.S $(GEN)/rom.c -Wl,-Map,build/ghost-shadow/pacman.map -o $@
+
+build/pacman-shadow.prg: build/ghost-shadow/pacman-native.bin tools/arcade/pack.py
+	$(PY) tools/arcade/pack.py $< $@ --ca65 $(CA65) --ld65 $(LD65) --nm $(MOSNM)
+
+ghost-shadow: build/pacman-shadow.prg
+
+build/actor-commit/after/pacman-native.bin: $(NATIVE) $(wildcard src/arcade/*.h) src/video.h src/pacman.ld $(GEN)/rom.stamp $(MOSCC)
+	@mkdir -p build/actor-commit/after
+	$(MOSCC) $(filter-out -mlto-zp=92,$(CFLAGS)) -mlto-zp=90 -DACTOR_COMMIT $(NATIVE) $(GEN)/rom.c -Wl,-Map,build/actor-commit/after/pacman.map -o $@
+
+build/actor-commit/after/pacman.prg: build/actor-commit/after/pacman-native.bin tools/arcade/pack.py
+	$(PY) tools/arcade/pack.py $< $@ --ca65 $(CA65) --ld65 $(LD65) --nm $(MOSNM)
+
+actor-commit: build/actor-commit/after/pacman.prg
+
+run-actor-commit: actor-commit
+	xvic $(VICEFLAGS) -autostart build/actor-commit/after/pacman.prg
+
+test-actor-commit: actor-commit tools/vicsim/vicsim reference
+	$(PY) tests/arcade.py
+	$(PY) tests/actor_commit.py
+	$(PY) tests/smoke.py --prg build/actor-commit/after/pacman.prg --output build/actor-commit/smoke
+
+run-shadow: build/pacman-shadow.prg
+	xvic $(VICEFLAGS) -autostart $<
+
+test-shadow: ghost-shadow tools/vicsim/vicsim reference
+	$(PY) tests/arcade.py
+	$(PY) tests/shadow.py
+	$(PY) tests/smoke.py --prg build/pacman-shadow.prg --output build/ghost-shadow/smoke
+
+run-multicolour: build/pacman-multicolour.prg
+	xvic $(VICEFLAGS) -autostart $<
+
+test-multicolour: multicolour tools/vicsim/vicsim reference
+	$(PY) tests/arcade.py
+	$(PY) tests/multicolour.py
+	$(PY) tests/smoke.py --prg build/pacman-multicolour.prg --output $(MULTI)/smoke
+	$(PY) tests/multicolour_timing.py
 
 tools/vicsim/vicsim: tools/vicsim/vicsim.c
 	$(CC) -O2 -Wall -Wno-unused-variable -Wno-misleading-indentation -o $@ $<
@@ -45,8 +119,10 @@ reference: $(GEN)/rom.stamp $(GEN)/oracle $(GEN)/native
 test: $(PRG) tools/vicsim/vicsim reference
 	$(PY) tests/arcade.py
 	$(PY) tests/native.py
+	$(PY) tests/ghosts.py
 	$(PY) tests/memory.py
 	$(PY) tests/render.py
+	$(PY) tests/fonts.py
 	$(PY) tests/colors.py
 	$(PY) tests/flash.py
 	$(PY) tests/rebuild.py
@@ -67,4 +143,4 @@ run: $(PRG)
 clean:
 	rm -rf build
 
-.PHONY: all reference test performance vice-test run clean
+.PHONY: all reference test performance vice-test run clean multicolour run-multicolour test-multicolour ghost-shadow run-shadow test-shadow beam run-beam test-beam actor-commit run-actor-commit test-actor-commit

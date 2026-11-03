@@ -80,6 +80,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--output", default="build/preview")
     ap.add_argument("--maze-flash", action="store_true")
+    ap.add_argument("--font-rewards", action="store_true",
+                    help="Capture synthetic ghost reward fixtures after normal play")
     args = ap.parse_args()
     out = ROOT / args.output
     out.mkdir(parents=True, exist_ok=True)
@@ -198,6 +200,31 @@ def main():
             "display": screen,
             "emulator": "VICE NTSC VIC-20, full expansion",
         }
+        if args.font_rewards:
+            report["synthetic_reward_fixtures"] = []
+            for count, points in enumerate((200, 400, 800, 1600), 1):
+                # The real arcade priority swaps run in isr_008d: powered-up
+                # Pac-Man moves to output slot 2, the reward to slot 4.
+                for address, data in (
+                    (0xA4, bytes((1, 0, 1))),
+                    (0xAC, bytes(4)),
+                    (0xD0, bytes((count, 1))),
+                    (0xC02, bytes((39 + count, 24))),
+                    (0xC0B, b"\0"),
+                ):
+                    mon.store(address, data)
+                _, tick = read_state()[1:]
+                wait(lambda r, s, t: (t - tick) & 65535 >= 12)
+                path = out / f"vice-reward-{points}.png"
+                mon.screenshot(path)
+                attrs = mon.memory(0xC20, 16)
+                assert attrs[3] == 0 and attrs[5] == 24, attrs.hex()
+                report["synthetic_reward_fixtures"].append({
+                    "points": points, "image": path.name,
+                    "hidden_output_slot": 2, "reward_output_slot": 4,
+                    "attributes": list(attrs),
+                })
+                mon.resume()
         if args.maze_flash:
             # Prepare a completed board without making the user play through
             # 244 dots. The original state machine supplies all flash phases.

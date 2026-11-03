@@ -1978,6 +1978,18 @@ void updateLeaveHouseCounters_1b08(void) {
     }
     P1_PINKY_LEAVE_HOME_COUNTER++;
 }
+/* Advance the speed mask and return its next movement decision. */
+static inline uint8_t ghostMoveStep(uint32_t *pattern) {
+    rotate32(pattern, 1);
+#ifdef VIC20
+    /* Force a byte reload of bit 16 after storing the rotation. LLVM-MOS
+     * otherwise shifts a second copy just to compute this bit. The VIC
+     * target is little-endian; this read avoids that redundant work. */
+    return ((volatile uint8_t *)pattern)[2] & 1;
+#else
+    return (*pattern & 0x10000) != 0;
+#endif
+}
 void blinkyUpdateMovePat_1b36(void) {
     ((void)0);
     if (BLINKY_SUBSTATE == SUBSTATE_IN_HOUSE)
@@ -1988,25 +2000,20 @@ void blinkyUpdateMovePat_1b36(void) {
     checkGhostEnterTunnel_205a(BLINKY_TILE2, &BLINKY_IN_TUNNEL);
     ((void)0);
     if (BLINKY_IN_TUNNEL != 0) {
-        rotate32(&BLINKY_MOVE_PAT_TUNNEL, 1);
-        if ((BLINKY_MOVE_PAT_TUNNEL & 0x10000) == 0)
+        if (!ghostMoveStep(&BLINKY_MOVE_PAT_TUNNEL))
             return;
     } else if (BLINKY_EDIBLE != 0) {
-        rotate32(&BLINKY_MOVE_PAT_EDIBLE, 1);
-        if ((BLINKY_MOVE_PAT_EDIBLE & 0x10000) == 0)
+        if (!ghostMoveStep(&BLINKY_MOVE_PAT_EDIBLE))
             return;
     } else if (CRUISE_ELROY_MODE_2 != 0) {
-        rotate32(&BLINKY_MOVE_PAT_DIFF2, 1);
-        if ((BLINKY_MOVE_PAT_DIFF2 & 0x10000) == 0)
+        if (!ghostMoveStep(&BLINKY_MOVE_PAT_DIFF2))
             return;
     } else {
         if (CRUISE_ELROY_MODE_1 != 0) {
-            rotate32(&BLINKY_MOVE_PAT_DIFF1, 1);
-            if ((BLINKY_MOVE_PAT_DIFF1 & 0x10000) == 0)
+            if (!ghostMoveStep(&BLINKY_MOVE_PAT_DIFF1))
                 return;
         } else {
-            rotate32(&BLINKY_MOVE_PAT_NORMAL, 1);
-            if ((BLINKY_MOVE_PAT_NORMAL & 0x10000) == 0)
+            if (!ghostMoveStep(&BLINKY_MOVE_PAT_NORMAL))
                 return;
         }
     }
@@ -2048,17 +2055,14 @@ void pinkyUpdateMovePat_1c4b(void) {
         return;
     checkGhostEnterTunnel_205a(PINKY_TILE2, &PINKY_IN_TUNNEL);
     if (PINKY_IN_TUNNEL != 0) {
-        rotate32(&PINKY_MOVE_PAT_TUNNEL, 1);
-        if ((PINKY_MOVE_PAT_TUNNEL & 0x10000) == 0)
+        if (!ghostMoveStep(&PINKY_MOVE_PAT_TUNNEL))
             return;
     } else {
         if (PINKY_EDIBLE != 0) {
-            rotate32(&PINKY_MOVE_PAT_EDIBLE, 1);
-            if ((PINKY_MOVE_PAT_EDIBLE & 0x10000) == 0)
+            if (!ghostMoveStep(&PINKY_MOVE_PAT_EDIBLE))
                 return;
         } else {
-            rotate32(&PINKY_MOVE_PAT_NORMAL, 1);
-            if ((PINKY_MOVE_PAT_NORMAL & 0x10000) == 0)
+            if (!ghostMoveStep(&PINKY_MOVE_PAT_NORMAL))
                 return;
         }
     }
@@ -2097,17 +2101,14 @@ void inkyUpdateMovePat_1d22(void) {
         return;
     checkGhostEnterTunnel_205a(INKY_TILE2, &INKY_IN_TUNNEL);
     if (INKY_IN_TUNNEL != 0) {
-        rotate32(&INKY_MOVE_PAT_TUNNEL, 1);
-        if ((INKY_MOVE_PAT_TUNNEL & 0x10000) == 0)
+        if (!ghostMoveStep(&INKY_MOVE_PAT_TUNNEL))
             return;
     } else {
         if (INKY_EDIBLE != 0) {
-            rotate32(&INKY_MOVE_PAT_EDIBLE, 1);
-            if ((INKY_MOVE_PAT_EDIBLE & 0x10000) == 0)
+            if (!ghostMoveStep(&INKY_MOVE_PAT_EDIBLE))
                 return;
         } else {
-            rotate32(&INKY_MOVE_PAT_NORMAL, 1);
-            if ((INKY_MOVE_PAT_NORMAL & 0x10000) == 0)
+            if (!ghostMoveStep(&INKY_MOVE_PAT_NORMAL))
                 return;
         }
     }
@@ -2146,17 +2147,14 @@ void clydeUpdateMovePat_1df9(void) {
         return;
     checkGhostEnterTunnel_205a(CLYDE_TILE2, &CLYDE_IN_TUNNEL);
     if (CLYDE_IN_TUNNEL != 0) {
-        rotate32(&CLYDE_MOVE_PAT_TUNNEL, 1);
-        if ((CLYDE_MOVE_PAT_TUNNEL & 0x10000) == 0)
+        if (!ghostMoveStep(&CLYDE_MOVE_PAT_TUNNEL))
             return;
     } else {
         if (CLYDE_EDIBLE != 0) {
-            rotate32(&CLYDE_MOVE_PAT_EDIBLE, 1);
-            if ((CLYDE_MOVE_PAT_EDIBLE & 0x10000) == 0)
+            if (!ghostMoveStep(&CLYDE_MOVE_PAT_EDIBLE))
                 return;
         } else {
-            rotate32(&CLYDE_MOVE_PAT_NORMAL, 1);
-            if ((CLYDE_MOVE_PAT_NORMAL & 0x10000) == 0)
+            if (!ghostMoveStep(&CLYDE_MOVE_PAT_NORMAL))
                 return;
         }
     }

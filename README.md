@@ -62,8 +62,13 @@ every published pattern and physical joystick timing have not been certified.
 
 ## VIC compromises
 
-Graphics are decoded from the local ROMs. Original tiles become 4×6 pixels
-and sprites become 8×12 pixels. The full portrait screen occupies 112×216
+Maze and actor graphics are decoded from the local ROMs. Original tiles become 4×6 pixels
+and sprites become 8×12 pixels. [Custom letters and digits](docs/FONTS.md)
+use shapes drawn at the displayed size, including ghost and fruit scores.
+Ghost and fruit rewards stay on one line. The wider ghost numbers borrow
+Pac-Man's hidden drawing slot during the reward pause.
+[Compare the fonts](docs/artwork/fonts/font-comparison.png).
+The full portrait screen occupies 112×216
 native pixels; NTSC's wide pixels restore the original proportions.
 
 The VIC has no hardware sprites. Its eight foreground colors and one color
@@ -76,9 +81,56 @@ Drawing can skip refreshes to let the game logic catch up. These are visible
 differences from an arcade board.
 The [first flicker reduction](docs/SPRITE_FLICKER.md) keeps stationary actors
 visible during unrelated background changes; moving actors can still flicker.
+The [generic sprite-kernel pass](docs/SPRITE_KERNELS.md) shortens redraw windows
+and recovers another 20 resident bytes, with flicker still visible.
+The [ghost-state pass](docs/GHOST_STATE.md) removes redundant movement-mask
+work and recovers another 325 resident bytes within the same RAM configuration.
+The later [ghost-precomposition experiment](docs/GHOST_PRECOMPOSITION.md)
+was rejected after user review found no significant flicker improvement to
+justify its throughput cost. The faster main build remains in place.
 
-The current CPU-cycle benchmark measures about 50 FPS in normal play,
-54 FPS when frightened, 43 FPS in the attract chase and 60 FPS in an intermission.
+Further flicker work is on hold at the user's request after visual review
+found no meaningful overall improvement in the latest comparison. The
+[temporary-character experiment](docs/GHOST_SHADOW.md) was rejected after user
+play testing found no perceptible improvement, while normal play fell from
+about 52 to 34 FPS. Its separate target and comparison remain for reproduction.
+The original `make run` executable is unchanged. The multicolour redesign below
+also remains on hold.
+
+The [beam-scheduled experiment](docs/BEAM_FOLLOW.md) also produced no
+perceptible benefit in user review. A [capture audit](docs/CAPTURE_AUDIT.md)
+confirms that different programs ran, but finds that the quoted native
+benchmark FPS did not describe the recorded playthrough. A fresh active
+capture measures about 33 renderer calls/s for the original and 24 for the
+beam build. Both experiments remain separate diagnostic targets.
+
+The [independent-actor commit trial](docs/ACTOR_COMMIT.md) shortens the mean
+opening actor window from 5.662 to 2.539 ms, but its fresh longer active
+capture falls from 30.92 to 24.13 renderer calls/s. It fails the throughput
+budget and was rejected after user review: flicker shifts between sides with
+no meaningful overall improvement. It remains separate from the default for
+reproduction. Further flicker experiments, including precise background
+invalidation, are on hold.
+
+A [selected multicolour redesign](docs/MULTICOLOUR_PROTOTYPE.md) uses a wider
+maze, blue walls, white pellets, custom actors and hires score digits. Its
+separate [moving renderer test](docs/MULTICOLOUR_MOTION.md) demonstrates hidden
+character preparation in VICE. Retained optimizations reduce mean rendering
+from 29.421 to 19.019 ms in the same 480-scene replay, preserving the approved
+pixels. The latest [background glyph ordering](docs/MULTICOLOUR_BACKGROUND_LAYOUT.md)
+saves another 0.05% of renderer CPU time without increasing memory use;
+unchanged-group reuse was rejected after measurement.
+A first [live integration](docs/MULTICOLOUR_GAME.md) now connects those visuals
+to the actual game, controls, pellets, scores and sound. Try
+`make run-multicolour` or [watch gameplay with audio](build/multicolour-game/vice/playable-preview.mp4).
+This development target currently manages about 9 display updates/s and still
+has fallback animation states. It needs further work before replacing the
+default game; standalone micro-optimizations are on hold.
+
+The default hires build's opening CPU-cycle benchmark measures about 52 FPS,
+55 FPS when frightened, 44 FPS in the attract chase and 60 FPS in an intermission.
+The opening benchmark supplies no continuing joystick turns; active play can
+be slower. Those rates are completed renderer calls, not unique motion frames.
 Game logic retains its 60.606 Hz clock. Gameplay is not yet a sustained
 60 FPS; see [performance measurements](docs/PERFORMANCE.md) and the
 [optimization-guide review](docs/OPTIMIZATION_REVIEW.md).
@@ -90,7 +142,7 @@ sound serviced while the next board draws progressively.
 The [end-of-stage maze flash](docs/MAZE_FLASH.md) changes colours without
 rebuilding the bitmap. Its four blue/white pairs retain the arcade timing;
 the next board takes longer to become fully coherent than the old blocking
-draw, with a measured gap of about 1.94 seconds between completed refreshes.
+draw, with a measured gap of about 1.84 seconds between completed refreshes.
 
 The original music, effect tables, priorities and sequencing drive the VIC's
 three tone voices. Square waves approximate the arcade waveform PROMs; timbre

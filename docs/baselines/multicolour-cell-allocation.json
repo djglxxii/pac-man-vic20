@@ -1,0 +1,393 @@
+{
+  "date": "2026-11-03",
+  "status": "retained-streamlined-work-cell-allocation",
+  "changes": [
+    "Load the allocation slot directly into Y with LDY/CPY; retain it through all three metadata writes.",
+    "Use TYA instead of reloading the allocation slot, and reuse carry clear from the successful capacity comparison.",
+    "Omit the final unused DEY in each unrolled eight-row background copy.",
+    "Use the resolver carry result in the preparation caller while preserving mc_status and failure cleanup.",
+    "Move the existing eight-byte resolution high lookup before publication; assert its page placement and preserve both cache-hit assertions."
+  ],
+  "main_game_unchanged": true,
+  "main_game_sha256": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+  "before": {
+    "prototype_sha256": "1ce7f730a537ea83853511b53961f73aada06725b6680867a4a7341057343f14",
+    "native_validation": {
+      "status": "passed",
+      "prototype_sha256": "1ce7f730a537ea83853511b53961f73aada06725b6680867a4a7341057343f14",
+      "scenes_checked": 2274,
+      "recorded_pose_scenes": 480,
+      "all_pose_shift_phase_cases": 864,
+      "edge_and_hud_cases": 99,
+      "random_and_overlap_cases": 180,
+      "partial_character_band_cases": 648,
+      "maximum_live_work_cells_per_image": 54,
+      "hidden_preparation_verified": true,
+      "background_and_guards_unchanged": true,
+      "discard_replace_invalid_input_recovery": true,
+      "capacity_guard_and_recovery": true,
+      "capacity_guard_column_paths": 3,
+      "pacman_facing": {
+        "table_and_closed_hint_cases": 192,
+        "recorded_open_mouth_motion_checks": 297,
+        "recorded_closed_mouth_motion_checks": 101,
+        "all_four_directions_verified": true
+      },
+      "prepare": {
+        "mean_cycles": 16614.99,
+        "max_cycles": 22156,
+        "mean_ms": 16.246,
+        "p95_ms": 19.332,
+        "max_ms": 21.664
+      },
+      "commit_including_cleanup": {
+        "mean_cycles": 3205.82,
+        "max_cycles": 4269,
+        "mean_ms": 3.135,
+        "p95_ms": 3.782,
+        "max_ms": 4.174
+      },
+      "publication": {
+        "mean_cycles": 3101.32,
+        "max_cycles": 4165,
+        "mean_ms": 3.032,
+        "p95_ms": 3.68,
+        "max_ms": 4.072
+      },
+      "total_renderer": {
+        "mean_cycles": 19820.8,
+        "max_cycles": 26366,
+        "mean_ms": 19.38,
+        "p95_ms": 23.125,
+        "max_ms": 25.78
+      },
+      "scope": "renderer-only replay; no logic, audio, input or changing maze cost included",
+      "native_demo_replay": {
+        "scenes_checked": 496,
+        "source_packets": 480,
+        "wraparound_scenes": 16,
+        "real_packet_loader_and_timer_irq": true,
+        "actors_and_published_pixels_match": true,
+        "source_packets_or_control_state_patched": false,
+        "guard_pattern_only": true
+      }
+    },
+    "segments": {
+      "ZEROPAGE": {
+        "start": 2,
+        "end_inclusive": 21,
+        "bytes": 20
+      },
+      "STATE": {
+        "start": 6711,
+        "end_inclusive": 7085,
+        "bytes": 375
+      },
+      "CODE": {
+        "start": 8192,
+        "end_inclusive": 10147,
+        "bytes": 1956
+      },
+      "DATA": {
+        "start": 10240,
+        "end_inclusive": 27683,
+        "bytes": 17444
+      },
+      "BSS": {
+        "start": 27904,
+        "end_inclusive": 28470,
+        "bytes": 567
+      }
+    }
+  },
+  "after": {
+    "build": {
+      "status": "moving compositor prototype; replay only, not an integrated game",
+      "source_prg_sha256": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+      "prototype_sha256": "9406a1775660d3c1f2bc7c1b653b11075204a516be3f6d1416694b2cb9a235d9",
+      "frames": 480,
+      "source_boundary": "video_frame_begin",
+      "source_ticks": [
+        1212,
+        2138
+      ],
+      "background_characters_loaded": 136,
+      "background_slots_reserved": 147,
+      "background_copy_layout": "eight 147-byte row planes; replaces character-major data in the PRG",
+      "background_copy_bytes": 1176,
+      "work_banks": [
+        [
+          147,
+          200
+        ],
+        [
+          201,
+          254
+        ]
+      ],
+      "actors_supported": 6,
+      "pose_row_index_bytes": 1512,
+      "unique_shifted_row_records": 147,
+      "shifted_row_record_bytes": 1029,
+      "pacman_facing": "screen-space arcade masks and flip bits; closed mouth follows recorded movement",
+      "fallback_artwork_samples": [],
+      "limitations": [
+        "Frozen full-pellet maze and score; recorded actor positions only.",
+        "No background glyph cache, live game logic, audio or input is integrated in this executable."
+      ]
+    },
+    "native_validation": {
+      "status": "passed",
+      "prototype_sha256": "9406a1775660d3c1f2bc7c1b653b11075204a516be3f6d1416694b2cb9a235d9",
+      "scenes_checked": 2274,
+      "recorded_pose_scenes": 480,
+      "all_pose_shift_phase_cases": 864,
+      "edge_and_hud_cases": 99,
+      "random_and_overlap_cases": 180,
+      "partial_character_band_cases": 648,
+      "maximum_live_work_cells_per_image": 54,
+      "hidden_preparation_verified": true,
+      "background_and_guards_unchanged": true,
+      "discard_replace_invalid_input_recovery": true,
+      "capacity_guard_and_recovery": true,
+      "capacity_guard_column_paths": 3,
+      "pacman_facing": {
+        "table_and_closed_hint_cases": 192,
+        "recorded_open_mouth_motion_checks": 297,
+        "recorded_closed_mouth_motion_checks": 101,
+        "all_four_directions_verified": true
+      },
+      "prepare": {
+        "mean_cycles": 16319.19,
+        "max_cycles": 21732,
+        "mean_ms": 15.957,
+        "p95_ms": 18.976,
+        "max_ms": 21.249
+      },
+      "commit_including_cleanup": {
+        "mean_cycles": 3205.82,
+        "max_cycles": 4269,
+        "mean_ms": 3.135,
+        "p95_ms": 3.782,
+        "max_ms": 4.174
+      },
+      "publication": {
+        "mean_cycles": 3101.32,
+        "max_cycles": 4165,
+        "mean_ms": 3.032,
+        "p95_ms": 3.68,
+        "max_ms": 4.072
+      },
+      "total_renderer": {
+        "mean_cycles": 19525.01,
+        "max_cycles": 25942,
+        "mean_ms": 19.091,
+        "p95_ms": 22.77,
+        "max_ms": 25.366
+      },
+      "scope": "renderer-only replay; no logic, audio, input or changing maze cost included",
+      "native_demo_replay": {
+        "scenes_checked": 496,
+        "source_packets": 480,
+        "wraparound_scenes": 16,
+        "real_packet_loader_and_timer_irq": true,
+        "actors_and_published_pixels_match": true,
+        "source_packets_or_control_state_patched": false,
+        "guard_pattern_only": true
+      }
+    },
+    "segments": {
+      "ZEROPAGE": {
+        "start": 2,
+        "end_inclusive": 21,
+        "bytes": 20
+      },
+      "STATE": {
+        "start": 6711,
+        "end_inclusive": 7085,
+        "bytes": 375
+      },
+      "CODE": {
+        "start": 8192,
+        "end_inclusive": 10129,
+        "bytes": 1938
+      },
+      "DATA": {
+        "start": 10240,
+        "end_inclusive": 27683,
+        "bytes": 17444
+      },
+      "BSS": {
+        "start": 27904,
+        "end_inclusive": 28470,
+        "bytes": 567
+      }
+    },
+    "vice": {
+      "prototype_sha256": "9406a1775660d3c1f2bc7c1b653b11075204a516be3f6d1416694b2cb9a235d9",
+      "validation": {
+        "hidden_preparation_verified_in_vice": true,
+        "published_matrix_and_palette_match": true,
+        "all_36288_native_pixels_match": true,
+        "virtual_io_and_stack_guard_bytes_intact": 960,
+        "successive_scenes_checked": 32,
+        "vacated_cell_restorations_verified": 37,
+        "validation_scene_frozen_only_for_pixel_comparison": true
+      },
+      "recording": {
+        "captured_video_frames": 600,
+        "capture_fps": "340909/5655",
+        "completed_updates_during_capture": 324,
+        "observed_replay_updates_per_second": 32.61,
+        "video": "motion-preview.mp4",
+        "video_guest_memory_or_code_patched": false,
+        "scope": "real VICE capture of recorded-pose demo; no game logic, audio, live pellets or live scores"
+      }
+    },
+    "video": {
+      "path": "build/multicolour-motion/motion-preview-allocation.mp4",
+      "sha256": "cf33db8fa0c14662406c123f8a0882dfd1cf1a9bf7164d9c62c4982e2a6cb8a8",
+      "bytes": 158892,
+      "all_600_frames_decode": true,
+      "decoded_frames": 600
+    }
+  },
+  "same_corpus_comparison": {
+    "recorded_scenes": 480,
+    "all_published_pictures_identical": true,
+    "unchanged_asset_hashes": {
+      "replay.bin": "a24e3f25988f1cebb954eeba7684b5d6ad45675826b97eb4efb4760678093f6f",
+      "source-poses.json": "d4a18bb02e0375b3c951f63f6b1adc76fb86ebf7f751f4c9c388a2cc31e40fbc",
+      "poses.json": "24821433d7d01662239fb941a5a16f1c7bfa21e95dbdcbac568e0ff1fc17e5c3",
+      "background-charset.bin": "bedccc535b169920309e3aedd1be24cd4796b51f6f075ba07a003b54bd89947c",
+      "background-map.bin": "b11bdacefc99d497fe1d1f5527fcf5c657eed291839798369a98094098b83d09",
+      "background-colors.bin": "857a89a350e021fe738b76e656b6435a3a7ed557b1b4bc6aa837fc2c868e21c5"
+    },
+    "before_profile": {
+      "resolve_row": {
+        "mean_cycles_per_frame": 7755.31,
+        "calls_per_frame": 13.71,
+        "cycles_per_call": 565.65
+      },
+      "mc_publish": {
+        "mean_cycles_per_frame": 3101.32,
+        "calls_per_frame": 1.0,
+        "cycles_per_call": 3101.32
+      }
+    },
+    "after_profile": {
+      "resolve_row": {
+        "mean_cycles_per_frame": 7514.36,
+        "calls_per_frame": 13.71,
+        "cycles_per_call": 548.08
+      },
+      "mc_publish": {
+        "mean_cycles_per_frame": 3101.32,
+        "calls_per_frame": 1.0,
+        "cycles_per_call": 3101.32
+      }
+    },
+    "prepare": {
+      "before_mean_cycles": 16614.99,
+      "after_mean_cycles": 16319.19,
+      "reduction_percent": 1.78,
+      "faster_scenes": 480,
+      "equal_scenes": 0,
+      "slower_scenes": 0,
+      "minimum_cycles_saved": 200,
+      "maximum_cycles_saved": 424
+    },
+    "commit": {
+      "before_mean_cycles": 3205.82,
+      "after_mean_cycles": 3205.82,
+      "reduction_percent": 0.0,
+      "faster_scenes": 0,
+      "equal_scenes": 480,
+      "slower_scenes": 0,
+      "minimum_cycles_saved": 0,
+      "maximum_cycles_saved": 0
+    },
+    "total": {
+      "before_mean_cycles": 19820.8,
+      "after_mean_cycles": 19525.01,
+      "reduction_percent": 1.49,
+      "faster_scenes": 480,
+      "equal_scenes": 0,
+      "slower_scenes": 0,
+      "minimum_cycles_saved": 200,
+      "maximum_cycles_saved": 424
+    }
+  },
+  "capacity_failure_propagation": {
+    "status": "passed",
+    "failure_branch": 9058,
+    "native_test_only": true,
+    "capacity_fault_injected": true,
+    "cases": [
+      {
+        "allocation_path": "left",
+        "caller_reached_failure_branch": true,
+        "visible_image_and_guard_preserved": true,
+        "map_cleanup_and_subsequent_recovery": true
+      },
+      {
+        "allocation_path": "middle",
+        "caller_reached_failure_branch": true,
+        "visible_image_and_guard_preserved": true,
+        "map_cleanup_and_subsequent_recovery": true
+      },
+      {
+        "allocation_path": "right",
+        "caller_reached_failure_branch": true,
+        "visible_image_and_guard_preserved": true,
+        "map_cleanup_and_subsequent_recovery": true
+      }
+    ]
+  },
+  "instruction_savings": {
+    "cycles_per_new_cell": 8,
+    "cycles_per_resolved_band": 4,
+    "all_three_column_paths": true
+  },
+  "code_page_assertions": {
+    "addresses": {
+      "restore_page": 9918,
+      "restore_page_ready": 9953,
+      "publish_page": 9987,
+      "publish_page_ready": 10014,
+      "resolve_hi": 9898
+    },
+    "both_cached_branches_same_page": true,
+    "resolution_high_lookup_same_page": true
+  },
+  "memory": {
+    "code_byte_delta": -18,
+    "state_byte_delta": 0,
+    "zero_page_byte_delta": 0,
+    "data_byte_delta": 0,
+    "prg_bytes": 23077,
+    "prg_length_unchanged": true,
+    "data_and_bss_addresses_unchanged": true,
+    "all_data_bytes_unchanged": true,
+    "new_ram_configuration_required": false
+  },
+  "source_hashes": {
+    "prototypes/multicolour-motion.S": "175165c13022f5179b8bd01fe1b6e7579344a520a69bea42f3c882f0b2ba24e5",
+    "tools/arcade/build_multicolour_motion.py": "f25afafaff6b05c34dfc2bef1d0f767b8ab213974cee1060b6de6a29cc6959ee",
+    "tools/arcade/check_multicolour_motion.py": "f1c2ac6aeea78b58c4da65d8a516a564c382faa5930b3eb7b2ffe95559f9cb25",
+    "tools/arcade/record_multicolour_motion.py": "69aab1ef090816aeeb6c629034946aaea1e37f38146803571c4ec7bd8d8dcbb0",
+    "docs/artwork/multicolour/actors-and-font.json": "53461e9cdc8d1ee5d7fdadfa5b25d7ad93984e4b05b53451aaa0ec882d509384"
+  },
+  "capacity_probe_artifact": {
+    "path": "build/multicolour-motion/check-allocation-failure.py",
+    "sha256": "8cbb483ef136584cd685a507713f7671408c604c44b9f1f3127d9a596ec21e54"
+  },
+  "limits": [
+    "Renderer-only replay: game logic, input, audio, live pellets/HUD and background cache are not integrated.",
+    "Original replay deadlines still yield 32.61 updates/s; CPU savings are not integrated game FPS.",
+    "Carry reuse depends on the successful CPY capacity check and only loads, stores and TYA before ADC.",
+    "Both success and capacity failure paths preserve the resolver carry contract.",
+    "Prototype remains within conventional VIC-20 RAM; no final full-game memory placement or physical hardware test.",
+    "Completed pictures are identical; no new perceptual flicker result is claimed."
+  ]
+}

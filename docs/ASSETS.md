@@ -1,7 +1,8 @@
 # Arcade graphics and sound
 
-The asset source is the user's local `pacman.zip`. The conversion decodes the
-original data instead of maintaining a separately redrawn maze, font or cast.
+The main asset source is the user's local `pacman.zip`. Maze and actor art
+are decoded from the original data. [Letters, digits and bonus scores](FONTS.md)
+use hand-drawn VIC-native shapes from `docs/artwork/hires-font.json`.
 `make` runs `tools/arcade/mkrom.py` and writes `build/arcade/rom.c`, `rom.h`,
 `program-rom.bin` and a SHA-256 manifest. Source ROM addresses stay virtual;
 the native port stores only the data ranges it uses.
@@ -21,6 +22,10 @@ orientation, then scales tiles to 4×6 and sprites to 8×12. Normal ghosts retai
 eye cutouts and directional pupils; returning eyes use a separate mask. The
 64 source frames include fruit, frightened ghosts, score popups, all death
 frames, the large intermission Pac-Man, stretched legs and the torn costume.
+After scaling, the generator replaces lettering and ghost-score masks with
+the custom font. Fruit score messages use individual digit tiles in the
+existing corridor space; their native message records are reformatted
+without changing scores or timing. The raw program-ROM reference stays original.
 
 The eight bonus items are cherry, strawberry, orange, apple, melon, Galaxian,
 bell and key. Their original sprite identifiers, scores and board progression
@@ -49,7 +54,8 @@ starting blue against the normally white maze. Existing wall coverage keeps
 background art sharing a wall cell in the wall's color.
 An aligned sprite no longer recolors its empty right-hand column.
 Pink and orange cannot be reproduced exactly in this high-resolution
-mode. Eyes, pupils, fruit stems and small lettering lose detail when scaled.
+mode. Eyes, pupils and fruit stems lose detail when scaled. The custom
+lettering is drawn directly at its displayed size.
 These are renderer and palette compromises, not changes to collision sizes,
 maze topology, ghost targets or game coordinates.
 
@@ -82,7 +88,8 @@ properties and stores eight shifts of each middle ten-row mask, using 640
 bytes total. The normal cache lives in BLK5 and the frightened cache in
 BLK1–3. Other frames, returning eyes and clipped sprites retain the generic
 compositor. The saved edge underlays and vertical flips remain exact. Apart
-from those frightened holes, the sprite artwork is unchanged.
+from those frightened holes and the custom reward masks, the sprite artwork
+is unchanged.
 
 ## Sound
 

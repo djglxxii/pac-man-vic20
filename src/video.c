@@ -38,6 +38,12 @@ __attribute__((section(".boot.text"))) void video_init(void) {
     rebuild_phase = 0;
     bulk_active = 0;
     bulk_drain = 0;
+#ifdef BEAM_FOLLOW
+    extern uint8_t __beam_code_load[], __beam_code_size[], __beam_code_start[];
+    extern void beam_init(void);
+    memcpy(__beam_code_start, __beam_code_load, (uint16_t)__beam_code_size);
+    beam_init();
+#endif
 }
 __attribute__((noinline)) void video_fill(uint8_t *p, uint8_t value, uint16_t count) {
     memset(p, value, count);

@@ -49,13 +49,13 @@ game logic and audio continue while the next maze draws progressively.
 Completion flashing changes colors directly without rebuilding the bitmap.
 The build produces a single loadable PRG for the existing full RAM expansion.
 
-The current build passes 46 automated checks covering arcade behavior, native
+The current build passes 48 automated checks covering arcade behavior, native
 6502 execution, graphics, sound conversion, maze colors and board transitions.
 VICE checks confirm startup, controls, sound and presentation. We also recorded
 a computer-controlled playthrough that cleared both initial boards and
 completed the first intermission using ordinary joystick input.
 
-Measured rendering is around 50 FPS during normal play and 54 FPS when ghosts
+Measured rendering is around 52 FPS during normal play and 55 FPS when ghosts
 are frightened. Gameplay timing is preserved, but visible flicker and uneven
 refreshes remain. Physical hardware validation is still ahead.
 
@@ -63,8 +63,14 @@ refreshes remain. Physical hardware validation is still ahead.
 
 The immediate priority is reducing sprite flicker. We have measured the gaps
 between erasing and redrawing actors, and stopped unrelated background changes
-from erasing stationary characters. Moving actors still flicker; composing
-more complete updates remains a future step.
+from erasing stationary characters. Faster generic sprite drawing now shortens
+those gaps further, using fewer CPU cycles and 20 fewer resident bytes.
+Moving actors still flicker. A region-composition experiment showed little
+visible improvement and was reverted; further changes need fresh measurement.
+A raster-timing experiment also showed no perceptible benefit and was reverted
+after visual review.
+The first ghost-logic optimization removes redundant movement-mask work,
+modestly improves throughput and frees another 325 resident bytes.
 
 Score readability is also on the improvement list. We plan to evaluate clearer
 digit shapes and spacing for player scores and the high score at the current

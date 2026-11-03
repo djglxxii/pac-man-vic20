@@ -86,6 +86,27 @@ erase_both:
  rts
 bitmap_draw:
  jsr bitmap_setup
+ /* A clipped column has an unused half of this actor's underlay. Direct
+    that column there, so the scanline loop needs no clipping dispatch and
+    never writes beyond the bitmap. Restoration ignores it via v_flags. */
+ lda v_flags
+ cmp #3
+ beq draw_columns_ready
+ and #1
+ bne draw_left_ready
+ lda v_save
+ sta v_addr
+ lda v_save+1
+ sta v_addr+1
+draw_left_ready:
+ lda v_flags
+ and #2
+ bne draw_columns_ready
+ lda v_saved_right
+ sta v_right
+ lda v_saved_right+1
+ sta v_right+1
+draw_columns_ready:
  /* Configure one scanline loop per sprite. Only the main thread draws;
     the timer IRQ preserves A/X/Y and never touches these patched operands. */
  lda v_data
@@ -99,12 +120,12 @@ bitmap_draw:
  sta draw_mirror+1
  lda mirror_paths+1,x
  sta draw_mirror+2
- ldx #0
- lda #$e8
- lsr v_flip
- bcc draw_forward
  ldx #11
  lda #$ca
+ lsr v_flip
+ bcc draw_forward
+ ldx #0
+ lda #$e8
 draw_forward:
  stx v_row
  sta draw_step
@@ -122,21 +143,13 @@ draw_store_high:
  sta draw_shift_jump+1
  lda shift_paths+1,x
  sta draw_shift_jump+2
- ldx #0
- lda v_flags
- cmp #3
- beq draw_full
- ldx #2
-draw_full:
- lda paint_paths,x
- sta draw_paint+1
- lda paint_paths+1,x
- sta draw_paint+2
- ldy #0
+ /* Walk bottom to top so DEY/BPL replaces the per-row limit test. */
+ ldy #11
  ldx v_row
 draw_row:
 draw_fetch:
  lda $ffff,x
+ beq draw_transparent
 draw_mirror:
  jmp draw_store
 draw_reverse:
@@ -163,10 +176,23 @@ draw_shift_1:
  ror
 draw_shift_0:
  sta v_lo
- jmp draw_paint
+draw_both:
+ lda (v_addr),y
+ sta (v_save),y
+ ora v_hi
+ sta (v_addr),y
+ lda (v_right),y
+ sta (v_saved_right),y
+ ora v_lo
+ sta (v_right),y
+draw_next:
+draw_step:
+ dex
+ dey
+ bpl draw_row
+ rts
  /* A right shift by 5..7 is the same split as a left shift by 3..1,
-    exchanging the accumulator and memory halves. This avoids six/seven
-    serial shifts for the common near-aligned ghost positions. */
+    exchanging the accumulator and memory halves. */
 draw_left_3:
  asl v_lo
  rol
@@ -177,48 +203,17 @@ draw_left_1:
  asl v_lo
  rol
  sta v_hi
-draw_paint:
  jmp draw_both
-draw_both:
+draw_transparent:
+ /* Save the background even when this source row contains no pixels. */
  lda (v_addr),y
  sta (v_save),y
- ora v_hi
- sta (v_addr),y
  lda (v_right),y
  sta (v_saved_right),y
- ora v_lo
- sta (v_right),y
  jmp draw_next
-draw_clipped:
- lda v_flags
- and #1
- beq draw_no_left
- lda (v_addr),y
- sta (v_save),y
- ora v_hi
- sta (v_addr),y
-draw_no_left:
- lda v_flags
- and #2
- beq draw_no_right
- lda (v_right),y
- sta (v_saved_right),y
- ora v_lo
- sta (v_right),y
-draw_no_right:
-draw_next:
-draw_step:
- inx
- iny
- cpy #12
- beq draw_done
- jmp draw_row
-draw_done:
- rts
 .section .arcade_data,"a",@progbits
 mirror_paths: .word draw_store,draw_reverse
 .section .text.bitmap,"ax",@progbits
-paint_paths: .word draw_both,draw_clipped
 shift_paths:
 .word draw_shift_0,draw_shift_1,draw_shift_2,draw_shift_3
 .word draw_shift_4,draw_left_3,draw_left_2,draw_left_1

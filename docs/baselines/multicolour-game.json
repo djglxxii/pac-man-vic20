@@ -1,0 +1,377 @@
+{
+  "date": "2026-11-03",
+  "status": "first-live-integration-development-target",
+  "parent_git_head": "cf81d64c69899a71488c40f45ec55ab61f13794e",
+  "target": "build/pacman-multicolour.prg",
+  "prg_bytes": 26945,
+  "prg_sha256": "4ab98e30378d1bbc610f393308b1c94963c71b6fb684c3a5752e42fc3aaceb6c",
+  "default_game_unchanged": true,
+  "default_game_sha256": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+  "default_regression_tests": 48,
+  "real_game_logic_input_and_audio": true,
+  "recorded_actor_replay_used_by_game": false,
+  "clock": {
+    "latch_hex": "41e9",
+    "cycles_per_tick": 16875,
+    "ntsc_cpu_hz": 1022727
+  },
+  "native": {
+    "status": "passed",
+    "prg_sha256": "4ab98e30378d1bbc610f393308b1c94963c71b6fb684c3a5752e42fc3aaceb6c",
+    "arcade_parity_and_audio_tests": 6,
+    "live_updates": {
+      "pellet_and_power_pellet_removals": 36,
+      "background_and_reference_checks": 38,
+      "completion_palette_and_next_board_blue": true
+    },
+    "renderer": {
+      "scenes": 2386,
+      "optional_recorded_scenes": 480,
+      "poses": 29,
+      "maximum_work_cells": 54,
+      "capacity_failure_paths": 3,
+      "hidden_preparation_and_exact_pixels": true,
+      "cache_ownership_and_guards": true
+    },
+    "actor_packets": {
+      "packets": 5112,
+      "all_raw_coordinate_bytes": true,
+      "all_actor_slots_and_direction_flips": true,
+      "white_frightened_poses": true
+    }
+  },
+  "long_run": {
+    "screens": [
+      "attract",
+      "credits",
+      "maze",
+      "cherry",
+      "intermission-1",
+      "intermission-2",
+      "intermission-3"
+    ],
+    "stack_by_scene": {
+      "attract": {
+        "software_lowest_write": 8163,
+        "software_bytes_written": 29,
+        "hardware_lowest_write": 494,
+        "hardware_bytes_written": 18
+      },
+      "credits": {
+        "software_lowest_write": 8154,
+        "software_bytes_written": 38,
+        "hardware_lowest_write": 494,
+        "hardware_bytes_written": 18
+      },
+      "maze": {
+        "software_lowest_write": 8154,
+        "software_bytes_written": 38,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "cherry": {
+        "software_lowest_write": 8154,
+        "software_bytes_written": 38,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "intermission-1": {
+        "software_lowest_write": 8154,
+        "software_bytes_written": 38,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "intermission-2": {
+        "software_lowest_write": 8154,
+        "software_bytes_written": 38,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "intermission-3": {
+        "software_lowest_write": 8154,
+        "software_bytes_written": 38,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      }
+    },
+    "clock": {
+      "video_frames": 180,
+      "arcade_ticks": 181,
+      "expected": 180.96
+    },
+    "long_run_ticks": 7185,
+    "stack": {
+      "software_lowest_write": 8154,
+      "software_bytes_written": 38,
+      "hardware_lowest_write": 490,
+      "hardware_bytes_written": 22
+    },
+    "boot": {
+      "entries": 1,
+      "released": true
+    },
+    "irq_vector_intact": true,
+    "stack_guard_intact": true
+  },
+  "long_run_cache_checks": {
+    "screens_checked": [
+      "attract",
+      "cherry",
+      "credits",
+      "intermission-1",
+      "intermission-2",
+      "intermission-3",
+      "maze"
+    ],
+    "all_background_references_hashes_and_capacity_checks_pass": true
+  },
+  "vice": {
+    "prg_sha256": "4ab98e30378d1bbc610f393308b1c94963c71b6fb684c3a5752e42fc3aaceb6c",
+    "validation": {
+      "boot_coin_start_via_joystick": true,
+      "warmup_video_frames": 1561,
+      "successive_live_scenes": 32,
+      "hidden_preparation_and_published_pixels": true,
+      "vacated_cells_restored": 173,
+      "all_36288_native_pixels_match": true,
+      "validation_scene_frozen_only_for_pixel_comparison": true
+    },
+    "recording": {
+      "frames": 600,
+      "capture_fps": "340909/5655",
+      "completed_updates": 50,
+      "observed_updates_per_second": 5.03,
+      "first": {
+        "frame": 0,
+        "ticks": 1204,
+        "updates": 2,
+        "pellets": 49,
+        "score": [
+          144,
+          4,
+          0
+        ],
+        "lives": 3
+      },
+      "last": {
+        "frame": 599,
+        "ticks": 1811,
+        "updates": 52,
+        "pellets": 115,
+        "score": [
+          48,
+          18,
+          0
+        ],
+        "lives": 3
+      },
+      "audio": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "nonzero_samples": 476860,
+        "sample_span": 30033,
+        "duration_seconds": 9.936
+      },
+      "video": "build/multicolour-game/vice/playable-preview.mp4",
+      "sha256": "4954ecf7ff7ab5d81ec1d798dda7a23f8fa1b263feb37ad87139e049699ed5e3",
+      "joystick_only": true,
+      "guest_memory_or_code_patched": false,
+      "all_video_and_audio_decode": true,
+      "decoded_video_frames": 600,
+      "review_video": "build/multicolour-game/vice/first-integrated-gameplay.mp4"
+    }
+  },
+  "memory": {
+    "segments": {
+      ".boot": {
+        "start": 1024,
+        "bytes": 380,
+        "end_exclusive": 1404
+      },
+      ".mc_low_tables": {
+        "start": 512,
+        "bytes": 192,
+        "end_exclusive": 704
+      },
+      ".arcade_data": {
+        "start": 40960,
+        "bytes": 8094,
+        "end_exclusive": 49054
+      },
+      ".mc_state": {
+        "start": 6711,
+        "bytes": 518,
+        "end_exclusive": 7229
+      },
+      ".mc_under": {
+        "start": 7360,
+        "bytes": 108,
+        "end_exclusive": 7468
+      },
+      ".mc_maps": {
+        "start": 8192,
+        "bytes": 567,
+        "end_exclusive": 8759
+      },
+      ".screen_work": {
+        "start": 708,
+        "bytes": 59,
+        "end_exclusive": 767
+      },
+      ".video_bits": {
+        "start": 3840,
+        "bytes": 255,
+        "end_exclusive": 4095
+      },
+      ".work": {
+        "start": 800,
+        "bytes": 223,
+        "end_exclusive": 1023
+      },
+      ".zp.data": {
+        "start": 34,
+        "bytes": 26,
+        "end_exclusive": 60
+      },
+      ".zp.bss": {
+        "start": 60,
+        "bytes": 36,
+        "end_exclusive": 96
+      },
+      ".zp": {
+        "start": 96,
+        "bytes": 30,
+        "end_exclusive": 126
+      },
+      ".text": {
+        "start": 8759,
+        "bytes": 23625,
+        "end_exclusive": 32384
+      },
+      ".data": {
+        "start": 32384,
+        "bytes": 0,
+        "end_exclusive": 32384
+      },
+      ".bss": {
+        "start": 32384,
+        "bytes": 0,
+        "end_exclusive": 32384
+      },
+      ".noinit": {
+        "start": 32384,
+        "bytes": 0,
+        "end_exclusive": 32384
+      },
+      ".debug_info": {
+        "start": 0,
+        "bytes": 17843,
+        "end_exclusive": 17843
+      },
+      ".debug_abbrev": {
+        "start": 0,
+        "bytes": 586,
+        "end_exclusive": 586
+      },
+      ".debug_aranges": {
+        "start": 0,
+        "bytes": 288,
+        "end_exclusive": 288
+      },
+      ".debug_line": {
+        "start": 0,
+        "bytes": 19975,
+        "end_exclusive": 19975
+      },
+      ".debug_line_str": {
+        "start": 0,
+        "bytes": 235,
+        "end_exclusive": 235
+      },
+      ".debug_rnglists": {
+        "start": 0,
+        "bytes": 1891,
+        "end_exclusive": 1891
+      },
+      ".debug_str_offsets": {
+        "start": 0,
+        "bytes": 900,
+        "end_exclusive": 900
+      },
+      ".debug_str": {
+        "start": 0,
+        "bytes": 4741,
+        "end_exclusive": 4741
+      },
+      ".debug_addr": {
+        "start": 0,
+        "bytes": 2560,
+        "end_exclusive": 2560
+      },
+      ".comment": {
+        "start": 0,
+        "bytes": 204,
+        "end_exclusive": 204
+      },
+      ".llvm_sympart": {
+        "start": 0,
+        "bytes": 30,
+        "end_exclusive": 30
+      },
+      ".symtab": {
+        "start": 0,
+        "bytes": 10960,
+        "end_exclusive": 10960
+      },
+      ".shstrtab": {
+        "start": 0,
+        "bytes": 317,
+        "end_exclusive": 317
+      },
+      ".strtab": {
+        "start": 0,
+        "bytes": 10939,
+        "end_exclusive": 10939
+      }
+    },
+    "blk1_through_3_free_bytes": 384,
+    "blk5_free_bytes": 98,
+    "software_stack_reservation": [
+      7488,
+      8192
+    ],
+    "virtual_io_live_range": [
+      7232,
+      7360
+    ],
+    "underlays_in_former_io_padding": [
+      7360,
+      7468
+    ],
+    "period_target_unchanged": true,
+    "new_expansion_or_banking_required": false
+  },
+  "source_hashes": {
+    "Makefile": "f0cdb6dcab006a92d1c4c330bfe57a4ce1252626e8fb28293c3c4c355c89c83f",
+    "src/pacman.c": "7d80218d24d6564996c7c96137779b293ff729146f42ef69011f2aed6f293ff7",
+    "src/platform.c": "324bcbdc5f61058dfee21cae86647d3689ccb9530a8feb4638b3bea79b9716a4",
+    "src/arcade/core.c": "13039f5186cf81030b03c14c8a56f7f09f95f1a1b5d69886cbf7bcab71bcbf82",
+    "src/multicolour.S": "3540f2ce8208ea810df49a7b6767c06acacdbf1f77754609b441cf41fd9e455e",
+    "src/multicolour.c": "0e7b779ff743f9f48c70bdc3aad514d5f5f14a7474f98122e38edd291e27fe96",
+    "src/multicolour.ld": "97e128b10762936c706706904001b7b01470559c5a1d397573e9f7763c26cb24",
+    "tests/multicolour.py": "ad9b045158982a5a8f89e5bfe05c379d8fe8a800cab0ec7d920196d27349aed7",
+    "tools/arcade/build_multicolour_assets.py": "5ad1a69982f531530be64d9ccfd821f8286ff9daa95c009d15f4bc88703bf9bc",
+    "tools/arcade/record_multicolour_game.py": "8e6878db7a321d9cb28c3e95b81aa518a1524bd7910693b1cbd848c286c62339",
+    "docs/artwork/multicolour/actors-and-font.json": "53461e9cdc8d1ee5d7fdadfa5b25d7ad93984e4b05b53451aaa0ec882d509384",
+    "docs/artwork/maze-wall-tiles.json": "f68333e5f1bed9610eabe97c5c83179f59177ab85226915ca9f4d3a5a6612386"
+  },
+  "remaining_work": [
+    "Death, other fruit, point popups and special intermission actor artwork currently use fallbacks.",
+    "Attract text and complete two-player HUD require review.",
+    "Current live VICE capture measures only 5.03 actor updates/s; default renderer is retained.",
+    "Full background rebuilding is progressive and slow; ordinary updates can remain queued.",
+    "The unshifted artwork/shared allocator save memory but cost CPU time; prototype replay timings do not apply.",
+    "Physical hardware has not been tested."
+  ],
+  "priority": "Complete the live integration and state coverage; no further standalone micro-optimization campaign."
+}

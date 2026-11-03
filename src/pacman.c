@@ -23,6 +23,9 @@ extern uint8_t rebuild_phase;
 extern uint8_t bulk_active;
 extern uint8_t bulk_drain;
 void video_init(void), video_refresh(void);
+#ifdef MULTICOLOUR
+__attribute__((leaf)) void video_background(void);
+#endif
 __attribute__((noinline)) void frame_wait(void) {
     extern uint8_t last_tick;
     while (clock_ticks == last_tick) {
@@ -30,20 +33,37 @@ __attribute__((noinline)) void frame_wait(void) {
            input only by one slice; logic and sound still run in the main loop. */
         if (bulk_active || bulk_drain)
             arcade_tasks();
+#ifdef MULTICOLOUR
+        else if (rebuild_phase == 2)
+            video_background();
+#else
         else if (rebuild_phase)
             video_refresh();
+#endif
     }
     last_tick++;
 }
 uint8_t last_tick;
 /* Called once by boot_start, before logical screen RAM is released to main. */
 __attribute__((used, noinline, section(".boot.text"))) void platform_init(void) {
+#ifdef MULTICOLOUR
+    HW(0x9002) = 0;
+    HW(0x900f) = 14;
+    HW(0x900e) = 16;
+    HW(0x9003) = 54;
+    HW(0x9005) = 0xec;
+    /* NTSC KERNAL centres 22 columns at 5. Our 21-column picture starts
+       four dots later, keeping the same centre at a four-dot granularity. */
+    HW(0x9000) = 6;
+    HW(0x9001) = 18;
+#else
     HW(0x900f) = 8;
     HW(0x9002) = 14 | 128;
     HW(0x9003) = 29;
     HW(0x9005) = 0x8c;
     HW(0x9000) = 13;
     HW(0x9001) = 16;
+#endif
     HW(0x9113) = 0;
     HW(0x9122) = 0x7f;
     HW(0x9123) = 0;

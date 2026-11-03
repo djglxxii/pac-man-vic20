@@ -1,0 +1,1054 @@
+{
+  "date": "2026-11-02",
+  "status": "retained-for-user-review",
+  "parent_commit": "cf81d64c69899a71488c40f45ec55ab61f13794e",
+  "branch": "optimization/sprite-kernels",
+  "hypothesis": "Reduce generic scanline dispatch, row-limit checks and empty-mask work to shorten moving-actor update windows without new tables or RAM.",
+  "hardware": "NTSC VIC-20, conventional +35 KB expansion; original 16875-cycle arcade tick",
+  "changes": [
+    "Bottom-to-top generic row loop with DEY/BPL",
+    "Fall-through common shift/paint path",
+    "Save transparent-row underlays without redundant shifts/pixel writes",
+    "Redirect clipped columns into unused underlay halves once during setup"
+  ],
+  "source_sha256": {
+    "src/bitmap.S": "bc52c28a1faadc7737141bba88ee5429b2933943ac1ddc570ae4ea04ba2a1fde",
+    "tests/render.py": "eb58e243e08adfc6abd44150bbc15ff89ebf19791542b5f297d2b8d0a73c0cee",
+    "tests/sprite_timing.py": "e11a6007f20a8debc7246522c066a11cc5603250db823beac93deb7ce6b332fb"
+  },
+  "before": {
+    "prg_sha256": "3ee169f2e49b7dc0001f695f71062a9244984b1ebed67c5eaf91ed13dfbc832b",
+    "prg_bytes": 26857,
+    "native_sha256": "0ae2d61c8442639159343ba2ebfe341213933f13692f29d05a52d204fd7caa9e",
+    "resident_bss_end": 32397,
+    "heap_start": 32398,
+    "resident_free_bytes": 371,
+    "bank5_free_bytes": 15,
+    "performance": {
+      "cpu_hz": 1022727,
+      "video_frames_per_sample": 180,
+      "samples": [
+        {
+          "scene": "play",
+          "seconds": 2.9817,
+          "completed_renders": 148,
+          "fps": 49.64,
+          "logic_hz": 60.7,
+          "render_ms_mean": 9.82,
+          "render_ms_max": 17.46,
+          "frame_interval_ms_p95": 31.62,
+          "frame_interval_ms_max": 45.5,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 26.96,
+          "input_service_gap_ms_max": 26.72,
+          "render_batch_ms_max": 17.47,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "frightened",
+          "seconds": 2.9817,
+          "completed_renders": 161,
+          "fps": 54.0,
+          "logic_hz": 60.7,
+          "render_ms_mean": 8.68,
+          "render_ms_max": 18.58,
+          "frame_interval_ms_p95": 31.04,
+          "frame_interval_ms_max": 41.8,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 30.57,
+          "input_service_gap_ms_max": 29.28,
+          "render_batch_ms_max": 18.59,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "attract-chase",
+          "seconds": 2.9828,
+          "completed_renders": 128,
+          "fps": 42.91,
+          "logic_hz": 60.68,
+          "render_ms_mean": 8.62,
+          "render_ms_max": 14.41,
+          "frame_interval_ms_p95": 48.89,
+          "frame_interval_ms_max": 62.24,
+          "start_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 31.83,
+          "input_service_gap_ms_max": 25.98,
+          "render_batch_ms_max": 14.42,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "intermission",
+          "seconds": 2.976,
+          "completed_renders": 179,
+          "fps": 60.15,
+          "logic_hz": 60.48,
+          "render_ms_mean": 3.47,
+          "render_ms_max": 12.5,
+          "frame_interval_ms_p95": 21.73,
+          "frame_interval_ms_max": 23.09,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            32,
+            0,
+            4,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            32,
+            0,
+            5,
+            0,
+            0
+          ],
+          "start_board": 1,
+          "end_board": 1,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 19.27,
+          "input_service_gap_ms_max": 18.89,
+          "render_batch_ms_max": 12.51,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "board-transition",
+          "seconds": 5.9676,
+          "completed_renders": 244,
+          "fps": 40.89,
+          "logic_hz": 60.66,
+          "render_ms_mean": 10.55,
+          "render_ms_max": 1834.35,
+          "frame_interval_ms_p95": 20.5,
+          "frame_interval_ms_max": 1939.72,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 1,
+          "video_frames": 360,
+          "requested_video_frames": 360,
+          "audio_update_gap_ms_max": 26.28,
+          "input_service_gap_ms_max": 28.79,
+          "render_batch_ms_max": 17.5,
+          "background_slice_ms_max": 6.41,
+          "bulk_slice_ms_max": 6.22,
+          "pending_rebuild_at_end": false
+        }
+      ]
+    },
+    "flicker": {
+      "cpu_hz": 1022727,
+      "video_frames_per_sample": 180,
+      "metric": "bitmap_erase entry to matching bitmap_draw return",
+      "prg_sha256": "3ee169f2e49b7dc0001f695f71062a9244984b1ebed67c5eaf91ed13dfbc832b",
+      "samples": [
+        {
+          "scene": "play",
+          "completed_renders": 148,
+          "seconds": 2.9817,
+          "actor_erases": 485,
+          "actor_updates": 485,
+          "actor_window_ms_per_second": 987.21,
+          "erase_to_paint_ms_mean": 6.069,
+          "erase_to_paint_ms_p95": 11.666,
+          "erase_to_paint_ms_max": 15.711
+        },
+        {
+          "scene": "frightened",
+          "completed_renders": 161,
+          "seconds": 2.9817,
+          "actor_erases": 512,
+          "actor_updates": 512,
+          "actor_window_ms_per_second": 917.02,
+          "erase_to_paint_ms_mean": 5.34,
+          "erase_to_paint_ms_p95": 10.382,
+          "erase_to_paint_ms_max": 16.27
+        },
+        {
+          "scene": "attract-chase",
+          "completed_renders": 128,
+          "seconds": 2.9828,
+          "actor_erases": 334,
+          "actor_updates": 331,
+          "actor_window_ms_per_second": 745.21,
+          "erase_to_paint_ms_mean": 6.716,
+          "erase_to_paint_ms_p95": 10.818,
+          "erase_to_paint_ms_max": 12.647
+        },
+        {
+          "scene": "intermission",
+          "completed_renders": 179,
+          "seconds": 2.976,
+          "actor_erases": 92,
+          "actor_updates": 90,
+          "actor_window_ms_per_second": 94.53,
+          "erase_to_paint_ms_mean": 3.126,
+          "erase_to_paint_ms_p95": 6.343,
+          "erase_to_paint_ms_max": 10.839
+        }
+      ]
+    },
+    "long_performance": {
+      "cpu_hz": 1022727,
+      "video_frames_per_sample": 1800,
+      "samples": [
+        {
+          "scene": "play",
+          "seconds": 29.8543,
+          "completed_renders": 1527,
+          "fps": 51.15,
+          "logic_hz": 60.63,
+          "render_ms_mean": 8.9,
+          "render_ms_max": 1474.22,
+          "frame_interval_ms_p95": 29.89,
+          "frame_interval_ms_max": 1569.49,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 1800,
+          "requested_video_frames": 1800,
+          "audio_update_gap_ms_max": 39.78,
+          "input_service_gap_ms_max": 30.32,
+          "render_batch_ms_max": 21.44,
+          "background_slice_ms_max": 6.38,
+          "bulk_slice_ms_max": 6.19,
+          "pending_rebuild_at_end": false
+        }
+      ]
+    },
+    "kernel_timing": {
+      "cpu_hz": 1022727,
+      "prg_sha256": "3ee169f2e49b7dc0001f695f71062a9244984b1ebed67c5eaf91ed13dfbc832b",
+      "method": "vicsim call bitmap_draw with IRQs masked; frontend excluded",
+      "cases": 13824,
+      "groups": {
+        "all": {
+          "min": 1016,
+          "mean": 1276.2083333333333,
+          "max": 1602
+        },
+        "clipped": {
+          "min": 1016,
+          "mean": 1244.5416666666667,
+          "max": 1507
+        },
+        "shift-0": {
+          "min": 1016,
+          "mean": 1121.3333333333333,
+          "max": 1266
+        },
+        "full": {
+          "min": 1111,
+          "mean": 1339.5416666666667,
+          "max": 1602
+        },
+        "shift-1": {
+          "min": 1100,
+          "mean": 1205.3333333333333,
+          "max": 1350
+        },
+        "shift-2": {
+          "min": 1184,
+          "mean": 1289.3333333333333,
+          "max": 1434
+        },
+        "shift-3": {
+          "min": 1268,
+          "mean": 1373.3333333333333,
+          "max": 1518
+        },
+        "shift-4": {
+          "min": 1352,
+          "mean": 1457.3333333333333,
+          "max": 1602
+        },
+        "shift-5": {
+          "min": 1233,
+          "mean": 1338.3333333333333,
+          "max": 1483
+        },
+        "shift-6": {
+          "min": 1149,
+          "mean": 1254.3333333333333,
+          "max": 1399
+        },
+        "shift-7": {
+          "min": 1065,
+          "mean": 1170.3333333333333,
+          "max": 1315
+        }
+      }
+    }
+  },
+  "after": {
+    "prg_sha256": "34a552f6377bf64ec3373882464c028244b43697a1471cbc3d6e06ede4dbc442",
+    "prg_bytes": 26848,
+    "native_sha256": "f61c997ca193f204dd52a0f9af36436fe3fa956cc4950333a291e2ed603e1450",
+    "resident_bss_end": 32377,
+    "heap_start": 32378,
+    "resident_free_bytes": 391,
+    "bank5_free_bytes": 15,
+    "performance": {
+      "cpu_hz": 1022727,
+      "video_frames_per_sample": 180,
+      "samples": [
+        {
+          "scene": "play",
+          "seconds": 2.9781,
+          "completed_renders": 153,
+          "fps": 51.38,
+          "logic_hz": 60.78,
+          "render_ms_mean": 9.31,
+          "render_ms_max": 16.42,
+          "frame_interval_ms_p95": 31.17,
+          "frame_interval_ms_max": 44.77,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 27.75,
+          "input_service_gap_ms_max": 26.11,
+          "render_batch_ms_max": 16.43,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "frightened",
+          "seconds": 2.9804,
+          "completed_renders": 161,
+          "fps": 54.02,
+          "logic_hz": 60.73,
+          "render_ms_mean": 8.64,
+          "render_ms_max": 18.33,
+          "frame_interval_ms_p95": 30.53,
+          "frame_interval_ms_max": 41.55,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 30.33,
+          "input_service_gap_ms_max": 28.98,
+          "render_batch_ms_max": 18.34,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "attract-chase",
+          "seconds": 2.9828,
+          "completed_renders": 132,
+          "fps": 44.25,
+          "logic_hz": 60.68,
+          "render_ms_mean": 8.38,
+          "render_ms_max": 14.22,
+          "frame_interval_ms_p95": 38.96,
+          "frame_interval_ms_max": 61.8,
+          "start_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 32.75,
+          "input_service_gap_ms_max": 26.54,
+          "render_batch_ms_max": 14.23,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "intermission",
+          "seconds": 2.9761,
+          "completed_renders": 179,
+          "fps": 60.15,
+          "logic_hz": 60.48,
+          "render_ms_mean": 3.44,
+          "render_ms_max": 12.13,
+          "frame_interval_ms_p95": 21.7,
+          "frame_interval_ms_max": 22.61,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            32,
+            0,
+            4,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            32,
+            0,
+            5,
+            0,
+            0
+          ],
+          "start_board": 1,
+          "end_board": 1,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 19.02,
+          "input_service_gap_ms_max": 18.52,
+          "render_batch_ms_max": 12.14,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "board-transition",
+          "seconds": 5.9717,
+          "completed_renders": 250,
+          "fps": 41.86,
+          "logic_hz": 60.62,
+          "render_ms_mean": 9.98,
+          "render_ms_max": 1737.74,
+          "frame_interval_ms_p95": 20.5,
+          "frame_interval_ms_max": 1843.18,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 1,
+          "video_frames": 360,
+          "requested_video_frames": 360,
+          "audio_update_gap_ms_max": 27.59,
+          "input_service_gap_ms_max": 27.94,
+          "render_batch_ms_max": 16.64,
+          "background_slice_ms_max": 6.38,
+          "bulk_slice_ms_max": 5.56,
+          "pending_rebuild_at_end": false
+        }
+      ]
+    },
+    "flicker": {
+      "cpu_hz": 1022727,
+      "video_frames_per_sample": 180,
+      "metric": "bitmap_erase entry to matching bitmap_draw return",
+      "prg_sha256": "34a552f6377bf64ec3373882464c028244b43697a1471cbc3d6e06ede4dbc442",
+      "samples": [
+        {
+          "scene": "play",
+          "completed_renders": 153,
+          "seconds": 2.9781,
+          "actor_erases": 491,
+          "actor_updates": 491,
+          "actor_window_ms_per_second": 946.07,
+          "erase_to_paint_ms_mean": 5.738,
+          "erase_to_paint_ms_p95": 10.83,
+          "erase_to_paint_ms_max": 14.684
+        },
+        {
+          "scene": "frightened",
+          "completed_renders": 161,
+          "seconds": 2.9804,
+          "actor_erases": 512,
+          "actor_updates": 512,
+          "actor_window_ms_per_second": 906.41,
+          "erase_to_paint_ms_mean": 5.276,
+          "erase_to_paint_ms_p95": 10.225,
+          "erase_to_paint_ms_max": 16.086
+        },
+        {
+          "scene": "attract-chase",
+          "completed_renders": 132,
+          "seconds": 2.9828,
+          "actor_erases": 341,
+          "actor_updates": 338,
+          "actor_window_ms_per_second": 743.84,
+          "erase_to_paint_ms_mean": 6.564,
+          "erase_to_paint_ms_p95": 10.623,
+          "erase_to_paint_ms_max": 12.47
+        },
+        {
+          "scene": "intermission",
+          "completed_renders": 179,
+          "seconds": 2.9761,
+          "actor_erases": 95,
+          "actor_updates": 90,
+          "actor_window_ms_per_second": 91.84,
+          "erase_to_paint_ms_mean": 3.037,
+          "erase_to_paint_ms_p95": 6.144,
+          "erase_to_paint_ms_max": 10.477
+        }
+      ]
+    },
+    "long_performance": {
+      "cpu_hz": 1022727,
+      "video_frames_per_sample": 1800,
+      "samples": [
+        {
+          "scene": "play",
+          "seconds": 29.8507,
+          "completed_renders": 1550,
+          "fps": 51.93,
+          "logic_hz": 60.64,
+          "render_ms_mean": 8.64,
+          "render_ms_max": 1474.3,
+          "frame_interval_ms_p95": 29.07,
+          "frame_interval_ms_max": 1569.62,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 1800,
+          "requested_video_frames": 1800,
+          "audio_update_gap_ms_max": 39.78,
+          "input_service_gap_ms_max": 28.8,
+          "render_batch_ms_max": 17.92,
+          "background_slice_ms_max": 6.37,
+          "bulk_slice_ms_max": 6.24,
+          "pending_rebuild_at_end": false
+        }
+      ]
+    },
+    "kernel_timing": {
+      "cpu_hz": 1022727,
+      "prg_sha256": "34a552f6377bf64ec3373882464c028244b43697a1471cbc3d6e06ede4dbc442",
+      "method": "vicsim call bitmap_draw with IRQs masked; frontend excluded",
+      "cases": 13824,
+      "groups": {
+        "all": {
+          "min": 626,
+          "mean": 1005.671875,
+          "max": 1468
+        },
+        "clipped": {
+          "min": 649,
+          "mean": 1013.3385416666666,
+          "max": 1468
+        },
+        "shift-0": {
+          "min": 626,
+          "mean": 893.75,
+          "max": 1132
+        },
+        "full": {
+          "min": 626,
+          "mean": 990.3385416666666,
+          "max": 1445
+        },
+        "shift-1": {
+          "min": 626,
+          "mean": 945.375,
+          "max": 1216
+        },
+        "shift-2": {
+          "min": 626,
+          "mean": 997.0,
+          "max": 1300
+        },
+        "shift-3": {
+          "min": 626,
+          "mean": 1048.625,
+          "max": 1384
+        },
+        "shift-4": {
+          "min": 626,
+          "mean": 1100.25,
+          "max": 1468
+        },
+        "shift-5": {
+          "min": 627,
+          "mean": 1071.75,
+          "max": 1421
+        },
+        "shift-6": {
+          "min": 627,
+          "mean": 1020.125,
+          "max": 1337
+        },
+        "shift-7": {
+          "min": 627,
+          "mean": 968.5,
+          "max": 1253
+        }
+      }
+    }
+  },
+  "memory_note": "Free bytes measure raw physical headroom above __bss_end, before heap alignment. No heap allocation is used by this change.",
+  "kernel_case_comparison": {
+    "cases": 13824,
+    "faster_cases": 13376,
+    "slower_cases": 448,
+    "unchanged_cases": 0,
+    "best_cycle_delta": -965,
+    "worst_cycle_delta": 41,
+    "mean_reduction_percent": 21.1985
+  },
+  "validation": {
+    "test_groups": [
+      15,
+      6,
+      3,
+      6,
+      6,
+      3,
+      8
+    ],
+    "test_total": 47,
+    "boundary_cases": 1152,
+    "smoke": {
+      "screens": [
+        "attract",
+        "credits",
+        "maze",
+        "cherry",
+        "intermission-1",
+        "intermission-2",
+        "intermission-3"
+      ],
+      "stack_by_scene": {
+        "attract": {
+          "software_lowest_write": 8169,
+          "software_bytes_written": 23,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "credits": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "maze": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "cherry": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-1": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-2": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-3": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        }
+      },
+      "clock": {
+        "video_frames": 180,
+        "arcade_ticks": 180,
+        "expected": 180.96
+      },
+      "long_run_ticks": 7192,
+      "stack": {
+        "software_lowest_write": 8160,
+        "software_bytes_written": 32,
+        "hardware_lowest_write": 488,
+        "hardware_bytes_written": 24
+      },
+      "boot": {
+        "entries": 1,
+        "released": true
+      },
+      "irq_vector_intact": true,
+      "stack_guard_intact": true
+    },
+    "focused_transition": {
+      "queue_entries_max": 11,
+      "settled_board_ms": 1827.2002205867254,
+      "audio_update_gap_ms_max": 27.589962912879,
+      "input_service_gap_ms_max": 24.677162136132125
+    },
+    "vice": {
+      "boot": true,
+      "coin_and_start": true,
+      "game_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tick": 703,
+      "display": {
+        "width": 520,
+        "height": 234,
+        "inner": [
+          0,
+          0,
+          520,
+          234
+        ]
+      },
+      "emulator": "VICE NTSC VIC-20, full expansion",
+      "maze_flash": [
+        {
+          "level_state": 15,
+          "colour": 6
+        },
+        {
+          "level_state": 17,
+          "colour": 1
+        },
+        {
+          "level_state": 19,
+          "colour": 6
+        },
+        {
+          "level_state": 21,
+          "colour": 1
+        },
+        {
+          "level_state": 23,
+          "colour": 6
+        },
+        {
+          "level_state": 25,
+          "colour": 1
+        },
+        {
+          "level_state": 27,
+          "colour": 6
+        },
+        {
+          "level_state": 29,
+          "colour": 1
+        }
+      ],
+      "board_transition": {
+        "from_board": 0,
+        "to_board": 1,
+        "settled": true,
+        "partial_captures": [
+          {
+            "tick": 930,
+            "phase": 1
+          },
+          {
+            "tick": 937,
+            "phase": 2
+          },
+          {
+            "tick": 950,
+            "phase": 1
+          },
+          {
+            "tick": 961,
+            "phase": 1
+          },
+          {
+            "tick": 973,
+            "phase": 2
+          },
+          {
+            "tick": 991,
+            "phase": 2
+          },
+          {
+            "tick": 999,
+            "phase": 2
+          },
+          {
+            "tick": 1008,
+            "phase": 2
+          },
+          {
+            "tick": 1020,
+            "phase": 2
+          }
+        ]
+      },
+      "audio": {
+        "channels": 1,
+        "rate": 48000,
+        "frames": 768114,
+        "peak": 18880
+      }
+    }
+  },
+  "video": {
+    "path": "build/sprite-kernel/comparison.mp4",
+    "sha256": "3fbd8a3db30ecfc7b713e5687efed5c4a91f3d44bd90677d1bdefa13fcf9bed1",
+    "frames": 600,
+    "width": 720,
+    "height": 496,
+    "fps": 60.284526967285586,
+    "audio": false,
+    "matching_joystick_inputs": true,
+    "guest_patches": false,
+    "sides": {
+      "before": {
+        "first_tick": 431,
+        "last_tick": 1033,
+        "first_pellets": 3,
+        "last_pellets": 73
+      },
+      "after": {
+        "first_tick": 431,
+        "last_tick": 1033,
+        "first_pellets": 3,
+        "last_pellets": 73
+      }
+    },
+    "review": "Raster samples still show intermittent missing actors; measured savings do not establish a dramatic visible reduction."
+  },
+  "limits": [
+    "Kernel cases are equally weighted, IRQ-masked and exclude frontend costs; not a gameplay distribution.",
+    "Fixed-duration scene windows may sample different updates as rendering cadence changes.",
+    "Actor gaps observe CPU work rather than individual VIC pixel fetches.",
+    "Long sample includes rebuild work after deaths.",
+    "448 clipped cases get slower, by at most 41 cycles.",
+    "Physical hardware has not been tested."
+  ],
+  "local_artifacts": "build/sprite-kernel/"
+}

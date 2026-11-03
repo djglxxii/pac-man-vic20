@@ -1,0 +1,84 @@
+{
+  "status": "offline artwork study; no runtime changes or measured speed/flicker gain",
+  "fixture_sha256": "e5c2476313353a23255f8878d452c31501c9ef55c6a30b8454fb78bf120a1c40",
+  "generated_rom_source_sha256": "0b1c634fe6f350dc21504a8f65b2e2ec72e9e0cb420be9acfd89eae2d6563bf9",
+  "art_sha256": "f68333e5f1bed9610eabe97c5c83179f59177ab85226915ca9f4d3a5a6612386",
+  "native_visible_size": [
+    112,
+    216
+  ],
+  "hardware_cell": [
+    8,
+    16
+  ],
+  "native_bitmap_allocation_bytes": 3136,
+  "hardware_cells": 196,
+  "preview_scale": [
+    6,
+    4
+  ],
+  "standing_pellet_rgb": [
+    255,
+    255,
+    255
+  ],
+  "regular_pellets_unchanged": 240,
+  "power_pellets_unchanged": 4,
+  "logical_tile_codes_unchanged": true,
+  "changed_wall_codes": 36,
+  "original_unique_wall_4x6_masks": 33,
+  "simplified_unique_wall_4x6_masks": 20,
+  "models": {
+    "current": {
+      "full_board_unique_8x16": 118,
+      "full_board_pattern_bytes": 1888,
+      "empty_board_unique_8x16": 101,
+      "all_local_pellet_variants_unique_8x16": 413,
+      "pellet_mutable_cells": 116,
+      "hud_reserved_cells": 42,
+      "pellet_or_hud_mutable_cells": 144,
+      "shared_fixed_patterns_outside_mutable_cells": 32,
+      "conservative_background_slots": 176,
+      "conservative_background_bytes": 2816,
+      "potential_bytes_released_from_3136_byte_bitmap": 320,
+      "max_pellet_fragments_per_cell": 4
+    },
+    "simplified": {
+      "full_board_unique_8x16": 109,
+      "full_board_pattern_bytes": 1744,
+      "empty_board_unique_8x16": 92,
+      "all_local_pellet_variants_unique_8x16": 382,
+      "pellet_mutable_cells": 116,
+      "hud_reserved_cells": 42,
+      "pellet_or_hud_mutable_cells": 144,
+      "shared_fixed_patterns_outside_mutable_cells": 29,
+      "conservative_background_slots": 173,
+      "conservative_background_bytes": 2768,
+      "potential_bytes_released_from_3136_byte_bitmap": 368,
+      "max_pellet_fragments_per_cell": 4
+    }
+  },
+  "blue_maze_feasibility": {
+    "scope": "simplified full board, hires, current geometry, no actors",
+    "wall_pixel_cells": 158,
+    "pellet_pixel_cells": 116,
+    "shared_wall_and_pellet_cells": 116,
+    "wall_only_cells": 42,
+    "pellet_only_cells": 0,
+    "regular_pellets_affected_by_blue_wall_priority": 240,
+    "power_pellets_affected_by_blue_wall_priority": 4,
+    "wall_pixels": 2234,
+    "wall_pixels_that_can_be_blue_with_white_pellets": 696,
+    "all_blue_walls_and_white_pellets_possible_in_current_hires_geometry": false,
+    "runtime_changes_enabled": false
+  },
+  "limits": [
+    "Full-board counts include the current fixed HUD and eight blank storage scanlines; they exclude actors.",
+    "Pellet variants exhaust every independent present/absent combination in each hardware cell; masks that cross a cell contribute to both cells.",
+    "The conservative bound reserves one writable glyph per pellet/HUD cell and shares only the remaining fixed patterns; it excludes actors, messages, intermissions and renderer bookkeeping.",
+    "The all-variants count fixes the HUD to this fixture and is not a complete game character budget.",
+    "No allocation changes are enabled. Potential released bytes require a new character-based renderer, screen maps, overlap handling and complete memory accounting.",
+    "Actor previews use the current art and colour-cell ownership at the fixture positions; they are not emulator screenshots or evidence of less flicker.",
+    "The blue wall-priority image deliberately shows the rejected pellet-colour tradeoff for comparison; the main mockup and playable build retain white standing pellets."
+  ]
+}

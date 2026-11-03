@@ -1,0 +1,416 @@
+{
+  "date": "2026-11-03",
+  "status": "live-multicolour-playability-correction",
+  "parent_git_head": "cf81d64c69899a71488c40f45ec55ab61f13794e",
+  "prg_bytes": 27757,
+  "prg_sha256": "b8ec0dac2182f256ff6b47678162e421a64f59cc0ef22c86f60d29e6bf2fce43",
+  "default_prg_sha256": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+  "default_regression_tests": 48,
+  "before_native": {
+    "prg_sha256": "4ab98e30378d1bbc610f393308b1c94963c71b6fb684c3a5752e42fc3aaceb6c",
+    "ntsc_cpu_hz": 1022727,
+    "video_frames": 600,
+    "seconds": 9.9528,
+    "logic_ticks": 600,
+    "logic_hz": 60.28,
+    "publications": 50,
+    "updates_per_second": 5.02,
+    "max_audio_gap_ms": 102.17,
+    "max_picture_gap_ms": 251.84,
+    "routines": {
+      "mc_prepare": {
+        "count": 50,
+        "mean_cycles": 47081.2,
+        "max_cycles": 59460
+      },
+      "mc_commit": {
+        "count": 50,
+        "mean_cycles": 3465.8,
+        "max_cycles": 4229
+      },
+      "audio_update": {
+        "count": 600,
+        "mean_cycles": 971.5,
+        "max_cycles": 1323
+      },
+      "video_background": {
+        "count": 50,
+        "mean_cycles": 15110.8,
+        "max_cycles": 19213
+      }
+    },
+    "cache_and_actor_errors": 0,
+    "joystick_only": true
+  },
+  "after_native": {
+    "prg_sha256": "b8ec0dac2182f256ff6b47678162e421a64f59cc0ef22c86f60d29e6bf2fce43",
+    "ntsc_cpu_hz": 1022727,
+    "video_frames": 600,
+    "seconds": 9.9528,
+    "logic_ticks": 603,
+    "logic_hz": 60.59,
+    "publications": 87,
+    "updates_per_second": 8.74,
+    "max_audio_gap_ms": 31.37,
+    "max_picture_gap_ms": 164.44,
+    "routines": {
+      "audio_update": {
+        "count": 603,
+        "mean_cycles": 930.7,
+        "max_cycles": 1323
+      },
+      "mc_prepare_step": {
+        "count": 524,
+        "mean_cycles": 3847.4,
+        "max_cycles": 6417
+      },
+      "mc_commit": {
+        "count": 87,
+        "mean_cycles": 3008.1,
+        "max_cycles": 3685
+      },
+      "video_background": {
+        "count": 87,
+        "mean_cycles": 8999.1,
+        "max_cycles": 13940
+      }
+    },
+    "cache_and_actor_errors": 0,
+    "joystick_only": true
+  },
+  "paired_preparation": {
+    "before": {
+      "packets": 480,
+      "mean_cycles": 43163.9,
+      "max_cycles": 62399
+    },
+    "after": {
+      "packets": 480,
+      "mean_cycles": 24683.9,
+      "max_cycles": 32886
+    },
+    "all_packets_faster": true
+  },
+  "vice": {
+    "prg_sha256": "b8ec0dac2182f256ff6b47678162e421a64f59cc0ef22c86f60d29e6bf2fce43",
+    "validation": {
+      "boot_coin_start_via_joystick": true,
+      "warmup_video_frames": 917,
+      "successive_live_scenes": 32,
+      "hidden_preparation_and_published_pixels": true,
+      "hidden_actor_slices": 96,
+      "ntsc_origin": [
+        6,
+        18
+      ],
+      "vacated_cells_restored": 98,
+      "all_36288_native_pixels_match": true,
+      "validation_scene_frozen_only_for_pixel_comparison": true
+    },
+    "recording": {
+      "frames": 600,
+      "capture_fps": "340909/5655",
+      "completed_updates": 89,
+      "observed_updates_per_second": 8.96,
+      "first": {
+        "frame": 0,
+        "ticks": 543,
+        "updates": 2,
+        "pellets": 1,
+        "score": [
+          16,
+          0,
+          0
+        ],
+        "lives": 3
+      },
+      "last": {
+        "frame": 599,
+        "ticks": 1146,
+        "updates": 91,
+        "pellets": 70,
+        "score": [
+          64,
+          7,
+          0
+        ],
+        "lives": 3
+      },
+      "audio": {
+        "sample_rate": 48000,
+        "channels": 1,
+        "nonzero_samples": 477604,
+        "sample_span": 31786
+      },
+      "video": "build/multicolour-game/vice/playable-preview.mp4",
+      "sha256": "60dccc89be77dd1317c48e09e0ab58a4b73a5bbac0a892571691d48fe3c393a0",
+      "joystick_only": true,
+      "guest_memory_or_code_patched": false,
+      "all_video_and_audio_decode": true
+    }
+  },
+  "native": {
+    "status": "passed",
+    "prg_sha256": "b8ec0dac2182f256ff6b47678162e421a64f59cc0ef22c86f60d29e6bf2fce43",
+    "arcade_parity_and_audio_tests": 6,
+    "live_updates": {
+      "pellet_and_power_pellet_removals": 36,
+      "background_and_reference_checks": 38,
+      "completion_palette_and_next_board_blue": true
+    },
+    "renderer": {
+      "scenes": 2415,
+      "optional_recorded_scenes": 480,
+      "poses": 29,
+      "maximum_work_cells": 54,
+      "capacity_failure_paths": 3,
+      "incremental_scenes": 29,
+      "abort_prefixes": 6,
+      "hidden_preparation_and_exact_pixels": true,
+      "cache_ownership_and_guards": true
+    },
+    "actor_packets": {
+      "packets": 5112,
+      "all_raw_coordinate_bytes": true,
+      "all_actor_slots_and_direction_flips": true,
+      "white_frightened_poses": true
+    }
+  },
+  "smoke": {
+    "screens": [
+      "attract",
+      "credits",
+      "maze",
+      "cherry",
+      "intermission-1",
+      "intermission-2",
+      "intermission-3"
+    ],
+    "stack_by_scene": {
+      "attract": {
+        "software_lowest_write": 8163,
+        "software_bytes_written": 29,
+        "hardware_lowest_write": 492,
+        "hardware_bytes_written": 20
+      },
+      "credits": {
+        "software_lowest_write": 8154,
+        "software_bytes_written": 38,
+        "hardware_lowest_write": 492,
+        "hardware_bytes_written": 20
+      },
+      "maze": {
+        "software_lowest_write": 8154,
+        "software_bytes_written": 38,
+        "hardware_lowest_write": 492,
+        "hardware_bytes_written": 20
+      },
+      "cherry": {
+        "software_lowest_write": 8154,
+        "software_bytes_written": 38,
+        "hardware_lowest_write": 492,
+        "hardware_bytes_written": 20
+      },
+      "intermission-1": {
+        "software_lowest_write": 8154,
+        "software_bytes_written": 38,
+        "hardware_lowest_write": 492,
+        "hardware_bytes_written": 20
+      },
+      "intermission-2": {
+        "software_lowest_write": 8154,
+        "software_bytes_written": 38,
+        "hardware_lowest_write": 492,
+        "hardware_bytes_written": 20
+      },
+      "intermission-3": {
+        "software_lowest_write": 8154,
+        "software_bytes_written": 38,
+        "hardware_lowest_write": 492,
+        "hardware_bytes_written": 20
+      }
+    },
+    "clock": {
+      "video_frames": 180,
+      "arcade_ticks": 180,
+      "expected": 180.96
+    },
+    "long_run_ticks": 7205,
+    "stack": {
+      "software_lowest_write": 8154,
+      "software_bytes_written": 38,
+      "hardware_lowest_write": 491,
+      "hardware_bytes_written": 21
+    },
+    "boot": {
+      "entries": 1,
+      "released": true
+    },
+    "irq_vector_intact": true,
+    "stack_guard_intact": true,
+    "software_stack_reserved": 224,
+    "shifted_tables_intact_all_scenes": true
+  },
+  "smoke_cache": {
+    "attract": "passed",
+    "cherry": "passed",
+    "credits": "passed",
+    "intermission-1": "passed",
+    "intermission-2": "passed",
+    "intermission-3": "passed",
+    "maze": "passed"
+  },
+  "memory": {
+    "sections": {
+      ".boot": {
+        "address": 1024,
+        "bytes": 424
+      },
+      ".mc_low_tables": {
+        "address": 512,
+        "bytes": 181
+      },
+      ".mc_shift_tables": {
+        "address": 7488,
+        "bytes": 480
+      },
+      ".arcade_data": {
+        "address": 40960,
+        "bytes": 8145
+      },
+      ".mc_state": {
+        "address": 6711,
+        "bytes": 520
+      },
+      ".mc_under": {
+        "address": 7360,
+        "bytes": 108
+      },
+      ".mc_maps": {
+        "address": 8192,
+        "bytes": 567
+      },
+      ".screen_work": {
+        "address": 708,
+        "bytes": 17
+      },
+      ".video_bits": {
+        "address": 3840,
+        "bytes": 199
+      },
+      ".work": {
+        "address": 800,
+        "bytes": 223
+      },
+      ".zp.data": {
+        "address": 34,
+        "bytes": 26
+      },
+      ".zp.bss": {
+        "address": 60,
+        "bytes": 36
+      },
+      ".zp": {
+        "address": 96,
+        "bytes": 30
+      },
+      ".text": {
+        "address": 8759,
+        "bytes": 23950
+      },
+      ".data": {
+        "address": 32709,
+        "bytes": 0
+      },
+      ".bss": {
+        "address": 32709,
+        "bytes": 0
+      },
+      ".noinit": {
+        "address": 32709,
+        "bytes": 0
+      },
+      ".debug_info": {
+        "address": 0,
+        "bytes": 17928
+      },
+      ".debug_abbrev": {
+        "address": 0,
+        "bytes": 586
+      },
+      ".debug_aranges": {
+        "address": 0,
+        "bytes": 280
+      },
+      ".debug_line": {
+        "address": 0,
+        "bytes": 20060
+      },
+      ".debug_line_str": {
+        "address": 0,
+        "bytes": 235
+      },
+      ".debug_rnglists": {
+        "address": 0,
+        "bytes": 1898
+      },
+      ".debug_str_offsets": {
+        "address": 0,
+        "bytes": 900
+      },
+      ".debug_str": {
+        "address": 0,
+        "bytes": 4741
+      },
+      ".debug_addr": {
+        "address": 0,
+        "bytes": 2564
+      },
+      ".comment": {
+        "address": 0,
+        "bytes": 204
+      },
+      ".llvm_sympart": {
+        "address": 0,
+        "bytes": 30
+      },
+      ".symtab": {
+        "address": 0,
+        "bytes": 11088
+      },
+      ".shstrtab": {
+        "address": 0,
+        "bytes": 334
+      },
+      ".strtab": {
+        "address": 0,
+        "bytes": 11045
+      }
+    },
+    "software_stack_bottom_hex": "1f20",
+    "software_stack_reserved": 224,
+    "ram_configuration": "+3K and BLK1/2/3/5, conventional +35K",
+    "free_blk1_3": 59,
+    "free_blk5": 47
+  },
+  "limits": [
+    "Roughly 9 screen updates/s remains visibly choppy.",
+    "Full scene construction is progressive; recording begins afterwards.",
+    "Death, later fruit, points and special intermission actors retain fallback artwork.",
+    "Physical hardware and PAL have not been tested."
+  ],
+  "sources": {
+    "src/pacman.c": "dc08732ffe2e955ca89847de9ddab419950780339724ece06b0325dcc1939a84",
+    "src/multicolour.S": "1a0f503a0b528467f8f60139b4e6111856fd37444db6f2df953fbba6ea8abc70",
+    "src/multicolour.c": "46b27132165116e206c1ac8ac87b486f7a83b90e09428a9958e9f939a468f6be",
+    "src/multicolour.ld": "bef2362d5693aa17eddc64c6d28809315246278266fad0fb8c8866e92aad9ccf",
+    "tools/arcade/build_multicolour_assets.py": "107156a653b7d7928bd54f8a7fead8632e1cd18485f9087c04d9646598a7d329",
+    "tools/arcade/pack.py": "53a62a87491c3062448538c40ac8265516ada1519818e16b699c90e9de982107",
+    "tools/arcade/record_multicolour_game.py": "47b2689d72a14579af1e4b9f6fec153891cf48021c7c3363dc838d51eb25c511",
+    "tests/multicolour.py": "2bd6d8736b0d7df31859c9b8ec660a3bdfb29b1186e58726a58486ddeb12575c",
+    "tests/multicolour_timing.py": "62691dec2a479c814467418deaa2563ec0e0e630d17ac1c1d56dcbac69b33ebb",
+    "tests/smoke.py": "5b2fc5f7cc939e79d160bd2007d9bd5aa9a0ef016a19e951c2b3892b737a42a5",
+    "tools/vicsim/vicsim.c": "f21f372c3d71606036ee3aace51b35181f1ad0e6c126010befdc6cd9567bf10f",
+    "Makefile": "90c09bac6126961bd89eac4e40ee27c24be3f46dae304b50e8794400e5093eec"
+  }
+}

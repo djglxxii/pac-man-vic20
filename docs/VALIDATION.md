@@ -6,8 +6,11 @@ bonus life at 10,000 points. The program ROM CRCs are `c1e6ab10`, `1a6fb2d4`,
 `build/arcade/rom-manifest.json`.
 
 This revision replaces the initial custom engine with a native 6502
-adaptation of the arcade routines. Graphics, messages, movement masks,
+adaptation of the arcade routines. Most graphics, messages, movement masks,
 difficulty tables, fruit, songs and effects come from the local ROM set.
+The [VIC font draft](FONTS.md) replaces letter/digit artwork and reformats
+native fruit score messages. The Z80 reference remains unmodified; these
+intentional presentation changes have separate compiled-game checks.
 The [baseline audit](ARCADE_PARITY_AUDIT.md) describes the superseded engine.
 The [source provenance](../src/arcade/UPSTREAM.md) identifies the translation
 and the errors repaired during comparison with the original instructions.
@@ -20,9 +23,9 @@ make -j2 test
 make vice-test
 ```
 
-Result on 2026-11-02: **15 ROM comparison tests, six native tests, three memory
-tests, five renderer tests, six maze-color tests, three maze-flash tests and
-eight bounded-rebuild tests passed** (46 total),
+Result on 2026-11-03: **15 ROM comparison tests, six native tests, one ghost-state
+test, three memory tests, seven renderer tests, two font/popup tests, six maze-color tests, three maze-flash tests and
+eight bounded-rebuild tests passed** (51 total),
 followed by the frontend
 smoke run and the VICE check.
 The smoke run exceeded 7,000 logical ticks with its IRQ vector and stack guard
@@ -68,8 +71,21 @@ and 300 frightened-mode ticks against the Z80 runner. It also checks the
 PRG's address limits and every possible eight-bit square against the
 smaller native lookup table.
 
+The seventh renderer check covers horizontal ghost rewards with both positions
+of the hidden Pac-Man slot, all shifts and flips, overlapping priorities, both screen edges
+and incremental appearance/removal. It checks restoration and preservation
+of the original arcade output buffers. `tests/fonts.py` checks all eight fruit
+scores, both complete pixel/palette erase paths and the four ghost-score
+selections. [Font notes and measured layout costs](FONTS.md) document the
+intentional native fruit-message formatting difference.
+
 Native audio tests check the threshold-based divider around every rounding
 boundary and the complete five-register VIC output for 160 varied inputs.
+`tests/ghosts.py` adds 528 compiled ghost-update comparisons against the Z80
+routine: all 32 individual speed-mask bits, zero/all-one/alternating patterns
+and random patterns across normal, frightened, tunnel, Elroy, competing mode
+priorities, in-house, returning and death-pause scenarios. It also measures
+the routine on identical inputs; see [GHOST_STATE.md](GHOST_STATE.md).
 `tests/memory.py` checks the actual 6502 loader's three output regions, cold
 logical RAM, the one-time startup handoff and stack observations. Simulator
 execution guards reject any return to the temporary startup range once resident
@@ -84,6 +100,14 @@ The fifth renderer check compares 100 queued background changes against full
 redraws with overlapping actors, including HUD addressing and colour-cell
 sharing without pixel overlap. It also checks that an unrelated HUD write
 does not erase stationary actors; see [SPRITE_FLICKER.md](SPRITE_FLICKER.md).
+The sixth renderer check exercises 1,152 clipped-kernel cases with guards
+around the bitmap and adjacent underlay records. It verifies pixels, valid
+saved backgrounds and restoration at both edges. The separate
+`tests/sprite_timing.py` measurement tool compares 13,824 identical kernel
+inputs; see [SPRITE_KERNELS.md](SPRITE_KERNELS.md).
+The rejected raster experiment's four additional tests and observer changes
+were removed with its runtime code. Its historical results remain in
+[RASTER_SYNC.md](RASTER_SYNC.md).
 
 `tests/colors.py` derives pellet coverage from the decoded source pixels. It
 checks a real maze's white walls/pellets and unchanged bitmap, shuffled tile

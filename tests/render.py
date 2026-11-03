@@ -18,6 +18,7 @@ class Renderer(unittest.TestCase):
             return bytes(int(x, 16) for x in re.findall(r"0x[0-9a-f]+", body))
 
         cls.sprites = table("arcade_sprites")
+        cls.score_right = table("arcade_score_right")
         cls.eyes = table("arcade_eyes")
         cls.classes = table("arcade_sprite_class")
         cls.colors = table("arcade_colors")
@@ -46,44 +47,60 @@ class Renderer(unittest.TestCase):
             self.sim.cmd(f"load ${address:x} {path}")
 
     def check_scene(
-        self, actors, incremental=False, retain=False, background_change=False
+        self, actors, incremental=False, retain=False, background_change=False,
+        refresh=False,
     ):
         attrs = bytearray(16)
         positions = bytearray(16)
         expected = bytearray(self.background)
         colors = bytearray(self.cell_colors)
+        slots = dict(zip(range(12, 0, -2), actors))
+        hole = next((off for off in (10, 2) if not slots.get(off, (0, 0, 0))[2] & 31), None)
+        reward = next((off for off in (10, 8, 6, 4, 2)
+                       if off in slots and 40 <= slots[off][0] < 44
+                       and slots[off][2] & 31 == 24), None)
+        if hole is None:
+            reward = None
         for off, (code, flip, pal, raw_x, raw_y) in zip(range(12, 0, -2), actors):
             attrs[off : off + 2] = bytes((code * 4 + flip, pal))
             positions[off : off + 2] = bytes((raw_x, raw_y))
             x = (239 - raw_x - (off <= 4)) // 2
             y = (272 - raw_y) * 3 // 4
-            if not pal or x <= -8 or x >= 112:
+            wide = off == reward
+            width = 16 if wide else 8
+            if wide:
+                x -= 4
+            if not pal or x <= -width or x >= 112:
                 continue
+            right_half = pal == 31 and 40 <= code < 44
             eye = pal == 25 and 32 <= code < 40
             pixel = 1 if eye else (self.classes[code // 4] >> ((code & 3) * 2)) & 3
-            color = self.colors[pal * 4 + pixel]
+            color = self.colors[(24 if right_half else pal) * 4 + pixel]
             if not color:
                 continue
             image = (
                 self.eyes[(code - 32) * 12 : (code - 31) * 12]
                 if eye
+                else self.score_right[(code - 40) * 12 : (code - 39) * 12]
+                if right_half
                 else self.sprites[code * 12 : (code + 1) * 12]
             )
+            if wide:
+                image = [left << 8 | right for left, right in zip(
+                    image, self.score_right[(code - 40) * 12:(code - 39) * 12])]
             col, shift = x // 8, x & 7
             cell = (y // 16) * 14 + col
             for row in range(12):
                 bits = image[11 - row if flip & 1 else row]
                 if flip & 2:
-                    bits = int(f"{bits:08b}"[::-1], 2)
-                if col >= 0:
-                    expected[col * 224 + y + row] |= bits >> shift
-                if col < 13:
-                    expected[(col + 1) * 224 + y + row] |= (bits << (8 - shift)) & 255
+                    bits = int(f"{bits:0{width}b}"[::-1], 2)
+                for dx in range(width):
+                    px = x + dx
+                    if 0 <= px < 112 and bits & (1 << (width - 1 - dx)):
+                        expected[(px // 8) * 224 + y + row] |= 128 >> (px & 7)
             for lower in (0, 14) if y & 15 > 4 else (0,):
-                if col >= 0:
-                    colors[(cell + lower) & 255] = color
-                if col < 13 and shift:
-                    colors[(cell + lower + 1) & 255] = color
+                for column in range(max(0, col), min(13, (x + width - 1) // 8) + 1):
+                    colors[(cell + lower + column - col) & 255] = color
         for address, data in ((0xC20, attrs), (0xC30, positions)):
             p = WORK / "actors.bin"
             p.write_bytes(data)
@@ -92,7 +109,8 @@ class Renderer(unittest.TestCase):
             if background_change:
                 # This fixture replaces the whole bitmap, not one queued tile.
                 self.sim.cmd("poke full_dirty 1")
-            self.sim.cmd("call video_update_begin")
+            if not refresh or background_change:
+                self.sim.cmd("call video_update_begin")
             if background_change:
                 for address, data in (
                     (0x1000, self.background),
@@ -102,10 +120,13 @@ class Renderer(unittest.TestCase):
                     p.write_bytes(data)
                     self.sim.cmd(f"load ${address:x} {p}")
                 self.sim.cmd("poke full_dirty 0")
-            self.sim.cmd("call video_update_end")
+            self.sim.cmd("call video_refresh" if refresh and not background_change
+                         else "call video_update_end")
         else:
             self.sim.cmd("call video_sprites")
         actual = self.sim.dump()
+        self.assertEqual(actual[0xC20:0xC30], attrs, "arcade actor attributes retained")
+        self.assertEqual(actual[0xC30:0xC40], positions, "arcade actor positions retained")
         self.assertEqual(actual[0x1000:0x1C40], expected, f"sprite pixels: {actors}")
         self.assertEqual(actual[0x9600:0x9700], colors, f"sprite colors: {actors}")
         if retain:
@@ -134,6 +155,35 @@ class Renderer(unittest.TestCase):
                             )
                         ]
                     )
+
+    def test_07_horizontal_rewards_priority_flips_edges_and_restoration(self):
+        def scene(off, code, flip, x, hole=10):
+            actors = [[32, 0, pal, 160, 168] for pal in (0, 9, 7, 5, 3, 1)]
+            for slot, actor in zip(range(12, 0, -2), actors):
+                # Overlap the reward with ghosts above and below its priority.
+                actor[3] = (239 - (slot <= 4) - 2 * (36 + slot // 2)) & 255
+                if slot == hole:
+                    actor[2] = 0
+                if slot == off:
+                    actor[:] = [code, flip, 24, (239 - (slot <= 4) - 2 * x) & 255, 168]
+            return actors
+
+        layouts = [(off, hole) for hole in (2, 10) for off in (2, 4, 6, 8, 10) if off != hole]
+        for off, hole in layouts:
+            for code in range(40, 44):
+                for shift in range(8):
+                    for flip in range(4):
+                        self.check_scene(scene(off, code, flip, 32 + shift, hole))
+        for x in (-8, -4, -1, 0, 104, 108, 111):
+            for flip in range(4):
+                self.check_scene(scene(4, 43, flip, x, 2))
+        for off, hole in layouts:
+            for frame in range(12):
+                actors = scene(off, 40 + frame % 4, frame % 4, 32 + frame, hole)
+                if frame in (0, 11):
+                    actors[(12 - off) // 2][2] = 1
+                    actors[(12 - hole) // 2][2] = 9
+                self.check_scene(actors, incremental=True, retain=frame < 11)
 
     def test_02_edges_overlap_priority_and_returning_eyes(self):
         rng = random.Random(1980)
@@ -227,6 +277,78 @@ class Renderer(unittest.TestCase):
             for a, cycles, h in map(str.split, path.read_text().splitlines())
         }
         self.assertEqual(hits[self.sim.labels["bitmap_draw_ghost"]], 8 * 8 * 4)
+
+    def test_06_clipped_kernel_memory_boundaries(self):
+        # A clipped column is redirected into its unused underlay half. Check
+        # both bitmap edges, including addresses that would hit video caches
+        # or game I/O if an invisible column were written to its real address.
+        sim = Sim()
+        try:
+            sim.cmd("run 500")
+            sim.cmd("until frame_wait 100")
+            rng = random.Random(6561)
+            guards = bytes(rng.randrange(256) for _ in range(256))
+            records = bytes(rng.randrange(256) for _ in range(216))
+            under = sim.labels["under"]
+            path = WORK / "kb.bin"
+
+            def load(address, data):
+                path.write_bytes(data)
+                sim.cmd(f"load ${address:x} {path}")
+
+            def poke(name, value, width=1):
+                for byte in range(width):
+                    sim.cmd(f"poke ${sim.labels[name] + byte:x} {(value >> (8 * byte)) & 255}")
+
+            for code, eye in ((0, False), (9, False), (6, True)):
+                atlas = self.eyes if eye else self.sprites
+                source = sim.labels["arcade_eyes" if eye else "arcade_sprites"] + code * 12
+                for shift in range(8):
+                    for flip in range(4):
+                        for column, flags in ((-1, 2), (13, 1)):
+                            for y in (0, 15, 204):
+                                for record in (0, 180):
+                                    dest = 0x1000 + column * 224 + y
+                                    save = under + record + 8
+                                    for address, data in ((0x1000, self.background),
+                                                          (0x0F00, guards), (0x1C40, guards),
+                                                          (under, records)):
+                                        load(address, data)
+                                    for name, value, width in (("v_addr", dest, 2),
+                                                               ("v_save", save, 2),
+                                                               ("v_data", source, 2),
+                                                               ("v_shift", shift, 1),
+                                                               ("v_flip", flip, 1),
+                                                               ("v_flags", flags, 1)):
+                                        poke(name, value, width)
+                                    sim.cmd("call bitmap_draw")
+                                    actual = sim.dump()
+                                    expected = bytearray(self.background)
+                                    for row in range(12):
+                                        bits = atlas[code * 12 + (11 - row if flip & 1 else row)]
+                                        if flip & 2:
+                                            bits = int(f"{bits:08b}"[::-1], 2)
+                                        index = (column if flags == 1 else column + 1) * 224 + y + row
+                                        expected[index] |= (bits >> shift if flags == 1
+                                                            else (bits << (8 - shift)) & 255)
+                                    case = (code, eye, shift, flip, column, y, record)
+                                    self.assertEqual(actual[0x1000:0x1C40], expected, case)
+                                    self.assertEqual(actual[under:save], records[:record + 8], case)
+                                    self.assertEqual(actual[save + 24:under + 216], records[record + 32:], case)
+                                    saved = save if flags == 1 else save + 12
+                                    visible = dest if flags == 1 else dest + 224
+                                    self.assertEqual(actual[saved:saved + 12],
+                                                     self.background[visible - 0x1000:visible - 0x1000 + 12], case)
+                                    # The frontend reloads the original address from
+                                    # the record before restoring this actor.
+                                    poke("v_addr", dest, 2)
+                                    sim.cmd("call bitmap_erase")
+                                    actual = sim.dump()
+                                    self.assertEqual(actual[0x1000:0x1C40], self.background, case)
+                                    self.assertEqual(actual[0x0F00:0x1000], guards, case)
+                                    self.assertEqual(actual[0x1C40:0x1D40], guards, case)
+        finally:
+            sim.close()
 
     def test_05_dirty_tiles_preserve_actors_and_shared_colours(self):
         sim = Sim()

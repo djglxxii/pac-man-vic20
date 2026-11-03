@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VIC-MAN maze artwork study</title>
+<style>
+body{background:#111820;color:#edf2f7;font:16px system-ui,sans-serif;margin:0;padding:28px;max-width:1440px;margin-inline:auto}
+h1{font-size:clamp(24px,4vw,36px);margin:0 0 10px}p{line-height:1.6;color:#bac9d8;max-width:82ch}
+.controls{display:flex;gap:22px;flex-wrap:wrap;margin:24px 0}label{cursor:pointer}input{accent-color:#88e4cc}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:28px}.card h2{font-size:19px}.card:last-child h2{color:#88e4cc}
+canvas{display:block;width:100%;height:auto;image-rendering:pixelated;background:#000}small{color:#bac9d8}
+a{color:#88e4cc}.notes{margin-top:26px;padding-top:14px;border-top:1px solid #34404e}
+@media(max-width:700px){body{padding:18px}.pair{grid-template-columns:1fr}}
+</style>
+<h1>Same maze. Simpler wall artwork.</h1>
+<p>Original corridor layout and pellet positions, at the current NTSC display proportions.
+The proposed maze uses single outlines and square corners. Scores and actor graphics use the existing artwork.</p>
+<div class="controls"><label><input id="pellets" type="checkbox" checked> Pellets present</label>
+<label><input id="actors" type="checkbox"> Current actors</label>
+<label><input id="grid" type="checkbox"> 8 × 16 character grid</label></div>
+<div class="pair"><section class="card"><h2>Current maze</h2><canvas id="current" width="672" height="864"></canvas></section>
+<section class="card"><h2>Simplified maze</h2><canvas id="simplified" width="672" height="864"></canvas></section></div>
+<div class="notes"><p>Artwork mockup only. The actor view includes the current colour-cell sharing;
+it does not promise a colour-clash or flicker fix. No gameplay or renderer changes are enabled.</p>
+<p><a href="../MAZE_MOCKUP.md">Read the character-memory findings</a> · <a href="maze-comparison.png">Save comparison image</a>
+ · <a href="maze-blue-comparison.png">Blue maze colour study</a></p></div>
+<script>
+const paths = {"current": ["maze-current.png", "maze-current-empty.png", "maze-current-actors.png", "maze-current-empty-actors.png"], "simplified": ["maze-simplified.png", "maze-simplified-empty.png", "maze-simplified-actors.png", "maze-simplified-empty-actors.png"]};
+const art = Object.fromEntries(Object.entries(paths).map(([name,paths]) => [name,paths.map(path => {
+  const im = new Image(); im.src = path; im.onload = draw; return im;
+})]));
+function draw(){
+  const index = (document.querySelector('#pellets').checked ? 0 : 1) + (document.querySelector('#actors').checked ? 2 : 0);
+  for(const name of ['current','simplified']){
+    const canvas = document.getElementById(name), ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;ctx.clearRect(0,0,672,864);
+    if(art[name][index].complete)ctx.drawImage(art[name][index],0,0,672,864);
+    if(document.querySelector('#grid').checked){
+      ctx.strokeStyle = 'rgba(70,210,190,.5)';ctx.lineWidth = 1;
+      ctx.beginPath();for(let x=0;x<=672;x+=48){ctx.moveTo(x+.5,0);ctx.lineTo(x+.5,864)}
+      for(let y=0;y<=864;y+=64){ctx.moveTo(0,y+.5);ctx.lineTo(672,y+.5)}ctx.stroke();
+    }
+  }
+}
+document.querySelectorAll('input').forEach(input=>input.addEventListener('change',draw));
+</script></html>

@@ -1,0 +1,21 @@
+{
+  "emulator": "VICE NTSC VIC-20 with conventional expansion blocks",
+  "static_prg_sha256": "2053151c33af1b374a36d75909895a1ed2a8970607ab7b0b0f9b339ae2aea230",
+  "all_36288_native_pixels_match": true,
+  "matrix_bytes_match": 567,
+  "colour_bytes_match": 567,
+  "virtual_io_and_stack_canary_bytes_intact": 960,
+  "monitor_raster_rectangle": [
+    96,
+    8,
+    336,
+    216
+  ],
+  "palette_sources_verified": {
+    "00": "black background",
+    "01": "blue border",
+    "10": "cell accent",
+    "11": "white auxiliary"
+  },
+  "scope": "static artwork/mode validation; no moving-actor timing or game performance claim"
+}

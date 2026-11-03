@@ -3,6 +3,7 @@
 import argparse, hashlib, json, zipfile
 from pathlib import Path
 from PIL import Image, ImageDraw
+from hires_font import apply_ghost_scores, apply_tiles, fruit_messages, load_glyphs
 
 BLOCKS = (
     (0x68, 0x8D),
@@ -32,6 +33,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--roms", default="pacman.zip")
     ap.add_argument("--output", default="build/arcade")
+    ap.add_argument("--arcade-font", action="store_true",
+                    help="Keep scaled arcade lettering for artwork comparisons")
     args = ap.parse_args()
     out = Path(args.output)
     out.mkdir(parents=True, exist_ok=True)
@@ -48,10 +51,11 @@ def main():
     )
     hdr = ["#ifndef ARCADE_ROM_H\n#define ARCADE_ROM_H\n#include <stdint.h>\n"]
     src = ['#include "rom.h"\n']
+    native_rom = rom if args.arcade_font else fruit_messages(rom)
     for lo, hi in BLOCKS:
         name = f"rom_{lo:04x}"
         hdr.append(f"extern const uint8_t {name}[{hi-lo}];\n")
-        src.append(array(name, rom[lo:hi], ".arcade_data"))
+        src.append(array(name, native_rom[lo:hi], ".arcade_data"))
     hdr.append("static inline const uint8_t *arcade_rom_ptr(uint16_t a) {\n")
     for lo, hi in BLOCKS:
         hdr.append(
@@ -137,6 +141,9 @@ def main():
             for y in range(6)
         ]
         tiles.extend(rows[y] << 4 | rows[y + 1] for y in range(0, 6, 2))
+    glyphs = load_glyphs()
+    if not args.arcade_font:
+        apply_tiles(tiles, glyphs)
     sheet = Image.new("RGB", (16 * 32, 4 * 48), "black")
     draw = ImageDraw.Draw(sheet)
     colors = [(0, 0, 0), (255, 255, 255), (0, 0, 255), (255, 0, 0)]
@@ -173,6 +180,12 @@ def main():
         if 32 <= code < 40:
             eyes.extend(mask(lambda p: p == 1))
     sheet.save(out / "sprite-reference.png")
+    if not args.arcade_font:
+        score_right = apply_ghost_scores(sprites, glyphs)
+        # The main graphics bank is full; these four extra half-masks fit
+        # in resident RAM without changing the expansion configuration.
+        hdr.append("extern const uint8_t arcade_score_right[48];\n")
+        src.append(array("arcade_score_right", score_right))
     # Right/down/left ghost frames share two horizontally symmetric masks.
     # The transparent first/last rows need no mask data. Six normal frames
     # therefore need just 2 * 8 * 20 = 320 pre-shifted bytes.

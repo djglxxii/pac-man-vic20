@@ -1,0 +1,135 @@
+{
+  "date": "2026-11-03",
+  "status": "accepted-after-user-visual-review",
+  "scope": "Native hires letters and digits; all ghost/fruit rewards horizontal; flicker work remains on hold.",
+  "layout_decision": "User disliked the stacked ghost rewards. Horizontal rewards borrow the hidden Pac-Man slot, including its powered-up priority swap.",
+  "variants": {
+    "stacked": {
+      "prg_bytes": 26690,
+      "prg_sha256": "93d6b62284a007de32dae59a74622c9eb4a011ec4db8bc99f5e92dc1a7ae9ba3",
+      "performance": [
+        {
+          "scene": "play",
+          "fps": 52.17,
+          "render_ms_mean": 9.29,
+          "render_ms_max": 19.21,
+          "input_service_gap_ms_max": 27.56,
+          "audio_update_gap_ms_max": 26.58
+        },
+        {
+          "scene": "frightened",
+          "fps": 54.87,
+          "render_ms_mean": 8.04,
+          "render_ms_max": 18.32,
+          "input_service_gap_ms_max": 26.46,
+          "audio_update_gap_ms_max": 29.92
+        },
+        {
+          "scene": "attract-chase",
+          "fps": 43.61,
+          "render_ms_mean": 8.71,
+          "render_ms_max": 14.34,
+          "input_service_gap_ms_max": 27.32,
+          "audio_update_gap_ms_max": 32.64
+        }
+      ],
+      "isolated_reward_cycles": {
+        "draw": {
+          "min": 2801,
+          "mean": 3329.8125,
+          "max": 3488
+        },
+        "steady": {
+          "min": 1986,
+          "mean": 1986.0,
+          "max": 1986
+        },
+        "erase": {
+          "min": 878,
+          "mean": 878.0,
+          "max": 878
+        }
+      },
+      "isolated_reward_cases": 128
+    },
+    "horizontal": {
+      "prg_bytes": 27021,
+      "prg_sha256": "eb6b29810453418818a1ffb83f8b0057464a903682c20970cc6019617067a4e9",
+      "performance": [
+        {
+          "scene": "play",
+          "fps": 52.04,
+          "render_ms_mean": 9.29,
+          "render_ms_max": 16.5,
+          "input_service_gap_ms_max": 26.04,
+          "audio_update_gap_ms_max": 27.75
+        },
+        {
+          "scene": "frightened",
+          "fps": 54.68,
+          "render_ms_mean": 8.62,
+          "render_ms_max": 18.11,
+          "input_service_gap_ms_max": 32.51,
+          "audio_update_gap_ms_max": 29.45
+        },
+        {
+          "scene": "attract-chase",
+          "fps": 44.26,
+          "render_ms_mean": 8.62,
+          "render_ms_max": 14.98,
+          "input_service_gap_ms_max": 27.72,
+          "audio_update_gap_ms_max": 31.45
+        }
+      ],
+      "isolated_reward_cycles": {
+        "draw": {
+          "min": 4927,
+          "mean": 5235.5,
+          "max": 5468
+        },
+        "steady": {
+          "min": 2732,
+          "mean": 2843.0,
+          "max": 2951
+        },
+        "erase": {
+          "min": 1397,
+          "mean": 1397.0,
+          "max": 1397
+        }
+      },
+      "isolated_reward_cases": 128
+    }
+  },
+  "resident_end": "$7EC5",
+  "resident_free_bytes": 315,
+  "resident_growth_vs_stacked_bytes": 401,
+  "extra_masks_bytes": 48,
+  "temporary_state_bytes": 22,
+  "extra_zero_page_bytes": 0,
+  "extra_underlay_bytes": 0,
+  "blk5_free_bytes": 15,
+  "font_source_sha256": "dc098b5f778338a2c3efff85421fcab07fe8553de1ed92322b70d8f892fd60b2",
+  "validation": {
+    "regression_tests": 51,
+    "horizontal_renderer_cases": 1148,
+    "frontend_smoke": "passed all three intermissions; IRQ and stack guards intact",
+    "vice": "passed boot, coin/start and normal play, plus all four synthetic reward fixtures through real arcade priority swaps",
+    "arcade_output_buffers": "preserved by rendering",
+    "fruit_popups": "all eight values; both full pixel/palette removal paths"
+  },
+  "timing_method": "Compiled 6502 calls with IRQs masked; identical isolated reward fixtures across four ghost slots, four values and eight shifts. Draw includes the full sprite frontend; steady is unchanged video_refresh; erase restores saved backgrounds.",
+  "added_reward_time_ms": {
+    "draw": 1.863,
+    "steady": 0.838,
+    "erase": 0.507
+  },
+  "existing_tables_changed_vs_stacked": [
+    "arcade_sprites"
+  ],
+  "new_table": "arcade_score_right[48]",
+  "user_review": {
+    "date": "2026-11-03",
+    "decision": "Approved the cleaner font and horizontal ghost rewards; requested committing all work."
+  }
+}

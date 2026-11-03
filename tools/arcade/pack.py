@@ -93,7 +93,7 @@ block_end:
  lda #$7f
  bne block_address
 boot_block:
- lda #$07
+ lda #BOOT_HI
 block_address:
  sta dst+1
  jmp next_command
@@ -172,7 +172,7 @@ def verify(stream, main, bank, boot, payload_base):
         assert (destination < payload_base or
                 destination > payload_base + len(stream) - pos - 1), "compressed payload would be overwritten"
 
-    for expected, top in ((bank, 0xBFFF), (main, 0x7FFF), (boot, 0x07FF)):
+    for expected, top in ((bank, 0xBFFF), (main, 0x7FFF), (boot, 0x400 + len(boot) - 1)):
         output = bytearray()
         while True:
             control = stream[pos]
@@ -207,14 +207,16 @@ def main():
     out = Path(args.output)
     work = binary.parent
     raw = binary.read_bytes()
-    assert len(raw) == 33792
-    main, bank, boot = raw[:24576], raw[24576:32768], raw[32768:]
-    stream = compress(bank) + compress(main) + compress(boot)
-    (work / "packed.bin").write_bytes(stream[::-1])
     symbols = subprocess.check_output([args.nm, "-n", str(binary) + ".elf"], text=True)
     parsed = [line.split() for line in symbols.splitlines() if len(line.split()) == 3]
     entry = next(int(v, 16) for v, t, n in parsed if n == "boot_start")
-    (work / "loader.s").write_text(LOADER.replace("ENTRY", f"${entry:04x}"))
+    boot_limit = next(int(v, 16) for v, t, n in parsed if n == "__boot_limit")
+    assert entry == 0x400 and 0x800 <= boot_limit <= 0x1000 and boot_limit % 256 == 0
+    assert len(raw) == 32768 + boot_limit - entry
+    main, bank, boot = raw[:24576], raw[24576:32768], raw[32768:]
+    stream = compress(bank) + compress(main) + compress(boot)
+    (work / "packed.bin").write_bytes(stream[::-1])
+    (work / "loader.s").write_text(LOADER.replace("ENTRY", f"${entry:04x}").replace("BOOT_HI", f"${(boot_limit-1)>>8:02x}"))
     (work / "loader.cfg").write_text(
         "MEMORY { H: start=$0000,size=$0002,file=%O; R: start=$1201,size=$6dff,file=%O; }\nSEGMENTS { LOADADDR: load=H,type=ro; CODE: load=R,type=ro; }\n"
     )

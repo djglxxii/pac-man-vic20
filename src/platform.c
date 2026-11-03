@@ -74,5 +74,9 @@ __attribute__((noinline, section(".cold"))) void audio_update(void) {
     if (third > volume)
         volume = third;
     HW(0x900d) = 0;
-    HW(0x900e) = SOUNDENABLE ? volume : 0;
+    HW(0x900e) =
+#ifdef MULTICOLOUR
+        0x10 |
+#endif
+        (SOUNDENABLE ? volume : 0);
 }
