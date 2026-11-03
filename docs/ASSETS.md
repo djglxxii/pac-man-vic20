@@ -76,11 +76,13 @@ been removed; no extra color-priority state is needed.
 
 Two normal ghost masks cover source frames 32–37; frames 28–29 provide two
 frightened masks. All four are horizontally symmetric with transparent first
-and last rows. The generator verifies those properties and stores eight shifts
-of each middle ten-row mask, using 640 bytes total. The normal cache lives in
-BLK5 and the frightened cache in BLK1–3. Other frames, returning eyes and
-clipped sprites retain the generic compositor. The saved edge underlays and
-vertical flips remain exact; the original sprite artwork is unchanged.
+and last rows. The frightened masks cut symmetric eye and mouth holes through
+the scaled body and keep each frame's skirt. The generator verifies those
+properties and stores eight shifts of each middle ten-row mask, using 640
+bytes total. The normal cache lives in BLK5 and the frightened cache in
+BLK1–3. Other frames, returning eyes and clipped sprites retain the generic
+compositor. The saved edge underlays and vertical flips remain exact. Apart
+from those frightened holes, the sprite artwork is unchanged.
 
 ## Sound
 

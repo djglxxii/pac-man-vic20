@@ -188,6 +188,15 @@ def main():
         for shift in range(8):
             ghost_shifted.extend(v >> shift for v in body[1:11])
             ghost_shifted.extend((v << (8 - shift)) & 255 for v in body[1:11])
+    # The scaled pen-2 body fills the eyes and mouth. Cut symmetric holes
+    # through both frames; each frame keeps its own skirt.
+    solid = bytes((0x00, 0x3C, 0x7E, 0x7E, 0x7E, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF))
+    face = bytes((0x00, 0x3C, 0x7E, 0x5A, 0x5A, 0xFF, 0xDB, 0xA5, 0xFF, 0xFF))
+    for code, skirt in ((28, 0xBD), (29, 0x5A)):
+        start = code * 12
+        body = sprites[start : start + 12]
+        assert body[:10] == solid and body[10] == skirt and body[11] == 0
+        sprites[start : start + 10] = face
     frightened_shifted = bytearray()
     for code in (28, 29):
         body = sprites[code * 12 : (code + 1) * 12]
