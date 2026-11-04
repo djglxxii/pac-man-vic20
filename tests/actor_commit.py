@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """Check independent transactions against the original pixel/colour oracle."""
+import argparse
+from pathlib import Path
+import sys
 import unittest
 
 import native
@@ -110,7 +113,39 @@ class ActorCommitRenderer(render.Renderer):
         self.assertTrue(all(e.endswith('-erase') for e in cluster[:3]), events)
         self.assertTrue(all(e.endswith('-paint') for e in cluster[3:]), events)
 
+    def test_11_reward_appears_with_no_underlay_in_borrowed_slot(self):
+        # A newly borrowed slot can have no previous visible actor. Exercise
+        # live refresh, rather than the full sprite painter used by the atlas
+        # checks, so both halves must enter dependency construction immediately.
+        for hole in (2, 10):
+            for off in (2, 4, 6, 8, 10):
+                if off == hole:
+                    continue
+                for code in range(40, 44):
+                    for shift in (0, 5):
+                        with self.subTest(hole=hole, slot=off, code=code, shift=shift):
+                            self.setUp()
+                            for flag in ('full_dirty', 'dirty_count', 'rebuild_phase', 'maze_flash'):
+                                self.sim.cmd(f'poke {flag} 0')
+                            old = [[32, 0, 0, 159, 168] for _ in range(6)]
+                            other = 2 if hole == 10 else 10
+                            old[(12-other)//2][:] = [32, 0, 9,
+                                (239-(other <= 4)-2*88) & 255, 168]
+                            actor = old[(12-off)//2]
+                            actor[:] = [32, 0, 1,
+                                        (239-(off <= 4)-2*(32+shift)) & 255, 168]
+                            self.check_scene(old, retain=True)
+                            new = [a.copy() for a in old]
+                            new[(12-off)//2][:3] = [code, 0, 24]
+                            self.check_scene(new, incremental=True, retain=True)
+                            self.sim.cmd('call video_restore')
+
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument('--prg', type=Path)
+    args, rest = parser.parse_known_args()
+    if args.prg is not None:
+        PRG = args.prg.resolve()
     native.Sim = render.Sim = preview_sim
-    unittest.main(verbosity=2)
+    unittest.main(argv=[sys.argv[0], *rest], verbosity=2)

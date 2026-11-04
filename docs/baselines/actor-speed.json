@@ -1,0 +1,671 @@
+{
+  "date": "2026-11-03",
+  "status": "separate-trial-visual-benefit-inconclusive",
+  "user_visual_review": {
+    "date": "2026-11-03",
+    "quote": "it might be better, honestly not super noticeable as I thought in the initial trial.",
+    "assessment": "Possible improvement, less noticeable than in the initial matched-cadence trial; overall benefit inconclusive.",
+    "promoted_to_default": false
+  },
+  "hardware": "NTSC VIC-20, +3K/BLK1/BLK2/BLK3/BLK5, 16875-cycle arcade clock",
+  "capture": {
+    "mode": "natural rendering; no PC gate or guest code patches",
+    "same_logical_tick_joystick_trace": true,
+    "programs": {
+      "reference": {
+        "prg_sha256": "98929418f1dc3636e06342f3dc764aaec79aa6624b8fcea28cb1aabcae8fc2e1",
+        "loaded_program": {
+          "all_depacked_regions_match": true,
+          "bytes_checked": 33792,
+          "loaded_image_sha256": "9cba2b17ecea7d58cf92ec5b607339761febcfa94c2fc7defcdc8bcac158563b"
+        },
+        "video_frames": 1200,
+        "counter_interval_seconds": 19.889017303737948,
+        "completed_render_calls": 525,
+        "render_calls_per_second": 26.39647761286483,
+        "matched_active_input_states": 1208,
+        "same_active_inputs_and_states": true,
+        "common_completed_render_ticks": 525,
+        "same_completed_pictures_at_common_ticks": true,
+        "first_tick": 432,
+        "last_tick": 1640
+      },
+      "fast": {
+        "prg_sha256": "b5fa71ca237941f08a13b5d81a4dfa452d942bb4994349450eb41a0054f10772",
+        "loaded_program": {
+          "all_depacked_regions_match": true,
+          "bytes_checked": 33792,
+          "loaded_image_sha256": "3ee6a691b3e2d78e2c8d5bc532cf29be0797a69d0b49d0448dbd81acdb872648"
+        },
+        "video_frames": 1200,
+        "counter_interval_seconds": 19.889017303737948,
+        "completed_render_calls": 548,
+        "render_calls_per_second": 27.552894727333197,
+        "matched_active_input_states": 1206,
+        "same_active_inputs_and_states": true,
+        "common_completed_render_ticks": 329,
+        "same_completed_pictures_at_common_ticks": true,
+        "first_tick": 432,
+        "last_tick": 1638
+      },
+      "baseline": {
+        "prg_sha256": "eb6b29810453418818a1ffb83f8b0057464a903682c20970cc6019617067a4e9",
+        "loaded_program": {
+          "all_depacked_regions_match": true,
+          "bytes_checked": 33792,
+          "loaded_image_sha256": "da3d8c7d527a7a0ea652dac49d83724b0db37cb8ecc208aa28fb618299676b9d"
+        },
+        "video_frames": 1200,
+        "counter_interval_seconds": 19.889017303737948,
+        "completed_render_calls": 659,
+        "render_calls_per_second": 33.13386427976747,
+        "matched_active_input_states": 1207,
+        "same_active_inputs_and_states": true,
+        "common_completed_render_ticks": 352,
+        "same_completed_pictures_at_common_ticks": true,
+        "first_tick": 433,
+        "last_tick": 1638
+      }
+    },
+    "render_rate_gain_percent": 4.380952380952374,
+    "limits": [
+      "Render cadence and raster phase vary naturally across builds.",
+      "Capture is silent; user review reports a possible but less noticeable benefit.",
+      "Common-tick completed pictures match; intermediate raster pixels may differ."
+    ],
+    "before_after_video": "build/actor-speed/vice/vic20-actor-speed-98929418-vs-b5fa71ca.mp4",
+    "normal_comparison_video": "build/actor-speed/vice/vic20-normal-eb6b2981-vs-actor-speed-b5fa71ca.mp4"
+  },
+  "native_profiles": {
+    "reference": {
+      "prg": "build/actor-speed/reference/pacman.prg",
+      "prg_sha256": "98929418f1dc3636e06342f3dc764aaec79aa6624b8fcea28cb1aabcae8fc2e1",
+      "cpu_hz": 1022727,
+      "cycles": 20355138,
+      "render_calls": 526,
+      "render_calls_per_second": 26.428433057049283,
+      "compared_active_states": 1207,
+      "mismatch_ticks": [],
+      "state_reference": "input capture",
+      "grouping_cycles": 1254396,
+      "grouping_calls": 526,
+      "grouping_cycles_per_call": 2384.783269961977,
+      "grouping_cycles_per_render": 2384.783269961977,
+      "actor_window_ms_mean": 3.6723178046815734,
+      "actor_window_ms_p95": 10.80346954759188
+    },
+    "fast": {
+      "prg": "build/actor-speed/fast/pacman.prg",
+      "prg_sha256": "b5fa71ca237941f08a13b5d81a4dfa452d942bb4994349450eb41a0054f10772",
+      "cpu_hz": 1022727,
+      "cycles": 20357863,
+      "render_calls": 555,
+      "render_calls_per_second": 27.88178135396628,
+      "compared_active_states": 1207,
+      "mismatch_ticks": [],
+      "state_reference": "supplied current-build profile",
+      "grouping_cycles": 982286,
+      "grouping_calls": 503,
+      "grouping_cycles_per_call": 1952.854870775348,
+      "grouping_cycles_per_render": 1769.8846846846848,
+      "actor_window_ms_mean": 3.6376791031506133,
+      "actor_window_ms_p95": 10.757513979781505
+    }
+  },
+  "benchmarks": {
+    "reference": {
+      "cpu_hz": 1022727,
+      "video_frames_per_sample": 180,
+      "samples": [
+        {
+          "scene": "play",
+          "seconds": 2.9781,
+          "completed_renders": 131,
+          "fps": 43.99,
+          "logic_hz": 61.11,
+          "render_ms_mean": 11.38,
+          "render_ms_max": 20.05,
+          "frame_interval_ms_p95": 39.16,
+          "frame_interval_ms_max": 49.01,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 31.1,
+          "input_service_gap_ms_max": 28.04,
+          "render_batch_ms_max": 20.06,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "frightened",
+          "seconds": 2.9781,
+          "completed_renders": 144,
+          "fps": 48.35,
+          "logic_hz": 61.11,
+          "render_ms_mean": 10.1,
+          "render_ms_max": 22.2,
+          "frame_interval_ms_p95": 31.92,
+          "frame_interval_ms_max": 47.09,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 31.12,
+          "input_service_gap_ms_max": 31.89,
+          "render_batch_ms_max": 22.21,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.09,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "attract-chase",
+          "seconds": 2.9853,
+          "completed_renders": 111,
+          "fps": 37.18,
+          "logic_hz": 60.96,
+          "render_ms_mean": 11.7,
+          "render_ms_max": 18.46,
+          "frame_interval_ms_p95": 51.97,
+          "frame_interval_ms_max": 64.39,
+          "start_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 34.8,
+          "input_service_gap_ms_max": 26.89,
+          "render_batch_ms_max": 18.48,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.09,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "intermission",
+          "seconds": 2.9809,
+          "completed_renders": 179,
+          "fps": 60.05,
+          "logic_hz": 60.38,
+          "render_ms_mean": 4.23,
+          "render_ms_max": 15.62,
+          "frame_interval_ms_p95": 22.58,
+          "frame_interval_ms_max": 24.68,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            32,
+            0,
+            4,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            32,
+            0,
+            5,
+            0,
+            0
+          ],
+          "start_board": 1,
+          "end_board": 1,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 22.33,
+          "input_service_gap_ms_max": 21.95,
+          "render_batch_ms_max": 15.64,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "board-transition",
+          "seconds": 5.9745,
+          "completed_renders": 251,
+          "fps": 42.01,
+          "logic_hz": 60.76,
+          "render_ms_mean": 11.09,
+          "render_ms_max": 1738.06,
+          "frame_interval_ms_p95": 21.2,
+          "frame_interval_ms_max": 1842.99,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 1,
+          "video_frames": 360,
+          "requested_video_frames": 360,
+          "audio_update_gap_ms_max": 27.59,
+          "input_service_gap_ms_max": 28.31,
+          "render_batch_ms_max": 17.07,
+          "background_slice_ms_max": 6.38,
+          "bulk_slice_ms_max": 5.56,
+          "pending_rebuild_at_end": false
+        }
+      ]
+    },
+    "fast": {
+      "cpu_hz": 1022727,
+      "video_frames_per_sample": 180,
+      "samples": [
+        {
+          "scene": "play",
+          "seconds": 2.9822,
+          "completed_renders": 141,
+          "fps": 47.28,
+          "logic_hz": 61.03,
+          "render_ms_mean": 10.36,
+          "render_ms_max": 22.74,
+          "frame_interval_ms_p95": 35.55,
+          "frame_interval_ms_max": 48.65,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 30.05,
+          "input_service_gap_ms_max": 32.04,
+          "render_batch_ms_max": 22.76,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "frightened",
+          "seconds": 2.9822,
+          "completed_renders": 158,
+          "fps": 52.98,
+          "logic_hz": 61.03,
+          "render_ms_mean": 8.62,
+          "render_ms_max": 21.79,
+          "frame_interval_ms_p95": 29.01,
+          "frame_interval_ms_max": 53.72,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 30.48,
+          "input_service_gap_ms_max": 30.63,
+          "render_batch_ms_max": 21.81,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "attract-chase",
+          "seconds": 2.9764,
+          "completed_renders": 117,
+          "fps": 39.31,
+          "logic_hz": 60.81,
+          "render_ms_mean": 10.63,
+          "render_ms_max": 17.95,
+          "frame_interval_ms_p95": 52.8,
+          "frame_interval_ms_max": 63.98,
+          "start_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            1,
+            0,
+            34,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 0,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 33.75,
+          "input_service_gap_ms_max": 28.24,
+          "render_batch_ms_max": 17.96,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "intermission",
+          "seconds": 2.9802,
+          "completed_renders": 179,
+          "fps": 60.06,
+          "logic_hz": 60.4,
+          "render_ms_mean": 3.07,
+          "render_ms_max": 15.2,
+          "frame_interval_ms_p95": 22.94,
+          "frame_interval_ms_max": 24.64,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            32,
+            0,
+            4,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            32,
+            0,
+            5,
+            0,
+            0
+          ],
+          "start_board": 1,
+          "end_board": 1,
+          "video_frames": 180,
+          "requested_video_frames": 180,
+          "audio_update_gap_ms_max": 21.91,
+          "input_service_gap_ms_max": 21.53,
+          "render_batch_ms_max": 15.21,
+          "background_slice_ms_max": 0,
+          "bulk_slice_ms_max": 0.04,
+          "pending_rebuild_at_end": false
+        },
+        {
+          "scene": "board-transition",
+          "seconds": 5.9901,
+          "completed_renders": 251,
+          "fps": 41.9,
+          "logic_hz": 60.6,
+          "render_ms_mean": 9.09,
+          "render_ms_max": 1737.59,
+          "frame_interval_ms_p95": 20.56,
+          "frame_interval_ms_max": 1843.93,
+          "start_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "end_state": [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+          ],
+          "start_board": 0,
+          "end_board": 1,
+          "video_frames": 360,
+          "requested_video_frames": 360,
+          "audio_update_gap_ms_max": 27.61,
+          "input_service_gap_ms_max": 28.43,
+          "render_batch_ms_max": 21.02,
+          "background_slice_ms_max": 6.41,
+          "bulk_slice_ms_max": 5.56,
+          "pending_rebuild_at_end": false
+        }
+      ]
+    }
+  },
+  "memory": {
+    "reference": {
+      "resident_end": "0x7f70",
+      "resident_free": 144,
+      "helper_start": "0x1d40",
+      "helper_bytes": 342,
+      "stack_bottom": "0x1ec0",
+      "stack_reserved": 320
+    },
+    "fast": {
+      "resident_end": "0x7f9b",
+      "resident_free": 101,
+      "helper_start": "0x1d40",
+      "helper_bytes": 361,
+      "stack_bottom": "0x1ec0",
+      "stack_reserved": 320
+    }
+  },
+  "validation": {
+    "arcade_tests": 15,
+    "actor_commit_tests": 18,
+    "reward_first_appearance_cases": 64,
+    "smoke": {
+      "screens": [
+        "attract",
+        "credits",
+        "maze",
+        "cherry",
+        "intermission-1",
+        "intermission-2",
+        "intermission-3"
+      ],
+      "stack_by_scene": {
+        "attract": {
+          "software_lowest_write": 8169,
+          "software_bytes_written": 23,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "credits": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "maze": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "cherry": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 488,
+          "hardware_bytes_written": 24
+        },
+        "intermission-1": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 488,
+          "hardware_bytes_written": 24
+        },
+        "intermission-2": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 488,
+          "hardware_bytes_written": 24
+        },
+        "intermission-3": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 488,
+          "hardware_bytes_written": 24
+        }
+      },
+      "clock": {
+        "video_frames": 180,
+        "arcade_ticks": 182,
+        "expected": 180.96
+      },
+      "long_run_ticks": 7179,
+      "stack": {
+        "software_lowest_write": 8160,
+        "software_bytes_written": 32,
+        "hardware_lowest_write": 488,
+        "hardware_bytes_written": 24
+      },
+      "boot": {
+        "entries": 1,
+        "released": true
+      },
+      "irq_vector_intact": true,
+      "stack_guard_intact": true,
+      "software_stack_reserved": 320,
+      "actor_helper_intact_all_scenes": true
+    },
+    "normal_prg_unchanged": true
+  },
+  "source_sha256": {
+    "Makefile": "b66fd1411ab1263c6afc0268c7c7f9ccbc02d9bff94e4c5f15b57ed731f0eea2",
+    "src/sprites.S": "9e00a1a2df8edda3c8127ecaa7ea5e888ec193d4b032c1b41eb0302c38ff69db",
+    "src/video.c": "c46def0e5ad1eb1c258c7938f2f0c05e57e42e704265e2a574f475437ce73bca",
+    "src/actor_commit.ld": "f2625e64e3fcac7a7b3c38a756e329eb98857f45d45b9757134f409226b9d4a3",
+    "tests/actor_commit.py": "bbd69a830b005a3cb54ed57b8a291b0d3100398190dc88902d77aa56f524b0b6",
+    "tests/smoke.py": "62a6f4f650eeded6f8c37e85a2751b5368fdbbdaf7d107cdc12a09c257e5d586",
+    "tools/arcade/profile_actor_commit.py": "0870a343c1ebf0797ae64eaa5436ddb3c9f1322d02c1122d9df1fab2dd771aa1",
+    "tools/arcade/record_actor_speed.py": "4b1b05f7604c506dfeb5f338b09efcc8c370522c6f8b8f7b68041ac0e37a079a",
+    "tools/arcade/rate_match.py": "09780db37d7fe43163c0b4e0ec78a27b15a57ec1424a2b96f24daad1a92f1449"
+  },
+  "grouping_cycles_reduction_percent": 25.78425440258545,
+  "input_recording_sha256": "d6676276f49251316fbc89a309ec9dc4731fd051c8b05d44937cb8be6e6195a8"
+}

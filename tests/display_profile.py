@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+"""Check the host-side visibility classifier, including false-blink controls."""
+from pathlib import Path
+import sys
+import unittest
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools/arcade'))
+from analyze_display import WIDTH, FRAME_CYCLES, classify, summarize, validate_frame_spacing
+from profile_game import trace_summary
+
+
+def actor(x=32, y=48):
+    points = {(y+dy)*WIDTH+x+dx for dy in range(12) for dx in range(2, 6)}
+    return dict(x=x, y=y, points=points)
+
+
+class Visibility(unittest.TestCase):
+    def test_complete_old_or_new_pose_is_present(self):
+        old, new = actor(), actor(34)
+        for points in (old['points'], new['points']):
+            r = classify([old, new], points, set(), set())
+            self.assertEqual(r['status'], 'present')
+
+    def test_absent_and_partial_have_distinct_results(self):
+        a = actor()
+        self.assertEqual(classify([a], set(), set(), set())['status'], 'absent')
+        partial = {p for p in a['points'] if p//WIDTH % 2}
+        self.assertEqual(classify([a], partial, set(), set())['status'], 'partial')
+
+    def test_mixed_old_new_scanlines_are_partial(self):
+        old, new = actor(), actor(34)
+        mixed = {p for p in old['points'] if p//WIDTH < 54}
+        mixed |= {p for p in new['points'] if p//WIDTH >= 54}
+        self.assertEqual(classify([old, new], mixed, set(), set())['status'], 'partial')
+
+    def test_wall_pixels_cannot_prove_actor_present(self):
+        a = actor()
+        wall = set(sorted(a['points'])[:16])
+        self.assertEqual(classify([a], wall, wall, set())['status'], 'absent')
+
+    def test_ambiguous_wall_and_overlap_are_excluded(self):
+        a = actor()
+        self.assertEqual(classify([a], a['points'], a['points'], set())['reason'],
+                         'insufficient-distinct-ink')
+        self.assertEqual(classify([a], a['points'], set(), {48*WIDTH+32})['reason'],
+                         'shared-colour-cell')
+
+    def test_edges_and_hidden_actors_are_excluded(self):
+        a = actor(-1)
+        self.assertEqual(classify([a], a['points'], set(), set())['reason'], 'screen-edge-clipping')
+        self.assertEqual(classify([], set(), set(), set())['reason'], 'hidden-or-empty')
+
+    def test_motion_does_not_bridge_unknown_frames(self):
+        rows = [dict(actor='pacman', frame=i, status=status, position=position)
+                for i, (status, position) in enumerate([
+                    ('present', [32, 48]), ('present', [32, 48]),
+                    ('present', [33, 48]), ('present', [33, 48]),
+                    ('present', [35, 48]), ('absent', None),
+                    ('present', [36, 48]), ('present', [37, 48]),
+                    ('present', [37, 48]), ('present', [39, 48])])]
+        r = summarize(rows, 60)['pacman']
+        self.assertEqual(r['displayed_move_interval_vic_frames'], {2: 2})
+        self.assertEqual(r['absence_runs'], 1)
+        self.assertEqual(r['displayed_move_distance_vic_pixels'], {1: 2, 2: 2})
+
+    def test_phase_accounting_does_not_double_count_nested_routines(self):
+        events = [(10, 'render-begin'), (15, 'mark-begin'), (20, 'mark-end'),
+                  (30, 'render-end'), (35, 'wait-begin'), (45, 'wait-end')]
+        r = trace_summary(events, 0, 50)
+        self.assertEqual(r['phase_cycles'], {'logic_tasks_loop': 20, 'render': 20, 'wait': 10})
+        self.assertEqual(r['routine_inclusive_cycles']['mark']['total'], 5)
+        self.assertEqual(sum(r['phase_cycles'].values()), 50)
+
+    def test_dropped_or_duplicate_video_frames_are_rejected(self):
+        frames = [dict(clock=65+FRAME_CYCLES*i, line=1, cycle=0) for i in range(4)]
+        validate_frame_spacing(frames)
+        with self.assertRaisesRegex(AssertionError, 'Missing or duplicate'):
+            validate_frame_spacing(frames[:1]+frames[2:])
+        with self.assertRaisesRegex(AssertionError, 'Missing or duplicate'):
+            validate_frame_spacing(frames[:1]+frames)
+
+
+if __name__ == '__main__':
+    unittest.main(verbosity=2)

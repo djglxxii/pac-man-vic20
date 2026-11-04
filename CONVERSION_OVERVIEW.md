@@ -53,7 +53,12 @@ The current build passes 48 automated checks covering arcade behavior, native
 6502 execution, graphics, sound conversion, maze colors and board transitions.
 VICE checks confirm startup, controls, sound and presentation. We also recorded
 a computer-controlled playthrough that cleared both initial boards and
-completed the first intermission using ordinary joystick input.
+completed the first intermission using ordinary joystick input. A later VICE
+recording followed the published PacStrats routes through board 9 on the
+current build: joystick input only, no deaths, and the third intermission
+finished with the 10,000-point life collected. The next direction had to be
+held about eight pixels before each turn. Pattern 3 and a physical joystick
+have not been tried.
 
 Measured rendering is around 52 FPS during normal play and 55 FPS when ghosts
 are frightened. Gameplay timing is preserved, but visible flicker and uneven

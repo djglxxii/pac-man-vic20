@@ -11,6 +11,7 @@ from native import ROOT, WORK
 from performance import start_game, CPU_HZ
 
 PRG = ROOT / 'build/pacman-beam.prg'
+OUTPUT = ROOT / 'build/beam-follow'
 NativeSim = native.Sim
 
 
@@ -38,9 +39,10 @@ class BeamRenderer(render.Renderer):
 
 
 class Groups(unittest.TestCase):
+    minimum_live_protected_groups = 20
     def test_03_all_raster_phases_and_large_groups(self):
         sim = preview_sim()
-        out = ROOT / 'build/beam-follow/timing'
+        out = OUTPUT / 'timing'
         out.mkdir(parents=True, exist_ok=True)
         path, trace = WORK / 'phase.bin', out / 'phases.trace'
 
@@ -171,7 +173,7 @@ class Groups(unittest.TestCase):
 
     def test_02_live_groups_finish_before_beam_returns(self):
         sim = preview_sim()
-        out = ROOT / 'build/beam-follow/timing'
+        out = OUTPUT / 'timing'
         out.mkdir(parents=True, exist_ok=True)
         trace = out / 'play.trace'
         try:
@@ -202,7 +204,7 @@ class Groups(unittest.TestCase):
                     erases += 1
                     if active is not None and active['early'] != 255: protected_erases += 1
             protected = [g for g in groups if g['early'] != 255]
-            self.assertGreater(len(protected), 20)
+            self.assertGreater(len(protected), self.minimum_live_protected_groups)
             self.assertGreater(protected_erases, 0)
             report = {'video_frames': 600, 'groups': len(groups),
                       'protected_groups': len(protected), 'actor_erases': erases,

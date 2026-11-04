@@ -1,5 +1,23 @@
 # Research optimization plan
 
+**2026-11-04 update:** the user rejected the playable
+[raster-priority revisit](BEAM_PRIORITY.md), reporting no noticeable
+improvement and a performance hit. Work on this scheduling approach stops;
+the accepted default remains the original renderer. The trials remain
+available for reproduction. The [CPU and display profile](DISPLAY_PROFILE.md)
+now completes the objective per-frame measurement proposed in
+[Response to IDEAS_REPLY.md.md](Response%20to%20IDEAS_REPLY.md.md). It classifies
+displayed actors as present, absent or partial, counts disappearance events,
+and measures displayed motion intervals. It finds actual missing actors
+as well as uneven redraw timing: 32.88 completed redraws/s, a 51.08 ms
+95th-percentile redraw interval, and Pac-Man absent in 165 of 1,200 sampled
+frames (179 ambiguous frames excluded). Rendering uses 39.25% of the native
+replay's CPU time; only 2.01% is waiting. The next experiment must demonstrate
+fewer missing/partial frames while preserving throughput on this workload.
+No renderer optimization was made during profiling. Finished-cell publishing
+remains a candidate requiring a measured cost budget, rather than an automatic
+next implementation. The pause and decisions below describe the preceding review.
+
 Current direction, 2026-11-03: preserve the original playable hires game and
 pause further flicker work at the user's request. Review of the
 [independent-actor trial](ACTOR_COMMIT.md) found that flicker shifts between
@@ -36,8 +54,10 @@ The experiment set recorded on 2026-11-03 in the
    only where measurements justify it. Further ghost work requires fresh
    profiling evidence and arcade parity checks.
 
-Item 1 is rejected and item 2 is on hold. Item 3's font is implemented and approved;
-profiling/sound work remains unstarted.
+Item 1 is rejected and item 2 is on hold. Item 3's font is implemented and approved.
+Item 4's retained-renderer profiling is now complete; sound optimization has
+not started. Original sound-channel processing uses 8.08% of the active native
+sample, within logic/tasks, while VIC audio conversion uses another 5.73%.
 Resume flicker work only when the user asks. If resumed, evaluate rendering
 changes with the same active joystick trace, visible
 erase-to-paint windows and actual-capture throughput, alongside the separate

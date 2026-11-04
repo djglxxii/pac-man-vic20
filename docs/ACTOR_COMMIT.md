@@ -5,7 +5,23 @@ tested on 2026-11-03 and rejected after user visual review. Flicker appears
 on either side at different moments, with no meaningful improvement overall.
 The shorter measured actor windows also come with a throughput loss. The
 trial remains a separate diagnostic target and is not retained in the default
-game. Further flicker work is on hold at the user's request.
+game. Further flicker work was paused after that review.
+
+A later user-requested [comparison at matched render ticks](RATE_MATCH.md)
+received a positive visual review: "I think that is noticeably better. not
+perfect, but better". Both archived programs completed 529 renders at
+26.598 calls/s, with matching completed pictures and game states. This
+supports a visible benefit at matched cadence; it does not resolve the
+throughput penalty or promote this build into the default. Raster phase
+remains an uncontrolled difference. The original measurements and rejection
+below describe the earlier comparison at different render rates.
+
+The subsequent [throughput trial](ACTOR_SPEED.md) retains current fonts and
+raises natural active-capture rendering from 26.40 to 27.55 calls/s by
+reducing group bookkeeping. It remains a separate `make run-actor-speed`
+target; the normal game is unchanged. User review of that playable trial
+found a possible improvement, less noticeable than in the initial
+matched-cadence comparison. Its overall benefit remains inconclusive.
 
 ## Result
 

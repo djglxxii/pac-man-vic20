@@ -18,7 +18,7 @@ CFLAGS := -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everythi
 
 all: $(PRG)
 
-$(GEN)/rom.stamp: tools/arcade/mkrom.py tools/arcade/hires_font.py docs/artwork/hires-font.json pacman.zip
+$(GEN)/rom.stamp: tools/arcade/mkrom.py tools/arcade/hires_font.py tools/arcade/hires_pacman.py docs/artwork/hires-font.json docs/artwork/hires-pacman.json pacman.zip
 	$(PY) tools/arcade/mkrom.py --output $(GEN)
 	@touch $@
 
@@ -60,6 +60,38 @@ test-beam: beam tools/vicsim/vicsim reference
 	$(PY) tests/beam.py
 	$(PY) tests/smoke.py --prg build/pacman-beam.prg --output build/beam-follow/smoke
 
+# Fresh raster trials using current artwork; preserve the archived beam build.
+BEAM_REVIEW_FLAGS = $(filter-out -Tsrc/pacman.ld,$(CFLAGS)) -DBEAM_FOLLOW -DBEAM_REVIEW -Tsrc/beam_priority.ld
+
+build/beam-priority/%/pacman-native.bin: $(NATIVE) src/beam_follow.S src/beam_priority.ld src/pacman.ld $(wildcard src/arcade/*.h) src/video.h $(GEN)/rom.stamp $(MOSCC)
+	@mkdir -p $(@D)
+	$(MOSCC) $(BEAM_REVIEW_FLAGS) $(if $(filter focused strict,$*),-DBEAM_PRIORITY,) $(if $(filter strict,$*),-DBEAM_PRIORITY_WAIT,) $(NATIVE) src/beam_follow.S $(GEN)/rom.c -Wl,-Map,$(@D)/pacman.map -o $@
+
+build/beam-priority/%/pacman.prg: build/beam-priority/%/pacman-native.bin tools/arcade/pack.py
+	$(PY) tools/arcade/pack.py $< $@ --ca65 $(CA65) --ld65 $(LD65) --nm $(MOSNM)
+
+.PRECIOUS: build/beam-priority/%/pacman-native.bin
+
+beam-priority: build/beam-priority/strict/pacman.prg
+
+beam-review: build/beam-priority/reference/pacman.prg
+
+beam-opportunistic: build/beam-priority/focused/pacman.prg
+
+run-beam-priority: beam-priority
+	xvic $(VICEFLAGS) -autostart build/beam-priority/strict/pacman.prg
+
+run-beam-review: beam-review
+	xvic $(VICEFLAGS) -autostart build/beam-priority/reference/pacman.prg
+
+run-beam-opportunistic: beam-opportunistic
+	xvic $(VICEFLAGS) -autostart build/beam-priority/focused/pacman.prg
+
+test-beam-priority: beam-priority tools/vicsim/vicsim reference
+	$(PY) tests/arcade.py
+	$(PY) tests/beam_priority.py --prg build/beam-priority/strict/pacman.prg
+	$(PY) tests/smoke.py --prg build/beam-priority/strict/pacman.prg --output build/beam-priority/strict/smoke
+
 build/ghost-shadow/pacman-native.bin: $(NATIVE) src/ghost_shadow.S src/ghost_shadow.ld src/pacman.ld $(wildcard src/arcade/*.h) src/video.h $(GEN)/rom.stamp $(MOSCC)
 	@mkdir -p build/ghost-shadow
 	$(MOSCC) $(filter-out -Tsrc/pacman.ld,$(CFLAGS)) -DGHOST_SHADOW -Tsrc/ghost_shadow.ld $(NATIVE) src/ghost_shadow.S $(GEN)/rom.c -Wl,-Map,build/ghost-shadow/pacman.map -o $@
@@ -77,6 +109,31 @@ build/actor-commit/after/pacman.prg: build/actor-commit/after/pacman-native.bin 
 	$(PY) tools/arcade/pack.py $< $@ --ca65 $(CA65) --ld65 $(LD65) --nm $(MOSNM)
 
 actor-commit: build/actor-commit/after/pacman.prg
+
+# Current artwork, with dependency code loaded into unused lower stack RAM.
+# Keep the archived actor-commit pair intact for the matched-cadence study.
+ACTOR_SPEED_FLAGS = $(filter-out -mlto-zp=92 -Tsrc/pacman.ld,$(CFLAGS)) -mlto-zp=90 -DACTOR_COMMIT -DACTOR_COMMIT_OVERLAY -Tsrc/actor_commit.ld
+
+build/actor-speed/%/pacman-native.bin: $(NATIVE) src/actor_commit.ld src/pacman.ld $(wildcard src/arcade/*.h) src/video.h $(GEN)/rom.stamp $(MOSCC)
+	@mkdir -p $(@D)
+	$(MOSCC) $(ACTOR_SPEED_FLAGS) $(if $(filter fast,$*),-DACTOR_COMMIT_FAST,) $(NATIVE) $(GEN)/rom.c -Wl,-Map,$(@D)/pacman.map -o $@
+
+build/actor-speed/%/pacman.prg: build/actor-speed/%/pacman-native.bin tools/arcade/pack.py
+	$(PY) tools/arcade/pack.py $< $@ --ca65 $(CA65) --ld65 $(LD65) --nm $(MOSNM)
+
+.PRECIOUS: build/actor-speed/%/pacman-native.bin
+
+actor-speed: build/actor-speed/fast/pacman.prg
+
+actor-speed-reference: build/actor-speed/reference/pacman.prg
+
+run-actor-speed: actor-speed
+	xvic $(VICEFLAGS) -autostart build/actor-speed/fast/pacman.prg
+
+test-actor-speed: actor-speed tools/vicsim/vicsim reference
+	$(PY) tests/arcade.py
+	$(PY) tests/actor_commit.py --prg build/actor-speed/fast/pacman.prg
+	$(PY) tests/smoke.py --prg build/actor-speed/fast/pacman.prg --output build/actor-speed/fast/smoke
 
 run-actor-commit: actor-commit
 	xvic $(VICEFLAGS) -autostart build/actor-commit/after/pacman.prg
@@ -144,3 +201,5 @@ clean:
 	rm -rf build
 
 .PHONY: all reference test performance vice-test run clean multicolour run-multicolour test-multicolour ghost-shadow run-shadow test-shadow beam run-beam test-beam actor-commit run-actor-commit test-actor-commit
+.PHONY: actor-speed actor-speed-reference run-actor-speed test-actor-speed
+.PHONY: beam-priority beam-review beam-opportunistic run-beam-priority run-beam-review run-beam-opportunistic test-beam-priority

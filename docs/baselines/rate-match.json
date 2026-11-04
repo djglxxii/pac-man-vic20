@@ -1,0 +1,86 @@
+{
+  "date": "2026-11-03",
+  "diagnostic": "same logical render ticks and input trace; raster phase varies",
+  "user_review": {
+    "date": "2026-11-03",
+    "quote": "I think that is noticeably better. not perfect, but better",
+    "preferred_side": "actor-commit at matched render cadence",
+    "interpretation": "Supports a perceptible benefit at matched cadence; throughput cost and raster-phase limitations remain.",
+    "default_build_promoted": false
+  },
+  "summary": {
+    "comparison": "archived baseline versus archived actor-commit trial",
+    "common_tick_range": [
+      434,
+      1637
+    ],
+    "matched_completed_renders": 529,
+    "same_render_tick_sequence": true,
+    "same_completed_pictures": true,
+    "matched_active_input_states": 1207,
+    "same_active_inputs_and_states": true,
+    "all_frames_sampled_in_raster_window": true,
+    "logic_mismatches": 0,
+    "picture_mismatches": 0,
+    "render_tick_intervals": {
+      "1": 120,
+      "2": 180,
+      "3": 191,
+      "4": 35,
+      "5": 2
+    },
+    "baseline_pc_gate_decisions": 1206,
+    "baseline_frames": 1200,
+    "trial_frames": 1200,
+    "actual_capture_rates": {
+      "baseline": {
+        "completed_calls_in_counter_interval": 529,
+        "seconds": 19.889017,
+        "render_calls_per_second": 26.598,
+        "first_tick": 432,
+        "last_tick": 1638
+      },
+      "trial": {
+        "completed_calls_in_counter_interval": 529,
+        "seconds": 19.889017,
+        "render_calls_per_second": 26.598,
+        "first_tick": 432,
+        "last_tick": 1638
+      }
+    },
+    "raster_phase_matched": false,
+    "limits": [
+      "Render admissions match logical ticks; raster phase and completion times are not matched.",
+      "Baseline admission is controlled through VICE PC redirection; this is not an unmodified gameplay benchmark.",
+      "Archived programs predate the accepted font changes.",
+      "Visual review is required; no automatic absence classifier or H1/H2 conclusion is supplied."
+    ]
+  },
+  "programs": {
+    "baseline": {
+      "source_prg": "build/actor-commit/before/pacman.prg",
+      "prg_sha256": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "e30a02d7327331808d9a4ad494777040423d5f483303e8fc5afee8b4ff8ab142"
+      },
+      "code_bytes_patched": false,
+      "pc_render_gate": true
+    },
+    "trial": {
+      "source_prg": "build/actor-commit/after/pacman.prg",
+      "prg_sha256": "3c4cf04b05a1c70df8ffd23a68a5be69c54644a5fc4b1f1cb55c856f3acc1d42",
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "6bf3a95816ce156aba5c94b9a80b0642cbd27bc590c5925cfca80460b53c87ca"
+      },
+      "code_bytes_patched": false,
+      "pc_render_gate": false
+    }
+  },
+  "default_prg_sha256": "eb6b29810453418818a1ffb83f8b0057464a903682c20970cc6019617067a4e9",
+  "capture_directory": "build/rate-match/active-1200",
+  "capture_script_sha256": "1430b42b2ec4f7b6ba25846f38d1a00856f4063b093dddbf50a774d644c52172"
+}

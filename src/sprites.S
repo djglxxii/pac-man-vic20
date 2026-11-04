@@ -16,6 +16,9 @@ cache_dirty: .zero 14
 #endif
 #ifdef BEAM_FOLLOW
 .global new_x,new_y,sprite_mark,restore_start,v_sx,v_sy
+#ifdef BEAM_REVIEW
+.global cache_pal,cache_attr
+#endif
 #endif
 /* Index zero is unused by the six even actor slots. A bit covers two
    hardware colour rows, so the seven visible bands fit in one byte. */
@@ -27,6 +30,9 @@ cache_dirty: .zero 14
 .set group_right,cache_y+1
 .set group_top,cache_attr+1
 .set group_bottom,cache_pal+1
+#ifdef ACTOR_COMMIT_FAST
+.set commit_cursor,cache_dirty
+#endif
 #endif
 .section .zp.bss,"aw",@nobits
 v_actor: .zero 1
@@ -55,7 +61,13 @@ video_refresh:
  beq video_frame_begin
  jsr video_background
  lda full_dirty
+#ifdef ACTOR_COMMIT_FAST
+ beq commit_rebuild_ready
+ rts
+commit_rebuild_ready:
+#else
  bne video_batch_end
+#endif
  jsr video_sprites
  jmp video_frame_end
 video_frame_begin:
@@ -67,14 +79,36 @@ video_frame_begin:
  sta group_select
  sta group_single
  jsr sprite_mark
+#ifdef ACTOR_COMMIT_FAST
+ /* No actor work means no dependency graph is needed. Unrelated queued
+    background edits still run with all unchanged actors left visible. */
+ lda v_code
+ bne commit_build_groups
+ lda dirty_count
+ beq video_frame_end
+ jsr video_background
+ jmp video_frame_end
+commit_build_groups:
+#endif
  jsr sprite_groups
  lda dirty_count
  beq commit_next
  /* Every actor affected by queued tiles belongs to this first transaction.
     Independent components stay visible while the background is painted. */
+#ifdef ACTOR_COMMIT_FAST
+ lda group_select
+ beq commit_background_only
  jsr restore_start
  jsr video_background
  jsr video_update_end
+ jmp commit_next
+commit_background_only:
+ jsr video_background
+#else
+ jsr restore_start
+ jsr video_background
+ jsr video_update_end
+#endif
 commit_next:
  ldx #2
 commit_find:
@@ -86,6 +120,9 @@ commit_find:
  bne commit_find
  jmp video_frame_end
 commit_group:
+#ifdef ACTOR_COMMIT_FAST
+ stx commit_cursor
+#endif
  and #63
  sta group_select
  sec
@@ -94,10 +131,14 @@ commit_group:
  bne commit_cluster
  /* A singleton enters each actor kernel directly, avoiding six-slot scans. */
  stx v_off
+#ifdef ACTOR_COMMIT_FAST
+ lda actor_records-2,x
+#else
  txa
  lsr
  tay
  lda actor_records-1,y
+#endif
  tax
  lda #1
  sta group_single
@@ -105,11 +146,26 @@ commit_group:
  jsr sprite_actor
  lda #0
  sta group_single
+#ifdef ACTOR_COMMIT_FAST
+ jmp commit_advance
+#else
  jmp commit_next
+#endif
 commit_cluster:
  jsr restore_start
  jsr video_update_end
+#ifdef ACTOR_COMMIT_FAST
+commit_advance:
+ /* Earlier components are already cleared. Continue the ascending scan. */
+ ldx commit_cursor
+ inx
+ inx
+ cpx #14
+ bne commit_find
+ jmp video_frame_end
+#else
  jmp commit_next
+#endif
 commit_legacy:
 #endif
  jsr video_update_begin
@@ -599,6 +655,10 @@ sprite_mark:
  beq mark_no_background
  jsr sprite_background_bands
 mark_no_background:
+#ifdef ACTOR_COMMIT_FAST
+ lda #0
+ sta v_code
+#endif
  ldx #12
 mark_actor:
  lda #239
@@ -666,6 +726,10 @@ mark_dirty:
  lda #1
 mark_store:
  sta cache_dirty,x
+#ifdef ACTOR_COMMIT_FAST
+ ora v_code
+ sta v_code
+#endif
  lda v_actor
  clc
  adc #36
@@ -862,16 +926,36 @@ force_actor:
  rts
 
 #ifdef ACTOR_COMMIT
+#ifdef ACTOR_COMMIT_OVERLAY
+.section .actor_code,"ax",@progbits
+#else
 .section .text.sprites,"ax",@progbits
+#endif
+#ifdef ACTOR_COMMIT_FAST
+actor_records: .byte 180,0,144,0,108,0,72,0,36,0,0
+#else
 actor_records: .byte 180,144,108,72,36,0
+#endif
 /* Main-thread only. A/X/Y and v_* scratch are clobbered. cache_dirty becomes
    a component mask: bits 0..5 actors, bit 6 background, bit 7 needs repaint.
    Disjoint components can be restored and repainted in either order. */
 sprite_groups:
  lda #0
  sta v_actor
+#ifdef ACTOR_COMMIT_FAST
+ sta group_select
+ lda #32
+ sta v_col
+#endif
  ldx #12
 group_actor:
+#ifdef ACTOR_COMMIT_FAST
+ lda cache_dirty,x
+ lsr
+ lda v_col
+ bcc group_clean
+ ora #128
+#else
  lda cache_dirty,x
  beq group_clean
  lda #128
@@ -882,14 +966,94 @@ group_clean:
  tay
  lda bit_masks-1,y
  ora v_temp
+#endif
+#ifdef ACTOR_COMMIT_FAST
+group_clean:
+#endif
  sta cache_dirty,x
+#ifdef ACTOR_COMMIT_FAST
+ /* A valid underlay supplies the initial rectangle directly. Usually the
+    new footprint stays inside those same cells; extend only on crossings. */
+ ldy v_actor
+ lda under+3,y
+ beq group_no_old
+ lda under+4,y
+ sta group_left,x
+ clc
+ adc #1
+ sta group_right,x
+ lda under+6,y
+ sta group_top,x
+ lda under+7,y
+ cmp #5
+ lda under+6,y
+ adc #0
+ sta group_bottom,x
+ jmp group_include_new
+group_no_old:
  lda #255
  sta group_left,x
  sta group_top,x
  lda #0
  sta group_right,x
  sta group_bottom,x
- lda $0c21,x
+group_include_new:
+ /* score_expand may populate a borrowed slot, then restore arcade I/O.
+    cache_pal retains the expanded pose used by the actual painter. */
+ lda cache_pal,x
+ and #31
+ beq group_band
+ lda new_x,x
+ cmp #112
+ bcc group_fast_column
+ cmp #249
+ bcc group_band
+group_fast_column:
+ /* Signed x=-7..111 becomes byte column + 1 without a left-edge branch. */
+ clc
+ adc #8
+ lsr
+ lsr
+ lsr
+ cmp group_left,x
+ bcs group_fast_right
+ sta group_left,x
+group_fast_right:
+ clc
+ adc #1
+ cmp group_right,x
+ bcc group_fast_top
+ beq group_fast_top
+ sta group_right,x
+group_fast_top:
+ lda new_y,x
+ lsr
+ lsr
+ lsr
+ lsr
+ cmp group_top,x
+ bcs group_fast_bottom
+ sta group_top,x
+group_fast_bottom:
+ lda new_y,x
+ clc
+ adc #11
+ lsr
+ lsr
+ lsr
+ lsr
+ cmp group_bottom,x
+ bcc group_band
+ beq group_band
+ sta group_bottom,x
+#else
+ lda #255
+ sta group_left,x
+ sta group_top,x
+ lda #0
+ sta group_right,x
+ sta group_bottom,x
+ lda cache_pal,x
  and #31
  beq group_old
  lda new_x,x
@@ -954,10 +1118,23 @@ group_old_bottom:
  cmp group_bottom,x
  bcc group_band
  sta group_bottom,x
+#endif
 group_band:
  lda group_top,x
  cmp #255
+#ifdef ACTOR_COMMIT_FAST
+ bne group_has_footprint
+ /* Invisible actors with no old underlay cannot connect any components. */
+ lda #0
+ sta cache_dirty,x
+ jmp group_advance
+group_has_footprint:
+ lda dirty_bands
  beq group_advance
+ lda group_top,x
+#else
+ beq group_advance
+#endif
  lsr
  tay
  lda bit_masks,y
@@ -974,7 +1151,15 @@ group_band:
  lda cache_dirty,x
  ora #64
  sta cache_dirty,x
+#ifdef ACTOR_COMMIT_FAST
+ and #63
+ ora group_select
+ sta group_select
+#endif
 group_advance:
+#ifdef ACTOR_COMMIT_FAST
+ lsr v_col
+#endif
  lda v_actor
  clc
  adc #36
@@ -987,6 +1172,10 @@ group_pairs:
  /* Visit each pair once; merging rewrites every member's component mask. */
  ldx #12
 group_pair_actor:
+#ifdef ACTOR_COMMIT_FAST
+ lda cache_dirty,x
+ beq group_pair_next
+#endif
  txa
  tay
 group_pair:
@@ -1013,18 +1202,39 @@ group_pair:
  sta v_temp
  stx v_actor
  sty v_off
+#ifdef ACTOR_COMMIT_FAST
+ /* Component masks already name every member. Test their bits directly. */
+ asl
+ asl
+ sta v_code
+#endif
  ldx #12
 group_merge:
+#ifdef ACTOR_COMMIT_FAST
+ asl v_code
+ bcc group_merge_next
+#else
  lda cache_dirty,x
  and v_temp
  and #63
  beq group_merge_next
+#endif
  lda v_temp
  sta cache_dirty,x
 group_merge_next:
  dex
  dex
  bne group_merge
+#ifdef ACTOR_COMMIT_FAST
+ lda v_temp
+ and #64
+ beq group_merged
+ lda v_temp
+ and #63
+ ora group_select
+ sta group_select
+group_merged:
+#endif
  ldx v_actor
  ldy v_off
  jmp group_pair
@@ -1033,6 +1243,7 @@ group_pair_next:
  dex
  cpx #2
  bne group_pair_actor
+#ifndef ACTOR_COMMIT_FAST
  lda #0
  sta group_select
  ldx #12
@@ -1048,6 +1259,8 @@ group_background_next:
  dex
  dex
  bne group_background
+#endif
  rts
+sprite_groups_end:
 
 #endif

@@ -31,11 +31,22 @@ beam_now: .zero 1
 beam_frames: .zero 2
 beam_protected: .zero 2
 beam_fallback: .zero 2
+#ifdef BEAM_PRIORITY
+.global beam_player,beam_focus,beam_focus_group
+beam_player: .zero 1
+beam_focus: .zero 1
+beam_focus_group: .zero 1
+beam_pac_x: .zero 1
+beam_pac_y: .zero 1
+#endif
 beam_state_end:
 .zeropage v_actor,v_off,v_sx,v_sy,v_temp
 
 .section .text.beam,"ax",@progbits
 .global beam_init,video_refresh,video_frame_begin,video_frame_end,video_batch_begin,video_batch_end
+#ifdef BEAM_REVIEW
+.section .boot.text,"ax",@progbits
+#endif
 beam_init:
  lda #0
  ldx #(beam_state_end-beam_state-1)
@@ -44,6 +55,7 @@ beam_clear:
  dex
  bpl beam_clear
  rts
+.section .text.beam,"ax",@progbits
 
 video_refresh:
  lda rebuild_phase
@@ -73,7 +85,9 @@ beam_background_ready:
 beam_normal:
  jsr sprite_mark
  jsr beam_bounds
+#ifndef BEAM_REVIEW
  jsr beam_groups
+#endif
 beam_choose:
  lda beam_count
  bne beam_choose_active
@@ -81,10 +95,16 @@ beam_choose:
 beam_choose_active:
  lda $9004
  sta beam_now
+#ifdef BEAM_PRIORITY
+ /* Give Pac-Man's component the first safe window, even if another
+    component could be drawn immediately. Retiring it clears this index. */
+ ldx beam_focus_group
+ bpl beam_find_ready
+#endif
  ldx #5
 beam_find_ready:
  lda beam_masks,x
- beq beam_next_choice
+ beq beam_skip_choice
  lda beam_early,x
  cmp #255
  beq beam_ready
@@ -103,6 +123,17 @@ beam_safe_middle:
  cmp beam_early,x
  bcc beam_ready
 beam_next_choice:
+#if defined(BEAM_PRIORITY) && !defined(BEAM_PRIORITY_WAIT)
+ /* No polling wait in the opportunistic trial. Keep the player's first
+    choice, but use an ordinary immediate commit if its window is closed. */
+ lda #255
+ sta beam_early,x
+ jmp beam_ready
+#elif defined(BEAM_PRIORITY)
+ cpx beam_focus_group
+ beq beam_choose
+#endif
+beam_skip_choice:
  dex
  bpl beam_find_ready
  jmp beam_choose
@@ -138,6 +169,11 @@ beam_ungated:
 beam_retire:
  lda #0
  sta beam_masks,x
+#ifdef BEAM_PRIORITY
+ /* If present, Pac-Man's component was necessarily the first retired. */
+ lda #255
+ sta beam_focus_group
+#endif
  dec beam_count
  jmp beam_choose
 beam_complete:
@@ -148,14 +184,24 @@ video_frame_end:
  rts
 video_batch_end:
  rts
+#ifdef BEAM_REVIEW
+.section .beam_code,"ax",@progbits
+#endif
 beam_slots: .byte 2,4,6,8,10,12
 beam_records: .byte 180,144,108,72,36,0
+#ifdef BEAM_REVIEW
+.set beam_bits,bit_masks
+#else
 beam_bits: .byte 1,2,4,8,16,32
+#endif
 
 /* Union an actor's old and new colour rectangles. An absent footprint has
    left=255. X is actor index, preserved by beam_add_bounds. */
 .section .beam_code,"ax",@progbits
 beam_bounds:
+#ifdef BEAM_PRIORITY
+ jsr beam_focus_priorities
+#endif
  lda #0
  sta beam_pending
  ldx #5
@@ -171,7 +217,12 @@ beam_bound_actor:
  ldy beam_slots,x
  lda cache_dirty,y
  beq beam_bound_next
+#ifdef BEAM_REVIEW
+ /* Expanded reward halves live in the cache after arcade I/O is restored. */
+ lda cache_pal,y
+#else
  lda $0c21,y
+#endif
  and #31
  beq beam_bound_old
  lda new_x,y
@@ -203,7 +254,11 @@ beam_bound_done:
 beam_bound_next:
  dex
  bpl beam_bound_actor
+#ifdef BEAM_REVIEW
+ jmp beam_groups
+#else
  rts
+#endif
 beam_add_bounds:
  lda v_sx
  cmp #128
@@ -258,7 +313,11 @@ beam_bounds_return:
 
 /* Form independent groups, conservatively merging intersecting union boxes.
    Keep original reverse-erase/forward-paint priority inside every group. */
+#ifdef BEAM_REVIEW
+.section .beam_code,"ax",@progbits
+#else
 .section .text.beam,"ax",@progbits
+#endif
 beam_groups:
  lda #0
  sta beam_count
@@ -352,6 +411,12 @@ beam_group_finish:
  ldx beam_count
  lda beam_mask
  sta beam_masks,x
+#ifdef BEAM_PRIORITY
+ and beam_player
+ beq beam_group_without_player
+ stx beam_focus_group
+beam_group_without_player:
+#endif
  lda beam_budget
  sta beam_budgets,x
  lda beam_t
@@ -368,6 +433,14 @@ beam_group_finish:
  clc
  adc #25
  sta beam_ends,x
+#ifdef BEAM_PRIORITY
+ /* Only the player and ghosts in his neighbourhood justify raster waits.
+    Distant independent components still use the same erase/draw kernels. */
+ lda beam_mask
+ and beam_focus
+ beq beam_group_too_large
+ lda beam_ends,x
+#endif
  sec
  sbc beam_tops,x
  clc
@@ -389,4 +462,72 @@ beam_group_saved:
  inc beam_count
  jmp beam_new_group
 beam_groups_done:
+#ifndef BEAM_REVIEW
  rts
+#endif
+
+#ifdef BEAM_PRIORITY
+.section .text.beam,"ax",@progbits
+/* Main thread only; A/X/Y are scratch. Find Pac-Man from cached artwork and
+   palette after reward expansion, so the powered-up slot swap is respected.
+   Nearby means <=24 native pixels horizontally and <=32 vertically. Group
+   membership, restoration order and final colour priority are unchanged. */
+beam_focus_priorities:
+ lda #0
+ sta beam_player
+ sta beam_focus
+ lda #255
+ sta beam_focus_group
+ /* Pac-Man occupies slot 10 normally and slot 2 while powered up. */
+ ldx #10
+ lda cache_pal,x
+ cmp #9
+ beq beam_player_found
+ ldx #2
+ lda cache_pal,x
+ cmp #9
+ bne beam_focus_done
+beam_player_found:
+ lda new_x,x
+ sta beam_pac_x
+ lda new_y,x
+ sta beam_pac_y
+ txa
+ lsr
+ tay
+ lda beam_bits-1,y
+ sta beam_player
+ sta beam_focus
+ ldx #5
+beam_find_nearby:
+ ldy beam_slots,x
+ lda cache_pal,y
+ beq beam_nearby_next
+ lda cache_attr,y
+ cmp #112
+ bcc beam_nearby_next
+ cmp #160
+ bcs beam_nearby_next
+ lda new_x,y
+ sec
+ sbc beam_pac_x
+ clc
+ adc #24
+ cmp #49
+ bcs beam_nearby_next
+ lda new_y,y
+ sec
+ sbc beam_pac_y
+ clc
+ adc #32
+ cmp #65
+ bcs beam_nearby_next
+ lda beam_bits,x
+ ora beam_focus
+ sta beam_focus
+beam_nearby_next:
+ dex
+ bpl beam_find_nearby
+beam_focus_done:
+ rts
+#endif

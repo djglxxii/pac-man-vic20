@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
 """Check real VICE raster positions through complete actor erase/draw groups."""
+import argparse
 import hashlib
 import json
+from pathlib import Path
 import struct
 
 from check_multicolour import breakpoint
-from record_shadow import ROOT, launch
+from record_shadow import ROOT, launch, verify_loaded_program
 
 
 def main():
-    prg = ROOT / 'build/pacman-beam.prg'
-    out = ROOT / 'build/beam-follow/vice/validation'
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--prg', type=Path, default=ROOT / 'build/pacman-beam.prg')
+    parser.add_argument('--output', type=Path, default=ROOT / 'build/beam-follow/vice/validation')
+    args = parser.parse_args()
+    prg, out = args.prg.resolve(), args.output.resolve()
     labels = {p[2][1:]: int(p[1], 16) for line in prg.with_suffix('.lbl').read_text().splitlines()
               if len(p := line.split()) == 3}
     vice, mon, log = launch(prg, out)
@@ -27,6 +32,7 @@ def main():
         return result
 
     try:
+        identity = verify_loaded_program(mon, prg, labels)
         # Resolve LIN/CYC identifiers from the emulator rather than hardcoding
         # register IDs which can differ between machine types or VICE versions.
         data = mon.cmd(0x83, b'\0')
@@ -76,16 +82,30 @@ def main():
                 assert not any(top * 2 <= line < bottom * 2 - 2 for line in scanned), (first, last, top, bottom)
                 upper_cycles = elapsed_lines * 65 + after[names['CYC']] - before[names['CYC']]
                 assert upper_cycles <= budget * 130, (upper_cycles, budget)
-            samples.append({'mask': mask, 'early': early, 'top': top, 'end': bottom,
+            sample = {'mask': mask, 'early': early, 'top': top, 'end': bottom,
                             'budget': budget, 'start_line': first, 'end_line': last,
-                            'start_cycle': before[names['CYC']], 'end_cycle': after[names['CYC']]})
+                            'start_cycle': before[names['CYC']], 'end_cycle': after[names['CYC']]}
+            if 'beam_player' in labels:
+                player = mon.memory(labels['beam_player'], 1)[0]
+                focus_group = mon.memory(labels['beam_focus_group'], 1)[0]
+                sample.update(player_mask=player,
+                              focus_mask=mon.memory(labels['beam_focus'], 1)[0],
+                              player_group=bool(mask & player))
+                # Before the player retires, no other group may be processed.
+                assert focus_group == 255 or index == focus_group
+            samples.append(sample)
         protected = [s for s in samples if s['early'] != 255]
-        assert len(protected) >= 32
-        assert all(any(s['mask'] & (1 << ghost) for s in protected) for ghost in range(4))
+        if 'beam_player' in labels:
+            assert any(s['player_group'] for s in protected), 'No protected Pac-Man group'
+        else:
+            assert len(protected) >= 32
+            assert all(any(s['mask'] & (1 << ghost) for s in protected) for ghost in range(4))
         mon.screenshot(out / 'live-game.png')
         report = {'prg_sha256': hashlib.sha256(prg.read_bytes()).hexdigest(),
+                  'loaded_program': identity,
                   'groups_checked': len(samples), 'protected_groups_checked': len(protected),
-                  'all_four_ghost_slots_observed': True,
+                  'protected_player_groups_checked': sum(s.get('player_group', False) for s in protected),
+                  'all_four_ghost_slots_observed': all(any(s['mask'] & (1 << ghost) for s in protected) for ghost in range(4)),
                   'no_protected_group_crossed_its_colour_rows': True,
                   'all_protected_groups_within_budget': True,
                   'guest_patches': False, 'samples': samples}

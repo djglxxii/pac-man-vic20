@@ -38,6 +38,10 @@ __attribute__((section(".boot.text"))) void video_init(void) {
     rebuild_phase = 0;
     bulk_active = 0;
     bulk_drain = 0;
+#ifdef ACTOR_COMMIT_OVERLAY
+    extern uint8_t __actor_code_load[], __actor_code_size[], __actor_code_start[];
+    memcpy(__actor_code_start, __actor_code_load, (uint16_t)__actor_code_size);
+#endif
 #ifdef BEAM_FOLLOW
     extern uint8_t __beam_code_load[], __beam_code_size[], __beam_code_start[];
     extern void beam_init(void);

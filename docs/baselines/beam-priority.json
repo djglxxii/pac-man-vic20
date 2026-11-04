@@ -1,0 +1,174 @@
+{
+  "same_logical_tick_inputs": true,
+  "programs": {
+    "default": {
+      "prg_sha256": "9fb85cf61add5d729142183a48285041a47e55fa0f0fd16043f0d15b2aae35af",
+      "video_frames": 600,
+      "counter_interval_seconds": 9.93621464965724,
+      "completed_render_calls": 325,
+      "render_calls_per_second": 32.70863316255061,
+      "compared_active_input_states": 603,
+      "common_completed_pictures": 325,
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "d138600dae9a681b612830a6ea58f1ed136f0afb144c18e7d60acc902d86ace8"
+      }
+    },
+    "reference": {
+      "prg_sha256": "79299dc438863739d70b3c9620ebd4d9547b74cf6bcc8403c7319d226c037d57",
+      "video_frames": 600,
+      "counter_interval_seconds": 9.93621464965724,
+      "completed_render_calls": 228,
+      "render_calls_per_second": 22.94636418788166,
+      "compared_active_input_states": 603,
+      "common_completed_pictures": 147,
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "aa9a62a07cb63ba7e5b450a3b018c2f67b45bab51ddd34a381780fa0780127f1"
+      },
+      "phase_checks": {
+        "phase_fixture_calls": 1179,
+        "protected_groups": 1310,
+        "fallback_groups": 131,
+        "largest_protected_group": 5
+      },
+      "smoke": {
+        "long_run_ticks": 7181,
+        "software_stack_reserved": 128,
+        "stack": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 488,
+          "hardware_bytes_written": 24
+        },
+        "stack_guard_intact": true,
+        "irq_vector_intact": true,
+        "beam_helper_intact_all_scenes": true
+      },
+      "tests_passed": 17
+    },
+    "strict": {
+      "prg_sha256": "afe8e2b0d83b25eb71bb85fd41cff3c5f5427b8fc61dd074f8b32047100ee5ed",
+      "video_frames": 600,
+      "counter_interval_seconds": 9.93621464965724,
+      "completed_render_calls": 226,
+      "render_calls_per_second": 22.745080291496734,
+      "compared_active_input_states": 603,
+      "common_completed_pictures": 138,
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "8e5ee2d9e33886c325530a2549373b2b35c5a2184d24540d3c653167915dd5fd"
+      },
+      "phase_checks": {
+        "phase_fixture_calls": 1179,
+        "protected_groups": 1179,
+        "fallback_groups": 262,
+        "largest_protected_group": 5
+      },
+      "smoke": {
+        "long_run_ticks": 7182,
+        "software_stack_reserved": 128,
+        "stack": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "stack_guard_intact": true,
+        "irq_vector_intact": true,
+        "beam_helper_intact_all_scenes": true
+      },
+      "tests_passed": 19,
+      "vice_window_check": {
+        "prg_sha256": "afe8e2b0d83b25eb71bb85fd41cff3c5f5427b8fc61dd074f8b32047100ee5ed",
+        "loaded_program": {
+          "all_depacked_regions_match": true,
+          "bytes_checked": 33792,
+          "loaded_image_sha256": "8e5ee2d9e33886c325530a2549373b2b35c5a2184d24540d3c653167915dd5fd"
+        },
+        "groups_checked": 64,
+        "protected_groups_checked": 18,
+        "protected_player_groups_checked": 18,
+        "all_four_ghost_slots_observed": false,
+        "no_protected_group_crossed_its_colour_rows": true,
+        "all_protected_groups_within_budget": true,
+        "guest_patches": false
+      }
+    },
+    "focused": {
+      "prg_sha256": "a4d1ced4974ad5b2af6e2ea72b878654684a40ba20fd33d22fbca7a4fa332303",
+      "video_frames": 600,
+      "counter_interval_seconds": 9.93621464965724,
+      "completed_render_calls": 233,
+      "render_calls_per_second": 23.44957392884398,
+      "compared_active_input_states": 603,
+      "common_completed_pictures": 142,
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "6ef14fe1adeb7a51e33d140a399c5f0329174fbc8f0b5fdf21ac1a1aa14893f5"
+      },
+      "phase_checks": {
+        "phase_fixture_calls": 1179,
+        "protected_groups": 719,
+        "fallback_groups": 722,
+        "largest_protected_group": 5
+      },
+      "smoke": {
+        "long_run_ticks": 7180,
+        "software_stack_reserved": 128,
+        "stack": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "stack_guard_intact": true,
+        "irq_vector_intact": true,
+        "beam_helper_intact_all_scenes": true
+      },
+      "tests_passed": 19,
+      "vice_window_check": {
+        "prg_sha256": "a4d1ced4974ad5b2af6e2ea72b878654684a40ba20fd33d22fbca7a4fa332303",
+        "loaded_program": {
+          "all_depacked_regions_match": true,
+          "bytes_checked": 33792,
+          "loaded_image_sha256": "6ef14fe1adeb7a51e33d140a399c5f0329174fbc8f0b5fdf21ac1a1aa14893f5"
+        },
+        "groups_checked": 64,
+        "protected_groups_checked": 10,
+        "protected_player_groups_checked": 10,
+        "all_four_ghost_slots_observed": false,
+        "no_protected_group_crossed_its_colour_rows": true,
+        "all_protected_groups_within_budget": true,
+        "guest_patches": false
+      }
+    }
+  },
+  "date": "2026-11-04",
+  "status": "rejected after user visual review; stop raster-priority work; not promoted",
+  "platform": "NTSC VIC-20, +3K and BLK1/2/3/5 RAM",
+  "logic_tick_cycles": 16875,
+  "perceptual_flicker_improvement_established": false,
+  "default_prg_unchanged": true,
+  "source_sha256": {
+    "Makefile": "8251f176b7f186de2f9e6f574b69490b29ac9177802001d02ce9bd07cca85da6",
+    "src/beam_follow.S": "7b4ec5ffb06e5a748298d0b279c30f5e6b16aa0266007255367582b99a593b1b",
+    "src/beam_priority.ld": "aacf27646b544c7cbdb5e16f577106e61009ff0f61d70bfd94fc4ccfedc64ac2",
+    "src/sprites.S": "2fe2b9982251709f5ed456bffbfdf2b2193674d6480b65e6987f87d93015ce88",
+    "src/video.c": "c46def0e5ad1eb1c258c7938f2f0c05e57e42e704265e2a574f475437ce73bca",
+    "tests/beam.py": "d1adad6aa2f76fa34201c1d3dfa5f1f51bb21eee178567a436c99a7c842cb038",
+    "tests/beam_priority.py": "ef5bb49536cbbf702f47883d42107b833a482f2b0e86f9eb0da8959b71393274",
+    "tests/smoke.py": "6f9b5c6cbd08081e2566d36b7da720f8ffd7bb9fe667c7d1fa6eed8b03600e91",
+    "tools/arcade/check_beam.py": "98f506af3c4c17032c38c001f8f092c7551f31c4020237c134ba9f7bdb853884",
+    "tools/arcade/record_beam_priority.py": "6902bdb418ffe6a5725e16bf4f37ab111006bdad6c4376cbc2341238516e98df"
+  },
+  "user_review": {
+    "date": "2026-11-04",
+    "quote": "I don't think it's noticeably better and there is a slight performance hit. I guess give up on this.",
+    "specific_variants_played": "not established"
+  }
+}

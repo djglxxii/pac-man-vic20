@@ -35,9 +35,17 @@ def main():
                 assert sim.peek(0x1d40, len(tables)) == tables, "Graphics tables corrupted"
             if "__beam_code_size" in sim.labels:
                 load, size = sim.labels['__beam_code_load'], sim.labels['__beam_code_size']
-                raw = (ROOT / 'build/beam-follow/pacman-native.bin').read_bytes()
+                image = args.prg.with_name('pacman-native.bin') if args.prg else None
+                if image is None or not image.exists():
+                    image = ROOT / 'build/beam-follow/pacman-native.bin'
+                raw = image.read_bytes()
                 code = raw[0x8000 + load - 0x400:0x8000 + load - 0x400 + size]
                 assert sim.peek(sim.labels['__beam_code_start'], size) == code, 'Beam helper corrupted'
+            if "__actor_code_size" in sim.labels:
+                load, size = sim.labels['__actor_code_load'], sim.labels['__actor_code_size']
+                raw = args.prg.with_name('pacman-native.bin').read_bytes()
+                code = raw[0x8000 + load - 0x400:0x8000 + load - 0x400 + size]
+                assert sim.peek(sim.labels['__actor_code_start'], size) == code, 'Actor helper corrupted'
             sim.cmd("dump " + str(out / (name + ".ram")))
             p = out / (name + ".ppm")
             sim.cmd("shot " + str(p))
@@ -107,6 +115,8 @@ def main():
             report["shifted_tables_intact_all_scenes"] = True
         if "__beam_code_size" in sim.labels:
             report['beam_helper_intact_all_scenes'] = True
+        if "__actor_code_size" in sim.labels:
+            report['actor_helper_intact_all_scenes'] = True
         (out / "native-validation.json").write_text(json.dumps(report, indent=2) + "\n")
         print(json.dumps(report, indent=2))
     finally:

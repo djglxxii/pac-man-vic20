@@ -1,8 +1,10 @@
 # Arcade graphics and sound
 
-The main asset source is the user's local `pacman.zip`. Maze and actor art
+The main asset source is the user's local `pacman.zip`. Maze and most actor art
 are decoded from the original data. [Letters, digits and bonus scores](FONTS.md)
 use hand-drawn VIC-native shapes from `docs/artwork/hires-font.json`.
+Normal Pac-Man and his death animation use the user's revised 8×12 masks
+from [`artwork/hires-pacman.json`](artwork/hires-pacman.json).
 `make` runs `tools/arcade/mkrom.py` and writes `build/arcade/rom.c`, `rom.h`,
 `program-rom.bin` and a SHA-256 manifest. Source ROM addresses stay virtual;
 the native port stores only the data ranges it uses.
@@ -87,9 +89,40 @@ the scaled body and keep each frame's skirt. The generator verifies those
 properties and stores eight shifts of each middle ten-row mask, using 640
 bytes total. The normal cache lives in BLK5 and the frightened cache in
 BLK1–3. Other frames, returning eyes and clipped sprites retain the generic
-compositor. The saved edge underlays and vertical flips remain exact. Apart
-from those frightened holes and the custom reward masks, the sprite artwork
-is unchanged.
+compositor. The saved edge underlays and vertical flips remain exact.
+The ordinary Pac-Man masks are also hand-authored, as described below.
+
+### Revised Pac-Man
+
+The source was imported unchanged from
+`/home/djglxxii/src/temp/pacman/revised-sprites/sprites.json`.
+`tools/arcade/hires_pacman.py` installs its rows into the generated sprite
+atlas after ROM decoding, so clean builds use the revised art without any
+dependency on that external directory. Rows run top to bottom, bit 7 at
+the left, with one yellow ink and transparent clear bits.
+
+Five stored walking masks occupy `$2C`–`$30`: right open, down open,
+right half, down half and closed. Left and up reuse the existing horizontal
+and vertical flips. All four closed-mouth views share the same twelve bytes
+at `$30`; its symmetry makes flipping it visually identical. That sharing
+was already present in the port, so this substitution adds no sprite storage
+and does not claim an additional saving. The eleven death masks replace
+`$34`–`$3E`. The hidden `$3F` frame and large intermission art retain their
+existing masks.
+
+The revised circle fills the existing 8×12 box. Its centre is `(3.5, 5.5)`;
+at the NTSC 3:2 pixel aspect the box is square. Sprite coordinates, animation
+selectors, timing, collision logic, palettes and the renderer footprint are
+unchanged. `tests/render.py` checks the loaded mask bytes, yellow palette,
+shared closed views, shifted drawing, colour-row boundaries, tunnel clipping,
+death frames and exact restoration beneath the revised art.
+
+All 52 regression tests and the smoke run through all three intermissions
+pass. A fresh [600-frame VICE gameplay capture](../build/revised-pacman/vic20-revised-pacman-9fb85cf6.mp4)
+verifies all 33,792 loaded program bytes before startup. Against the preceding
+build, the depacked image differs only in 124 bytes within those sixteen
+masks; every code and data address stays the same. Capture identity and
+asset checks are recorded under `build/revised-pacman/`.
 
 ## Sound
 

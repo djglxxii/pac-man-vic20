@@ -3,7 +3,8 @@
 Accepted after user visual review on 2026-11-03. The user requested cleaner
 letters, digits and bonus scores after finding the scaled arcade font garbled,
 then approved the horizontal reward layout. The font is included in `make run`.
-Flicker work remains on hold.
+A later [actor-commit throughput trial](ACTOR_SPEED.md) retains this artwork
+in a separate target; the accepted normal build is unchanged.
 
 [Compare the old and new artwork](artwork/fonts/font-comparison.png).
 The sheet uses the generated game assets at integer scale with the NTSC

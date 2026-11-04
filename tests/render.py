@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Check the native compositor against an independent bitmap reference."""
+import json
 import random
 import re
 import unittest
-from native import Sim, BUILD, WORK
+from native import Sim, BUILD, WORK, ROOT
 from performance import start_game
 
 
@@ -155,6 +156,39 @@ class Renderer(unittest.TestCase):
                             )
                         ]
                     )
+
+    def test_08_revised_pacman_masks_and_shared_closed_views(self):
+        spec = json.loads((ROOT / "docs/artwork/hires-pacman.json").read_text())
+        self.assertEqual(len(self.sprites), 64 * 12)
+        for key, frame in spec["frames"].items():
+            code = int(key, 16)
+            rows = bytes.fromhex(frame["rows"])
+            # Check the program's depacked data, not just generated C text.
+            self.assertEqual(self.sim.peek(
+                self.sim.labels["arcade_sprites"] + code * 12, 12), rows)
+            self.assertEqual(self.sprites[code * 12:(code + 1) * 12], rows)
+            self.assertEqual((self.classes[code // 4] >> ((code & 3) * 2)) & 3, 3)
+        self.assertEqual(self.colors[9 * 4 + 3], 7)
+        closed = []
+        for name, view in spec["views"].items():
+            code = int(view["sprite"], 16)
+            flip = {"none": 0, "vertical": 1, "horizontal": 2}[view["flip"]]
+            if name.endswith("-closed"):
+                self.assertEqual(code, 0x30)
+                rows = self.sprites[code * 12:(code + 1) * 12]
+                closed.append(bytes(int(f"{row:08b}"[::-1], 2) for row in rows)
+                              if flip & 2 else rows)
+            # Pac-Man's actual yellow palette, both sides of the colour-row
+            # boundary, the bottom of the playfield and tunnel clipping.
+            for raw_y in (160, 158, 144, 0):
+                for x in (-7, -1, *range(32, 40), 104, 105, 111):
+                    with self.subTest(view=name, x=x, raw_y=raw_y):
+                        self.check_scene([(code, flip, 9, 239 - 2 * x, raw_y)])
+        self.assertEqual(len(set(closed)), 1)
+        for code in range(0x34, 0x3f):
+            for shift in range(8):
+                self.check_scene([(code, 0, 9, 175 - shift * 2, 158)])
+        self.check_scene([(0x3f, 0, 9, 175, 158)])  # Original hidden frame.
 
     def test_07_horizontal_rewards_priority_flips_edges_and_restoration(self):
         def scene(off, code, flip, x, hole=10):

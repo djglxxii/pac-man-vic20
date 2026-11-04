@@ -84,3 +84,11 @@ All **8,336 frames** decode successfully. Audio is non-silent, with a measured
 peak of −3.8 dB. Both boards complete, the first intermission starts and finishes,
 and the next board becomes playable. No guest code changes were made for this
 capture; it records the existing 42-test white-maze build.
+
+## Published routes
+
+The recorder above is a pellet-seeking bot and stops after the first
+intermission. A separate VICE session followed the published PacStrats trails
+through the third intermission on the current PRG, again by joystick writes
+only. Details and the recording path are in [validation](VALIDATION.md).
+`record_playthrough.py` still records the first-intermission bot.

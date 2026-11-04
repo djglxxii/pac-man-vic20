@@ -57,13 +57,21 @@ overflow is retained.
 
 Movement stays in arcade pixels and runs from a 60.606 Hz VIA timer. Tests
 compare game state against the original Z80 program and compare input traces
-on the compiled 6502 program. This supports arcade pattern compatibility;
-every published pattern and physical joystick timing have not been certified.
+on the compiled 6502 program. The published PacStrats routes clear this build:
+pattern 1 on boards 1–4 and pattern 2 on boards 5–9, played in VICE by
+joystick alone, with no deaths and the 10,000-point life collected. The next
+direction has to be held about eight pixels before the corner. Pattern 2 also
+cleared boards 10–20 in the native simulator. Pattern 3 (board 21 on) and a
+physical joystick have not been tried. The recording is
+`build/third-intermission/third-intermission.mp4`
+([details](docs/VALIDATION.md)).
 
 ## VIC compromises
 
 Maze and actor graphics are decoded from the local ROMs. Original tiles become 4×6 pixels
-and sprites become 8×12 pixels. [Custom letters and digits](docs/FONTS.md)
+and sprites become 8×12 pixels. [Pac-Man's revised walking and death masks](docs/ASSETS.md#revised-pac-man)
+are drawn directly at that size, with one shared closed-mouth frame for every direction.
+[Custom letters and digits](docs/FONTS.md)
 use shapes drawn at the displayed size, including ghost and fruit scores.
 Ghost and fruit rewards stay on one line. The wider ghost numbers borrow
 Pac-Man's hidden drawing slot during the reward pause.
@@ -89,7 +97,7 @@ The later [ghost-precomposition experiment](docs/GHOST_PRECOMPOSITION.md)
 was rejected after user review found no significant flicker improvement to
 justify its throughput cost. The faster main build remains in place.
 
-Further flicker work is on hold at the user's request after visual review
+Further flicker work was paused at the user's request after visual review
 found no meaningful overall improvement in the latest comparison. The
 [temporary-character experiment](docs/GHOST_SHADOW.md) was rejected after user
 play testing found no perceptible improvement, while normal play fell from
@@ -109,8 +117,30 @@ opening actor window from 5.662 to 2.539 ms, but its fresh longer active
 capture falls from 30.92 to 24.13 renderer calls/s. It fails the throughput
 budget and was rejected after user review: flicker shifts between sides with
 no meaningful overall improvement. It remains separate from the default for
-reproduction. Further flicker experiments, including precise background
-invalidation, are on hold.
+reproduction. A later [comparison at matched cadence](docs/RATE_MATCH.md)
+was noticeably better in user review, prompting a separate
+[actor-commit throughput trial](docs/ACTOR_SPEED.md). Try
+`make run-actor-speed`: it keeps the current fonts and improves natural
+active rendering from 26.40 to 27.55 calls/s, while the normal build remains
+faster at 33.13 calls/s on that trace. User review found a possible improvement,
+less noticeable than in the initial matched-cadence trial. The overall
+benefit remains inconclusive, and the normal renderer remains the default;
+precise background invalidation remains deferred.
+
+The [raster-priority revisit](docs/BEAM_PRIORITY.md) was rejected after user
+review found no noticeable improvement and a performance hit.
+For reproduction, `make run-beam-priority` gives Pac-Man
+first choice of a safe raster window and protects nearby ghost groups.
+`make run-beam-review` runs the earlier all-group approach. These trials
+still manage about 23 redraws/s against 33 for the normal game on the same
+input trace, and some updates remain unprotected. Further work on this
+approach stops; `make run` continues to launch the accepted renderer.
+
+The [CPU and display profile](docs/DISPLAY_PROFILE.md) now measures the accepted
+build before another rendering experiment. In a 1,200-frame active VICE replay,
+it completes 32.88 redraws/s. Pac-Man is missing in 165 sampled frames and
+partial in 75, with 179 ambiguous frames excluded. The profile records drawing
+cost, redraw intervals and visible motion separately. No game code changes.
 
 A [selected multicolour redesign](docs/MULTICOLOUR_PROTOTYPE.md) uses a wider
 maze, blue walls, white pellets, custom actors and hires score digits. Its

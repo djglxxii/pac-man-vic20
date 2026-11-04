@@ -15,6 +15,12 @@ The [baseline audit](ARCADE_PARITY_AUDIT.md) describes the superseded engine.
 The [source provenance](../src/arcade/UPSTREAM.md) identifies the translation
 and the errors repaired during comparison with the original instructions.
 
+The 2026-11-04 [display profile](DISPLAY_PROFILE.md) adds host-only CPU profiling
+and lossless frame classification for the current accepted executable. It checks
+1,206 VICE input/game states, 1,207 native states, 616 settled-image mask oracles,
+and 4,978 synthetic visibility controls. The nine host-tool tests pass.
+The PRG remains byte-identical; no game code was changed for these measurements.
+
 ## Reproduce the checks
 
 ```sh
@@ -170,6 +176,25 @@ intermission. Both boards reach 244 eaten pellets without RAM edits or forced
 completion. The MP4 contains 8,336 actual VICE video frames and non-silent audio;
 it preserves intermediate drawing for visual flicker review.
 
+A later VICE recording followed the PacStrats trails from
+[10yard/pactrainer](https://github.com/10yard/pactrainer)
+(`patterns/pacstrats/`: `1_1`, `2_1`, `3_1` and `4_1` for boards 1–4, then
+`5_2` for boards 5–9). Each trail is the arcade Pac-Man position, one sample
+per move. The player held the next direction about eight pixels before the
+turn and wrote only the joystick port. No pellet, life, score or level memory
+was edited. Boards 1–9 each reached 244 eaten pellets. There were no deaths.
+The extra life at 10,000 points was awarded, leaving four lives when board 10
+began after the third intermission. That count includes the life in play.
+The PRG SHA-256 is
+`eb6b29810453418818a1ffb83f8b0057464a903682c20970cc6019617067a4e9`.
+The video is `build/third-intermission/third-intermission.mp4`, SHA-256
+`4bde728a5a7a309007dac12d812d270e2c9a64c0d0fcbe4d19400a567bc6b6f1`,
+33,682 frames (558.7 seconds). The same PRG in the native simulator, still on
+pattern 2, cleared boards 10–20 and died on board 21 at 48 pellets, where
+pattern 3 (`21_3`) applies. That file was not loaded. Holds of four pixels
+died on board 1 at 207 pellets. Six pixels cleared board 1 and died on board
+2 at 202 pellets.
+
 `make performance` counts completed renders and records frame intervals from
 emulated CPU cycles. Current gameplay samples reach about 50–54 FPS; the sampled
 intermission reaches 60 FPS. [PERFORMANCE.md](PERFORMANCE.md) records the method,
@@ -193,9 +218,11 @@ the display refresh rate.
 - The game uses upright controls. Arcade board self-tests, service switches,
   cabinet outputs and cocktail display rotation are not exposed as VIC modes.
   PAL machines are not supported by this timing configuration.
-- The tested input traces support pattern compatibility, but every published
-  pattern has not been played or certified. Physical joystick sampling,
-  initial input timing and presentation-task timing still require care.
+- PacStrats patterns 1 and 2 clear the current PRG through board 9 in VICE,
+  and pattern 2 through board 20 in the native simulator, when the next
+  direction is held about eight pixels early. Pattern 3 and a physical
+  joystick have not been tested. A later hold at the corner dies on board 1
+  or 2. Presentation timing on real hardware remains untested.
 - Board 256 is checked through its fruit-history routine, not a complete
   255-board playthrough. Real hardware has not been tested in this workspace.
 

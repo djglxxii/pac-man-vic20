@@ -1,5 +1,12 @@
 # Original graphics: drawing behind the beam
 
+**2026-11-04 playable revisit:** current-artwork all-group and player-priority
+builds were supplied for direct play testing. The user rejected the
+raster-priority approach: no noticeable improvement and a performance hit.
+See [BEAM_PRIORITY.md](BEAM_PRIORITY.md) for the review, commands,
+actual-capture rates and remaining unprotected cases. The
+historical rejection and measurements below describe the earlier trial.
+
 **Not accepted after user review:** the user saw no perceptible difference.
 The subsequent [capture audit](CAPTURE_AUDIT.md) verifies that the experimental
 code ran, but also finds that the previously quoted FPS came from a different
