@@ -6,9 +6,23 @@ The accepted [glyph-pool renderer](GLYPH_POOL.md) initially passed 31 adapted na
 with throughput falling from 32.88 to 22.07 redraws/s. This fails the performance
 target; the user subsequently accepted the visible improvement and slowdown
 after live play testing. It is now the default, byte-identical to the tested
-pool binary. `make test` includes 15 ROM comparisons, 37 pool/logic/memory/font
-checks, 10 classifier checks and the default smoke run. `make test-legacy`
+pool binary. `make test` now includes 15 ROM comparisons, 39 pool/logic/memory/font
+checks (one optimized-decoder check is skipped on the accepted baseline),
+12 classifier checks and the default smoke run. `make test-legacy`
 retains the previous underlay suite. See the report for exclusions and recipes.
+
+The [address-calculation trial](POOL_ADDRESS_OPTIMIZATION.md) passes all 39 pool
+checks, including exhaustive testing of the compiled nibble decoder, plus the
+12 classifier checks and all intermissions. It improves actual redraw speed
+about 3.5%; the accepted default is preserved for comparison.
+
+The [empty-row trial](POOL_SKIP_EMPTY.md) passes the same 39 pool checks, plus
+10,496 identical-input kernel pixel/guard cases per binary and smoke through all
+intermissions and 7,192 logical ticks. Its actual 1,180-frame VICE capture
+passes 435 settled-picture oracles and 3,536 synthetic visibility controls.
+Actual redraws improve from 22.80 to 23.21 over the address trial, with no fully
+absent actors among classified cases. Partial poses remain. The default is
+unchanged.
 
 Reference: the local Midway US `pacman.zip`, normal difficulty, three lives,
 bonus life at 10,000 points. The program ROM CRCs are `c1e6ab10`, `1a6fb2d4`,

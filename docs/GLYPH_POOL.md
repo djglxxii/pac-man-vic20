@@ -99,7 +99,16 @@ oracles and visibility capture. The 6,493 cycles are the cost of the whole
 allocation/copy category, not a promise that all of it can be removed.
 Only 49 resident bytes and 19 BLK5 bytes remain; prefer changes that also save
 code space. Keep the full stack, safe-reuse guard, artwork and arcade clock.
-No follow-up speed change has been implemented at this checkpoint.
+No follow-up speed change was included in the acceptance checkpoint. The first
+[address-calculation trial](POOL_ADDRESS_OPTIMIZATION.md) is now available with
+`make run-pool-address`: about 3.5% more actual redraws/s, with the accepted
+default preserved for comparison.
+
+The second [empty-row trial](POOL_SKIP_EMPTY.md) adds a two-byte branch to the
+generic stamper, avoiding pixel work for an empty source row. Built on the
+address trial, it reaches **23.21 actual redraws/s**, another **1.8%** on the
+saved route, with identical settled pixels. Try `make run-pool-skip-empty`.
+Neither speed trial has replaced the accepted default.
 
 ## What changes
 

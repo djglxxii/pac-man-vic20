@@ -21,6 +21,15 @@ next priority. `make run-glyph-pool` launches the same version. The previous
 underlay renderer, measured at about 33 redraws/s, remains available through
 `make run-legacy` for comparisons.
 
+The first [address-calculation speed trial](docs/POOL_ADDRESS_OPTIMIZATION.md)
+is available with `make run-pool-address`. It measures about 3.5% more redraws
+per second while retaining the accepted appearance; `make run` stays unchanged.
+
+The next [empty-row speed trial](docs/POOL_SKIP_EMPTY.md), launched with
+`make run-pool-skip-empty`, includes the address improvement and skips sprite
+rows containing no pixels. It measures **23.21 redraws/s**, about 1.8% above the
+address trial and 5.3% above the accepted pool on the saved route.
+
 - **Arrow keys:** move, using joystick port 1's keyboard mapping.
 - **5:** insert a coin. **1:** start one player. **2:** start two players
   after inserting two coins.

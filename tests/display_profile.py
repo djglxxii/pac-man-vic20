@@ -7,7 +7,7 @@ import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools/arcade'))
 from analyze_display import (WIDTH, FRAME_CYCLES, classify, summarize,
                              validate_frame_spacing, displayed_bitmap, background,
-                             bitmap_points)
+                             bitmap_points, frame_window)
 from profile_game import trace_summary
 
 
@@ -17,6 +17,25 @@ def actor(x=32, y=48):
 
 
 class Visibility(unittest.TestCase):
+    def test_prefix_window_preserves_source_and_excludes_future_events(self):
+        frames = [dict(clock=65+FRAME_CYCLES*i, line=1, cycle=0) for i in range(4)]
+        events = [dict(clock=f['clock']) for f in frames]
+        source = dict(frames=frames, events=events)
+        selected = frame_window(source, 3)
+        self.assertEqual(selected['frames'], frames[:3])
+        self.assertEqual(selected['events'], events[:3])
+        self.assertEqual(len(source['frames']), 4)
+        self.assertEqual(len(source['events']), 4)
+
+    def test_prefix_window_rejects_bad_limits_and_any_source_gap(self):
+        frames = [dict(clock=65+FRAME_CYCLES*i, line=1, cycle=0) for i in range(4)]
+        for limit in (0, 1, 5):
+            with self.assertRaises(ValueError):
+                frame_window(dict(frames=frames, events=[]), limit)
+        # A later source gap cannot be hidden by asking for a valid prefix.
+        with self.assertRaisesRegex(AssertionError, 'Missing or duplicate'):
+            frame_window(dict(frames=frames[:2]+[frames[3]], events=[]), 2)
+
     def test_pool_display_uses_matrix_and_keeps_home_background(self):
         data = bytearray(8192 + 196)
         for row in range(14):

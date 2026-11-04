@@ -1,0 +1,797 @@
+{
+  "date": "2026-11-04",
+  "status": "Separate speed trial; accepted default unchanged; user review pending",
+  "hardware": "NTSC VIC-20; +3K and BLK1/2/3/5",
+  "logical_tick_cycles": 16875,
+  "vic_frame_cycles": 16965,
+  "comparison_frames": 1180,
+  "guest_code_patched_by_capture": false,
+  "algorithm_changes": [
+    "Sequential destination pointer in existing unused zero-page/publication scratch",
+    "Prepacked nibbles in existing 196-byte home-code table",
+    "Binary nibble exchange when restoring matrix home codes"
+  ],
+  "memory": {
+    "additional_ram_bytes": 0,
+    "resident_end": 32050,
+    "resident_headroom_before_full_stack_bytes": 14,
+    "blk5_headroom_bytes": 19,
+    "stack_bottom": 32064,
+    "stack_top": 32768,
+    "stack_reserved_bytes": 704
+  },
+  "validation": {
+    "trial_checks": 39,
+    "classifier_checks": 12,
+    "allocator_cases_per_program": 392,
+    "overlap_hits_per_program": 392,
+    "arithmetic_checks": 512,
+    "all_intermissions": true,
+    "smoke": {
+      "screens": [
+        "attract",
+        "credits",
+        "maze",
+        "cherry",
+        "intermission-1",
+        "intermission-2",
+        "intermission-3"
+      ],
+      "stack_by_scene": {
+        "attract": {
+          "software_lowest_write": 32745,
+          "software_bytes_written": 23,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "credits": {
+          "software_lowest_write": 32736,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "maze": {
+          "software_lowest_write": 32736,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "cherry": {
+          "software_lowest_write": 32736,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-1": {
+          "software_lowest_write": 32736,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-2": {
+          "software_lowest_write": 32736,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-3": {
+          "software_lowest_write": 32736,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        }
+      },
+      "clock": {
+        "video_frames": 180,
+        "arcade_ticks": 180,
+        "expected": 180.96
+      },
+      "long_run_ticks": 7184,
+      "stack": {
+        "software_lowest_write": 32736,
+        "software_bytes_written": 32,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "boot": {
+        "entries": 1,
+        "released": true
+      },
+      "irq_vector_intact": true,
+      "stack_guard_intact": true,
+      "software_stack_reserved": 704
+    }
+  },
+  "sources": {
+    "baseline": {
+      "prg_sha256": "0d33d3747809a302d400ef530ac7abd599e46c267b9181f7e752fc6f1f778fe5",
+      "native_image_sha256": "46fbfc7ef4fb8c1e4be4d085a035a2ddb3189ca8ee22a79cf921fc0157fd4d65",
+      "input_trace_sha256": "9546fe8fbbe5108f48b665d41c20ea6a3d22646d7b0ed5ed481e237e0878bb8f",
+      "matched_native_states": 1207,
+      "native_cpu": {
+        "completed_renders": 441,
+        "completed_renders_per_second": 22.134966419356395,
+        "completed_render_interval_ms": {
+          "count": 440,
+          "mean": 45.200523164583956,
+          "p50": 44.516278537674275,
+          "p95": 68.37406267752783,
+          "max": 85.20846716670235
+        },
+        "phase_percent": {
+          "logic_tasks_loop": 53.057559217637355,
+          "audio": 5.735103178127392,
+          "render": 41.04753213875288,
+          "wait": 0.15980546548237282
+        },
+        "routine_inclusive_cycles": {
+          "ghost-state": {
+            "count": 2414,
+            "mean": 1478.3322286661144,
+            "p50": 1452,
+            "p95": 2382,
+            "max": 4185,
+            "total": 3568694
+          },
+          "sound-channel": {
+            "count": 2009,
+            "mean": 818.8043802887008,
+            "p50": 772,
+            "p95": 1424,
+            "max": 1576,
+            "total": 1644978
+          },
+          "audio": {
+            "count": 1207,
+            "mean": 968.1739850869925,
+            "p50": 1120,
+            "p95": 1281,
+            "max": 1458,
+            "total": 1168586
+          },
+          "background": {
+            "count": 441,
+            "mean": 2464.8503401360545,
+            "p50": 2953,
+            "p95": 7088,
+            "max": 11252,
+            "total": 1086999
+          },
+          "restore": {
+            "count": 441,
+            "mean": 430.2312925170068,
+            "p50": 148,
+            "p95": 2112,
+            "max": 2168,
+            "total": 189732
+          },
+          "paint": {
+            "count": 441,
+            "mean": 16016.448979591836,
+            "p50": 15645,
+            "p95": 19595,
+            "max": 20634,
+            "total": 7063254
+          },
+          "render": {
+            "count": 441,
+            "mean": 18965.657596371882,
+            "p50": 18450,
+            "p95": 25234,
+            "max": 30857,
+            "total": 8363855
+          },
+          "wait": {
+            "count": 1206,
+            "mean": 27.0,
+            "p50": 27,
+            "p95": 27,
+            "max": 27,
+            "total": 32562
+          }
+        }
+      },
+      "service": {
+        "max_input_gap_ms": 45.721878859167695,
+        "max_audio_gap_ms": 41.161522087517
+      },
+      "display": {
+        "prg_sha256": "0d33d3747809a302d400ef530ac7abd599e46c267b9181f7e752fc6f1f778fe5",
+        "video_frames": 1180,
+        "counter_interval_seconds": 19.557257215268592,
+        "completed_renders": 431,
+        "completed_renders_per_second": 22.037855066073018,
+        "calibration": {
+          "x": 8,
+          "y": 4,
+          "output_dots_per_vic_dot": 2,
+          "mismatch_pixels": 0,
+          "next_distinct_alignment_error": 3576
+        },
+        "min_diagnostic_pixels": 12,
+        "actors": {
+          "pacman": {
+            "frames": {
+              "present": 987,
+              "partial": 18,
+              "excluded": 175
+            },
+            "eligible_frames": 1005,
+            "exclusions": {
+              "shared-colour-cell": 117,
+              "reward-slot-expansion": 58
+            },
+            "absent_frame_percent": 0.0,
+            "partial_frame_percent": 1.791044776119403,
+            "visible_ink_color_mismatch_frames": 0
+          },
+          "blinky": {
+            "frames": {
+              "present": 890,
+              "excluded": 279,
+              "partial": 11
+            },
+            "eligible_frames": 901,
+            "exclusions": {
+              "shared-colour-cell": 190,
+              "reward-slot-expansion": 58,
+              "screen-edge-clipping": 23,
+              "hidden-or-empty": 8
+            },
+            "absent_frame_percent": 0.0,
+            "partial_frame_percent": 1.2208657047724751,
+            "visible_ink_color_mismatch_frames": 0
+          },
+          "pinky": {
+            "frames": {
+              "excluded": 328,
+              "present": 837,
+              "partial": 15
+            },
+            "eligible_frames": 852,
+            "exclusions": {
+              "shared-colour-cell": 110,
+              "screen-edge-clipping": 102,
+              "hidden-or-empty": 58,
+              "reward-slot-expansion": 58
+            },
+            "absent_frame_percent": 0.0,
+            "partial_frame_percent": 1.7605633802816902,
+            "visible_ink_color_mismatch_frames": 0
+          },
+          "inky": {
+            "frames": {
+              "excluded": 240,
+              "present": 934,
+              "partial": 6
+            },
+            "eligible_frames": 940,
+            "exclusions": {
+              "shared-colour-cell": 182,
+              "reward-slot-expansion": 58
+            },
+            "absent_frame_percent": 0.0,
+            "partial_frame_percent": 0.6382978723404256,
+            "visible_ink_color_mismatch_frames": 4
+          },
+          "clyde": {
+            "frames": {
+              "excluded": 302,
+              "present": 870,
+              "partial": 8
+            },
+            "eligible_frames": 878,
+            "exclusions": {
+              "shared-colour-cell": 181,
+              "reward-slot-expansion": 58,
+              "insufficient-distinct-ink": 63
+            },
+            "absent_frame_percent": 0.0,
+            "partial_frame_percent": 0.9111617312072893,
+            "visible_ink_color_mismatch_frames": 6
+          }
+        },
+        "method": "exact distinct sprite ink; old/new poses; binary visibility separate from colour",
+        "guest_modified": false,
+        "validation": {
+          "complete_snapshots_checked": 415,
+          "excluded_complete_snapshots": {
+            "reward-slot-expansion": 31
+          },
+          "settled_actor_results": {
+            "present": 1682,
+            "excluded": 393
+          },
+          "false_absent_or_partial_on_settled_images": 0,
+          "synthetic_host_only_controls": {
+            "absent": 1682,
+            "partial": 1682
+          }
+        },
+        "evidence": [
+          {
+            "actor": "pacman",
+            "frame": 33,
+            "status": "partial"
+          }
+        ],
+        "render_interval_ms": {
+          "count": 430,
+          "mean": 45.42294027815875,
+          "p50": 45.44712323034397,
+          "p95": 68.06704037343299,
+          "max": 83.81806679592893
+        },
+        "render_interval_logical_ticks": {
+          "1": 23,
+          "2": 149,
+          "3": 180,
+          "4": 67,
+          "5": 11
+        },
+        "source_capture_frames": 1200,
+        "analysis_window": "First 1180 consecutive source frames"
+      },
+      "capture_path": "build/pool-address/evaluation/baseline-vice"
+    },
+    "trial": {
+      "prg_sha256": "c96ed73ab9e7ea61e14eeceb56fd7e8c10eeedd62c11bb2dc67ad3f4fe20301c",
+      "native_image_sha256": "20b278deb6a002529e9947984e7a6ddbf2c6171c361bda611e0231f7ee5d5946",
+      "input_trace_sha256": "9546fe8fbbe5108f48b665d41c20ea6a3d22646d7b0ed5ed481e237e0878bb8f",
+      "matched_native_states": 1207,
+      "native_cpu": {
+        "completed_renders": 456,
+        "completed_renders_per_second": 22.904262367832825,
+        "completed_render_interval_ms": {
+          "count": 455,
+          "mean": 43.69246508233745,
+          "p50": 42.58223357748451,
+          "p95": 66.23077321709508,
+          "max": 83.44357780717631
+        },
+        "phase_percent": {
+          "logic_tasks_loop": 53.05378124492147,
+          "audio": 5.748024856212204,
+          "wait": 0.1601950432850268,
+          "render": 41.03799885558131
+        },
+        "routine_inclusive_cycles": {
+          "ghost-state": {
+            "count": 2414,
+            "mean": 1475.7990886495443,
+            "p50": 1446,
+            "p95": 2379,
+            "max": 4178,
+            "total": 3562579
+          },
+          "sound-channel": {
+            "count": 2009,
+            "mean": 819.0831259333002,
+            "p50": 772,
+            "p95": 1424,
+            "max": 1576,
+            "total": 1645538
+          },
+          "audio": {
+            "count": 1207,
+            "mean": 969.6603148301574,
+            "p50": 1122,
+            "p95": 1282,
+            "max": 1458,
+            "total": 1170380
+          },
+          "wait": {
+            "count": 1206,
+            "mean": 27.046434494195687,
+            "p50": 27,
+            "p95": 27,
+            "max": 83,
+            "total": 32618
+          },
+          "background": {
+            "count": 456,
+            "mean": 2377.1403508771928,
+            "p50": 2749,
+            "p95": 6928,
+            "max": 11253,
+            "total": 1083976
+          },
+          "restore": {
+            "count": 456,
+            "mean": 449.4035087719298,
+            "p50": 167,
+            "p95": 2131,
+            "max": 2187,
+            "total": 204928
+          },
+          "paint": {
+            "count": 456,
+            "mean": 15443.603070175439,
+            "p50": 15091,
+            "p95": 18872,
+            "max": 20006,
+            "total": 7042283
+          },
+          "render": {
+            "count": 456,
+            "mean": 18324.39254385965,
+            "p50": 17841,
+            "p95": 25221,
+            "max": 31340,
+            "total": 8355923
+          }
+        }
+      },
+      "service": {
+        "max_input_gap_ms": 41.91734451129187,
+        "max_audio_gap_ms": 39.93929953936877
+      },
+      "display": {
+        "prg_sha256": "c96ed73ab9e7ea61e14eeceb56fd7e8c10eeedd62c11bb2dc67ad3f4fe20301c",
+        "video_frames": 1180,
+        "counter_interval_seconds": 19.55725819304663,
+        "completed_renders": 446,
+        "completed_renders_per_second": 22.804832640526804,
+        "calibration": {
+          "x": 8,
+          "y": 4,
+          "output_dots_per_vic_dot": 2,
+          "mismatch_pixels": 0,
+          "next_distinct_alignment_error": 3576
+        },
+        "min_diagnostic_pixels": 12,
+        "actors": {
+          "pacman": {
+            "frames": {
+              "present": 987,
+              "partial": 18,
+              "excluded": 175
+            },
+            "eligible_frames": 1005,
+            "exclusions": {
+              "shared-colour-cell": 114,
+              "reward-slot-expansion": 61
+            },
+            "absent_frame_percent": 0.0,
+            "partial_frame_percent": 1.791044776119403,
+            "visible_ink_color_mismatch_frames": 0
+          },
+          "blinky": {
+            "frames": {
+              "present": 889,
+              "partial": 17,
+              "excluded": 274
+            },
+            "eligible_frames": 906,
+            "exclusions": {
+              "shared-colour-cell": 182,
+              "reward-slot-expansion": 61,
+              "screen-edge-clipping": 23,
+              "hidden-or-empty": 8
+            },
+            "absent_frame_percent": 0.0,
+            "partial_frame_percent": 1.8763796909492274,
+            "visible_ink_color_mismatch_frames": 0
+          },
+          "pinky": {
+            "frames": {
+              "excluded": 328,
+              "present": 833,
+              "partial": 19
+            },
+            "eligible_frames": 852,
+            "exclusions": {
+              "shared-colour-cell": 106,
+              "screen-edge-clipping": 98,
+              "hidden-or-empty": 63,
+              "reward-slot-expansion": 61
+            },
+            "absent_frame_percent": 0.0,
+            "partial_frame_percent": 2.2300469483568075,
+            "visible_ink_color_mismatch_frames": 2
+          },
+          "inky": {
+            "frames": {
+              "excluded": 235,
+              "present": 939,
+              "partial": 6
+            },
+            "eligible_frames": 945,
+            "exclusions": {
+              "shared-colour-cell": 174,
+              "reward-slot-expansion": 61
+            },
+            "absent_frame_percent": 0.0,
+            "partial_frame_percent": 0.6349206349206349,
+            "visible_ink_color_mismatch_frames": 7
+          },
+          "clyde": {
+            "frames": {
+              "excluded": 292,
+              "present": 872,
+              "partial": 16
+            },
+            "eligible_frames": 888,
+            "exclusions": {
+              "shared-colour-cell": 171,
+              "reward-slot-expansion": 61,
+              "insufficient-distinct-ink": 60
+            },
+            "absent_frame_percent": 0.0,
+            "partial_frame_percent": 1.8018018018018018,
+            "visible_ink_color_mismatch_frames": 5
+          }
+        },
+        "method": "exact distinct sprite ink; old/new poses; binary visibility separate from colour",
+        "guest_modified": false,
+        "validation": {
+          "complete_snapshots_checked": 429,
+          "excluded_complete_snapshots": {
+            "reward-slot-expansion": 33
+          },
+          "settled_actor_results": {
+            "present": 1752,
+            "excluded": 393
+          },
+          "false_absent_or_partial_on_settled_images": 0,
+          "synthetic_host_only_controls": {
+            "absent": 1752,
+            "partial": 1752
+          }
+        },
+        "evidence": [
+          {
+            "actor": "pacman",
+            "frame": 3,
+            "status": "partial"
+          }
+        ],
+        "render_interval_ms": {
+          "count": 445,
+          "mean": 43.89346908320224,
+          "p50": 43.706678321780885,
+          "p95": 65.28330629777057,
+          "max": 82.28882194368585
+        },
+        "render_interval_logical_ticks": {
+          "1": 28,
+          "2": 163,
+          "3": 188,
+          "4": 64,
+          "5": 2
+        }
+      },
+      "capture_path": "build/pool-address/evaluation/final-trial-vice"
+    }
+  },
+  "kernel": {
+    "baseline": {
+      "prg_sha256": "0d33d3747809a302d400ef530ac7abd599e46c267b9181f7e752fc6f1f778fe5",
+      "method": "vicsim call command; IRQs masked; identical home bytes and allocator inputs",
+      "cells_checked": 392,
+      "allocation_cycles": {
+        "count": 392,
+        "mean": 413.6938775510204,
+        "p50": 414,
+        "p95": 414,
+        "max": 414
+      },
+      "hit_cycles": {
+        "count": 392,
+        "mean": 119.08163265306122,
+        "p50": 120,
+        "p95": 120,
+        "max": 120
+      },
+      "begin_cycles": {
+        "count": 18,
+        "mean": 365.72222222222223,
+        "p50": 148,
+        "p95": 2111,
+        "max": 2112
+      },
+      "restore_batches": [
+        {
+          "cells": 24,
+          "cycles": 1141
+        },
+        {
+          "cells": 24,
+          "cycles": 1141
+        },
+        {
+          "cells": 24,
+          "cycles": 1141
+        },
+        {
+          "cells": 24,
+          "cycles": 1141
+        },
+        {
+          "cells": 24,
+          "cycles": 1141
+        },
+        {
+          "cells": 24,
+          "cycles": 1141
+        },
+        {
+          "cells": 24,
+          "cycles": 1141
+        },
+        {
+          "cells": 24,
+          "cycles": 1141
+        },
+        {
+          "cells": 4,
+          "cycles": 241
+        },
+        {
+          "cells": 24,
+          "cycles": 1142
+        },
+        {
+          "cells": 24,
+          "cycles": 1142
+        },
+        {
+          "cells": 24,
+          "cycles": 1142
+        },
+        {
+          "cells": 24,
+          "cycles": 1142
+        },
+        {
+          "cells": 24,
+          "cycles": 1142
+        },
+        {
+          "cells": 24,
+          "cycles": 1142
+        },
+        {
+          "cells": 24,
+          "cycles": 1142
+        },
+        {
+          "cells": 24,
+          "cycles": 1142
+        },
+        {
+          "cells": 4,
+          "cycles": 242
+        }
+      ]
+    },
+    "trial": {
+      "prg_sha256": "c96ed73ab9e7ea61e14eeceb56fd7e8c10eeedd62c11bb2dc67ad3f4fe20301c",
+      "method": "vicsim call command; IRQs masked; identical home bytes and allocator inputs",
+      "cells_checked": 392,
+      "allocation_cycles": {
+        "count": 392,
+        "mean": 377.6938775510204,
+        "p50": 378,
+        "p95": 378,
+        "max": 378
+      },
+      "hit_cycles": {
+        "count": 392,
+        "mean": 119.08163265306122,
+        "p50": 120,
+        "p95": 120,
+        "max": 120
+      },
+      "begin_cycles": {
+        "count": 18,
+        "mean": 384.72222222222223,
+        "p50": 167,
+        "p95": 2130,
+        "max": 2131
+      },
+      "restore_batches": [
+        {
+          "cells": 24,
+          "cycles": 1429
+        },
+        {
+          "cells": 24,
+          "cycles": 1429
+        },
+        {
+          "cells": 24,
+          "cycles": 1429
+        },
+        {
+          "cells": 24,
+          "cycles": 1429
+        },
+        {
+          "cells": 24,
+          "cycles": 1429
+        },
+        {
+          "cells": 24,
+          "cycles": 1429
+        },
+        {
+          "cells": 24,
+          "cycles": 1429
+        },
+        {
+          "cells": 24,
+          "cycles": 1429
+        },
+        {
+          "cells": 4,
+          "cycles": 289
+        },
+        {
+          "cells": 24,
+          "cycles": 1430
+        },
+        {
+          "cells": 24,
+          "cycles": 1430
+        },
+        {
+          "cells": 24,
+          "cycles": 1430
+        },
+        {
+          "cells": 24,
+          "cycles": 1430
+        },
+        {
+          "cells": 24,
+          "cycles": 1430
+        },
+        {
+          "cells": 24,
+          "cycles": 1430
+        },
+        {
+          "cells": 24,
+          "cycles": 1430
+        },
+        {
+          "cells": 24,
+          "cycles": 1430
+        },
+        {
+          "cells": 4,
+          "cycles": 290
+        }
+      ]
+    },
+    "allocation_cycle_savings_per_case": [
+      36
+    ]
+  },
+  "gain_percent_actual_video": 3.4802732487089427,
+  "comparison": {
+    "frames": 1180,
+    "frame_rate": "340909/5655",
+    "audio": false,
+    "poses_retimed": false,
+    "sources": [
+      {
+        "path": "/home/djglxxii/src/vic-man/build/pool-address/evaluation/baseline-vice",
+        "prg_sha256": "0d33d3747809a302d400ef530ac7abd599e46c267b9181f7e752fc6f1f778fe5"
+      },
+      {
+        "path": "/home/djglxxii/src/vic-man/build/pool-address/evaluation/final-trial-vice",
+        "prg_sha256": "c96ed73ab9e7ea61e14eeceb56fd7e8c10eeedd62c11bb2dc67ad3f4fe20301c"
+      }
+    ],
+    "video_sha256": "6ce410117ad279dfbcef6bdd6127797428c594d248fa671211a6b052ce45ba17",
+    "preview_sha256": "04d1a29b6e76dbedd18ccb985d4942bc58272f911777b14032561442125909a1"
+  },
+  "capture_notes": [
+    "Valid baseline is the first 1180 frames of a 1200-frame capture; the entire source passes consecutive-frame validation. Source PNGs and recording metadata are unchanged.",
+    "Final trial contains 1180 directly captured frames.",
+    "An incomplete 1200-frame initial trial exceeded the saved input trace and is excluded.",
+    "A separate baseline capture with two missing raster frames was rejected and renamed invalid-dropped-frames-baseline-vice."
+  ]
+}

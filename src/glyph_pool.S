@@ -11,6 +11,10 @@ cache_pal: .zero 14
 .section .zp.bss,"aw",@nobits
 .global v_cell,v_color,v_sy
 v_actor: .zero 1
+#ifdef POOL_ADDRESS_FAST
+/* The old underlay-record cursor is unused by the pool frontend. */
+.set pool_next_low,v_actor
+#endif
 v_off: .zero 1
 v_sx: .zero 1
 v_sy: .zero 1
@@ -302,6 +306,12 @@ pool_source_ready:
 pool_row:
 pool_fetch:
  lda $ffff,x
+#ifdef POOL_SKIP_EMPTY
+ /* An empty row stays empty through either mirror and every shift. Skip
+    only its pixel work; allocation and colour priority are unchanged.
+    Nonempty rows pay two cycles. Per-half tests lost time on the live route. */
+ beq pool_step
+#endif
 pool_mirror:
  jmp pool_store
 pool_reverse:
@@ -431,9 +441,33 @@ pool_space:
  lsr
  ora pool_epoch
  sta $96c4,y
+#ifdef POOL_ADDRESS_FAST
+ /* Allocation is sequential within a bank. Reuse the unused old underlay
+    cursor and the publication end byte (dead during composition) as a pointer.
+    Preserve the carry from the low-byte ADC across LDA/STA for the high byte. */
+ lda pool_next_low
+ sta v_base
+ clc
+ adc #16
+ sta pool_next_low
+ lda pool_code_end
+ sta v_base+1
+ adc #0
+ sta pool_code_end
+#else
  jsr pool_pointer
+#endif
  ldy v_col
  lda home_codes,y
+#ifdef POOL_ADDRESS_FAST
+ /* Table stores swapped code nibbles: high nibble = address low byte,
+    low nibble = address page minus $10. No extra table or RAM is needed. */
+ sta v_hi
+ and #$f0
+ sta v_lo
+ lda v_hi
+ and #15
+#else
  pha
  asl
  asl
@@ -445,6 +479,7 @@ pool_space:
  lsr
  lsr
  lsr
+#endif
  ora #$10
  sta v_hi
  ldy #0
@@ -562,6 +597,20 @@ pool_restore_done:
  rts
 pool_home:
  lda home_codes,y
+#ifdef POOL_ADDRESS_FAST
+ /* Matrix restoration is less frequent than allocation. Convert the packed
+    address back to its original home code; preserve X/Y for the caller.
+    Binary-mode nibble exchange: each ADC consumes the preceding ASL's carry.
+    Main-thread rendering, like the existing address math, requires D=0. */
+.global pool_unpack_home
+pool_unpack_home:
+ asl
+ adc #$80
+ rol
+ asl
+ adc #$80
+ rol
+#endif
  sta $0200,y
  lda $9400,y
  sta $9600,y
@@ -600,6 +649,17 @@ pool_epoch_ready:
  sta pool_failed
  jsr pool_bank_start
  sta pool_start
+#ifdef POOL_ADDRESS_FAST
+ /* X still holds the bank: pool_bank_start only clobbers A. */
+ txa
+ lsr
+ lda #$80
+ ror                       /* Low byte $40/$C0; also clears C. */
+ sta pool_next_low
+ txa
+ adc #$1c                  /* ROR above cleared carry; high byte $1C/$1D. */
+ sta pool_code_end
+#endif
  rts
 video_update_end:
  lda maze_flash

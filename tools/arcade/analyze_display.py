@@ -30,6 +30,18 @@ def validate_frame_spacing(frames):
                for a, b in zip(frames, frames[1:])), 'Missing or duplicate raster frame'
 
 
+def frame_window(recording, limit=None):
+    """Select an initial window without hiding gaps or altering source data."""
+    validate_frame_spacing(recording['frames'])
+    if limit is None:
+        return recording
+    if not 2 <= limit <= len(recording['frames']):
+        raise ValueError('--frames must select 2 or more existing frames')
+    frames = recording['frames'][:limit]
+    return recording | dict(frames=frames, events=[e for e in recording['events']
+                                                  if e['clock'] <= frames[-1]['clock']])
+
+
 def labels(path):
     return {p[2][1:]: int(p[1], 16) for line in path.read_text().splitlines()
             if len(p := line.split()) == 3}
@@ -314,9 +326,10 @@ def evidence_sheet(out, recording, records, origin):
     return examples
 
 
-def analyze(out):
+def analyze(out, frame_limit=None):
     recording = json.loads((out/'recording.json').read_text())
-    validate_frame_spacing(recording['frames'])
+    captured_frames = len(recording['frames'])
+    recording = frame_window(recording, frame_limit)
     sym = labels(out/'captured-program.lbl')
     tables = json.loads((out/'tables.json').read_text())
     archive = zipfile.ZipFile(out/'memory.zip')
@@ -405,6 +418,9 @@ def analyze(out):
                   render_interval_logical_ticks=dict(sorted(Counter(
                       b['tick']-a['tick'] for a, b in zip(completed, completed[1:])).items())))
     write_json(out/'actors.json', records)
+    if frame_limit is not None:
+        result['source_capture_frames'] = captured_frames
+        result['analysis_window'] = f'First {frame_limit} consecutive source frames'
     write_json(out/'analysis.json', result)
     print(json.dumps({k: v for k, v in result.items() if k != 'actors'}, indent=2))
     for actor, values in result['actors'].items():
@@ -415,8 +431,9 @@ def analyze(out):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--capture', type=Path, default=ROOT/'build/display-profile/current/vice')
+    p.add_argument('--frames', type=int, help='Analyse this many initial frames; source capture stays unchanged')
     args = p.parse_args()
-    analyze(args.capture.resolve())
+    analyze(args.capture.resolve(), args.frames)
 
 
 if __name__ == '__main__':

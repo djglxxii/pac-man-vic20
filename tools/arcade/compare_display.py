@@ -16,6 +16,8 @@ def main():
     parser.add_argument('--baseline', type=Path, required=True)
     parser.add_argument('--trial', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--baseline-label', default='Accepted baseline')
+    parser.add_argument('--trial-label', default='Glyph pool trial')
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     paths = [args.baseline, args.trial]
@@ -28,7 +30,8 @@ def main():
     assert recordings[0]['prg_sha256'] != recordings[1]['prg_sha256']
     assert recordings[0]['input_trace_sha256'] == recordings[1]['input_trace_sha256']
     assert recordings[0]['frame_rate'] == recordings[1]['frame_rate'] == str(FPS)
-    count = min(len(r['frames']) for r in recordings)
+    count = min(s['video_frames'] for s in summaries)
+    assert count <= min(len(r['frames']) for r in recordings)
     font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', 16)
     small = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', 13)
     target = args.output/'glyph-pool-comparison.mp4'
@@ -49,7 +52,7 @@ def main():
                     assert digest(source.tobytes()) == frame['raw_sha256']
                     assert source.size == (240, 232)
                     canvas.paste(source.resize((480, 464), Image.Resampling.NEAREST), (side*480, 64))
-                label = 'Accepted baseline' if side == 0 else 'Glyph pool trial'
+                label = args.baseline_label if side == 0 else args.trial_label
                 rate = summary['completed_renders_per_second']
                 draw.text((side*480+10, 8), f'{label}: {rate:.2f} redraws/s', fill='white', font=font)
                 draw.text((side*480+10, 32), f"PRG {recording['prg_sha256'][:12]} / tick {frame['tick']}", fill='white', font=small)

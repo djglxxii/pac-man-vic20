@@ -136,6 +136,57 @@ class PoolRenderer(render.Renderer):
             self.assertEqual(data[self.sim.labels['pool_failed']], 0)
         self.sim.cmd('call video_restore')
 
+    def test_11_all_home_addresses_overlap_hits_and_cursor_page_carries(self):
+        # Direct allocator checks complement full scene oracles: every home
+        # glyph, both banks, slot/page boundaries, and reuse without advancing
+        # the sequential destination cursor. No matrix publication is needed.
+        sim = self.sim
+        for cell in range(196):
+            if cell % 24 == 0:
+                sim.cmd('call video_update_begin')
+            bank = sim.peek('pool_bank')[0]
+            before = sim.peek(sim.labels['pool_count'] + bank)[0]
+            sim.cmd('poke v_color 3')
+            sim.cmd(f'call pool_cell {cell}')
+            address = int.from_bytes(sim.peek('v_base', 2), 'little')
+            self.assertEqual(address, 0x1c40 + (bank * 24 + before) * 16)
+            row, col = divmod(cell, 14)
+            self.assertEqual(sim.peek(address, 16),
+                             self.background[col*224+row*16:col*224+row*16+16])
+            count = sim.peek(sim.labels['pool_count'] + bank)
+            self.assertEqual(count, bytes([before + 1]))
+            sim.cmd(f'call pool_cell {cell}')
+            self.assertEqual(int.from_bytes(sim.peek('v_base', 2), 'little'), address)
+            self.assertEqual(sim.peek(sim.labels['pool_count'] + bank), count)
+            self.assertEqual(sim.peek('pool_failed'), b'\0')
+        # Leave the fixture with empty banks; these calls deliberately did not
+        # publish the temporary allocations into the matrix.
+        for i in range(2):
+            sim.cmd(f"poke ${sim.labels['pool_count']+i:x} 0")
+
+    def test_12_packed_home_decode_all_bytes_and_incoming_carries(self):
+        sim = self.sim
+        if 'pool_unpack_home' not in sim.labels:
+            self.skipTest('Accepted baseline uses unpacked home codes')
+        # Exercise the actual built eight-byte arithmetic fragment, copied to
+        # unused $0308-$0312 for a temporary callable stub. The expected result
+        # comes from nibble exchange, independent of the instruction sequence.
+        original = sim.peek(0x0308, 11)
+        body = sim.peek('pool_unpack_home', 8)
+        from pathlib import Path
+        path = WORK / 'pd.bin'
+        try:
+            for carry in (0x18, 0x38):  # CLC / SEC; CLD makes binary mode explicit.
+                path.write_bytes(bytes((0xd8, carry)) + body + b'\x60')
+                sim.cmd(f'load $0308 {path}')
+                for value in range(256):
+                    line = sim.cmd(f'call $0308 {value}')[-1]
+                    self.assertEqual(int(line.split()[1], 16),
+                                     ((value << 4) | (value >> 4)) & 255)
+        finally:
+            path.write_bytes(original)
+            sim.cmd(f'load $0308 {path}')
+
 
 class PoolColors(colors.Colors):
     pass

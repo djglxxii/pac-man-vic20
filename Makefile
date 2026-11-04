@@ -164,6 +164,48 @@ build/glyph-pool/pacman.prg: build/glyph-pool/pacman-native.bin tools/arcade/pac
 
 glyph-pool: build/glyph-pool/pacman.prg
 
+# Isolated allocation/address calculation experiment; accepted pool unchanged.
+build/pool-address/pacman-native.bin: $(POOL_NATIVE) src/glyph_pool.ld src/colour_target.h $(wildcard src/arcade/*.h) src/video.h $(GEN)/rom.stamp $(MOSCC)
+	@mkdir -p $(@D)
+	$(MOSCC) $(filter-out -Tsrc/pacman.ld,$(CFLAGS)) -DGLYPH_POOL -DPOOL_ADDRESS_FAST -Tsrc/glyph_pool.ld $(POOL_NATIVE) $(GEN)/rom.c -Wl,-Map,$(@D)/pacman.map -o $@
+
+build/pool-address/pacman.prg: build/pool-address/pacman-native.bin tools/arcade/pack.py
+	$(PY) tools/arcade/pack.py $< $@ --ca65 $(CA65) --ld65 $(LD65) --nm $(MOSNM)
+
+pool-address: build/pool-address/pacman.prg
+
+run-pool-address: pool-address
+	xvic $(VICEFLAGS) -autostart build/pool-address/pacman.prg
+
+test-pool-address: pool-address tools/vicsim/vicsim reference
+	$(PY) tests/arcade.py
+	PACMAN_PRG=build/pool-address/pacman.prg $(PY) tests/glyph_pool.py
+	$(PY) tests/display_profile.py
+	$(PY) tests/smoke.py --prg build/pool-address/pacman.prg --output build/pool-address/smoke
+
+.PHONY: pool-address run-pool-address test-pool-address
+
+# Skip empty generic-sprite source rows on top of the address trial.
+build/pool-skip-empty/pacman-native.bin: $(POOL_NATIVE) src/glyph_pool.ld src/colour_target.h $(wildcard src/arcade/*.h) src/video.h $(GEN)/rom.stamp $(MOSCC)
+	@mkdir -p $(@D)
+	$(MOSCC) $(filter-out -Tsrc/pacman.ld,$(CFLAGS)) -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -Tsrc/glyph_pool.ld $(POOL_NATIVE) $(GEN)/rom.c -Wl,-Map,$(@D)/pacman.map -o $@
+
+build/pool-skip-empty/pacman.prg: build/pool-skip-empty/pacman-native.bin tools/arcade/pack.py
+	$(PY) tools/arcade/pack.py $< $@ --ca65 $(CA65) --ld65 $(LD65) --nm $(MOSNM)
+
+pool-skip-empty: build/pool-skip-empty/pacman.prg
+
+run-pool-skip-empty: pool-skip-empty
+	xvic $(VICEFLAGS) -autostart build/pool-skip-empty/pacman.prg
+
+test-pool-skip-empty: pool-skip-empty tools/vicsim/vicsim reference
+	$(PY) tests/arcade.py
+	PACMAN_PRG=build/pool-skip-empty/pacman.prg $(PY) tests/glyph_pool.py
+	$(PY) tests/display_profile.py
+	$(PY) tests/smoke.py --prg build/pool-skip-empty/pacman.prg --output build/pool-skip-empty/smoke
+
+.PHONY: pool-skip-empty run-pool-skip-empty test-pool-skip-empty
+
 run-glyph-pool: glyph-pool
 	xvic $(VICEFLAGS) -autostart build/glyph-pool/pacman.prg
 

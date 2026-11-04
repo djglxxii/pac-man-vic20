@@ -21,6 +21,22 @@ native redraw. Tighten that bounded path before considering incremental pool
 allocation, which remains a larger design question. No new speed change is
 part of this acceptance checkpoint.
 
+**First speed follow-up:** the [pool address trial](POOL_ADDRESS_OPTIMIZATION.md)
+now saves 36 cycles per fresh allocation and improves actual capture throughput
+from 22.04 to 22.80 redraws/s (about 3.5%). It retains the accepted visibility
+behaviour and passes image/gameplay/long-run checks. Use `make run-pool-address`
+for live review; the accepted default remains unchanged. See the report and
+[frozen measurements](baselines/pool-address.json) before choosing another step.
+
+**Second speed follow-up:** the [empty-row trial](POOL_SKIP_EMPTY.md) builds on
+the address trial and reaches **23.21 actual redraws/s**, about **1.8%** more,
+or **5.3%** above the accepted pool on the saved route. One two-byte branch
+avoids mirroring, shifting and destination writes for an empty source row.
+Per-half checks were measured and dropped because their overhead lost time on
+the live route. Image/gameplay/long-run checks pass; `make run-pool-skip-empty`
+is available for live review. The default remains unchanged. See the report
+and [frozen measurements](baselines/pool-skip-empty.json) for limits and costs.
+
 ## Earlier investigations (historical)
 
 The current acceptance decision above supersedes older instructions below that
