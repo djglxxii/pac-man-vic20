@@ -18,7 +18,7 @@ CFLAGS := -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everythi
 
 all: $(PRG)
 
-$(GEN)/rom.stamp: tools/arcade/mkrom.py tools/arcade/hires_font.py tools/arcade/hires_pacman.py docs/artwork/hires-font.json docs/artwork/hires-pacman.json pacman.zip
+$(GEN)/rom.stamp: tools/arcade/mkrom.py tools/arcade/hires_font.py tools/arcade/hires_pacman.py tools/arcade/hires_intermission.py docs/artwork/hires-font.json docs/artwork/hires-pacman.json docs/artwork/hires-intermission.json pacman.zip
 	$(PY) tools/arcade/mkrom.py --output $(GEN)
 	@touch $@
 

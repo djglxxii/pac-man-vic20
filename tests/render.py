@@ -190,6 +190,19 @@ class Renderer(unittest.TestCase):
                 self.check_scene([(code, 0, 9, 175 - shift * 2, 158)])
         self.check_scene([(0x3f, 0, 9, 175, 158)])  # Original hidden frame.
 
+    def test_09_intermission_ghost_masks(self):
+        spec = json.loads((ROOT / "docs/artwork/hires-intermission.json").read_text())
+        self.assertEqual(set(spec["frames"]),
+                         {f"{code:02X}" for code in (0x08, 0x09, 0x0a, 0x0b,
+                                                     0x0c, 0x0d, 0x32, 0x33)})
+        for key, frame in spec["frames"].items():
+            code = int(key, 16)
+            rows = bytes.fromhex(frame["rows"])
+            self.assertEqual(self.sim.peek(
+                self.sim.labels["arcade_sprites"] + code * 12, 12), rows)
+            self.assertEqual(self.sprites[code * 12:(code + 1) * 12], rows)
+            self.assertEqual((self.classes[code // 4] >> ((code & 3) * 2)) & 3, 3)
+
     def test_07_horizontal_rewards_priority_flips_edges_and_restoration(self):
         def scene(off, code, flip, x, hole=10):
             actors = [[32, 0, pal, 160, 168] for pal in (0, 9, 7, 5, 3, 1)]

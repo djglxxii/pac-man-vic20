@@ -5,6 +5,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 from hires_font import apply_ghost_scores, apply_tiles, fruit_messages, load_glyphs
 from hires_pacman import apply_pacman
+from hires_intermission import apply_intermission
 
 BLOCKS = (
     (0x68, 0x8D),
@@ -184,6 +185,8 @@ def main():
     # Authored at the displayed size; the four closed views already share $30.
     # Preserve the original sprite codes, dominant pixel classes and palettes.
     apply_pacman(sprites)
+    # Clear bits are the eye holes. The snag, tear and robe keep their silhouettes.
+    apply_intermission(sprites)
     if not args.arcade_font:
         score_right = apply_ghost_scores(sprites, glyphs)
         # The main graphics bank is full; these four extra half-masks fit

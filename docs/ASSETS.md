@@ -107,8 +107,8 @@ and vertical flips. All four closed-mouth views share the same twelve bytes
 at `$30`; its symmetry makes flipping it visually identical. That sharing
 was already present in the port, so this substitution adds no sprite storage
 and does not claim an additional saving. The eleven death masks replace
-`$34`–`$3E`. The hidden `$3F` frame and large intermission art retain their
-existing masks.
+`$34`–`$3E`. The hidden `$3F` frame and the large Pac-Man quadrants retain
+their existing masks.
 
 The revised circle fills the existing 8×12 box. Its centre is `(3.5, 5.5)`;
 at the NTSC 3:2 pixel aspect the box is square. Sprite coordinates, animation
@@ -123,6 +123,17 @@ verifies all 33,792 loaded program bytes before startup. Against the preceding
 build, the depacked image differs only in 124 bytes within those sixteen
 masks; every code and data address stays the same. Capture identity and
 asset checks are recorded under `build/revised-pacman/`.
+
+### Intermission ghosts
+
+Scaled ROM masks turned the eye whites into ink, so the nail, the tear and the
+robe read as solid shapes. `tools/arcade/hires_intermission.py` replaces
+`$08`–`$0D` and `$32`–`$33` from
+[`artwork/hires-intermission.json`](artwork/hires-intermission.json) after that
+scale. Clear bits are the eye holes. `$32` and `$33` keep the sheet pulled to
+the lower right, `$08` and `$09` keep a ragged right edge, and `$0A`–`$0D`
+split the naked ghost from the trailing robe. The cutscenes still select the
+same codes, classes and palettes. The large Pac-Man quadrants are unchanged.
 
 ## Sound
 

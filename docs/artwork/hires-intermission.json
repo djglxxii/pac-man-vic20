@@ -1,0 +1,15 @@
+{
+  "width": 8,
+  "height": 12,
+  "pixel_aspect": [3, 2],
+  "frames": {
+    "08": {"name": "tearing-0", "rows": "00 18 3C 99 99 7E FE FC F8 FC B8 00"},
+    "09": {"name": "tearing-1", "rows": "00 18 3C 99 99 FC FE FD 7C 5A 24 00"},
+    "0A": {"name": "apart-head-0", "rows": "00 00 1F 35 7F FF FF FF 7F 3F 1C 00"},
+    "0B": {"name": "apart-head-1", "rows": "00 00 1F 35 3F 7F FF FF 3F 3F 1E 00"},
+    "0C": {"name": "apart-robe-0", "rows": "00 00 00 00 00 00 00 00 18 7C FE 00"},
+    "0D": {"name": "apart-robe-1", "rows": "00 00 00 00 00 00 00 00 30 7C FE 00"},
+    "32": {"name": "snagged", "rows": "00 18 3C 5A 99 7E 7E 7F FF B7 A7 00"},
+    "33": {"name": "torn", "rows": "00 3C 7E 99 99 E7 F7 7F 7E B7 A7 00"}
+  }
+}
