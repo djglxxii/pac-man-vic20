@@ -46,7 +46,10 @@ def capture(source, reference, out, count):
         hooks = {
             mon.checkpoint(sites['frame_wait']+3): 'controls',
             mon.checkpoint(sites['video_refresh']): 'render',
-            mon.checkpoint(labels['video_update_end']): 'paint',
+            # Pool caches describe pending poses at publication. Earlier,
+            # composition has not yet captured the new actor outputs.
+            mon.checkpoint(labels['pool_publish'] if '__pool_capacity' in labels
+                           else labels['video_update_end']): 'paint',
             mon.checkpoint(labels['video_frame_end']): 'complete',
         }
         palette = mon.palette()
@@ -140,6 +143,7 @@ def capture(source, reference, out, count):
                       frames=frames, inputs=inputs, events=events,
                       cpu_hz=1022727, cycles_per_vic_frame=FRAME_CYCLES,
                       image_source='VICE raster drawing buffer, lossless RGB PNG',
+                      renderer='glyph-pool' if '__pool_capacity' in labels else 'underlays',
                       memory_layout='8 KiB $0000-$1fff followed by 196 colour nibbles $9600')
         write_json(out/'recording.json', result)
         print(f'Saved {len(frames)} lossless raster frames and {len(events)} state snapshots to {out}', flush=True)

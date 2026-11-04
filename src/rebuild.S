@@ -1,3 +1,4 @@
+#include "colour_target.h"
 /* One bounded background slice. State lives in unused screen-work RAM;
    v_* scratch belongs to the main-thread renderer and is not IRQ-visible.
    Phases: 0 idle, 1 clear bitmap, 2 full tile pass, 3 dirty tile pass. */
@@ -134,6 +135,10 @@ video_rebuild:
  lda full_dirty
  cmp #2
  bne rebuild_resume
+#ifdef STABLE_COLOURS
+ lda #1
+ sta colour_full
+#endif
  lda #0
  sta rebuild_cursor
  sta rebuild_cursor+1
@@ -141,7 +146,10 @@ video_rebuild:
  ldx #196
 rebuild_colours:
  dex
+ sta VIDEO_COLOURS,x
+#ifdef GLYPH_POOL
  sta $9600,x
+#endif
  bne rebuild_colours
  ldx #127
 rebuild_bits:

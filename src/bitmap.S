@@ -1,3 +1,4 @@
+#include "colour_target.h"
 /* Vertical bitmap columns make each sprite's twelve scanlines contiguous. */
 .section .zp.bss,"aw",@nobits
 .global v_addr,v_save,v_data,v_flags,v_shift,v_flip,v_lo,v_hi
@@ -7,6 +8,9 @@ v_data: .zero 2
 v_flags: .zero 1
 v_shift: .zero 1
 v_flip: .zero 1
+#ifdef GLYPH_POOL
+.global v_right,v_saved_right,v_row
+#endif
 v_right: .zero 2
 v_saved_right: .zero 2
 v_lo: .zero 1
@@ -18,7 +22,11 @@ arcade_prepare_outputs:
  ldx #15
 prepare_sound:
  lda $0e8c,x
+#ifdef GLYPH_POOL
+ sta $0350,x
+#else
  sta $1c90,x
+#endif
  dex
  bpl prepare_sound
  ldx #27
@@ -28,6 +36,7 @@ prepare_sprites:
  dex
  bpl prepare_sprites
  rts
+#ifndef GLYPH_POOL
 .global bitmap_erase,bitmap_draw,bitmap_draw_ghost
 bitmap_setup:
  clc
@@ -282,7 +291,11 @@ ghost_shift_addresses:
  .word arcade_fright_shifted+k*20
 .set k,k+1
 .endr
+#endif
 .section .rodata.bit_reverse,"a",@progbits
+#ifdef GLYPH_POOL
+.global bit_reverse
+#endif
 .p2align 8
 bit_reverse:
 .byte 0,128,64,192,32,160,96,224,16,144,80,208,48,176,112,240
@@ -429,7 +442,7 @@ tile_shape_ready:
  clc
  adc v_saved_right+1
  sta v_right
- lda #$96
+ lda #>VIDEO_COLOURS
  sta v_right+1
  ldx v_flags
  beq tile_color_done
@@ -598,6 +611,24 @@ maze_palette_hud:
 .section .text.bitmap_cell_colour,"ax",@progbits
 bitmap_cell_colour:
  sta (v_right),y
+#ifdef STABLE_COLOURS
+ /* Preserve A/Y; X is rebuilt by the existing cell-index calculation below. */
+ pha
+ ldx colour_count
+ cpx #16
+ bcs colour_queue_full
+ tya
+ clc
+ adc v_right
+ sta colour_cells,x
+ inc colour_count
+ jmp colour_queue_done
+colour_queue_full:
+ lda #1
+ sta colour_full
+colour_queue_done:
+ pla
+#endif
  tya
  clc
  adc v_right
@@ -617,15 +648,28 @@ bitmap_cell_colour:
  lda maze_cells,y
  ora v_row
  sta maze_cells,y
+#ifdef GLYPH_POOL
+ jmp cell_colour_done
+#else
  rts
+#endif
 cell_colour_shared:
  lda maze_cells,y
  and v_row
  beq cell_colour_done
  /* Shared background art adopts the wall colour without scanning pellets. */
  jsr bitmap_wall_colour
- sta $9600,x
+ sta VIDEO_COLOURS,x
 cell_colour_done:
+#ifdef GLYPH_POOL
+ /* Background colours stay clean; occupied cells keep their displayed owner. */
+ lda $0200,x
+ cmp #196
+ bcs pool_background_colour_done
+ lda $9400,x
+ sta $9600,x
+pool_background_colour_done:
+#endif
  rts
 .section .text.bitmap_wall_colour,"ax",@progbits
 bitmap_wall_colour:
@@ -650,6 +694,10 @@ bit_masks:
 .section .text.bitmap_maze_flash,"ax",@progbits
 .global bitmap_maze_flash
 bitmap_maze_flash:
+#ifdef STABLE_COLOURS
+ lda #1
+ sta colour_full
+#endif
  lda $0840
  cmp #31
  beq maze_colour_blue
@@ -670,7 +718,18 @@ maze_colour_byte:
 maze_colour_cell:
  asl v_row
  bcc maze_colour_next
+ sta VIDEO_COLOURS,x
+#ifdef GLYPH_POOL
+ pha
+ lda $0200,x
+ cmp #196
+ bcs pool_flash_occupied
+ pla
  sta $9600,x
+ jmp maze_colour_next
+pool_flash_occupied:
+ pla
+#endif
 maze_colour_next:
  dex
  dec v_lo

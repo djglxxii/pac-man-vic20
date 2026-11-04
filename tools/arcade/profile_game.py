@@ -115,7 +115,7 @@ def hotspots(profile, linker_map):
                 instruction_cycles=sum(totals.values()))
 
 
-def measure(prg, trace, out, linker_map):
+def measure(prg, trace, out, linker_map, colour_writes=False):
     out.mkdir(parents=True, exist_ok=True)
     snapshot = out/'captured-program.prg'
     if prg != snapshot:
@@ -143,12 +143,16 @@ def measure(prg, trace, out, linker_map):
                     first = int(sim.cmd('stats')[0].split()[1])
                     sim.cmd('profile reset')
                     sim.cmd(f'trace {out}/active.trace')
+                    if colour_writes:
+                        sim.cmd(f'colours {out}/active.colours.csv')
                     active = True
             sim.cmd('joy '+inp['direction'])
             sim.cmd('until frame_wait 100')
         assert active
         last = int(sim.cmd('stats')[0].split()[1])
         sim.cmd('trace off')
+        if colour_writes:
+            sim.cmd('colours off')
         sim.cmd(f'profile {out}/active.profile')
         events = [(int(c), e) for c, e in
                   map(str.split, (out/'active.trace').read_text().splitlines())]
@@ -177,8 +181,9 @@ def main():
     p.add_argument('--input', type=Path, default=ROOT/'build/rate-match/active-1200/trial/recording.json')
     p.add_argument('--map', type=Path, default=ROOT/'build/arcade/pacman.map')
     p.add_argument('--output', type=Path, default=ROOT/'build/display-profile/current/cpu')
+    p.add_argument('--colour-writes', action='store_true', help='Also log physical colour-cell writes without guest instrumentation')
     args = p.parse_args()
-    measure(args.prg.resolve(), json.loads(args.input.read_text()), args.output.resolve(), args.map.resolve())
+    measure(args.prg.resolve(), json.loads(args.input.read_text()), args.output.resolve(), args.map.resolve(), args.colour_writes)
 
 
 if __name__ == '__main__':

@@ -1,5 +1,52 @@
 # Research optimization plan
 
+**Current direction, 2026-11-04:** live play testing accepted the
+[glyph-pool renderer](GLYPH_POOL.md) as a large visible improvement. The user
+reports occasional slowdown and explicitly accepts the speed tradeoff for now.
+`make run` now launches this renderer. Commit the complete work as a checkpoint;
+the next priority is measured redraw-speed improvement while preserving the
+accepted appearance. The stopped colour investigation remains stopped.
+
+| Original idea | Current disposition |
+| --- | --- |
+| 1. Finished-cell glyph pool | [Accepted after live play testing](GLYPH_POOL.md) and promoted to default. No fully absent actors among classified capture cases; 22.07 versus 32.88 previous redraws/s. Same hardware and full stack. User accepts the slowdown; optimize redraw speed next. |
+| 2. Write-once compositing with a full background shadow | No assigned home for the 3,136-byte shadow under the current memory target; the other agent withdrew this fallback. |
+| 3. Raster lock / beam scheduling | Several trials rejected after user review and throughput loss. Preserve the 16,875-cycle arcade clock. |
+| 4. Pacing / partial updates | Measured uneven cadence remains relevant; partial updates need coherent displayed poses and shared-cell handling. No fixed-rate or IRQ-renderer rewrite is started. |
+
+The [glyph-pool result](GLYPH_POOL.md) and [frozen measurements](baselines/glyph-pool.json)
+record the accepted baseline and its cost. First target the existing pool's
+cell allocation/addressing/home-copy work, measured at about 6,493 cycles per
+native redraw. Tighten that bounded path before considering incremental pool
+allocation, which remains a larger design question. No new speed change is
+part of this acceptance checkpoint.
+
+## Earlier investigations (historical)
+
+The current acceptance decision above supersedes older instructions below that
+kept the underlay renderer as the default. Retain their measurements and
+negative trial reviews as history.
+
+The other agent's [follow-up](Response%20to%20IDEAS_REPLY.md.md) called for two
+diagnostics before a renderer replacement. The [matched-cadence comparison](RATE_MATCH.md)
+and [CPU/display profile](DISPLAY_PROFILE.md) are complete. Their findings support
+a bounded feasibility check; they do not establish that the pool will be faster
+or produce a worthwhile visible improvement. The corrected memory assumptions
+in [IDEAS_REPLY.md](IDEAS_REPLY.md) still apply.
+
+**Next experiment plan, 2026-11-04:** the
+[finished-cell publishing plan](FINISHED_CELL_PUBLISHING_PLAN.md) preserves the
+profiling findings, memory and transaction questions, proposed small benchmark,
+measurement-adapter requirements, optional review handoff, and acceptance tests.
+It also records the historical stationary-fruit white/red flashing observation
+and colour investigation. That investigation is complete: the
+[stable-colour trial](STABLE_COLOURS.md) removes the measured white pulses but
+falls from 32.88 to 29.77 actual redraws/s. User play testing finds no perceptible
+improvement and reports continued wall/fruit flashing. The trial is not accepted;
+further colour work was subsequently stopped by the user. The default remains
+unchanged. The new pool trial's concrete memory/capacity budget and complete
+transaction measurements are recorded in its report.
+
 **2026-11-04 update:** the user rejected the playable
 [raster-priority revisit](BEAM_PRIORITY.md), reporting no noticeable
 improvement and a performance hit. Work on this scheduling approach stops;

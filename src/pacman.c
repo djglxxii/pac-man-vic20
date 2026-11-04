@@ -68,7 +68,13 @@ __attribute__((used, noinline, section(".boot.text"))) void platform_init(void) 
     HW(0x9122) = 0x7f;
     HW(0x9123) = 0;
     arcade_ticks = 0;
+#ifdef GLYPH_POOL
+    /* The unused I/O structure padding contains vectors and pool metadata. */
+    memset((void *)0x0300, 0, 8);
+    memset((void *)0x0340, 0, 64);
+#else
     memset((void *)0x1c40, 0, 0x100);
+#endif
     video_init();
 }
 int main(void) {

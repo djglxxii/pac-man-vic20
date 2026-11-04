@@ -1,5 +1,6 @@
 /* Native compositor frontend. The arcade buffers remain in arcade units.
    Six 36-byte underlays retain the original sprite priority and restore order. */
+#include "colour_target.h"
 .section .work,"aw",@nobits
 .global under
 under: .zero 216
@@ -177,7 +178,11 @@ video_batch_begin:
 video_frame_end:
  rts
 video_batch_end:
+#ifdef STABLE_COLOURS
+ jmp colour_publish
+#else
  rts
+#endif
 #endif
 .global video_restore,video_sprites,video_update_begin,video_update_end
 video_restore:
@@ -185,7 +190,12 @@ video_restore:
  jsr shadow_end
 #endif
  jsr sprite_force_all
+#ifdef STABLE_COLOURS
+ jsr restore_start
+ jmp colour_publish
+#else
  jmp restore_start
+#endif
 video_update_begin:
 #ifdef ACTOR_COMMIT
  lda #0
@@ -203,14 +213,39 @@ restore_start:
  ldx #180
 restore_actor:
  stx v_actor
+#ifdef STABLE_COLOURS
+ lda #0
+ sta under+6,x
+#endif
  ldy v_off
  lda cache_dirty,y
 #ifdef ACTOR_COMMIT
  and group_select
 #endif
+#ifdef STABLE_COLOURS
+ bne restore_colour_dirty
+ jmp restore_advance
+restore_colour_dirty:
+ lda under+3,x
+ bne restore_colour_valid
+ jmp restore_advance
+restore_colour_valid:
+#else
  beq restore_advance
  lda under+3,x
  beq restore_advance
+#endif
+#ifdef STABLE_COLOURS
+ lda under+2,x
+ sta under+4,x
+ lda under+7,x
+ cmp #5
+ lda under+5,x
+ bcc restore_colour_flags
+ ora #4
+restore_colour_flags:
+ sta under+6,x
+#endif
  lda under,x
  sta v_addr
  lda under+1,x
@@ -231,14 +266,14 @@ restore_actor:
  and #1
  beq restore_no_left
  lda under+32,x
- sta $9600,y
+ sta VIDEO_COLOURS,y
 restore_no_left:
  lda v_flags
  and #2
  beq restore_no_right
  iny
  lda under+33,x
- sta $9600,y
+ sta VIDEO_COLOURS,y
  dey
 restore_no_right:
  lda under+7,x
@@ -252,14 +287,14 @@ restore_no_right:
  and #1
  beq restore_no_lower_left
  lda under+34,x
- sta $9600,y
+ sta VIDEO_COLOURS,y
 restore_no_lower_left:
  lda v_flags
  and #2
  beq restore_clear
  iny
  lda under+35,x
- sta $9600,y
+ sta VIDEO_COLOURS,y
 restore_clear:
  lda #0
  sta under+3,x
@@ -496,10 +531,10 @@ sprite_has_color:
  sta under+7,x
  /* Save the cell colors before writing this actor. */
  ldy v_cell
- lda $9600,y
+ lda VIDEO_COLOURS,y
  sta under+32,x
  iny
- lda $9600,y
+ lda VIDEO_COLOURS,y
  sta under+33,x
  lda under+7,x
  cmp #5
@@ -508,10 +543,10 @@ sprite_has_color:
  clc
  adc #13
  tay
- lda $9600,y
+ lda VIDEO_COLOURS,y
  sta under+34,x
  iny
- lda $9600,y
+ lda VIDEO_COLOURS,y
  sta under+35,x
 sprite_colors_saved:
  txa
@@ -570,7 +605,7 @@ sprite_drawn:
  and #1
  beq sprite_no_left_color
  lda v_color
- sta $9600,y
+ sta VIDEO_COLOURS,y
 sprite_no_left_color:
  lda v_flags
  and #2
@@ -580,7 +615,7 @@ sprite_no_left_color:
  beq sprite_no_right_color
  iny
  lda v_color
- sta $9600,y
+ sta VIDEO_COLOURS,y
  dey
 sprite_no_right_color:
  lda under+7,x
@@ -594,7 +629,7 @@ sprite_no_right_color:
  and #1
  beq sprite_no_lower_left_color
  lda v_color
- sta $9600,y
+ sta VIDEO_COLOURS,y
 sprite_no_lower_left_color:
  lda v_flags
  and #2
@@ -603,7 +638,7 @@ sprite_no_lower_left_color:
  beq sprite_advance
  iny
  lda v_color
- sta $9600,y
+ sta VIDEO_COLOURS,y
 sprite_advance:
 #ifdef ACTOR_COMMIT
  lda group_single
@@ -639,7 +674,11 @@ commit_clear_next:
 #ifdef GHOST_SHADOW
  jsr shadow_end
 #endif
+#ifdef STABLE_COLOURS
+ jmp colour_publish
+#else
  rts
+#endif
 
 /* A cell color can affect both scanline columns and two character rows.
    Propagate changes through overlapping old/new footprints before restoring. */

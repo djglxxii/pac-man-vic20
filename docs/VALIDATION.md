@@ -1,5 +1,15 @@
 # Arcade parity validation
 
+The accepted [glyph-pool renderer](GLYPH_POOL.md) initially passed 31 adapted native checks,
+10 classifier checks, all three intermissions and stack/IRQ guards. Two fresh
+1,200-frame VICE captures show a reduction in classified actor disappearance,
+with throughput falling from 32.88 to 22.07 redraws/s. This fails the performance
+target; the user subsequently accepted the visible improvement and slowdown
+after live play testing. It is now the default, byte-identical to the tested
+pool binary. `make test` includes 15 ROM comparisons, 37 pool/logic/memory/font
+checks, 10 classifier checks and the default smoke run. `make test-legacy`
+retains the previous underlay suite. See the report for exclusions and recipes.
+
 Reference: the local Midway US `pacman.zip`, normal difficulty, three lives,
 bonus life at 10,000 points. The program ROM CRCs are `c1e6ab10`, `1a6fb2d4`,
 `bcdd1beb` and `817d94e3`. The build records every input ROM's SHA-256 in
@@ -16,10 +26,11 @@ The [source provenance](../src/arcade/UPSTREAM.md) identifies the translation
 and the errors repaired during comparison with the original instructions.
 
 The 2026-11-04 [display profile](DISPLAY_PROFILE.md) adds host-only CPU profiling
-and lossless frame classification for the current accepted executable. It checks
+and lossless frame classification for the former underlay baseline. It checks
 1,206 VICE input/game states, 1,207 native states, 616 settled-image mask oracles,
 and 4,978 synthetic visibility controls. The nine host-tool tests pass.
-The PRG remains byte-identical; no game code was changed for these measurements.
+No game code was changed for those historical measurements. The accepted pool
+executable and its separate measurements are identified in the report above.
 
 ## Reproduce the checks
 
@@ -143,6 +154,12 @@ arcade ticks in the focused transition. A settled board takes longer to
 present than the old blocking draw; see [the measured tradeoff](BOUNDED_REBUILD.md).
 
 ## VIC frontend checks
+
+The separate [stable-colour trial](STABLE_COLOURS.md) passes 33 native parity,
+renderer, colour, flash and rebuild checks plus whole-game smoke. Actual VICE
+captures and physical-colour write traces verify the focused colour-stability
+improvement. Its 29.77 redraws/s remains below the accepted build's 32.88; it
+has not replaced the default or established less actor disappearance.
 
 `tests/smoke.py` boots the PRG, inserts a coin, starts a game, triggers a
 fruit and advances completed boards into all three intermissions. Board

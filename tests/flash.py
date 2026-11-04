@@ -52,8 +52,13 @@ class MazeFlash(unittest.TestCase):
                         logical[0x40:0x3C0], bytes([31 if param else 16]) * 896
                     )
                     self.assertEqual(logical[0x3C0:], b"\x0f" * 64)
+                    before = sim.dump()[0x1000:0x1C40]
                     self.call("video_update_begin")
-                    self.assertEqual(sim.dump()[0x1000:0x1C40], background)
+                    if "__pool_capacity" in sim.labels:
+                        self.assertEqual(sim.dump()[0x1000:0x1C40], before)
+                        self.assertEqual(sim.peek(0x1000, 3136), background)
+                    else:
+                        self.assertEqual(sim.dump()[0x1000:0x1C40], background)
                     cost = self.call("bitmap_maze_flash")
                     worst_recolour = max(worst_recolour, cost)
                     sim.cmd("poke maze_flash 0")

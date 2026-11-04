@@ -5,7 +5,9 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'tools/arcade'))
-from analyze_display import WIDTH, FRAME_CYCLES, classify, summarize, validate_frame_spacing
+from analyze_display import (WIDTH, FRAME_CYCLES, classify, summarize,
+                             validate_frame_spacing, displayed_bitmap, background,
+                             bitmap_points)
 from profile_game import trace_summary
 
 
@@ -15,6 +17,23 @@ def actor(x=32, y=48):
 
 
 class Visibility(unittest.TestCase):
+    def test_pool_display_uses_matrix_and_keeps_home_background(self):
+        data = bytearray(8192 + 196)
+        for row in range(14):
+            for col in range(14):
+                data[0x200+row*14+col] = col*14+row
+        # Screen row 3, column 5 has home glyph 73, not screen index 47.
+        data[0x1000+73*16] = 0x80
+        data[0x200+3*14+5] = 196
+        data[0x1c40] = 0xc0
+        actual = displayed_bitmap(data)
+        self.assertEqual(actual[5*224+3*16], 0xc0)
+        self.assertEqual(sum(actual), 0xc0)
+        clean = background(data, {'__pool_capacity': 60})
+        self.assertEqual(clean, bitmap_points(data[0x1000:0x1c40]))
+        self.assertEqual(len(clean), 1)
+        self.assertEqual(len(bitmap_points(actual)), 2)
+
     def test_complete_old_or_new_pose_is_present(self):
         old, new = actor(), actor(34)
         for points in (old['points'], new['points']):

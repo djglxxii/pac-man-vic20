@@ -110,7 +110,7 @@ def main():
         report["boot"] = json.loads(sim.cmd("boot")[0])
         report["irq_vector_intact"] = True
         report["stack_guard_intact"] = True
-        report["software_stack_reserved"] = 0x2000 - stack_bottom
+        report["software_stack_reserved"] = sim.labels.get("__stack", 0x2000) - stack_bottom
         if "__mc_shift_size" in sim.labels:
             report["shifted_tables_intact_all_scenes"] = True
         if "__beam_code_size" in sim.labels:

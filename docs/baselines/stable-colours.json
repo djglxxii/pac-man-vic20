@@ -1,0 +1,498 @@
+{
+  "date": "2026-11-04",
+  "status": "stopped at user request; trial not accepted; original default retained",
+  "parent_commit": "ae55528",
+  "hardware": "NTSC VIC-20, +3K and BLK1/2/3/5 (+35 KiB)",
+  "arcade_tick_cycles": 16875,
+  "baseline": {
+    "prg_sha256": "9fb85cf61add5d729142183a48285041a47e55fa0f0fd16043f0d15b2aae35af",
+    "capture": "baseline-vice",
+    "capture_loaded_image": {
+      "all_depacked_regions_match": true,
+      "bytes_checked": 33792,
+      "loaded_image_sha256": "d138600dae9a681b612830a6ea58f1ed136f0afb144c18e7d60acc902d86ace8"
+    },
+    "frames": 1200,
+    "active_vice_states": 1206,
+    "input_trace_sha256": "9546fe8fbbe5108f48b665d41c20ea6a3d22646d7b0ed5ed481e237e0878bb8f",
+    "vice_interval_seconds": 19.889016325959908,
+    "vice_completed_redraws": 654,
+    "vice_completed_redraws_per_second": 32.88247087144144,
+    "native_completed_redraws_per_second": 32.93761485545739,
+    "native_active_states": 1207,
+    "native_render_cycles": {
+      "count": 656,
+      "mean": 12186.056402439024,
+      "p50": 12246,
+      "p95": 19151,
+      "max": 24037,
+      "total": 7994053
+    },
+    "native_colour_writes": {
+      "complete_refreshes": 656,
+      "stores_in_complete_refreshes": 18228,
+      "colour_changes_in_complete_refreshes": 16210,
+      "unchanged_final_cells_with_round_trip": 7437
+    },
+    "vice_colour_phases": {
+      "complete_batches": 674,
+      "unchanged_final_cells_with_paint_phase_mismatch": 7575,
+      "fruit_cells_with_paint_phase_mismatch": 634
+    },
+    "vice_wall_ink": {
+      "eligible_frames": 548,
+      "frames_with_white": 74,
+      "cells": 2037,
+      "sampled_wall_pixels": 40874,
+      "expected_colour_pixels": 37133,
+      "white_pixels": 3741,
+      "black_pixels": 0,
+      "other_pixels": 0
+    }
+  },
+  "trial": {
+    "prg_sha256": "82bc17d9d51494b849d1fa3e6c4447fc8da437f6c5c926166c7a9babd8e08627",
+    "capture": "final-vice",
+    "capture_loaded_image": {
+      "all_depacked_regions_match": true,
+      "bytes_checked": 33792,
+      "loaded_image_sha256": "5c7bae912c3346a7b1336f583fcc347f338f7128dbf455c02599ca67ee145748"
+    },
+    "frames": 1200,
+    "active_vice_states": 1207,
+    "input_trace_sha256": "9546fe8fbbe5108f48b665d41c20ea6a3d22646d7b0ed5ed481e237e0878bb8f",
+    "vice_interval_seconds": 19.889017303737948,
+    "vice_completed_redraws": 592,
+    "vice_completed_redraws_per_second": 29.765170946316154,
+    "native_completed_redraws_per_second": 29.591180083893704,
+    "native_active_states": 1207,
+    "native_render_cycles": {
+      "count": 589,
+      "mean": 13655.90492359932,
+      "p50": 13597,
+      "p95": 20944,
+      "max": 26834,
+      "total": 8043328
+    },
+    "native_colour_writes": {
+      "complete_refreshes": 589,
+      "stores_in_complete_refreshes": 11656,
+      "colour_changes_in_complete_refreshes": 877,
+      "unchanged_final_cells_with_round_trip": 0
+    },
+    "vice_colour_phases": {
+      "complete_batches": 611,
+      "unchanged_final_cells_with_paint_phase_mismatch": 0,
+      "fruit_cells_with_paint_phase_mismatch": 0
+    },
+    "vice_wall_ink": {
+      "eligible_frames": 549,
+      "frames_with_white": 0,
+      "cells": 2034,
+      "sampled_wall_pixels": 40818,
+      "expected_colour_pixels": 40818,
+      "white_pixels": 0,
+      "black_pixels": 0,
+      "other_pixels": 0
+    },
+    "display_analysis": {
+      "render_interval_ms": {
+        "count": 591,
+        "mean": 33.617468186316394,
+        "p50": 32.42800864746897,
+        "p95": 54.598147892839435,
+        "max": 68.07486259774113
+      },
+      "actors": {
+        "pacman": {
+          "frames": {
+            "present": 784,
+            "absent": 166,
+            "partial": 69,
+            "excluded": 181
+          },
+          "eligible_frames": 1019,
+          "exclusions": {
+            "shared-colour-cell": 122,
+            "reward-slot-expansion": 59
+          },
+          "absent_frame_percent": 16.290480863591757,
+          "partial_frame_percent": 6.77134445534838,
+          "absence_runs": 164,
+          "absence_run_frames": {
+            "1": 162,
+            "2": 2
+          },
+          "absence_runs_per_eligible_second": 9.70231837353762,
+          "displayed_move_interval_vic_frames": {
+            "1": 30,
+            "2": 81,
+            "3": 31,
+            "4": 3,
+            "5": 1
+          },
+          "displayed_move_interval_ms": {
+            "count": 146,
+            "mean": 34.312173533474585,
+            "p50": 33.176008846935694,
+            "p95": 49.76401327040354,
+            "max": 82.94002211733924
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 161,
+            "2": 39,
+            "3": 8,
+            "4": 1
+          },
+          "visible_ink_color_mismatch_frames": 6
+        },
+        "blinky": {
+          "frames": {
+            "present": 677,
+            "absent": 196,
+            "excluded": 303,
+            "partial": 24
+          },
+          "eligible_frames": 897,
+          "exclusions": {
+            "shared-colour-cell": 190,
+            "reward-slot-expansion": 59,
+            "screen-edge-clipping": 24,
+            "hidden-or-empty": 30
+          },
+          "absent_frame_percent": 21.850613154960982,
+          "partial_frame_percent": 2.6755852842809364,
+          "absence_runs": 193,
+          "absence_run_frames": {
+            "1": 190,
+            "2": 3
+          },
+          "absence_runs_per_eligible_second": 12.97091828839032,
+          "displayed_move_interval_vic_frames": {
+            "1": 8,
+            "2": 32,
+            "3": 20,
+            "4": 5,
+            "5": 5
+          },
+          "displayed_move_interval_ms": {
+            "count": 70,
+            "mean": 41.94395404219727,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 82.94002211733924
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 106,
+            "2": 32,
+            "3": 2
+          },
+          "visible_ink_color_mismatch_frames": 7
+        },
+        "pinky": {
+          "frames": {
+            "excluded": 351,
+            "present": 627,
+            "absent": 195,
+            "partial": 27
+          },
+          "eligible_frames": 849,
+          "exclusions": {
+            "shared-colour-cell": 129,
+            "screen-edge-clipping": 104,
+            "hidden-or-empty": 59,
+            "reward-slot-expansion": 59
+          },
+          "absent_frame_percent": 22.968197879858657,
+          "partial_frame_percent": 3.1802120141342756,
+          "absence_runs": 192,
+          "absence_run_frames": {
+            "1": 189,
+            "2": 3
+          },
+          "absence_runs_per_eligible_second": 13.633249914863171,
+          "displayed_move_interval_vic_frames": {
+            "1": 5,
+            "2": 29,
+            "3": 9,
+            "5": 2,
+            "7": 1
+          },
+          "displayed_move_interval_ms": {
+            "count": 46,
+            "mean": 38.58514072415347,
+            "p50": 33.176008846935694,
+            "p95": 49.76401327040354,
+            "max": 116.11603096427493
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 68,
+            "2": 41,
+            "3": 1
+          },
+          "visible_ink_color_mismatch_frames": 5
+        },
+        "inky": {
+          "frames": {
+            "excluded": 265,
+            "present": 744,
+            "partial": 21,
+            "absent": 170
+          },
+          "eligible_frames": 935,
+          "exclusions": {
+            "shared-colour-cell": 206,
+            "reward-slot-expansion": 59
+          },
+          "absent_frame_percent": 18.181818181818183,
+          "partial_frame_percent": 2.2459893048128343,
+          "absence_runs": 168,
+          "absence_run_frames": {
+            "1": 167,
+            "3": 1
+          },
+          "absence_runs_per_eligible_second": 10.831872225137944,
+          "displayed_move_interval_vic_frames": {
+            "1": 10,
+            "2": 54,
+            "3": 23,
+            "4": 3,
+            "5": 3,
+            "7": 1
+          },
+          "displayed_move_interval_ms": {
+            "count": 94,
+            "mean": 38.9994572083659,
+            "p50": 33.176008846935694,
+            "p95": 66.35201769387139,
+            "max": 116.11603096427493
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 131,
+            "2": 35,
+            "3": 3
+          },
+          "visible_ink_color_mismatch_frames": 5
+        },
+        "clyde": {
+          "frames": {
+            "excluded": 309,
+            "present": 743,
+            "absent": 124,
+            "partial": 24
+          },
+          "eligible_frames": 891,
+          "exclusions": {
+            "shared-colour-cell": 180,
+            "reward-slot-expansion": 59,
+            "insufficient-distinct-ink": 70
+          },
+          "absent_frame_percent": 13.916947250280584,
+          "partial_frame_percent": 2.6936026936026938,
+          "absence_runs": 123,
+          "absence_run_frames": {
+            "1": 122,
+            "2": 1
+          },
+          "absence_runs_per_eligible_second": 8.32210641635929,
+          "displayed_move_interval_vic_frames": {
+            "1": 10,
+            "2": 49,
+            "3": 29,
+            "4": 8,
+            "5": 5,
+            "6": 9,
+            "7": 3
+          },
+          "displayed_move_interval_ms": {
+            "count": 113,
+            "mean": 48.002455278530846,
+            "p50": 33.176008846935694,
+            "p95": 99.52802654080708,
+            "max": 116.11603096427493
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 153,
+            "2": 21,
+            "3": 1
+          },
+          "visible_ink_color_mismatch_frames": 11
+        }
+      }
+    },
+    "memory": {
+      "colour_work_start": 37888,
+      "colour_work_nibbles": 196,
+      "queue_start": 768,
+      "queue_bytes": 16,
+      "resident_end": 32768,
+      "blk1_3_free": 0,
+      "blk5_free": 15,
+      "software_stack_reserved": 704
+    }
+  },
+  "validation": {
+    "default_regression_checks": 52,
+    "trial_regression_checks": 33,
+    "classifier_unit_checks": 9,
+    "default_smoke": "passed; log build/stable-colours/default-tests.log",
+    "trial_smoke": {
+      "screens": [
+        "attract",
+        "credits",
+        "maze",
+        "cherry",
+        "intermission-1",
+        "intermission-2",
+        "intermission-3"
+      ],
+      "stack_by_scene": {
+        "attract": {
+          "software_lowest_write": 8169,
+          "software_bytes_written": 23,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "credits": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "maze": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "cherry": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "intermission-1": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "intermission-2": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        },
+        "intermission-3": {
+          "software_lowest_write": 8160,
+          "software_bytes_written": 32,
+          "hardware_lowest_write": 492,
+          "hardware_bytes_written": 20
+        }
+      },
+      "clock": {
+        "video_frames": 180,
+        "arcade_ticks": 181,
+        "expected": 180.96
+      },
+      "long_run_ticks": 7180,
+      "stack": {
+        "software_lowest_write": 8160,
+        "software_bytes_written": 32,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "boot": {
+        "entries": 1,
+        "released": true
+      },
+      "irq_vector_intact": true,
+      "stack_guard_intact": true,
+      "software_stack_reserved": 704
+    },
+    "trial_display_classifier": {
+      "complete_snapshots_checked": 554,
+      "excluded_complete_snapshots": {
+        "reward-slot-expansion": 57
+      },
+      "settled_actor_results": {
+        "present": 2229,
+        "excluded": 541
+      },
+      "false_absent_or_partial_on_settled_images": 0,
+      "synthetic_host_only_controls": {
+        "absent": 2229,
+        "partial": 2229
+      }
+    }
+  },
+  "limits": [
+    "Focused stationary-fruit RGB cases; other actor whole colour cells excluded",
+    "Slightly different eligible samples, not whole-game flicker estimates",
+    "Actor disappearance remains; no global flicker improvement established",
+    "Single fresh baseline/trial VICE pair, natural raster phase not forced to match",
+    "Slower than the target ~33 redraws/s and just under the earlier 30 FPS play-test preference",
+    "Resident BLK1-3 full; no extra stack or exotic expansion used",
+    "Tested in VICE NTSC and native simulator, not physical hardware or PAL"
+  ],
+  "artifacts": "build/stable-colours/evaluation",
+  "comparison_image_sha256": "5a08942ffdc3fa331a595584c3597bd13013d0e9488ee25da5b8b5752b6db8df",
+  "comparison_video_sha256": "99707e1c10bc46af161e0e032a9a1db40690ad28a4393e6987563af005e2d864",
+  "user_review": {
+    "date": "2026-11-04",
+    "feedback": "No visible difference; walls and stationary fruit still appear to flash between white and actor colour. User expects persistent object priority and less work when managed incrementally.",
+    "decision": "Stop this colour investigation and return to the other agent original IDEAS.md list. Resume glyph-pool memory/capacity feasibility before an isolated benchmark.",
+    "follow_up_completed_state_audit": {
+      "counts": {
+        "settled_frames": 554,
+        "actor_owned_cell_observations": 8684,
+        "released_to_background": 374,
+        "newly_claimed_background": 361,
+        "fruit_owns_cell_observations": 830,
+        "owned_by_white_actor": 39,
+        "white_actor_replaced": 51,
+        "settled_owned_colour_mismatch": 0,
+        "fruit_owned_but_white": 0,
+        "fruit_continuous_ownership_changes": 0,
+        "wrong_white": 0
+      },
+      "colour_transitions": {
+        "2->1": 57,
+        "7->1": 155,
+        "1->2": 58,
+        "1->4": 43,
+        "1->7": 158,
+        "1->3": 40,
+        "2->4": 3,
+        "3->1": 39,
+        "4->3": 2,
+        "4->7": 1,
+        "3->2": 1,
+        "4->1": 43,
+        "2->3": 1,
+        "3->4": 1,
+        "7->3": 3,
+        "3->0": 1,
+        "3->7": 2,
+        "7->2": 3,
+        "7->4": 1,
+        "2->7": 3,
+        "7->6": 5,
+        "2->6": 7,
+        "4->6": 4,
+        "3->6": 3,
+        "1->6": 110,
+        "6->1": 117,
+        "6->2": 7,
+        "6->7": 6,
+        "0->6": 1,
+        "1->0": 3,
+        "0->1": 2
+      },
+      "mismatch_examples": [],
+      "scope": "Completed active states, reward expansion excluded; old poses from preceding sampled completed frame",
+      "prg_sha256": "82bc17d9d51494b849d1fa3e6c4447fc8da437f6c5c926166c7a9babd8e08627"
+    },
+    "fruit_clarification_no_longer_required": true
+  }
+}

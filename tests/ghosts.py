@@ -9,7 +9,7 @@ import random
 import unittest
 
 from arcade import Runner, compare, WORK
-from native import ROOT, Sim
+from native import ROOT, Sim, DEFAULT_PRG
 
 
 def fixtures(game):
@@ -54,7 +54,7 @@ def fixtures(game):
 
 
 class GhostParity(unittest.TestCase):
-    prg = ROOT / "build/pacman.prg"
+    prg = DEFAULT_PRG
     report = None
 
     def test_01_speed_masks_and_mode_priorities(self):

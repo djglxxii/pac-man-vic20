@@ -27,10 +27,20 @@ void bitmap_erase(void), bitmap_draw(void);
 __attribute__((section(".boot.text"))) void video_init(void) {
     memset(BITMAP, 0, 0xc40);
     memset(COLORS, 0, 196);
+#ifdef STABLE_COLOURS
+    extern uint8_t colour_work[196];
+    memset(colour_work, 0, 196);
+#endif
     for (uint8_t c = 0; c < 14; c++)
         for (uint8_t r = 0; r < 14; r++)
             ((uint8_t *)0x200)[r * 14 + c] = c * 14 + r;
+#ifdef GLYPH_POOL
+    extern void pool_init(void);
+    memset((void *)0x9400, 0, 196);
+    pool_init();
+#else
     memset(under, 0, sizeof under);
+#endif
     memset(dirty_bits, 0, sizeof dirty_bits);
     maze_flash = 0;
     full_dirty = 2;

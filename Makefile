@@ -25,11 +25,27 @@ $(GEN)/rom.stamp: tools/arcade/mkrom.py tools/arcade/hires_font.py tools/arcade/
 $(MOSCC): tools/bootstrap-llvm-mos.py
 	$(PY) tools/bootstrap-llvm-mos.py --output $(MOSROOT)
 
-$(GEN)/pacman-native.bin: $(NATIVE) $(wildcard src/arcade/*.h) src/video.h src/pacman.ld $(GEN)/rom.stamp $(MOSCC)
-	$(MOSCC) $(CFLAGS) $(NATIVE) $(GEN)/rom.c -Wl,-Map,$(GEN)/pacman.map -o $@
+$(GEN)/pacman-native.bin: build/glyph-pool/pacman-native.bin Makefile
+	cp $< $@
+	cp $<.elf $@.elf
+	cp build/glyph-pool/pacman.map $(GEN)/pacman.map
 
-$(PRG): $(GEN)/pacman-native.bin tools/arcade/pack.py
+$(PRG): build/glyph-pool/pacman.prg $(GEN)/pacman-native.bin Makefile
+	cp $< $@
+	cp build/glyph-pool/pacman.lbl build/pacman.lbl
+
+# Keep the former underlay renderer reproducible for historical comparisons.
+build/legacy/pacman-native.bin: $(NATIVE) $(wildcard src/arcade/*.h) src/video.h src/colour_target.h src/pacman.ld $(GEN)/rom.stamp $(MOSCC)
+	@mkdir -p $(@D)
+	$(MOSCC) $(CFLAGS) $(NATIVE) $(GEN)/rom.c -Wl,-Map,$(@D)/pacman.map -o $@
+
+build/legacy/pacman.prg: build/legacy/pacman-native.bin tools/arcade/pack.py
 	$(PY) tools/arcade/pack.py $< $@ --ca65 $(CA65) --ld65 $(LD65) --nm $(MOSNM)
+
+legacy: build/legacy/pacman.prg
+
+run-legacy: legacy
+	xvic $(VICEFLAGS) -autostart build/legacy/pacman.prg
 
 $(MULTI)/assets.stamp: tools/arcade/build_multicolour_assets.py tools/arcade/build_multicolour_motion.py tools/arcade/multicolour_mockup.py docs/artwork/multicolour/actors-and-font.json docs/artwork/maze-wall-tiles.json $(GEN)/rom.stamp
 	$(PY) tools/arcade/build_multicolour_assets.py
@@ -127,6 +143,42 @@ actor-speed: build/actor-speed/fast/pacman.prg
 
 actor-speed-reference: build/actor-speed/reference/pacman.prg
 
+# General background-fallback colour rule; accepted build remains unchanged.
+build/stable-colours/pacman-native.bin: $(NATIVE) src/stable_colours.S src/stable_colours.ld src/colour_target.h src/pacman.ld $(wildcard src/arcade/*.h) src/video.h $(GEN)/rom.stamp $(MOSCC)
+	@mkdir -p $(@D)
+	$(MOSCC) $(filter-out -Tsrc/pacman.ld,$(CFLAGS)) -DSTABLE_COLOURS -Tsrc/stable_colours.ld $(NATIVE) src/stable_colours.S $(GEN)/rom.c -Wl,-Map,$(@D)/pacman.map -o $@
+
+build/stable-colours/pacman.prg: build/stable-colours/pacman-native.bin tools/arcade/pack.py
+	$(PY) tools/arcade/pack.py $< $@ --ca65 $(CA65) --ld65 $(LD65) --nm $(MOSNM)
+
+stable-colours: build/stable-colours/pacman.prg
+
+# Accepted glyph-pool renderer replaces the underlay frontend and old painters.
+POOL_NATIVE := $(filter-out src/sprites.S,$(NATIVE)) src/glyph_pool.S src/glyph_pool.c
+build/glyph-pool/pacman-native.bin: $(POOL_NATIVE) src/glyph_pool.ld src/colour_target.h $(wildcard src/arcade/*.h) src/video.h $(GEN)/rom.stamp $(MOSCC)
+	@mkdir -p $(@D)
+	$(MOSCC) $(filter-out -Tsrc/pacman.ld,$(CFLAGS)) -DGLYPH_POOL -Tsrc/glyph_pool.ld $(POOL_NATIVE) $(GEN)/rom.c -Wl,-Map,$(@D)/pacman.map -o $@
+
+build/glyph-pool/pacman.prg: build/glyph-pool/pacman-native.bin tools/arcade/pack.py
+	$(PY) tools/arcade/pack.py $< $@ --ca65 $(CA65) --ld65 $(LD65) --nm $(MOSNM)
+
+glyph-pool: build/glyph-pool/pacman.prg
+
+run-glyph-pool: glyph-pool
+	xvic $(VICEFLAGS) -autostart build/glyph-pool/pacman.prg
+
+test-glyph-pool: test
+
+.PHONY: glyph-pool run-glyph-pool test-glyph-pool
+
+run-stable-colours: stable-colours
+	xvic $(VICEFLAGS) -autostart build/stable-colours/pacman.prg
+
+test-stable-colours: stable-colours tools/vicsim/vicsim reference
+	$(PY) tests/arcade.py
+	$(PY) tests/stable_colours.py
+	$(PY) tests/smoke.py --prg build/stable-colours/pacman.prg --output build/stable-colours/smoke
+
 run-actor-speed: actor-speed
 	xvic $(VICEFLAGS) -autostart build/actor-speed/fast/pacman.prg
 
@@ -175,15 +227,21 @@ reference: $(GEN)/rom.stamp $(GEN)/oracle $(GEN)/native
 
 test: $(PRG) tools/vicsim/vicsim reference
 	$(PY) tests/arcade.py
-	$(PY) tests/native.py
-	$(PY) tests/ghosts.py
-	$(PY) tests/memory.py
-	$(PY) tests/render.py
-	$(PY) tests/fonts.py
-	$(PY) tests/colors.py
-	$(PY) tests/flash.py
-	$(PY) tests/rebuild.py
+	$(PY) tests/glyph_pool.py
+	$(PY) tests/display_profile.py
 	$(PY) tests/smoke.py
+
+test-legacy: legacy tools/vicsim/vicsim reference
+	$(PY) tests/arcade.py
+	PACMAN_PRG=build/legacy/pacman.prg $(PY) tests/native.py
+	PACMAN_PRG=build/legacy/pacman.prg $(PY) tests/ghosts.py
+	PACMAN_PRG=build/legacy/pacman.prg $(PY) tests/memory.py
+	PACMAN_PRG=build/legacy/pacman.prg $(PY) tests/render.py
+	PACMAN_PRG=build/legacy/pacman.prg $(PY) tests/fonts.py
+	PACMAN_PRG=build/legacy/pacman.prg $(PY) tests/colors.py
+	PACMAN_PRG=build/legacy/pacman.prg $(PY) tests/flash.py
+	PACMAN_PRG=build/legacy/pacman.prg $(PY) tests/rebuild.py
+	$(PY) tests/smoke.py --prg build/legacy/pacman.prg --output build/legacy/smoke
 
 performance: $(PRG) tools/vicsim/vicsim
 	$(PY) tests/performance.py
@@ -203,3 +261,5 @@ clean:
 .PHONY: all reference test performance vice-test run clean multicolour run-multicolour test-multicolour ghost-shadow run-shadow test-shadow beam run-beam test-beam actor-commit run-actor-commit test-actor-commit
 .PHONY: actor-speed actor-speed-reference run-actor-speed test-actor-speed
 .PHONY: beam-priority beam-review beam-opportunistic run-beam-priority run-beam-review run-beam-opportunistic test-beam-priority
+.PHONY: stable-colours run-stable-colours test-stable-colours
+.PHONY: legacy run-legacy test-legacy

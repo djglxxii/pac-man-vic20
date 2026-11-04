@@ -43,6 +43,8 @@ def bitmap_points(bitmap):
 def background(data, sym):
     """Undo all six saved underlays in the renderer's reverse paint order."""
     bitmap = bytearray(data[0x1000:0x1c40])
+    if '__pool_capacity' in sym:
+        return bitmap_points(bitmap)  # Home glyphs always contain clean ink.
     for offset in range(180, -1, -36):
         rec = data[sym['under']+offset:sym['under']+offset+36]
         if not rec[3]:
@@ -105,8 +107,19 @@ def snapshot(data, sym, tables, event):
     return dict(event=event, poses=rows, background=background(data, sym), reason=reason)
 
 
+def displayed_bitmap(data):
+    """Read what the matrix selects, including off-screen pool glyphs."""
+    bits = bytearray(3136)
+    for r in range(14):
+        for c in range(14):
+            source = 0x1000 + data[0x200+r*14+c]*16
+            target = c*224+r*16
+            bits[target:target+16] = data[source:source+16]
+    return bits
+
+
 def screen_rgb(data):
-    bits = data[0x1000:0x1c40]
+    bits = displayed_bitmap(data)
     colors = data[8192:]
     return [colors[(y//16)*14+x//8] if bits[(x//8)*224+y] & (128 >> (x & 7)) else 0
             for y in range(HEIGHT) for x in range(WIDTH)]
@@ -238,7 +251,10 @@ def validate_snapshots(archive, events, sym, tables):
             exclusions[s['reason']] += 1
             continue
         checked += 1
-        actual = bitmap_points(data[0x1000:0x1c40])
+        actual = bitmap_points(displayed_bitmap(data))
+        if '__pool_capacity' in sym:
+            assert data[sym['pool_failed']] == 0, 'Pool capacity exhausted'
+            assert max(data[sym['pool_count']:sym['pool_count']+2]) <= 24
         recomposed = s['background'] | set().union(*(p['points'] for p in s['poses']))
         assert actual == recomposed, ('settled mask oracle mismatch', event['tick'])
         for p in s['poses']:

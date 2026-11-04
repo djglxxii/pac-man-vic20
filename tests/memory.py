@@ -16,7 +16,7 @@ class Memory(unittest.TestCase):
         sim = Sim()
         try:
             sim.cmd("until boot_start 300")
-            raw = (BUILD / "pacman-native.bin").read_bytes()
+            raw = sim.native_binary.read_bytes()
             actual = sim.dump()
             self.assertEqual(actual[0x2000:0x8000], raw[:0x6000])
             self.assertEqual(actual[0xA000:0xC000], raw[0x6000:0x8000])
@@ -42,7 +42,7 @@ class Memory(unittest.TestCase):
                              {"entries": 1, "released": False})
             # The guard activates when main actually executes its first opcode.
             sim.cmd("until frame_wait 100")
-            boot = (BUILD / "pacman-native.bin").read_bytes()[0x8000:0x8400]
+            boot = sim.native_binary.read_bytes()[0x8000:0x8400]
             self.assertNotEqual(sim.peek(0x0400, 1024), boot)
             self.assertNotEqual(sim.peek(0x0800, 1024), bytes([0xA5]) * 1024)
             start_game(sim)
@@ -56,17 +56,18 @@ class Memory(unittest.TestCase):
         sim = Sim()
         try:
             start_game(sim)
+            bottom = sim.labels.get("__stack_bottom", 0x1d40)
             sim.cmd("stack reset")
-            sim.cmd("poke $1d40 165")
+            sim.cmd(f"poke ${bottom:x} 165")
             sim.cmd("poke $100 165")
             self.assertEqual(json.loads(sim.cmd("stack")[0])["software_bytes_written"], 0)
             self.assertEqual(json.loads(sim.cmd("stack")[0])["hardware_bytes_written"], 0)
             sim.cmd("run 600")
             stack = json.loads(sim.cmd("stack")[0])
             self.assertGreater(stack["software_bytes_written"], 0)
-            self.assertGreaterEqual(stack["software_lowest_write"], 0x1D50)
+            self.assertGreaterEqual(stack["software_lowest_write"], bottom + 16)
             self.assertGreater(stack["hardware_bytes_written"], 0)
-            self.assertEqual(sim.peek(0x1D40), b"\xa5")
+            self.assertEqual(sim.peek(bottom), b"\xa5")
         finally:
             sim.close()
 

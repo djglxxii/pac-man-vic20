@@ -21,6 +21,7 @@
  *   watch LABEL NAME trace a routine's entry and return without guest overhead
  *   stack reset      start measuring guest stack stores (host pokes excluded)
  *   stack            report lowest software/hardware stack stores as JSON
+ *   colours FILE|off log guest writes to the 196 visible colour cells (CSV)
  *   boot             report startup entries and release status as JSON
  */
 #include <stdio.h>
@@ -36,13 +37,16 @@ static uint64_t cycles;
 static uint64_t profile_cycles[65536], profile_hits[65536];
 static int profiling;
 static FILE *profile_trace;
+static FILE *colour_trace;
+static uint16_t executing_pc;
 static uint16_t render_begin_addr, render_end_addr, audio_addr;
 static uint16_t flash_request_addr, flash_present_addr;
+static int deferred_colours, flash_publication_pending;
 static uint16_t dirty_addr, rebuild_addr, bulk_active_addr, bulk_task_addr;
 static uint16_t erase_addr, draw_addr, ghost_addr, sprite_save_addr, under_addr;
 static uint16_t beam_begin_addr, beam_end_addr, beam_index_addr, beam_mask_addr;
 static uint16_t beam_early_addr, beam_top_addr, beam_bottom_addr, beam_budget_addr;
-static uint16_t c_stack_low = 0x2000, hw_stack_low = 0x0200;
+static uint16_t c_stack_top = 0x2000, c_stack_low = 0x2000, hw_stack_low = 0x0200;
 static uint16_t c_stack_bottom = 0x1d40;
 static int stack_tracking;
 static uint16_t boot_addr, boot_limit, main_addr;
@@ -124,7 +128,8 @@ static void wr(uint16_t addr, uint8_t v) {
     /* Actual guest stores avoid torn software-SP values and loader pointers
        that temporarily occupy LLVM-MOS's software-SP zero-page addresses. */
     if (stack_tracking) {
-        if (addr >= c_stack_bottom && addr < c_stack_low) c_stack_low = addr;
+        /* BLK3 may hold the C stack. Loader image padding is not stack use. */
+        if (boot_entries && addr >= c_stack_bottom && addr < c_stack_low) c_stack_low = addr;
         if (addr >= 0x0100 && addr < hw_stack_low) hw_stack_low = addr;
     }
     if (profile_trace && dirty_addr && addr == dirty_addr && v == 2)
@@ -136,6 +141,10 @@ static void wr(uint16_t addr, uint8_t v) {
     if (addr >= 0x8000 && addr < 0x9000) return;     /* char ROM */
     if (addr >= 0xc000) return;                        /* BASIC/KERNAL ROM */
     if (addr >= 0x9400 && addr < 0x9800) v &= 0x0f;   /* colour nibbles */
+    if (colour_trace && addr >= 0x9600 && addr < 0x96c4)
+        fprintf(colour_trace, "%llu,%04x,%u,%u,%u\n",
+                (unsigned long long)cycles, executing_pc, addr-0x9600,
+                mem[addr] & 15, v);
     if (addr >= 0x900a && addr <= 0x900e) sndregs[addr - 0x9000] = v;
     if (addr == 0x9124 || addr == 0x9126) timer_latch = (timer_latch & 0xff00) | v;
     if (addr == 0x9125 || addr == 0x9127) {
@@ -204,6 +213,7 @@ static int illegal;
 
 static void step(void) {
     uint16_t instruction_pc = pc;
+    executing_pc = pc;
     if (profile_trace && beam_begin_addr && pc == beam_begin_addr) {
         unsigned group = mem[beam_index_addr];
         fprintf(profile_trace, "%llu beam-begin-%u-%u-%u-%u-%u\n",
@@ -249,8 +259,13 @@ static void step(void) {
     }
     if (profile_trace && flash_request_addr && pc == flash_request_addr)
         fprintf(profile_trace, "%llu flash-%s\n", (unsigned long long)cycles, a == 2 ? "blue" : "white");
-    if (profile_trace && flash_present_addr && pc == flash_present_addr)
+    if (profile_trace && flash_present_addr && pc == flash_present_addr && deferred_colours)
+        flash_publication_pending = 1;
+    if (profile_trace && ((flash_present_addr && pc == flash_present_addr && !deferred_colours) ||
+        (deferred_colours && flash_publication_pending && pc == render_end_addr))) {
         fprintf(profile_trace, "%llu present-%s\n", (unsigned long long)cycles, (mem[0x960e] & 7) == 6 ? "blue" : "white");
+        flash_publication_pending = 0;
+    }
     if (profile_trace && (pc == render_begin_addr || pc == render_end_addr || pc == audio_addr))
         fprintf(profile_trace, "%llu %s\n", (unsigned long long)cycles,
                 pc == audio_addr ? "logic" : pc == render_begin_addr ? "begin" : "end");
@@ -548,9 +563,12 @@ int main(int argc, char **argv) {
         find_label("__boot_limit", &boot_limit);
         find_label("main", &main_addr);
         find_label("__stack_bottom", &c_stack_bottom);
+        find_label("__stack", &c_stack_top);
+        c_stack_low = c_stack_top;
         find_label("audio_update", &audio_addr);
         find_label("video_flash_palette", &flash_request_addr);
         find_label("maze_colour_done", &flash_present_addr);
+        { uint16_t unused; deferred_colours = find_label("colour_publish", &unused); }
         find_label("full_dirty", &dirty_addr);
         find_label("rebuild_phase", &rebuild_addr);
         find_label("bulk_active", &bulk_active_addr);
@@ -622,18 +640,21 @@ int main(int argc, char **argv) {
             printf("\n");
         } else if (!strcmp(cmd, "poke")) {
             int tracking = stack_tracking;
+            FILE *saved_colours = colour_trace;
             stack_tracking = 0; /* Monitor fixtures/canaries are not guest stores. */
+            colour_trace = NULL;
             wr(parse_addr(a1), (uint8_t)strtoul(a2, 0, 0));
+            colour_trace = saved_colours;
             stack_tracking = tracking;
         }
         else if (!strcmp(cmd, "stack")) {
             if (!strcmp(a1, "reset")) {
-                c_stack_low = 0x2000;
+                c_stack_low = c_stack_top;
                 hw_stack_low = 0x0200;
                 stack_tracking = 1;
             } else printf("{\"software_lowest_write\":%u,\"software_bytes_written\":%u,"
                           "\"hardware_lowest_write\":%u,\"hardware_bytes_written\":%u}\n",
-                          c_stack_low, 0x2000-c_stack_low,
+                          c_stack_low, c_stack_top-c_stack_low,
                           hw_stack_low, 0x0200-hw_stack_low);
         }
         else if (!strcmp(cmd, "boot"))
@@ -641,6 +662,11 @@ int main(int argc, char **argv) {
                    boot_entries, boot_released ? "true" : "false");
         else if (!strcmp(cmd, "timing")) timing = !strcmp(a1, "on");
         else if (!strcmp(cmd, "sound")) sound_log = !strcmp(a1, "on");
+        else if (!strcmp(cmd, "colours")) {
+            if (colour_trace) fclose(colour_trace);
+            colour_trace = strcmp(a1, "off") ? fopen(a1, "w") : NULL;
+            if (strcmp(a1, "off") && !colour_trace) { perror(a1); return 1; }
+        }
         else if (!strcmp(cmd, "stats")) printf("cycles %llu\n", (unsigned long long)cycles);
         else if (!strcmp(cmd, "watch") && watch_count < 24 && a2[0]) {
             watches[watch_count].entry = parse_addr(a1);
@@ -650,6 +676,7 @@ int main(int argc, char **argv) {
         else if (!strcmp(cmd, "trace")) {
             if (profile_trace) fclose(profile_trace);
             for (unsigned i = 0; i < watch_count; i++) watches[i].active = 0;
+            flash_publication_pending = 0;
             profile_trace = strcmp(a1, "off") ? fopen(a1, "w") : NULL;
             if (strcmp(a1, "off") && !profile_trace) { perror(a1); return 1; }
         }
@@ -675,5 +702,6 @@ int main(int argc, char **argv) {
     }
     printf("end at frame %llu, PC=$%04X\n", (unsigned long long)(cycles / CYC_FRAME), pc);
     if (profile_trace) fclose(profile_trace);
+    if (colour_trace) fclose(colour_trace);
     return 0;
 }

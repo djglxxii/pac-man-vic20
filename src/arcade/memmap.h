@@ -76,7 +76,11 @@ static inline uint8_t *arcade_ptr(uint16_t a) {
 }
 #define arcade_byte(a) (*arcade_ptr(a))
 /* Virtual IO 5000 must not alias the VIC's screen at physical 1400. */
+#ifdef GLYPH_POOL
+#define ARCADE_IO (*(typeof(((CPU_MEMMAP *)0)->regs.write) *)0x0300)
+#else
 #define ARCADE_IO (*(typeof(((CPU_MEMMAP *)0)->regs.write) *)0x1c40)
+#endif
 #include "rom.h"
 #define rom_ptr(a) ((uint8_t *)arcade_rom_ptr(a))
 #define rom_read(a) (*arcade_rom_ptr(a))

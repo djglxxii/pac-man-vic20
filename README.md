@@ -14,6 +14,13 @@ This builds `build/pacman.prg` and launches VICE (`xvic`) with all required
 RAM blocks enabled. The first build installs a pinned LLVM-MOS toolchain
 locally if it is missing; the current workspace already has it.
 
+The [glyph-pool renderer](docs/GLYPH_POOL.md) is now the accepted default after
+live play testing found a large reduction in flicker. It currently measures
+about **22 redraws/s**, with occasional slowdown; improving redraw speed is the
+next priority. `make run-glyph-pool` launches the same version. The previous
+underlay renderer, measured at about 33 redraws/s, remains available through
+`make run-legacy` for comparisons.
+
 - **Arrow keys:** move, using joystick port 1's keyboard mapping.
 - **5:** insert a coin. **1:** start one player. **2:** start two players
   after inserting two coins.
@@ -87,15 +94,24 @@ temporarily recolor a shared cell. Aligned sprites leave their empty neighboring
 column's color alone.
 Drawing can skip refreshes to let the game logic catch up. These are visible
 differences from an arcade board.
-The [first flicker reduction](docs/SPRITE_FLICKER.md) keeps stationary actors
-visible during unrelated background changes; moving actors can still flicker.
+The accepted glyph pool prepares complete character cells off screen before
+publishing them. Earlier [underlay-renderer work](docs/SPRITE_FLICKER.md) kept
+stationary actors visible during unrelated background changes, but moving
+actors still flickered.
+The separate [stable-colour trial](docs/STABLE_COLOURS.md) keeps actor colour
+priority through redraw, reducing white/actor-colour pulsing in shared cells.
+For reproduction, use `make run-stable-colours`. Its actual active capture measures 29.77
+redraws/s against 32.88 for the former underlay baseline; actor disappearance remains. User
+review reports no perceptible benefit and continued flashing. This trial is
+not accepted, and the user has stopped that colour investigation.
 The [generic sprite-kernel pass](docs/SPRITE_KERNELS.md) shortens redraw windows
 and recovers another 20 resident bytes, with flicker still visible.
 The [ghost-state pass](docs/GHOST_STATE.md) removes redundant movement-mask
 work and recovers another 325 resident bytes within the same RAM configuration.
 The later [ghost-precomposition experiment](docs/GHOST_PRECOMPOSITION.md)
 was rejected after user review found no significant flicker improvement to
-justify its throughput cost. The faster main build remains in place.
+justify its throughput cost. These earlier measurements concern the former
+underlay renderer; the accepted glyph pool is the current starting point.
 
 Further flicker work was paused at the user's request after visual review
 found no meaningful overall improvement in the latest comparison. The

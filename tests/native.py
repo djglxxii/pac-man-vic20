@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
 """Execute the built 6502 PRG and compare complete logical ticks to the ROM."""
 import subprocess
+import os
 import unittest
 from pathlib import Path
 from arcade import Runner, compare, BUILD, WORK, ROOT
+DEFAULT_PRG = Path(os.environ.get("PACMAN_PRG", ROOT / "build/pacman.prg")).resolve()
 
 
 class Sim:
     def __init__(self, prg=None):
-        prg = Path(prg) if prg is not None else ROOT / "build/pacman.prg"
+        prg = Path(prg).resolve() if prg is not None else DEFAULT_PRG
+        self.prg = prg
+        self.native_binary = (BUILD / "pacman-native.bin" if prg == ROOT / "build/pacman.prg"
+                              else prg.with_name("pacman-native.bin"))
         self.labels = {
             p[2][1:]: int(p[1], 16)
             for line in prg.with_suffix(".lbl").read_text().splitlines()
@@ -154,8 +159,8 @@ class NativeParity(unittest.TestCase):
     def test_03_build_memory_limits(self):
         # Native code and data must stay within the five real expansion blocks.
         # BLK1-3 + BLK5, followed by the temporary $0400-$07ff boot image.
-        self.assertEqual(len((BUILD / "pacman-native.bin").read_bytes()), 33792)
-        p = (ROOT / "build/pacman.prg").read_bytes()
+        self.assertEqual(len(self.sim.native_binary.read_bytes()), 33792)
+        p = self.sim.prg.read_bytes()
         self.assertEqual(p[:2], b"\x01\x12")
         self.assertLessEqual(0x1201 + len(p) - 2, 0x8000)
 
