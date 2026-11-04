@@ -1,15 +1,21 @@
 # Pool address optimization
 
+**2026-11-04 update:** this change is accepted as part of the standard
+[composition build](POOL_STAMP_OPTIMIZATION.md), launched with `make run`.
+`make run-pool-address` retains the intermediate version measured here.
+
 First speed follow-up to the accepted [glyph pool](GLYPH_POOL.md), starting
 from commit `74f202e`. The focused allocator change is faster and preserves
 settled pixels. The overall gain is modest: **22.04 → 22.80 actual redraws/s,
-about 3.5%** on the saved route. The accepted default is unchanged.
+about 3.5%** on the saved route. The initial trial preserved the then-current
+default; the standard build now includes this change.
 
 ```sh
 make run-pool-address
 ```
 
-Use **5**, **1**, and the arrow keys. `make run` launches the accepted baseline.
+Use **5**, **1**, and the arrow keys. `make run-glyph-pool` launches the
+original accepted baseline; `make run` launches the latest standard build.
 Both use the same artwork, game logic, clock and RAM expansion. The
 [comparison video](../build/pool-address/evaluation/glyph-pool-comparison.mp4)
 shows actual VICE frames at natural cadence, with executable hashes and ticks.
@@ -131,7 +137,8 @@ The accepted PRG remains
 `0d33d3747809a302d400ef530ac7abd599e46c267b9181f7e752fc6f1f778fe5`.
 The trial PRG is
 `c96ed73ab9e7ea61e14eeceb56fd7e8c10eeedd62c11bb2dc67ad3f4fe20301c`.
-The trial is available for live review and has not replaced the accepted build.
+This change is accepted and included in the standard build; the explicit
+address-only version remains available for comparison.
 
 The next [empty-row trial](POOL_SKIP_EMPTY.md) retains these address changes
 and reaches 23.21 actual redraws/s by skipping pixel work for empty sprite rows.

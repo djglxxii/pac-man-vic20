@@ -25,14 +25,14 @@ $(GEN)/rom.stamp: tools/arcade/mkrom.py tools/arcade/hires_font.py tools/arcade/
 $(MOSCC): tools/bootstrap-llvm-mos.py
 	$(PY) tools/bootstrap-llvm-mos.py --output $(MOSROOT)
 
-$(GEN)/pacman-native.bin: build/glyph-pool/pacman-native.bin Makefile
+$(GEN)/pacman-native.bin: build/pool-stamp-fast/pacman-native.bin Makefile
 	cp $< $@
 	cp $<.elf $@.elf
-	cp build/glyph-pool/pacman.map $(GEN)/pacman.map
+	cp build/pool-stamp-fast/pacman.map $(GEN)/pacman.map
 
-$(PRG): build/glyph-pool/pacman.prg $(GEN)/pacman-native.bin Makefile
+$(PRG): build/pool-stamp-fast/pacman.prg $(GEN)/pacman-native.bin Makefile
 	cp $< $@
-	cp build/glyph-pool/pacman.lbl build/pacman.lbl
+	cp build/pool-stamp-fast/pacman.lbl build/pacman.lbl
 
 # Keep the former underlay renderer reproducible for historical comparisons.
 build/legacy/pacman-native.bin: $(NATIVE) $(wildcard src/arcade/*.h) src/video.h src/colour_target.h src/pacman.ld $(GEN)/rom.stamp $(MOSCC)
@@ -153,7 +153,7 @@ build/stable-colours/pacman.prg: build/stable-colours/pacman-native.bin tools/ar
 
 stable-colours: build/stable-colours/pacman.prg
 
-# Accepted glyph-pool renderer replaces the underlay frontend and old painters.
+# Original accepted glyph pool, preserved before the five speed improvements.
 POOL_NATIVE := $(filter-out src/sprites.S,$(NATIVE)) src/glyph_pool.S src/glyph_pool.c
 build/glyph-pool/pacman-native.bin: $(POOL_NATIVE) src/glyph_pool.ld src/colour_target.h $(wildcard src/arcade/*.h) src/video.h $(GEN)/rom.stamp $(MOSCC)
 	@mkdir -p $(@D)
@@ -164,7 +164,7 @@ build/glyph-pool/pacman.prg: build/glyph-pool/pacman-native.bin tools/arcade/pac
 
 glyph-pool: build/glyph-pool/pacman.prg
 
-# Isolated allocation/address calculation experiment; accepted pool unchanged.
+# Intermediate allocation/address build, preserved for comparisons.
 build/pool-address/pacman-native.bin: $(POOL_NATIVE) src/glyph_pool.ld src/colour_target.h $(wildcard src/arcade/*.h) src/video.h $(GEN)/rom.stamp $(MOSCC)
 	@mkdir -p $(@D)
 	$(MOSCC) $(filter-out -Tsrc/pacman.ld,$(CFLAGS)) -DGLYPH_POOL -DPOOL_ADDRESS_FAST -Tsrc/glyph_pool.ld $(POOL_NATIVE) $(GEN)/rom.c -Wl,-Map,$(@D)/pacman.map -o $@
@@ -206,10 +206,84 @@ test-pool-skip-empty: pool-skip-empty tools/vicsim/vicsim reference
 
 .PHONY: pool-skip-empty run-pool-skip-empty test-pool-skip-empty
 
+# Intermediate sound-effect build, preserved for comparisons.
+build/sound-effect-fast/pacman-native.bin: $(POOL_NATIVE) src/sound_effect.S src/glyph_pool.ld src/colour_target.h $(wildcard src/arcade/*.h) src/video.h $(GEN)/rom.stamp $(MOSCC)
+	@mkdir -p $(@D)
+	$(MOSCC) $(filter-out -Tsrc/pacman.ld,$(CFLAGS)) -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -DSOUND_EFFECT_FAST -Tsrc/glyph_pool.ld $(POOL_NATIVE) src/sound_effect.S $(GEN)/rom.c -Wl,-Map,$(@D)/pacman.map -o $@
+
+build/sound-effect-fast/pacman.prg: build/sound-effect-fast/pacman-native.bin tools/arcade/pack.py
+	$(PY) tools/arcade/pack.py $< $@ --ca65 $(CA65) --ld65 $(LD65) --nm $(MOSNM)
+
+sound-effect-fast: build/sound-effect-fast/pacman.prg
+
+run-sound-effect-fast: sound-effect-fast
+	xvic $(VICEFLAGS) -autostart build/sound-effect-fast/pacman.prg
+
+test-sound-effect-fast: sound-effect-fast pool-skip-empty tools/vicsim/vicsim reference
+	$(PY) tests/arcade.py
+	PACMAN_PRG=build/sound-effect-fast/pacman.prg $(PY) tests/glyph_pool.py
+	$(PY) tests/sound_effect.py
+	$(PY) tools/arcade/check_audio_replay.py
+	$(PY) tests/display_profile.py
+	$(PY) tests/smoke.py --prg build/sound-effect-fast/pacman.prg --output build/sound-effect-fast/smoke
+
+.PHONY: sound-effect-fast run-sound-effect-fast test-sound-effect-fast
+
+# Intermediate ghost tunnel-lookup build, preserved for comparisons.
+build/tile-address-fast/pacman-native.bin: $(POOL_NATIVE) src/sound_effect.S src/tile_address.S src/tile_address.ld src/glyph_pool.ld src/colour_target.h $(wildcard src/arcade/*.h) src/video.h $(GEN)/rom.stamp $(MOSCC)
+	@mkdir -p $(@D)
+	$(MOSCC) $(filter-out -Tsrc/pacman.ld,$(CFLAGS)) -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -DSOUND_EFFECT_FAST -DTILE_ADDRESS_FAST -Tsrc/tile_address.ld -Tsrc/glyph_pool.ld $(POOL_NATIVE) src/sound_effect.S src/tile_address.S $(GEN)/rom.c -Wl,-Map,$(@D)/pacman.map -o $@
+
+build/tile-address-fast/pacman.prg: build/tile-address-fast/pacman-native.bin tools/arcade/pack.py
+	$(PY) tools/arcade/pack.py $< $@ --ca65 $(CA65) --ld65 $(LD65) --nm $(MOSNM)
+
+tile-address-fast: build/tile-address-fast/pacman.prg
+
+run-tile-address-fast: tile-address-fast
+	xvic $(VICEFLAGS) -autostart build/tile-address-fast/pacman.prg
+
+test-tile-address-fast: tile-address-fast sound-effect-fast tools/vicsim/vicsim reference
+	$(PY) tests/arcade.py
+	PACMAN_PRG=build/tile-address-fast/pacman.prg $(PY) tests/glyph_pool.py
+	$(PY) tests/tile_address.py
+	$(PY) tools/arcade/check_audio_replay.py --baseline build/sound-effect-fast/pacman.prg --trial build/tile-address-fast/pacman.prg --output build/tile-address-fast/evaluation/audio-replay
+	$(PY) tests/display_profile.py
+	$(PY) tests/smoke.py --prg build/tile-address-fast/pacman.prg --output build/tile-address-fast/smoke
+
+.PHONY: tile-address-fast run-tile-address-fast test-tile-address-fast
+
+# Standard build: faster composition, ghost tunnel lookup, sound and addressing.
+build/pool-stamp-fast/pacman-native.bin: $(POOL_NATIVE) src/pool_stamp_fast.inc src/sound_effect.S src/tile_address.S src/tile_address.ld src/glyph_pool.ld src/colour_target.h $(wildcard src/arcade/*.h) src/video.h $(GEN)/rom.stamp $(MOSCC)
+	@mkdir -p $(@D)
+	$(MOSCC) $(filter-out -Tsrc/pacman.ld,$(CFLAGS)) -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -DSOUND_EFFECT_FAST -DTILE_ADDRESS_FAST -DPOOL_STAMP_FAST -Tsrc/tile_address.ld -Tsrc/glyph_pool.ld $(POOL_NATIVE) src/sound_effect.S src/tile_address.S $(GEN)/rom.c -Wl,-Map,$(@D)/pacman.map -o $@
+
+build/pool-stamp-fast/pacman.prg: build/pool-stamp-fast/pacman-native.bin tools/arcade/pack.py
+	$(PY) tools/arcade/pack.py $< $@ --ca65 $(CA65) --ld65 $(LD65) --nm $(MOSNM)
+
+pool-stamp-fast: build/pool-stamp-fast/pacman.prg
+
+run-pool-stamp-fast: pool-stamp-fast
+	xvic $(VICEFLAGS) -autostart build/pool-stamp-fast/pacman.prg
+
+test-pool-stamp-fast: pool-stamp-fast tile-address-fast tools/vicsim/vicsim reference
+	$(PY) tests/arcade.py
+	PACMAN_PRG=build/pool-stamp-fast/pacman.prg $(PY) tests/glyph_pool.py
+	$(PY) tests/tile_address.py --prg build/pool-stamp-fast/pacman.prg --output build/pool-stamp-fast/evaluation/tile-kernel.json
+	$(PY) tools/arcade/pool_stamp_timing.py --baseline build/tile-address-fast/pacman.prg --trial build/pool-stamp-fast/pacman.prg --output build/pool-stamp-fast/evaluation/stamp-kernel.json
+	$(PY) tools/arcade/check_audio_replay.py --baseline build/tile-address-fast/pacman.prg --trial build/pool-stamp-fast/pacman.prg --output build/pool-stamp-fast/evaluation/audio-replay
+	$(PY) tests/display_profile.py
+	$(PY) tests/smoke.py --prg build/pool-stamp-fast/pacman.prg --output build/pool-stamp-fast/smoke
+
+.PHONY: pool-stamp-fast run-pool-stamp-fast test-pool-stamp-fast
+
 run-glyph-pool: glyph-pool
 	xvic $(VICEFLAGS) -autostart build/glyph-pool/pacman.prg
 
-test-glyph-pool: test
+test-glyph-pool: glyph-pool tools/vicsim/vicsim reference
+	$(PY) tests/arcade.py
+	PACMAN_PRG=build/glyph-pool/pacman.prg $(PY) tests/glyph_pool.py
+	$(PY) tests/display_profile.py
+	$(PY) tests/smoke.py --prg build/glyph-pool/pacman.prg --output build/glyph-pool/smoke
 
 .PHONY: glyph-pool run-glyph-pool test-glyph-pool
 
@@ -267,9 +341,13 @@ $(GEN)/native: $(CORE) tools/arcade/native.c $(wildcard src/arcade/*.h) src/vide
 
 reference: $(GEN)/rom.stamp $(GEN)/oracle $(GEN)/native
 
-test: $(PRG) tools/vicsim/vicsim reference
+test: $(PRG) pool-skip-empty sound-effect-fast tile-address-fast tools/vicsim/vicsim reference
 	$(PY) tests/arcade.py
 	$(PY) tests/glyph_pool.py
+	$(PY) tests/sound_effect.py
+	$(PY) tests/tile_address.py --prg $(PRG) --output build/evaluation/tile-kernel.json
+	$(PY) tools/arcade/pool_stamp_timing.py --baseline build/tile-address-fast/pacman.prg --trial $(PRG) --output build/evaluation/stamp-kernel.json
+	$(PY) tools/arcade/check_audio_replay.py --baseline build/tile-address-fast/pacman.prg --trial $(PRG) --output build/evaluation/audio-replay
 	$(PY) tests/display_profile.py
 	$(PY) tests/smoke.py
 

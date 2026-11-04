@@ -31,6 +31,31 @@
 #include "structs.h"
 #include "cpu.h"
 #include "../video.h"
+#if defined(VIC20) && defined(TILE_ADDRESS_FAST)
+_Static_assert(sizeof(XYPOS) == 2 &&
+               __builtin_offsetof(XYPOS, y) == 0 &&
+               __builtin_offsetof(XYPOS, x) == 1,
+               "tile_address.S needs the original XYPOS byte layout");
+#endif
+#if defined(VIC20) && defined(SOUND_EFFECT_FAST)
+/* The assembly interpreter uses this original sixteen-byte state layout. */
+_Static_assert(sizeof(SOUND_EFFECT) == 16 &&
+               __builtin_offsetof(SOUND_EFFECT, mask) == 0 &&
+               __builtin_offsetof(SOUND_EFFECT, current) == 2 &&
+               __builtin_offsetof(SOUND_EFFECT, selected) == 3 &&
+               __builtin_offsetof(SOUND_EFFECT, frequencyInitial) == 4 &&
+               __builtin_offsetof(SOUND_EFFECT, frequencyDelta) == 5 &&
+               __builtin_offsetof(SOUND_EFFECT, offset) == 6 &&
+               __builtin_offsetof(SOUND_EFFECT, repeat) == 8 &&
+               __builtin_offsetof(SOUND_EFFECT, volumeInitial) == 9 &&
+               __builtin_offsetof(SOUND_EFFECT, volumeDelta) == 10 &&
+               __builtin_offsetof(SOUND_EFFECT, type) == 11 &&
+               __builtin_offsetof(SOUND_EFFECT, duration) == 12 &&
+               __builtin_offsetof(SOUND_EFFECT, dir) == 13 &&
+               __builtin_offsetof(SOUND_EFFECT, frequency) == 14 &&
+               __builtin_offsetof(SOUND_EFFECT, volume) == 15,
+               "sound_effect.S needs the original SOUND_EFFECT layout");
+#endif
 void reset_0000(void) {
     interruptDisable();
     initSelfTest_230b();
@@ -2278,6 +2303,7 @@ uint16_t getScreenOffset_202d(XYPOS hl) {
     return result;
 }
 uint16_t getColourOffset_2052(XYPOS pos) { return getScreenOffset_0065(pos); }
+#if !defined(VIC20) || !defined(TILE_ADDRESS_FAST)
 void checkGhostEnterTunnel_205a(XYPOS pos, uint8_t *aux) {
     uint16_t addr = getColourOffset_2052(pos);
     if (COLOUR[addr] == 0x1b) {
@@ -2286,6 +2312,7 @@ void checkGhostEnterTunnel_205a(XYPOS pos, uint8_t *aux) {
         *aux = 0;
     }
 }
+#endif
 void pinkyCheckLeaveHouse_2069(void) {
     if (PINKY_SUBSTATE != SUBSTATE_IN_HOUSE)
         return;
@@ -3513,6 +3540,7 @@ jump_2dd7:
     else
         return frequencyScaledWithVolume_2ee4(effect, frequency, effect->frequency, a);
 }
+#if !defined(VIC20) || !defined(SOUND_EFFECT_FAST)
 uint8_t soundEffectOneChannel_2dee(SOUND_EFFECT *effect, uint8_t *frequency, uint8_t *table,
                                    int chan) {
     if (effect->mask != 0)
@@ -3520,6 +3548,7 @@ uint8_t soundEffectOneChannel_2dee(SOUND_EFFECT *effect, uint8_t *frequency, uin
     else
         return soundEffectClear_2df4(effect, frequency);
 }
+#endif
 uint8_t soundEffectClear_2df4(SOUND_EFFECT *effect, uint8_t *frequency) {
     if (effect->current == 0)
         return 0;
@@ -3527,6 +3556,7 @@ uint8_t soundEffectClear_2df4(SOUND_EFFECT *effect, uint8_t *frequency) {
     frequency[0] = frequency[1] = frequency[2] = frequency[3] = 0;
     return 0;
 }
+#if !defined(VIC20) || !defined(SOUND_EFFECT_FAST)
 uint8_t soundEffectProcess_2e1b(SOUND_EFFECT *effect, uint8_t *frequency, uint8_t *table,
                                 int chan) {
 process_next:
@@ -3584,6 +3614,7 @@ jump_2ecd:
         return frequencyScaledWithVolume_2ee4(effect, frequency, effect->frequency,
                                               (effect->selected & 0x70) >> 4);
 }
+#endif
 uint8_t frequencyScaledWithVolume_2ee4(SOUND_EFFECT *effect, uint8_t *frequency,
                                        uint16_t frequencyValue, uint8_t scale) {
     ((void)0);

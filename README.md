@@ -14,21 +14,29 @@ This builds `build/pacman.prg` and launches VICE (`xvic`) with all required
 RAM blocks enabled. The first build installs a pinned LLVM-MOS toolchain
 locally if it is missing; the current workspace already has it.
 
-The [glyph-pool renderer](docs/GLYPH_POOL.md) is now the accepted default after
-live play testing found a large reduction in flicker. It currently measures
-about **22 redraws/s**, with occasional slowdown; improving redraw speed is the
-next priority. `make run-glyph-pool` launches the same version. The previous
-underlay renderer, measured at about 33 redraws/s, remains available through
-`make run-legacy` for comparisons.
+The standard build uses the accepted [glyph-pool renderer](docs/GLYPH_POOL.md)
+with faster cell addressing, empty-row skipping and
+[optimized sound-effect processing](docs/SOUND_EFFECT_OPTIMIZATION.md), plus
+the accepted [faster ghost tunnel lookup](docs/TILE_ADDRESS_OPTIMIZATION.md)
+and [faster sprite composition](docs/POOL_STAMP_OPTIMIZATION.md).
+It measures **27.46 redraws/s** on the saved VICE route, about **3.9%** above
+the preceding tunnel build. Sound state and VIC register values match on all
+1,639 replayed ticks. `make run-pool-stamp-fast` launches the same version.
+Occasional stalls and partial poses remain.
 
-The first [address-calculation speed trial](docs/POOL_ADDRESS_OPTIMIZATION.md)
-is available with `make run-pool-address`. It measures about 3.5% more redraws
-per second while retaining the accepted appearance; `make run` stays unchanged.
+The [remaining optimization candidates](docs/RESEARCH_OPTIMIZATION_PLAN.md#remaining-optimization-candidates)
+track the next work. The first ghost-state and glyph-composition experiments
+are accepted; measuring opportunities to reuse unchanged display content is
+the next queued investigation.
 
-The next [empty-row speed trial](docs/POOL_SKIP_EMPTY.md), launched with
-`make run-pool-skip-empty`, includes the address improvement and skips sprite
-rows containing no pixels. It measures **23.21 redraws/s**, about 1.8% above the
-address trial and 5.3% above the accepted pool on the saved route.
+Earlier builds remain available for comparison: `make run-glyph-pool` launches
+the original accepted pool (about 22 redraws/s), `make run-pool-address` the
+[address improvement](docs/POOL_ADDRESS_OPTIMIZATION.md) (22.80), and
+`make run-pool-skip-empty` the [empty-row improvement](docs/POOL_SKIP_EMPTY.md)
+(23.21). `make run-sound-effect-fast` retains the sound improvement (25.67).
+`make run-tile-address-fast` retains the tunnel-lookup improvement (26.44).
+`make run-legacy` launches the former underlay renderer (about 33),
+which has the excessive flicker addressed by the pool.
 
 - **Arrow keys:** move, using joystick port 1's keyboard mapping.
 - **5:** insert a coin. **1:** start one player. **2:** start two players
@@ -182,7 +190,7 @@ This development target currently manages about 9 display updates/s and still
 has fallback animation states. It needs further work before replacing the
 default game; standalone micro-optimizations are on hold.
 
-The default hires build's opening CPU-cycle benchmark measures about 52 FPS,
+The earlier underlay build's opening CPU-cycle benchmark measures about 52 FPS,
 55 FPS when frightened, 44 FPS in the attract chase and 60 FPS in an intermission.
 The opening benchmark supplies no continuing joystick turns; active play can
 be slower. Those rates are completed renderer calls, not unique motion frames.
@@ -190,9 +198,9 @@ Game logic retains its 60.606 Hz clock. Gameplay is not yet a sustained
 60 FPS; see [performance measurements](docs/PERFORMANCE.md) and the
 [optimization-guide review](docs/OPTIMIZATION_REVIEW.md).
 The [research optimization plan](docs/RESEARCH_OPTIMIZATION_PLAN.md) records
-the changes in priority order. Its first item,
-[bounded next-board work](docs/BOUNDED_REBUILD.md), now keeps input, logic and
-sound serviced while the next board draws progressively.
+completed work and the current candidate queue. Its earlier
+[bounded next-board work](docs/BOUNDED_REBUILD.md) keeps input, logic and sound
+serviced while the next board draws progressively.
 
 The [end-of-stage maze flash](docs/MAZE_FLASH.md) changes colours without
 rebuilding the bitmap. Its four blue/white pairs retain the arcade timing;

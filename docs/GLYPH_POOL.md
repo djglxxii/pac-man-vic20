@@ -4,15 +4,19 @@ Implemented 2026-11-04 after the user requested trying idea 1 from
 [IDEAS.md](IDEAS.md). The user subsequently played it live and accepted it:
 “oh yes that is a massive difference. that's perfect.” The user also reports
 noticeable slowdown at times and wants redraw-speed optimization next.
-**This renderer is now the default**, accepting the measured speed tradeoff.
+**The standard build uses this renderer with all five accepted speed
+improvements**, now measured at 27.46 redraws/s. See the
+[sprite composition improvement](POOL_STAMP_OPTIMIZATION.md) for the current
+build and validation. The measurements below describe the original pool.
 
 ```sh
 make run
 ```
 
 Controls are the same: arrow keys, **5** for a coin, **1** to start.
-`make run-glyph-pool` launches the same accepted renderer. `make run-legacy`
-launches the previous underlay renderer. Both use the same NTSC +3K and
+`make run-glyph-pool` launches the original accepted pool before the speed
+improvements. `make run-legacy` launches the previous underlay renderer.
+All use the same NTSC +3K and
 BLK1/2/3/5 configuration, artwork and 16,875-cycle arcade clock.
 
 The [20-second comparison](../build/glyph-pool/evaluation/glyph-pool-comparison.mp4)
@@ -101,14 +105,18 @@ Only 49 resident bytes and 19 BLK5 bytes remain; prefer changes that also save
 code space. Keep the full stack, safe-reuse guard, artwork and arcade clock.
 No follow-up speed change was included in the acceptance checkpoint. The first
 [address-calculation trial](POOL_ADDRESS_OPTIMIZATION.md) is now available with
-`make run-pool-address`: about 3.5% more actual redraws/s, with the accepted
-default preserved for comparison.
+`make run-pool-address`: about 3.5% more actual redraws/s than the original
+pool, which remains available for comparison.
 
 The second [empty-row trial](POOL_SKIP_EMPTY.md) adds a two-byte branch to the
 generic stamper, avoiding pixel work for an empty source row. Built on the
 address trial, it reaches **23.21 actual redraws/s**, another **1.8%** on the
 saved route, with identical settled pixels. Try `make run-pool-skip-empty`.
-Neither speed trial has replaced the accepted default.
+Both changes are now included in the standard build, together with the
+[sound-effect improvement](SOUND_EFFECT_OPTIMIZATION.md) and
+[ghost tunnel lookup](TILE_ADDRESS_OPTIMIZATION.md) and
+[generic sprite composition](POOL_STAMP_OPTIMIZATION.md), reaching 27.46
+actual redraws/s on the saved route.
 
 ## What changes
 
@@ -210,10 +218,11 @@ copy follows the relocated sound range. No blanket clear touches the vectors.
 - Actual VICE screenshots and the comparison preview were visually inspected.
   No physical-hardware play test has been performed.
 - Promotion extends the pool suite with loader/stack, font and ghost-state
-  checks. `make test` now runs the ROM comparisons, the 37-check pool suite,
-  the classifier suite and the default smoke test. `make test-legacy` preserves
-  the old underlay checks. Default PRG, labels, native image and profiler map
-  all select the same accepted pool binary.
+  checks. The current `make test` also includes the later pool checks and
+  sound-equivalence checks; see [validation](VALIDATION.md). `make test-glyph-pool`
+  checks the original pool, and `make test-legacy` preserves the old underlay
+  checks. Default PRG, labels, native image and profiler map select the accepted
+  optimized build.
 
 ```sh
 make test-glyph-pool
@@ -240,7 +249,8 @@ python3 tools/arcade/compare_display.py --baseline build/glyph-pool/evaluation/b
 
 The former underlay PRG, reproducible with `make legacy`, has SHA-256
 `9fb85cf61add5d729142183a48285041a47e55fa0f0fd16043f0d15b2aae35af`.
-The accepted default and explicit pool PRGs both have SHA-256
+The original accepted pool PRG, retained as `build/glyph-pool/pacman.prg`, has SHA-256
 `0d33d3747809a302d400ef530ac7abd599e46c267b9181f7e752fc6f1f778fe5`.
 Live user play testing accepted this renderer on 2026-11-04. Further speed
-work starts from this checkpoint.
+work started from this checkpoint. The standard PRG now has SHA-256
+`480fa052510ac687a9477e4da305d9e1accb6aaeb39d77c7d444e63a51d315c5`.

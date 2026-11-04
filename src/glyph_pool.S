@@ -258,6 +258,9 @@ pool_actors_done:
 /* OR twelve shifted rows into four prepared off-screen cell pointers.
    A/X/Y and v_* scratch clobbered; no live home glyph stores or underlays. */
 pool_draw:
+#ifdef POOL_STAMP_FAST
+#include "pool_stamp_fast.inc"
+#else
  lda v_data
  sta pool_fetch+1
  lda v_data+1
@@ -379,6 +382,7 @@ pool_mirrors: .word pool_store,pool_reverse
 pool_shifts:
 .word pool_shift_0,pool_shift_1,pool_shift_2,pool_shift_3
 .word pool_shift_4,pool_left_3,pool_left_2,pool_left_1
+#endif
 
 .global pool_setup,video_restore,video_sprites,video_update_begin,video_update_end
 /* Cell allocator: A=screen cell. Returns v_base=pool address. A/X/Y,

@@ -129,10 +129,15 @@ def elroy_mode(mode):
 
 
 def main():
+    global Sim
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--prg", type=Path, default=GhostParity.prg)
     parser.add_argument("--output", type=Path, help="Save per-case cycle measurements")
+    parser.add_argument("--pooled", action="store_true", help="Adapt fixture I/O for glyph-pool builds")
     args = parser.parse_args()
+    if args.pooled:
+        from glyph_pool import PoolSim
+        Sim = PoolSim
     GhostParity.prg = args.prg
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(GhostParity)
     result = unittest.TextTestRunner(verbosity=2).run(suite)

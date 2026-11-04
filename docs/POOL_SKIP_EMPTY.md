@@ -1,17 +1,22 @@
 # Skip empty sprite rows
 
+**2026-11-04 update:** this change is accepted as part of the standard
+[composition build](POOL_STAMP_OPTIMIZATION.md), launched with `make run`.
+`make run-pool-skip-empty` retains the intermediate version measured here.
+
 Second glyph-pool speed trial, built on the
 [address-calculation trial](POOL_ADDRESS_OPTIMIZATION.md). Actual VICE captures
 improve from **22.80 to 23.21 redraws/s**, about **1.8%**. Together, the two
 speed changes improve on the accepted pool's 22.04 by about **5.3%** on this
-route. The accepted default remains unchanged.
+route. The standard build now includes both changes.
 
 ```sh
 make run-pool-skip-empty
 ```
 
 Use **5**, **1**, and the arrow keys. Compare with `make run-pool-address` for
-the preceding speed trial, or `make run` for the accepted glyph pool. The
+the preceding speed trial, or `make run-glyph-pool` for the original accepted
+glyph pool. `make run` launches the latest standard build. The
 graphics should look the same; this is a small throughput improvement.
 
 ## Change and measured choice
@@ -120,4 +125,5 @@ python3 tools/arcade/analyze_display.py --capture build/pool-skip-empty/new-vice
 identities. The retained trial PRG is
 `e2ed39e298fefa8677eb7271056bedc8b7d5a4c410faabcbd99155bff3213211`.
 The address predecessor remains `c96ed73ab9e7ea61e14eeceb56fd7e8c10eeedd62c11bb2dc67ad3f4fe20301c`;
-the accepted default remains `0d33d3747809a302d400ef530ac7abd599e46c267b9181f7e752fc6f1f778fe5`.
+the original accepted pool remains
+`0d33d3747809a302d400ef530ac7abd599e46c267b9181f7e752fc6f1f778fe5`.

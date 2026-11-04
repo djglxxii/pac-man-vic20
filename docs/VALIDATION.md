@@ -1,28 +1,76 @@
 # Arcade parity validation
 
-The accepted [glyph-pool renderer](GLYPH_POOL.md) initially passed 31 adapted native checks,
+The standard build now includes the accepted
+[generic sprite composition](POOL_STAMP_OPTIMIZATION.md),
+[ghost tunnel lookup](TILE_ADDRESS_OPTIMIZATION.md),
+[sound-effect optimization](SOUND_EFFECT_OPTIMIZATION.md) and both pool speed
+improvements. Its default PRG, labels, native image, ELF and profiler map match
+the measured build. `make test` includes 15 ROM comparisons, all 39 pool checks,
+four effect tests covering 7,748 identical-input cases, three tunnel-kernel
+tests covering 141,568 calls against the default PRG, the 1,639-tick sound
+register replay against its predecessor, 10,496 identical-input sprite cases
+per binary checked against an independent pixel oracle, 12 classifier checks
+and the default smoke run.
+
+The sound replay's [input fixture](../tests/fixtures/active-replay.json) is
+checked in, so default tests can run after cleaning generated recordings.
+
+The original accepted [glyph-pool renderer](GLYPH_POOL.md) initially passed 31 adapted native checks,
 10 classifier checks, all three intermissions and stack/IRQ guards. Two fresh
 1,200-frame VICE captures show a reduction in classified actor disappearance,
 with throughput falling from 32.88 to 22.07 redraws/s. This fails the performance
 target; the user subsequently accepted the visible improvement and slowdown
-after live play testing. It is now the default, byte-identical to the tested
-pool binary. `make test` now includes 15 ROM comparisons, 39 pool/logic/memory/font
-checks (one optimized-decoder check is skipped on the accepted baseline),
-12 classifier checks and the default smoke run. `make test-legacy`
-retains the previous underlay suite. See the report for exclusions and recipes.
+after live play testing. It remains available through `make run-glyph-pool`
+and `make test-glyph-pool` (one optimized-decoder check is skipped in that
+original build). `make test-legacy` retains the previous underlay suite. See
+the report for exclusions and recipes.
 
 The [address-calculation trial](POOL_ADDRESS_OPTIMIZATION.md) passes all 39 pool
 checks, including exhaustive testing of the compiled nibble decoder, plus the
 12 classifier checks and all intermissions. It improves actual redraw speed
-about 3.5%; the accepted default is preserved for comparison.
+about 3.5%; it remains available as an intermediate comparison build.
 
 The [empty-row trial](POOL_SKIP_EMPTY.md) passes the same 39 pool checks, plus
 10,496 identical-input kernel pixel/guard cases per binary and smoke through all
 intermissions and 7,192 logical ticks. Its actual 1,180-frame VICE capture
 passes 435 settled-picture oracles and 3,536 synthetic visibility controls.
 Actual redraws improve from 22.80 to 23.21 over the address trial, with no fully
-absent actors among classified cases. Partial poses remain. The default is
-unchanged.
+absent actors among classified cases. Partial poses remain. This intermediate
+build remains available for comparison.
+
+The [sound-effect trial](SOUND_EFFECT_OPTIMIZATION.md) passes 7,748 actual-kernel
+state/frequency/volume comparisons against the preceding compiled C build,
+with ABI and adjacent-memory guards. A separate full-program replay finds
+identical effect/song state and arcade/VIC sound-register values on all 1,639
+ticks. The 15 ROM, 39 pool and 12 classifier checks pass, along with all three
+intermissions and 7,183 logical smoke ticks. Its 1,180-frame actual capture
+passes 482 settled-picture oracles and 3,904 synthetic controls, with no fully
+absent actors among classified cases. Partial poses remain. Actual redraws
+improve from 23.21 to 25.67/s. This accepted intermediate build remains available
+for comparison through `make run-sound-effect-fast`.
+
+The accepted [ghost tunnel lookup](TILE_ADDRESS_OPTIMIZATION.md) passes
+141,568 direct kernel coordinate/colour/ABI checks, 528 identical-input ghost
+fixtures per build against the original ROM, all 39 pooled checks and all
+three intermissions. Active replay matches 1,207 game states and 1,639 ticks
+of sound state/register values. Its 1,180-frame actual VICE capture passes
+498 settled-picture oracles and 4,026 synthetic controls. Actual redraws
+improve from 25.67 to 26.44/s; partial poses remain and vary by actor. The user
+accepted it after live review. Its changes are included in the current standard
+build; `make run-tile-address-fast` retains this intermediate version and
+`make test-tile-address-fast` checks it explicitly.
+
+The accepted [generic composition build](POOL_STAMP_OPTIMIZATION.md) passes
+10,496 identical-input sprite cases per binary, all 39 pooled checks, the
+retained tunnel-kernel checks and the 1,639-tick sound replay. Smoke reaches
+all three intermissions and 7,181 logical ticks, with the full stack and
+IRQ/stack guards intact. Its 1,180-frame VICE capture passes 516 settled-picture
+oracles and 4,170 synthetic controls. Actual redraws improve **26.44 → 27.46/s**;
+the longest interval grows **68.54 → 74.87 ms**, and partial poses remain.
+It adds 64 resident bytes, leaving 397 before the full stack. The user accepted
+the live result and requested promotion: `make run` and `make run-pool-stamp-fast`
+now launch the same measured binary. `make test` checks the default PRG and
+`make test-pool-stamp-fast` retains the explicit suite.
 
 Reference: the local Midway US `pacman.zip`, normal difficulty, three lives,
 bonus life at 10,000 points. The program ROM CRCs are `c1e6ab10`, `1a6fb2d4`,
