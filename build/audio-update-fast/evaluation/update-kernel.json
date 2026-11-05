@@ -1,0 +1,328 @@
+{
+  "method": "Actual complete audio_update calls, identical inputs, IRQs masked; RTS included, JSR excluded",
+  "frequency_shift_pairs": 524288,
+  "cases": 530794,
+  "output_sha256": "88ee656135021b3821765efb9b48626687817876b9670909842830e2b0fbd180",
+  "programs": [
+    {
+      "path": "build/audio-divider-fast/pacman.prg",
+      "sha256": "f0ca4b5135bb0cf7418996fc1e6cf9e05c245d92778fda566547f0f29bc39d7c"
+    },
+    {
+      "path": "build/audio-update-fast/pacman.prg",
+      "sha256": "358a4f93334164904a12ecf60df43f13559df92feb6c534f634517e5b67b8672"
+    }
+  ],
+  "baseline": {
+    "shift-0": {
+      "count": 65536,
+      "total": 34963840,
+      "mean": 533.505859375,
+      "min": 290,
+      "max": 600
+    },
+    "shift-1": {
+      "count": 65536,
+      "total": 36108111,
+      "mean": 550.9660491943359,
+      "min": 317,
+      "max": 624
+    },
+    "shift-2": {
+      "count": 65536,
+      "total": 36581966,
+      "mean": 558.1965026855469,
+      "min": 373,
+      "max": 669
+    },
+    "shift-3": {
+      "count": 65536,
+      "total": 36966268,
+      "mean": 564.0604858398438,
+      "min": 365,
+      "max": 672
+    },
+    "shift-4": {
+      "count": 65536,
+      "total": 37109214,
+      "mean": 566.2416687011719,
+      "min": 389,
+      "max": 696
+    },
+    "shift-5": {
+      "count": 65536,
+      "total": 37340453,
+      "mean": 569.7700958251953,
+      "min": 499,
+      "max": 794
+    },
+    "shift-6": {
+      "count": 65536,
+      "total": 37394574,
+      "mean": 570.5959167480469,
+      "min": 531,
+      "max": 836
+    },
+    "shift-7": {
+      "count": 65536,
+      "total": 37028938,
+      "mean": 565.0167541503906,
+      "min": 525,
+      "max": 777
+    },
+    "masked-random": {
+      "count": 2048,
+      "total": 1948020,
+      "mean": 951.181640625,
+      "min": 195,
+      "max": 1552
+    },
+    "fifth-nibble": {
+      "count": 2048,
+      "total": 1840038,
+      "mean": 898.4560546875,
+      "min": 705,
+      "max": 911
+    },
+    "volume-priority": {
+      "count": 768,
+      "total": 642243,
+      "mean": 836.25390625,
+      "min": 502,
+      "max": 881
+    },
+    "silence": {
+      "count": 1,
+      "total": 187,
+      "mean": 187.0,
+      "min": 187,
+      "max": 187
+    },
+    "disabled": {
+      "count": 1,
+      "total": 200,
+      "mean": 200.0,
+      "min": 200,
+      "max": 200
+    },
+    "re-enabled": {
+      "count": 1,
+      "total": 1189,
+      "mean": 1189.0,
+      "min": 1189,
+      "max": 1189
+    },
+    "live-boot": {
+      "count": 51,
+      "total": 9231,
+      "mean": 181.0,
+      "min": 181,
+      "max": 181
+    },
+    "live-attract": {
+      "count": 60,
+      "total": 10860,
+      "mean": 181.0,
+      "min": 181,
+      "max": 181
+    },
+    "live-coin": {
+      "count": 2,
+      "total": 362,
+      "mean": 181.0,
+      "min": 181,
+      "max": 181
+    },
+    "live-release": {
+      "count": 30,
+      "total": 7822,
+      "mean": 260.73333333333335,
+      "min": 181,
+      "max": 365
+    },
+    "live-start": {
+      "count": 139,
+      "total": 110167,
+      "mean": 792.568345323741,
+      "min": 181,
+      "max": 1046
+    },
+    "live-ready": {
+      "count": 120,
+      "total": 92182,
+      "mean": 768.1833333333333,
+      "min": 181,
+      "max": 1034
+    },
+    "live-lead-in": {
+      "count": 30,
+      "total": 16618,
+      "mean": 553.9333333333333,
+      "min": 410,
+      "max": 718
+    },
+    "live-play": {
+      "count": 1207,
+      "total": 777120,
+      "mean": 643.844241922121,
+      "min": 407,
+      "max": 970
+    }
+  },
+  "trial": {
+    "shift-0": {
+      "count": 65536,
+      "total": 28212873,
+      "mean": 430.49427795410156,
+      "min": 193,
+      "max": 497
+    },
+    "shift-1": {
+      "count": 65536,
+      "total": 20903384,
+      "mean": 318.9603271484375,
+      "min": 197,
+      "max": 509
+    },
+    "shift-2": {
+      "count": 65536,
+      "total": 17248652,
+      "mean": 263.19354248046875,
+      "min": 196,
+      "max": 522
+    },
+    "shift-3": {
+      "count": 65536,
+      "total": 15519525,
+      "mean": 236.8091583251953,
+      "min": 197,
+      "max": 537
+    },
+    "shift-4": {
+      "count": 65536,
+      "total": 14622135,
+      "mean": 223.11607360839844,
+      "min": 197,
+      "max": 551
+    },
+    "shift-5": {
+      "count": 65536,
+      "total": 14107915,
+      "mean": 215.2696990966797,
+      "min": 196,
+      "max": 563
+    },
+    "shift-6": {
+      "count": 65536,
+      "total": 13883520,
+      "mean": 211.845703125,
+      "min": 196,
+      "max": 577
+    },
+    "shift-7": {
+      "count": 65536,
+      "total": 13902402,
+      "mean": 212.13381958007812,
+      "min": 198,
+      "max": 335
+    },
+    "masked-random": {
+      "count": 2048,
+      "total": 662378,
+      "mean": 323.4267578125,
+      "min": 111,
+      "max": 950
+    },
+    "fifth-nibble": {
+      "count": 2048,
+      "total": 765510,
+      "mean": 373.7841796875,
+      "min": 368,
+      "max": 499
+    },
+    "volume-priority": {
+      "count": 768,
+      "total": 184691,
+      "mean": 240.48307291666666,
+      "min": 122,
+      "max": 299
+    },
+    "silence": {
+      "count": 1,
+      "total": 109,
+      "mean": 109.0,
+      "min": 109,
+      "max": 109
+    },
+    "disabled": {
+      "count": 1,
+      "total": 119,
+      "mean": 119.0,
+      "min": 119,
+      "max": 119
+    },
+    "re-enabled": {
+      "count": 1,
+      "total": 319,
+      "mean": 319.0,
+      "min": 319,
+      "max": 319
+    },
+    "live-boot": {
+      "count": 51,
+      "total": 5253,
+      "mean": 103.0,
+      "min": 103,
+      "max": 103
+    },
+    "live-attract": {
+      "count": 60,
+      "total": 6180,
+      "mean": 103.0,
+      "min": 103,
+      "max": 103
+    },
+    "live-coin": {
+      "count": 2,
+      "total": 206,
+      "mean": 103.0,
+      "min": 103,
+      "max": 103
+    },
+    "live-release": {
+      "count": 30,
+      "total": 5001,
+      "mean": 166.7,
+      "min": 103,
+      "max": 250
+    },
+    "live-start": {
+      "count": 139,
+      "total": 85365,
+      "mean": 614.136690647482,
+      "min": 103,
+      "max": 866
+    },
+    "live-ready": {
+      "count": 120,
+      "total": 71606,
+      "mean": 596.7166666666667,
+      "min": 103,
+      "max": 854
+    },
+    "live-lead-in": {
+      "count": 30,
+      "total": 10584,
+      "mean": 352.8,
+      "min": 263,
+      "max": 455
+    },
+    "live-play": {
+      "count": 1207,
+      "total": 472991,
+      "mean": 391.8732394366197,
+      "min": 260,
+      "max": 539
+    }
+  }
+}

@@ -1,0 +1,412 @@
+{
+  "native": {
+    "summary": {
+      "complete_refreshes": 656,
+      "stores_in_complete_refreshes": 18228,
+      "colour_changes_in_complete_refreshes": 16210,
+      "unchanged_final_cells_with_round_trip": 7437
+    },
+    "examples": [
+      {
+        "cell": 74,
+        "initial": 2,
+        "changes": [
+          [
+            10221404,
+            "29ed",
+            74,
+            2,
+            1
+          ],
+          [
+            10232305,
+            "2c36",
+            74,
+            1,
+            2
+          ]
+        ],
+        "begin": 10219728,
+        "end": 10232374
+      },
+      {
+        "cell": 75,
+        "initial": 2,
+        "changes": [
+          [
+            10221423,
+            "29fb",
+            75,
+            2,
+            1
+          ],
+          [
+            10232329,
+            "2c48",
+            75,
+            1,
+            2
+          ]
+        ],
+        "begin": 10219728,
+        "end": 10232374
+      },
+      {
+        "cell": 76,
+        "initial": 4,
+        "changes": [
+          [
+            10221923,
+            "29ed",
+            76,
+            4,
+            1
+          ],
+          [
+            10231013,
+            "2c36",
+            76,
+            1,
+            4
+          ]
+        ],
+        "begin": 10219728,
+        "end": 10232374
+      },
+      {
+        "cell": 77,
+        "initial": 4,
+        "changes": [
+          [
+            10221942,
+            "29fb",
+            77,
+            4,
+            1
+          ],
+          [
+            10231037,
+            "2c48",
+            77,
+            1,
+            4
+          ]
+        ],
+        "begin": 10219728,
+        "end": 10232374
+      },
+      {
+        "cell": 90,
+        "initial": 4,
+        "changes": [
+          [
+            10221977,
+            "2a15",
+            90,
+            4,
+            3
+          ],
+          [
+            10222504,
+            "29fb",
+            90,
+            3,
+            0
+          ],
+          [
+            10229252,
+            "2c48",
+            90,
+            0,
+            3
+          ],
+          [
+            10231071,
+            "2c61",
+            90,
+            3,
+            4
+          ]
+        ],
+        "begin": 10219728,
+        "end": 10232374
+      },
+      {
+        "cell": 91,
+        "initial": 4,
+        "changes": [
+          [
+            10221996,
+            "2a23",
+            91,
+            4,
+            7
+          ],
+          [
+            10223004,
+            "29ed",
+            91,
+            7,
+            0
+          ],
+          [
+            10227470,
+            "2c36",
+            91,
+            0,
+            7
+          ],
+          [
+            10231095,
+            "2c73",
+            91,
+            7,
+            4
+          ]
+        ],
+        "begin": 10219728,
+        "end": 10232374
+      },
+      {
+        "cell": 89,
+        "initial": 3,
+        "changes": [
+          [
+            10222485,
+            "29ed",
+            89,
+            3,
+            1
+          ],
+          [
+            10229228,
+            "2c36",
+            89,
+            1,
+            3
+          ]
+        ],
+        "begin": 10219728,
+        "end": 10232374
+      },
+      {
+        "cell": 92,
+        "initial": 7,
+        "changes": [
+          [
+            10223023,
+            "29fb",
+            92,
+            7,
+            1
+          ],
+          [
+            10227494,
+            "2c48",
+            92,
+            1,
+            7
+          ]
+        ],
+        "begin": 10219728,
+        "end": 10232374
+      }
+    ],
+    "timestamp": "Native instruction start, not exact bus store phase"
+  },
+  "vice": {
+    "prg_sha256": "9fb85cf61add5d729142183a48285041a47e55fa0f0fd16043f0d15b2aae35af",
+    "phase_audit": {
+      "complete_batches": 674,
+      "unchanged_final_cells_with_paint_phase_mismatch": 7575,
+      "fruit_cells_with_paint_phase_mismatch": 634
+    },
+    "phase_examples": [
+      {
+        "tick": 1010,
+        "cells": [
+          [
+            104,
+            2,
+            1,
+            2
+          ],
+          [
+            105,
+            2,
+            1,
+            2
+          ],
+          [
+            118,
+            2,
+            1,
+            2
+          ],
+          [
+            119,
+            2,
+            1,
+            2
+          ]
+        ]
+      },
+      {
+        "tick": 1012,
+        "cells": [
+          [
+            104,
+            2,
+            1,
+            2
+          ],
+          [
+            105,
+            2,
+            1,
+            2
+          ],
+          [
+            118,
+            2,
+            1,
+            2
+          ],
+          [
+            119,
+            2,
+            1,
+            2
+          ]
+        ]
+      },
+      {
+        "tick": 1014,
+        "cells": [
+          [
+            104,
+            2,
+            1,
+            2
+          ],
+          [
+            105,
+            2,
+            1,
+            2
+          ],
+          [
+            118,
+            2,
+            1,
+            2
+          ],
+          [
+            119,
+            2,
+            1,
+            2
+          ]
+        ]
+      },
+      {
+        "tick": 1017,
+        "cells": [
+          [
+            104,
+            2,
+            1,
+            2
+          ],
+          [
+            105,
+            2,
+            1,
+            2
+          ],
+          [
+            118,
+            2,
+            1,
+            2
+          ],
+          [
+            119,
+            2,
+            1,
+            2
+          ]
+        ]
+      },
+      {
+        "tick": 1019,
+        "cells": [
+          [
+            104,
+            2,
+            1,
+            2
+          ],
+          [
+            105,
+            2,
+            1,
+            2
+          ],
+          [
+            118,
+            2,
+            1,
+            2
+          ],
+          [
+            119,
+            2,
+            1,
+            2
+          ]
+        ]
+      },
+      {
+        "tick": 1021,
+        "cells": [
+          [
+            104,
+            2,
+            1,
+            2
+          ],
+          [
+            105,
+            2,
+            1,
+            2
+          ],
+          [
+            118,
+            2,
+            1,
+            2
+          ],
+          [
+            119,
+            2,
+            1,
+            2
+          ]
+        ]
+      }
+    ],
+    "raster_wall_audit": {
+      "eligible_frames": 548,
+      "frames_with_white": 74,
+      "cells": 2037,
+      "sampled_wall_pixels": 40874,
+      "expected_colour_pixels": 37133,
+      "white_pixels": 3741,
+      "black_pixels": 0,
+      "other_pixels": 0
+    },
+    "method": "Persistent background ink in stationary fruit-owned cells; all other actor colour cells excluded; one RGB sample per VIC pixel"
+  }
+}

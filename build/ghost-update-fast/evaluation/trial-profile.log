@@ -1,0 +1,140 @@
+{
+  "prg_sha256": "b4bd4785b6885cc4080a72f5508646caa6507f13bdee3fa087512e65e3b90e04",
+  "native_sha256": "5a9558071d927584cc7ab8b23b72b658557513061ab87a2dae30cc45a854a31e",
+  "depacked_bytes_verified": 33792,
+  "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+  "map_sha256": "29ad006a3941d50bba3ac13420e2af72420e00d466838fc389e3b124646b0726",
+  "cpu_hz": 1022727,
+  "cycles": 20364212,
+  "seconds": 19.911679265336694,
+  "guest_code_changed": false,
+  "watches": {
+    "frame_wait": "wait",
+    "video_refresh": "render",
+    "audio_update": "audio",
+    "updateGhostStates_1017": "ghost-state",
+    "blinkyUpdateMovePat_1b36": "blinky-pattern",
+    "pacmanUpdateMovePat_1806": "pacman-pattern",
+    "blinkyUpdatePosition_1bd8": "blinky-position",
+    "pinkyUpdatePosition_1caf": "pinky-position",
+    "inkyUpdatePosition_1d86": "inky-position",
+    "clydeUpdatePosition_1e5d": "clyde-position",
+    "checkGhostEnterTunnel_205a": "tunnel"
+  },
+  "method": "vicsim instruction cycles and host-only routine watches",
+  "phase_cycles": {
+    "logic_tasks_loop": 9499089,
+    "audio": 475007,
+    "render": 10357498,
+    "wait": 32618
+  },
+  "phase_percent": {
+    "logic_tasks_loop": 46.645993471291696,
+    "audio": 2.3325577243057576,
+    "render": 50.861275653582865,
+    "wait": 0.16017315081968309
+  },
+  "routine_inclusive_cycles": {
+    "pacman-pattern": {
+      "count": 2294,
+      "mean": 374.2414995640802,
+      "p50": 95,
+      "p95": 1136,
+      "max": 1334,
+      "total": 858510
+    },
+    "tunnel": {
+      "count": 6647,
+      "mean": 64.40018053257108,
+      "p50": 64,
+      "p95": 66,
+      "max": 122,
+      "total": 428068
+    },
+    "blinky-pattern": {
+      "count": 2294,
+      "mean": 248.12118570183085,
+      "p50": 208,
+      "p95": 332,
+      "max": 895,
+      "total": 569190
+    },
+    "ghost-state": {
+      "count": 2414,
+      "mean": 1248.6801988400994,
+      "p50": 1262,
+      "p95": 2142,
+      "max": 4037,
+      "total": 3014314
+    },
+    "blinky-position": {
+      "count": 886,
+      "mean": 155.41647855530474,
+      "p50": 94,
+      "p95": 637,
+      "max": 713,
+      "total": 137699
+    },
+    "audio": {
+      "count": 1207,
+      "mean": 393.54349627174815,
+      "p50": 455,
+      "p95": 497,
+      "max": 553,
+      "total": 475007
+    },
+    "render": {
+      "count": 616,
+      "mean": 16814.12012987013,
+      "p50": 16411,
+      "p95": 22960,
+      "max": 28783,
+      "total": 10357498
+    },
+    "wait": {
+      "count": 1206,
+      "mean": 27.046434494195687,
+      "p50": 27,
+      "p95": 27,
+      "max": 83,
+      "total": 32618
+    },
+    "pinky-position": {
+      "count": 842,
+      "mean": 152.38836104513064,
+      "p50": 94,
+      "p95": 635,
+      "max": 725,
+      "total": 128311
+    },
+    "inky-position": {
+      "count": 610,
+      "mean": 152.28196721311474,
+      "p50": 94,
+      "p95": 517,
+      "max": 725,
+      "total": 92892
+    },
+    "clyde-position": {
+      "count": 288,
+      "mean": 147.84722222222223,
+      "p50": 94,
+      "p95": 517,
+      "max": 629,
+      "total": 42580
+    }
+  },
+  "completed_renders": 616,
+  "completed_render_interval_ms": {
+    "count": 615,
+    "mean": 32.332850970783745,
+    "p50": 31.364186141560747,
+    "p95": 49.34259093580203,
+    "max": 63.462683590048954
+  },
+  "actor_erase_to_paint_ms": {
+    "count": 0
+  },
+  "completed_renders_per_second": 30.93661723812343,
+  "unattributed_interrupt_entry_cycles": 8449
+}

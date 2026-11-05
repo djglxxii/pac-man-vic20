@@ -1,0 +1,17 @@
+{
+  "prg": "build/actor-speed/fast/pacman.prg",
+  "prg_sha256": "b5fa71ca237941f08a13b5d81a4dfa452d942bb4994349450eb41a0054f10772",
+  "cpu_hz": 1022727,
+  "cycles": 20357863,
+  "render_calls": 555,
+  "render_calls_per_second": 27.88178135396628,
+  "compared_active_states": 1207,
+  "mismatch_ticks": [],
+  "state_reference": "supplied current-build profile",
+  "grouping_cycles": 982286,
+  "grouping_calls": 503,
+  "grouping_cycles_per_call": 1952.854870775348,
+  "grouping_cycles_per_render": 1769.8846846846848,
+  "actor_window_ms_mean": 3.6376791031506133,
+  "actor_window_ms_p95": 10.757513979781505
+}

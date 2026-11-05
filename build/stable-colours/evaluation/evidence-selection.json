@@ -1,0 +1,22 @@
+{
+  "baseline": {
+    "frame": 607,
+    "tick": 1042,
+    "cells": 4,
+    "sampled_wall_pixels": 86,
+    "expected_colour_pixels": 0,
+    "white_pixels": 86,
+    "black_pixels": 0,
+    "other_pixels": 0
+  },
+  "trial": {
+    "frame": 606,
+    "tick": 1042,
+    "cells": 4,
+    "sampled_wall_pixels": 86,
+    "expected_colour_pixels": 86,
+    "white_pixels": 0,
+    "black_pixels": 0,
+    "other_pixels": 0
+  }
+}

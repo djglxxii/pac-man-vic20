@@ -1,0 +1,24 @@
+{
+  "colour_write_masks_by_work_bank": {
+    "147": {
+      "1": 573,
+      "2": 703,
+      "3": 1417,
+      "4": 4,
+      "5": 167,
+      "6": 92,
+      "7": 99
+    },
+    "201": {
+      "1": 592,
+      "2": 699,
+      "3": 1440,
+      "4": 3,
+      "5": 158,
+      "6": 90,
+      "7": 94
+    }
+  },
+  "all_seven_masks_executed_in_both_banks": true,
+  "total_colour_update_rows": 6131
+}

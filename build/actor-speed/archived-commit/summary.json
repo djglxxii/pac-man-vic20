@@ -1,0 +1,10 @@
+{
+  "prg": "build/actor-commit/after/pacman.prg",
+  "compared_active_states": 1207,
+  "mismatch_ticks": [],
+  "cycles": 20362623,
+  "render_calls": 530,
+  "render_calls_per_second": 26.619621155879575,
+  "grouping_cycles": 1253619,
+  "grouping_cycles_per_render": 2365.318867924528
+}

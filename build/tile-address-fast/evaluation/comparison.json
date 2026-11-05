@@ -1,0 +1,17 @@
+{
+  "frames": 1180,
+  "frame_rate": "340909/5655",
+  "audio": false,
+  "poses_retimed": false,
+  "sources": [
+    {
+      "path": "/home/djglxxii/src/vic-man/build/sound-effect-fast/evaluation/trial-vice",
+      "prg_sha256": "1f33cc8ed6eba5a7216edf6d94ae54c671ea12296bae4e05eeb2c57fd4b47659"
+    },
+    {
+      "path": "/home/djglxxii/src/vic-man/build/tile-address-fast/evaluation/trial-vice",
+      "prg_sha256": "5104973e43a2e0db2e1112ee18454012bbbbaa89646d914d3a9fa3663f0d40b4"
+    }
+  ],
+  "video_sha256": "52be0ae2833f57ede33c6a68ba9c8a6cf797072e4ed1ccfa35a82d409e46abe1"
+}

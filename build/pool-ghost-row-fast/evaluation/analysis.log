@@ -1,0 +1,56 @@
+{
+  "prg_sha256": "e148017c58097fb84bb09757dac6d1a132ca40a051d288e10290e9b870cda227",
+  "video_frames": 1180,
+  "counter_interval_seconds": 19.557262104158784,
+  "completed_renders": 662,
+  "completed_renders_per_second": 33.84931880926359,
+  "calibration": {
+    "x": 8,
+    "y": 4,
+    "output_dots_per_vic_dot": 2,
+    "mismatch_pixels": 0,
+    "next_distinct_alignment_error": 3580
+  },
+  "min_diagnostic_pixels": 12,
+  "method": "exact distinct sprite ink; old/new poses; binary visibility separate from colour",
+  "guest_modified": false,
+  "validation": {
+    "complete_snapshots_checked": 639,
+    "excluded_complete_snapshots": {
+      "reward-slot-expansion": 46
+    },
+    "settled_actor_results": {
+      "present": 2593,
+      "excluded": 602
+    },
+    "false_absent_or_partial_on_settled_images": 0,
+    "synthetic_host_only_controls": {
+      "absent": 2593,
+      "partial": 2593
+    }
+  },
+  "evidence": [
+    {
+      "actor": "pacman",
+      "frame": 30,
+      "status": "partial"
+    }
+  ],
+  "render_interval_ms": {
+    "count": 661,
+    "mean": 29.5347782238985,
+    "p50": 29.54356343383914,
+    "p95": 45.68863440585806,
+    "max": 54.17477000216089
+  },
+  "render_interval_logical_ticks": {
+    "1": 212,
+    "2": 376,
+    "3": 73
+  }
+}
+pacman {'frames': {'present': 979, 'partial': 27, 'excluded': 174}, 'eligible_frames': 1006, 'exclusions': {'shared-colour-cell': 114, 'reward-slot-expansion': 60}, 'absent_frame_percent': 0.0, 'partial_frame_percent': 2.68389662027833, 'absence_runs': 0, 'absence_run_frames': {}, 'absence_runs_per_eligible_second': 0.0, 'displayed_move_interval_vic_frames': {1: 76, 2: 206, 3: 76, 4: 34, 5: 2}, 'displayed_move_interval_ms': {'count': 394, 'mean': 36.29152236809463, 'p50': 33.176008846935694, 'p95': 66.35201769387139, 'max': 82.94002211733924}, 'displayed_move_distance_vic_pixels': {1: 305, 2: 90, 3: 27, 4: 3}, 'visible_ink_color_mismatch_frames': 0}
+blinky {'frames': {'present': 883, 'excluded': 280, 'partial': 17}, 'eligible_frames': 900, 'exclusions': {'shared-colour-cell': 187, 'reward-slot-expansion': 60, 'screen-edge-clipping': 23, 'hidden-or-empty': 10}, 'absent_frame_percent': 0.0, 'partial_frame_percent': 1.8888888888888888, 'absence_runs': 0, 'absence_run_frames': {}, 'absence_runs_per_eligible_second': 0.0, 'displayed_move_interval_vic_frames': {1: 65, 2: 148, 3: 69, 4: 46, 5: 6, 6: 2}, 'displayed_move_interval_ms': {'count': 336, 'mean': 39.19903426259961, 'p50': 33.176008846935694, 'p95': 66.35201769387139, 'max': 99.52802654080708}, 'displayed_move_distance_vic_pixels': {1: 301, 2: 55, 3: 1}, 'visible_ink_color_mismatch_frames': 2}
+pinky {'frames': {'excluded': 331, 'present': 832, 'partial': 17}, 'eligible_frames': 849, 'exclusions': {'shared-colour-cell': 111, 'screen-edge-clipping': 100, 'hidden-or-empty': 60, 'reward-slot-expansion': 60}, 'absent_frame_percent': 0.0, 'partial_frame_percent': 2.0023557126030624, 'absence_runs': 0, 'absence_run_frames': {}, 'absence_runs_per_eligible_second': 0.0, 'displayed_move_interval_vic_frames': {1: 63, 2: 135, 3: 61, 4: 36, 5: 10, 6: 5, 7: 1}, 'displayed_move_interval_ms': {'count': 311, 'mean': 39.84321319720412, 'p50': 33.176008846935694, 'p95': 66.35201769387139, 'max': 116.11603096427493}, 'displayed_move_distance_vic_pixels': {1: 262, 2: 70, 3: 1}, 'visible_ink_color_mismatch_frames': 1}
+inky {'frames': {'excluded': 239, 'present': 925, 'partial': 16}, 'eligible_frames': 941, 'exclusions': {'shared-colour-cell': 179, 'reward-slot-expansion': 60}, 'absent_frame_percent': 0.0, 'partial_frame_percent': 1.7003188097768331, 'absence_runs': 0, 'absence_run_frames': {}, 'absence_runs_per_eligible_second': 0.0, 'displayed_move_interval_vic_frames': {1: 50, 2: 142, 3: 55, 4: 50, 5: 17, 6: 7, 7: 1}, 'displayed_move_interval_ms': {'count': 322, 'mean': 42.912446225927695, 'p50': 33.176008846935694, 'p95': 82.94002211733924, 'max': 116.11603096427493}, 'displayed_move_distance_vic_pixels': {1: 292, 2: 52}, 'visible_ink_color_mismatch_frames': 5}
+clyde {'frames': {'excluded': 299, 'present': 872, 'partial': 9}, 'eligible_frames': 881, 'exclusions': {'shared-colour-cell': 175, 'reward-slot-expansion': 60, 'insufficient-distinct-ink': 64}, 'absent_frame_percent': 0.0, 'partial_frame_percent': 1.0215664018161181, 'absence_runs': 0, 'absence_run_frames': {}, 'absence_runs_per_eligible_second': 0.0, 'displayed_move_interval_vic_frames': {1: 31, 2: 115, 3: 46, 4: 47, 5: 18, 6: 13, 7: 4, 8: 1}, 'displayed_move_interval_ms': {'count': 275, 'mean': 47.71313272350206, 'p50': 33.176008846935694, 'p95': 99.52802654080708, 'max': 132.70403538774278}, 'displayed_move_distance_vic_pixels': {1: 271, 2: 17, 3: 2, 4: 1}, 'visible_ink_color_mismatch_frames': 4}

@@ -1,0 +1,55 @@
+  361   tya                                                          $98      2  
+  362   clc                                                          $18      2  
+  364   adc #0                                                       $69      2  
+  365   tax                                                          $AA      2  
+  367   lda pose_data,x                                              $BD    4-5  +1 if page crossed
+  368   clc                                                          $18      2  
+  370   adc #0                                                       $69      2  
+  371   tax                                                          $AA      2  
+  372   lda valid_columns                                            $AD      4  
+  373   and #1                                                       $29      2  
+  374   beq mc_skip_left                                             $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  375   lda (left_ptr),y                                             $B1    5-6  +1 if page crossed
+  376   and row_mask0,x                                              $3D    4-5  +1 if page crossed
+  377   ora row_data0,x                                              $1D    4-5  +1 if page crossed
+  378   sta (left_ptr),y                                             $91      6  
+  380   lda valid_columns                                            $AD      4  
+  381   and #2                                                       $29      2  
+  382   beq mc_skip_middle                                           $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  383   lda (middle_ptr),y                                           $B1    5-6  +1 if page crossed
+  384   and row_mask1,x                                              $3D    4-5  +1 if page crossed
+  385   ora row_data1,x                                              $1D    4-5  +1 if page crossed
+  386   sta (middle_ptr),y                                           $91      6  
+  389      LSR retains the row parity in carry through TAX/LDA. */   $4E      6  
+  390   txa                                                          $8A      2  
+  391   lsr                                                          $4A      2  
+  392   tax                                                          $AA      2  
+  393   lda shifted_tails,x                                          $BD    4-5  +1 if page crossed
+  394   bcc mc_tail_low                                              $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  395   lsr                                                          $4A      2  
+  396   lsr                                                          $4A      2  
+  397   lsr                                                          $4A      2  
+  398   lsr                                                          $4A      2  
+  400   and #15                                                      $29      2  
+  401   tax                                                          $AA      2  
+  402   lda valid_columns                                            $AD      4  
+  403   and #4                                                       $29      2  
+  404   beq row_colors                                               $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  405   lda (right_ptr),y                                            $B1    5-6  +1 if page crossed
+  406   and row_mask2,x                                              $3D    4-5  +1 if page crossed
+  407   ora row_data2,x                                              $1D    4-5  +1 if page crossed
+  408   sta (right_ptr),y                                            $91      6  
+  410   lda color_pending                                            $A5      3  
+  411   beq row_advance                                              $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  412   and row_accent,x                                             $3D    4-5  +1 if page crossed
+  413   beq row_advance                                              $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  416   tax                                                          $AA      2  
+  417   eor color_pending                                            $45      3  
+  418   sta color_pending                                            $85      3  
+  420   lda #0                                                       $A9      2  
+  421   jmp paint_colors                                             $4C      3  
+  423   iny                                                          $C8      2  
+  425   cpy #0                                                       $C0      2  
+  426   bcc band_row                                                 $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+-----------------------------------------------------------------------------------------
+bytes: 105   cycles: 159 .. 185   (straight-line sum; multiply loop bodies yourself)

@@ -1,0 +1,19 @@
+test_01_all_frames_shifts_and_flips (__main__.Renderer.test_01_all_frames_shifts_and_flips) ... ok
+test_02_edges_overlap_priority_and_returning_eyes (__main__.Renderer.test_02_edges_overlap_priority_and_returning_eyes) ... ok
+test_03_incremental_matches_full_redraw (__main__.Renderer.test_03_incremental_matches_full_redraw) ... ok
+test_04_preshifted_ghost_path (__main__.Renderer.test_04_preshifted_ghost_path) ... FAIL
+
+======================================================================
+FAIL: test_04_preshifted_ghost_path (__main__.Renderer.test_04_preshifted_ghost_path)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/djglxxii/src/vic-man/tests/render.py", line 200, in test_04_preshifted_ghost_path
+    self.check_scene([(code, flip, 1, 175-shift*2, 80+code%16)])
+  File "/home/djglxxii/src/vic-man/tests/render.py", line 98, in check_scene
+    self.assertEqual(actual[0x1000:0x1C40], expected, f"sprite pixels: {actors}")
+AssertionError: b'sn\x08\tY\x95W\xa0\x89_\xa4\xaa\xcd\xd3\[8892 chars]oz9M' != bytearray(b'\x04\x03\xd8\x8bYu\x81\\C\x9di[8866 chars]xbc') : sprite pixels: [(32, 0, 1, 175, 80)]
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.240s
+
+FAILED (failures=1)

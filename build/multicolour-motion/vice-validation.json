@@ -1,0 +1,21 @@
+{
+  "prototype_sha256": "8a3987e006150ff40ffd5193e8f5be77fd4770a3b580db29ce0c2366cb9213dc",
+  "validation": {
+    "hidden_preparation_verified_in_vice": true,
+    "published_matrix_and_palette_match": true,
+    "all_36288_native_pixels_match": true,
+    "virtual_io_and_stack_guard_bytes_intact": 960,
+    "successive_scenes_checked": 32,
+    "vacated_cell_restorations_verified": 37,
+    "validation_scene_frozen_only_for_pixel_comparison": true
+  },
+  "recording": {
+    "captured_video_frames": 600,
+    "capture_fps": "340909/5655",
+    "completed_updates_during_capture": 324,
+    "observed_replay_updates_per_second": 32.61,
+    "video": "motion-preview.mp4",
+    "video_guest_memory_or_code_patched": false,
+    "scope": "real VICE capture of recorded-pose demo; no game logic, audio, live pellets or live scores"
+  }
+}

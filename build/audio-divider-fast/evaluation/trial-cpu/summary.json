@@ -1,0 +1,968 @@
+{
+  "method": "Measure VIC translation and repeated pitch inputs without changing the guest.",
+  "guest_modified": false,
+  "prg_sha256": "f0ca4b5135bb0cf7418996fc1e6cf9e05c245d92778fda566547f0f29bc39d7c",
+  "native_sha256": "aff3c13ed6102bc0a31e1365f6b202d6b6282f2ad8cf522a29db2874c67a0ca3",
+  "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+  "converter_sha256": "9a924a7f98aac81fde1f42fcc84987717413051121a832488ffc04cb876ad5cb",
+  "depacked_bytes_verified": 33792,
+  "cpu_hz": 1022727,
+  "cycles": 20367023,
+  "seconds": 19.91442779940297,
+  "gameplay_states_checked": 1207,
+  "ticks_checked": 1639,
+  "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+  "all_outputs_match_host_model": true,
+  "phase_cycles": {
+    "logic_tasks_loop": 9797035,
+    "audio": 779136,
+    "render": 9758178,
+    "wait": 32674
+  },
+  "phase_percent": {
+    "logic_tasks_loop": 48.102439909848385,
+    "audio": 3.8254780779694704,
+    "render": 47.911656013743396,
+    "wait": 0.16042599843875072
+  },
+  "routine_inclusive_cycles": {
+    "divider": {
+      "count": 1893,
+      "mean": 33.11833069202324,
+      "p50": 33,
+      "p95": 33,
+      "max": 89,
+      "total": 62693
+    },
+    "audio": {
+      "count": 1207,
+      "mean": 645.5144987572494,
+      "p50": 718,
+      "p95": 844,
+      "max": 970,
+      "total": 779136
+    },
+    "render": {
+      "count": 576,
+      "mean": 16941.28125,
+      "p50": 16489,
+      "p95": 22915,
+      "max": 28773,
+      "total": 9758178
+    },
+    "wait": {
+      "count": 1206,
+      "mean": 27.092868988391377,
+      "p50": 27,
+      "p95": 27,
+      "max": 83,
+      "total": 32674
+    }
+  },
+  "completed_renders": 576,
+  "completed_render_interval_ms": {
+    "count": 575,
+    "mean": 34.58489687481308,
+    "p50": 33.32169777467496,
+    "p95": 51.110413629443634,
+    "max": 66.56810664038399
+  },
+  "actor_erase_to_paint_ms": {
+    "count": 0
+  },
+  "exclusive_audio": {
+    "divider": {
+      "cycles": 62469,
+      "cycles_per_tick": 51.75559237779619,
+      "audio_percent": 8.017727328733367,
+      "cpu_percent": 0.3067164013120621
+    },
+    "save_restore": {
+      "cycles": 54315,
+      "cycles_per_tick": 45.0,
+      "audio_percent": 6.971183464760966,
+      "cpu_percent": 0.26668109521946337
+    },
+    "gating": {
+      "cycles": 74643,
+      "cycles_per_tick": 61.84175642087821,
+      "audio_percent": 9.580227328733367,
+      "cpu_percent": 0.3664894962803351
+    },
+    "pitch_registers": {
+      "cycles": 53028,
+      "cycles_per_tick": 43.93371996685998,
+      "audio_percent": 6.806000492853623,
+      "cpu_percent": 0.2603620568406094
+    },
+    "unpacking": {
+      "cycles": 111687,
+      "cycles_per_tick": 92.53272576636289,
+      "audio_percent": 14.334724618038443,
+      "cpu_percent": 0.5483717478003536
+    },
+    "scaling": {
+      "cycles": 332754,
+      "cycles_per_tick": 275.6868268434134,
+      "audio_percent": 42.7080766387383,
+      "cpu_percent": 1.633788109337334
+    },
+    "zero_check_and_call": {
+      "cycles": 34100,
+      "cycles_per_tick": 28.251864125932062,
+      "audio_percent": 4.376642845408247,
+      "cpu_percent": 0.16742751260211175
+    },
+    "volume_and_noise": {
+      "cycles": 54124,
+      "cycles_per_tick": 44.84175642087821,
+      "audio_percent": 6.9466691309347794,
+      "cpu_percent": 0.2657433047529823
+    }
+  },
+  "interrupt_and_other_audio_cycles": 2016,
+  "repeated_inputs_all": [
+    {
+      "ticks": 1639,
+      "silent_or_zero_pitch_ticks": 1438,
+      "divider_calls": 201,
+      "same_as_last_audible_frequency": 173,
+      "same_as_last_audible_raw_key": 173,
+      "unique_scaled_frequencies": 15,
+      "unique_output_pitches": 14,
+      "most_common_frequencies": [
+        [
+          1472,
+          56
+        ],
+        [
+          2208,
+          46
+        ],
+        [
+          1552,
+          28
+        ],
+        [
+          2336,
+          16
+        ],
+        [
+          2464,
+          14
+        ],
+        [
+          2768,
+          14
+        ],
+        [
+          2944,
+          14
+        ],
+        [
+          6912,
+          2
+        ],
+        [
+          5632,
+          2
+        ],
+        [
+          4352,
+          2
+        ],
+        [
+          3072,
+          2
+        ],
+        [
+          1792,
+          2
+        ]
+      ]
+    },
+    {
+      "ticks": 1639,
+      "silent_or_zero_pitch_ticks": 262,
+      "divider_calls": 1377,
+      "same_as_last_audible_frequency": 111,
+      "same_as_last_audible_raw_key": 111,
+      "unique_scaled_frequencies": 41,
+      "unique_output_pitches": 28,
+      "most_common_frequencies": [
+        [
+          1536,
+          118
+        ],
+        [
+          2304,
+          117
+        ],
+        [
+          768,
+          67
+        ],
+        [
+          3072,
+          67
+        ],
+        [
+          3840,
+          66
+        ],
+        [
+          4608,
+          66
+        ],
+        [
+          5376,
+          66
+        ],
+        [
+          6144,
+          64
+        ],
+        [
+          1408,
+          57
+        ],
+        [
+          1792,
+          57
+        ],
+        [
+          2176,
+          56
+        ],
+        [
+          1152,
+          51
+        ]
+      ]
+    },
+    {
+      "ticks": 1639,
+      "silent_or_zero_pitch_ticks": 939,
+      "divider_calls": 700,
+      "same_as_last_audible_frequency": 0,
+      "same_as_last_audible_raw_key": 0,
+      "unique_scaled_frequencies": 31,
+      "unique_output_pitches": 21,
+      "most_common_frequencies": [
+        [
+          1792,
+          68
+        ],
+        [
+          2560,
+          68
+        ],
+        [
+          3328,
+          68
+        ],
+        [
+          4096,
+          68
+        ],
+        [
+          4864,
+          68
+        ],
+        [
+          5376,
+          68
+        ],
+        [
+          4608,
+          68
+        ],
+        [
+          3840,
+          68
+        ],
+        [
+          3072,
+          68
+        ],
+        [
+          2304,
+          67
+        ],
+        [
+          256,
+          1
+        ],
+        [
+          512,
+          1
+        ]
+      ]
+    }
+  ],
+  "repeated_inputs_play": [
+    {
+      "ticks": 1207,
+      "silent_or_zero_pitch_ticks": 1207,
+      "divider_calls": 0,
+      "same_as_last_audible_frequency": 0,
+      "same_as_last_audible_raw_key": 0,
+      "unique_scaled_frequencies": 0,
+      "unique_output_pitches": 0,
+      "most_common_frequencies": []
+    },
+    {
+      "ticks": 1207,
+      "divider_calls": 1207,
+      "silent_or_zero_pitch_ticks": 0,
+      "same_as_last_audible_frequency": 0,
+      "same_as_last_audible_raw_key": 0,
+      "unique_scaled_frequencies": 30,
+      "unique_output_pitches": 24,
+      "most_common_frequencies": [
+        [
+          2304,
+          115
+        ],
+        [
+          1536,
+          115
+        ],
+        [
+          768,
+          67
+        ],
+        [
+          3072,
+          67
+        ],
+        [
+          3840,
+          66
+        ],
+        [
+          4608,
+          66
+        ],
+        [
+          5376,
+          66
+        ],
+        [
+          6144,
+          64
+        ],
+        [
+          2176,
+          54
+        ],
+        [
+          1792,
+          54
+        ],
+        [
+          1408,
+          54
+        ],
+        [
+          2048,
+          48
+        ]
+      ]
+    },
+    {
+      "ticks": 1207,
+      "divider_calls": 686,
+      "silent_or_zero_pitch_ticks": 521,
+      "same_as_last_audible_frequency": 0,
+      "same_as_last_audible_raw_key": 0,
+      "unique_scaled_frequencies": 31,
+      "unique_output_pitches": 21,
+      "most_common_frequencies": [
+        [
+          4864,
+          67
+        ],
+        [
+          5376,
+          67
+        ],
+        [
+          4608,
+          67
+        ],
+        [
+          3840,
+          67
+        ],
+        [
+          3072,
+          67
+        ],
+        [
+          2304,
+          66
+        ],
+        [
+          1792,
+          66
+        ],
+        [
+          2560,
+          66
+        ],
+        [
+          3328,
+          66
+        ],
+        [
+          4096,
+          66
+        ],
+        [
+          256,
+          1
+        ],
+        [
+          512,
+          1
+        ]
+      ]
+    }
+  ],
+  "hotspots": {
+    "sections": [
+      {
+        "section": ".text.pool",
+        "cycles": 8561992
+      },
+      {
+        "section": ".text.main",
+        "cycles": 2302411
+      },
+      {
+        "section": ".text.updateGhostStates_1017",
+        "cycles": 1315509
+      },
+      {
+        "section": ".text.bitmap_tile",
+        "cycles": 897954
+      },
+      {
+        "section": ".text.bitmap",
+        "cycles": 753168
+      },
+      {
+        "section": ".cold",
+        "cycles": 714651
+      },
+      {
+        "section": ".text.sound_effect",
+        "cycles": 476808
+      },
+      {
+        "section": ".text.rebuild",
+        "cycles": 429709
+      },
+      {
+        "section": ".text.tile_address",
+        "cycles": 426948
+      },
+      {
+        "section": ".text.playGameMain_08cd",
+        "cycles": 370241
+      },
+      {
+        "section": ".text.pacmanUpdateMovePat_1806",
+        "cycles": 321848
+      },
+      {
+        "section": ".text.arcade_tasks",
+        "cycles": 304825
+      },
+      {
+        "section": ".text.blinkyUpdateMovePat_1b36",
+        "cycles": 282537
+      },
+      {
+        "section": ".text.spriteAnimation_14fe",
+        "cycles": 271863
+      },
+      {
+        "section": ".text.arcade_ptr",
+        "cycles": 259964
+      },
+      {
+        "section": ".text.frequencyWithVolume_2ee8",
+        "cycles": 240284
+      },
+      {
+        "section": ".text.drawDigit_2ace",
+        "cycles": 230360
+      },
+      {
+        "section": ".text.pacmanUpdatePos_1985",
+        "cycles": 217890
+      },
+      {
+        "section": ".text.pacmanCheckMoveClear_18e4",
+        "cycles": 213837
+      },
+      {
+        "section": ".text.findBestOrientation_2966",
+        "cycles": 167608
+      },
+      {
+        "section": ".text.__mulqi3",
+        "cycles": 126735
+      },
+      {
+        "section": ".text.addToScore_2a5a",
+        "cycles": 117399
+      },
+      {
+        "section": ".text.drawScore_2abe",
+        "cycles": 114840
+      },
+      {
+        "section": ".text.blinkyUpdatePosition_1bd8",
+        "cycles": 102142
+      },
+      {
+        "section": ".text.pinkyUpdatePosition_1caf",
+        "cycles": 96976
+      },
+      {
+        "section": ".text.randomDirection_291e",
+        "cycles": 92011
+      },
+      {
+        "section": ".text.twoBlank_0390",
+        "cycles": 85697
+      },
+      {
+        "section": ".text.inkyUpdatePosition_1d86",
+        "cycles": 68501
+      },
+      {
+        "section": ".text.audio_divider",
+        "cycles": 62469
+      },
+      {
+        "section": ".text.bitmap_cell_colour",
+        "cycles": 54486
+      },
+      {
+        "section": ".text.pacmanMove_1950",
+        "cycles": 52809
+      },
+      {
+        "section": ".text.score",
+        "cycles": 51032
+      },
+      {
+        "section": ".text.flashPowerups_0c0d",
+        "cycles": 49901
+      },
+      {
+        "section": ".text.setGhostColour_0bd6",
+        "cycles": 49793
+      },
+      {
+        "section": ".text.oneUp_0369",
+        "cycles": 42884
+      },
+      {
+        "section": ".text.addTask_0042",
+        "cycles": 41706
+      },
+      {
+        "section": ".text.clock",
+        "cycles": 37417
+      },
+      {
+        "section": ".text.frame_wait",
+        "cycles": 32562
+      },
+      {
+        "section": ".text.clydeUpdatePosition_1e5d",
+        "cycles": 30636
+      },
+      {
+        "section": ".text",
+        "cycles": 29745
+      },
+      {
+        "section": ".text.toggleGhostAnimation_0e23",
+        "cycles": 27159
+      },
+      {
+        "section": ".text.calcSquare_2a12",
+        "cycles": 26680
+      },
+      {
+        "section": ".text.checkTunnelWrap_1ed0",
+        "cycles": 26448
+      },
+      {
+        "section": ".text.volumeDecayNone_2f22",
+        "cycles": 24596
+      },
+      {
+        "section": ".text.computeDistance_29ea",
+        "cycles": 22117
+      },
+      {
+        "section": "unmapped",
+        "cycles": 21726
+      },
+      {
+        "section": ".text.video_refresh",
+        "cycles": 17280
+      },
+      {
+        "section": ".text.bulk",
+        "cycles": 15696
+      },
+      {
+        "section": ".text.nothing_000c",
+        "cycles": 14484
+      },
+      {
+        "section": ".text.add_score_bcd",
+        "cycles": 10824
+      },
+      {
+        "section": ".text.__lshrhi3",
+        "cycles": 7776
+      },
+      {
+        "section": ".text.video_frame_begin",
+        "cycles": 5184
+      },
+      {
+        "section": ".text.pinkyScatterOrChase_276c",
+        "cycles": 4972
+      },
+      {
+        "section": ".text.blinkyScatterOrChase_2730",
+        "cycles": 4713
+      },
+      {
+        "section": ".text.bitmap_wall_colour",
+        "cycles": 4522
+      },
+      {
+        "section": ".text.clydeReverse_1f7c",
+        "cycles": 3920
+      },
+      {
+        "section": ".text.video_frame_end",
+        "cycles": 3456
+      },
+      {
+        "section": ".text.inkyScatterOrChase_27a9",
+        "cycles": 3213
+      },
+      {
+        "section": ".text.homeOrRandomClyde_28b9",
+        "cycles": 2096
+      },
+      {
+        "section": ".text.homeOrRandomInky_288f",
+        "cycles": 2070
+      },
+      {
+        "section": ".text.homeOrRandomBlinky_283b",
+        "cycles": 1794
+      },
+      {
+        "section": ".text.blinkyCheckReverse_1efe",
+        "cycles": 1548
+      },
+      {
+        "section": ".text.inkyReverse_1f55",
+        "cycles": 1360
+      },
+      {
+        "section": ".text.pinkyCheckReverse_1f25",
+        "cycles": 1290
+      },
+      {
+        "section": ".text.homeOrRandomPinky_2865",
+        "cycles": 1288
+      },
+      {
+        "section": ".text.inkyCheckReverse_1f4c",
+        "cycles": 942
+      },
+      {
+        "section": ".text.clydeCheckReverse_1f73",
+        "cycles": 452
+      },
+      {
+        "section": ".text.schedISRTask",
+        "cycles": 282
+      },
+      {
+        "section": ".text.pinkyReverse_1f2e",
+        "cycles": 240
+      },
+      {
+        "section": ".text.ghostsBecomeEdible_1a70",
+        "cycles": 212
+      },
+      {
+        "section": ".text.pacmanGhostCoincide_1763",
+        "cycles": 55
+      },
+      {
+        "section": ".text.ghostsAnyDeadSoundOff_1101",
+        "cycles": 31
+      }
+    ],
+    "instructions": [
+      {
+        "address": "209a",
+        "cycles": 168980,
+        "hits": 33796,
+        "section": ".text.bitmap"
+      },
+      {
+        "address": "2097",
+        "cycles": 135184,
+        "hits": 33796,
+        "section": ".text.bitmap"
+      },
+      {
+        "address": "2b7e",
+        "cycles": 109536,
+        "hits": 27384,
+        "section": ".text.pool"
+      },
+      {
+        "address": "209e",
+        "cycles": 100181,
+        "hits": 33796,
+        "section": ".text.bitmap"
+      },
+      {
+        "address": "208f",
+        "cycles": 96560,
+        "hits": 19312,
+        "section": ".text.bitmap"
+      },
+      {
+        "address": "2e0d",
+        "cycles": 80360,
+        "hits": 16072,
+        "section": ".text.pool"
+      },
+      {
+        "address": "208c",
+        "cycles": 77248,
+        "hits": 19312,
+        "section": ".text.bitmap"
+      },
+      {
+        "address": "356b",
+        "cycles": 77248,
+        "hits": 19312,
+        "section": ".text.main"
+      },
+      {
+        "address": "2bb1",
+        "cycles": 74262,
+        "hits": 12377,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2bb7",
+        "cycles": 74262,
+        "hits": 12377,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2b98",
+        "cycles": 74020,
+        "hits": 25102,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2b83",
+        "cycles": 69324,
+        "hits": 23108,
+        "section": ".text.pool"
+      },
+      {
+        "address": "209d",
+        "cycles": 67592,
+        "hits": 33796,
+        "section": ".text.bitmap"
+      },
+      {
+        "address": "2baf",
+        "cycles": 61885,
+        "hits": 12377,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2bb5",
+        "cycles": 61885,
+        "hits": 12377,
+        "section": ".text.pool"
+      },
+      {
+        "address": "3563",
+        "cycles": 60350,
+        "hits": 20519,
+        "section": ".text.main"
+      },
+      {
+        "address": "2b81",
+        "cycles": 59044,
+        "hits": 27384,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2b88",
+        "cycles": 57990,
+        "hits": 9665,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2b8e",
+        "cycles": 57990,
+        "hits": 9665,
+        "section": ".text.pool"
+      },
+      {
+        "address": "3568",
+        "cycles": 57936,
+        "hits": 19312,
+        "section": ".text.main"
+      },
+      {
+        "address": "3596",
+        "cycles": 57936,
+        "hits": 19312,
+        "section": ".text.main"
+      },
+      {
+        "address": "359a",
+        "cycles": 57936,
+        "hits": 19312,
+        "section": ".text.main"
+      },
+      {
+        "address": "356e",
+        "cycles": 57324,
+        "hits": 19312,
+        "section": ".text.main"
+      },
+      {
+        "address": "2b93",
+        "cycles": 57050,
+        "hits": 27384,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2093",
+        "cycles": 56729,
+        "hits": 19312,
+        "section": ".text.bitmap"
+      },
+      {
+        "address": "2d29",
+        "cycles": 56058,
+        "hits": 9343,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2b90",
+        "cycles": 54768,
+        "hits": 27384,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2b91",
+        "cycles": 54768,
+        "hits": 27384,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2cd4",
+        "cycles": 53610,
+        "hits": 8935,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2cd9",
+        "cycles": 53610,
+        "hits": 8935,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2cde",
+        "cycles": 53610,
+        "hits": 8935,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2ce3",
+        "cycles": 53610,
+        "hits": 8935,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2ce8",
+        "cycles": 53610,
+        "hits": 8935,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2ced",
+        "cycles": 53610,
+        "hits": 8935,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2cf2",
+        "cycles": 53610,
+        "hits": 8935,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2cf7",
+        "cycles": 53610,
+        "hits": 8935,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2cfc",
+        "cycles": 53610,
+        "hits": 8935,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2d01",
+        "cycles": 53610,
+        "hits": 8935,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2d06",
+        "cycles": 53610,
+        "hits": 8935,
+        "section": ".text.pool"
+      },
+      {
+        "address": "2d0b",
+        "cycles": 53610,
+        "hits": 8935,
+        "section": ".text.pool"
+      }
+    ],
+    "instruction_cycles": 20358574
+  }
+}

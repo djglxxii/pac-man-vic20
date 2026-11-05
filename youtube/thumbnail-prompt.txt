@@ -1,8 +1,9 @@
-Use case: ads-marketing.
-Asset type: final YouTube thumbnail, landscape 16:9, 3840x2160 pixels.
-Primary request: an appealing, truthful thumbnail for a homebrew Pac-Man arcade conversion running on an expanded VIC-20, captured in VICE.
-Input image 1: actual VICE gameplay screenshot; use it as the gameplay content reference, preserving the white maze, maze geometry, black background, low-resolution pixels, and recognizable colored actors. Crop away the wide empty black margins around the portrait game before incorporating it.
-Composition: use the actual portrait gameplay prominently on the right, nearly full height, with a restrained frame. On the left, use very large, beautifully spaced bold lettering readable at phone size. Give the composition generous safe margins and keep the bottom-right duration-overlay area clear of important text.
-Text, verbatim: "PAC-MAN", "ON THE", "VIC-20", and a small "HOMEBREW" badge. PAC-MAN is warm yellow; VIC-20 is white. ON THE and HOMEBREW are secondary. No other words.
-Style: polished retro-computing editorial graphic, crisp bold block typography, deep black background, restrained cyan accents, and subtle pixel texture outside the gameplay. Clear hierarchy and strong contrast; little visual clutter.
-Constraints: the gameplay maze must stay white. Preserve the character of the actual VIC-20 conversion rather than replacing it with blue-wall arcade graphics. Do not invent a computer photograph, hardware demonstration, benchmark, release claim, download badge, additional characters, shocked face, arrows, or watermark. No fake 60 FPS claims. Opaque background.
+Use case: compositing / ads-marketing.
+Asset type: a finished YouTube thumbnail, strictly landscape 16:9. Target 1920x1080.
+Input image 1: edit target, the existing landscape VIC-20 Pac-Man thumbnail.
+Input image 2: supporting gameplay reference, the actual early VICE screenshot.
+Primary request: redesign the existing thumbnail to clearly present an AGENTIC HOMEBREW conversion of Pac-Man made with coding agents, and clearly identify this as the INITIAL PASS. Keep its polished black/yellow/white/cyan retro-computing visual identity. Make all type clean and readable at phone size.
+Composition: a disciplined two-column editorial layout. Large warm-yellow PAC-MAN and white VIC-20 typography at left; a very prominent cyan two-line AGENTIC / HOMEBREW label beneath, a smaller readable BUILT WITH CODING AGENTS line and a compact INITIAL PASS badge. Place the complete real gameplay view at right with a simple restrained frame. All type has at least 7% outer margins. Leave the bottom-right corner free of vital copy.
+Text, verbatim: "PAC-MAN", "VIC-20", "AGENTIC", "HOMEBREW", "BUILT WITH CODING AGENTS", "INITIAL PASS". No other headline or marketing copy. Spell AGENTIC exactly A G E N T I C.
+Gameplay constraints: reproduce the second input screenshot faithfully as an inserted screenshot, preserving its white maze, pellets, actual colored software sprites, tiny scores and black background; remove only its broad empty black margins. Do not invent or redraw an arcade-blue maze, enlarge or beautify actors, change their poses, or merge pixels into new ghost shapes.
+Style: crisp bold type with restrained pixel-inspired edges, subtle cyan pixel texture, clean spacing, high contrast, minimal clutter. No computer photo, robots, human faces, artificial code, arrows, benchmark or FPS badge, download claim, watermarks or extra characters. Opaque background.

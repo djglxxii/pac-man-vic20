@@ -1,0 +1,1810 @@
+{
+  "status": "Trial ready for live review; standard remains accepted audio adapter",
+  "date": "2026-11-04",
+  "report": "docs/GHOST_UPDATE_OPTIMIZATION.md",
+  "hardware": {
+    "video": "NTSC",
+    "ram": "+3K and BLK1/2/3/5",
+    "software_stack_bytes": 704,
+    "game_tick_cycles": 16875,
+    "vic_frame_cycles": 16965,
+    "cpu_hz": 1022727
+  },
+  "standard_unchanged": {
+    "prg_sha256": "ead7a6aa4556b944eb88589af3673cc29fa7a059d33181f20b52c208bfb100af",
+    "native_sha256": "217fc2c6543f57693dc9bf7ec068effd2da0595ca9d4b0d7bfdfe9c131477461",
+    "trial_not_promoted": true
+  },
+  "native": {
+    "baseline": {
+      "prg_sha256": "ead7a6aa4556b944eb88589af3673cc29fa7a059d33181f20b52c208bfb100af",
+      "native_sha256": "217fc2c6543f57693dc9bf7ec068effd2da0595ca9d4b0d7bfdfe9c131477461",
+      "depacked_bytes_verified": 33792,
+      "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "map_sha256": "b922f489f8883d04af6a3764a9ca768e1db15dd8c968690f23abecef402b49d0",
+      "cpu_hz": 1022727,
+      "cycles": 20368132,
+      "seconds": 19.915512155247686,
+      "guest_code_changed": false,
+      "watches": {
+        "frame_wait": "wait",
+        "video_refresh": "render",
+        "audio_update": "audio",
+        "updateGhostStates_1017": "ghost-state",
+        "blinkyUpdateMovePat_1b36": "blinky-pattern",
+        "pacmanUpdateMovePat_1806": "pacman-pattern",
+        "blinkyUpdatePosition_1bd8": "blinky-position",
+        "pinkyUpdatePosition_1caf": "pinky-position",
+        "inkyUpdatePosition_1d86": "inky-position",
+        "clydeUpdatePosition_1e5d": "clyde-position",
+        "checkGhostEnterTunnel_205a": "tunnel"
+      },
+      "method": "vicsim instruction cycles and host-only routine watches",
+      "phase_cycles": {
+        "logic_tasks_loop": 9805275,
+        "audio": 474559,
+        "render": 10055512,
+        "wait": 32786
+      },
+      "phase_percent": {
+        "logic_tasks_loop": 48.14027619223992,
+        "audio": 2.3299092916326347,
+        "render": 49.368847373927075,
+        "wait": 0.16096714220037459
+      },
+      "routine_inclusive_cycles": {
+        "pacman-pattern": {
+          "count": 2294,
+          "mean": 374.46120313862247,
+          "p50": 95,
+          "p95": 1136,
+          "max": 1278,
+          "total": 859014
+        },
+        "tunnel": {
+          "count": 6647,
+          "mean": 64.41703023920566,
+          "p50": 64,
+          "p95": 66,
+          "max": 122,
+          "total": 428180
+        },
+        "blinky-pattern": {
+          "count": 2294,
+          "mean": 248.56059285091544,
+          "p50": 208,
+          "p95": 358,
+          "max": 897,
+          "total": 570198
+        },
+        "ghost-state": {
+          "count": 2414,
+          "mean": 1376.234465617233,
+          "p50": 1340,
+          "p95": 2262,
+          "max": 4234,
+          "total": 3322230
+        },
+        "blinky-position": {
+          "count": 886,
+          "mean": 155.98532731376974,
+          "p50": 94,
+          "p95": 637,
+          "max": 715,
+          "total": 138203
+        },
+        "audio": {
+          "count": 1207,
+          "mean": 393.17232808616404,
+          "p50": 455,
+          "p95": 497,
+          "max": 592,
+          "total": 474559
+        },
+        "render": {
+          "count": 596,
+          "mean": 16871.664429530203,
+          "p50": 16499,
+          "p95": 22530,
+          "max": 27156,
+          "total": 10055512
+        },
+        "wait": {
+          "count": 1206,
+          "mean": 27.185737976782754,
+          "p50": 27,
+          "p95": 27,
+          "max": 83,
+          "total": 32786
+        },
+        "pinky-position": {
+          "count": 842,
+          "mean": 152.12232779097388,
+          "p50": 94,
+          "p95": 635,
+          "max": 725,
+          "total": 128087
+        },
+        "inky-position": {
+          "count": 610,
+          "mean": 152.28196721311474,
+          "p50": 94,
+          "p95": 539,
+          "max": 725,
+          "total": 92892
+        },
+        "clyde-position": {
+          "count": 288,
+          "mean": 148.04166666666666,
+          "p50": 94,
+          "p95": 517,
+          "max": 629,
+          "total": 42636
+        }
+      },
+      "completed_renders": 596,
+      "completed_render_interval_ms": {
+        "count": 595,
+        "mean": 33.42519106090996,
+        "p50": 32.51796422701268,
+        "p95": 49.15387977436794,
+        "max": 66.22392877082545
+      },
+      "actor_erase_to_paint_ms": {
+        "count": 0
+      },
+      "hotspots": {
+        "sections": [
+          {
+            "section": ".text.pool",
+            "cycles": 8854406
+          },
+          {
+            "section": ".text.main",
+            "cycles": 2302691
+          },
+          {
+            "section": ".text.updateGhostStates_1017",
+            "cycles": 1314171
+          },
+          {
+            "section": ".text.bitmap_tile",
+            "cycles": 898324
+          },
+          {
+            "section": ".text.bitmap",
+            "cycles": 753168
+          },
+          {
+            "section": ".text.sound_effect",
+            "cycles": 476880
+          },
+          {
+            "section": ".text.rebuild",
+            "cycles": 438596
+          },
+          {
+            "section": ".text.tile_address",
+            "cycles": 426948
+          },
+          {
+            "section": ".cold",
+            "cycles": 410522
+          },
+          {
+            "section": ".text.playGameMain_08cd",
+            "cycles": 370107
+          },
+          {
+            "section": ".text.pacmanUpdateMovePat_1806",
+            "cycles": 321283
+          },
+          {
+            "section": ".text.arcade_tasks",
+            "cycles": 305261
+          },
+          {
+            "section": ".text.blinkyUpdateMovePat_1b36",
+            "cycles": 283685
+          },
+          {
+            "section": ".text.spriteAnimation_14fe",
+            "cycles": 273010
+          },
+          {
+            "section": ".text.arcade_ptr",
+            "cycles": 259964
+          },
+          {
+            "section": ".text.frequencyWithVolume_2ee8",
+            "cycles": 240284
+          },
+          {
+            "section": ".text.drawDigit_2ace",
+            "cycles": 230360
+          },
+          {
+            "section": ".text.pacmanUpdatePos_1985",
+            "cycles": 217890
+          },
+          {
+            "section": ".text.pacmanCheckMoveClear_18e4",
+            "cycles": 213837
+          },
+          {
+            "section": ".text.findBestOrientation_2966",
+            "cycles": 167608
+          },
+          {
+            "section": ".text.__mulqi3",
+            "cycles": 126735
+          },
+          {
+            "section": ".text.addToScore_2a5a",
+            "cycles": 117399
+          },
+          {
+            "section": ".text.drawScore_2abe",
+            "cycles": 114840
+          },
+          {
+            "section": ".text.blinkyUpdatePosition_1bd8",
+            "cycles": 102142
+          },
+          {
+            "section": ".text.pinkyUpdatePosition_1caf",
+            "cycles": 96976
+          },
+          {
+            "section": ".text.randomDirection_291e",
+            "cycles": 91940
+          },
+          {
+            "section": ".text.twoBlank_0390",
+            "cycles": 85697
+          },
+          {
+            "section": ".text.inkyUpdatePosition_1d86",
+            "cycles": 68501
+          },
+          {
+            "section": ".text.audio_divider",
+            "cycles": 62469
+          },
+          {
+            "section": ".text.bitmap_cell_colour",
+            "cycles": 54478
+          },
+          {
+            "section": ".text.score",
+            "cycles": 53214
+          },
+          {
+            "section": ".text.pacmanMove_1950",
+            "cycles": 52809
+          },
+          {
+            "section": ".text.flashPowerups_0c0d",
+            "cycles": 49901
+          },
+          {
+            "section": ".text.setGhostColour_0bd6",
+            "cycles": 49793
+          },
+          {
+            "section": ".text.oneUp_0369",
+            "cycles": 42884
+          },
+          {
+            "section": ".text.addTask_0042",
+            "cycles": 41706
+          },
+          {
+            "section": ".text.clock",
+            "cycles": 37417
+          },
+          {
+            "section": ".text.frame_wait",
+            "cycles": 32562
+          },
+          {
+            "section": ".text.clydeUpdatePosition_1e5d",
+            "cycles": 30636
+          },
+          {
+            "section": ".text",
+            "cycles": 29745
+          },
+          {
+            "section": ".text.toggleGhostAnimation_0e23",
+            "cycles": 27159
+          },
+          {
+            "section": ".text.checkTunnelWrap_1ed0",
+            "cycles": 26448
+          },
+          {
+            "section": ".text.calcSquare_2a12",
+            "cycles": 26220
+          },
+          {
+            "section": ".text.volumeDecayNone_2f22",
+            "cycles": 24596
+          },
+          {
+            "section": ".text.computeDistance_29ea",
+            "cycles": 22117
+          },
+          {
+            "section": "unmapped",
+            "cycles": 21726
+          },
+          {
+            "section": ".text.video_refresh",
+            "cycles": 17880
+          },
+          {
+            "section": ".text.bulk",
+            "cycles": 15696
+          },
+          {
+            "section": ".text.nothing_000c",
+            "cycles": 14484
+          },
+          {
+            "section": ".text.add_score_bcd",
+            "cycles": 10824
+          },
+          {
+            "section": ".text.__lshrhi3",
+            "cycles": 7776
+          },
+          {
+            "section": ".text.video_frame_begin",
+            "cycles": 5364
+          },
+          {
+            "section": ".text.pinkyScatterOrChase_276c",
+            "cycles": 4972
+          },
+          {
+            "section": ".text.blinkyScatterOrChase_2730",
+            "cycles": 4691
+          },
+          {
+            "section": ".text.bitmap_wall_colour",
+            "cycles": 4522
+          },
+          {
+            "section": ".text.clydeReverse_1f7c",
+            "cycles": 3920
+          },
+          {
+            "section": ".text.video_frame_end",
+            "cycles": 3576
+          },
+          {
+            "section": ".text.inkyScatterOrChase_27a9",
+            "cycles": 3213
+          },
+          {
+            "section": ".text.homeOrRandomClyde_28b9",
+            "cycles": 2096
+          },
+          {
+            "section": ".text.homeOrRandomInky_288f",
+            "cycles": 2070
+          },
+          {
+            "section": ".text.homeOrRandomBlinky_283b",
+            "cycles": 1794
+          },
+          {
+            "section": ".text.blinkyCheckReverse_1efe",
+            "cycles": 1548
+          },
+          {
+            "section": ".text.inkyReverse_1f55",
+            "cycles": 1360
+          },
+          {
+            "section": ".text.pinkyCheckReverse_1f25",
+            "cycles": 1290
+          },
+          {
+            "section": ".text.homeOrRandomPinky_2865",
+            "cycles": 1288
+          },
+          {
+            "section": ".text.inkyCheckReverse_1f4c",
+            "cycles": 942
+          },
+          {
+            "section": ".text.clydeCheckReverse_1f73",
+            "cycles": 452
+          },
+          {
+            "section": ".text.schedISRTask",
+            "cycles": 282
+          },
+          {
+            "section": ".text.pinkyReverse_1f2e",
+            "cycles": 240
+          },
+          {
+            "section": ".text.ghostsBecomeEdible_1a70",
+            "cycles": 212
+          },
+          {
+            "section": ".text.pacmanGhostCoincide_1763",
+            "cycles": 55
+          },
+          {
+            "section": ".text.ghostsAnyDeadSoundOff_1101",
+            "cycles": 31
+          }
+        ],
+        "instruction_cycles": 20359683
+      },
+      "completed_renders_per_second": 29.926420940319908,
+      "unattributed_interrupt_entry_cycles": 8449,
+      "gameplay_states_checked": 1207,
+      "gameplay_states_sha256": "a8ecb3bcaf421ec1846b00811ab62c54bcfa079f4ca746d5ce349611f5531c13",
+      "evidence": {
+        "path": "build/ghost-update-fast/evaluation/baseline-profile/summary.json",
+        "sha256": "bc2e22aae1ea62e6cfbf38c04eab19253442b103d834742a50d995063f38e20b"
+      },
+      "maximum_service_gaps_ms": {
+        "input": 38.30836577111976,
+        "audio": 37.56232112773008
+      }
+    },
+    "trial": {
+      "prg_sha256": "b4bd4785b6885cc4080a72f5508646caa6507f13bdee3fa087512e65e3b90e04",
+      "native_sha256": "5a9558071d927584cc7ab8b23b72b658557513061ab87a2dae30cc45a854a31e",
+      "depacked_bytes_verified": 33792,
+      "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "map_sha256": "29ad006a3941d50bba3ac13420e2af72420e00d466838fc389e3b124646b0726",
+      "cpu_hz": 1022727,
+      "cycles": 20364212,
+      "seconds": 19.911679265336694,
+      "guest_code_changed": false,
+      "watches": {
+        "frame_wait": "wait",
+        "video_refresh": "render",
+        "audio_update": "audio",
+        "updateGhostStates_1017": "ghost-state",
+        "blinkyUpdateMovePat_1b36": "blinky-pattern",
+        "pacmanUpdateMovePat_1806": "pacman-pattern",
+        "blinkyUpdatePosition_1bd8": "blinky-position",
+        "pinkyUpdatePosition_1caf": "pinky-position",
+        "inkyUpdatePosition_1d86": "inky-position",
+        "clydeUpdatePosition_1e5d": "clyde-position",
+        "checkGhostEnterTunnel_205a": "tunnel"
+      },
+      "method": "vicsim instruction cycles and host-only routine watches",
+      "phase_cycles": {
+        "logic_tasks_loop": 9499089,
+        "audio": 475007,
+        "render": 10357498,
+        "wait": 32618
+      },
+      "phase_percent": {
+        "logic_tasks_loop": 46.645993471291696,
+        "audio": 2.3325577243057576,
+        "render": 50.861275653582865,
+        "wait": 0.16017315081968309
+      },
+      "routine_inclusive_cycles": {
+        "pacman-pattern": {
+          "count": 2294,
+          "mean": 374.2414995640802,
+          "p50": 95,
+          "p95": 1136,
+          "max": 1334,
+          "total": 858510
+        },
+        "tunnel": {
+          "count": 6647,
+          "mean": 64.40018053257108,
+          "p50": 64,
+          "p95": 66,
+          "max": 122,
+          "total": 428068
+        },
+        "blinky-pattern": {
+          "count": 2294,
+          "mean": 248.12118570183085,
+          "p50": 208,
+          "p95": 332,
+          "max": 895,
+          "total": 569190
+        },
+        "ghost-state": {
+          "count": 2414,
+          "mean": 1248.6801988400994,
+          "p50": 1262,
+          "p95": 2142,
+          "max": 4037,
+          "total": 3014314
+        },
+        "blinky-position": {
+          "count": 886,
+          "mean": 155.41647855530474,
+          "p50": 94,
+          "p95": 637,
+          "max": 713,
+          "total": 137699
+        },
+        "audio": {
+          "count": 1207,
+          "mean": 393.54349627174815,
+          "p50": 455,
+          "p95": 497,
+          "max": 553,
+          "total": 475007
+        },
+        "render": {
+          "count": 616,
+          "mean": 16814.12012987013,
+          "p50": 16411,
+          "p95": 22960,
+          "max": 28783,
+          "total": 10357498
+        },
+        "wait": {
+          "count": 1206,
+          "mean": 27.046434494195687,
+          "p50": 27,
+          "p95": 27,
+          "max": 83,
+          "total": 32618
+        },
+        "pinky-position": {
+          "count": 842,
+          "mean": 152.38836104513064,
+          "p50": 94,
+          "p95": 635,
+          "max": 725,
+          "total": 128311
+        },
+        "inky-position": {
+          "count": 610,
+          "mean": 152.28196721311474,
+          "p50": 94,
+          "p95": 517,
+          "max": 725,
+          "total": 92892
+        },
+        "clyde-position": {
+          "count": 288,
+          "mean": 147.84722222222223,
+          "p50": 94,
+          "p95": 517,
+          "max": 629,
+          "total": 42580
+        }
+      },
+      "completed_renders": 616,
+      "completed_render_interval_ms": {
+        "count": 615,
+        "mean": 32.332850970783745,
+        "p50": 31.364186141560747,
+        "p95": 49.34259093580203,
+        "max": 63.462683590048954
+      },
+      "actor_erase_to_paint_ms": {
+        "count": 0
+      },
+      "hotspots": {
+        "sections": [
+          {
+            "section": ".text.pool",
+            "cycles": 9152888
+          },
+          {
+            "section": ".text.main",
+            "cycles": 2302971
+          },
+          {
+            "section": ".text.updateGhostStates_1017",
+            "cycles": 1033309
+          },
+          {
+            "section": ".text.bitmap_tile",
+            "cycles": 898324
+          },
+          {
+            "section": ".text.bitmap",
+            "cycles": 753168
+          },
+          {
+            "section": ".text.sound_effect",
+            "cycles": 476880
+          },
+          {
+            "section": ".text.rebuild",
+            "cycles": 439176
+          },
+          {
+            "section": ".text.tile_address",
+            "cycles": 426948
+          },
+          {
+            "section": ".cold",
+            "cycles": 410522
+          },
+          {
+            "section": ".text.playGameMain_08cd",
+            "cycles": 370107
+          },
+          {
+            "section": ".text.pacmanUpdateMovePat_1806",
+            "cycles": 321283
+          },
+          {
+            "section": ".text.arcade_tasks",
+            "cycles": 304825
+          },
+          {
+            "section": ".text.blinkyUpdateMovePat_1b36",
+            "cycles": 283685
+          },
+          {
+            "section": ".text.spriteAnimation_14fe",
+            "cycles": 273010
+          },
+          {
+            "section": ".text.arcade_ptr",
+            "cycles": 259964
+          },
+          {
+            "section": ".text.frequencyWithVolume_2ee8",
+            "cycles": 240284
+          },
+          {
+            "section": ".text.drawDigit_2ace",
+            "cycles": 230360
+          },
+          {
+            "section": ".text.pacmanUpdatePos_1985",
+            "cycles": 217890
+          },
+          {
+            "section": ".text.pacmanCheckMoveClear_18e4",
+            "cycles": 213837
+          },
+          {
+            "section": ".text.findBestOrientation_2966",
+            "cycles": 167608
+          },
+          {
+            "section": ".text.__mulqi3",
+            "cycles": 126735
+          },
+          {
+            "section": ".text.addToScore_2a5a",
+            "cycles": 117399
+          },
+          {
+            "section": ".text.drawScore_2abe",
+            "cycles": 114840
+          },
+          {
+            "section": ".text.blinkyUpdatePosition_1bd8",
+            "cycles": 102142
+          },
+          {
+            "section": ".text.pinkyUpdatePosition_1caf",
+            "cycles": 96976
+          },
+          {
+            "section": ".text.randomDirection_291e",
+            "cycles": 92011
+          },
+          {
+            "section": ".text.twoBlank_0390",
+            "cycles": 85697
+          },
+          {
+            "section": ".text.inkyUpdatePosition_1d86",
+            "cycles": 68501
+          },
+          {
+            "section": ".text.audio_divider",
+            "cycles": 62469
+          },
+          {
+            "section": ".text.bitmap_cell_colour",
+            "cycles": 54486
+          },
+          {
+            "section": ".text.score",
+            "cycles": 54054
+          },
+          {
+            "section": ".text.pacmanMove_1950",
+            "cycles": 52809
+          },
+          {
+            "section": ".text.flashPowerups_0c0d",
+            "cycles": 49901
+          },
+          {
+            "section": ".text.setGhostColour_0bd6",
+            "cycles": 49793
+          },
+          {
+            "section": ".text.oneUp_0369",
+            "cycles": 42884
+          },
+          {
+            "section": ".text.addTask_0042",
+            "cycles": 41706
+          },
+          {
+            "section": ".text.clock",
+            "cycles": 37417
+          },
+          {
+            "section": ".text.frame_wait",
+            "cycles": 32562
+          },
+          {
+            "section": ".text.clydeUpdatePosition_1e5d",
+            "cycles": 30636
+          },
+          {
+            "section": ".text.toggleGhostAnimation_0e23",
+            "cycles": 27159
+          },
+          {
+            "section": ".text.calcSquare_2a12",
+            "cycles": 26680
+          },
+          {
+            "section": ".text.checkTunnelWrap_1ed0",
+            "cycles": 26448
+          },
+          {
+            "section": ".text.volumeDecayNone_2f22",
+            "cycles": 24596
+          },
+          {
+            "section": ".text.computeDistance_29ea",
+            "cycles": 22117
+          },
+          {
+            "section": "unmapped",
+            "cycles": 21726
+          },
+          {
+            "section": ".text",
+            "cycles": 18695
+          },
+          {
+            "section": ".text.video_refresh",
+            "cycles": 18480
+          },
+          {
+            "section": ".text.bulk",
+            "cycles": 15696
+          },
+          {
+            "section": ".text.add_score_bcd",
+            "cycles": 10824
+          },
+          {
+            "section": ".text.__lshrhi3",
+            "cycles": 7776
+          },
+          {
+            "section": ".text.video_frame_begin",
+            "cycles": 5544
+          },
+          {
+            "section": ".text.pinkyScatterOrChase_276c",
+            "cycles": 4972
+          },
+          {
+            "section": ".text.blinkyScatterOrChase_2730",
+            "cycles": 4713
+          },
+          {
+            "section": ".text.bitmap_wall_colour",
+            "cycles": 4522
+          },
+          {
+            "section": ".text.clydeReverse_1f7c",
+            "cycles": 3920
+          },
+          {
+            "section": ".text.video_frame_end",
+            "cycles": 3696
+          },
+          {
+            "section": ".text.inkyScatterOrChase_27a9",
+            "cycles": 3213
+          },
+          {
+            "section": ".text.homeOrRandomInky_288f",
+            "cycles": 2115
+          },
+          {
+            "section": ".text.homeOrRandomClyde_28b9",
+            "cycles": 2096
+          },
+          {
+            "section": ".text.homeOrRandomBlinky_283b",
+            "cycles": 1794
+          },
+          {
+            "section": ".text.blinkyCheckReverse_1efe",
+            "cycles": 1548
+          },
+          {
+            "section": ".text.inkyReverse_1f55",
+            "cycles": 1360
+          },
+          {
+            "section": ".text.pinkyCheckReverse_1f25",
+            "cycles": 1290
+          },
+          {
+            "section": ".text.homeOrRandomPinky_2865",
+            "cycles": 1288
+          },
+          {
+            "section": ".text.nothing_000c",
+            "cycles": 1224
+          },
+          {
+            "section": ".text.inkyCheckReverse_1f4c",
+            "cycles": 942
+          },
+          {
+            "section": ".text.clydeCheckReverse_1f73",
+            "cycles": 452
+          },
+          {
+            "section": ".text.schedISRTask",
+            "cycles": 282
+          },
+          {
+            "section": ".text.pinkyReverse_1f2e",
+            "cycles": 240
+          },
+          {
+            "section": ".text.ghostsBecomeEdible_1a70",
+            "cycles": 212
+          },
+          {
+            "section": ".text.pacmanGhostCoincide_1763",
+            "cycles": 55
+          },
+          {
+            "section": ".text.ghostsAnyDeadSoundOff_1101",
+            "cycles": 31
+          }
+        ],
+        "instruction_cycles": 20355763
+      },
+      "completed_renders_per_second": 30.93661723812343,
+      "unattributed_interrupt_entry_cycles": 8449,
+      "gameplay_states_checked": 1207,
+      "gameplay_states_sha256": "a8ecb3bcaf421ec1846b00811ab62c54bcfa079f4ca746d5ce349611f5531c13",
+      "evidence": {
+        "path": "build/ghost-update-fast/evaluation/trial-cpu/summary.json",
+        "sha256": "834d9525d2a127dc6fcb57ab3c653c2c67e852defb95f0712cc8f9d1117a949f"
+      },
+      "maximum_service_gaps_ms": {
+        "input": 41.71690001339556,
+        "audio": 36.84854315961151
+      }
+    }
+  },
+  "actual_vice": {
+    "baseline": {
+      "prg_sha256": "ead7a6aa4556b944eb88589af3673cc29fa7a059d33181f20b52c208bfb100af",
+      "video_frames": 1180,
+      "counter_interval_seconds": 19.557256237490552,
+      "completed_renders": 583,
+      "completed_renders_per_second": 29.80990753101706,
+      "calibration": {
+        "x": 8,
+        "y": 4,
+        "output_dots_per_vic_dot": 2,
+        "mismatch_pixels": 0,
+        "next_distinct_alignment_error": 3576
+      },
+      "min_diagnostic_pixels": 12,
+      "actors": {
+        "pacman": {
+          "frames": {
+            "present": 984,
+            "partial": 19,
+            "excluded": 177
+          },
+          "eligible_frames": 1003,
+          "exclusions": {
+            "shared-colour-cell": 116,
+            "reward-slot-expansion": 61
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.8943170488534398,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 44,
+            "2": 221,
+            "3": 100,
+            "4": 24,
+            "5": 4,
+            "6": 1
+          },
+          "displayed_move_interval_ms": {
+            "count": 394,
+            "mean": 38.228192935301536,
+            "p50": 33.176008846935694,
+            "p95": 66.35201769387139,
+            "max": 99.52802654080708
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 287,
+            "2": 97,
+            "3": 23,
+            "4": 6,
+            "5": 2
+          },
+          "visible_ink_color_mismatch_frames": 0
+        },
+        "blinky": {
+          "frames": {
+            "present": 893,
+            "excluded": 279,
+            "partial": 8
+          },
+          "eligible_frames": 901,
+          "exclusions": {
+            "shared-colour-cell": 185,
+            "reward-slot-expansion": 61,
+            "screen-edge-clipping": 24,
+            "hidden-or-empty": 9
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 0.8879023307436182,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 34,
+            "2": 165,
+            "3": 77,
+            "4": 35,
+            "5": 17,
+            "6": 4
+          },
+          "displayed_move_interval_ms": {
+            "count": 332,
+            "mean": 42.169505221105005,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 99.52802654080708
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 266,
+            "2": 75,
+            "3": 4
+          },
+          "visible_ink_color_mismatch_frames": 0
+        },
+        "pinky": {
+          "frames": {
+            "excluded": 329,
+            "present": 841,
+            "partial": 10
+          },
+          "eligible_frames": 851,
+          "exclusions": {
+            "shared-colour-cell": 108,
+            "screen-edge-clipping": 100,
+            "hidden-or-empty": 60,
+            "reward-slot-expansion": 61
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.1750881316098707,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 27,
+            "2": 158,
+            "3": 65,
+            "4": 29,
+            "5": 19,
+            "6": 7
+          },
+          "displayed_move_interval_ms": {
+            "count": 305,
+            "mean": 43.020037701518255,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 99.52802654080708
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 231,
+            "2": 82,
+            "3": 7
+          },
+          "visible_ink_color_mismatch_frames": 2
+        },
+        "inky": {
+          "frames": {
+            "excluded": 240,
+            "present": 928,
+            "partial": 12
+          },
+          "eligible_frames": 940,
+          "exclusions": {
+            "shared-colour-cell": 179,
+            "reward-slot-expansion": 61
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.2765957446808511,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 27,
+            "2": 141,
+            "3": 72,
+            "4": 37,
+            "5": 19,
+            "6": 14,
+            "7": 2
+          },
+          "displayed_move_interval_ms": {
+            "count": 312,
+            "mean": 46.04234561129216,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 116.11603096427493
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 262,
+            "2": 66,
+            "3": 2
+          },
+          "visible_ink_color_mismatch_frames": 3
+        },
+        "clyde": {
+          "frames": {
+            "excluded": 301,
+            "present": 864,
+            "partial": 15
+          },
+          "eligible_frames": 879,
+          "exclusions": {
+            "shared-colour-cell": 175,
+            "reward-slot-expansion": 61,
+            "insufficient-distinct-ink": 65
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.7064846416382253,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 24,
+            "2": 115,
+            "3": 54,
+            "4": 32,
+            "5": 12,
+            "6": 16,
+            "7": 8,
+            "8": 1
+          },
+          "displayed_move_interval_ms": {
+            "count": 262,
+            "mean": 48.371127402784104,
+            "p50": 33.176008846935694,
+            "p95": 99.52802654080708,
+            "max": 132.70403538774278
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 262,
+            "2": 20,
+            "3": 1,
+            "5": 1
+          },
+          "visible_ink_color_mismatch_frames": 3
+        }
+      },
+      "method": "exact distinct sprite ink; old/new poses; binary visibility separate from colour",
+      "guest_modified": false,
+      "validation": {
+        "complete_snapshots_checked": 560,
+        "excluded_complete_snapshots": {
+          "reward-slot-expansion": 42
+        },
+        "settled_actor_results": {
+          "present": 2268,
+          "excluded": 532
+        },
+        "false_absent_or_partial_on_settled_images": 0,
+        "synthetic_host_only_controls": {
+          "absent": 2268,
+          "partial": 2268
+        }
+      },
+      "evidence": [
+        {
+          "actor": "pacman",
+          "frame": 43,
+          "status": "partial"
+        }
+      ],
+      "render_interval_ms": {
+        "count": 582,
+        "mean": 33.5656399550374,
+        "p50": 32.4504975423549,
+        "p95": 50.24116895320061,
+        "max": 61.04268294471545
+      },
+      "render_interval_logical_ticks": {
+        "1": 105,
+        "2": 358,
+        "3": 113,
+        "4": 6
+      },
+      "capture": {
+        "path": "build/ghost-update-fast/evaluation/baseline-vice-16/recording.json",
+        "sha256": "c429856999ede3aa9048116b8bdb5eb2cfaa0d73cef305c96deee6cd775af955"
+      },
+      "analysis": {
+        "path": "build/ghost-update-fast/evaluation/baseline-vice-16/analysis.json",
+        "sha256": "80c0fcd85943b78082340e1351bb8279572afa28ec2a6d1d7d4535f6ebef47ca"
+      },
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "217fc2c6543f57693dc9bf7ec068effd2da0595ca9d4b0d7bfdfe9c131477461"
+      },
+      "input_trace_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "emulator": "VICE 3.7.1 xvic, vic20ntsc, -memory all",
+      "code_bytes_patched": false,
+      "pc_render_gate": false,
+      "raster_window_cycles": 16
+    },
+    "trial": {
+      "prg_sha256": "b4bd4785b6885cc4080a72f5508646caa6507f13bdee3fa087512e65e3b90e04",
+      "video_frames": 1180,
+      "counter_interval_seconds": 19.55725819304663,
+      "completed_renders": 602,
+      "completed_renders_per_second": 30.781410873536178,
+      "calibration": {
+        "x": 8,
+        "y": 4,
+        "output_dots_per_vic_dot": 2,
+        "mismatch_pixels": 0,
+        "next_distinct_alignment_error": 3576
+      },
+      "min_diagnostic_pixels": 12,
+      "actors": {
+        "pacman": {
+          "frames": {
+            "present": 989,
+            "partial": 14,
+            "excluded": 177
+          },
+          "eligible_frames": 1003,
+          "exclusions": {
+            "shared-colour-cell": 118,
+            "reward-slot-expansion": 59
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.3958125623130608,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 56,
+            "2": 229,
+            "3": 96,
+            "4": 23,
+            "5": 4
+          },
+          "displayed_move_interval_ms": {
+            "count": 408,
+            "mean": 37.16038245845493,
+            "p50": 33.176008846935694,
+            "p95": 66.35201769387139,
+            "max": 82.94002211733924
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 299,
+            "2": 98,
+            "3": 23,
+            "4": 7,
+            "5": 1
+          },
+          "visible_ink_color_mismatch_frames": 0
+        },
+        "blinky": {
+          "frames": {
+            "present": 883,
+            "excluded": 278,
+            "partial": 19
+          },
+          "eligible_frames": 902,
+          "exclusions": {
+            "shared-colour-cell": 186,
+            "reward-slot-expansion": 59,
+            "screen-edge-clipping": 24,
+            "hidden-or-empty": 9
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 2.106430155210643,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 44,
+            "2": 171,
+            "3": 58,
+            "4": 33,
+            "5": 17,
+            "6": 1
+          },
+          "displayed_move_interval_ms": {
+            "count": 324,
+            "mean": 40.08767735671396,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 99.52802654080708
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 279,
+            "2": 61,
+            "3": 6
+          },
+          "visible_ink_color_mismatch_frames": 3
+        },
+        "pinky": {
+          "frames": {
+            "excluded": 326,
+            "present": 838,
+            "partial": 16
+          },
+          "eligible_frames": 854,
+          "exclusions": {
+            "shared-colour-cell": 107,
+            "screen-edge-clipping": 102,
+            "hidden-or-empty": 58,
+            "reward-slot-expansion": 59
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.873536299765808,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 45,
+            "2": 142,
+            "3": 68,
+            "4": 27,
+            "5": 18,
+            "6": 1,
+            "7": 2
+          },
+          "displayed_move_interval_ms": {
+            "count": 303,
+            "mean": 41.11416277895826,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 116.11603096427493
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 237,
+            "2": 83,
+            "3": 2
+          },
+          "visible_ink_color_mismatch_frames": 1
+        },
+        "inky": {
+          "frames": {
+            "excluded": 236,
+            "present": 926,
+            "partial": 18
+          },
+          "eligible_frames": 944,
+          "exclusions": {
+            "shared-colour-cell": 177,
+            "reward-slot-expansion": 59
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.9067796610169492,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 32,
+            "2": 150,
+            "3": 65,
+            "4": 41,
+            "5": 20,
+            "6": 5,
+            "7": 1
+          },
+          "displayed_move_interval_ms": {
+            "count": 314,
+            "mean": 43.74161675997254,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 116.11603096427493
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 283,
+            "2": 50,
+            "3": 4
+          },
+          "visible_ink_color_mismatch_frames": 6
+        },
+        "clyde": {
+          "frames": {
+            "excluded": 300,
+            "present": 863,
+            "partial": 17
+          },
+          "eligible_frames": 880,
+          "exclusions": {
+            "shared-colour-cell": 182,
+            "reward-slot-expansion": 59,
+            "insufficient-distinct-ink": 59
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.9318181818181819,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 15,
+            "2": 111,
+            "3": 61,
+            "4": 32,
+            "5": 17,
+            "6": 12,
+            "7": 7
+          },
+          "displayed_move_interval_ms": {
+            "count": 255,
+            "mean": 49.048452295273556,
+            "p50": 49.76401327040354,
+            "p95": 99.52802654080708,
+            "max": 116.11603096427493
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 258,
+            "2": 20,
+            "3": 2,
+            "5": 1
+          },
+          "visible_ink_color_mismatch_frames": 7
+        }
+      },
+      "method": "exact distinct sprite ink; old/new poses; binary visibility separate from colour",
+      "guest_modified": false,
+      "validation": {
+        "complete_snapshots_checked": 580,
+        "excluded_complete_snapshots": {
+          "reward-slot-expansion": 42
+        },
+        "settled_actor_results": {
+          "present": 2352,
+          "excluded": 548
+        },
+        "false_absent_or_partial_on_settled_images": 0,
+        "synthetic_host_only_controls": {
+          "absent": 2352,
+          "partial": 2352
+        }
+      },
+      "evidence": [
+        {
+          "actor": "pacman",
+          "frame": 2,
+          "status": "partial"
+        }
+      ],
+      "render_interval_ms": {
+        "count": 601,
+        "mean": 32.50177150685066,
+        "p50": 31.755297356968185,
+        "p95": 48.650324084530865,
+        "max": 63.43139469281636
+      },
+      "render_interval_logical_ticks": {
+        "1": 127,
+        "2": 368,
+        "3": 103,
+        "4": 3
+      },
+      "capture": {
+        "path": "build/ghost-update-fast/evaluation/trial-vice-16/recording.json",
+        "sha256": "d17bb82aee9a320155e554a215f8376daec2138c52c6083cf2dba23b1955fc98"
+      },
+      "analysis": {
+        "path": "build/ghost-update-fast/evaluation/trial-vice-16/analysis.json",
+        "sha256": "abfc74bf7b177f22a01fac5146c90fab41797c0e0648dec093f8534c7f29c618"
+      },
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "5a9558071d927584cc7ab8b23b72b658557513061ab87a2dae30cc45a854a31e"
+      },
+      "input_trace_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "emulator": "VICE 3.7.1 xvic, vic20ntsc, -memory all",
+      "code_bytes_patched": false,
+      "pc_render_gate": false,
+      "raster_window_cycles": 16
+    }
+  },
+  "kernel": {
+    "method": "Actual 6502 routines vs original Z80 $1017; IRQs masked, RTS included, JSR excluded",
+    "cases": 2458,
+    "fixture_sha256": "e5c2476313353a23255f8878d452c31501c9ef55c6a30b8454fb78bf120a1c40",
+    "programs": [
+      {
+        "path": "build/audio-update-fast/pacman.prg",
+        "sha256": "ead7a6aa4556b944eb88589af3673cc29fa7a059d33181f20b52c208bfb100af",
+        "output_sha256": "235e92821b25d7786b75d873a61529e86b55a62a22d2fa3c38b09194f79e31ba"
+      },
+      {
+        "path": "build/ghost-update-fast/pacman.prg",
+        "sha256": "b4bd4785b6885cc4080a72f5508646caa6507f13bdee3fa087512e65e3b90e04",
+        "output_sha256": "235e92821b25d7786b75d873a61529e86b55a62a22d2fa3c38b09194f79e31ba"
+      }
+    ],
+    "groups": {
+      "speed-normal": {
+        "count": 48,
+        "baseline_total": 68080,
+        "trial_total": 61352,
+        "min_cycles_saved": 140,
+        "max_cycles_saved": 141
+      },
+      "speed-frightened": {
+        "count": 48,
+        "baseline_total": 72880,
+        "trial_total": 66200,
+        "min_cycles_saved": 139,
+        "max_cycles_saved": 140
+      },
+      "speed-tunnel": {
+        "count": 48,
+        "baseline_total": 67072,
+        "trial_total": 60344,
+        "min_cycles_saved": 140,
+        "max_cycles_saved": 141
+      },
+      "speed-tunnel-frightened": {
+        "count": 48,
+        "baseline_total": 72112,
+        "trial_total": 65432,
+        "min_cycles_saved": 139,
+        "max_cycles_saved": 140
+      },
+      "speed-elroy-1": {
+        "count": 48,
+        "baseline_total": 68464,
+        "trial_total": 61736,
+        "min_cycles_saved": 140,
+        "max_cycles_saved": 141
+      },
+      "speed-elroy-2": {
+        "count": 48,
+        "baseline_total": 66400,
+        "trial_total": 59672,
+        "min_cycles_saved": 140,
+        "max_cycles_saved": 141
+      },
+      "speed-frightened-elroy-2": {
+        "count": 48,
+        "baseline_total": 71440,
+        "trial_total": 64760,
+        "min_cycles_saved": 139,
+        "max_cycles_saved": 140
+      },
+      "speed-tunnel-frightened-elroy-2": {
+        "count": 48,
+        "baseline_total": 70672,
+        "trial_total": 63992,
+        "min_cycles_saved": 139,
+        "max_cycles_saved": 140
+      },
+      "speed-in-house": {
+        "count": 48,
+        "baseline_total": 24000,
+        "trial_total": 17184,
+        "min_cycles_saved": 142,
+        "max_cycles_saved": 142
+      },
+      "speed-returning": {
+        "count": 48,
+        "baseline_total": 119952,
+        "trial_total": 120960,
+        "min_cycles_saved": -21,
+        "max_cycles_saved": -21
+      },
+      "speed-death-pause": {
+        "count": 48,
+        "baseline_total": 5136,
+        "trial_total": 6144,
+        "min_cycles_saved": -21,
+        "max_cycles_saved": -21
+      },
+      "state-combinations": {
+        "count": 720,
+        "baseline_total": 1090032,
+        "trial_total": 1105038,
+        "min_cycles_saved": -23,
+        "max_cycles_saved": 140
+      },
+      "house-boundaries": {
+        "count": 10,
+        "baseline_total": 10252,
+        "trial_total": 10467,
+        "min_cycles_saved": -22,
+        "max_cycles_saved": -21
+      },
+      "death-boundaries": {
+        "count": 80,
+        "baseline_total": 11011,
+        "trial_total": 12691,
+        "min_cycles_saved": -21,
+        "max_cycles_saved": -21
+      },
+      "reward-pause": {
+        "count": 96,
+        "baseline_total": 28576,
+        "trial_total": 15040,
+        "min_cycles_saved": 141,
+        "max_cycles_saved": 141
+      },
+      "tile-collision": {
+        "count": 512,
+        "baseline_total": 1086122,
+        "trial_total": 1013975,
+        "min_cycles_saved": 139,
+        "max_cycles_saved": 141
+      },
+      "pixel-collision": {
+        "count": 512,
+        "baseline_total": 845242,
+        "trial_total": 773271,
+        "min_cycles_saved": 139,
+        "max_cycles_saved": 142
+      }
+    },
+    "evidence": {
+      "path": "build/ghost-update-fast/evaluation/ghost-kernel.json",
+      "sha256": "c4037f58fbfec5a5f2abb9ad022b4aabb4aeeecfea78bcc6a1f6855f1e1a8787"
+    }
+  },
+  "checks": {
+    "original_rom": {
+      "tests": 15,
+      "passed": true,
+      "log": {
+        "path": "build/ghost-update-fast/evaluation/rom-tests.log",
+        "sha256": "da8504decd5797066ee01883976b5c27de9f47451ce9eab87b10f309191a01e1"
+      }
+    },
+    "pool": {
+      "tests": 40,
+      "passed": true,
+      "log": {
+        "path": "build/ghost-update-fast/evaluation/pool-tests.log",
+        "sha256": "a9272b54d3954b593ba7f4e58c3e48fde49b986d2e1ab1fbfa8873a04dc9bcd1"
+      }
+    },
+    "ghost_kernel": {
+      "tests": 2,
+      "passed": true,
+      "log": {
+        "path": "build/ghost-update-fast/evaluation/ghost-tests.log",
+        "sha256": "8b398bd650f34749b7bb04ccdce83010c21e135dcac3db1c61c4691eec3c6abf"
+      }
+    },
+    "classifier": {
+      "tests": 13,
+      "passed": true,
+      "log": {
+        "path": "build/ghost-update-fast/evaluation/classifier-tests.log",
+        "sha256": "4272ca6bfc6df15189f9e9710427b7133ce7da1810097726904e0aaeb060f349"
+      }
+    }
+  },
+  "audio_replay": {
+    "ticks_compared": 1639,
+    "all_sound_state_and_register_values_identical": true,
+    "first_tick": 1,
+    "last_tick": 1639,
+    "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+    "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+    "programs": [
+      {
+        "path": "build/audio-update-fast/pacman.prg",
+        "sha256": "ead7a6aa4556b944eb88589af3673cc29fa7a059d33181f20b52c208bfb100af"
+      },
+      {
+        "path": "build/ghost-update-fast/pacman.prg",
+        "sha256": "b4bd4785b6885cc4080a72f5508646caa6507f13bdee3fa087512e65e3b90e04"
+      }
+    ],
+    "guest_modified": false,
+    "method": "Compare tick-indexed arcade sound state and VIC registers on a live replay.\n\nHost PC observations only: no guest code, registers, clocks or sound are patched.\nCPU timestamps can differ; this checks the values produced at each logical tick."
+  },
+  "smoke": {
+    "screens": [
+      "attract",
+      "credits",
+      "maze",
+      "cherry",
+      "intermission-1",
+      "intermission-2",
+      "intermission-3"
+    ],
+    "stack_by_scene": {
+      "attract": {
+        "software_lowest_write": 32743,
+        "software_bytes_written": 25,
+        "hardware_lowest_write": 493,
+        "hardware_bytes_written": 19
+      },
+      "credits": {
+        "software_lowest_write": 32743,
+        "software_bytes_written": 25,
+        "hardware_lowest_write": 493,
+        "hardware_bytes_written": 19
+      },
+      "maze": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 493,
+        "hardware_bytes_written": 19
+      },
+      "cherry": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "intermission-1": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "intermission-2": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "intermission-3": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      }
+    },
+    "clock": {
+      "video_frames": 180,
+      "arcade_ticks": 181,
+      "expected": 180.96
+    },
+    "long_run_ticks": 7192,
+    "stack": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 488,
+      "hardware_bytes_written": 24
+    },
+    "boot": {
+      "entries": 1,
+      "released": true
+    },
+    "irq_vector_intact": true,
+    "stack_guard_intact": true,
+    "software_stack_reserved": 704
+  },
+  "memory": {
+    "baseline": {
+      "resident_end": "7cb3",
+      "resident_free": 141,
+      "blk5_free": 151,
+      "packed_bytes": 26701
+    },
+    "trial": {
+      "resident_end": "7cd3",
+      "resident_free": 109,
+      "blk5_free": 151,
+      "packed_bytes": 26717
+    },
+    "function_bytes_growth": 17
+  },
+  "fast_path": {
+    "condition": "All six death/selection/ghost-state bytes are zero",
+    "native_calls": 2414,
+    "native_successes": 2210,
+    "native_fallbacks": 204,
+    "source_changed": "Only conditional dispatch guard in updateGhostStates_1017",
+    "new_writable_bytes": 0
+  },
+  "rejected_capture": {
+    "path": "build/ghost-update-fast/evaluation/trial-vice",
+    "reason": "Three missing raster frames with old eight-cycle observation window",
+    "used_for_results": false
+  },
+  "capture_tool_fix": {
+    "host_only": true,
+    "window_cycles": 16,
+    "exact_frame_stride_validated": true,
+    "both_builds_recaptured": true
+  },
+  "limitations": [
+    "One saved route; average redraw rate is not a fixed 30 Hz or worst-case guarantee",
+    "Nonzero-state fixtures cost 21-23 more cycles",
+    "Maximum redraw and input-service gaps increase",
+    "Partial poses remain and vary in both directions; no perceptible flicker improvement claimed",
+    "No physical hardware or PCM/listening comparison"
+  ],
+  "sources": [
+    {
+      "path": "src/arcade/core.c",
+      "sha256": "b810850a134a4776a8481a4f2487ac0b6801c0cd44c913f5e52a9ed28506c35e"
+    },
+    {
+      "path": "Makefile",
+      "sha256": "fcaf18ee684e57d57285d840a6e3a9065819c957ac36f2a199976eb6e2544aeb"
+    },
+    {
+      "path": "tests/ghost_update.py",
+      "sha256": "95a1e74817a6728089288f6a52d87d2c40d4af89e26aa0d5fb086c9e3676b3d5"
+    },
+    {
+      "path": "tests/ghosts.py",
+      "sha256": "a581a91b21152d7d67dfa3d6f1d8586b1c36dbc8d78acbae9f799aa02cb982fb"
+    },
+    {
+      "path": "tests/display_profile.py",
+      "sha256": "e88745ecd2ca5fca45e819db43af4bf05a9193a3a9f5940adc900d1ca72d47dd"
+    },
+    {
+      "path": "tools/arcade/profile_game.py",
+      "sha256": "dffb4a8e3d820afdd466853b09277b3b3f5003d9d002c27873ccd74365721394"
+    },
+    {
+      "path": "tools/arcade/measure_display.py",
+      "sha256": "c0fcb4a23b24a5ed9e2d6799dcc9cb1f94ba57233438fbd9c8cfa1e8e7adc563"
+    },
+    {
+      "path": "tools/arcade/analyze_display.py",
+      "sha256": "ea2949b70bdf6b6d326e22ccede9c9498745c28b5f17aa82175abc85c88c5cfa"
+    },
+    {
+      "path": "tests/fixtures/active-replay.json",
+      "sha256": "f3d0e00c049736b1c5ada729ea14be5df77ff2358c0f2959260d42816e6c9c72"
+    },
+    {
+      "path": "docs/artwork/hires-pacman.json",
+      "sha256": "5cb6ca2564e54a15046772b7661325fc0abf2a0039cfa63ac8966c3f373f30d6"
+    },
+    {
+      "path": "docs/GHOST_UPDATE_OPTIMIZATION.md",
+      "sha256": "ddf74c2f1a4179e8568ff06e3097360a62926de4d579bb4112ed02b56e691835"
+    }
+  ]
+}

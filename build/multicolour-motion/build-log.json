@@ -1,0 +1,35 @@
+{
+  "status": "moving compositor prototype; replay only, not an integrated game",
+  "source_prg_sha256": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+  "prototype_sha256": "9406a1775660d3c1f2bc7c1b653b11075204a516be3f6d1416694b2cb9a235d9",
+  "frames": 480,
+  "source_boundary": "video_frame_begin",
+  "source_ticks": [
+    1212,
+    2138
+  ],
+  "background_characters_loaded": 136,
+  "background_slots_reserved": 147,
+  "background_copy_layout": "eight 147-byte row planes; replaces character-major data in the PRG",
+  "background_copy_bytes": 1176,
+  "work_banks": [
+    [
+      147,
+      200
+    ],
+    [
+      201,
+      254
+    ]
+  ],
+  "actors_supported": 6,
+  "pose_row_index_bytes": 1512,
+  "unique_shifted_row_records": 147,
+  "shifted_row_record_bytes": 1029,
+  "pacman_facing": "screen-space arcade masks and flip bits; closed mouth follows recorded movement",
+  "fallback_artwork_samples": [],
+  "limitations": [
+    "Frozen full-pellet maze and score; recorded actor positions only.",
+    "No background glyph cache, live game logic, audio or input is integrated in this executable."
+  ]
+}

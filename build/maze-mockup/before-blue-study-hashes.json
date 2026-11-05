@@ -1,0 +1,15 @@
+{
+  "build/pacman.prg": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+  "docs/artwork/maze-simplified.png": "fd28f04eca9915bc7c6ae2871dd614b8ac43cb61cb2fe116e991a8b5b21637c8",
+  "docs/artwork/maze-character-patterns.png": "c64c354e299c57c126c8d6db92d2b11ce41338554912eb6651f503e48d862f39",
+  "docs/artwork/maze-current-empty.png": "dde00ee11f7420ad25152180243870925e96739106f5a8c50ae0d748adc4daa3",
+  "docs/artwork/maze-simplified-empty-actors.png": "84f66093ba83107c0b3af503c8b2a371d816404dc4113023913b54e8cb31adca",
+  "docs/artwork/maze-simplified-ntsc.png": "e089d1131a634266d65f931aa379a56bda546505cbd2e94a3ad4cd28e6b2a312",
+  "docs/artwork/maze-current.png": "8abf3820fbd4664bdc542497d54742e8aadf508202200065fe0cc796118f672d",
+  "docs/artwork/maze-comparison.png": "c4c79cf0f19930d80c97f1dcfd6d5b5250e44380e7dd37871a1ee883506fcbaf",
+  "docs/artwork/maze-current-empty-actors.png": "5096acf73f1b5727c3aae069f8b72cc8289a85d87df6778dea0778966391b049",
+  "docs/artwork/maze-simplified-actors.png": "d8791dc21098ee5858885b01e883c638a2ba779db03c95b33986a78307a96f1d",
+  "docs/artwork/maze-current-ntsc.png": "e867f2abc2037d4c737186ec6994aa497418d6078b18d47997dbacdd2bb40d35",
+  "docs/artwork/maze-current-actors.png": "effcdc8cbb89f8e230373cef3adce8723aa1e9776ab6e8519d4b92398ded84f0",
+  "docs/artwork/maze-simplified-empty.png": "418d0e981264f2552f546a5a0ed12e0eab0b1b9d9ec00742fd7c52b9d7f5389b"
+}

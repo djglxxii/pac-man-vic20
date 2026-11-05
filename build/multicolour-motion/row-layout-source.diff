@@ -1,0 +1,20 @@
+--- build/multicolour-motion/before-row-layout/prototype-source.S
++++ prototypes/multicolour-motion.S
+@@ -895,10 +895,16 @@
+  .byte >($1000+N*8)
+ .endrepeat
+ row_data0: .incbin "row-records.bin",0,ROW_RECORDS
++; Give the two always-drawn data columns and middle mask non-crossing slots.
++; Third-column reads occur only at horizontal phase 3. Frequent row IDs come
++; first in every plane, reducing crossings in the remaining slots too.
++row_accent: .incbin "row-records.bin",ROW_RECORDS*6,ROW_RECORDS
+ row_data1: .incbin "row-records.bin",ROW_RECORDS,ROW_RECORDS
+ row_data2: .incbin "row-records.bin",ROW_RECORDS*2,ROW_RECORDS
+ row_mask0: .incbin "row-records.bin",ROW_RECORDS*3,ROW_RECORDS
+ row_mask1: .incbin "row-records.bin",ROW_RECORDS*4,ROW_RECORDS
+ row_mask2: .incbin "row-records.bin",ROW_RECORDS*5,ROW_RECORDS
+-row_accent: .incbin "row-records.bin",ROW_RECORDS*6,ROW_RECORDS
++.assert >row_data0 = >(row_data0+ROW_RECORDS-1), lderror, "Left row data must stay within a page"
++.assert >row_data1 = >(row_data1+ROW_RECORDS-1), lderror, "Middle row data must stay within a page"
++.assert >row_mask1 = >(row_mask1+ROW_RECORDS-1), lderror, "Middle row mask must stay within a page"
+ replay_data: .incbin "replay.bin"

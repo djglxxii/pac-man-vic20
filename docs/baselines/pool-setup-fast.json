@@ -1,0 +1,2594 @@
+{
+  "status": "Trial ready for live review; standard remains accepted background-tile build",
+  "date": "2026-11-04",
+  "report": "docs/POOL_SETUP_OPTIMIZATION.md",
+  "hardware": {
+    "video": "NTSC",
+    "ram": "+3K and BLK1/2/3/5",
+    "software_stack_bytes": 704,
+    "game_tick_cycles": 16875,
+    "vic_frame_cycles": 16965,
+    "cpu_hz": 1022727
+  },
+  "standard_unchanged": {
+    "build/pacman.prg": {
+      "identical_to": "build/tile-stamp-fast/pacman.prg",
+      "sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297"
+    },
+    "build/pacman.lbl": {
+      "identical_to": "build/tile-stamp-fast/pacman.lbl",
+      "sha256": "68d544cc690134bb3c0530cd7a7c4e81087df9fc88f8b0a1b456607fa4b53ef8"
+    },
+    "build/arcade/pacman-native.bin": {
+      "identical_to": "build/tile-stamp-fast/pacman-native.bin",
+      "sha256": "9f8e854bdf04e99ad7582e5f72fe17e9137944b1592389968d3ad50e0b9f9b6b"
+    },
+    "build/arcade/pacman-native.bin.elf": {
+      "identical_to": "build/tile-stamp-fast/pacman-native.bin.elf",
+      "sha256": "d047ba38bb46178e5efa861f1f5118ae035a858502cb83fad6ece19bf2a274a2"
+    },
+    "build/arcade/pacman.map": {
+      "identical_to": "build/tile-stamp-fast/pacman.map",
+      "sha256": "f73c717ebbdd7ba900348c0190664c26c82e442e9e016e3421c46f62b7eab0ae"
+    }
+  },
+  "change": {
+    "define": "POOL_SETUP_FAST",
+    "scope": "Regular-atlas source pointer and dominant class preparation; special atlases retain arithmetic; destination setup, composition, pool publication, visuals, arcade logic and sound retain behaviour",
+    "new_readonly_bytes": 128,
+    "new_writable_bytes": 0,
+    "actor_preparation_code_bytes_saved": 9,
+    "resident_bytes_changed": 0,
+    "packed_class_table_retained_for_independent_display_observer": true
+  },
+  "identities": {
+    "baseline": {
+      "prg_sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297",
+      "native_sha256": "9f8e854bdf04e99ad7582e5f72fe17e9137944b1592389968d3ad50e0b9f9b6b",
+      "labels_sha256": "68d544cc690134bb3c0530cd7a7c4e81087df9fc88f8b0a1b456607fa4b53ef8"
+    },
+    "trial": {
+      "prg_sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+      "native_sha256": "b4a2880ed4e3b7e6db178e33cbf84e3936da6bc99836fd2487690258eb64798e",
+      "labels_sha256": "85ae3fe2f135103509e7b0b6b8e986b425d99908159dab54def979ffc18a0be5"
+    }
+  },
+  "memory": {
+    "baseline": {
+      "resident_end": "7cb3",
+      "resident_free": 141,
+      "stack_bytes": 704,
+      "blk5_free": 151,
+      "native_bytes": 33792,
+      "prg_bytes": 26701
+    },
+    "trial": {
+      "resident_end": "7cb3",
+      "resident_free": 141,
+      "stack_bytes": 704,
+      "blk5_free": 23,
+      "native_bytes": 33792,
+      "prg_bytes": 26814
+    }
+  },
+  "native": {
+    "baseline": {
+      "prg_sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297",
+      "native_sha256": "9f8e854bdf04e99ad7582e5f72fe17e9137944b1592389968d3ad50e0b9f9b6b",
+      "depacked_bytes_verified": 33792,
+      "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "map_sha256": "3ad3758740d8c2700c6e8f6345e552656432c1b402c49c8a090d2520aef59a53",
+      "cpu_hz": 1022727,
+      "cycles": 20377842,
+      "seconds": 19.9250063800017,
+      "guest_code_changed": false,
+      "watches": {
+        "frame_wait": "wait",
+        "video_refresh": "render",
+        "audio_update": "audio",
+        "video_update_begin": "restore",
+        "video_background": "background",
+        "video_update_end": "paint",
+        "updateGhostStates_1017": "ghost-state",
+        "soundEffectOneChannel_2dee": "sound-channel",
+        "playSongOneChannel_2d44": "song-channel"
+      },
+      "method": "vicsim instruction cycles and host-only routine watches",
+      "phase_cycles": {
+        "logic_tasks_loop": 9493662,
+        "audio": 474503,
+        "render": 10377059,
+        "wait": 32618
+      },
+      "phase_percent": {
+        "logic_tasks_loop": 46.588161788672224,
+        "audio": 2.3285242863302207,
+        "render": 50.923247908193616,
+        "wait": 0.1600660168039383
+      },
+      "routine_inclusive_cycles": {
+        "ghost-state": {
+          "count": 2414,
+          "mean": 1246.771333885667,
+          "p50": 1260,
+          "p95": 2140,
+          "max": 4037,
+          "total": 3009706
+        },
+        "sound-channel": {
+          "count": 2009,
+          "mean": 375.3768043802887,
+          "p50": 371,
+          "p95": 651,
+          "max": 794,
+          "total": 754132
+        },
+        "audio": {
+          "count": 1207,
+          "mean": 393.12593206296606,
+          "p50": 455,
+          "p95": 497,
+          "max": 553,
+          "total": 474503
+        },
+        "background": {
+          "count": 645,
+          "mean": 1438.229457364341,
+          "p50": 29,
+          "p95": 5200,
+          "max": 9270,
+          "total": 927658
+        },
+        "restore": {
+          "count": 645,
+          "mean": 449.5875968992248,
+          "p50": 167,
+          "p95": 2131,
+          "max": 2187,
+          "total": 289984
+        },
+        "paint": {
+          "count": 645,
+          "mean": 14146.386046511629,
+          "p50": 13996,
+          "p95": 17080,
+          "max": 18055,
+          "total": 9124419
+        },
+        "render": {
+          "count": 645,
+          "mean": 16088.463565891472,
+          "p50": 15832,
+          "p95": 21087,
+          "max": 25819,
+          "total": 10377059
+        },
+        "wait": {
+          "count": 1206,
+          "mean": 27.046434494195687,
+          "p50": 27,
+          "p95": 27,
+          "max": 83,
+          "total": 32618
+        }
+      },
+      "completed_renders": 645,
+      "completed_render_interval_ms": {
+        "count": 644,
+        "mean": 30.909426738027946,
+        "p50": 30.749163755332557,
+        "p95": 46.352545694012186,
+        "max": 55.81548155079508
+      },
+      "actor_erase_to_paint_ms": {
+        "count": 0
+      },
+      "hotspots": {
+        "sections": [
+          {
+            "section": ".text.pool",
+            "cycles": 9330162
+          },
+          {
+            "section": ".text.main",
+            "cycles": 2303377
+          },
+          {
+            "section": ".text.updateGhostStates_1017",
+            "cycles": 1031155
+          },
+          {
+            "section": ".text.bitmap",
+            "cycles": 753168
+          },
+          {
+            "section": ".text.bitmap_tile",
+            "cycles": 736633
+          },
+          {
+            "section": ".text.sound_effect",
+            "cycles": 476880
+          },
+          {
+            "section": ".text.rebuild",
+            "cycles": 440017
+          },
+          {
+            "section": ".text.tile_address",
+            "cycles": 426948
+          },
+          {
+            "section": ".cold",
+            "cycles": 410522
+          },
+          {
+            "section": ".text.playGameMain_08cd",
+            "cycles": 370740
+          },
+          {
+            "section": ".text.pacmanUpdateMovePat_1806",
+            "cycles": 319978
+          },
+          {
+            "section": ".text.arcade_tasks",
+            "cycles": 305261
+          },
+          {
+            "section": ".text.blinkyUpdateMovePat_1b36",
+            "cycles": 282537
+          },
+          {
+            "section": ".text.spriteAnimation_14fe",
+            "cycles": 270082
+          },
+          {
+            "section": ".text.arcade_ptr",
+            "cycles": 259964
+          },
+          {
+            "section": ".text.frequencyWithVolume_2ee8",
+            "cycles": 240284
+          },
+          {
+            "section": ".text.drawDigit_2ace",
+            "cycles": 230360
+          },
+          {
+            "section": ".text.pacmanUpdatePos_1985",
+            "cycles": 217890
+          },
+          {
+            "section": ".text.pacmanCheckMoveClear_18e4",
+            "cycles": 213836
+          },
+          {
+            "section": ".text.findBestOrientation_2966",
+            "cycles": 167608
+          },
+          {
+            "section": ".text.__mulqi3",
+            "cycles": 126735
+          },
+          {
+            "section": ".text.addToScore_2a5a",
+            "cycles": 117399
+          },
+          {
+            "section": ".text.drawScore_2abe",
+            "cycles": 114840
+          },
+          {
+            "section": ".text.blinkyUpdatePosition_1bd8",
+            "cycles": 102142
+          },
+          {
+            "section": ".text.pinkyUpdatePosition_1caf",
+            "cycles": 96976
+          },
+          {
+            "section": ".text.randomDirection_291e",
+            "cycles": 91940
+          },
+          {
+            "section": ".text.twoBlank_0390",
+            "cycles": 85697
+          },
+          {
+            "section": ".text.inkyUpdatePosition_1d86",
+            "cycles": 68501
+          },
+          {
+            "section": ".text.audio_divider",
+            "cycles": 62469
+          },
+          {
+            "section": ".text.score",
+            "cycles": 56614
+          },
+          {
+            "section": ".text.bitmap_cell_colour",
+            "cycles": 54486
+          },
+          {
+            "section": ".text.pacmanMove_1950",
+            "cycles": 52809
+          },
+          {
+            "section": ".text.flashPowerups_0c0d",
+            "cycles": 49901
+          },
+          {
+            "section": ".text.setGhostColour_0bd6",
+            "cycles": 49793
+          },
+          {
+            "section": ".text.oneUp_0369",
+            "cycles": 42884
+          },
+          {
+            "section": ".text.addTask_0042",
+            "cycles": 41706
+          },
+          {
+            "section": ".text.clock",
+            "cycles": 37417
+          },
+          {
+            "section": ".text.frame_wait",
+            "cycles": 32562
+          },
+          {
+            "section": ".text.clydeUpdatePosition_1e5d",
+            "cycles": 30636
+          },
+          {
+            "section": ".text.toggleGhostAnimation_0e23",
+            "cycles": 27159
+          },
+          {
+            "section": ".text.checkTunnelWrap_1ed0",
+            "cycles": 26448
+          },
+          {
+            "section": ".text.calcSquare_2a12",
+            "cycles": 26220
+          },
+          {
+            "section": ".text.volumeDecayNone_2f22",
+            "cycles": 24596
+          },
+          {
+            "section": ".text.computeDistance_29ea",
+            "cycles": 22117
+          },
+          {
+            "section": "unmapped",
+            "cycles": 21726
+          },
+          {
+            "section": ".text.video_refresh",
+            "cycles": 19350
+          },
+          {
+            "section": ".text",
+            "cycles": 18695
+          },
+          {
+            "section": ".text.bulk",
+            "cycles": 15696
+          },
+          {
+            "section": ".text.add_score_bcd",
+            "cycles": 10824
+          },
+          {
+            "section": ".text.__lshrhi3",
+            "cycles": 7776
+          },
+          {
+            "section": ".text.video_frame_begin",
+            "cycles": 5805
+          },
+          {
+            "section": ".text.pinkyScatterOrChase_276c",
+            "cycles": 4972
+          },
+          {
+            "section": ".text.blinkyScatterOrChase_2730",
+            "cycles": 4691
+          },
+          {
+            "section": ".text.bitmap_wall_colour",
+            "cycles": 4522
+          },
+          {
+            "section": ".text.clydeReverse_1f7c",
+            "cycles": 3920
+          },
+          {
+            "section": ".text.video_frame_end",
+            "cycles": 3870
+          },
+          {
+            "section": ".text.inkyScatterOrChase_27a9",
+            "cycles": 3213
+          },
+          {
+            "section": ".text.homeOrRandomClyde_28b9",
+            "cycles": 2096
+          },
+          {
+            "section": ".text.homeOrRandomInky_288f",
+            "cycles": 2070
+          },
+          {
+            "section": ".text.homeOrRandomBlinky_283b",
+            "cycles": 1794
+          },
+          {
+            "section": ".text.blinkyCheckReverse_1efe",
+            "cycles": 1548
+          },
+          {
+            "section": ".text.inkyReverse_1f55",
+            "cycles": 1360
+          },
+          {
+            "section": ".text.pinkyCheckReverse_1f25",
+            "cycles": 1290
+          },
+          {
+            "section": ".text.homeOrRandomPinky_2865",
+            "cycles": 1288
+          },
+          {
+            "section": ".text.nothing_000c",
+            "cycles": 1224
+          },
+          {
+            "section": ".text.inkyCheckReverse_1f4c",
+            "cycles": 942
+          },
+          {
+            "section": ".text.clydeCheckReverse_1f73",
+            "cycles": 452
+          },
+          {
+            "section": ".text.schedISRTask",
+            "cycles": 282
+          },
+          {
+            "section": ".text.pinkyReverse_1f2e",
+            "cycles": 240
+          },
+          {
+            "section": ".text.ghostsBecomeEdible_1a70",
+            "cycles": 212
+          },
+          {
+            "section": ".text.pacmanGhostCoincide_1763",
+            "cycles": 55
+          },
+          {
+            "section": ".text.ghostsAnyDeadSoundOff_1101",
+            "cycles": 31
+          }
+        ],
+        "instructions": [
+          {
+            "address": "2092",
+            "cycles": 168980,
+            "hits": 33796,
+            "section": ".text.bitmap"
+          },
+          {
+            "address": "208f",
+            "cycles": 135184,
+            "hits": 33796,
+            "section": ".text.bitmap"
+          },
+          {
+            "address": "2b75",
+            "cycles": 122736,
+            "hits": 30684,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2096",
+            "cycles": 100181,
+            "hits": 33796,
+            "section": ".text.bitmap"
+          },
+          {
+            "address": "2087",
+            "cycles": 96560,
+            "hits": 19312,
+            "section": ".text.bitmap"
+          },
+          {
+            "address": "2df4",
+            "cycles": 90160,
+            "hits": 18032,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2ba8",
+            "cycles": 83196,
+            "hits": 13866,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2bae",
+            "cycles": 83196,
+            "hits": 13866,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2b8f",
+            "cycles": 82949,
+            "hits": 28127,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2b7a",
+            "cycles": 77739,
+            "hits": 25913,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2084",
+            "cycles": 77248,
+            "hits": 19312,
+            "section": ".text.bitmap"
+          },
+          {
+            "address": "3552",
+            "cycles": 77248,
+            "hits": 19312,
+            "section": ".text.main"
+          },
+          {
+            "address": "2c75",
+            "cycles": 69881,
+            "hits": 9983,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2ba6",
+            "cycles": 69330,
+            "hits": 13866,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2bac",
+            "cycles": 69330,
+            "hits": 13866,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2095",
+            "cycles": 67592,
+            "hits": 33796,
+            "section": ".text.bitmap"
+          },
+          {
+            "address": "2b78",
+            "cycles": 66139,
+            "hits": 30684,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2b7f",
+            "cycles": 64788,
+            "hits": 10798,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2b85",
+            "cycles": 64788,
+            "hits": 10798,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2b8a",
+            "cycles": 63925,
+            "hits": 30684,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2d10",
+            "cycles": 62622,
+            "hits": 10437,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2b87",
+            "cycles": 61368,
+            "hits": 30684,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2b88",
+            "cycles": 61368,
+            "hits": 30684,
+            "section": ".text.pool"
+          },
+          {
+            "address": "354a",
+            "cycles": 60350,
+            "hits": 20519,
+            "section": ".text.main"
+          },
+          {
+            "address": "2cbb",
+            "cycles": 59898,
+            "hits": 9983,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cc0",
+            "cycles": 59898,
+            "hits": 9983,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cc5",
+            "cycles": 59898,
+            "hits": 9983,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cca",
+            "cycles": 59898,
+            "hits": 9983,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2ccf",
+            "cycles": 59898,
+            "hits": 9983,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cd4",
+            "cycles": 59898,
+            "hits": 9983,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cd9",
+            "cycles": 59898,
+            "hits": 9983,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cde",
+            "cycles": 59898,
+            "hits": 9983,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2ce3",
+            "cycles": 59898,
+            "hits": 9983,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2ce8",
+            "cycles": 59898,
+            "hits": 9983,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2ced",
+            "cycles": 59898,
+            "hits": 9983,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cf2",
+            "cycles": 59898,
+            "hits": 9983,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cf7",
+            "cycles": 59898,
+            "hits": 9983,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cfc",
+            "cycles": 59898,
+            "hits": 9983,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2d01",
+            "cycles": 59898,
+            "hits": 9983,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2d06",
+            "cycles": 59898,
+            "hits": 9983,
+            "section": ".text.pool"
+          }
+        ],
+        "instruction_cycles": 20369393
+      },
+      "completed_renders_per_second": 32.3713823573664,
+      "unattributed_interrupt_entry_cycles": 8449,
+      "states_checked": 1207,
+      "states_sha256": "a8ecb3bcaf421ec1846b00811ab62c54bcfa079f4ca746d5ce349611f5531c13",
+      "all_states_match_shared_fixture_and_predecessor": true,
+      "service_gap_ms": {
+        "wait-begin": {
+          "count": 1205,
+          "max": 37.28952105498339
+        },
+        "audio-begin": {
+          "count": 1206,
+          "max": 37.31592106202339
+        }
+      }
+    },
+    "trial": {
+      "prg_sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+      "native_sha256": "b4a2880ed4e3b7e6db178e33cbf84e3936da6bc99836fd2487690258eb64798e",
+      "depacked_bytes_verified": 33792,
+      "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "map_sha256": "f1f9c36aaefa73a6c08c799385d4cf352a5f8b3ea1ed39c13328dc236458b582",
+      "cpu_hz": 1022727,
+      "cycles": 20366476,
+      "seconds": 19.9138929548159,
+      "guest_code_changed": false,
+      "watches": {
+        "frame_wait": "wait",
+        "video_refresh": "render",
+        "audio_update": "audio",
+        "video_update_begin": "restore",
+        "video_background": "background",
+        "video_update_end": "paint",
+        "updateGhostStates_1017": "ghost-state",
+        "soundEffectOneChannel_2dee": "sound-channel",
+        "playSongOneChannel_2d44": "song-channel"
+      },
+      "method": "vicsim instruction cycles and host-only routine watches",
+      "phase_cycles": {
+        "logic_tasks_loop": 9499158,
+        "audio": 474136,
+        "render": 10360620,
+        "wait": 32562
+      },
+      "phase_percent": {
+        "logic_tasks_loop": 46.641146951490285,
+        "audio": 2.3280217942465846,
+        "render": 50.870950870440225,
+        "wait": 0.15988038382290584
+      },
+      "routine_inclusive_cycles": {
+        "ghost-state": {
+          "count": 2414,
+          "mean": 1249.0911350455676,
+          "p50": 1262,
+          "p95": 2142,
+          "max": 4038,
+          "total": 3015306
+        },
+        "sound-channel": {
+          "count": 2009,
+          "mean": 375.1577899452464,
+          "p50": 371,
+          "p95": 651,
+          "max": 794,
+          "total": 753692
+        },
+        "audio": {
+          "count": 1207,
+          "mean": 392.8218724109362,
+          "p50": 454,
+          "p95": 496,
+          "max": 594,
+          "total": 474136
+        },
+        "background": {
+          "count": 665,
+          "mean": 1395.9639097744362,
+          "p50": 29,
+          "p95": 5247,
+          "max": 9558,
+          "total": 928316
+        },
+        "restore": {
+          "count": 665,
+          "mean": 450.27218045112784,
+          "p50": 167,
+          "p95": 2131,
+          "max": 2187,
+          "total": 299431
+        },
+        "paint": {
+          "count": 665,
+          "mean": 13679.306766917292,
+          "p50": 13503,
+          "p95": 16642,
+          "max": 17589,
+          "total": 9096739
+        },
+        "render": {
+          "count": 665,
+          "mean": 15579.87969924812,
+          "p50": 15275,
+          "p95": 20747,
+          "max": 26119,
+          "total": 10360620
+        },
+        "wait": {
+          "count": 1206,
+          "mean": 27.0,
+          "p50": 27,
+          "p95": 27,
+          "max": 27,
+          "total": 32562
+        }
+      },
+      "completed_renders": 665,
+      "completed_render_interval_ms": {
+        "count": 664,
+        "mean": 29.951402900026046,
+        "p50": 29.773341272891006,
+        "p95": 45.85094556025215,
+        "max": 54.39672561690461
+      },
+      "actor_erase_to_paint_ms": {
+        "count": 0
+      },
+      "hotspots": {
+        "sections": [
+          {
+            "section": ".text.pool",
+            "cycles": 9309814
+          },
+          {
+            "section": ".text.main",
+            "cycles": 2304681
+          },
+          {
+            "section": ".text.updateGhostStates_1017",
+            "cycles": 1034598
+          },
+          {
+            "section": ".text.bitmap",
+            "cycles": 753168
+          },
+          {
+            "section": ".text.bitmap_tile",
+            "cycles": 736263
+          },
+          {
+            "section": ".text.sound_effect",
+            "cycles": 476832
+          },
+          {
+            "section": ".text.rebuild",
+            "cycles": 440597
+          },
+          {
+            "section": ".text.tile_address",
+            "cycles": 426948
+          },
+          {
+            "section": ".cold",
+            "cycles": 409315
+          },
+          {
+            "section": ".text.playGameMain_08cd",
+            "cycles": 370762
+          },
+          {
+            "section": ".text.pacmanUpdateMovePat_1806",
+            "cycles": 319978
+          },
+          {
+            "section": ".text.arcade_tasks",
+            "cycles": 305261
+          },
+          {
+            "section": ".text.blinkyUpdateMovePat_1b36",
+            "cycles": 283685
+          },
+          {
+            "section": ".text.spriteAnimation_14fe",
+            "cycles": 271780
+          },
+          {
+            "section": ".text.arcade_ptr",
+            "cycles": 259964
+          },
+          {
+            "section": ".text.frequencyWithVolume_2ee8",
+            "cycles": 240284
+          },
+          {
+            "section": ".text.drawDigit_2ace",
+            "cycles": 230360
+          },
+          {
+            "section": ".text.pacmanUpdatePos_1985",
+            "cycles": 217890
+          },
+          {
+            "section": ".text.pacmanCheckMoveClear_18e4",
+            "cycles": 213836
+          },
+          {
+            "section": ".text.findBestOrientation_2966",
+            "cycles": 167608
+          },
+          {
+            "section": ".text.__mulqi3",
+            "cycles": 126735
+          },
+          {
+            "section": ".text.addToScore_2a5a",
+            "cycles": 117399
+          },
+          {
+            "section": ".text.drawScore_2abe",
+            "cycles": 114840
+          },
+          {
+            "section": ".text.blinkyUpdatePosition_1bd8",
+            "cycles": 102142
+          },
+          {
+            "section": ".text.pinkyUpdatePosition_1caf",
+            "cycles": 96976
+          },
+          {
+            "section": ".text.randomDirection_291e",
+            "cycles": 91940
+          },
+          {
+            "section": ".text.twoBlank_0390",
+            "cycles": 85697
+          },
+          {
+            "section": ".text.inkyUpdatePosition_1d86",
+            "cycles": 68501
+          },
+          {
+            "section": ".text.audio_divider",
+            "cycles": 62469
+          },
+          {
+            "section": ".text.score",
+            "cycles": 58125
+          },
+          {
+            "section": ".text.bitmap_cell_colour",
+            "cycles": 54486
+          },
+          {
+            "section": ".text.pacmanMove_1950",
+            "cycles": 52809
+          },
+          {
+            "section": ".text.flashPowerups_0c0d",
+            "cycles": 49901
+          },
+          {
+            "section": ".text.setGhostColour_0bd6",
+            "cycles": 49793
+          },
+          {
+            "section": ".text.oneUp_0369",
+            "cycles": 42884
+          },
+          {
+            "section": ".text.addTask_0042",
+            "cycles": 41706
+          },
+          {
+            "section": ".text.clock",
+            "cycles": 37417
+          },
+          {
+            "section": ".text.frame_wait",
+            "cycles": 32562
+          },
+          {
+            "section": ".text.clydeUpdatePosition_1e5d",
+            "cycles": 30636
+          },
+          {
+            "section": ".text.toggleGhostAnimation_0e23",
+            "cycles": 27159
+          },
+          {
+            "section": ".text.checkTunnelWrap_1ed0",
+            "cycles": 26448
+          },
+          {
+            "section": ".text.calcSquare_2a12",
+            "cycles": 26220
+          },
+          {
+            "section": ".text.volumeDecayNone_2f22",
+            "cycles": 24596
+          },
+          {
+            "section": ".text.computeDistance_29ea",
+            "cycles": 22117
+          },
+          {
+            "section": "unmapped",
+            "cycles": 21726
+          },
+          {
+            "section": ".text.video_refresh",
+            "cycles": 19950
+          },
+          {
+            "section": ".text",
+            "cycles": 18695
+          },
+          {
+            "section": ".text.bulk",
+            "cycles": 15696
+          },
+          {
+            "section": ".text.add_score_bcd",
+            "cycles": 10824
+          },
+          {
+            "section": ".text.__lshrhi3",
+            "cycles": 7776
+          },
+          {
+            "section": ".text.video_frame_begin",
+            "cycles": 5985
+          },
+          {
+            "section": ".text.pinkyScatterOrChase_276c",
+            "cycles": 4972
+          },
+          {
+            "section": ".text.blinkyScatterOrChase_2730",
+            "cycles": 4691
+          },
+          {
+            "section": ".text.bitmap_wall_colour",
+            "cycles": 4522
+          },
+          {
+            "section": ".text.video_frame_end",
+            "cycles": 3990
+          },
+          {
+            "section": ".text.clydeReverse_1f7c",
+            "cycles": 3920
+          },
+          {
+            "section": ".text.inkyScatterOrChase_27a9",
+            "cycles": 3213
+          },
+          {
+            "section": ".text.homeOrRandomClyde_28b9",
+            "cycles": 2096
+          },
+          {
+            "section": ".text.homeOrRandomInky_288f",
+            "cycles": 2070
+          },
+          {
+            "section": ".text.homeOrRandomBlinky_283b",
+            "cycles": 1794
+          },
+          {
+            "section": ".text.blinkyCheckReverse_1efe",
+            "cycles": 1548
+          },
+          {
+            "section": ".text.inkyReverse_1f55",
+            "cycles": 1360
+          },
+          {
+            "section": ".text.pinkyCheckReverse_1f25",
+            "cycles": 1290
+          },
+          {
+            "section": ".text.homeOrRandomPinky_2865",
+            "cycles": 1288
+          },
+          {
+            "section": ".text.nothing_000c",
+            "cycles": 1224
+          },
+          {
+            "section": ".text.inkyCheckReverse_1f4c",
+            "cycles": 942
+          },
+          {
+            "section": ".text.clydeCheckReverse_1f73",
+            "cycles": 452
+          },
+          {
+            "section": ".text.schedISRTask",
+            "cycles": 282
+          },
+          {
+            "section": ".text.pinkyReverse_1f2e",
+            "cycles": 240
+          },
+          {
+            "section": ".text.ghostsBecomeEdible_1a70",
+            "cycles": 212
+          },
+          {
+            "section": ".text.pacmanGhostCoincide_1763",
+            "cycles": 55
+          },
+          {
+            "section": ".text.ghostsAnyDeadSoundOff_1101",
+            "cycles": 32
+          }
+        ],
+        "instructions": [
+          {
+            "address": "2092",
+            "cycles": 168980,
+            "hits": 33796,
+            "section": ".text.bitmap"
+          },
+          {
+            "address": "208f",
+            "cycles": 135184,
+            "hits": 33796,
+            "section": ".text.bitmap"
+          },
+          {
+            "address": "2b6c",
+            "cycles": 126288,
+            "hits": 31572,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2096",
+            "cycles": 100181,
+            "hits": 33796,
+            "section": ".text.bitmap"
+          },
+          {
+            "address": "2087",
+            "cycles": 96560,
+            "hits": 19312,
+            "section": ".text.bitmap"
+          },
+          {
+            "address": "2deb",
+            "cycles": 93100,
+            "hits": 18620,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2b86",
+            "cycles": 85336,
+            "hits": 28941,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2b9f",
+            "cycles": 85302,
+            "hits": 14217,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2ba5",
+            "cycles": 85302,
+            "hits": 14217,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2b71",
+            "cycles": 80001,
+            "hits": 26667,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2084",
+            "cycles": 77248,
+            "hits": 19312,
+            "section": ".text.bitmap"
+          },
+          {
+            "address": "3549",
+            "cycles": 77248,
+            "hits": 19312,
+            "section": ".text.main"
+          },
+          {
+            "address": "2c6c",
+            "cycles": 72219,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2b9d",
+            "cycles": 71085,
+            "hits": 14217,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2ba3",
+            "cycles": 71085,
+            "hits": 14217,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2b6f",
+            "cycles": 68049,
+            "hits": 31572,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2095",
+            "cycles": 67592,
+            "hits": 33796,
+            "section": ".text.bitmap"
+          },
+          {
+            "address": "2b76",
+            "cycles": 66852,
+            "hits": 11142,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2b7c",
+            "cycles": 66852,
+            "hits": 11142,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2b81",
+            "cycles": 65775,
+            "hits": 31572,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2d07",
+            "cycles": 64686,
+            "hits": 10781,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2b7e",
+            "cycles": 63144,
+            "hits": 31572,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2b7f",
+            "cycles": 63144,
+            "hits": 31572,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cb2",
+            "cycles": 61902,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cb7",
+            "cycles": 61902,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cbc",
+            "cycles": 61902,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cc1",
+            "cycles": 61902,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cc6",
+            "cycles": 61902,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2ccb",
+            "cycles": 61902,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cd0",
+            "cycles": 61902,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cd5",
+            "cycles": 61902,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cda",
+            "cycles": 61902,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cdf",
+            "cycles": 61902,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2ce4",
+            "cycles": 61902,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2ce9",
+            "cycles": 61902,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cee",
+            "cycles": 61902,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cf3",
+            "cycles": 61902,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cf8",
+            "cycles": 61902,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "2cfd",
+            "cycles": 61902,
+            "hits": 10317,
+            "section": ".text.pool"
+          },
+          {
+            "address": "3541",
+            "cycles": 60350,
+            "hits": 20519,
+            "section": ".text.main"
+          }
+        ],
+        "instruction_cycles": 20358027
+      },
+      "completed_renders_per_second": 33.39377195151483,
+      "unattributed_interrupt_entry_cycles": 8449,
+      "states_checked": 1207,
+      "states_sha256": "a8ecb3bcaf421ec1846b00811ab62c54bcfa079f4ca746d5ce349611f5531c13",
+      "all_states_match_shared_fixture_and_predecessor": true,
+      "service_gap_ms": {
+        "wait-begin": {
+          "count": 1205,
+          "max": 36.77325425064558
+        },
+        "audio-begin": {
+          "count": 1206,
+          "max": 35.60969838480846
+        }
+      }
+    }
+  },
+  "pool_costs": {
+    "baseline": {
+      "prg_sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297",
+      "source_summary_sha256": "c0aa08d1dfaf1740e07b311c4a09234f898074bc8f2997fd3bc2bd3b22a27c0c",
+      "source_profile_sha256": "8c4e162675901cae2822581e3997f7d2daaa40ed32ef63d57b154dd091e53d71",
+      "method": "Exclusive instruction cycles in disjoint linked-label ranges; no guest changes",
+      "cycles": 20377842,
+      "completed_redraws": 645,
+      "groups": {
+        "reuse_guard": {
+          "begin": "29ad",
+          "end": "29b3",
+          "cycles": 46440,
+          "cycles_per_redraw": 72.0,
+          "cpu_percent": 0.2278945925677508
+        },
+        "actor_pose_and_setup": {
+          "begin": "29b3",
+          "end": "2b2a",
+          "cycles": 1484862,
+          "cycles_per_redraw": 2302.1116279069765,
+          "cpu_percent": 7.286649881768638
+        },
+        "generic_stamp": {
+          "begin": "2b2a",
+          "end": "2c35",
+          "cycles": 2218493,
+          "cycles_per_redraw": 3439.524031007752,
+          "cpu_percent": 10.886790662131936
+        },
+        "cell_lookup_and_allocation": {
+          "begin": "2c35",
+          "end": "2cb9",
+          "cycles": 1340315,
+          "cycles_per_redraw": 2078.0077519379847,
+          "cpu_percent": 6.577315694174094
+        },
+        "background_copy": {
+          "begin": "2cb9",
+          "end": "2d0b",
+          "cycles": 2086447,
+          "cycles_per_redraw": 3234.8015503875968,
+          "cpu_percent": 10.238802518932083
+        },
+        "colour_and_pointer": {
+          "begin": "2d0b",
+          "end": "2d26",
+          "cycles": 165640,
+          "cycles_per_redraw": 256.8062015503876,
+          "cpu_percent": 0.812843675988851
+        },
+        "destination_setup": {
+          "begin": "2d26",
+          "end": "2d98",
+          "cycles": 493212,
+          "cycles_per_redraw": 764.6697674418605,
+          "cpu_percent": 2.4203347930561048
+        },
+        "restore_control_and_publish": {
+          "begin": "2d98",
+          "end": "2ea7",
+          "cycles": 1001152,
+          "cycles_per_redraw": 1552.1736434108527,
+          "cpu_percent": 4.9129441674933
+        },
+        "normal_ghost_stamp": {
+          "begin": "2ea7",
+          "end": "2f01",
+          "cycles": 493601,
+          "cycles_per_redraw": 765.2728682170542,
+          "cpu_percent": 2.4222437292427728
+        }
+      },
+      "generic_detail": {
+        "setup": {
+          "begin": "2b2a",
+          "end": "2b75",
+          "cycles": 211882,
+          "cycles_per_redraw": 328.49922480620154,
+          "cpu_percent": 1.039766624944879
+        },
+        "fetch_and_dispatch": {
+          "begin": "2b75",
+          "end": "2b7d",
+          "cycles": 266614,
+          "cycles_per_redraw": 413.35503875968993,
+          "cpu_percent": 1.3083524742217552
+        },
+        "merge_low": {
+          "begin": "2b7d",
+          "end": "2b87",
+          "cycles": 269950,
+          "cycles_per_redraw": 418.52713178294573,
+          "cpu_percent": 1.3247231968919968
+        },
+        "row_control": {
+          "begin": "2b87",
+          "end": "2ba6",
+          "cycles": 438988,
+          "cycles_per_redraw": 680.601550387597,
+          "cpu_percent": 2.154241847591124
+        },
+        "merge_high": {
+          "begin": "2ba6",
+          "end": "2bb3",
+          "cycles": 388248,
+          "cycles_per_redraw": 601.9348837209302,
+          "cpu_percent": 1.9052459038596923
+        },
+        "mirror": {
+          "begin": "2bb3",
+          "end": "2bbe",
+          "cycles": 27540,
+          "cycles_per_redraw": 42.69767441860465,
+          "cpu_percent": 0.13514679326692197
+        },
+        "aligned_merge": {
+          "begin": "2bbe",
+          "end": "2bc5",
+          "cycles": 17486,
+          "cycles_per_redraw": 27.110077519379846,
+          "cpu_percent": 0.08580888987165569
+        },
+        "shifts": {
+          "begin": "2bc5",
+          "end": "2c25",
+          "cycles": 597785,
+          "cycles_per_redraw": 926.7984496124031,
+          "cpu_percent": 2.933504931483913
+        }
+      },
+      "counters": {
+        "generic_calls": 2557,
+        "normal_ghost_calls": 893,
+        "generic_rows": 30684,
+        "nonempty_generic_rows": 25913,
+        "cell_calls": 10437,
+        "fresh_cells": 9983,
+        "shared_cell_hits": 454
+      },
+      "caveat": "Different redraw cadence samples different poses; use identical-input kernels for isolated savings"
+    },
+    "trial": {
+      "prg_sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+      "source_summary_sha256": "6651fa6e5de48283b5dbb9d1e0aff202a58a69022c2f10d7b31e0529a9de2dfb",
+      "source_profile_sha256": "b3eef5f18529c00e2dda496cf53906c0616584da2d1cf1e2cf69ed3c45ade732",
+      "method": "Exclusive instruction cycles in disjoint linked-label ranges; no guest changes",
+      "cycles": 20366476,
+      "completed_redraws": 665,
+      "groups": {
+        "reuse_guard": {
+          "begin": "29ad",
+          "end": "29b3",
+          "cycles": 47880,
+          "cycles_per_redraw": 72.0,
+          "cpu_percent": 0.23509221722992235
+        },
+        "actor_pose_and_setup": {
+          "begin": "29b3",
+          "end": "2b21",
+          "cycles": 1218836,
+          "cycles_per_redraw": 1832.836090225564,
+          "cpu_percent": 5.984520837085414
+        },
+        "generic_stamp": {
+          "begin": "2b21",
+          "end": "2c2c",
+          "cycles": 2283620,
+          "cycles_per_redraw": 3434.0150375939847,
+          "cpu_percent": 11.212641794289793
+        },
+        "cell_lookup_and_allocation": {
+          "begin": "2c2c",
+          "end": "2cb0",
+          "cycles": 1384842,
+          "cycles_per_redraw": 2082.469172932331,
+          "cpu_percent": 6.7996152108003365
+        },
+        "background_copy": {
+          "begin": "2cb0",
+          "end": "2d02",
+          "cycles": 2156253,
+          "cycles_per_redraw": 3242.4857142857145,
+          "cpu_percent": 10.587266054274682
+        },
+        "colour_and_pointer": {
+          "begin": "2d02",
+          "end": "2d1d",
+          "cycles": 170886,
+          "cycles_per_redraw": 256.9714285714286,
+          "cpu_percent": 0.83905531816108
+        },
+        "destination_setup": {
+          "begin": "2d1d",
+          "end": "2d8f",
+          "cycles": 508998,
+          "cycles_per_redraw": 765.4105263157895,
+          "cpu_percent": 2.4991952461486218
+        },
+        "restore_control_and_publish": {
+          "begin": "2d8f",
+          "end": "2e9e",
+          "cycles": 1033565,
+          "cycles_per_redraw": 1554.233082706767,
+          "cpu_percent": 5.074834743133765
+        },
+        "normal_ghost_stamp": {
+          "begin": "2e9e",
+          "end": "2ef8",
+          "cycles": 504934,
+          "cycles_per_redraw": 759.2992481203007,
+          "cpu_percent": 2.479240885855756
+        }
+      },
+      "generic_detail": {
+        "setup": {
+          "begin": "2b21",
+          "end": "2b6c",
+          "cycles": 218043,
+          "cycles_per_redraw": 327.88421052631577,
+          "cpu_percent": 1.0705975839904753
+        },
+        "fetch_and_dispatch": {
+          "begin": "2b6c",
+          "end": "2b74",
+          "cycles": 274338,
+          "cycles_per_redraw": 412.53834586466166,
+          "cpu_percent": 1.3470077003012204
+        },
+        "merge_low": {
+          "begin": "2b74",
+          "end": "2b7e",
+          "cycles": 278550,
+          "cycles_per_redraw": 418.8721804511278,
+          "cpu_percent": 1.3676887449748303
+        },
+        "row_control": {
+          "begin": "2b7e",
+          "end": "2b9d",
+          "cycles": 452072,
+          "cycles_per_redraw": 679.8075187969924,
+          "cpu_percent": 2.219686901160515
+        },
+        "merge_high": {
+          "begin": "2b9d",
+          "end": "2baa",
+          "cycles": 398076,
+          "cycles_per_redraw": 598.6105263157895,
+          "cpu_percent": 1.9545649428993017
+        },
+        "mirror": {
+          "begin": "2baa",
+          "end": "2bb5",
+          "cycles": 28980,
+          "cycles_per_redraw": 43.578947368421055,
+          "cpu_percent": 0.14229265779705827
+        },
+        "aligned_merge": {
+          "begin": "2bb5",
+          "end": "2bbc",
+          "cycles": 18312,
+          "cycles_per_redraw": 27.53684210526316,
+          "cpu_percent": 0.0899124620282861
+        },
+        "shifts": {
+          "begin": "2bbc",
+          "end": "2c1c",
+          "cycles": 615249,
+          "cycles_per_redraw": 925.1864661654135,
+          "cpu_percent": 3.0208908011381057
+        }
+      },
+      "counters": {
+        "generic_calls": 2631,
+        "normal_ghost_calls": 926,
+        "generic_rows": 31572,
+        "nonempty_generic_rows": 26667,
+        "cell_calls": 10781,
+        "fresh_cells": 10317,
+        "shared_cell_hits": 464
+      },
+      "caveat": "Different redraw cadence samples different poses; use identical-input kernels for isolated savings"
+    }
+  },
+  "kernel": {
+    "baseline": {
+      "prg_sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297",
+      "native_sha256": "9f8e854bdf04e99ad7582e5f72fe17e9137944b1592389968d3ad50e0b9f9b6b",
+      "method": "Unpatched complete video_sprites calls, RTS included, caller JSR excluded; IRQs masked",
+      "oracle": "Independent Renderer.check_scene pixels, colours, retained inputs and restoration",
+      "cases_checked": 8768,
+      "output_sha256": "1c8e70e6e820b3f41d989da46703592dc0bd8d6adb36a322fa4eaf5ab8b9140d",
+      "artwork_sha256": "8eee98d422cdef3f46b0f28a24e3838d02eaca88a4f9274e4655488d2b5c7188",
+      "exclusive_setup": {
+        "actor_preparation": {
+          "cycles": 7859064,
+          "cycles_per_scene": 896.3348540145986
+        },
+        "destination_setup": {
+          "cycles": 622290,
+          "cycles_per_scene": 70.97285583941606
+        }
+      },
+      "groups": {
+        "all": {
+          "count": 8768,
+          "mean": 2642.050182481752,
+          "p50": 2756,
+          "p95": 4828,
+          "max": 6288
+        },
+        "hidden-palette": {
+          "count": 64,
+          "mean": 1339.1875,
+          "p50": 1063,
+          "p95": 3027,
+          "max": 3027
+        },
+        "regular": {
+          "count": 7372,
+          "mean": 2793.710119370591,
+          "p50": 2812,
+          "p95": 4938,
+          "max": 6288
+        },
+        "eyes": {
+          "count": 248,
+          "mean": 2820.875,
+          "p50": 2675,
+          "p95": 4648,
+          "max": 5591
+        },
+        "score-right": {
+          "count": 124,
+          "mean": 2895.9032258064517,
+          "p50": 2737,
+          "p95": 4730,
+          "max": 5707
+        },
+        "clipped": {
+          "count": 960,
+          "mean": 1485.3,
+          "p50": 1093,
+          "p95": 3057,
+          "max": 3057
+        }
+      }
+    },
+    "trial": {
+      "prg_sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+      "native_sha256": "b4a2880ed4e3b7e6db178e33cbf84e3936da6bc99836fd2487690258eb64798e",
+      "method": "Unpatched complete video_sprites calls, RTS included, caller JSR excluded; IRQs masked",
+      "oracle": "Independent Renderer.check_scene pixels, colours, retained inputs and restoration",
+      "cases_checked": 8768,
+      "output_sha256": "1c8e70e6e820b3f41d989da46703592dc0bd8d6adb36a322fa4eaf5ab8b9140d",
+      "artwork_sha256": "8eee98d422cdef3f46b0f28a24e3838d02eaca88a4f9274e4655488d2b5c7188",
+      "exclusive_setup": {
+        "actor_preparation": {
+          "cycles": 7279482,
+          "cycles_per_scene": 830.2328923357665
+        },
+        "destination_setup": {
+          "cycles": 622290,
+          "cycles_per_scene": 70.97285583941606
+        }
+      },
+      "groups": {
+        "all": {
+          "count": 8768,
+          "mean": 2575.768704379562,
+          "p50": 2674,
+          "p95": 4745,
+          "max": 6187
+        },
+        "hidden-palette": {
+          "count": 64,
+          "mean": 1339.1875,
+          "p50": 1063,
+          "p95": 3027,
+          "max": 3027
+        },
+        "regular": {
+          "count": 7372,
+          "mean": 2714.6184210526317,
+          "p50": 2713,
+          "p95": 4840,
+          "max": 6187
+        },
+        "eyes": {
+          "count": 248,
+          "mean": 2826.0685483870966,
+          "p50": 2680,
+          "p95": 4653,
+          "max": 5597
+        },
+        "score-right": {
+          "count": 124,
+          "mean": 2900.9032258064517,
+          "p50": 2742,
+          "p95": 4735,
+          "max": 5712
+        },
+        "clipped": {
+          "count": 960,
+          "mean": 1485.3,
+          "p50": 1093,
+          "p95": 3057,
+          "max": 3057
+        }
+      }
+    },
+    "cycle_savings": {
+      "all": {
+        "count": 8768,
+        "mean": 66.28147810218978,
+        "p50": 76,
+        "p95": 116,
+        "max": 123,
+        "min": -6
+      },
+      "hidden-palette": {
+        "count": 64,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      },
+      "regular": {
+        "count": 7372,
+        "mean": 79.09169831795985,
+        "p50": 88,
+        "p95": 116,
+        "max": 123,
+        "min": 18
+      },
+      "eyes": {
+        "count": 248,
+        "mean": -5.193548387096774,
+        "p50": -5,
+        "p95": -5,
+        "max": -5,
+        "min": -6
+      },
+      "score-right": {
+        "count": 124,
+        "mean": -5.0,
+        "p50": -5,
+        "p95": -5,
+        "max": -5,
+        "min": -5
+      },
+      "clipped": {
+        "count": 960,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      }
+    }
+  },
+  "actual_vice": {
+    "baseline": {
+      "prg_sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297",
+      "video_frames": 1180,
+      "counter_interval_seconds": 19.557255259712512,
+      "completed_renders": 630,
+      "completed_renders_per_second": 32.21310923408487,
+      "calibration": {
+        "x": 8,
+        "y": 4,
+        "output_dots_per_vic_dot": 2,
+        "mismatch_pixels": 0,
+        "next_distinct_alignment_error": 3576
+      },
+      "min_diagnostic_pixels": 12,
+      "actors": {
+        "pacman": {
+          "frames": {
+            "present": 982,
+            "partial": 17,
+            "excluded": 181
+          },
+          "eligible_frames": 999,
+          "exclusions": {
+            "shared-colour-cell": 121,
+            "reward-slot-expansion": 60
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.7017017017017018,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 68,
+            "2": 226,
+            "3": 101,
+            "4": 22
+          },
+          "displayed_move_interval_ms": {
+            "count": 417,
+            "mean": 36.23902165414678,
+            "p50": 33.176008846935694,
+            "p95": 66.35201769387139,
+            "max": 66.35201769387139
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 320,
+            "2": 93,
+            "3": 22,
+            "4": 3,
+            "5": 1
+          },
+          "visible_ink_color_mismatch_frames": 0
+        },
+        "blinky": {
+          "frames": {
+            "present": 886,
+            "excluded": 278,
+            "partial": 16
+          },
+          "eligible_frames": 902,
+          "exclusions": {
+            "shared-colour-cell": 185,
+            "reward-slot-expansion": 60,
+            "screen-edge-clipping": 25,
+            "hidden-or-empty": 8
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.7738359201773837,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 44,
+            "2": 158,
+            "3": 77,
+            "4": 37,
+            "5": 10,
+            "7": 1
+          },
+          "displayed_move_interval_ms": {
+            "count": 327,
+            "mean": 40.37936244978717,
+            "p50": 33.176008846935694,
+            "p95": 66.35201769387139,
+            "max": 116.11603096427493
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 278,
+            "2": 68,
+            "3": 1
+          },
+          "visible_ink_color_mismatch_frames": 1
+        },
+        "pinky": {
+          "frames": {
+            "excluded": 329,
+            "present": 843,
+            "partial": 8
+          },
+          "eligible_frames": 851,
+          "exclusions": {
+            "shared-colour-cell": 109,
+            "screen-edge-clipping": 101,
+            "hidden-or-empty": 59,
+            "reward-slot-expansion": 60
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 0.9400705052878966,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 42,
+            "2": 160,
+            "3": 70,
+            "4": 32,
+            "5": 15,
+            "6": 3
+          },
+          "displayed_move_interval_ms": {
+            "count": 322,
+            "mean": 40.851824558416155,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 99.52802654080708
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 259,
+            "2": 71,
+            "3": 5
+          },
+          "visible_ink_color_mismatch_frames": 2
+        },
+        "inky": {
+          "frames": {
+            "excluded": 241,
+            "present": 928,
+            "partial": 11
+          },
+          "eligible_frames": 939,
+          "exclusions": {
+            "shared-colour-cell": 181,
+            "reward-slot-expansion": 60
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.1714589989350372,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 36,
+            "2": 142,
+            "3": 77,
+            "4": 38,
+            "5": 20,
+            "6": 8,
+            "7": 2
+          },
+          "displayed_move_interval_ms": {
+            "count": 323,
+            "mean": 44.42298398235197,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 116.11603096427493
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 281,
+            "2": 57,
+            "3": 2
+          },
+          "visible_ink_color_mismatch_frames": 2
+        },
+        "clyde": {
+          "frames": {
+            "excluded": 304,
+            "present": 863,
+            "partial": 13
+          },
+          "eligible_frames": 876,
+          "exclusions": {
+            "shared-colour-cell": 179,
+            "reward-slot-expansion": 60,
+            "insufficient-distinct-ink": 65
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.4840182648401827,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 27,
+            "2": 108,
+            "3": 56,
+            "4": 34,
+            "5": 20,
+            "6": 13,
+            "7": 6
+          },
+          "displayed_move_interval_ms": {
+            "count": 264,
+            "mean": 48.1931795181812,
+            "p50": 33.176008846935694,
+            "p95": 99.52802654080708,
+            "max": 116.11603096427493
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 265,
+            "2": 19,
+            "4": 1
+          },
+          "visible_ink_color_mismatch_frames": 5
+        }
+      },
+      "method": "exact distinct sprite ink; old/new poses; binary visibility separate from colour",
+      "guest_modified": false,
+      "validation": {
+        "complete_snapshots_checked": 607,
+        "excluded_complete_snapshots": {
+          "reward-slot-expansion": 44
+        },
+        "settled_actor_results": {
+          "present": 2455,
+          "excluded": 580
+        },
+        "false_absent_or_partial_on_settled_images": 0,
+        "synthetic_host_only_controls": {
+          "absent": 2455,
+          "partial": 2455
+        }
+      },
+      "evidence": [
+        {
+          "actor": "pacman",
+          "frame": 62,
+          "status": "partial"
+        }
+      ],
+      "render_interval_ms": {
+        "count": 629,
+        "mean": 31.06461609170543,
+        "p50": 30.568274818206618,
+        "p95": 46.44739016374849,
+        "max": 55.736281529675075
+      },
+      "render_interval_logical_ticks": {
+        "1": 162,
+        "2": 379,
+        "3": 88
+      }
+    },
+    "trial": {
+      "prg_sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+      "video_frames": 1180,
+      "counter_interval_seconds": 19.557255259712512,
+      "completed_renders": 651,
+      "completed_renders_per_second": 33.2868795418877,
+      "calibration": {
+        "x": 8,
+        "y": 4,
+        "output_dots_per_vic_dot": 2,
+        "mismatch_pixels": 0,
+        "next_distinct_alignment_error": 3576
+      },
+      "min_diagnostic_pixels": 12,
+      "actors": {
+        "pacman": {
+          "frames": {
+            "present": 990,
+            "partial": 17,
+            "excluded": 173
+          },
+          "eligible_frames": 1007,
+          "exclusions": {
+            "shared-colour-cell": 113,
+            "reward-slot-expansion": 60
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.6881827209533267,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 63,
+            "2": 229,
+            "3": 96,
+            "4": 21,
+            "5": 3
+          },
+          "displayed_move_interval_ms": {
+            "count": 412,
+            "mean": 36.55802916628351,
+            "p50": 33.176008846935694,
+            "p95": 66.35201769387139,
+            "max": 82.94002211733924
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 307,
+            "2": 97,
+            "3": 24,
+            "4": 6
+          },
+          "visible_ink_color_mismatch_frames": 0
+        },
+        "blinky": {
+          "frames": {
+            "present": 889,
+            "excluded": 281,
+            "partial": 10
+          },
+          "eligible_frames": 899,
+          "exclusions": {
+            "shared-colour-cell": 188,
+            "reward-slot-expansion": 60,
+            "screen-edge-clipping": 24,
+            "hidden-or-empty": 9
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.1123470522803114,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 60,
+            "2": 151,
+            "3": 71,
+            "4": 52,
+            "5": 10
+          },
+          "displayed_move_interval_ms": {
+            "count": 344,
+            "mean": 40.16804559519976,
+            "p50": 33.176008846935694,
+            "p95": 66.35201769387139,
+            "max": 82.94002211733924
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 294,
+            "2": 61,
+            "3": 4
+          },
+          "visible_ink_color_mismatch_frames": 2
+        },
+        "pinky": {
+          "frames": {
+            "excluded": 329,
+            "present": 838,
+            "partial": 13
+          },
+          "eligible_frames": 851,
+          "exclusions": {
+            "shared-colour-cell": 108,
+            "screen-edge-clipping": 99,
+            "hidden-or-empty": 62,
+            "reward-slot-expansion": 60
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.527614571092832,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 59,
+            "2": 154,
+            "3": 60,
+            "4": 28,
+            "5": 17,
+            "6": 2
+          },
+          "displayed_move_interval_ms": {
+            "count": 320,
+            "mean": 39.18916045044279,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 99.52802654080708
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 267,
+            "2": 69,
+            "3": 3
+          },
+          "visible_ink_color_mismatch_frames": 1
+        },
+        "inky": {
+          "frames": {
+            "excluded": 239,
+            "present": 923,
+            "partial": 18
+          },
+          "eligible_frames": 941,
+          "exclusions": {
+            "shared-colour-cell": 179,
+            "reward-slot-expansion": 60
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.9128586609989373,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 49,
+            "2": 144,
+            "3": 60,
+            "4": 44,
+            "5": 15,
+            "6": 7,
+            "7": 3
+          },
+          "displayed_move_interval_ms": {
+            "count": 322,
+            "mean": 42.80941514255211,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 116.11603096427493
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 300,
+            "2": 44,
+            "3": 2
+          },
+          "visible_ink_color_mismatch_frames": 4
+        },
+        "clyde": {
+          "frames": {
+            "excluded": 301,
+            "present": 869,
+            "partial": 10
+          },
+          "eligible_frames": 879,
+          "exclusions": {
+            "shared-colour-cell": 176,
+            "reward-slot-expansion": 60,
+            "insufficient-distinct-ink": 65
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.1376564277588168,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 38,
+            "2": 113,
+            "3": 46,
+            "4": 42,
+            "5": 18,
+            "6": 13,
+            "7": 6,
+            "8": 1
+          },
+          "displayed_move_interval_ms": {
+            "count": 277,
+            "mean": 47.1889800927533,
+            "p50": 33.176008846935694,
+            "p95": 99.52802654080708,
+            "max": 132.70403538774278
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 282,
+            "2": 11,
+            "5": 1
+          },
+          "visible_ink_color_mismatch_frames": 3
+        }
+      },
+      "method": "exact distinct sprite ink; old/new poses; binary visibility separate from colour",
+      "guest_modified": false,
+      "validation": {
+        "complete_snapshots_checked": 628,
+        "excluded_complete_snapshots": {
+          "reward-slot-expansion": 45
+        },
+        "settled_actor_results": {
+          "present": 2545,
+          "excluded": 595
+        },
+        "false_absent_or_partial_on_settled_images": 0,
+        "synthetic_host_only_controls": {
+          "absent": 2545,
+          "partial": 2545
+        }
+      },
+      "evidence": [
+        {
+          "actor": "pacman",
+          "frame": 18,
+          "status": "partial"
+        }
+      ],
+      "render_interval_ms": {
+        "count": 650,
+        "mean": 30.05964220393878,
+        "p50": 29.685341249424333,
+        "p95": 45.6485455062788,
+        "max": 61.27637189592139
+      },
+      "render_interval_logical_ticks": {
+        "1": 193,
+        "2": 381,
+        "3": 75,
+        "4": 1
+      }
+    }
+  },
+  "capture_identity": {
+    "baseline": {
+      "prg_sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297",
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "9f8e854bdf04e99ad7582e5f72fe17e9137944b1592389968d3ad50e0b9f9b6b"
+      },
+      "emulator": "VICE 3.7.1 xvic, vic20ntsc, -memory all",
+      "input_trace_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "code_bytes_patched": false,
+      "pc_render_gate": false,
+      "frame_rate": "340909/5655",
+      "cpu_hz": 1022727,
+      "cycles_per_vic_frame": 16965,
+      "raster_window_cycles": 16,
+      "image_source": "VICE raster drawing buffer, lossless RGB PNG",
+      "renderer": "glyph-pool",
+      "memory_layout": "8 KiB $0000-$1fff followed by 196 colour nibbles $9600",
+      "consecutive_frames": 1180
+    },
+    "trial": {
+      "prg_sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "b4a2880ed4e3b7e6db178e33cbf84e3936da6bc99836fd2487690258eb64798e"
+      },
+      "emulator": "VICE 3.7.1 xvic, vic20ntsc, -memory all",
+      "input_trace_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "code_bytes_patched": false,
+      "pc_render_gate": false,
+      "frame_rate": "340909/5655",
+      "cpu_hz": 1022727,
+      "cycles_per_vic_frame": 16965,
+      "raster_window_cycles": 16,
+      "image_source": "VICE raster drawing buffer, lossless RGB PNG",
+      "renderer": "glyph-pool",
+      "memory_layout": "8 KiB $0000-$1fff followed by 196 colour nibbles $9600",
+      "consecutive_frames": 1180
+    }
+  },
+  "different_same_index_raw_frames": 729,
+  "gain_percent": 3.3333333333333437,
+  "audio_replay": {
+    "ticks_compared": 1639,
+    "all_sound_state_and_register_values_identical": true,
+    "first_tick": 1,
+    "last_tick": 1639,
+    "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+    "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+    "programs": [
+      {
+        "path": "build/tile-stamp-fast/pacman.prg",
+        "sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297"
+      },
+      {
+        "path": "build/pool-setup-fast/pacman.prg",
+        "sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836"
+      }
+    ],
+    "guest_modified": false,
+    "method": "Compare tick-indexed arcade sound state and VIC registers on a live replay.\n\nHost PC observations only: no guest code, registers, clocks or sound are patched.\nCPU timestamps can differ; this checks the values produced at each logical tick."
+  },
+  "smoke": {
+    "screens": [
+      "attract",
+      "credits",
+      "maze",
+      "cherry",
+      "intermission-1",
+      "intermission-2",
+      "intermission-3"
+    ],
+    "stack_by_scene": {
+      "attract": {
+        "software_lowest_write": 32743,
+        "software_bytes_written": 25,
+        "hardware_lowest_write": 492,
+        "hardware_bytes_written": 20
+      },
+      "credits": {
+        "software_lowest_write": 32743,
+        "software_bytes_written": 25,
+        "hardware_lowest_write": 492,
+        "hardware_bytes_written": 20
+      },
+      "maze": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "cherry": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "intermission-1": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "intermission-2": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "intermission-3": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      }
+    },
+    "clock": {
+      "video_frames": 180,
+      "arcade_ticks": 181,
+      "expected": 180.96
+    },
+    "long_run_ticks": 7182,
+    "stack": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 488,
+      "hardware_bytes_written": 24
+    },
+    "boot": {
+      "entries": 1,
+      "released": true
+    },
+    "irq_vector_intact": true,
+    "stack_guard_intact": true,
+    "software_stack_reserved": 704
+  },
+  "tests": {
+    "target": "make test-pool-setup-fast",
+    "exit_code": 0,
+    "original_rom_tests": 15,
+    "pooled_tests": 41,
+    "display_classifier_tests": 13,
+    "identical_scene_cases_per_build": 8768
+  },
+  "limitations": [
+    "One saved route; no fixed-rate or worst-case guarantee",
+    "Actual maximum redraw gap grows 55.74 to 61.28 ms; maximum native refresh also grows",
+    "Eyes/reward-half identical scenes cost 5-6 additional cycles",
+    "Partial poses remain and vary in both directions; colour/clipping/reward exclusions remain visible",
+    "Only 23 BLK5 bytes remain; full stack and hardware unchanged",
+    "Exact tick-indexed sound values, not PCM or write-timestamp equivalence",
+    "No physical-hardware test"
+  ],
+  "source_sha256": {
+    "Makefile": "413f5a750b9ac2d5086c4986a9e89cace50ec6eb6037f84d4625ab016fd1b244",
+    "src/glyph_pool.S": "86c064445192a78621f7e64acf53a768f048c4d4040ea7147b897c23c041acca",
+    "src/pool_setup.ld": "894c63de9b90002bcb8f64dc4166396c37ac971a1d0c7fc5940c56a31f0c5116",
+    "src/pool_stamp_fast.inc": "dfb8ad9186a30cfaa906d5440497788010fe02f253305fc5743adae55ae93f2a",
+    "src/bitmap.S": "cbac61abb63d1ddf6cd78d4c6e3259de23a431b0942be1393e787b66ff91195f",
+    "src/score.S": "5bb9e089d05209507f9de8f510c4bb106ab908b4d3b32e4f57556db83d43ff82",
+    "src/glyph_pool.c": "7f4b579b7bc619e42522039a71a307d4a0ed0a377a6a02bd0eb0d5ec33335075",
+    "src/clock.S": "846a95af6904c9edbccf64e60084287de05b375d8ec48f713864299bdb8f029c",
+    "src/platform.c": "992ef8be782258cbfe34e59d02f947f155549765497cb46c71eccb006f08cb9f",
+    "src/arcade/core.c": "b810850a134a4776a8481a4f2487ac0b6801c0cd44c913f5e52a9ed28506c35e",
+    "tools/arcade/mkrom.py": "1ce90943cf0adf20cefcccc9f7cb89c8335978b2649e7d79f98af2b86853dc18",
+    "tools/arcade/pool_setup_timing.py": "e1d0f04970e1e77090e241b7f92cb466764207dd77b302079fe6e13e427e41e9",
+    "tools/arcade/pool_profile.py": "14378580842dd3fc19f106c6c3ac254d867db76be9f3b3d0831415fa2d7f3d8e",
+    "tools/arcade/profile_game.py": "dffb4a8e3d820afdd466853b09277b3b3f5003d9d002c27873ccd74365721394",
+    "tools/arcade/measure_display.py": "c0fcb4a23b24a5ed9e2d6799dcc9cb1f94ba57233438fbd9c8cfa1e8e7adc563",
+    "tools/arcade/analyze_display.py": "ea2949b70bdf6b6d326e22ccede9c9498745c28b5f17aa82175abc85c88c5cfa",
+    "tools/arcade/compare_display.py": "0a5e0a761feabb320f1ef2d99e9003ceab922406656300b4495210c9c2512ec0",
+    "tests/glyph_pool.py": "ca64d985f04f14ce328a523f600419c1453a779519868e2c4636f2b73998f39d",
+    "tests/render.py": "5d5ff7cb1f853fd597773f9dccdeb13d148c7b0f27e8749c503373a01e987591",
+    "tests/fixtures/active-replay.json": "f3d0e00c049736b1c5ada729ea14be5df77ff2358c0f2959260d42816e6c9c72",
+    "docs/artwork/hires-pacman.json": "5cb6ca2564e54a15046772b7661325fc0abf2a0039cfa63ac8966c3f373f30d6",
+    "docs/artwork/hires-intermission.json": "5c7c98e4ca1b78885291486bb76680cbc7b9e1756176d2decfac38ebd1d672e6",
+    "docs/POOL_SETUP_OPTIMIZATION.md": "eeaf3b91a421f8028607482979e7fe91222a46869d3e8b652fa6aba8c05c9af8",
+    "docs/RESEARCH_OPTIMIZATION_PLAN.md": "628708ac700be8a95535b862b0a39f1acd6e265916b59adcc21395e6c215ed61",
+    "README.md": "8a4dfdadf05eafbc35741e479ea558187e38891487092d3465ad5ec115ba9eaa"
+  },
+  "evidence_sha256": {
+    "build/pool-setup-fast/tests.log": "6e334d2517a3a27ef13f0a79f9519a879bf01b5a008f7f1bb8ea87a24a7b8fee",
+    "build/pool-setup-fast/evaluation/kernel.json": "404204810804164170160dabbf60bd8527cf60a7ec12bc49789a2cca1b0f9b5c",
+    "build/pool-setup-fast/evaluation/audio-replay/summary.json": "f3e3bb34fc1770abef2119c87903d42caf99d2064892bf494f395fbcb15c5a20",
+    "build/pool-setup-fast/smoke/native-validation.json": "cd3557e6dae16aaa2e322cb7db0728fd3483a4de3d23c4a84c837539e3e6031a",
+    "build/pool-setup-fast/evaluation/comparison.json": "f36f477d1cd862e65d1e5884006d532b7becf100565ea478088fb67f678eb1bc",
+    "build/pool-setup-fast/evaluation/comparison.png": "0a534d17f94677a75d71853d1d92ade37cd4e432de5072bb617535aac2510c4b",
+    "build/pool-setup-fast/evaluation/glyph-pool-comparison.mp4": "f79529294b6ed7f94bb5183e011b603f8f21e03fe9d4879813564c3af5dafef0",
+    "build/arcade/sprite_setup.inc": "56afd324af1b7a8f8e310a9c3f22d78e2a0a04d031fd4d7cc2f3deb893b6a661",
+    "build/pool-setup-fast/evaluation/baseline-glyph_pool.S": "b976565ab619ff37c42efae805d0263984d8bd883abc0e63bfd645b060ed075b",
+    "build/pool-setup-fast/evaluation/trial-glyph_pool.S": "813d5527294b072a03f41564db4d264a542a6972907523ca2a43db3c5afc7622",
+    "build/pool-setup-fast/evaluation/baseline-cycles.txt": "940f8a4e87e731e3a23a52876f2257c9c8d76a4c5ea70b31595c0c8dc08f5700",
+    "build/pool-setup-fast/evaluation/trial-cycles.txt": "73f16889b78abf4bb7d51fc3ce053637d02b8580233ba3924c8594bf2a3f53bc",
+    "build/tile-stamp-fast/evaluation/trial-cpu/captured-program.prg": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297",
+    "build/tile-stamp-fast/evaluation/trial-cpu/captured-program.lbl": "68d544cc690134bb3c0530cd7a7c4e81087df9fc88f8b0a1b456607fa4b53ef8",
+    "build/tile-stamp-fast/evaluation/trial-cpu/pacman-native.bin": "9f8e854bdf04e99ad7582e5f72fe17e9137944b1592389968d3ad50e0b9f9b6b",
+    "build/tile-stamp-fast/evaluation/trial-cpu/program.map": "3ad3758740d8c2700c6e8f6345e552656432c1b402c49c8a090d2520aef59a53",
+    "build/tile-stamp-fast/evaluation/trial-cpu/summary.json": "c0aa08d1dfaf1740e07b311c4a09234f898074bc8f2997fd3bc2bd3b22a27c0c",
+    "build/tile-stamp-fast/evaluation/trial-cpu/active.profile": "8c4e162675901cae2822581e3997f7d2daaa40ed32ef63d57b154dd091e53d71",
+    "build/tile-stamp-fast/evaluation/trial-cpu/active.trace": "fe2f3d95074ea71d2ef45c16558262b3e4ba864f11589b6a49ba8639f1c663d4",
+    "build/tile-stamp-fast/evaluation/trial-cpu/pool-costs.json": "48751b60ca05d0f064bdcd81a6dd48ff03d3dbdfc573683d3b6f9935520609d0",
+    "build/tile-stamp-fast/evaluation/trial-vice/recording.json": "90b0e3e301edc8e9aa7db821de4706048a6cc95b06c0c15eb4922fd92e41d6e9",
+    "build/tile-stamp-fast/evaluation/trial-vice/analysis.json": "3a846d0db56d48ccc4701c1b00bde1f15d9df46e636ea9b0f90d2aa3fb4caef9",
+    "build/tile-stamp-fast/evaluation/trial-vice/tables.json": "127a7efe5c16fbb884e51d213c806373be95fe42692d281f9adb319b90fc5329",
+    "build/tile-stamp-fast/evaluation/trial-vice/memory.zip": "38d3d0858038505d1610d1a3796d27504d0e506cc3e91cc2bb9c64ae5a2b919e",
+    "build/tile-stamp-fast/evaluation/trial-vice/evidence.png": "0a7b1bb9871f4c820d8304f020eb56c94c99f253fe45b9d8343c9bee1b2413a0",
+    "build/pool-setup-fast/evaluation/trial-cpu/captured-program.prg": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+    "build/pool-setup-fast/evaluation/trial-cpu/captured-program.lbl": "85ae3fe2f135103509e7b0b6b8e986b425d99908159dab54def979ffc18a0be5",
+    "build/pool-setup-fast/evaluation/trial-cpu/pacman-native.bin": "b4a2880ed4e3b7e6db178e33cbf84e3936da6bc99836fd2487690258eb64798e",
+    "build/pool-setup-fast/evaluation/trial-cpu/program.map": "f1f9c36aaefa73a6c08c799385d4cf352a5f8b3ea1ed39c13328dc236458b582",
+    "build/pool-setup-fast/evaluation/trial-cpu/summary.json": "6651fa6e5de48283b5dbb9d1e0aff202a58a69022c2f10d7b31e0529a9de2dfb",
+    "build/pool-setup-fast/evaluation/trial-cpu/active.profile": "b3eef5f18529c00e2dda496cf53906c0616584da2d1cf1e2cf69ed3c45ade732",
+    "build/pool-setup-fast/evaluation/trial-cpu/active.trace": "3e4479c80c46508e0cd4d9f4f91ad65fce29eaafe19d0ef801daac964907299d",
+    "build/pool-setup-fast/evaluation/trial-cpu/pool-costs.json": "8ba4985fe98e7ddf55f6fca8398b9a9935389708294f95b5a866e61f3c3c1f85",
+    "build/pool-setup-fast/evaluation/trial-vice/recording.json": "20688f3c35f75b341c9681f032917372f4d116cae003a13dedae2253a0f7560b",
+    "build/pool-setup-fast/evaluation/trial-vice/analysis.json": "54351a59e301802e4273b4ffeae5d1ecb5f3a0b592adb18b9783b00daf422767",
+    "build/pool-setup-fast/evaluation/trial-vice/tables.json": "127a7efe5c16fbb884e51d213c806373be95fe42692d281f9adb319b90fc5329",
+    "build/pool-setup-fast/evaluation/trial-vice/memory.zip": "562984248027cd20d55878f355661d5e20e57d649f278b476e0e73d0b83becb8",
+    "build/pool-setup-fast/evaluation/trial-vice/evidence.png": "0f0fd27f5d5a86df165b53b4888a0a6fdd3518d3dcd7172a102684262260849b"
+  },
+  "development_results_excluded": [
+    "build/pool-setup-fast/development-evaluation",
+    "build/pool-setup-fast/development-tests.log",
+    "build/pool-setup-fast/development-smoke"
+  ],
+  "final_rebuild_matches_measured_prg_native_and_labels": true,
+  "compact_evidence_note": "Per-frame motion_changes lists are omitted; complete analysis files are preserved and hashed above."
+}

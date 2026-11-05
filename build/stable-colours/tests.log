@@ -1,0 +1,70 @@
+test_01_real_maze_white_walls_pellets_and_unchanged_pixels (__main__.StableBackgroundColors.test_01_real_maze_white_walls_pellets_and_unchanged_pixels) ... ok
+test_02_tile_order_does_not_change_white_maze (__main__.StableBackgroundColors.test_02_tile_order_does_not_change_white_maze) ... ok
+test_03_wall_stays_white_after_last_dot_and_power_pellet_blinks (__main__.StableBackgroundColors.test_03_wall_stays_white_after_last_dot_and_power_pellet_blinks) ... ok
+test_04_pellet_ink_at_every_cell_boundary (__main__.StableBackgroundColors.test_04_pellet_ink_at_every_cell_boundary) ... ok
+test_05_actor_releases_white_pellets_and_keeps_aligned_neighbor (__main__.StableBackgroundColors.test_05_actor_releases_white_pellets_and_keeps_aligned_neighbor) ... ok
+test_06_blue_is_limited_to_completion_flash (__main__.StableBackgroundColors.test_06_blue_is_limited_to_completion_flash) ... ok
+test_01_colours_pixels_and_sprite_underlays (__main__.StableFlash.test_01_colours_pixels_and_sprite_underlays) ... ok
+test_02_complete_flash_timing (__main__.StableFlash.test_02_complete_flash_timing) ... ok
+test_03_walls_survive_incremental_dot_removal (__main__.StableFlash.test_03_walls_survive_incremental_dot_removal) ... ok
+test_01_6502_movement_turns_and_score (__main__.StableNativeParity.test_01_6502_movement_turns_and_score) ... ok
+test_02_6502_frightened_rng (__main__.StableNativeParity.test_02_6502_frightened_rng) ... ok
+test_03_build_memory_limits (__main__.StableNativeParity.test_03_build_memory_limits) ... ok
+test_04_square_table_equivalence (__main__.StableNativeParity.test_04_square_table_equivalence) ... ok
+test_05_exact_audio_divider_boundaries (__main__.StableNativeParity.test_05_exact_audio_divider_boundaries) ... ok
+test_06_audio_converter_registers (__main__.StableNativeParity.test_06_audio_converter_registers) ... ok
+test_01_dirty_addresses_cover_all_four_pages (__main__.StableRebuild.test_01_dirty_addresses_cover_all_four_pages) ... ok
+test_02_bulk_slices_match_original_rom (__main__.StableRebuild.test_02_bulk_slices_match_original_rom) ... ok
+test_03_writes_behind_and_ahead_of_cursor (__main__.StableRebuild.test_03_writes_behind_and_ahead_of_cursor) ... ok
+test_04_restart_in_every_rebuild_phase (__main__.StableRebuild.test_04_restart_in_every_rebuild_phase) ... ok
+test_05_split_native_state_range_matches_rom (__main__.StableRebuild.test_05_split_native_state_range_matches_rom) ... ok
+test_06_complete_transition_service_and_queue_order (__main__.StableRebuild.test_06_complete_transition_service_and_queue_order) ... ok
+test_07_coin_is_serviced_during_rebuild (__main__.StableRebuild.test_07_coin_is_serviced_during_rebuild) ... ok
+test_08_completion_uses_current_actor_positions (__main__.StableRebuild.test_08_completion_uses_current_actor_positions) ... ok
+test_01_all_frames_shifts_and_flips (__main__.StableRenderer.test_01_all_frames_shifts_and_flips) ... ok
+test_02_edges_overlap_priority_and_returning_eyes (__main__.StableRenderer.test_02_edges_overlap_priority_and_returning_eyes) ... ok
+test_03_incremental_matches_full_redraw (__main__.StableRenderer.test_03_incremental_matches_full_redraw) ... ok
+test_04_preshifted_ghost_path (__main__.StableRenderer.test_04_preshifted_ghost_path) ... ok
+test_05_dirty_tiles_preserve_actors_and_shared_colours (__main__.StableRenderer.test_05_dirty_tiles_preserve_actors_and_shared_colours) ... ok
+test_06_clipped_kernel_memory_boundaries (__main__.StableRenderer.test_06_clipped_kernel_memory_boundaries) ... ok
+test_07_horizontal_rewards_priority_flips_edges_and_restoration (__main__.StableRenderer.test_07_horizontal_rewards_priority_flips_edges_and_restoration) ... ok
+test_08_revised_pacman_masks_and_shared_closed_views (__main__.StableRenderer.test_08_revised_pacman_masks_and_shared_closed_views) ... ok
+test_09_no_intermediate_colour_on_overlapping_actor_redraw (__main__.StableRenderer.test_09_no_intermediate_colour_on_overlapping_actor_redraw) ... ok
+test_10_background_queue_overflow_and_colour_read_high_bits (__main__.StableRenderer.test_10_background_queue_overflow_and_colour_read_high_bits) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 12.025s
+
+OK
+{
+  "phases": [
+    "blue",
+    "white",
+    "blue",
+    "white",
+    "blue",
+    "white",
+    "blue",
+    "white"
+  ],
+  "request_to_present_ms": [
+    26.532007075201886,
+    18.351916004955378,
+    18.351916004955378,
+    21.01147226972594,
+    18.351916004955378,
+    18.351916004955378,
+    18.351916004955378,
+    21.375205700054853
+  ],
+  "flash_spacing_ms": [
+    189.83560617838387,
+    197.99418613178298,
+    201.06929806292393,
+    195.00902978018573,
+    197.91889722281704,
+    198.0323194752852,
+    201.41640926659804
+  ],
+  "audio_update_gap_ms_max": 24.91476219949214
+}

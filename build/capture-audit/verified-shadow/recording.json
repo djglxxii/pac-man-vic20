@@ -1,0 +1,120 @@
+{
+  "prg": "build/pacman-shadow.prg",
+  "prg_sha256": "1aead2a2d0d42da4ef59e86b07691c867d94882fb193ff9bad98cde3e089418d",
+  "video_frames": 360,
+  "fps": "340909/5655",
+  "joystick_only": true,
+  "guest_patches": false,
+  "first": {
+    "tick": 431,
+    "attributes": [
+      0,
+      0,
+      148,
+      1,
+      156,
+      3,
+      156,
+      5,
+      156,
+      7,
+      186,
+      9,
+      252,
+      0,
+      0,
+      0
+    ],
+    "positions": [
+      0,
+      0,
+      162,
+      164,
+      134,
+      155,
+      151,
+      139,
+      119,
+      139,
+      161,
+      68,
+      7,
+      8,
+      0,
+      0
+    ],
+    "pellets": 3,
+    "raw_frame_sha256": "e08fc90fbf4b0101edd20d64844201e88866250954a2e2f387197a425fe994e2",
+    "completed_render_calls": 0,
+    "feature_calls": {
+      "shadow_begin": 0
+    }
+  },
+  "last": {
+    "tick": 792,
+    "attributes": [
+      0,
+      0,
+      136,
+      1,
+      152,
+      3,
+      136,
+      5,
+      152,
+      7,
+      188,
+      9,
+      252,
+      0,
+      0,
+      0
+    ],
+    "positions": [
+      0,
+      0,
+      34,
+      227,
+      194,
+      232,
+      171,
+      150,
+      119,
+      143,
+      121,
+      42,
+      7,
+      8,
+      0,
+      0
+    ],
+    "pellets": 47,
+    "raw_frame_sha256": "e02671fdab0db9f4c6771f06c7a9029368000098c79fd46e30dc095ca8c189dd",
+    "completed_render_calls": 124,
+    "feature_calls": {
+      "shadow_begin": 125
+    }
+  },
+  "audit": {
+    "snapshot_prg": "build/capture-audit/verified-shadow/captured-program.prg",
+    "loaded_program": {
+      "all_depacked_regions_match": true,
+      "bytes_checked": 33792,
+      "loaded_image_sha256": "4052c5af258058b7661faf8caa323e3beb84f65362b97d4bcf0f9250eed474d1"
+    },
+    "completed_render_calls": 124,
+    "render_calls_per_second": 20.82,
+    "executed_features": {
+      "shadow_begin": 125
+    },
+    "synthetic_control_after_recording": {
+      "after_recording": true,
+      "VIC_register_900f": "4b",
+      "normal_sha256": "e02671fdab0db9f4c6771f06c7a9029368000098c79fd46e30dc095ca8c189dd",
+      "forced_sha256": "a4b3bea6730ea30b8834472a5a9056343270c64b71e98421e676f764c4f0d215",
+      "normal_purple_pixels": 200,
+      "forced_purple_pixels": 41896,
+      "different_raw_frames": true
+    }
+  }
+}

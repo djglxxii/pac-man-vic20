@@ -1,0 +1,18 @@
+{
+  "all_567_decoded_background_cells_identical": true,
+  "all_147_glyphs_preserved_including_padding": true,
+  "both_row_plane_encodings_match_their_charsets": true,
+  "glyph_ids_ordered_by": "whole static playfield frequency, excluding the HUD; no replay weighting",
+  "ordering_verified": true,
+  "all_480_cycle_deltas_exactly_explained_by_page_crossings": true,
+  "background_copy_crossings": {
+    "before": 10178,
+    "after": 5135
+  },
+  "mean_background_copy_crossings_per_scene": {
+    "before": 21.2,
+    "after": 10.7
+  },
+  "background_cells_copied": 14457,
+  "no_padding_added": true
+}

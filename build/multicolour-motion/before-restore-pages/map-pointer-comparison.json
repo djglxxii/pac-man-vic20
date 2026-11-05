@@ -1,0 +1,76 @@
+{
+  "recorded_scenes": 480,
+  "all_published_pictures_identical": true,
+  "unchanged_asset_hashes": {
+    "replay.bin": "a24e3f25988f1cebb954eeba7684b5d6ad45675826b97eb4efb4760678093f6f",
+    "source-poses.json": "d4a18bb02e0375b3c951f63f6b1adc76fb86ebf7f751f4c9c388a2cc31e40fbc",
+    "poses.json": "24821433d7d01662239fb941a5a16f1c7bfa21e95dbdcbac568e0ff1fc17e5c3",
+    "background-charset.bin": "bedccc535b169920309e3aedd1be24cd4796b51f6f075ba07a003b54bd89947c",
+    "background-map.bin": "b11bdacefc99d497fe1d1f5527fcf5c657eed291839798369a98094098b83d09",
+    "background-colors.bin": "857a89a350e021fe738b76e656b6435a3a7ed557b1b4bc6aa837fc2c868e21c5"
+  },
+  "before_profile": {
+    "get_work_cell": {
+      "mean_cycles_per_frame": 7329.33,
+      "calls_per_frame": 30.46,
+      "cycles_per_call": 240.59
+    },
+    "resolve_row": {
+      "mean_cycles_per_frame": 9433.13,
+      "calls_per_frame": 13.71,
+      "cycles_per_call": 688.03
+    },
+    "mc_publish": {
+      "mean_cycles_per_frame": 4507.65,
+      "calls_per_frame": 1.0,
+      "cycles_per_call": 4507.65
+    }
+  },
+  "after_profile": {
+    "get_work_cell": {
+      "mean_cycles_per_frame": 7146.54,
+      "calls_per_frame": 30.46,
+      "cycles_per_call": 234.59
+    },
+    "resolve_row": {
+      "mean_cycles_per_frame": 9250.34,
+      "calls_per_frame": 13.71,
+      "cycles_per_call": 674.69
+    },
+    "mc_publish": {
+      "mean_cycles_per_frame": 4328.35,
+      "calls_per_frame": 1.0,
+      "cycles_per_call": 4328.35
+    }
+  },
+  "prepare": {
+    "before_mean_cycles": 18235.68,
+    "after_mean_cycles": 18052.89,
+    "reduction_percent": 1.0,
+    "faster_scenes": 480,
+    "equal_scenes": 0,
+    "slower_scenes": 0,
+    "minimum_cycles_saved": 120,
+    "maximum_cycles_saved": 270
+  },
+  "commit": {
+    "before_mean_cycles": 4616.15,
+    "after_mean_cycles": 4436.85,
+    "reduction_percent": 3.88,
+    "faster_scenes": 479,
+    "equal_scenes": 0,
+    "slower_scenes": 1,
+    "minimum_cycles_saved": -1,
+    "maximum_cycles_saved": 269
+  },
+  "total": {
+    "before_mean_cycles": 22851.83,
+    "after_mean_cycles": 22489.74,
+    "reduction_percent": 1.58,
+    "faster_scenes": 480,
+    "equal_scenes": 0,
+    "slower_scenes": 0,
+    "minimum_cycles_saved": 149,
+    "maximum_cycles_saved": 509
+  }
+}

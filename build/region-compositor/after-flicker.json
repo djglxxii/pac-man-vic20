@@ -1,0 +1,68 @@
+{
+  "cpu_hz": 1022727,
+  "video_frames_per_sample": 180,
+  "metric": "bitmap_erase entry to matching bitmap_draw return",
+  "prg_sha256": "8bf2d4b829c45227f7e6f5332d3d20ff56c97e7fc34ee29e706cb37869a2b59e",
+  "samples": [
+    {
+      "scene": "play",
+      "completed_renders": 148,
+      "seconds": 2.9811,
+      "actor_erases": 466,
+      "actor_updates": 466,
+      "actor_paints": 478,
+      "composed_updates": 12,
+      "composed_paint_ms_mean": 1.231,
+      "composed_paint_ms_max": 1.36,
+      "actor_window_ms_per_second": 963.26,
+      "erase_to_paint_ms_mean": 6.162,
+      "erase_to_paint_ms_p95": 11.408,
+      "erase_to_paint_ms_max": 15.879
+    },
+    {
+      "scene": "frightened",
+      "completed_renders": 160,
+      "seconds": 2.9811,
+      "actor_erases": 440,
+      "actor_updates": 440,
+      "actor_paints": 455,
+      "composed_updates": 15,
+      "composed_paint_ms_mean": 0.586,
+      "composed_paint_ms_max": 0.637,
+      "actor_window_ms_per_second": 773.86,
+      "erase_to_paint_ms_mean": 5.243,
+      "erase_to_paint_ms_p95": 10.389,
+      "erase_to_paint_ms_max": 16.477
+    },
+    {
+      "scene": "attract-chase",
+      "completed_renders": 124,
+      "seconds": 2.9771,
+      "actor_erases": 329,
+      "actor_updates": 326,
+      "actor_paints": 327,
+      "composed_updates": 0,
+      "composed_paint_ms_mean": 0,
+      "composed_paint_ms_max": 0,
+      "actor_window_ms_per_second": 748.26,
+      "erase_to_paint_ms_mean": 6.833,
+      "erase_to_paint_ms_p95": 11.053,
+      "erase_to_paint_ms_max": 12.979
+    },
+    {
+      "scene": "intermission",
+      "completed_renders": 179,
+      "seconds": 2.9712,
+      "actor_erases": 45,
+      "actor_updates": 45,
+      "actor_paints": 95,
+      "composed_updates": 45,
+      "composed_paint_ms_mean": 0.583,
+      "composed_paint_ms_max": 0.587,
+      "actor_window_ms_per_second": 59.69,
+      "erase_to_paint_ms_mean": 3.941,
+      "erase_to_paint_ms_p95": 7.251,
+      "erase_to_paint_ms_max": 10.511
+    }
+  ]
+}

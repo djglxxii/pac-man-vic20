@@ -1,0 +1,68 @@
+{
+  "mode": "natural rendering; no PC gate or guest code patches",
+  "same_logical_tick_joystick_trace": true,
+  "programs": {
+    "reference": {
+      "prg_sha256": "c2e173cb35e01b2d88d034b6e62a9462933bcf6efb2b1036310a0145d880d471",
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "9187c3068a8a832c446b658c9002b082d8e6399fb05bb2845672a386cfaa2d75"
+      },
+      "video_frames": 1200,
+      "counter_interval_seconds": 19.889017303737948,
+      "completed_render_calls": 525,
+      "render_calls_per_second": 26.39647761286483,
+      "matched_active_input_states": 1207,
+      "same_active_inputs_and_states": true,
+      "common_completed_render_ticks": 525,
+      "same_completed_pictures_at_common_ticks": true,
+      "first_tick": 433,
+      "last_tick": 1638
+    },
+    "fast": {
+      "prg_sha256": "aec091284db6673d839a45333d89ce9a9cf73189471838bace6ff4c397c25023",
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "82c88b2ff911c8f2a7fd3abfee850a729fdb6b22354faa84a1d712d3ef85ee75"
+      },
+      "video_frames": 1200,
+      "counter_interval_seconds": 19.889017303737948,
+      "completed_render_calls": 549,
+      "render_calls_per_second": 27.603173732310083,
+      "matched_active_input_states": 1207,
+      "same_active_inputs_and_states": true,
+      "common_completed_render_ticks": 330,
+      "same_completed_pictures_at_common_ticks": true,
+      "first_tick": 432,
+      "last_tick": 1639
+    },
+    "baseline": {
+      "prg_sha256": "eb6b29810453418818a1ffb83f8b0057464a903682c20970cc6019617067a4e9",
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "da3d8c7d527a7a0ea652dac49d83724b0db37cb8ecc208aa28fb618299676b9d"
+      },
+      "video_frames": 1200,
+      "counter_interval_seconds": 19.889017303737948,
+      "completed_render_calls": 659,
+      "render_calls_per_second": 33.13386427976747,
+      "matched_active_input_states": 1207,
+      "same_active_inputs_and_states": true,
+      "common_completed_render_ticks": 352,
+      "same_completed_pictures_at_common_ticks": true,
+      "first_tick": 434,
+      "last_tick": 1639
+    }
+  },
+  "render_rate_gain_percent": 4.571428571428582,
+  "limits": [
+    "Render cadence and raster phase vary naturally across builds.",
+    "Capture is silent; visual review is still required.",
+    "Common-tick completed pictures match; intermediate raster pixels may differ."
+  ],
+  "before_after_video": "build/actor-speed/vice/vic20-actor-speed-before-after.mp4",
+  "normal_comparison_video": "build/actor-speed/vice/vic20-normal-vs-actor-speed.mp4"
+}

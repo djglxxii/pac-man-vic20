@@ -1,0 +1,17 @@
+{
+  "prg_sha256": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31",
+  "profile_sha256": "cb269e164098855a228fce79847c528e63fe3655b39f03d525072f09c7951c99",
+  "ghost_calls": 942,
+  "forward_calls": 942,
+  "reverse_calls": 0,
+  "ghost_stamp_cpu_percent": 2.5223519865170294,
+  "row_control_cycles_saved_per_forward_call": 29,
+  "row_control_cycles_saved_per_reverse_call": 27,
+  "estimated_row_control_cycles_saved": 27318,
+  "estimated_cycles_saved_per_redraw": 40.4112426035503,
+  "estimated_total_cpu_percent_saved": 0.134120756402182,
+  "caveat": "Instruction-path estimate before linked placement effects, not measured FPS; current active route has no vertically reversed normal ghosts.",
+  "baseline_pointer_table_page_penalty_cycles": 1689,
+  "estimated_total_cycles_saved_including_table_alignment": 29007,
+  "estimated_total_cpu_percent_including_alignment": 0.1424130895731054
+}

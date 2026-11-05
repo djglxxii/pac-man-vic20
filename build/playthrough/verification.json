@@ -1,0 +1,10 @@
+{
+  "decoded_frames": 8336,
+  "decode_passed": true,
+  "audio_max_volume_db": -3.8,
+  "audio_video_duration_difference_ms": -18.938207361287596,
+  "intermission_start_seconds": 124.0285090742691,
+  "intermission_finished_seconds": 136.27045633878836,
+  "file_size_bytes": 5594495,
+  "unchanged_game_prg": true
+}

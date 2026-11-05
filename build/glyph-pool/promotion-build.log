@@ -1,0 +1,5 @@
+cp build/glyph-pool/pacman-native.bin build/arcade/pacman-native.bin
+cp build/glyph-pool/pacman-native.bin.elf build/arcade/pacman-native.bin.elf
+cp build/glyph-pool/pacman.map build/arcade/pacman.map
+cp build/glyph-pool/pacman.prg build/pacman.prg
+cp build/glyph-pool/pacman.lbl build/pacman.lbl

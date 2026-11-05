@@ -1,0 +1,2016 @@
+cp build/pool-shift-fast/pacman-native.bin build/arcade/pacman-native.bin
+cp build/pool-shift-fast/pacman-native.bin.elf build/arcade/pacman-native.bin.elf
+cp build/pool-shift-fast/pacman.map build/arcade/pacman.map
+cp build/pool-shift-fast/pacman.prg build/pacman.prg
+cp build/pool-shift-fast/pacman.lbl build/pacman.lbl
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -DSOUND_EFFECT_FAST -DTILE_ADDRESS_FAST -DPOOL_STAMP_FAST -DAUDIO_DIVIDER_FAST -DAUDIO_UPDATE_FAST -DGHOST_UPDATE_FAST -DPOOL_ALLOC_FAST -DTILE_STAMP_FAST -DPOOL_SETUP_FAST -Tsrc/tile_address.ld -Tsrc/glyph_pool.ld -Tsrc/pool_setup.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c src/score.S src/glyph_pool.S src/glyph_pool.c src/sound_effect.S src/tile_address.S src/audio_update.S build/arcade/rom.c -Wl,-Map,build/pool-setup-fast/pacman.map -o build/pool-setup-fast/pacman-native.bin
+python3 tools/arcade/pack.py build/pool-setup-fast/pacman-native.bin build/pool-setup-fast/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/pool-setup-fast/pacman.prg: 26814 bytes, entry $0400, verified backwards depacking
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -DSOUND_EFFECT_FAST -DTILE_ADDRESS_FAST -DPOOL_STAMP_FAST -Tsrc/tile_address.ld -Tsrc/glyph_pool.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c src/score.S src/glyph_pool.S src/glyph_pool.c src/sound_effect.S src/tile_address.S build/arcade/rom.c -Wl,-Map,build/pool-stamp-fast/pacman.map -o build/pool-stamp-fast/pacman-native.bin
+python3 tools/arcade/pack.py build/pool-stamp-fast/pacman-native.bin build/pool-stamp-fast/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/pool-stamp-fast/pacman.prg: 26758 bytes, entry $0400, verified backwards depacking
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -DSOUND_EFFECT_FAST -DTILE_ADDRESS_FAST -DPOOL_STAMP_FAST -DAUDIO_DIVIDER_FAST -Tsrc/tile_address.ld -Tsrc/glyph_pool.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c src/score.S src/glyph_pool.S src/glyph_pool.c src/sound_effect.S src/tile_address.S build/arcade/rom.c -Wl,-Map,build/audio-divider-fast/pacman.map -o build/audio-divider-fast/pacman-native.bin
+python3 tools/arcade/pack.py build/audio-divider-fast/pacman-native.bin build/audio-divider-fast/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/audio-divider-fast/pacman.prg: 26854 bytes, entry $0400, verified backwards depacking
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -DSOUND_EFFECT_FAST -DTILE_ADDRESS_FAST -DPOOL_STAMP_FAST -DAUDIO_DIVIDER_FAST -DAUDIO_UPDATE_FAST -Tsrc/tile_address.ld -Tsrc/glyph_pool.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c src/score.S src/glyph_pool.S src/glyph_pool.c src/sound_effect.S src/tile_address.S src/audio_update.S build/arcade/rom.c -Wl,-Map,build/audio-update-fast/pacman.map -o build/audio-update-fast/pacman-native.bin
+python3 tools/arcade/pack.py build/audio-update-fast/pacman-native.bin build/audio-update-fast/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/audio-update-fast/pacman.prg: 26701 bytes, entry $0400, verified backwards depacking
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -DSOUND_EFFECT_FAST -DTILE_ADDRESS_FAST -DPOOL_STAMP_FAST -DAUDIO_DIVIDER_FAST -DAUDIO_UPDATE_FAST -DGHOST_UPDATE_FAST -Tsrc/tile_address.ld -Tsrc/glyph_pool.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c src/score.S src/glyph_pool.S src/glyph_pool.c src/sound_effect.S src/tile_address.S src/audio_update.S build/arcade/rom.c -Wl,-Map,build/ghost-update-fast/pacman.map -o build/ghost-update-fast/pacman-native.bin
+python3 tools/arcade/pack.py build/ghost-update-fast/pacman-native.bin build/ghost-update-fast/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/ghost-update-fast/pacman.prg: 26717 bytes, entry $0400, verified backwards depacking
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -DSOUND_EFFECT_FAST -DTILE_ADDRESS_FAST -DPOOL_STAMP_FAST -DAUDIO_DIVIDER_FAST -DAUDIO_UPDATE_FAST -DGHOST_UPDATE_FAST -DPOOL_ALLOC_FAST -Tsrc/tile_address.ld -Tsrc/glyph_pool.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c src/score.S src/glyph_pool.S src/glyph_pool.c src/sound_effect.S src/tile_address.S src/audio_update.S build/arcade/rom.c -Wl,-Map,build/pool-alloc-fast/pacman.map -o build/pool-alloc-fast/pacman-native.bin
+python3 tools/arcade/pack.py build/pool-alloc-fast/pacman-native.bin build/pool-alloc-fast/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/pool-alloc-fast/pacman.prg: 26702 bytes, entry $0400, verified backwards depacking
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -DSOUND_EFFECT_FAST -DTILE_ADDRESS_FAST -DPOOL_STAMP_FAST -DAUDIO_DIVIDER_FAST -DAUDIO_UPDATE_FAST -DGHOST_UPDATE_FAST -DPOOL_ALLOC_FAST -DTILE_STAMP_FAST -Tsrc/tile_address.ld -Tsrc/glyph_pool.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c src/score.S src/glyph_pool.S src/glyph_pool.c src/sound_effect.S src/tile_address.S src/audio_update.S build/arcade/rom.c -Wl,-Map,build/tile-stamp-fast/pacman.map -o build/tile-stamp-fast/pacman-native.bin
+python3 tools/arcade/pack.py build/tile-stamp-fast/pacman-native.bin build/tile-stamp-fast/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/tile-stamp-fast/pacman.prg: 26701 bytes, entry $0400, verified backwards depacking
+python3 tests/arcade.py
+test_01_original_maze_and_attract (__main__.ArcadeParity.test_01_original_maze_and_attract) ... ok
+test_02_gameplay_and_turn_trace (__main__.ArcadeParity.test_02_gameplay_and_turn_trace) ... ok
+test_03_difficulty_and_fruit (__main__.ArcadeParity.test_03_difficulty_and_fruit) ... ok
+test_04_ghost_targets_ties_and_upward_bug (__main__.ArcadeParity.test_04_ghost_targets_ties_and_upward_bug) ... ok
+test_05_frightened_random_sequence (__main__.ArcadeParity.test_05_frightened_random_sequence) ... ok
+test_06_elroy_and_score (__main__.ArcadeParity.test_06_elroy_and_score) ... ok
+test_07_intermission_selection (__main__.ArcadeParity.test_07_intermission_selection) ... ok
+test_08_complete_intermission_traces (__main__.ArcadeParity.test_08_complete_intermission_traces) ... ok
+test_09_rng_storage_bound (__main__.ArcadeParity.test_09_rng_storage_bound) ... ok
+test_10_lives_history_and_split_screen (__main__.ArcadeParity.test_10_lives_history_and_split_screen) ... ok
+test_11_credits_and_two_player_start (__main__.ArcadeParity.test_11_credits_and_two_player_start) ... ok
+test_12_death_sequence (__main__.ArcadeParity.test_12_death_sequence) ... ok
+test_13_coin_debounce_and_queued_credits (__main__.ArcadeParity.test_13_coin_debounce_and_queued_credits) ... ok
+test_14_songs_effects_and_channel_priority (__main__.ArcadeParity.test_14_songs_effects_and_channel_priority) ... ok
+test_15_attract_maze_demo (__main__.ArcadeParity.test_15_attract_maze_demo) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 18.542s
+
+OK
+python3 tests/glyph_pool.py
+test_01_real_maze_white_walls_pellets_and_unchanged_pixels (__main__.PoolColors.test_01_real_maze_white_walls_pellets_and_unchanged_pixels) ... ok
+test_02_tile_order_does_not_change_white_maze (__main__.PoolColors.test_02_tile_order_does_not_change_white_maze) ... ok
+test_03_wall_stays_white_after_last_dot_and_power_pellet_blinks (__main__.PoolColors.test_03_wall_stays_white_after_last_dot_and_power_pellet_blinks) ... ok
+test_04_pellet_ink_at_every_cell_boundary (__main__.PoolColors.test_04_pellet_ink_at_every_cell_boundary) ... ok
+test_05_actor_releases_white_pellets_and_keeps_aligned_neighbor (__main__.PoolColors.test_05_actor_releases_white_pellets_and_keeps_aligned_neighbor) ... ok
+test_06_blue_is_limited_to_completion_flash (__main__.PoolColors.test_06_blue_is_limited_to_completion_flash) ... ok
+test_01_colours_pixels_and_sprite_underlays (__main__.PoolFlash.test_01_colours_pixels_and_sprite_underlays) ... ok
+test_02_complete_flash_timing (__main__.PoolFlash.test_02_complete_flash_timing) ... ok
+test_03_walls_survive_incremental_dot_removal (__main__.PoolFlash.test_03_walls_survive_incremental_dot_removal) ... ok
+test_01_all_fruit_values_and_erase_footprints (__main__.PoolFonts.test_01_all_fruit_values_and_erase_footprints) ... ok
+test_02_ghost_chain_keeps_original_score_frames (__main__.PoolFonts.test_02_ghost_chain_keeps_original_score_frames) ... ok
+test_01_speed_masks_and_mode_priorities (__main__.PoolGhosts.test_01_speed_masks_and_mode_priorities) ... ok
+test_01_loader_delivers_all_three_regions_before_boot (__main__.PoolMemory.test_01_loader_delivers_all_three_regions_before_boot) ... ok
+test_02_cold_ram_is_reused_after_startup (__main__.PoolMemory.test_02_cold_ram_is_reused_after_startup) ... ok
+test_03_stack_tracking_excludes_host_canaries (__main__.PoolMemory.test_03_stack_tracking_excludes_host_canaries) ... ok
+test_01_6502_movement_turns_and_score (__main__.PoolNativeParity.test_01_6502_movement_turns_and_score) ... ok
+test_02_6502_frightened_rng (__main__.PoolNativeParity.test_02_6502_frightened_rng) ... ok
+test_03_build_memory_limits (__main__.PoolNativeParity.test_03_build_memory_limits) ... ok
+test_04_square_table_equivalence (__main__.PoolNativeParity.test_04_square_table_equivalence) ... ok
+test_05_exact_audio_divider_boundaries (__main__.PoolNativeParity.test_05_exact_audio_divider_boundaries) ... ok
+test_06_audio_converter_registers (__main__.PoolNativeParity.test_06_audio_converter_registers) ... ok
+test_01_dirty_addresses_cover_all_four_pages (__main__.PoolRebuild.test_01_dirty_addresses_cover_all_four_pages) ... ok
+test_02_bulk_slices_match_original_rom (__main__.PoolRebuild.test_02_bulk_slices_match_original_rom) ... ok
+test_03_writes_behind_and_ahead_of_cursor (__main__.PoolRebuild.test_03_writes_behind_and_ahead_of_cursor) ... ok
+test_04_restart_in_every_rebuild_phase (__main__.PoolRebuild.test_04_restart_in_every_rebuild_phase) ... ok
+test_05_split_native_state_range_matches_rom (__main__.PoolRebuild.test_05_split_native_state_range_matches_rom) ... ok
+test_06_complete_transition_service_and_queue_order (__main__.PoolRebuild.test_06_complete_transition_service_and_queue_order) ... ok
+test_07_coin_is_serviced_during_rebuild (__main__.PoolRebuild.test_07_coin_is_serviced_during_rebuild) ... ok
+test_08_completion_uses_current_actor_positions (__main__.PoolRebuild.test_08_completion_uses_current_actor_positions) ... ok
+test_01_all_frames_shifts_and_flips (__main__.PoolRenderer.test_01_all_frames_shifts_and_flips) ... ok
+test_02_edges_overlap_priority_and_returning_eyes (__main__.PoolRenderer.test_02_edges_overlap_priority_and_returning_eyes) ... ok
+test_03_incremental_matches_full_redraw (__main__.PoolRenderer.test_03_incremental_matches_full_redraw) ... ok
+test_05_dirty_tiles_preserve_actors_and_shared_colours (__main__.PoolRenderer.test_05_dirty_tiles_preserve_actors_and_shared_colours) ... ok
+test_07_horizontal_rewards_priority_flips_edges_and_restoration (__main__.PoolRenderer.test_07_horizontal_rewards_priority_flips_edges_and_restoration) ... ok
+test_08_revised_pacman_masks_and_shared_closed_views (__main__.PoolRenderer.test_08_revised_pacman_masks_and_shared_closed_views) ... ok
+test_09_clean_home_glyphs_and_bounded_banks (__main__.PoolRenderer.test_09_clean_home_glyphs_and_bounded_banks) ... ok
+test_09_intermission_ghost_masks (__main__.PoolRenderer.test_09_intermission_ghost_masks) ... ok
+test_10_full_banks_teleports_and_epoch_wrap (__main__.PoolRenderer.test_10_full_banks_teleports_and_epoch_wrap) ... ok
+test_11_all_home_addresses_overlap_hits_and_cursor_page_carries (__main__.PoolRenderer.test_11_all_home_addresses_overlap_hits_and_cursor_page_carries) ... ok
+test_12_packed_home_decode_all_bytes_and_incoming_carries (__main__.PoolRenderer.test_12_packed_home_decode_all_bytes_and_incoming_carries) ... ok
+test_13_full_bank_hits_and_overflow_preserve_existing_cells (__main__.PoolRenderer.test_13_full_bank_hits_and_overflow_preserve_existing_cells) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 13.317s
+
+OK
+{
+  "phases": [
+    "blue",
+    "white",
+    "blue",
+    "white",
+    "blue",
+    "white",
+    "blue",
+    "white"
+  ],
+  "request_to_present_ms": [
+    15.733426417802601,
+    15.773515317381863,
+    15.773515317381863,
+    18.01947147185906,
+    15.773515317381863,
+    17.69387138503237,
+    15.773515317381863,
+    18.327471553992414
+  ],
+  "flash_spacing_ms": [
+    198.05676392624815,
+    197.99907502197556,
+    200.6576535087076,
+    195.4069854418628,
+    199.84414218066013,
+    196.07969673236357,
+    200.941209139878
+  ],
+  "audio_update_gap_ms_max": 24.942139984570662
+}
+python3 tests/sound_effect.py
+test_01_all_real_effects_and_priorities (__main__.SoundEffectParity.test_01_all_real_effects_and_priorities) ... ok
+test_02_cancellation_and_inactive_state (__main__.SoundEffectParity.test_02_cancellation_and_inactive_state) ... ok
+test_03_random_state_and_duration_boundaries (__main__.SoundEffectParity.test_03_random_state_and_duration_boundaries) ... ok
+test_04_all_frequency_steps_scales_and_envelopes (__main__.SoundEffectParity.test_04_all_frequency_steps_scales_and_envelopes) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 8.505s
+
+OK
+python3 tests/audio_divider.py --trial build/pacman.prg --output build/evaluation/divider-kernel.json
+test_01_every_16_bit_frequency (__main__.DividerParity.test_01_every_16_bit_frequency) ... ok
+test_02_lookup_contents (__main__.DividerParity.test_02_lookup_contents) ... ok
+test_03_abi_and_input_guards (__main__.DividerParity.test_03_abi_and_input_guards) ... ok
+test_04_complete_converter_and_transitions (__main__.DividerParity.test_04_complete_converter_and_transitions) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 2.472s
+
+OK
+python3 tests/audio_update.py --trial build/pacman.prg --output build/evaluation/update-kernel.json
+test_01_every_frequency_and_shift (__main__.AudioUpdateParity.test_01_every_frequency_and_shift) ...   checked all 65536 inputs at shift 0
+  checked all 65536 inputs at shift 1
+  checked all 65536 inputs at shift 2
+  checked all 65536 inputs at shift 3
+  checked all 65536 inputs at shift 4
+  checked all 65536 inputs at shift 5
+  checked all 65536 inputs at shift 6
+  checked all 65536 inputs at shift 7
+ok
+test_02_masks_volumes_and_transitions (__main__.AudioUpdateParity.test_02_masks_volumes_and_transitions) ... ok
+test_03_abi_and_side_effects (__main__.AudioUpdateParity.test_03_abi_and_side_effects) ... ok
+test_04_saved_live_inputs (__main__.AudioUpdateParity.test_04_saved_live_inputs) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 38.444s
+
+OK
+python3 tests/ghost_update.py --trial build/pacman.prg --output build/evaluation/ghost-kernel.json
+test_01_speed_modes (__main__.GhostUpdate.test_01_speed_modes) ... ok
+test_02_state_transitions_and_collisions (__main__.GhostUpdate.test_02_state_transitions_and_collisions) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 18.391s
+
+OK
+python3 tools/arcade/pool_address_timing.py --baseline build/ghost-update-fast/pacman.prg --trial build/pacman.prg --output build/evaluation/allocator-kernel.json
+{
+  "baseline": {
+    "prg_sha256": "b4bd4785b6885cc4080a72f5508646caa6507f13bdee3fa087512e65e3b90e04",
+    "method": "vicsim call command; IRQs masked; identical home bytes and allocator inputs",
+    "cells_checked": 392,
+    "allocation_cycles": {
+      "count": 392,
+      "mean": 378.41326530612247,
+      "p50": 379,
+      "p95": 379,
+      "max": 379
+    },
+    "hit_cycles": {
+      "count": 392,
+      "mean": 119.08163265306122,
+      "p50": 120,
+      "p95": 120,
+      "max": 120
+    },
+    "begin_cycles": {
+      "count": 18,
+      "mean": 384.72222222222223,
+      "p50": 167,
+      "p95": 2130,
+      "max": 2131
+    }
+  },
+  "trial": {
+    "prg_sha256": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31",
+    "method": "vicsim call command; IRQs masked; identical home bytes and allocator inputs",
+    "cells_checked": 392,
+    "allocation_cycles": {
+      "count": 392,
+      "mean": 354.25,
+      "p50": 355,
+      "p95": 355,
+      "max": 355
+    },
+    "hit_cycles": {
+      "count": 392,
+      "mean": 116.08163265306122,
+      "p50": 117,
+      "p95": 117,
+      "max": 117
+    },
+    "begin_cycles": {
+      "count": 18,
+      "mean": 384.72222222222223,
+      "p50": 167,
+      "p95": 2130,
+      "max": 2131
+    }
+  }
+}
+python3 tools/arcade/tile_stamp_timing.py --baseline build/pool-alloc-fast/pacman.prg --trial build/pacman.prg --output build/evaluation/tile-stamp-kernel.json
+{
+  "baseline": {
+    "prg_sha256": "feed65059a7ad52ac007868b4ac8f982710478608e310d9ea8f56c54e43b14cf",
+    "native_sha256": "1420abdb2eed61fa231008d8a728135b54a59738485fc6167401ecdb6a85da7d",
+    "method": "Complete bitmap_tile call; IRQs masked; RTS included, caller JSR/fixture loading excluded",
+    "cases_checked": 17408,
+    "tiles_sha256": "a3981276773d149e354b531a2703ccd1ea1cd7df35310972d906ef11cafb379b",
+    "output_sha256": "c06e50cead28822094d6720e532ed1da9e81e7aac35421276b68b253acc6d9e9",
+    "groups": {
+      "all": {
+        "count": 17408,
+        "mean": 900.5746208639706,
+        "p50": 923,
+        "p95": 1043,
+        "max": 1085,
+        "min": 57
+      },
+      "clipped": {
+        "count": 16,
+        "mean": 61.0,
+        "p50": 61,
+        "p95": 65,
+        "max": 65,
+        "min": 57
+      },
+      "visible": {
+        "count": 17392,
+        "mean": 901.3469986200552,
+        "p50": 923,
+        "p95": 1043,
+        "max": 1085,
+        "min": 711
+      },
+      "nibble-1": {
+        "count": 8696,
+        "mean": 901.5264489420423,
+        "p50": 923,
+        "p95": 1043,
+        "max": 1078,
+        "min": 712
+      },
+      "nibble-0": {
+        "count": 8696,
+        "mean": 901.167548298068,
+        "p50": 923,
+        "p95": 1042,
+        "max": 1085,
+        "min": 711
+      },
+      "destination-page-crossing": {
+        "count": 528,
+        "mean": 964.3219696969697,
+        "p50": 1033,
+        "p95": 1074,
+        "max": 1078,
+        "min": 716
+      },
+      "source-page-crossing": {
+        "count": 132,
+        "mean": 922.3181818181819,
+        "p50": 933,
+        "p95": 1047,
+        "max": 1052,
+        "min": 859
+      }
+    }
+  },
+  "trial": {
+    "prg_sha256": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31",
+    "native_sha256": "cc3a94d4dbe6ad1b2b4cb46de587ec209ffb69bc81dee9365ffbd6dd7f7f2352",
+    "method": "Complete bitmap_tile call; IRQs masked; RTS included, caller JSR/fixture loading excluded",
+    "cases_checked": 17408,
+    "tiles_sha256": "a3981276773d149e354b531a2703ccd1ea1cd7df35310972d906ef11cafb379b",
+    "output_sha256": "c06e50cead28822094d6720e532ed1da9e81e7aac35421276b68b253acc6d9e9",
+    "groups": {
+      "all": {
+        "count": 17408,
+        "mean": 756.8596622242648,
+        "p50": 779,
+        "p95": 899,
+        "max": 941,
+        "min": 57
+      },
+      "clipped": {
+        "count": 16,
+        "mean": 61.0,
+        "p50": 61,
+        "p95": 65,
+        "max": 65,
+        "min": 57
+      },
+      "visible": {
+        "count": 17392,
+        "mean": 757.4998275068997,
+        "p50": 779,
+        "p95": 899,
+        "max": 941,
+        "min": 568
+      },
+      "nibble-1": {
+        "count": 8696,
+        "mean": 757.6796228150874,
+        "p50": 779,
+        "p95": 899,
+        "max": 930,
+        "min": 569
+      },
+      "nibble-0": {
+        "count": 8696,
+        "mean": 757.320032198712,
+        "p50": 779,
+        "p95": 898,
+        "max": 941,
+        "min": 568
+      },
+      "destination-page-crossing": {
+        "count": 528,
+        "mean": 820.25,
+        "p50": 889,
+        "p95": 930,
+        "max": 930,
+        "min": 572
+      },
+      "source-page-crossing": {
+        "count": 131,
+        "mean": 747.5954198473282,
+        "p50": 688,
+        "p95": 901,
+        "max": 906,
+        "min": 683
+      }
+    }
+  },
+  "cycle_savings": {
+    "all": {
+      "count": 17408,
+      "mean": 143.71495863970588,
+      "p50": 144,
+      "p95": 144,
+      "max": 150,
+      "min": 0
+    },
+    "clipped": {
+      "count": 16,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "visible": {
+      "count": 17392,
+      "mean": 143.84717111315547,
+      "p50": 144,
+      "p95": 144,
+      "max": 150,
+      "min": 139
+    },
+    "nibble-1": {
+      "count": 8696,
+      "mean": 143.8468261269549,
+      "p50": 144,
+      "p95": 144,
+      "max": 150,
+      "min": 139
+    },
+    "nibble-0": {
+      "count": 8696,
+      "mean": 143.84751609935603,
+      "p50": 144,
+      "p95": 144,
+      "max": 150,
+      "min": 139
+    },
+    "destination-page-crossing": {
+      "count": 528,
+      "mean": 144.0719696969697,
+      "p50": 144,
+      "p95": 144,
+      "max": 150,
+      "min": 140
+    },
+    "trial-only-source-page-crossing": {
+      "count": 131,
+      "mean": 140.81679389312978,
+      "p50": 141,
+      "p95": 142,
+      "max": 142,
+      "min": 139
+    },
+    "baseline-only-source-page-crossing": {
+      "count": 132,
+      "mean": 149.29545454545453,
+      "p50": 149,
+      "p95": 150,
+      "max": 150,
+      "min": 148
+    }
+  }
+}
+python3 tools/arcade/pool_setup_timing.py --baseline build/tile-stamp-fast/pacman.prg --trial build/pacman.prg --output build/evaluation/pool-setup-kernel.json
+{
+  "baseline": {
+    "prg_sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297",
+    "native_sha256": "9f8e854bdf04e99ad7582e5f72fe17e9137944b1592389968d3ad50e0b9f9b6b",
+    "method": "Unpatched complete video_sprites calls, RTS included, caller JSR excluded; IRQs masked",
+    "oracle": "Independent Renderer.check_scene pixels, colours, retained inputs and restoration",
+    "cases_checked": 8768,
+    "output_sha256": "1c8e70e6e820b3f41d989da46703592dc0bd8d6adb36a322fa4eaf5ab8b9140d",
+    "artwork_sha256": "8eee98d422cdef3f46b0f28a24e3838d02eaca88a4f9274e4655488d2b5c7188",
+    "exclusive_setup": {
+      "actor_preparation": {
+        "cycles": 7859064,
+        "cycles_per_scene": 896.3348540145986
+      },
+      "destination_setup": {
+        "cycles": 622290,
+        "cycles_per_scene": 70.97285583941606
+      }
+    },
+    "groups": {
+      "all": {
+        "count": 8768,
+        "mean": 2642.050182481752,
+        "p50": 2756,
+        "p95": 4828,
+        "max": 6288
+      },
+      "hidden-palette": {
+        "count": 64,
+        "mean": 1339.1875,
+        "p50": 1063,
+        "p95": 3027,
+        "max": 3027
+      },
+      "regular": {
+        "count": 7372,
+        "mean": 2793.710119370591,
+        "p50": 2812,
+        "p95": 4938,
+        "max": 6288
+      },
+      "eyes": {
+        "count": 248,
+        "mean": 2820.875,
+        "p50": 2675,
+        "p95": 4648,
+        "max": 5591
+      },
+      "score-right": {
+        "count": 124,
+        "mean": 2895.9032258064517,
+        "p50": 2737,
+        "p95": 4730,
+        "max": 5707
+      },
+      "clipped": {
+        "count": 960,
+        "mean": 1485.3,
+        "p50": 1093,
+        "p95": 3057,
+        "max": 3057
+      }
+    }
+  },
+  "trial": {
+    "prg_sha256": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31",
+    "native_sha256": "cc3a94d4dbe6ad1b2b4cb46de587ec209ffb69bc81dee9365ffbd6dd7f7f2352",
+    "method": "Unpatched complete video_sprites calls, RTS included, caller JSR excluded; IRQs masked",
+    "oracle": "Independent Renderer.check_scene pixels, colours, retained inputs and restoration",
+    "cases_checked": 8768,
+    "output_sha256": "1c8e70e6e820b3f41d989da46703592dc0bd8d6adb36a322fa4eaf5ab8b9140d",
+    "artwork_sha256": "8eee98d422cdef3f46b0f28a24e3838d02eaca88a4f9274e4655488d2b5c7188",
+    "exclusive_setup": {
+      "actor_preparation": {
+        "cycles": 7279482,
+        "cycles_per_scene": 830.2328923357665
+      },
+      "destination_setup": {
+        "cycles": 546547,
+        "cycles_per_scene": 62.33428375912409
+      }
+    },
+    "groups": {
+      "all": {
+        "count": 8768,
+        "mean": 2556.090328467153,
+        "p50": 2655,
+        "p95": 4730,
+        "max": 6126
+      },
+      "hidden-palette": {
+        "count": 64,
+        "mean": 1339.1875,
+        "p50": 1063,
+        "p95": 3027,
+        "max": 3027
+      },
+      "regular": {
+        "count": 7372,
+        "mean": 2692.1819045035268,
+        "p50": 2700,
+        "p95": 4811,
+        "max": 6126
+      },
+      "eyes": {
+        "count": 248,
+        "mean": 2807.8709677419356,
+        "p50": 2663,
+        "p95": 4632,
+        "max": 5563
+      },
+      "score-right": {
+        "count": 124,
+        "mean": 2879.733870967742,
+        "p50": 2733,
+        "p95": 4711,
+        "max": 5672
+      },
+      "clipped": {
+        "count": 960,
+        "mean": 1485.3,
+        "p50": 1093,
+        "p95": 3057,
+        "max": 3057
+      }
+    }
+  },
+  "cycle_savings": {
+    "all": {
+      "count": 8768,
+      "mean": 85.95985401459853,
+      "p50": 103,
+      "p95": 158,
+      "max": 180,
+      "min": 0
+    },
+    "hidden-palette": {
+      "count": 64,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "regular": {
+      "count": 7372,
+      "mean": 101.52821486706456,
+      "p50": 115,
+      "p95": 158,
+      "max": 180,
+      "min": 18
+    },
+    "eyes": {
+      "count": 248,
+      "mean": 13.004032258064516,
+      "p50": 16,
+      "p95": 19,
+      "max": 34,
+      "min": 3
+    },
+    "score-right": {
+      "count": 124,
+      "mean": 16.169354838709676,
+      "p50": 19,
+      "p95": 22,
+      "max": 35,
+      "min": 4
+    },
+    "clipped": {
+      "count": 960,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    }
+  }
+}
+python3 tools/arcade/pool_setup_timing.py --baseline build/pool-setup-fast/pacman.prg --trial build/pacman.prg --output build/evaluation/pool-dest-kernel.json
+{
+  "baseline": {
+    "prg_sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+    "native_sha256": "b4a2880ed4e3b7e6db178e33cbf84e3936da6bc99836fd2487690258eb64798e",
+    "method": "Unpatched complete video_sprites calls, RTS included, caller JSR excluded; IRQs masked",
+    "oracle": "Independent Renderer.check_scene pixels, colours, retained inputs and restoration",
+    "cases_checked": 8768,
+    "output_sha256": "1c8e70e6e820b3f41d989da46703592dc0bd8d6adb36a322fa4eaf5ab8b9140d",
+    "artwork_sha256": "8eee98d422cdef3f46b0f28a24e3838d02eaca88a4f9274e4655488d2b5c7188",
+    "exclusive_setup": {
+      "actor_preparation": {
+        "cycles": 7279482,
+        "cycles_per_scene": 830.2328923357665
+      },
+      "destination_setup": {
+        "cycles": 622290,
+        "cycles_per_scene": 70.97285583941606
+      }
+    },
+    "groups": {
+      "all": {
+        "count": 8768,
+        "mean": 2575.768704379562,
+        "p50": 2674,
+        "p95": 4745,
+        "max": 6187
+      },
+      "hidden-palette": {
+        "count": 64,
+        "mean": 1339.1875,
+        "p50": 1063,
+        "p95": 3027,
+        "max": 3027
+      },
+      "regular": {
+        "count": 7372,
+        "mean": 2714.6184210526317,
+        "p50": 2713,
+        "p95": 4840,
+        "max": 6187
+      },
+      "eyes": {
+        "count": 248,
+        "mean": 2826.0685483870966,
+        "p50": 2680,
+        "p95": 4653,
+        "max": 5597
+      },
+      "score-right": {
+        "count": 124,
+        "mean": 2900.9032258064517,
+        "p50": 2742,
+        "p95": 4735,
+        "max": 5712
+      },
+      "clipped": {
+        "count": 960,
+        "mean": 1485.3,
+        "p50": 1093,
+        "p95": 3057,
+        "max": 3057
+      }
+    }
+  },
+  "trial": {
+    "prg_sha256": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31",
+    "native_sha256": "cc3a94d4dbe6ad1b2b4cb46de587ec209ffb69bc81dee9365ffbd6dd7f7f2352",
+    "method": "Unpatched complete video_sprites calls, RTS included, caller JSR excluded; IRQs masked",
+    "oracle": "Independent Renderer.check_scene pixels, colours, retained inputs and restoration",
+    "cases_checked": 8768,
+    "output_sha256": "1c8e70e6e820b3f41d989da46703592dc0bd8d6adb36a322fa4eaf5ab8b9140d",
+    "artwork_sha256": "8eee98d422cdef3f46b0f28a24e3838d02eaca88a4f9274e4655488d2b5c7188",
+    "exclusive_setup": {
+      "actor_preparation": {
+        "cycles": 7279482,
+        "cycles_per_scene": 830.2328923357665
+      },
+      "destination_setup": {
+        "cycles": 546547,
+        "cycles_per_scene": 62.33428375912409
+      }
+    },
+    "groups": {
+      "all": {
+        "count": 8768,
+        "mean": 2556.090328467153,
+        "p50": 2655,
+        "p95": 4730,
+        "max": 6126
+      },
+      "hidden-palette": {
+        "count": 64,
+        "mean": 1339.1875,
+        "p50": 1063,
+        "p95": 3027,
+        "max": 3027
+      },
+      "regular": {
+        "count": 7372,
+        "mean": 2692.1819045035268,
+        "p50": 2700,
+        "p95": 4811,
+        "max": 6126
+      },
+      "eyes": {
+        "count": 248,
+        "mean": 2807.8709677419356,
+        "p50": 2663,
+        "p95": 4632,
+        "max": 5563
+      },
+      "score-right": {
+        "count": 124,
+        "mean": 2879.733870967742,
+        "p50": 2733,
+        "p95": 4711,
+        "max": 5672
+      },
+      "clipped": {
+        "count": 960,
+        "mean": 1485.3,
+        "p50": 1093,
+        "p95": 3057,
+        "max": 3057
+      }
+    }
+  },
+  "cycle_savings": {
+    "all": {
+      "count": 8768,
+      "mean": 19.678375912408757,
+      "p50": 12,
+      "p95": 49,
+      "max": 64,
+      "min": 0
+    },
+    "hidden-palette": {
+      "count": 64,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "regular": {
+      "count": 7372,
+      "mean": 22.43651654910472,
+      "p50": 21,
+      "p95": 52,
+      "max": 64,
+      "min": 0
+    },
+    "eyes": {
+      "count": 248,
+      "mean": 18.197580645161292,
+      "p50": 21,
+      "p95": 24,
+      "max": 40,
+      "min": 9
+    },
+    "score-right": {
+      "count": 124,
+      "mean": 21.169354838709676,
+      "p50": 24,
+      "p95": 27,
+      "max": 40,
+      "min": 9
+    },
+    "clipped": {
+      "count": 960,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    }
+  }
+}
+python3 tools/arcade/pool_stamp_timing.py --baseline build/pool-setup-fast/pacman.prg --trial build/pacman.prg --poison-unused-bottom --output build/evaluation/pool-dest-guards.json
+{
+  "baseline": {
+    "prg_sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+    "method": "vicsim call pool_draw; IRQs masked; identical masks and destinations",
+    "background_sha256": "13e7cc89054bace115014df8bdf6e4422ec340dac502a323ae142a694e2f5574",
+    "unused_bottom_pointers_poisoned": true,
+    "cases_checked": 10496,
+    "groups": {
+      "all": {
+        "count": 10496,
+        "mean": 769.2256097560976,
+        "p50": 775,
+        "p95": 1147,
+        "max": 1242
+      },
+      "arcade_sprites": {
+        "count": 8192,
+        "mean": 797.484375,
+        "p50": 826,
+        "p95": 1142,
+        "max": 1242
+      },
+      "shift-0": {
+        "count": 1312,
+        "mean": 528.7073170731708,
+        "p50": 514,
+        "p95": 733,
+        "max": 738
+      },
+      "shift-1": {
+        "count": 1312,
+        "mean": 732.9024390243902,
+        "p50": 747,
+        "p95": 1045,
+        "max": 1050
+      },
+      "shift-2": {
+        "count": 1312,
+        "mean": 787.8780487804878,
+        "p50": 817,
+        "p95": 1129,
+        "max": 1134
+      },
+      "shift-3": {
+        "count": 1312,
+        "mean": 842.8536585365854,
+        "p50": 887,
+        "p95": 1213,
+        "max": 1218
+      },
+      "shift-4": {
+        "count": 1312,
+        "mean": 858.560975609756,
+        "p50": 907,
+        "p95": 1237,
+        "max": 1242
+      },
+      "shift-5": {
+        "count": 1312,
+        "mean": 835.0,
+        "p50": 877,
+        "p95": 1201,
+        "max": 1206
+      },
+      "shift-6": {
+        "count": 1312,
+        "mean": 811.439024390244,
+        "p50": 847,
+        "p95": 1165,
+        "max": 1170
+      },
+      "shift-7": {
+        "count": 1312,
+        "mean": 756.4634146341464,
+        "p50": 777,
+        "p95": 1081,
+        "max": 1086
+      },
+      "arcade_eyes": {
+        "count": 1024,
+        "mean": 533.4375,
+        "p50": 535,
+        "p95": 634,
+        "max": 658
+      },
+      "arcade_score_right": {
+        "count": 512,
+        "mean": 614.625,
+        "p50": 623,
+        "p95": 716,
+        "max": 731
+      },
+      "synthetic": {
+        "count": 768,
+        "mean": 885.25,
+        "p50": 987,
+        "p95": 1214,
+        "max": 1242
+      }
+    }
+  },
+  "trial": {
+    "prg_sha256": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31",
+    "method": "vicsim call pool_draw; IRQs masked; identical masks and destinations",
+    "background_sha256": "13e7cc89054bace115014df8bdf6e4422ec340dac502a323ae142a694e2f5574",
+    "unused_bottom_pointers_poisoned": true,
+    "cases_checked": 10496,
+    "groups": {
+      "all": {
+        "count": 10496,
+        "mean": 754.5,
+        "p50": 750,
+        "p95": 1129,
+        "max": 1242
+      },
+      "arcade_sprites": {
+        "count": 8192,
+        "mean": 781.78125,
+        "p50": 799,
+        "p95": 1129,
+        "max": 1242
+      },
+      "shift-0": {
+        "count": 1312,
+        "mean": 528.7073170731708,
+        "p50": 514,
+        "p95": 733,
+        "max": 738
+      },
+      "shift-1": {
+        "count": 1312,
+        "mean": 709.3414634146342,
+        "p50": 717,
+        "p95": 1009,
+        "max": 1014
+      },
+      "shift-2": {
+        "count": 1312,
+        "mean": 764.3170731707318,
+        "p50": 787,
+        "p95": 1093,
+        "max": 1098
+      },
+      "shift-3": {
+        "count": 1312,
+        "mean": 819.2926829268292,
+        "p50": 857,
+        "p95": 1177,
+        "max": 1182
+      },
+      "shift-4": {
+        "count": 1312,
+        "mean": 858.560975609756,
+        "p50": 907,
+        "p95": 1237,
+        "max": 1242
+      },
+      "shift-5": {
+        "count": 1312,
+        "mean": 835.0,
+        "p50": 877,
+        "p95": 1201,
+        "max": 1206
+      },
+      "shift-6": {
+        "count": 1312,
+        "mean": 787.8780487804878,
+        "p50": 817,
+        "p95": 1129,
+        "max": 1134
+      },
+      "shift-7": {
+        "count": 1312,
+        "mean": 732.9024390243902,
+        "p50": 747,
+        "p95": 1045,
+        "max": 1050
+      },
+      "arcade_eyes": {
+        "count": 1024,
+        "mean": 526.875,
+        "p50": 528,
+        "p95": 630,
+        "max": 658
+      },
+      "arcade_score_right": {
+        "count": 512,
+        "mean": 605.25,
+        "p50": 615,
+        "p95": 711,
+        "max": 731
+      },
+      "synthetic": {
+        "count": 768,
+        "mean": 866.5,
+        "p50": 963,
+        "p95": 1209,
+        "max": 1242
+      }
+    }
+  },
+  "cycle_savings": {
+    "all": {
+      "count": 10496,
+      "mean": 14.725609756097562,
+      "p50": 12,
+      "p95": 36,
+      "max": 36,
+      "min": 0
+    },
+    "arcade_sprites": {
+      "count": 8192,
+      "mean": 15.703125,
+      "p50": 18,
+      "p95": 36,
+      "max": 36,
+      "min": 0
+    },
+    "shift-0": {
+      "count": 1312,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "shift-1": {
+      "count": 1312,
+      "mean": 23.5609756097561,
+      "p50": 27,
+      "p95": 36,
+      "max": 36,
+      "min": 0
+    },
+    "shift-2": {
+      "count": 1312,
+      "mean": 23.5609756097561,
+      "p50": 27,
+      "p95": 36,
+      "max": 36,
+      "min": 0
+    },
+    "shift-3": {
+      "count": 1312,
+      "mean": 23.5609756097561,
+      "p50": 27,
+      "p95": 36,
+      "max": 36,
+      "min": 0
+    },
+    "shift-4": {
+      "count": 1312,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "shift-5": {
+      "count": 1312,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "shift-6": {
+      "count": 1312,
+      "mean": 23.5609756097561,
+      "p50": 27,
+      "p95": 36,
+      "max": 36,
+      "min": 0
+    },
+    "shift-7": {
+      "count": 1312,
+      "mean": 23.5609756097561,
+      "p50": 27,
+      "p95": 36,
+      "max": 36,
+      "min": 0
+    },
+    "arcade_eyes": {
+      "count": 1024,
+      "mean": 6.5625,
+      "p50": 9,
+      "p95": 12,
+      "max": 12,
+      "min": 0
+    },
+    "arcade_score_right": {
+      "count": 512,
+      "mean": 9.375,
+      "p50": 15,
+      "p95": 15,
+      "max": 15,
+      "min": 0
+    },
+    "synthetic": {
+      "count": 768,
+      "mean": 18.75,
+      "p50": 36,
+      "p95": 36,
+      "max": 36,
+      "min": 0
+    }
+  }
+}
+python3 tools/arcade/pool_setup_timing.py --baseline build/pool-dest-fast/pacman.prg --trial build/pacman.prg --output build/evaluation/pool-shift-kernel.json
+{
+  "baseline": {
+    "prg_sha256": "2284d03b700e5d72b1a13c9f35257e96e0c48469c9eef9f3854d61489f8513dc",
+    "native_sha256": "bdde04bba6d1e1663309606877801b916b544dc7925fc63c81c0c9c8c2dbf353",
+    "method": "Unpatched complete video_sprites calls, RTS included, caller JSR excluded; IRQs masked",
+    "oracle": "Independent Renderer.check_scene pixels, colours, retained inputs and restoration",
+    "cases_checked": 8768,
+    "output_sha256": "1c8e70e6e820b3f41d989da46703592dc0bd8d6adb36a322fa4eaf5ab8b9140d",
+    "artwork_sha256": "8eee98d422cdef3f46b0f28a24e3838d02eaca88a4f9274e4655488d2b5c7188",
+    "exclusive_setup": {
+      "actor_preparation": {
+        "cycles": 7279482,
+        "cycles_per_scene": 830.2328923357665
+      },
+      "destination_setup": {
+        "cycles": 546547,
+        "cycles_per_scene": 62.33428375912409
+      }
+    },
+    "groups": {
+      "all": {
+        "count": 8768,
+        "mean": 2567.103216240876,
+        "p50": 2665,
+        "p95": 4733,
+        "max": 6162
+      },
+      "hidden-palette": {
+        "count": 64,
+        "mean": 1339.1875,
+        "p50": 1063,
+        "p95": 3027,
+        "max": 3027
+      },
+      "regular": {
+        "count": 7372,
+        "mean": 2704.8761530113943,
+        "p50": 2701,
+        "p95": 4831,
+        "max": 6162
+      },
+      "eyes": {
+        "count": 248,
+        "mean": 2814.8629032258063,
+        "p50": 2671,
+        "p95": 4641,
+        "max": 5572
+      },
+      "score-right": {
+        "count": 124,
+        "mean": 2889.7741935483873,
+        "p50": 2733,
+        "p95": 4726,
+        "max": 5687
+      },
+      "clipped": {
+        "count": 960,
+        "mean": 1485.3,
+        "p50": 1093,
+        "p95": 3057,
+        "max": 3057
+      }
+    }
+  },
+  "trial": {
+    "prg_sha256": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31",
+    "native_sha256": "cc3a94d4dbe6ad1b2b4cb46de587ec209ffb69bc81dee9365ffbd6dd7f7f2352",
+    "method": "Unpatched complete video_sprites calls, RTS included, caller JSR excluded; IRQs masked",
+    "oracle": "Independent Renderer.check_scene pixels, colours, retained inputs and restoration",
+    "cases_checked": 8768,
+    "output_sha256": "1c8e70e6e820b3f41d989da46703592dc0bd8d6adb36a322fa4eaf5ab8b9140d",
+    "artwork_sha256": "8eee98d422cdef3f46b0f28a24e3838d02eaca88a4f9274e4655488d2b5c7188",
+    "exclusive_setup": {
+      "actor_preparation": {
+        "cycles": 7279482,
+        "cycles_per_scene": 830.2328923357665
+      },
+      "destination_setup": {
+        "cycles": 546547,
+        "cycles_per_scene": 62.33428375912409
+      }
+    },
+    "groups": {
+      "all": {
+        "count": 8768,
+        "mean": 2556.090328467153,
+        "p50": 2655,
+        "p95": 4730,
+        "max": 6126
+      },
+      "hidden-palette": {
+        "count": 64,
+        "mean": 1339.1875,
+        "p50": 1063,
+        "p95": 3027,
+        "max": 3027
+      },
+      "regular": {
+        "count": 7372,
+        "mean": 2692.1819045035268,
+        "p50": 2700,
+        "p95": 4811,
+        "max": 6126
+      },
+      "eyes": {
+        "count": 248,
+        "mean": 2807.8709677419356,
+        "p50": 2663,
+        "p95": 4632,
+        "max": 5563
+      },
+      "score-right": {
+        "count": 124,
+        "mean": 2879.733870967742,
+        "p50": 2733,
+        "p95": 4711,
+        "max": 5672
+      },
+      "clipped": {
+        "count": 960,
+        "mean": 1485.3,
+        "p50": 1093,
+        "p95": 3057,
+        "max": 3057
+      }
+    }
+  },
+  "cycle_savings": {
+    "all": {
+      "count": 8768,
+      "mean": 11.012887773722628,
+      "p50": 0,
+      "p95": 36,
+      "max": 36,
+      "min": -2
+    },
+    "hidden-palette": {
+      "count": 64,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "regular": {
+      "count": 7372,
+      "mean": 12.694248507867608,
+      "p50": 0,
+      "p95": 36,
+      "max": 36,
+      "min": -2
+    },
+    "eyes": {
+      "count": 248,
+      "mean": 6.991935483870968,
+      "p50": 9,
+      "p95": 12,
+      "max": 12,
+      "min": 0
+    },
+    "score-right": {
+      "count": 124,
+      "mean": 10.040322580645162,
+      "p50": 15,
+      "p95": 15,
+      "max": 15,
+      "min": 0
+    },
+    "clipped": {
+      "count": 960,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    }
+  }
+}
+python3 tools/arcade/pool_stamp_timing.py --baseline build/pool-dest-fast/pacman.prg --trial build/pacman.prg --poison-unused-bottom --output build/evaluation/pool-shift-guards.json
+{
+  "baseline": {
+    "prg_sha256": "2284d03b700e5d72b1a13c9f35257e96e0c48469c9eef9f3854d61489f8513dc",
+    "method": "vicsim call pool_draw; IRQs masked; identical masks and destinations",
+    "background_sha256": "13e7cc89054bace115014df8bdf6e4422ec340dac502a323ae142a694e2f5574",
+    "unused_bottom_pointers_poisoned": true,
+    "cases_checked": 10496,
+    "groups": {
+      "all": {
+        "count": 10496,
+        "mean": 769.2256097560976,
+        "p50": 775,
+        "p95": 1147,
+        "max": 1242
+      },
+      "arcade_sprites": {
+        "count": 8192,
+        "mean": 797.484375,
+        "p50": 826,
+        "p95": 1142,
+        "max": 1242
+      },
+      "shift-0": {
+        "count": 1312,
+        "mean": 528.7073170731708,
+        "p50": 514,
+        "p95": 733,
+        "max": 738
+      },
+      "shift-1": {
+        "count": 1312,
+        "mean": 732.9024390243902,
+        "p50": 747,
+        "p95": 1045,
+        "max": 1050
+      },
+      "shift-2": {
+        "count": 1312,
+        "mean": 787.8780487804878,
+        "p50": 817,
+        "p95": 1129,
+        "max": 1134
+      },
+      "shift-3": {
+        "count": 1312,
+        "mean": 842.8536585365854,
+        "p50": 887,
+        "p95": 1213,
+        "max": 1218
+      },
+      "shift-4": {
+        "count": 1312,
+        "mean": 858.560975609756,
+        "p50": 907,
+        "p95": 1237,
+        "max": 1242
+      },
+      "shift-5": {
+        "count": 1312,
+        "mean": 835.0,
+        "p50": 877,
+        "p95": 1201,
+        "max": 1206
+      },
+      "shift-6": {
+        "count": 1312,
+        "mean": 811.439024390244,
+        "p50": 847,
+        "p95": 1165,
+        "max": 1170
+      },
+      "shift-7": {
+        "count": 1312,
+        "mean": 756.4634146341464,
+        "p50": 777,
+        "p95": 1081,
+        "max": 1086
+      },
+      "arcade_eyes": {
+        "count": 1024,
+        "mean": 533.4375,
+        "p50": 535,
+        "p95": 634,
+        "max": 658
+      },
+      "arcade_score_right": {
+        "count": 512,
+        "mean": 614.625,
+        "p50": 623,
+        "p95": 716,
+        "max": 731
+      },
+      "synthetic": {
+        "count": 768,
+        "mean": 885.25,
+        "p50": 987,
+        "p95": 1214,
+        "max": 1242
+      }
+    }
+  },
+  "trial": {
+    "prg_sha256": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31",
+    "method": "vicsim call pool_draw; IRQs masked; identical masks and destinations",
+    "background_sha256": "13e7cc89054bace115014df8bdf6e4422ec340dac502a323ae142a694e2f5574",
+    "unused_bottom_pointers_poisoned": true,
+    "cases_checked": 10496,
+    "groups": {
+      "all": {
+        "count": 10496,
+        "mean": 754.5,
+        "p50": 750,
+        "p95": 1129,
+        "max": 1242
+      },
+      "arcade_sprites": {
+        "count": 8192,
+        "mean": 781.78125,
+        "p50": 799,
+        "p95": 1129,
+        "max": 1242
+      },
+      "shift-0": {
+        "count": 1312,
+        "mean": 528.7073170731708,
+        "p50": 514,
+        "p95": 733,
+        "max": 738
+      },
+      "shift-1": {
+        "count": 1312,
+        "mean": 709.3414634146342,
+        "p50": 717,
+        "p95": 1009,
+        "max": 1014
+      },
+      "shift-2": {
+        "count": 1312,
+        "mean": 764.3170731707318,
+        "p50": 787,
+        "p95": 1093,
+        "max": 1098
+      },
+      "shift-3": {
+        "count": 1312,
+        "mean": 819.2926829268292,
+        "p50": 857,
+        "p95": 1177,
+        "max": 1182
+      },
+      "shift-4": {
+        "count": 1312,
+        "mean": 858.560975609756,
+        "p50": 907,
+        "p95": 1237,
+        "max": 1242
+      },
+      "shift-5": {
+        "count": 1312,
+        "mean": 835.0,
+        "p50": 877,
+        "p95": 1201,
+        "max": 1206
+      },
+      "shift-6": {
+        "count": 1312,
+        "mean": 787.8780487804878,
+        "p50": 817,
+        "p95": 1129,
+        "max": 1134
+      },
+      "shift-7": {
+        "count": 1312,
+        "mean": 732.9024390243902,
+        "p50": 747,
+        "p95": 1045,
+        "max": 1050
+      },
+      "arcade_eyes": {
+        "count": 1024,
+        "mean": 526.875,
+        "p50": 528,
+        "p95": 630,
+        "max": 658
+      },
+      "arcade_score_right": {
+        "count": 512,
+        "mean": 605.25,
+        "p50": 615,
+        "p95": 711,
+        "max": 731
+      },
+      "synthetic": {
+        "count": 768,
+        "mean": 866.5,
+        "p50": 963,
+        "p95": 1209,
+        "max": 1242
+      }
+    }
+  },
+  "cycle_savings": {
+    "all": {
+      "count": 10496,
+      "mean": 14.725609756097562,
+      "p50": 12,
+      "p95": 36,
+      "max": 36,
+      "min": 0
+    },
+    "arcade_sprites": {
+      "count": 8192,
+      "mean": 15.703125,
+      "p50": 18,
+      "p95": 36,
+      "max": 36,
+      "min": 0
+    },
+    "shift-0": {
+      "count": 1312,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "shift-1": {
+      "count": 1312,
+      "mean": 23.5609756097561,
+      "p50": 27,
+      "p95": 36,
+      "max": 36,
+      "min": 0
+    },
+    "shift-2": {
+      "count": 1312,
+      "mean": 23.5609756097561,
+      "p50": 27,
+      "p95": 36,
+      "max": 36,
+      "min": 0
+    },
+    "shift-3": {
+      "count": 1312,
+      "mean": 23.5609756097561,
+      "p50": 27,
+      "p95": 36,
+      "max": 36,
+      "min": 0
+    },
+    "shift-4": {
+      "count": 1312,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "shift-5": {
+      "count": 1312,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "shift-6": {
+      "count": 1312,
+      "mean": 23.5609756097561,
+      "p50": 27,
+      "p95": 36,
+      "max": 36,
+      "min": 0
+    },
+    "shift-7": {
+      "count": 1312,
+      "mean": 23.5609756097561,
+      "p50": 27,
+      "p95": 36,
+      "max": 36,
+      "min": 0
+    },
+    "arcade_eyes": {
+      "count": 1024,
+      "mean": 6.5625,
+      "p50": 9,
+      "p95": 12,
+      "max": 12,
+      "min": 0
+    },
+    "arcade_score_right": {
+      "count": 512,
+      "mean": 9.375,
+      "p50": 15,
+      "p95": 15,
+      "max": 15,
+      "min": 0
+    },
+    "synthetic": {
+      "count": 768,
+      "mean": 18.75,
+      "p50": 36,
+      "p95": 36,
+      "max": 36,
+      "min": 0
+    }
+  }
+}
+python3 tests/tile_address.py --prg build/pacman.prg --output build/evaluation/tile-kernel.json
+test_01_all_coordinates_and_incoming_carries (__main__.TileAddress.test_01_all_coordinates_and_incoming_carries) ... ok
+test_02_distinguish_all_ten_address_bits (__main__.TileAddress.test_02_distinguish_all_ten_address_bits) ... ok
+test_03_full_colour_byte_comparison (__main__.TileAddress.test_03_full_colour_byte_comparison) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 7.217s
+
+OK
+python3 tools/arcade/pool_stamp_timing.py --baseline build/tile-address-fast/pacman.prg --trial build/pacman.prg --output build/evaluation/stamp-kernel.json
+{
+  "baseline": {
+    "prg_sha256": "cc5238c2d7a07df754e1d0280cc6144ecec7cc9146bc04c0cfd09fc250d3a3a4",
+    "method": "vicsim call pool_draw; IRQs masked; identical masks and destinations",
+    "background_sha256": "13e7cc89054bace115014df8bdf6e4422ec340dac502a323ae142a694e2f5574",
+    "unused_bottom_pointers_poisoned": false,
+    "cases_checked": 10496,
+    "groups": {
+      "all": {
+        "count": 10496,
+        "mean": 892.4298780487804,
+        "p50": 916,
+        "p95": 1257,
+        "max": 1392
+      },
+      "arcade_sprites": {
+        "count": 8192,
+        "mean": 924.859375,
+        "p50": 960,
+        "p95": 1257,
+        "max": 1392
+      },
+      "shift-0": {
+        "count": 1312,
+        "mean": 773.2682926829268,
+        "p50": 802,
+        "p95": 1052,
+        "max": 1056
+      },
+      "shift-1": {
+        "count": 1312,
+        "mean": 828.2439024390244,
+        "p50": 872,
+        "p95": 1136,
+        "max": 1140
+      },
+      "shift-2": {
+        "count": 1312,
+        "mean": 883.219512195122,
+        "p50": 938,
+        "p95": 1220,
+        "max": 1224
+      },
+      "shift-3": {
+        "count": 1312,
+        "mean": 938.1951219512196,
+        "p50": 1008,
+        "p95": 1304,
+        "max": 1308
+      },
+      "shift-4": {
+        "count": 1312,
+        "mean": 993.170731707317,
+        "p50": 1078,
+        "p95": 1388,
+        "max": 1392
+      },
+      "shift-5": {
+        "count": 1312,
+        "mean": 962.7560975609756,
+        "p50": 1039,
+        "p95": 1341,
+        "max": 1345
+      },
+      "shift-6": {
+        "count": 1312,
+        "mean": 907.780487804878,
+        "p50": 969,
+        "p95": 1257,
+        "max": 1261
+      },
+      "shift-7": {
+        "count": 1312,
+        "mean": 852.8048780487804,
+        "p50": 899,
+        "p95": 1173,
+        "max": 1177
+      },
+      "arcade_eyes": {
+        "count": 1024,
+        "mean": 621.8125,
+        "p50": 620,
+        "p95": 712,
+        "max": 744
+      },
+      "arcade_score_right": {
+        "count": 512,
+        "mean": 715.0,
+        "p50": 716,
+        "p95": 802,
+        "max": 825
+      },
+      "synthetic": {
+        "count": 768,
+        "mean": 1025.625,
+        "p50": 1117,
+        "p95": 1360,
+        "max": 1392
+      }
+    }
+  },
+  "trial": {
+    "prg_sha256": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31",
+    "method": "vicsim call pool_draw; IRQs masked; identical masks and destinations",
+    "background_sha256": "13e7cc89054bace115014df8bdf6e4422ec340dac502a323ae142a694e2f5574",
+    "unused_bottom_pointers_poisoned": false,
+    "cases_checked": 10496,
+    "groups": {
+      "all": {
+        "count": 10496,
+        "mean": 754.5,
+        "p50": 750,
+        "p95": 1129,
+        "max": 1242
+      },
+      "arcade_sprites": {
+        "count": 8192,
+        "mean": 781.78125,
+        "p50": 799,
+        "p95": 1129,
+        "max": 1242
+      },
+      "shift-0": {
+        "count": 1312,
+        "mean": 528.7073170731708,
+        "p50": 514,
+        "p95": 733,
+        "max": 738
+      },
+      "shift-1": {
+        "count": 1312,
+        "mean": 709.3414634146342,
+        "p50": 717,
+        "p95": 1009,
+        "max": 1014
+      },
+      "shift-2": {
+        "count": 1312,
+        "mean": 764.3170731707318,
+        "p50": 787,
+        "p95": 1093,
+        "max": 1098
+      },
+      "shift-3": {
+        "count": 1312,
+        "mean": 819.2926829268292,
+        "p50": 857,
+        "p95": 1177,
+        "max": 1182
+      },
+      "shift-4": {
+        "count": 1312,
+        "mean": 858.560975609756,
+        "p50": 907,
+        "p95": 1237,
+        "max": 1242
+      },
+      "shift-5": {
+        "count": 1312,
+        "mean": 835.0,
+        "p50": 877,
+        "p95": 1201,
+        "max": 1206
+      },
+      "shift-6": {
+        "count": 1312,
+        "mean": 787.8780487804878,
+        "p50": 817,
+        "p95": 1129,
+        "max": 1134
+      },
+      "shift-7": {
+        "count": 1312,
+        "mean": 732.9024390243902,
+        "p50": 747,
+        "p95": 1045,
+        "max": 1050
+      },
+      "arcade_eyes": {
+        "count": 1024,
+        "mean": 526.875,
+        "p50": 528,
+        "p95": 630,
+        "max": 658
+      },
+      "arcade_score_right": {
+        "count": 512,
+        "mean": 605.25,
+        "p50": 615,
+        "p95": 711,
+        "max": 731
+      },
+      "synthetic": {
+        "count": 768,
+        "mean": 866.5,
+        "p50": 963,
+        "p95": 1209,
+        "max": 1242
+      }
+    }
+  },
+  "cycle_savings": {
+    "all": {
+      "count": 10496,
+      "mean": 137.9298780487805,
+      "p50": 126,
+      "p95": 290,
+      "max": 366,
+      "min": 50
+    },
+    "arcade_sprites": {
+      "count": 8192,
+      "mean": 143.078125,
+      "p50": 127,
+      "p95": 291,
+      "max": 366,
+      "min": 50
+    },
+    "shift-0": {
+      "count": 1312,
+      "mean": 244.5609756097561,
+      "p50": 274,
+      "p95": 366,
+      "max": 366,
+      "min": 50
+    },
+    "shift-1": {
+      "count": 1312,
+      "mean": 118.90243902439025,
+      "p50": 115,
+      "p95": 174,
+      "max": 174,
+      "min": 50
+    },
+    "shift-2": {
+      "count": 1312,
+      "mean": 118.90243902439025,
+      "p50": 115,
+      "p95": 174,
+      "max": 174,
+      "min": 50
+    },
+    "shift-3": {
+      "count": 1312,
+      "mean": 118.90243902439025,
+      "p50": 115,
+      "p95": 174,
+      "max": 174,
+      "min": 50
+    },
+    "shift-4": {
+      "count": 1312,
+      "mean": 134.609756097561,
+      "p50": 134,
+      "p95": 198,
+      "max": 198,
+      "min": 50
+    },
+    "shift-5": {
+      "count": 1312,
+      "mean": 127.7560975609756,
+      "p50": 126,
+      "p95": 187,
+      "max": 187,
+      "min": 51
+    },
+    "shift-6": {
+      "count": 1312,
+      "mean": 119.90243902439025,
+      "p50": 116,
+      "p95": 175,
+      "max": 175,
+      "min": 51
+    },
+    "shift-7": {
+      "count": 1312,
+      "mean": 119.90243902439025,
+      "p50": 116,
+      "p95": 175,
+      "max": 175,
+      "min": 51
+    },
+    "arcade_eyes": {
+      "count": 1024,
+      "mean": 94.9375,
+      "p50": 93,
+      "p95": 142,
+      "max": 166,
+      "min": 72
+    },
+    "arcade_score_right": {
+      "count": 512,
+      "mean": 109.75,
+      "p50": 110,
+      "p95": 190,
+      "max": 191,
+      "min": 84
+    },
+    "synthetic": {
+      "count": 768,
+      "mean": 159.125,
+      "p50": 150,
+      "p95": 365,
+      "max": 366,
+      "min": 54
+    }
+  }
+}
+python3 tools/arcade/check_audio_replay.py --baseline build/tile-stamp-fast/pacman.prg --trial build/pacman.prg --output build/evaluation/audio-replay
+{
+  "ticks_compared": 1639,
+  "all_sound_state_and_register_values_identical": true,
+  "first_tick": 1,
+  "last_tick": 1639,
+  "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+  "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+  "programs": [
+    {
+      "path": "build/tile-stamp-fast/pacman.prg",
+      "sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297"
+    },
+    {
+      "path": "build/pacman.prg",
+      "sha256": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31"
+    }
+  ],
+  "guest_modified": false,
+  "method": "Compare tick-indexed arcade sound state and VIC registers on a live replay.\n\nHost PC observations only: no guest code, registers, clocks or sound are patched.\nCPU timestamps can differ; this checks the values produced at each logical tick."
+}
+python3 tests/display_profile.py
+test_absent_and_partial_have_distinct_results (__main__.Visibility.test_absent_and_partial_have_distinct_results) ... ok
+test_ambiguous_wall_and_overlap_are_excluded (__main__.Visibility.test_ambiguous_wall_and_overlap_are_excluded) ... ok
+test_complete_old_or_new_pose_is_present (__main__.Visibility.test_complete_old_or_new_pose_is_present) ... ok
+test_dropped_or_duplicate_video_frames_are_rejected (__main__.Visibility.test_dropped_or_duplicate_video_frames_are_rejected) ... ok
+test_edges_and_hidden_actors_are_excluded (__main__.Visibility.test_edges_and_hidden_actors_are_excluded) ... ok
+test_irq_sampling_jitter_keeps_exact_consecutive_frame_identity (__main__.Visibility.test_irq_sampling_jitter_keeps_exact_consecutive_frame_identity) ... ok
+test_mixed_old_new_scanlines_are_partial (__main__.Visibility.test_mixed_old_new_scanlines_are_partial) ... ok
+test_motion_does_not_bridge_unknown_frames (__main__.Visibility.test_motion_does_not_bridge_unknown_frames) ... ok
+test_phase_accounting_does_not_double_count_nested_routines (__main__.Visibility.test_phase_accounting_does_not_double_count_nested_routines) ... ok
+test_pool_display_uses_matrix_and_keeps_home_background (__main__.Visibility.test_pool_display_uses_matrix_and_keeps_home_background) ... ok
+test_prefix_window_preserves_source_and_excludes_future_events (__main__.Visibility.test_prefix_window_preserves_source_and_excludes_future_events) ... ok
+test_prefix_window_rejects_bad_limits_and_any_source_gap (__main__.Visibility.test_prefix_window_rejects_bad_limits_and_any_source_gap) ... ok
+test_wall_pixels_cannot_prove_actor_present (__main__.Visibility.test_wall_pixels_cannot_prove_actor_present) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.016s
+
+OK
+python3 tests/smoke.py
+{
+  "screens": [
+    "attract",
+    "credits",
+    "maze",
+    "cherry",
+    "intermission-1",
+    "intermission-2",
+    "intermission-3"
+  ],
+  "stack_by_scene": {
+    "attract": {
+      "software_lowest_write": 32743,
+      "software_bytes_written": 25,
+      "hardware_lowest_write": 492,
+      "hardware_bytes_written": 20
+    },
+    "credits": {
+      "software_lowest_write": 32743,
+      "software_bytes_written": 25,
+      "hardware_lowest_write": 492,
+      "hardware_bytes_written": 20
+    },
+    "maze": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 488,
+      "hardware_bytes_written": 24
+    },
+    "cherry": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 488,
+      "hardware_bytes_written": 24
+    },
+    "intermission-1": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 488,
+      "hardware_bytes_written": 24
+    },
+    "intermission-2": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 488,
+      "hardware_bytes_written": 24
+    },
+    "intermission-3": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 488,
+      "hardware_bytes_written": 24
+    }
+  },
+  "clock": {
+    "video_frames": 180,
+    "arcade_ticks": 180,
+    "expected": 180.96
+  },
+  "long_run_ticks": 7192,
+  "stack": {
+    "software_lowest_write": 32738,
+    "software_bytes_written": 30,
+    "hardware_lowest_write": 488,
+    "hardware_bytes_written": 24
+  },
+  "boot": {
+    "entries": 1,
+    "released": true
+  },
+  "irq_vector_intact": true,
+  "stack_guard_intact": true,
+  "software_stack_reserved": 704
+}

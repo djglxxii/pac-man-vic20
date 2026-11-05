@@ -1,0 +1,2 @@
+3ee169f2e49b7dc0001f695f71062a9244984b1ebed67c5eaf91ed13dfbc832b  build/pacman.prg
+0ae2d61c8442639159343ba2ebfe341213933f13692f29d05a52d204fd7caa9e  build/arcade/pacman-native.bin

@@ -1,0 +1,4 @@
+  299   lda $ffff,x           $BD    4-5  +1 if page crossed
+  300   beq pool_step         $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+--------------------------------------------------
+bytes: 5   cycles: 6 .. 9   (straight-line sum; multiply loop bodies yourself)

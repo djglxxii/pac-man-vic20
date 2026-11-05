@@ -27,6 +27,17 @@ WATCHES = (
     ('soundEffectOneChannel_2dee', 'sound-channel'),
     ('playSongOneChannel_2d44', 'song-channel'),
 )
+GHOST_WATCHES = (
+    ('frame_wait', 'wait'), ('video_refresh', 'render'),
+    ('audio_update', 'audio'), ('updateGhostStates_1017', 'ghost-state'),
+    ('blinkyUpdateMovePat_1b36', 'blinky-pattern'),
+    ('pacmanUpdateMovePat_1806', 'pacman-pattern'),
+    ('blinkyUpdatePosition_1bd8', 'blinky-position'),
+    ('pinkyUpdatePosition_1caf', 'pinky-position'),
+    ('inkyUpdatePosition_1d86', 'inky-position'),
+    ('clydeUpdatePosition_1e5d', 'clyde-position'),
+    ('checkGhostEnterTunnel_205a', 'tunnel'),
+)
 
 
 def stats(values):
@@ -115,19 +126,28 @@ def hotspots(profile, linker_map):
                 instruction_cycles=sum(totals.values()))
 
 
-def measure(prg, trace, out, linker_map, colour_writes=False):
+def measure(prg, trace, out, linker_map, colour_writes=False, watches=WATCHES):
+    if (out/'summary.json').exists():
+        raise FileExistsError(f'Use a new profile directory: {out}')
     out.mkdir(parents=True, exist_ok=True)
     snapshot = out/'captured-program.prg'
     if prg != snapshot:
         shutil.copy2(prg, snapshot)
         shutil.copy2(prg.with_suffix('.lbl'), snapshot.with_suffix('.lbl'))
     shutil.copy2(linker_map, out/'program.map')
+    native = (ROOT/'build/arcade/pacman-native.bin' if prg == ROOT/'build/pacman.prg'
+              else prg.with_name('pacman-native.bin'))
+    if native != out/'pacman-native.bin':
+        shutil.copy2(native, out/'pacman-native.bin')
     sites = call_sites(snapshot)
     sim = Sim(snapshot)
     states, active, first = [], False, None
     try:
+        sim.cmd('until boot_start 300')
+        loaded = sim.peek(0x2000, 0x6000) + sim.peek(0xa000, 0x2000) + sim.peek(0x400, 0x400)
+        assert loaded == (out/'pacman-native.bin').read_bytes(), 'Depacked image mismatch'
         sim.cmd('until frame_wait 300')
-        for routine, name in WATCHES:
+        for routine, name in watches:
             if routine in sim.labels:
                 sim.cmd(f'watch {routine} {name}')
         for inp in trace['inputs']:
@@ -157,10 +177,13 @@ def measure(prg, trace, out, linker_map, colour_writes=False):
         events = [(int(c), e) for c, e in
                   map(str.split, (out/'active.trace').read_text().splitlines())]
         result = dict(prg_sha256=hashlib.sha256(snapshot.read_bytes()).hexdigest(),
+                      native_sha256=hashlib.sha256(loaded).hexdigest(),
+                      depacked_bytes_verified=len(loaded),
+                      input_sha256=hashlib.sha256(json.dumps(trace, sort_keys=True).encode()).hexdigest(),
                       map_sha256=hashlib.sha256((out/'program.map').read_bytes()).hexdigest(),
                       cpu_hz=CPU_HZ, cycles=last-first, seconds=(last-first)/CPU_HZ,
                       states=states, guest_code_changed=False,
-                      watches={r: n for r, n in WATCHES if r in sim.labels},
+                      watches={r: n for r, n in watches if r in sim.labels},
                       method='vicsim instruction cycles and host-only routine watches',
                       **trace_summary(events, first, last),
                       hotspots=hotspots(out/'active.profile', out/'program.map'))
@@ -182,8 +205,10 @@ def main():
     p.add_argument('--map', type=Path, default=ROOT/'build/arcade/pacman.map')
     p.add_argument('--output', type=Path, default=ROOT/'build/display-profile/current/cpu')
     p.add_argument('--colour-writes', action='store_true', help='Also log physical colour-cell writes without guest instrumentation')
+    p.add_argument('--ghosts', action='store_true', help='Watch ghost movement routines and their caller')
     args = p.parse_args()
-    measure(args.prg.resolve(), json.loads(args.input.read_text()), args.output.resolve(), args.map.resolve(), args.colour_writes)
+    measure(args.prg.resolve(), json.loads(args.input.read_text()), args.output.resolve(),
+            args.map.resolve(), args.colour_writes, GHOST_WATCHES if args.ghosts else WATCHES)
 
 
 if __name__ == '__main__':

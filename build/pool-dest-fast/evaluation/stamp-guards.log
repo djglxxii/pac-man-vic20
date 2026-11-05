@@ -1,0 +1,308 @@
+{
+  "baseline": {
+    "prg_sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+    "method": "vicsim call pool_draw; IRQs masked; identical masks and destinations",
+    "background_sha256": "13e7cc89054bace115014df8bdf6e4422ec340dac502a323ae142a694e2f5574",
+    "unused_bottom_pointers_poisoned": true,
+    "cases_checked": 10496,
+    "groups": {
+      "all": {
+        "count": 10496,
+        "mean": 769.2256097560976,
+        "p50": 775,
+        "p95": 1147,
+        "max": 1242
+      },
+      "arcade_sprites": {
+        "count": 8192,
+        "mean": 797.484375,
+        "p50": 826,
+        "p95": 1142,
+        "max": 1242
+      },
+      "shift-0": {
+        "count": 1312,
+        "mean": 528.7073170731708,
+        "p50": 514,
+        "p95": 733,
+        "max": 738
+      },
+      "shift-1": {
+        "count": 1312,
+        "mean": 732.9024390243902,
+        "p50": 747,
+        "p95": 1045,
+        "max": 1050
+      },
+      "shift-2": {
+        "count": 1312,
+        "mean": 787.8780487804878,
+        "p50": 817,
+        "p95": 1129,
+        "max": 1134
+      },
+      "shift-3": {
+        "count": 1312,
+        "mean": 842.8536585365854,
+        "p50": 887,
+        "p95": 1213,
+        "max": 1218
+      },
+      "shift-4": {
+        "count": 1312,
+        "mean": 858.560975609756,
+        "p50": 907,
+        "p95": 1237,
+        "max": 1242
+      },
+      "shift-5": {
+        "count": 1312,
+        "mean": 835.0,
+        "p50": 877,
+        "p95": 1201,
+        "max": 1206
+      },
+      "shift-6": {
+        "count": 1312,
+        "mean": 811.439024390244,
+        "p50": 847,
+        "p95": 1165,
+        "max": 1170
+      },
+      "shift-7": {
+        "count": 1312,
+        "mean": 756.4634146341464,
+        "p50": 777,
+        "p95": 1081,
+        "max": 1086
+      },
+      "arcade_eyes": {
+        "count": 1024,
+        "mean": 533.4375,
+        "p50": 535,
+        "p95": 634,
+        "max": 658
+      },
+      "arcade_score_right": {
+        "count": 512,
+        "mean": 614.625,
+        "p50": 623,
+        "p95": 716,
+        "max": 731
+      },
+      "synthetic": {
+        "count": 768,
+        "mean": 885.25,
+        "p50": 987,
+        "p95": 1214,
+        "max": 1242
+      }
+    }
+  },
+  "trial": {
+    "prg_sha256": "2284d03b700e5d72b1a13c9f35257e96e0c48469c9eef9f3854d61489f8513dc",
+    "method": "vicsim call pool_draw; IRQs masked; identical masks and destinations",
+    "background_sha256": "13e7cc89054bace115014df8bdf6e4422ec340dac502a323ae142a694e2f5574",
+    "unused_bottom_pointers_poisoned": true,
+    "cases_checked": 10496,
+    "groups": {
+      "all": {
+        "count": 10496,
+        "mean": 769.2256097560976,
+        "p50": 775,
+        "p95": 1147,
+        "max": 1242
+      },
+      "arcade_sprites": {
+        "count": 8192,
+        "mean": 797.484375,
+        "p50": 826,
+        "p95": 1142,
+        "max": 1242
+      },
+      "shift-0": {
+        "count": 1312,
+        "mean": 528.7073170731708,
+        "p50": 514,
+        "p95": 733,
+        "max": 738
+      },
+      "shift-1": {
+        "count": 1312,
+        "mean": 732.9024390243902,
+        "p50": 747,
+        "p95": 1045,
+        "max": 1050
+      },
+      "shift-2": {
+        "count": 1312,
+        "mean": 787.8780487804878,
+        "p50": 817,
+        "p95": 1129,
+        "max": 1134
+      },
+      "shift-3": {
+        "count": 1312,
+        "mean": 842.8536585365854,
+        "p50": 887,
+        "p95": 1213,
+        "max": 1218
+      },
+      "shift-4": {
+        "count": 1312,
+        "mean": 858.560975609756,
+        "p50": 907,
+        "p95": 1237,
+        "max": 1242
+      },
+      "shift-5": {
+        "count": 1312,
+        "mean": 835.0,
+        "p50": 877,
+        "p95": 1201,
+        "max": 1206
+      },
+      "shift-6": {
+        "count": 1312,
+        "mean": 811.439024390244,
+        "p50": 847,
+        "p95": 1165,
+        "max": 1170
+      },
+      "shift-7": {
+        "count": 1312,
+        "mean": 756.4634146341464,
+        "p50": 777,
+        "p95": 1081,
+        "max": 1086
+      },
+      "arcade_eyes": {
+        "count": 1024,
+        "mean": 533.4375,
+        "p50": 535,
+        "p95": 634,
+        "max": 658
+      },
+      "arcade_score_right": {
+        "count": 512,
+        "mean": 614.625,
+        "p50": 623,
+        "p95": 716,
+        "max": 731
+      },
+      "synthetic": {
+        "count": 768,
+        "mean": 885.25,
+        "p50": 987,
+        "p95": 1214,
+        "max": 1242
+      }
+    }
+  },
+  "cycle_savings": {
+    "all": {
+      "count": 10496,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "arcade_sprites": {
+      "count": 8192,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "shift-0": {
+      "count": 1312,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "shift-1": {
+      "count": 1312,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "shift-2": {
+      "count": 1312,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "shift-3": {
+      "count": 1312,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "shift-4": {
+      "count": 1312,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "shift-5": {
+      "count": 1312,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "shift-6": {
+      "count": 1312,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "shift-7": {
+      "count": 1312,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "arcade_eyes": {
+      "count": 1024,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "arcade_score_right": {
+      "count": 512,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "synthetic": {
+      "count": 768,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    }
+  }
+}

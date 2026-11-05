@@ -1,0 +1,17 @@
+{
+  "first": {
+    "pacman": [
+      196,
+      155
+    ],
+    "pellets": 3
+  },
+  "last": {
+    "pacman": [
+      196,
+      188
+    ],
+    "pellets": 7
+  },
+  "joystick_movement_supplied": false
+}

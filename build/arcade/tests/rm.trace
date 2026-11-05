@@ -1,0 +1,8 @@
+58785840 raster-bounds-128-160
+58785840 raster-wait-begin
+58785840 mask-wait-begin
+58785873 raster-wait-end
+58785873 mask-wait-end
+58785941 actor-1-erase
+58786871 actor-1-paint
+58787762 raster-paint-end

@@ -1,0 +1,199 @@
+   35   jsr score_expand            $20      6  
+   36   ldx #12                     $A2      2  
+   38   lda #239                    $A9      2  
+   39   cpx #5                      $E0      2  
+   40   bcs pool_x_origin           $B0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   41   lda #238                    $A9      2  
+   43   sec                         $38      2  
+   44   sbc $0c30,x                 $FD    4-5  +1 if page crossed
+   45   bcs pool_positive_x         $B0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   46   sec                         $38      2  
+   47   ror                         $6A      2  
+   48   jmp pool_x_ready            $4C      3  
+   50   lsr                         $4A      2  
+   52   sta cache_x,x               $9D      5  
+   53   lda $0c31,x                 $BD    4-5  +1 if page crossed
+   54   sta v_sy                    $85      3  
+   55   lsr                         $4A      2  
+   56   lsr                         $4A      2  
+   57   clc                         $18      2  
+   58   adc #204                    $69      2  
+   59   sec                         $38      2  
+   60   sbc v_sy                    $E5      3  
+   61   sta cache_y,x               $9D      5  
+   62   lda $0c20,x                 $BD    4-5  +1 if page crossed
+   63   sta cache_attr,x            $9D      5  
+   64   lda $0c21,x                 $BD    4-5  +1 if page crossed
+   65   and #31                     $29      2  
+   66   sta cache_pal,x             $9D      5  
+   67   dex                         $CA      2  
+   68   dex                         $CA      2  
+   69   bne pool_capture            $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   70   jsr score_unexpand          $20      6  
+   71   lda #12                     $A9      2  
+   72   sta v_off                   $85      3  
+   74   ldx v_off                   $A6      3  
+   75   lda cache_pal,x             $BD    4-5  +1 if page crossed
+   76   and #31                     $29      2  
+   77   bne sprite_visible          $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   78   jmp sprite_advance          $4C      3  
+   80   sta v_pal                   $85      3  
+   81   lda cache_attr,x            $BD    4-5  +1 if page crossed
+   82   sta v_attr                  $85      3  
+   83   lsr                         $4A      2  
+   84   lsr                         $4A      2  
+   85   sta v_code                  $85      3  
+   86   lda new_x,x                 $BD    4-5  +1 if page crossed
+   87   cmp #112                    $C9      2  
+   88   bcc sprite_inside           $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+   89   cmp #249                    $C9      2  
+   90   bcs sprite_inside           $B0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   91   jmp sprite_advance          $4C      3  
+   93   sta v_sx                    $85      3  
+   94   lda new_y,x                 $BD    4-5  +1 if page crossed
+   95   sta v_sy                    $85      3  
+   96   ldx #255                    $A2      2  
+   97   lda v_sx                    $A5      3  
+   98   bmi sprite_column_ready     $30    2-4  2 not taken / 3 taken / 4 taken+page cross
+   99   lsr                         $4A      2  
+  100   lsr                         $4A      2  
+  101   lsr                         $4A      2  
+  102   tax                         $AA      2  
+  104   stx v_col                   $86      3  
+  105   lda #3                      $A9      2  
+  106   cpx #255                    $E0      2  
+  107   bne sprite_not_left_edge    $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  108   lda #2                      $A9      2  
+  110   cpx #13                     $E0      2  
+  111   bne sprite_flags_ready      $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  112   lda #1                      $A9      2  
+  114   sta v_flags                 $85      3  
+  115   lda v_sy                    $A5      3  
+  116   lsr                         $4A      2  
+  117   lsr                         $4A      2  
+  118   lsr                         $4A      2  
+  119   lsr                         $4A      2  
+  120   tax                         $AA      2  
+  121   lda row_times_14,x          $BD    4-5  +1 if page crossed
+  122   clc                         $18      2  
+  123   adc v_col                   $65      3  
+  124   sta v_cell                  $85      3  
+  125   lda v_pal                   $A5      3  
+  126   cmp #31                     $C9      2  
+  127   beq sprite_score_right      $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  129   cmp #25                     $C9      2  
+  130   bne sprite_regular          $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  131   lda v_code                  $A5      3  
+  132   sec                         $38      2  
+  133   sbc #32                     $E9      2  
+  134   cmp #8                      $C9      2  
+  135   bcs sprite_regular          $B0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  136   sta v_temp                  $85      3  
+  137   lda #<arcade_eyes           $A9      2  
+  138   sta v_base                  $85      3  
+  139   lda #>arcade_eyes           $A9      2  
+  140   sta v_base+1                $85      3  
+  141   lda #1                      $A9      2  
+  142   jmp sprite_class_ready      $4C      3  
+  144   lda v_code                  $A5      3  
+  145   sec                         $38      2  
+  146   sbc #40                     $E9      2  
+  147   cmp #4                      $C9      2  
+  148   bcc sprite_score_frame      $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  149   lda v_pal                   $A5      3  
+  150   jmp sprite_check_eyes       $4C      3  
+  152   sta v_temp                  $85      3  
+  153   lda #<arcade_score_right    $A9      2  
+  154   sta v_base                  $85      3  
+  155   lda #>arcade_score_right    $A9      2  
+  156   sta v_base+1                $85      3  
+  157   lda #24                     $A9      2  
+  158   sta v_pal                   $85      3  
+  159   lda #1                      $A9      2  
+  160   jmp sprite_class_ready      $4C      3  
+  162   lda v_code                  $A5      3  
+  163   sta v_temp                  $85      3  
+  164   and #3                      $29      2  
+  165   asl                         $0A      2  
+  166   tay                         $A8      2  
+  167   lda v_code                  $A5      3  
+  168   lsr                         $4A      2  
+  169   lsr                         $4A      2  
+  170   tax                         $AA      2  
+  171   lda arcade_sprite_class,x   $BD    4-5  +1 if page crossed
+  172   cpy #0                      $C0      2  
+  173   beq sprite_class_shifted    $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  175   lsr                         $4A      2  
+  176   dey                         $88      2  
+  177   bne sprite_class_shift      $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  179   and #3                      $29      2  
+  180   pha                         $48      3  
+  181   lda #<arcade_sprites        $A9      2  
+  182   sta v_base                  $85      3  
+  183   lda #>arcade_sprites        $A9      2  
+  184   sta v_base+1                $85      3  
+  185   pla                         $68      4  
+  187   sta v_color                 $85      3  
+  188   lda v_pal                   $A5      3  
+  189   asl                         $0A      2  
+  190   asl                         $0A      2  
+  191   ora v_color                 $05      3  
+  192   tax                         $AA      2  
+  193   lda arcade_colors,x         $BD    4-5  +1 if page crossed
+  194   bne sprite_has_color        $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  195   jmp sprite_advance          $4C      3  
+  197   sta v_color                 $85      3  
+  198   lda v_temp                  $A5      3  
+  199   asl                         $0A      2  
+  200   clc                         $18      2  
+  201   adc v_temp                  $65      3  
+  202   sta v_data                  $85      3  
+  203   lda #0                      $A9      2  
+  204   sta v_data+1                $85      3  
+  205   asl v_data                  $06      5  
+  206   rol v_data+1                $26      5  
+  207   asl v_data                  $06      5  
+  208   rol v_data+1                $26      5  
+  209   lda v_data                  $A5      3  
+  210   clc                         $18      2  
+  211   adc v_base                  $65      3  
+  212   sta v_data                  $85      3  
+  213   lda v_data+1                $A5      3  
+  214   adc v_base+1                $65      3  
+  215   sta v_data+1                $85      3  
+  216   lda v_sx                    $A5      3  
+  217   and #7                      $29      2  
+  218   sta v_shift                 $85      3  
+  219   lda v_attr                  $A5      3  
+  220   and #3                      $29      2  
+  221   sta v_flip                  $85      3  
+  222   jsr pool_setup              $20      6  
+  223   lda v_flags                 $A5      3  
+  224   cmp #3                      $C9      2  
+  225   bne pool_generic            $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  226   lda v_pal                   $A5      3  
+  227   cmp #25                     $C9      2  
+  228   beq pool_generic            $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  229   lda v_code                  $A5      3  
+  230   sec                         $38      2  
+  231   sbc #32                     $E9      2  
+  232   cmp #6                      $C9      2  
+  233   bcs pool_generic            $B0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  234   and #1                      $29      2  
+  235   asl                         $0A      2  
+  236   asl                         $0A      2  
+  237   asl                         $0A      2  
+  238   ora v_shift                 $05      3  
+  239   asl                         $0A      2  
+  240   tax                         $AA      2  
+  241   jsr pool_draw_ghost         $20      6  
+  242   jmp sprite_advance          $4C      3  
+  244   jsr pool_draw               $20      6  
+  246   dec v_off                   $C6      5  
+  247   dec v_off                   $C6      5  
+  248   beq pool_actors_done        $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  249   jmp sprite_actor            $4C      3  
+  251   rts                         $60      6  
+--------------------------------------------------------
+bytes: 375   cycles: 533 .. 584   (straight-line sum; multiply loop bodies yourself)
+Zero-page symbols resolved from this build's linked labels. Static loop bodies counted once.

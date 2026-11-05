@@ -1,0 +1,19 @@
+{
+  "screens": [
+    "attract",
+    "credits",
+    "maze",
+    "cherry",
+    "intermission-1",
+    "intermission-2",
+    "intermission-3"
+  ],
+  "clock": {
+    "video_frames": 180,
+    "arcade_ticks": 180,
+    "expected": 180.96
+  },
+  "long_run_ticks": 7187,
+  "irq_vector_intact": true,
+  "stack_guard_intact": true
+}

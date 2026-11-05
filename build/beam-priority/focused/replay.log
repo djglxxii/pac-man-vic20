@@ -1,0 +1,11 @@
+focused: tick -1, phase boot, frames 0
+focused: tick 51, phase attract
+focused: tick 111, phase coin
+focused: tick 113, phase release
+focused: tick 143, phase start
+focused: tick 282, phase ready
+focused: tick 370, phase ready, frames 0
+focused: tick 402, phase lead-in
+focused: tick 432, phase play
+focused: tick 779, phase play, frames 345
+focused: 600 frames captured

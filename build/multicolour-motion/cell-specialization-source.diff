@@ -1,0 +1,285 @@
+--- accepted
+
++++ current
+
+@@ -21,5 +21,4 @@
+
+ ; Replay input and background restoration use the map pointer at other times.
+ src_ptr = map_ptr
+-dst_ptr: .res 2
+ old_lo: .res 2
+ old_hi: .res 2
+@@ -64,5 +63,4 @@
+
+ middle_index: .res 1
+ right_index: .res 1
+-current_code: .res 1
+ list_index: .res 1
+ column_index: .res 1
+@@ -82,8 +80,8 @@
+
+ .segment "CODE"
+ .export entry,loader_start,mc_init,mc_prepare,mc_prepare_end,mc_commit,mc_commit_end,mc_publish,mc_abort,demo_ready,demo_presented
+-.export resolve_row,get_work_cell,clear_work_map
++.export resolve_row,clear_work_map
+ .export actor_col,current_band
+-; The bank selector is also the allocation instruction's immediate operand.
+-mc_new_base = allocate_code+1
++; Allocation paths share the bank selector embedded in the commit code.
++mc_new_base = publish_bank+1
+ loader_start = entry
+ entry:
+@@ -204,11 +202,11 @@
+
+ init_characters:
+  lda glyph_lo,x
+- sta dst_ptr
++ sta left_ptr
+  lda glyph_hi,x
+- sta dst_ptr+1
++ sta left_ptr+1
+  ldy #7
+ .repeat 8,N
+  lda background_row7-N*147,x
+- sta (dst_ptr),y
++ sta (left_ptr),y
+  dey
+ .endrepeat
+@@ -252,6 +250,4 @@
+
+ select_banks:
+  lda mc_new_base
+- ; Update the publisher's copy of the bank constant at the same boundary.
+- sta publish_bank+1
+  cmp #147
+  bne new_bank_b
+@@ -608,19 +604,4 @@
+
+  jmp resolve_cells_0
+ 
+-.macro RESOLVE_CELL PTR,INDEX
+- .local fits
+- jsr get_work_cell
+- bcc fits
+- rts
+-fits:
+- lda current_code
+- sec
+- sbc #147
+- sta INDEX
+- lda dst_ptr
+- sta PTR
+- lda dst_ptr+1
+- sta PTR+1
+-.endmacro
+ .macro NEXT_CELL
+  .local no_carry
+@@ -630,53 +611,4 @@
+
+ no_carry:
+ .endmacro
+-resolve_cells_0:
+- clc
+- rts
+-resolve_cells_1:
+- RESOLVE_CELL left_ptr,left_index
+- clc
+- rts
+-resolve_cells_2:
+- NEXT_CELL
+- RESOLVE_CELL middle_ptr,middle_index
+- clc
+- rts
+-resolve_cells_3:
+- RESOLVE_CELL left_ptr,left_index
+- NEXT_CELL
+- RESOLVE_CELL middle_ptr,middle_index
+- clc
+- rts
+-resolve_cells_4:
+- NEXT_CELL
+- NEXT_CELL
+- RESOLVE_CELL right_ptr,right_index
+- clc
+- rts
+-resolve_cells_5:
+- RESOLVE_CELL left_ptr,left_index
+- NEXT_CELL
+- NEXT_CELL
+- RESOLVE_CELL right_ptr,right_index
+- clc
+- rts
+-resolve_cells_6:
+- NEXT_CELL
+- RESOLVE_CELL middle_ptr,middle_index
+- NEXT_CELL
+- RESOLVE_CELL right_ptr,right_index
+- clc
+- rts
+-resolve_cells_7:
+- RESOLVE_CELL left_ptr,left_index
+- NEXT_CELL
+- RESOLVE_CELL middle_ptr,middle_index
+- NEXT_CELL
+- RESOLVE_CELL right_ptr,right_index
+- clc
+- rts
+-
+-; Inline the small address helpers on the preparation path. The publication
+-; and abort paths retain the shared map helper to limit code growth.
+ .macro CELL_MAP_POINTER
+  lda cell_high
+@@ -685,36 +617,37 @@
+
+  sta map_ptr+1
+ .endmacro
+-.macro GLYPH_DESTINATION
+- ; Both callers already have the character code in A.
+- tax
+- lda glyph_lo,x
+- sta dst_ptr
+- lda glyph_hi,x
+- sta dst_ptr+1
+-.endmacro
+-get_work_cell:
++
++; Resolve directly into each drawing pointer. Clipped column combinations
++; share these same three blocks, with separate entries for their first cell.
++; Each expansion owns its patched background read; the publication operand
++; remains the single bank selector.
++.macro RESOLVE_CELL_DIRECT PTR,INDEX
++ .local allocate, fits, load_background, ready
+  CELL_MAP_POINTER
+- ; For valid cell pages, the addition above leaves carry clear. Derive the
+- ; background-map page while the absolute work-map high byte is still in A.
++ ; Valid map pages leave carry clear; derive the matching background page.
+  adc #(((>background_map) - (>cell_work)) & $ff)
+- sta load_background_cell+2
++ sta load_background+2
+  ldy #0
+  lda (map_ptr),y
+  cmp #$ff
+- beq allocate_cell
+- sta current_code
+- GLYPH_DESTINATION
+- clc
+- rts
+-allocate_cell:
++ beq allocate
++ tax
++ sec
++ sbc #147
++ sta INDEX
++ lda glyph_lo,x
++ sta PTR
++ lda glyph_hi,x
++ sta PTR+1
++ jmp ready
++allocate:
+  lda mc_new_count
+  cmp #54
+- bcc allocation_fits
+- ; Report failure here because tail-dispatched resolvers return directly.
++ bcc fits
+  lda #1
+  sta mc_status
+  sec
+  rts
+-allocation_fits:
++fits:
+  tay
+  lda cell_low
+@@ -726,13 +659,18 @@
+
+  lda mc_new_count
+  clc
+-allocate_code:
+- adc #147
+- sta current_code
++ adc mc_new_base
+  ldy #0
+  sta (map_ptr),y
+  inc mc_new_count
+- GLYPH_DESTINATION
++ tax
++ sec
++ sbc #147
++ sta INDEX
++ lda glyph_lo,x
++ sta PTR
++ lda glyph_hi,x
++ sta PTR+1
+  ldx cell_low
+-load_background_cell:
++load_background:
+  lda background_map,x
+  tax
+@@ -740,10 +678,45 @@
+
+ .repeat 8,N
+  lda background_row7-N*147,x
+- sta (dst_ptr),y
++ sta (PTR),y
+  dey
+ .endrepeat
+- clc
+- rts
+-
++ready:
++.endmacro
++resolve_cells_0:
++ clc
++ rts
++resolve_cells_1:
++resolve_cells_3:
++resolve_cells_5:
++resolve_cells_7:
++ RESOLVE_CELL_DIRECT left_ptr,left_index
++ lda valid_columns
++ and #2
++ bne resolve_cells_2
++ lda valid_columns
++ and #4
++ bne resolve_left_and_right
++ clc
++ rts
++resolve_left_and_right:
++ jmp resolve_cells_4
++resolve_cells_2:
++resolve_cells_6:
++ NEXT_CELL
++ RESOLVE_CELL_DIRECT middle_ptr,middle_index
++ lda valid_columns
++ and #4
++ bne resolve_third_column
++ clc
++ rts
++resolve_cells_4:
++ NEXT_CELL
++resolve_third_column:
++ NEXT_CELL
++ RESOLVE_CELL_DIRECT right_ptr,right_index
++ clc
++ rts
++
++; Publication and abort retain the shared map helper to limit code growth.
+ make_map_ptr:
+  CELL_MAP_POINTER
+@@ -767,12 +740,12 @@
+
+ ; Keep these lookup bytes off the executed path while placing the publisher's
+ ; common cached-page branch within a page, without adding padding.
++draw_lo: .lobytes draw_0,draw_1,draw_2,draw_3,draw_4,draw_5,draw_6,draw_7
++draw_hi: .hibytes draw_0,draw_1,draw_2,draw_3,draw_4,draw_5,draw_6,draw_7
++.assert >draw_lo = >(draw_lo+7), lderror, "Drawing lookup must stay within a page"
++.assert >draw_hi = >(draw_hi+7), lderror, "Drawing lookup must stay within a page"
+ column_bits: .byte 1,2,4
+ phase_offsets: .byte 0,14,28,42
+ resolve_lo: .lobytes resolve_cells_0,resolve_cells_1,resolve_cells_2,resolve_cells_3,resolve_cells_4,resolve_cells_5,resolve_cells_6,resolve_cells_7
+ .assert >resolve_lo = >(resolve_lo+7), lderror, "Resolution lookup must stay within a page"
+-draw_lo: .lobytes draw_0,draw_1,draw_2,draw_3,draw_4,draw_5,draw_6,draw_7
+-draw_hi: .hibytes draw_0,draw_1,draw_2,draw_3,draw_4,draw_5,draw_6,draw_7
+-.assert >draw_lo = >(draw_lo+7), lderror, "Drawing lookup must stay within a page"
+-.assert >draw_hi = >(draw_hi+7), lderror, "Drawing lookup must stay within a page"
+ mc_publish:
+  lda #0

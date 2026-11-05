@@ -1,0 +1,133 @@
+{
+  "assets": {
+    "initial_pass_landscape": {
+      "file": "youtube/vic20-pacman-thumbnail.png",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "bytes": 1164414,
+      "mode": "RGB",
+      "sha256": "42f60e5655da46b7e07679d42aae6ec1a7b959af2a857bfa0f5cf09ad8ba74fc",
+      "generation_tool": "built-in imagegen",
+      "prompt_file": "youtube/thumbnail-prompt.txt",
+      "stage": "initial_pass",
+      "orientation": "landscape",
+      "artwork_kind": "AI-designed promotional artwork referencing real VICE frames; not pixel-exact gameplay evidence",
+      "white_yellow_essential_anchor_bounds": [
+        70,
+        62,
+        1647,
+        883
+      ]
+    },
+    "initial_pass_portrait": {
+      "file": "youtube/vic20-pacman-shorts-cover.png",
+      "dimensions": [
+        916,
+        1717
+      ],
+      "bytes": 745170,
+      "mode": "RGB",
+      "sha256": "c8c7497ea5c2f2794d09441bbf664012d4d0a46734dfea2f1b7f5e1837299408",
+      "generation_tool": "built-in imagegen",
+      "prompt_file": "youtube/thumbnail-shorts-prompt.txt",
+      "stage": "initial_pass",
+      "orientation": "portrait",
+      "artwork_kind": "AI-designed promotional artwork referencing real VICE frames; not pixel-exact gameplay evidence",
+      "white_yellow_essential_anchor_bounds": [
+        271,
+        483,
+        640,
+        1231
+      ],
+      "preview_checks": {
+        "9:16": {
+          "centered_crop": [
+            0,
+            44.27777777777783,
+            916,
+            1672.7222222222222
+          ],
+          "essential_anchor_bounds_inside_crop": true
+        },
+        "4:5": {
+          "centered_crop": [
+            0,
+            286.0,
+            916,
+            1431.0
+          ],
+          "essential_anchor_bounds_inside_crop": true
+        }
+      },
+      "visual_review": "Complete headings, cyan AGENTIC HOMEBREW lettering, stage badge and maze inspected; decorative cyan pixels outside preview crop are intentional.",
+      "crop_check_method": "White/yellow text and maze pixel bounds, with manual review of intermediate cyan lettering. Does not guarantee every platform crop or overlay."
+    },
+    "final_optimized_landscape": {
+      "file": "youtube/final/vic20-pacman-thumbnail.png",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "bytes": 1168423,
+      "mode": "RGB",
+      "sha256": "b48ea68e500faaf27b0800021a51536596637016f1c37ad35b4be2653d79dd84",
+      "generation_tool": "built-in imagegen",
+      "prompt_file": "youtube/final/thumbnail-prompt.txt",
+      "stage": "final_optimized",
+      "orientation": "landscape",
+      "artwork_kind": "AI-designed promotional artwork referencing real VICE frames; not pixel-exact gameplay evidence",
+      "white_yellow_essential_anchor_bounds": [
+        86,
+        85,
+        1620,
+        879
+      ]
+    },
+    "final_optimized_portrait": {
+      "file": "youtube/final/vic20-pacman-shorts-cover.png",
+      "dimensions": [
+        916,
+        1717
+      ],
+      "bytes": 807485,
+      "mode": "RGB",
+      "sha256": "00efdd432d1cb49981f960d1ade7dcf6c0a033140fef6428e51c5c3148439329",
+      "generation_tool": "built-in imagegen",
+      "prompt_file": "youtube/final/thumbnail-shorts-prompt.txt",
+      "stage": "final_optimized",
+      "orientation": "portrait",
+      "artwork_kind": "AI-designed promotional artwork referencing real VICE frames; not pixel-exact gameplay evidence",
+      "white_yellow_essential_anchor_bounds": [
+        224,
+        470,
+        692,
+        1385
+      ],
+      "preview_checks": {
+        "9:16": {
+          "centered_crop": [
+            0,
+            44.27777777777783,
+            916,
+            1672.7222222222222
+          ],
+          "essential_anchor_bounds_inside_crop": true
+        },
+        "4:5": {
+          "centered_crop": [
+            0,
+            286.0,
+            916,
+            1431.0
+          ],
+          "essential_anchor_bounds_inside_crop": true
+        }
+      },
+      "visual_review": "Complete headings, cyan AGENTIC HOMEBREW lettering, stage badge and maze inspected; decorative cyan pixels outside preview crop are intentional.",
+      "crop_check_method": "White/yellow text and maze pixel bounds, with manual review of intermediate cyan lettering. Does not guarantee every platform crop or overlay."
+    }
+  },
+  "changes": "Copy and promotional artwork only; no runtime source, game graphics, sound or timing changed."
+}

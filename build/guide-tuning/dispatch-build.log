@@ -1,0 +1,4 @@
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -Tsrc/pacman.ld src/start.S src/clock.S src/bitmap.S src/sprites.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c build/arcade/rom.c -Wl,-Map,build/arcade/pacman.map -o build/arcade/pacman-native.bin
+cc -O2 -fcommon -Wno-incompatible-pointer-types -Wno-pointer-sign -Isrc/arcade src/arcade/core.c tools/arcade/native.c -o build/arcade/native
+python3 tools/arcade/pack.py build/arcade/pacman-native.bin build/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/pacman.prg: 26110 bytes, entry $2022, verified backwards depacking

@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "prg_sha256": "b8ec0dac2182f256ff6b47678162e421a64f59cc0ef22c86f60d29e6bf2fce43",
+  "arcade_parity_and_audio_tests": 6,
+  "live_updates": {
+    "pellet_and_power_pellet_removals": 36,
+    "background_and_reference_checks": 38,
+    "completion_palette_and_next_board_blue": true
+  },
+  "renderer": {
+    "scenes": 2415,
+    "optional_recorded_scenes": 480,
+    "poses": 29,
+    "maximum_work_cells": 54,
+    "capacity_failure_paths": 3,
+    "incremental_scenes": 29,
+    "abort_prefixes": 6,
+    "hidden_preparation_and_exact_pixels": true,
+    "cache_ownership_and_guards": true
+  },
+  "actor_packets": {
+    "packets": 5112,
+    "all_raw_coordinate_bytes": true,
+    "all_actor_slots_and_direction_flips": true,
+    "white_frightened_poses": true
+  }
+}

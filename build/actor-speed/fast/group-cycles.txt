@@ -1,0 +1,167 @@
+  816   lda #0                    $A9      2  
+  817   sta v_actor               $85      3  
+  818   sta group_select          $85      3  
+  819   lda #32                   $A9      2  
+  820   sta v_col                 $85      3  
+  821   ldx #12                   $A2      2  
+  823   lda cache_dirty,x         $BD    4-5  +1 if page crossed
+  824   lsr                       $4A      2  
+  825   lda v_col                 $A5      3  
+  826   bcc group_clean           $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  827   ora #128                  $09      2  
+  829   sta cache_dirty,x         $9D      5  
+  830   ldy v_actor               $A4      3  
+  831   lda under+3,y             $B9    4-5  +1 if page crossed
+  832   beq group_no_old          $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  833   lda under+4,y             $B9    4-5  +1 if page crossed
+  834   sta group_left,x          $9D      5  
+  835   clc                       $18      2  
+  836   adc #1                    $69      2  
+  837   sta group_right,x         $9D      5  
+  838   lda under+6,y             $B9    4-5  +1 if page crossed
+  839   sta group_top,x           $9D      5  
+  840   lda under+7,y             $B9    4-5  +1 if page crossed
+  841   cmp #5                    $C9      2  
+  842   lda under+6,y             $B9    4-5  +1 if page crossed
+  843   adc #0                    $69      2  
+  844   sta group_bottom,x        $9D      5  
+  845   jmp group_include_new     $4C      3  
+  847   lda #255                  $A9      2  
+  848   sta group_left,x          $9D      5  
+  849   sta group_top,x           $9D      5  
+  850   lda #0                    $A9      2  
+  851   sta group_right,x         $9D      5  
+  852   sta group_bottom,x        $9D      5  
+  854   lda $0c21,x               $BD    4-5  +1 if page crossed
+  855   and #31                   $29      2  
+  856   beq group_band            $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  857   lda new_x,x               $BD    4-5  +1 if page crossed
+  858   cmp #112                  $C9      2  
+  859   bcc group_fast_column     $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  860   cmp #249                  $C9      2  
+  861   bcc group_band            $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  863   clc                       $18      2  
+  864   adc #8                    $69      2  
+  865   lsr                       $4A      2  
+  866   lsr                       $4A      2  
+  867   lsr                       $4A      2  
+  868   cmp group_left,x          $DD    4-5  +1 if page crossed
+  869   bcs group_fast_right      $B0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  870   sta group_left,x          $9D      5  
+  872   clc                       $18      2  
+  873   adc #1                    $69      2  
+  874   cmp group_right,x         $DD    4-5  +1 if page crossed
+  875   bcc group_fast_top        $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  876   beq group_fast_top        $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  877   sta group_right,x         $9D      5  
+  879   lda new_y,x               $BD    4-5  +1 if page crossed
+  880   lsr                       $4A      2  
+  881   lsr                       $4A      2  
+  882   lsr                       $4A      2  
+  883   lsr                       $4A      2  
+  884   cmp group_top,x           $DD    4-5  +1 if page crossed
+  885   bcs group_fast_bottom     $B0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  886   sta group_top,x           $9D      5  
+  888   lda new_y,x               $BD    4-5  +1 if page crossed
+  889   clc                       $18      2  
+  890   adc #11                   $69      2  
+  891   lsr                       $4A      2  
+  892   lsr                       $4A      2  
+  893   lsr                       $4A      2  
+  894   lsr                       $4A      2  
+  895   cmp group_bottom,x        $DD    4-5  +1 if page crossed
+  896   bcc group_band            $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  897   beq group_band            $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  898   sta group_bottom,x        $9D      5  
+  900   lda group_top,x           $BD    4-5  +1 if page crossed
+  901   cmp #255                  $C9      2  
+  902   bne group_has_footprint   $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  903   lda #0                    $A9      2  
+  904   sta cache_dirty,x         $9D      5  
+  905   jmp group_advance         $4C      3  
+  907   lda dirty_bands           $AD      4  
+  908   beq group_advance         $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  909   lda group_top,x           $BD    4-5  +1 if page crossed
+  910   lsr                       $4A      2  
+  911   tay                       $A8      2  
+  912   lda bit_masks,y           $B9    4-5  +1 if page crossed
+  913   sta v_temp                $85      3  
+  914   lda group_bottom,x        $BD    4-5  +1 if page crossed
+  915   lsr                       $4A      2  
+  916   tay                       $A8      2  
+  917   lda bit_masks+1,y         $B9    4-5  +1 if page crossed
+  918   sec                       $38      2  
+  919   sbc v_temp                $E5      3  
+  920   and dirty_bands           $2D      4  
+  921   beq group_advance         $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  922   lda cache_dirty,x         $BD    4-5  +1 if page crossed
+  923   ora #64                   $09      2  
+  924   sta cache_dirty,x         $9D      5  
+  925   and #63                   $29      2  
+  926   ora group_select          $05      3  
+  927   sta group_select          $85      3  
+  929   lsr v_col                 $46      5  
+  930   lda v_actor               $A5      3  
+  931   clc                       $18      2  
+  932   adc #36                   $69      2  
+  933   sta v_actor               $85      3  
+  934   dex                       $CA      2  
+  935   dex                       $CA      2  
+  936   beq group_pairs           $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  937   jmp group_actor           $4C      3  
+  939   ldx #12                   $A2      2  
+  941   lda cache_dirty,x         $BD    4-5  +1 if page crossed
+  942   beq group_pair_next       $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  943   txa                       $8A      2  
+  944   tay                       $A8      2  
+  946   dey                       $88      2  
+  947   dey                       $88      2  
+  948   beq group_pair_next       $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  949   lda cache_dirty,x         $BD    4-5  +1 if page crossed
+  950   cmp cache_dirty,y         $D9    4-5  +1 if page crossed
+  951   beq group_pair            $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  952   lda group_right,x         $BD    4-5  +1 if page crossed
+  953   cmp group_left,y          $D9    4-5  +1 if page crossed
+  954   bcc group_pair            $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  955   lda group_right,y         $B9    4-5  +1 if page crossed
+  956   cmp group_left,x          $DD    4-5  +1 if page crossed
+  957   bcc group_pair            $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  958   lda group_bottom,x        $BD    4-5  +1 if page crossed
+  959   cmp group_top,y           $D9    4-5  +1 if page crossed
+  960   bcc group_pair            $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  961   lda group_bottom,y        $B9    4-5  +1 if page crossed
+  962   cmp group_top,x           $DD    4-5  +1 if page crossed
+  963   bcc group_pair            $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  964   lda cache_dirty,x         $BD    4-5  +1 if page crossed
+  965   ora cache_dirty,y         $19    4-5  +1 if page crossed
+  966   sta v_temp                $85      3  
+  967   stx v_actor               $86      3  
+  968   sty v_off                 $84      3  
+  969   asl                       $0A      2  
+  970   asl                       $0A      2  
+  971   sta v_code                $85      3  
+  972   ldx #12                   $A2      2  
+  974   asl v_code                $06      5  
+  975   bcc group_merge_next      $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  976   lda v_temp                $A5      3  
+  977   sta cache_dirty,x         $9D      5  
+  979   dex                       $CA      2  
+  980   dex                       $CA      2  
+  981   bne group_merge           $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  982   lda v_temp                $A5      3  
+  983   and #64                   $29      2  
+  984   beq group_merged          $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  985   lda v_temp                $A5      3  
+  986   and #63                   $29      2  
+  987   ora group_select          $05      3  
+  988   sta group_select          $85      3  
+  990   ldx v_actor               $A6      3  
+  991   ldy v_off                 $A4      3  
+  992   jmp group_pair            $4C      3  
+  994   dex                       $CA      2  
+  995   dex                       $CA      2  
+  996   cpx #2                    $E0      2  
+  997   bne group_pair_actor      $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  998   rts                       $60      6  
+------------------------------------------------------
+bytes: 350   cycles: 484 .. 569   (straight-line sum; multiply loop bodies yourself)

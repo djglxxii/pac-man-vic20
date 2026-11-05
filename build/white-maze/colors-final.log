@@ -1,0 +1,11 @@
+test_01_real_maze_white_walls_pellets_and_unchanged_pixels (__main__.Colors.test_01_real_maze_white_walls_pellets_and_unchanged_pixels) ... ok
+test_02_tile_order_does_not_change_white_maze (__main__.Colors.test_02_tile_order_does_not_change_white_maze) ... ok
+test_03_wall_stays_white_after_last_dot_and_power_pellet_blinks (__main__.Colors.test_03_wall_stays_white_after_last_dot_and_power_pellet_blinks) ... ok
+test_04_pellet_ink_at_every_cell_boundary (__main__.Colors.test_04_pellet_ink_at_every_cell_boundary) ... ok
+test_05_actor_releases_white_pellets_and_keeps_aligned_neighbor (__main__.Colors.test_05_actor_releases_white_pellets_and_keeps_aligned_neighbor) ... ok
+test_06_blue_is_limited_to_completion_flash (__main__.Colors.test_06_blue_is_limited_to_completion_flash) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.205s
+
+OK

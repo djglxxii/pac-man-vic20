@@ -1,0 +1,11 @@
+{
+  "Makefile": "b53640f95c3cfec2b7717ae75cde75c5f9213dbc9f95c52adbc52c082c44deb0",
+  "src/glyph_pool.S": "86c064445192a78621f7e64acf53a768f048c4d4040ea7147b897c23c041acca",
+  "src/pool_stamp_fast.inc": "dfb8ad9186a30cfaa906d5440497788010fe02f253305fc5743adae55ae93f2a",
+  "docs/RESEARCH_OPTIMIZATION_PLAN.md": "1d669da46256f89eb274a80c87cf840e3e1d5749b2773f9993b473604be3ea28",
+  "build/pacman.prg": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+  "build/pacman.lbl": "85ae3fe2f135103509e7b0b6b8e986b425d99908159dab54def979ffc18a0be5",
+  "build/arcade/pacman-native.bin": "b4a2880ed4e3b7e6db178e33cbf84e3936da6bc99836fd2487690258eb64798e",
+  "build/arcade/pacman-native.bin.elf": "0f332e3392f93a5834fccfa88dae0be832cae02bd6302155c29369f45508946c",
+  "build/arcade/pacman.map": "456286e0f8a2eb3c2643c0a214f207174a35ad479d4b25d9ab69a1b36cb7b99c"
+}

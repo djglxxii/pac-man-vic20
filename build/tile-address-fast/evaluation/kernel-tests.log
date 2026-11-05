@@ -1,0 +1,8 @@
+test_01_all_coordinates_and_incoming_carries (__main__.TileAddress.test_01_all_coordinates_and_incoming_carries) ... ok
+test_02_distinguish_all_ten_address_bits (__main__.TileAddress.test_02_distinguish_all_ten_address_bits) ... ok
+test_03_full_colour_byte_comparison (__main__.TileAddress.test_03_full_colour_byte_comparison) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 4.526s
+
+OK

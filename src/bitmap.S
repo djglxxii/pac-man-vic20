@@ -515,6 +515,57 @@ tile_color_done:
  lda #240
 tile_mask:
  sta v_flags
+#ifdef TILE_STAMP_FAST
+ /* Six destination rows fit a single indexed walk, including page carries.
+    Patch only the packed-source address; X selects its three bytes and Y
+    selects the six output rows. Main-thread only, like the sprite kernels.
+    v_flags is $0F/$F0: BIT exposes its high bit without clobbering X or A.
+    v_addr/v_data remain at their bases; all v_* scratch is caller-clobbered. */
+ lda v_data
+ sta tile_fetch+1
+ lda v_data+1
+ sta tile_fetch+2
+ ldx #0
+ ldy #0
+tile_pair:
+tile_fetch:
+ lda $ffff,x
+ sta v_hi
+ and #240
+ bit v_flags
+ bpl tile_upper
+ lsr
+ lsr
+ lsr
+ lsr
+tile_upper:
+ sta v_lo
+ lda (v_addr),y
+ and v_flags
+ ora v_lo
+ sta (v_addr),y
+ iny
+ lda v_hi
+ and #15
+ bit v_flags
+ bmi tile_lower
+ asl
+ asl
+ asl
+ asl
+tile_lower:
+ sta v_lo
+ lda (v_addr),y
+ and v_flags
+ ora v_lo
+ sta (v_addr),y
+ iny
+ inx
+ cpx #3
+ bne tile_pair
+tile_done:
+ rts
+#else
  lda #3
  sta v_row
 tile_pair:
@@ -561,6 +612,7 @@ tile_pixel:
  inc v_addr+1
 tile_pixel_done:
  rts
+#endif
 /* Remember every cell touched by the fixed maze walls, including cells shared
    with dots or the HUD. A full rebuild resets coverage before the new scene. */
 .section .maze_cells,"aw",@nobits

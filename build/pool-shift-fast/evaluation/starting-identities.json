@@ -1,0 +1,12 @@
+{
+  "Makefile": "7bb610fedb11230ca918a343c2c0c4e1a7fdc4207ab38fdedf5f04d04a30402b",
+  "src/glyph_pool.S": "9141c8242f9b8e64ba56252259a7112a7f03a60d6dd087c4a90806150a5cd45d",
+  "src/pool_stamp_fast.inc": "dfb8ad9186a30cfaa906d5440497788010fe02f253305fc5743adae55ae93f2a",
+  "docs/RESEARCH_OPTIMIZATION_PLAN.md": "66ab33b772e67a2d6f49e6a57b0ea048325d91b7341ce1916946e13921f8d168",
+  "docs/artwork/hires-pacman.json": "5cb6ca2564e54a15046772b7661325fc0abf2a0039cfa63ac8966c3f373f30d6",
+  "build/pacman.prg": "2284d03b700e5d72b1a13c9f35257e96e0c48469c9eef9f3854d61489f8513dc",
+  "build/pacman.lbl": "2ce8630e35080202b5e7270927b8067d82807c8647c7d1e77eef0bed85a639d7",
+  "build/arcade/pacman-native.bin": "bdde04bba6d1e1663309606877801b916b544dc7925fc63c81c0c9c8c2dbf353",
+  "build/arcade/pacman-native.bin.elf": "dc57091cbf359df10d53860dadede632ce97830553f8909a545316df123623b4",
+  "build/arcade/pacman.map": "d3a9d3e9eacf98ccca53a332de888424eaf51e9d45c3b098044d3d1748b584cc"
+}

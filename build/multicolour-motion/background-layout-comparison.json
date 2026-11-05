@@ -1,0 +1,64 @@
+{
+  "recorded_scenes": 480,
+  "all_published_pictures_identical": true,
+  "unchanged_asset_hashes": {
+    "replay.bin": "a24e3f25988f1cebb954eeba7684b5d6ad45675826b97eb4efb4760678093f6f",
+    "source-poses.json": "d4a18bb02e0375b3c951f63f6b1adc76fb86ebf7f751f4c9c388a2cc31e40fbc",
+    "poses.json": "24821433d7d01662239fb941a5a16f1c7bfa21e95dbdcbac568e0ff1fc17e5c3",
+    "background-colors.bin": "857a89a350e021fe738b76e656b6435a3a7ed557b1b4bc6aa837fc2c868e21c5"
+  },
+  "before_profile": {
+    "resolve_row": {
+      "mean_cycles_per_frame": 7514.36,
+      "calls_per_frame": 13.71,
+      "cycles_per_call": 548.08
+    },
+    "mc_publish": {
+      "mean_cycles_per_frame": 3101.32,
+      "calls_per_frame": 1.0,
+      "cycles_per_call": 3101.32
+    }
+  },
+  "after_profile": {
+    "resolve_row": {
+      "mean_cycles_per_frame": 7503.86,
+      "calls_per_frame": 13.71,
+      "cycles_per_call": 547.31
+    },
+    "mc_publish": {
+      "mean_cycles_per_frame": 3101.32,
+      "calls_per_frame": 1.0,
+      "cycles_per_call": 3101.32
+    }
+  },
+  "prepare": {
+    "before_mean_cycles": 16256.13,
+    "after_mean_cycles": 16245.63,
+    "reduction_percent": 0.06,
+    "faster_scenes": 474,
+    "equal_scenes": 4,
+    "slower_scenes": 2,
+    "minimum_cycles_saved": -2,
+    "maximum_cycles_saved": 24
+  },
+  "commit": {
+    "before_mean_cycles": 3205.82,
+    "after_mean_cycles": 3205.82,
+    "reduction_percent": 0.0,
+    "faster_scenes": 0,
+    "equal_scenes": 480,
+    "slower_scenes": 0,
+    "minimum_cycles_saved": 0,
+    "maximum_cycles_saved": 0
+  },
+  "total": {
+    "before_mean_cycles": 19461.95,
+    "after_mean_cycles": 19451.45,
+    "reduction_percent": 0.05,
+    "faster_scenes": 474,
+    "equal_scenes": 4,
+    "slower_scenes": 2,
+    "minimum_cycles_saved": -2,
+    "maximum_cycles_saved": 24
+  }
+}

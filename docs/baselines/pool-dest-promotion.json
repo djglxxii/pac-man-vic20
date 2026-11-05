@@ -1,0 +1,397 @@
+{
+  "status": "Accepted and promoted to default at user request",
+  "date": "2026-11-04",
+  "user_request": "make this the default build, and then move on to the next optimization idea",
+  "default_target": "make / make run / make test",
+  "runtime_changed_by_promotion": false,
+  "identical_files": {
+    "prg": {
+      "default": "build/pacman.prg",
+      "explicit": "build/pool-dest-fast/pacman.prg",
+      "sha256": "2284d03b700e5d72b1a13c9f35257e96e0c48469c9eef9f3854d61489f8513dc"
+    },
+    "labels": {
+      "default": "build/pacman.lbl",
+      "explicit": "build/pool-dest-fast/pacman.lbl",
+      "sha256": "2ce8630e35080202b5e7270927b8067d82807c8647c7d1e77eef0bed85a639d7"
+    },
+    "native": {
+      "default": "build/arcade/pacman-native.bin",
+      "explicit": "build/pool-dest-fast/pacman-native.bin",
+      "sha256": "bdde04bba6d1e1663309606877801b916b544dc7925fc63c81c0c9c8c2dbf353"
+    },
+    "elf": {
+      "default": "build/arcade/pacman-native.bin.elf",
+      "explicit": "build/pool-dest-fast/pacman-native.bin.elf",
+      "sha256": "63f200634070f6edce52b42fa384580e125a3171930a826c1cb00d6d0f4fbe30",
+      "during_promotion_tests_sha256": "dc57091cbf359df10d53860dadede632ce97830553f8909a545316df123623b4",
+      "rebuild_note": "Conditional trial source changed debug locations/temp object names; PRG/native/labels remain byte-identical to tested accepted trial"
+    },
+    "map": {
+      "default": "build/arcade/pacman.map",
+      "explicit": "build/pool-dest-fast/pacman.map",
+      "sha256": "30ba7de87aff91e22c9e8ac12d661c58ec026375e4d4072491a35dd6d992d7da",
+      "during_promotion_tests_sha256": "d3a9d3e9eacf98ccca53a332de888424eaf51e9d45c3b098044d3d1748b584cc",
+      "rebuild_note": "Conditional trial source changed debug locations/temp object names; PRG/native/labels remain byte-identical to tested accepted trial"
+    }
+  },
+  "original_measurements": "docs/baselines/pool-dest-fast.json",
+  "measured_actual_vice": {
+    "prg_sha256": "2284d03b700e5d72b1a13c9f35257e96e0c48469c9eef9f3854d61489f8513dc",
+    "video_frames": 1180,
+    "counter_interval_seconds": 19.55725819304663,
+    "completed_renders": 658,
+    "completed_renders_per_second": 33.64479793153954,
+    "calibration": {
+      "x": 8,
+      "y": 4,
+      "output_dots_per_vic_dot": 2,
+      "mismatch_pixels": 0,
+      "next_distinct_alignment_error": 3576
+    },
+    "min_diagnostic_pixels": 12,
+    "actors": {
+      "pacman": {
+        "frames": {
+          "present": 982,
+          "partial": 22,
+          "excluded": 176
+        },
+        "eligible_frames": 1004,
+        "exclusions": {
+          "shared-colour-cell": 115,
+          "reward-slot-expansion": 61
+        },
+        "absent_frame_percent": 0.0,
+        "partial_frame_percent": 2.191235059760956,
+        "absence_runs": 0,
+        "absence_run_frames": {},
+        "absence_runs_per_eligible_second": 0.0,
+        "displayed_move_interval_vic_frames": {
+          "1": 85,
+          "2": 217,
+          "3": 95,
+          "4": 16,
+          "5": 4
+        },
+        "displayed_move_interval_ms": {
+          "count": 417,
+          "mean": 35.32409575069412,
+          "p50": 33.176008846935694,
+          "p95": 49.76401327040354,
+          "max": 82.94002211733924
+        },
+        "displayed_move_distance_vic_pixels": {
+          "1": 333,
+          "2": 80,
+          "3": 25,
+          "4": 3,
+          "5": 2
+        },
+        "visible_ink_color_mismatch_frames": 0,
+        "motion_change_count": 443
+      },
+      "blinky": {
+        "frames": {
+          "present": 883,
+          "excluded": 280,
+          "partial": 17
+        },
+        "eligible_frames": 900,
+        "exclusions": {
+          "shared-colour-cell": 187,
+          "reward-slot-expansion": 61,
+          "screen-edge-clipping": 24,
+          "hidden-or-empty": 8
+        },
+        "absent_frame_percent": 0.0,
+        "partial_frame_percent": 1.8888888888888888,
+        "absence_runs": 0,
+        "absence_run_frames": {},
+        "absence_runs_per_eligible_second": 0.0,
+        "displayed_move_interval_vic_frames": {
+          "1": 52,
+          "2": 158,
+          "3": 73,
+          "4": 38,
+          "5": 11
+        },
+        "displayed_move_interval_ms": {
+          "count": 332,
+          "mean": 39.671311783835755,
+          "p50": 33.176008846935694,
+          "p95": 66.35201769387139,
+          "max": 82.94002211733924
+        },
+        "displayed_move_distance_vic_pixels": {
+          "1": 294,
+          "2": 56,
+          "3": 3
+        },
+        "visible_ink_color_mismatch_frames": 3,
+        "motion_change_count": 353
+      },
+      "pinky": {
+        "frames": {
+          "excluded": 331,
+          "present": 831,
+          "partial": 18
+        },
+        "eligible_frames": 849,
+        "exclusions": {
+          "shared-colour-cell": 107,
+          "screen-edge-clipping": 104,
+          "hidden-or-empty": 59,
+          "reward-slot-expansion": 61
+        },
+        "absent_frame_percent": 0.0,
+        "partial_frame_percent": 2.1201413427561837,
+        "absence_runs": 0,
+        "absence_run_frames": {},
+        "absence_runs_per_eligible_second": 0.0,
+        "displayed_move_interval_vic_frames": {
+          "1": 60,
+          "2": 155,
+          "3": 56,
+          "4": 24,
+          "5": 20,
+          "6": 1
+        },
+        "displayed_move_interval_ms": {
+          "count": 316,
+          "mean": 38.845326814450026,
+          "p50": 33.176008846935694,
+          "p95": 82.94002211733924,
+          "max": 99.52802654080708
+        },
+        "displayed_move_distance_vic_pixels": {
+          "1": 274,
+          "2": 62,
+          "3": 3
+        },
+        "visible_ink_color_mismatch_frames": 2,
+        "motion_change_count": 339
+      },
+      "inky": {
+        "frames": {
+          "excluded": 240,
+          "present": 928,
+          "partial": 12
+        },
+        "eligible_frames": 940,
+        "exclusions": {
+          "shared-colour-cell": 179,
+          "reward-slot-expansion": 61
+        },
+        "absent_frame_percent": 0.0,
+        "partial_frame_percent": 1.2765957446808511,
+        "absence_runs": 0,
+        "absence_run_frames": {},
+        "absence_runs_per_eligible_second": 0.0,
+        "displayed_move_interval_vic_frames": {
+          "1": 48,
+          "2": 158,
+          "3": 67,
+          "4": 42,
+          "5": 15,
+          "6": 4,
+          "7": 2,
+          "8": 1
+        },
+        "displayed_move_interval_ms": {
+          "count": 337,
+          "mean": 42.03607055679983,
+          "p50": 33.176008846935694,
+          "p95": 82.94002211733924,
+          "max": 132.70403538774278
+        },
+        "displayed_move_distance_vic_pixels": {
+          "1": 305,
+          "2": 49
+        },
+        "visible_ink_color_mismatch_frames": 4,
+        "motion_change_count": 354
+      },
+      "clyde": {
+        "frames": {
+          "excluded": 305,
+          "present": 859,
+          "partial": 16
+        },
+        "eligible_frames": 875,
+        "exclusions": {
+          "shared-colour-cell": 181,
+          "reward-slot-expansion": 61,
+          "insufficient-distinct-ink": 63
+        },
+        "absent_frame_percent": 0.0,
+        "partial_frame_percent": 1.8285714285714285,
+        "absence_runs": 0,
+        "absence_run_frames": {},
+        "absence_runs_per_eligible_second": 0.0,
+        "displayed_move_interval_vic_frames": {
+          "1": 35,
+          "2": 104,
+          "3": 52,
+          "4": 41,
+          "5": 13,
+          "6": 14,
+          "7": 5,
+          "8": 2
+        },
+        "displayed_move_interval_ms": {
+          "count": 266,
+          "mean": 47.58138110942093,
+          "p50": 33.176008846935694,
+          "p95": 99.52802654080708,
+          "max": 132.70403538774278
+        },
+        "displayed_move_distance_vic_pixels": {
+          "1": 273,
+          "2": 15,
+          "3": 1,
+          "4": 1
+        },
+        "visible_ink_color_mismatch_frames": 3,
+        "motion_change_count": 290
+      }
+    },
+    "method": "exact distinct sprite ink; old/new poses; binary visibility separate from colour",
+    "guest_modified": false,
+    "validation": {
+      "complete_snapshots_checked": 634,
+      "excluded_complete_snapshots": {
+        "reward-slot-expansion": 46
+      },
+      "settled_actor_results": {
+        "present": 2575,
+        "excluded": 595
+      },
+      "false_absent_or_partial_on_settled_images": 0,
+      "synthetic_host_only_controls": {
+        "absent": 2575,
+        "partial": 2575
+      }
+    },
+    "evidence": [
+      {
+        "actor": "pacman",
+        "frame": 23,
+        "status": "partial"
+      }
+    ],
+    "render_interval_ms": {
+      "count": 657,
+      "mean": 29.735385030738225,
+      "p50": 29.371474499059868,
+      "p95": 45.437345449958784,
+      "max": 61.512994181242895
+    },
+    "render_interval_logical_ticks": {
+      "1": 205,
+      "2": 378,
+      "3": 73,
+      "4": 1
+    }
+  },
+  "hardware": {
+    "video": "NTSC",
+    "ram": "+3K and BLK1/2/3/5",
+    "software_stack_bytes": 704,
+    "game_tick_cycles": 16875,
+    "vic_frame_cycles": 16965,
+    "cpu_hz": 1022727
+  },
+  "memory": {
+    "resident_end": "7cb3",
+    "resident_free": 141,
+    "stack_bytes": 704,
+    "blk5_end": "bfe9",
+    "blk5_free": 23,
+    "native_bytes": 33792,
+    "prg_bytes": 26829,
+    "setup_code_bytes": 122,
+    "hot_branch_placement": {
+      "epoch_clear": {
+        "target": "2df2",
+        "branch_fallthrough_pc": "2df8",
+        "same_page": true
+      },
+      "normal_ghost_row": {
+        "target": "2ed5",
+        "branch_fallthrough_pc": "2eff",
+        "same_page": true
+      }
+    }
+  },
+  "previous_build_preserved": "make run-pool-setup-fast",
+  "verification": {
+    "command": "make test",
+    "result": "passed",
+    "unit_checks": 86,
+    "additional_checks": "Exhaustive divider/adapter, ghost, allocation, tile, preparation, destination and stamp oracles; 1639 sound ticks; all three intermissions",
+    "default_matches_accepted_trial": true
+  },
+  "artifacts": {
+    "build/pool-dest-fast/evaluation/promotion-checks/allocator.json": {
+      "sha256": "5d8041b0320fd73123a22259a83ba6eab6599fa7eb70ca6166166b36324fcfb1",
+      "generated_at": "build/evaluation/allocator-kernel.json"
+    },
+    "build/pool-dest-fast/evaluation/promotion-checks/tiles.json": {
+      "sha256": "840c7e6c89c3a8d82f31a951a6cd6cfa1d07b1c3036a235c9791c8f74a61d41b",
+      "generated_at": "build/evaluation/tile-stamp-kernel.json"
+    },
+    "build/pool-dest-fast/evaluation/promotion-checks/preparation.json": {
+      "sha256": "196cd622ab68c508a3ddcd25847671335c13b0e8e7c8796bc7df94221c370e1e",
+      "generated_at": "build/evaluation/pool-setup-kernel.json"
+    },
+    "build/pool-dest-fast/evaluation/promotion-checks/destinations.json": {
+      "sha256": "17a428bea0d245169053580ed9ad3afcec6bd95cc372032c0a6541a219b8bbf7",
+      "generated_at": "build/evaluation/pool-dest-kernel.json"
+    },
+    "build/pool-dest-fast/evaluation/promotion-checks/unused_bottom_guards.json": {
+      "sha256": "da019983e2e3154fa4505c86d17a5dfa20f324f5829dc3fdd48bdbaa9dfb6911",
+      "generated_at": "build/evaluation/pool-dest-guards.json"
+    },
+    "build/pool-dest-fast/evaluation/promotion-checks/sprites.json": {
+      "sha256": "2b6e91a926c3a3e92dc0ebadcebac48ce1fd23d2f3711d5383313b24d1b66da2",
+      "generated_at": "build/evaluation/stamp-kernel.json"
+    },
+    "build/pool-dest-fast/evaluation/promotion-checks/ghost.json": {
+      "sha256": "cec52bda77c7b67cdc91ae003427ced287649b4315051622fe9d54c6238e47ef",
+      "generated_at": "build/evaluation/ghost-kernel.json"
+    },
+    "build/pool-dest-fast/evaluation/promotion-checks/divider.json": {
+      "sha256": "cc33bb1d32ebe9f428ab2130adaa2ca663c5b5488d19d4c73591bc39437c8752",
+      "generated_at": "build/evaluation/divider-kernel.json"
+    },
+    "build/pool-dest-fast/evaluation/promotion-checks/adapter.json": {
+      "sha256": "de67639fdc8fa52bfbb3ad09f84389a8a91df6cb525de96a988eab5ea8f53a73",
+      "generated_at": "build/evaluation/update-kernel.json"
+    },
+    "build/pool-dest-fast/evaluation/promotion-checks/tunnel.json": {
+      "sha256": "5f8d9abfa12a6f489e289e3281abab91a974498408fc73a094eb2f9361c1e328",
+      "generated_at": "build/evaluation/tile-kernel.json"
+    },
+    "build/pool-dest-fast/evaluation/promotion-checks/audio.json": {
+      "sha256": "54682b02799a5a32c067bf27edcc594b64685c41ce121a21d3c425cfe81ce226",
+      "generated_at": "build/evaluation/audio-replay/summary.json"
+    },
+    "build/pool-dest-fast/evaluation/promotion-checks/smoke.json": {
+      "sha256": "9accf54cef0e19952892b9a7f4e8cb6b84aa004d0d17be4e77a4f3c198b5bbf5",
+      "generated_at": "build/preview/native-validation.json"
+    },
+    "build/pool-dest-fast/evaluation/promotion-tests.log": {
+      "sha256": "4c5674326c1aac1942465e82446094e072add2cfcc95ec06c2819f0bbb56925b"
+    }
+  },
+  "source_files": {
+    "Makefile": "49d2f76a1263fd0585ecd9e6c48db98fd59358408389621252c4c78ca6aaae55",
+    "README.md": "d1a775540bc84c725f9a9131893d09d051687605fee3160947f9d62380b62a94",
+    "src/glyph_pool.S": "9141c8242f9b8e64ba56252259a7112a7f03a60d6dd087c4a90806150a5cd45d",
+    "src/pool_stamp_fast.inc": "4dce6a03f67f9707c0314b5588f5a03beb03f9c19463477eae8ae5c094918396",
+    "docs/POOL_DEST_OPTIMIZATION.md": "fb23021a3d42baea02c4df5d9ee31b660d7959be0084b5279749ec23199eafb9",
+    "docs/RESEARCH_OPTIMIZATION_PLAN.md": "8900ad59b5297dde4bd29acef43fc0cccbbd2936eafe41cadb2ad98e42fdfa2d",
+    "docs/POOL_SHIFT_OPTIMIZATION.md": "5381ccfa705d939f9b97a65f07b82a260bb7294c458984ef25be48d2983435e5"
+  }
+}

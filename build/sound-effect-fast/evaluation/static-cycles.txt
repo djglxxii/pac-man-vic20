@@ -1,0 +1,168 @@
+   18   ldy #0                           $A0      2  
+   19   lda (effect),y                   $B1    5-6  +1 if page crossed
+   20   bne sfx_active                   $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   22   ldy #2                           $A0      2  
+   23   lda (effect),y                   $B1    5-6  +1 if page crossed
+   24   beq sfx_zero                     $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   25   lda #0                           $A9      2  
+   26   sta (effect),y                   $91      6  
+   27   ldy #13                          $A0      2  
+   28   sta (effect),y                   $91      6  
+   29   iny                              $C8      2  
+   30   sta (effect),y                   $91      6  
+   31   iny                              $C8      2  
+   32   sta (effect),y                   $91      6  
+   33   ldy #3                           $A0      2  
+   35   sta (frequency),y                $91      6  
+   36   dey                              $88      2  
+   37   bpl sfx_clear_frequency          $10    2-4  2 not taken / 3 taken / 4 taken+page cross
+   39   rts                              $60      6  
+   43   ldx #7                           $A2      2  
+   45   asl                              $0A      2  
+   46   bcs sfx_selected                 $B0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   47   dex                              $CA      2  
+   48   bpl sfx_priority                 $10    2-4  2 not taken / 3 taken / 4 taken+page cross
+   50   lda rom_32f9+($3bb0-$32f9),x     $BD    4-5  +1 if page crossed
+   51   sta selected_mask                $85      3  
+   52   ldy #2                           $A0      2  
+   53   and (effect),y                   $31    5-6  +1 if page crossed
+   54   bne sfx_duration                 $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   55   lda selected_mask                $A5      3  
+   56   sta (effect),y                   $91      6  
+   59   txa                              $8A      2  
+   60   asl                              $0A      2  
+   61   asl                              $0A      2  
+   62   asl                              $0A      2  
+   63   clc                              $18      2  
+   64   adc table                        $65      3  
+   65   sta table                        $85      3  
+   66   bcc sfx_table_ready              $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+   67   inc table+1                      $E6      5  
+   69   lda table                        $A5      3  
+   70   sec                              $38      2  
+   71   sbc #3                           $E9      2  
+   72   sta source                       $85      3  
+   73   lda table+1                      $A5      3  
+   74   sbc #0                           $E9      2  
+   75   sta source+1                     $85      3  
+   76   ldy #10                          $A0      2  
+   78   lda (source),y                   $B1    5-6  +1 if page crossed
+   79   sta (effect),y                   $91      6  
+   80   dey                              $88      2  
+   81   cpy #2                           $C0      2  
+   82   bne sfx_copy_definition          $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   83   ldy #6                           $A0      2  
+   84   lda (effect),y                   $B1    5-6  +1 if page crossed
+   85   and #127                         $29      2  
+   86   ldy #12                          $A0      2  
+   87   sta (effect),y                   $91      6  
+   88   ldy #4                           $A0      2  
+   89   lda (effect),y                   $B1    5-6  +1 if page crossed
+   90   ldy #14                          $A0      2  
+   91   sta (effect),y                   $91      6  
+   92   ldy #9                           $A0      2  
+   93   lda (effect),y                   $B1    5-6  +1 if page crossed
+   94   tax                              $AA      2  
+   95   lsr                              $4A      2  
+   96   lsr                              $4A      2  
+   97   lsr                              $4A      2  
+   98   lsr                              $4A      2  
+   99   ldy #11                          $A0      2  
+  100   sta (effect),y                   $91      6  
+  101   txa                              $8A      2  
+  102   bmi sfx_duration                 $30    2-4  2 not taken / 3 taken / 4 taken+page cross
+  103   ldy #15                          $A0      2  
+  104   sta (effect),y                   $91      6  
+  105   lda #0                           $A9      2  
+  106   ldy #13                          $A0      2  
+  107   sta (effect),y                   $91      6  
+  109   ldy #12                          $A0      2  
+  110   lda (effect),y                   $B1    5-6  +1 if page crossed
+  111   sec                              $38      2  
+  112   sbc #1                           $E9      2  
+  113   sta (effect),y                   $91      6  
+  114   beq sfx_expired                  $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  115   jmp sfx_pitch                    $4C      3  
+  117   ldy #8                           $A0      2  
+  118   lda (effect),y                   $B1    5-6  +1 if page crossed
+  119   beq sfx_reload                   $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  120   sec                              $38      2  
+  121   sbc #1                           $E9      2  
+  122   sta (effect),y                   $91      6  
+  123   bne sfx_reload                   $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  124   lda selected_mask                $A5      3  
+  125   eor #255                         $49      2  
+  126   ldy #0                           $A0      2  
+  127   and (effect),y                   $31    5-6  +1 if page crossed
+  128   sta (effect),y                   $91      6  
+  129   jmp soundEffectOneChannel_2dee   $4C      3  
+  131   ldy #6                           $A0      2  
+  132   lda (effect),y                   $B1    5-6  +1 if page crossed
+  133   and #127                         $29      2  
+  134   ldy #12                          $A0      2  
+  135   sta (effect),y                   $91      6  
+  136   ldy #6                           $A0      2  
+  137   lda (effect),y                   $B1    5-6  +1 if page crossed
+  138   bpl sfx_envelope                 $10    2-4  2 not taken / 3 taken / 4 taken+page cross
+  139   ldy #5                           $A0      2  
+  140   lda #0                           $A9      2  
+  141   sec                              $38      2  
+  142   sbc (effect),y                   $F1    5-6  +1 if page crossed
+  143   sta (effect),y                   $91      6  
+  144   ldy #13                          $A0      2  
+  145   lda (effect),y                   $B1    5-6  +1 if page crossed
+  146   eor #1                           $49      2  
+  147   sta (effect),y                   $91      6  
+  148   and #1                           $29      2  
+  149   bne sfx_pitch                    $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  151   ldy #7                           $A0      2  
+  152   lda (effect),y                   $B1    5-6  +1 if page crossed
+  153   clc                              $18      2  
+  154   ldy #4                           $A0      2  
+  155   adc (effect),y                   $71    5-6  +1 if page crossed
+  156   sta (effect),y                   $91      6  
+  157   ldy #14                          $A0      2  
+  158   sta (effect),y                   $91      6  
+  159   ldy #10                          $A0      2  
+  160   lda (effect),y                   $B1    5-6  +1 if page crossed
+  161   clc                              $18      2  
+  162   dey                              $88      2  
+  163   adc (effect),y                   $71    5-6  +1 if page crossed
+  164   sta (effect),y                   $91      6  
+  165   tax                              $AA      2  
+  166   ldy #11                          $A0      2  
+  167   lda (effect),y                   $B1    5-6  +1 if page crossed
+  168   and #8                           $29      2  
+  169   bne sfx_pitch                    $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  170   txa                              $8A      2  
+  171   ldy #15                          $A0      2  
+  172   sta (effect),y                   $91      6  
+  174   ldy #14                          $A0      2  
+  175   lda (effect),y                   $B1    5-6  +1 if page crossed
+  176   clc                              $18      2  
+  177   ldy #5                           $A0      2  
+  178   adc (effect),y                   $71    5-6  +1 if page crossed
+  179   ldy #14                          $A0      2  
+  180   sta (effect),y                   $91      6  
+  182   sta source                       $85      3  
+  183   ldy #3                           $A0      2  
+  184   lda (effect),y                   $B1    5-6  +1 if page crossed
+  185   and #$70                         $29      2  
+  186   lsr                              $4A      2  
+  187   lsr                              $4A      2  
+  188   lsr                              $4A      2  
+  189   lsr                              $4A      2  
+  190   tax                              $AA      2  
+  191   ldy #0                           $A0      2  
+  192   sty source+1                     $84      3  
+  193   lda source                       $A5      3  
+  194   cpx #0                           $E0      2  
+  195   beq sfx_frequency_ready          $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  197   asl                              $0A      2  
+  198   rol source+1                     $26      5  
+  199   dex                              $CA      2  
+  200   bne sfx_scale                    $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  202   ldx source+1                     $A6      3  
+  203   jmp frequencyWithVolume_2ee8     $4C      3  
+-------------------------------------------------------------
+bytes: 301   cycles: 518 .. 575   (straight-line sum; multiply loop bodies yourself)

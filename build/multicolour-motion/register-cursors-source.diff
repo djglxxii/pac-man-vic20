@@ -1,0 +1,90 @@
+--- before-register-cursors.S
++++ after-register-cursors.S
+@@ -62,7 +62,6 @@
+ left_index: .res 1              ; Colour slot = working character code - 147.
+ middle_index: .res 1
+ right_index: .res 1
+-list_index: .res 1
+ column_index: .res 1
+ replay_pointer: .res 2
+ replay_remaining: .res 2
+@@ -748,12 +747,13 @@
+ resolve_lo: .lobytes resolve_cells_0,resolve_cells_1,resolve_cells_2,resolve_cells_3,resolve_cells_4,resolve_cells_5,resolve_cells_6,resolve_cells_7
+ .assert >resolve_lo = >(resolve_lo+7), lderror, "Resolution lookup must stay within a page"
+ mc_publish:
+- lda #0
+- sta list_index
++ ; The pointer helpers preserve X; keep the old-list cursor in that register.
++ ldx #0
+ restore_vacated:
+- ldy list_index
+- cpy mc_old_count
++ cpx mc_old_count
+  bcs publish_start
++ txa
++ tay
+  lda (old_lo),y
+  sta cell_low
+  lda (old_hi),y
+@@ -778,13 +778,12 @@
+  lda #14
+  sta (color_ptr),y
+ restore_skip:
+- inc list_index
++ inx
+  jmp restore_vacated
+ publish_start:
+- lda #0
+- sta list_index
++ ; Publication never changes Y except to advance this new-list cursor.
++ ldy #0
+ publish_cell:
+- ldy list_index
+  cpy mc_new_count
+  bcs mc_commit_end
+  lda (new_lo),y
+@@ -811,7 +810,7 @@
+  lda (new_color),y
+ publish_color:
+  sta $9400,x
+- lda list_index
++ tya
+  clc
+ publish_bank:
+  adc #147
+@@ -820,7 +819,7 @@
+  lda #$ff
+ publish_clear:
+  sta cell_work,x
+- inc list_index
++ iny
+  jmp publish_cell
+ mc_commit_end:
+  rts
+@@ -845,12 +844,13 @@
+  sta mc_pending
+  rts
+ clear_work_map:
+- lda #0
+- sta list_index
++ ; Abort/failure cleanup uses the same X-preserving map helper as restoration.
++ ldx #0
+ clear_map_cell:
+- ldy list_index
+- cpy mc_new_count
++ cpx mc_new_count
+  bcs clear_map_done
++ txa
++ tay
+  lda (new_lo),y
+  sta cell_low
+  lda (new_hi),y
+@@ -859,7 +859,7 @@
+  ldy #0
+  lda #$ff
+  sta (map_ptr),y
+- inc list_index
++ inx
+  jmp clear_map_cell
+ clear_map_done:
+  rts

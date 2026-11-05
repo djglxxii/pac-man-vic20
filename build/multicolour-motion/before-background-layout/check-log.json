@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "prototype_sha256": "40c8b1adef51fd6272c58a390e75c5a0884be8d8c087ee4f5ad9d8158739dba2",
+  "scenes_checked": 1626,
+  "recorded_pose_scenes": 480,
+  "all_pose_shift_phase_cases": 864,
+  "edge_and_hud_cases": 99,
+  "random_and_overlap_cases": 180,
+  "maximum_live_work_cells_per_image": 54,
+  "hidden_preparation_verified": true,
+  "background_and_guards_unchanged": true,
+  "discard_replace_invalid_input_recovery": true,
+  "prepare": {
+    "mean_cycles": 24770.18,
+    "max_cycles": 32890,
+    "mean_ms": 24.22,
+    "p95_ms": 28.818,
+    "max_ms": 32.159
+  },
+  "commit_including_cleanup": {
+    "mean_cycles": 5319.5,
+    "max_cycles": 7569,
+    "mean_ms": 5.201,
+    "p95_ms": 6.472,
+    "max_ms": 7.401
+  },
+  "publication": {
+    "mean_cycles": 5215.0,
+    "max_cycles": 7465,
+    "mean_ms": 5.099,
+    "p95_ms": 6.37,
+    "max_ms": 7.299
+  },
+  "total_renderer": {
+    "mean_cycles": 30089.68,
+    "max_cycles": 40064,
+    "mean_ms": 29.421,
+    "p95_ms": 35.253,
+    "max_ms": 39.174
+  },
+  "scope": "renderer-only replay; no logic, audio, input or changing maze cost included"
+}

@@ -18,16 +18,32 @@ The standard build uses the accepted [glyph-pool renderer](docs/GLYPH_POOL.md)
 with faster cell addressing, empty-row skipping and
 [optimized sound-effect processing](docs/SOUND_EFFECT_OPTIMIZATION.md), plus
 the accepted [faster ghost tunnel lookup](docs/TILE_ADDRESS_OPTIMIZATION.md)
-and [faster sprite composition](docs/POOL_STAMP_OPTIMIZATION.md).
-It measures **27.46 redraws/s** on the saved VICE route, about **3.9%** above
-the preceding tunnel build. Sound state and VIC register values match on all
-1,639 replayed ticks. `make run-pool-stamp-fast` launches the same version.
-Occasional stalls and partial poses remain.
+and [faster sprite composition](docs/POOL_STAMP_OPTIMIZATION.md), followed by
+[precomputed VIC pitch translation](docs/AUDIO_DIVIDER_OPTIMIZATION.md) and a
+[compact audio adapter](docs/AUDIO_UPDATE_OPTIMIZATION.md) and
+[faster ghost-state dispatch](docs/GHOST_UPDATE_OPTIMIZATION.md), followed by
+[cheaper cell allocation](docs/POOL_ALLOC_OPTIMIZATION.md),
+[faster background-tile drawing](docs/TILE_STAMP_OPTIMIZATION.md) and
+[precomputed sprite preparation](docs/POOL_SETUP_OPTIMIZATION.md) and
+[cheaper destination setup](docs/POOL_DEST_OPTIMIZATION.md) and
+[accumulator-first sprite shifts](docs/POOL_SHIFT_OPTIMIZATION.md) and
+[cheaper normal-ghost row control](docs/POOL_GHOST_ROW_OPTIMIZATION.md).
+It measures **33.85 redraws/s** on the saved VICE route, about **0.3%** above
+the preceding sprite-shift build. Sound state and VIC register values
+match on all 1,639 replayed ticks. `make run-pool-ghost-row-fast` launches the same
+version. Occasional stalls and partial poses remain.
 
 The [remaining optimization candidates](docs/RESEARCH_OPTIMIZATION_PLAN.md#remaining-optimization-candidates)
-track the next work. The first ghost-state and glyph-composition experiments
-are accepted; measuring opportunities to reuse unchanged display content is
-the next queued investigation.
+track the next work. The drawing, ghost-state and audio optimizations above
+are accepted. Unchanged-display reuse has been measured; the larger cache
+rewrite and redraw-pacing changes remain deferred.
+
+Memory headroom remains 141 resident bytes before the full 704-byte software
+stack and 23 bytes in BLK5. The gain is small; the 95th-percentile redraw gap,
+worst native input/audio gaps and several partial-pose counts grow on this
+route. Live play testing found it acceptable. The measured cycle savings and
+unchanged memory headroom support keeping it; the
+[promotion record](docs/baselines/pool-ghost-row-promotion.json) identifies the default.
 
 Earlier builds remain available for comparison: `make run-glyph-pool` launches
 the original accepted pool (about 22 redraws/s), `make run-pool-address` the
@@ -35,6 +51,15 @@ the original accepted pool (about 22 redraws/s), `make run-pool-address` the
 `make run-pool-skip-empty` the [empty-row improvement](docs/POOL_SKIP_EMPTY.md)
 (23.21). `make run-sound-effect-fast` retains the sound improvement (25.67).
 `make run-tile-address-fast` retains the tunnel-lookup improvement (26.44).
+`make run-pool-stamp-fast` retains the composition improvement (27.46).
+`make run-audio-divider-fast` retains the pitch-lookup improvement (28.84).
+`make run-audio-update-fast` retains the audio-adapter improvement (29.81).
+`make run-ghost-update-fast` retains the ghost-state improvement (30.78).
+`make run-pool-alloc-fast` retains the cell-allocation improvement (31.55).
+`make run-tile-stamp-fast` retains the background-tile improvement (32.21).
+`make run-pool-setup-fast` retains sprite preparation (33.29).
+`make run-pool-dest-fast` retains destination setup (33.64).
+`make run-pool-shift-fast` retains accumulator shifts (33.75).
 `make run-legacy` launches the former underlay renderer (about 33),
 which has the excessive flicker addressed by the pool.
 
@@ -229,11 +254,17 @@ the unchanged game through the first intermission and save an MP4 with sound:
 Dependencies: Python 3 with Pillow, a C compiler, ca65/ld65, and the pinned
 LLVM-MOS SDK. The Makefile uses the local `tools/cc65` installation or tools
 on `PATH`. `tools/bootstrap-llvm-mos.py` installs LLVM-MOS v23.4.0 under
-`tools/llvm-mos`; downloaded toolchains and generated files are ignored by git.
+`tools/llvm-mos`; downloaded toolchains and generated machine binaries are
+ignored by Git.
 VICE also needs its VIC-20 BASIC, KERNAL and character ROMs installed.
 
-The supplied `pacman.zip` remains the asset and reference source. Nothing in
-the build publishes the project or sends its ROMs to a service.
+The local `pacman.zip` remains the asset and reference source. The ROM archive,
+adapted arcade core/headers and third-party Z80 header are intentionally
+excluded from the current Git tree; restore those local inputs before building
+a fresh checkout. Our media and measurements are archived under `build/`,
+while game binaries, raw RAM and extracted ROM tables remain local. See
+[local inputs and artifact policy](docs/LOCAL_INPUTS.md) for the exact boundary
+and the note about earlier Git history. The build itself does not publish files.
 
 ## Source
 

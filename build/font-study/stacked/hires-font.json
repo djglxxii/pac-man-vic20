@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-03",
+  "status": "font-draft-awaiting-user-visual-review",
+  "scope": "Native hires lettering, all four ghost scores, all eight fruit scores; flicker work remains on hold.",
+  "ghost_layout": "Leading value above 00, inside existing 8x12 mask; chosen for performance.",
+  "before": {
+    "prg_bytes": 26715,
+    "prg_sha256": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+    "performance": [
+      {
+        "scene": "play",
+        "fps": 51.93,
+        "render_ms_mean": 9.29,
+        "render_ms_max": 19.21,
+        "input_service_gap_ms_max": 27.56,
+        "audio_update_gap_ms_max": 26.58
+      },
+      {
+        "scene": "frightened",
+        "fps": 54.61,
+        "render_ms_mean": 8.04,
+        "render_ms_max": 18.32,
+        "input_service_gap_ms_max": 26.46,
+        "audio_update_gap_ms_max": 29.92
+      },
+      {
+        "scene": "attract-chase",
+        "fps": 43.65,
+        "render_ms_mean": 8.68,
+        "render_ms_max": 14.34,
+        "input_service_gap_ms_max": 27.32,
+        "audio_update_gap_ms_max": 32.64
+      }
+    ]
+  },
+  "after": {
+    "prg_bytes": 26675,
+    "prg_sha256": "46f49a44af17fd01aa6ee31ec132f031238d0e0a8e2b68221c9332f15699dab8",
+    "performance": [
+      {
+        "scene": "play",
+        "fps": 51.91,
+        "render_ms_mean": 9.29,
+        "render_ms_max": 19.21,
+        "input_service_gap_ms_max": 27.56,
+        "audio_update_gap_ms_max": 26.58
+      },
+      {
+        "scene": "frightened",
+        "fps": 54.59,
+        "render_ms_mean": 8.04,
+        "render_ms_max": 18.32,
+        "input_service_gap_ms_max": 26.46,
+        "audio_update_gap_ms_max": 29.92
+      },
+      {
+        "scene": "attract-chase",
+        "fps": 43.64,
+        "render_ms_mean": 8.71,
+        "render_ms_max": 14.34,
+        "input_service_gap_ms_max": 27.32,
+        "audio_update_gap_ms_max": 32.64
+      }
+    ]
+  },
+  "resident_and_boot_byte_identical": true,
+  "native_image_bytes": 33792,
+  "resident_end": "$7D34",
+  "resident_free_bytes": 716,
+  "blk5_free_bytes": 15,
+  "changed_generated_tables": [
+    "rom_32f9",
+    "arcade_tiles",
+    "arcade_sprites"
+  ],
+  "original_program_rom_unchanged": true,
+  "font_source_sha256": "dc098b5f778338a2c3efff85421fcab07fe8553de1ed92322b70d8f892fd60b2",
+  "validation": {
+    "regression_tests": 50,
+    "frontend_smoke": "passed, including all three intermissions",
+    "vice": "passed boot, coin/start and normal play",
+    "popup_checks": "all eight fruit values, both pixel/palette erase paths, four original ghost-score selections; existing renderer checks all shifts/flips and restoration"
+  }
+}

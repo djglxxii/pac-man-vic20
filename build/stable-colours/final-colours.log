@@ -1,0 +1,32 @@
+{
+  "native": {
+    "summary": {
+      "complete_refreshes": 589,
+      "stores_in_complete_refreshes": 11656,
+      "colour_changes_in_complete_refreshes": 877,
+      "unchanged_final_cells_with_round_trip": 0
+    },
+    "examples": [],
+    "timestamp": "Native instruction start, not exact bus store phase"
+  },
+  "vice": {
+    "prg_sha256": "82bc17d9d51494b849d1fa3e6c4447fc8da437f6c5c926166c7a9babd8e08627",
+    "phase_audit": {
+      "complete_batches": 611,
+      "unchanged_final_cells_with_paint_phase_mismatch": 0,
+      "fruit_cells_with_paint_phase_mismatch": 0
+    },
+    "phase_examples": [],
+    "raster_wall_audit": {
+      "eligible_frames": 549,
+      "frames_with_white": 0,
+      "cells": 2034,
+      "sampled_wall_pixels": 40818,
+      "expected_colour_pixels": 40818,
+      "white_pixels": 0,
+      "black_pixels": 0,
+      "other_pixels": 0
+    },
+    "method": "Persistent background ink in stationary fruit-owned cells; all other actor colour cells excluded; one RGB sample per VIC pixel"
+  }
+}

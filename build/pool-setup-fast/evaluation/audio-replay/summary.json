@@ -1,0 +1,20 @@
+{
+  "ticks_compared": 1639,
+  "all_sound_state_and_register_values_identical": true,
+  "first_tick": 1,
+  "last_tick": 1639,
+  "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+  "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+  "programs": [
+    {
+      "path": "build/tile-stamp-fast/pacman.prg",
+      "sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297"
+    },
+    {
+      "path": "build/pool-setup-fast/pacman.prg",
+      "sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836"
+    }
+  ],
+  "guest_modified": false,
+  "method": "Compare tick-indexed arcade sound state and VIC registers on a live replay.\n\nHost PC observations only: no guest code, registers, clocks or sound are patched.\nCPU timestamps can differ; this checks the values produced at each logical tick."
+}

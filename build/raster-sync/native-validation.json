@@ -1,0 +1,73 @@
+{
+  "screens": [
+    "attract",
+    "credits",
+    "maze",
+    "cherry",
+    "intermission-1",
+    "intermission-2",
+    "intermission-3"
+  ],
+  "stack_by_scene": {
+    "attract": {
+      "software_lowest_write": 8169,
+      "software_bytes_written": 23,
+      "hardware_lowest_write": 494,
+      "hardware_bytes_written": 18
+    },
+    "credits": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 494,
+      "hardware_bytes_written": 18
+    },
+    "maze": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 490,
+      "hardware_bytes_written": 22
+    },
+    "cherry": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 488,
+      "hardware_bytes_written": 24
+    },
+    "intermission-1": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 488,
+      "hardware_bytes_written": 24
+    },
+    "intermission-2": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 488,
+      "hardware_bytes_written": 24
+    },
+    "intermission-3": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 488,
+      "hardware_bytes_written": 24
+    }
+  },
+  "clock": {
+    "video_frames": 180,
+    "arcade_ticks": 181,
+    "expected": 180.96
+  },
+  "long_run_ticks": 7192,
+  "stack": {
+    "software_lowest_write": 8160,
+    "software_bytes_written": 32,
+    "hardware_lowest_write": 488,
+    "hardware_bytes_written": 24
+  },
+  "boot": {
+    "entries": 1,
+    "released": true
+  },
+  "irq_vector_intact": true,
+  "stack_guard_intact": true
+}

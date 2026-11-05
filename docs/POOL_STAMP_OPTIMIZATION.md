@@ -1,8 +1,10 @@
 # Faster generic sprite composition
 
-**Accepted as the standard build on 2026-11-04 after live review.** `make`,
-`make run` and `make test` select this version. The default PRG, labels, native
-image, ELF and profiler map match the exact measured build below. The preceding
+**Accepted on 2026-11-04 after live review; included in the standard
+[pitch-lookup build](AUDIO_DIVIDER_OPTIMIZATION.md).** This standalone composition
+build remains available for comparison. Its original promotion checked the
+default PRG, labels, native image, ELF and profiler map against the measured
+build below. The preceding
 [tunnel-lookup build](TILE_ADDRESS_OPTIMIZATION.md) remains available for comparison.
 This is the first completed experiment in candidate 2 of the
 [optimization queue](RESEARCH_OPTIMIZATION_PLAN.md#remaining-optimization-candidates).
@@ -13,12 +15,12 @@ speed improves, but occasional stalls and partial poses remain; the longest
 captured redraw interval increases from 68.54 to 74.87 ms.
 
 ```sh
-make run
+make run-pool-stamp-fast
 ```
 
-Press **5**, **1**, then use the arrow keys. `make run-pool-stamp-fast` launches
-the same version. Compare with `make run-tile-address-fast` for its predecessor.
-The default PRG is `build/pacman.prg`, copied from `build/pool-stamp-fast/pacman.prg`.
+Press **5**, **1**, then use the arrow keys. `make run` launches the latest
+standard. Compare with `make run-tile-address-fast` for this version's predecessor.
+The standalone PRG is `build/pool-stamp-fast/pacman.prg`.
 
 ## Measurement before choosing the change
 
@@ -180,13 +182,14 @@ Run native tools sequentially because they share a fixture work directory.
 [Frozen measurements](baselines/pool-stamp-fast.json) retain compact evidence;
 raw profiles, captures and logs are in `build/pool-stamp-fast/evaluation/`.
 The frozen status records the trial before live acceptance and promotion.
-The standard PRG is byte-identical to the measured trial; its SHA-256 is
+The original promotion's standard PRG was byte-identical to the measured trial;
+its SHA-256 was
 `480fa052510ac687a9477e4da305d9e1accb6aaeb39d77c7d444e63a51d315c5`.
 The preceding tunnel build remains
 `5104973e43a2e0db2e1112ee18454012bbbbaa89646d914d3a9fa3663f0d40b4`.
-`make test` checks the default PRG's pixels against the independent kernel
-oracle and compares its full-program sound replay with that predecessor.
-The promotion run passes all 15 ROM, 39 pooled, four effect, three tunnel-kernel
+The original `make test` checked the default PRG's pixels against the independent
+kernel oracle and compared its full-program sound replay with that predecessor.
+That promotion run passed all 15 ROM, 39 pooled, four effect, three tunnel-kernel
 and 12 classifier tests, 10,496 sprite cases per build, the 1,639-tick audio
 replay and smoke through all three intermissions.
 The promotion run and five-file identity check are recorded in

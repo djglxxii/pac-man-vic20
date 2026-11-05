@@ -1,0 +1,9 @@
+{
+  "all_480_published_pictures_identical": true,
+  "retained_cells_per_scene": 6.335,
+  "scenes_with_retained_cells": 228,
+  "faster_scenes": 145,
+  "slower_scenes": 335,
+  "before_mean_cycles": 25752.95,
+  "candidate_mean_cycles": 25900.87
+}

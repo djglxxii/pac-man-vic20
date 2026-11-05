@@ -1,0 +1,2710 @@
+{
+  "prg_sha256": "5104973e43a2e0db2e1112ee18454012bbbbaa89646d914d3a9fa3663f0d40b4",
+  "fixture_sha256": "e5c2476313353a23255f8878d452c31501c9ef55c6a30b8454fb78bf120a1c40",
+  "method": "call updateGhostStates_1017 with IRQs masked; compare Z80 call $1017",
+  "cases": 528,
+  "groups": {
+    "all": {
+      "min": 107,
+      "mean": 1339.5151515151515,
+      "max": 3109
+    },
+    "normal": {
+      "min": 1083,
+      "mean": 1419.3333333333333,
+      "max": 3101
+    },
+    "frightened": {
+      "min": 1244,
+      "mean": 1521.3333333333333,
+      "max": 2908
+    },
+    "tunnel": {
+      "min": 1063,
+      "mean": 1399.3333333333333,
+      "max": 3081
+    },
+    "tunnel-frightened": {
+      "min": 1228,
+      "mean": 1505.3333333333333,
+      "max": 2892
+    },
+    "elroy-1": {
+      "min": 1091,
+      "mean": 1427.3333333333333,
+      "max": 3109
+    },
+    "elroy-2": {
+      "min": 1049,
+      "mean": 1385.3333333333333,
+      "max": 3067
+    },
+    "frightened-elroy-2": {
+      "min": 1214,
+      "mean": 1491.3333333333333,
+      "max": 2878
+    },
+    "tunnel-frightened-elroy-2": {
+      "min": 1198,
+      "mean": 1475.3333333333333,
+      "max": 2862
+    },
+    "in-house": {
+      "min": 502,
+      "mean": 502.0,
+      "max": 502
+    },
+    "returning": {
+      "min": 2501,
+      "mean": 2501.0,
+      "max": 2501
+    },
+    "death-pause": {
+      "min": 107,
+      "mean": 107.0,
+      "max": 107
+    }
+  },
+  "rows": [
+    {
+      "mode": "normal",
+      "pattern": 0,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 4294967295,
+      "cycles": 3101
+    },
+    {
+      "mode": "normal",
+      "pattern": 1431655765,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 2863311530,
+      "cycles": 3101
+    },
+    {
+      "mode": "normal",
+      "pattern": 1,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 2,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 4,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 8,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 16,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 32,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 64,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 128,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 256,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 512,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 1024,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 2048,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 4096,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 8192,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 16384,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 32768,
+      "cycles": 3101
+    },
+    {
+      "mode": "normal",
+      "pattern": 65536,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 131072,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 262144,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 524288,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 1048576,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 2097152,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 4194304,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 8388608,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 16777216,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 33554432,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 67108864,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 134217728,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 268435456,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 536870912,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 1073741824,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 2147483648,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 2067235387,
+      "cycles": 3101
+    },
+    {
+      "mode": "normal",
+      "pattern": 3901228626,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 2728164664,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 1833752245,
+      "cycles": 3101
+    },
+    {
+      "mode": "normal",
+      "pattern": 819382834,
+      "cycles": 3101
+    },
+    {
+      "mode": "normal",
+      "pattern": 3440203246,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 404116653,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 1516865169,
+      "cycles": 3101
+    },
+    {
+      "mode": "normal",
+      "pattern": 1341793782,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 437296270,
+      "cycles": 3101
+    },
+    {
+      "mode": "normal",
+      "pattern": 1255293587,
+      "cycles": 1083
+    },
+    {
+      "mode": "normal",
+      "pattern": 1168195575,
+      "cycles": 1083
+    },
+    {
+      "mode": "frightened",
+      "pattern": 0,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 4294967295,
+      "cycles": 2908
+    },
+    {
+      "mode": "frightened",
+      "pattern": 1431655765,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 2863311530,
+      "cycles": 2908
+    },
+    {
+      "mode": "frightened",
+      "pattern": 1,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 2,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 4,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 8,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 16,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 32,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 64,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 128,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 256,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 512,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 1024,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 2048,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 4096,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 8192,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 16384,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 32768,
+      "cycles": 2908
+    },
+    {
+      "mode": "frightened",
+      "pattern": 65536,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 131072,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 262144,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 524288,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 1048576,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 2097152,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 4194304,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 8388608,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 16777216,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 33554432,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 67108864,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 134217728,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 268435456,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 536870912,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 1073741824,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 2147483648,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 2067235387,
+      "cycles": 2908
+    },
+    {
+      "mode": "frightened",
+      "pattern": 3901228626,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 2728164664,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 1833752245,
+      "cycles": 2908
+    },
+    {
+      "mode": "frightened",
+      "pattern": 819382834,
+      "cycles": 2908
+    },
+    {
+      "mode": "frightened",
+      "pattern": 3440203246,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 404116653,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 1516865169,
+      "cycles": 2908
+    },
+    {
+      "mode": "frightened",
+      "pattern": 1341793782,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 437296270,
+      "cycles": 2908
+    },
+    {
+      "mode": "frightened",
+      "pattern": 1255293587,
+      "cycles": 1244
+    },
+    {
+      "mode": "frightened",
+      "pattern": 1168195575,
+      "cycles": 1244
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 0,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 4294967295,
+      "cycles": 3081
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 1431655765,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 2863311530,
+      "cycles": 3081
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 1,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 2,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 4,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 8,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 16,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 32,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 64,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 128,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 256,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 512,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 1024,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 2048,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 4096,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 8192,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 16384,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 32768,
+      "cycles": 3081
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 65536,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 131072,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 262144,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 524288,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 1048576,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 2097152,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 4194304,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 8388608,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 16777216,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 33554432,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 67108864,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 134217728,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 268435456,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 536870912,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 1073741824,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 2147483648,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 2067235387,
+      "cycles": 3081
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 3901228626,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 2728164664,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 1833752245,
+      "cycles": 3081
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 819382834,
+      "cycles": 3081
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 3440203246,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 404116653,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 1516865169,
+      "cycles": 3081
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 1341793782,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 437296270,
+      "cycles": 3081
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 1255293587,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel",
+      "pattern": 1168195575,
+      "cycles": 1063
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 0,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 4294967295,
+      "cycles": 2892
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 1431655765,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 2863311530,
+      "cycles": 2892
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 1,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 2,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 4,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 8,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 16,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 32,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 64,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 128,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 256,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 512,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 1024,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 2048,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 4096,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 8192,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 16384,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 32768,
+      "cycles": 2892
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 65536,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 131072,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 262144,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 524288,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 1048576,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 2097152,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 4194304,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 8388608,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 16777216,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 33554432,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 67108864,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 134217728,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 268435456,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 536870912,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 1073741824,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 2147483648,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 2067235387,
+      "cycles": 2892
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 3901228626,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 2728164664,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 1833752245,
+      "cycles": 2892
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 819382834,
+      "cycles": 2892
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 3440203246,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 404116653,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 1516865169,
+      "cycles": 2892
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 1341793782,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 437296270,
+      "cycles": 2892
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 1255293587,
+      "cycles": 1228
+    },
+    {
+      "mode": "tunnel-frightened",
+      "pattern": 1168195575,
+      "cycles": 1228
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 0,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 4294967295,
+      "cycles": 3109
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 1431655765,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 2863311530,
+      "cycles": 3109
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 1,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 2,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 4,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 8,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 16,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 32,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 64,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 128,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 256,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 512,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 1024,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 2048,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 4096,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 8192,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 16384,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 32768,
+      "cycles": 3109
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 65536,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 131072,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 262144,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 524288,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 1048576,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 2097152,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 4194304,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 8388608,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 16777216,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 33554432,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 67108864,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 134217728,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 268435456,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 536870912,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 1073741824,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 2147483648,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 2067235387,
+      "cycles": 3109
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 3901228626,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 2728164664,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 1833752245,
+      "cycles": 3109
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 819382834,
+      "cycles": 3109
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 3440203246,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 404116653,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 1516865169,
+      "cycles": 3109
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 1341793782,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 437296270,
+      "cycles": 3109
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 1255293587,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-1",
+      "pattern": 1168195575,
+      "cycles": 1091
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 0,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 4294967295,
+      "cycles": 3067
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 1431655765,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 2863311530,
+      "cycles": 3067
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 1,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 2,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 4,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 8,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 16,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 32,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 64,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 128,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 256,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 512,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 1024,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 2048,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 4096,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 8192,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 16384,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 32768,
+      "cycles": 3067
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 65536,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 131072,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 262144,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 524288,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 1048576,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 2097152,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 4194304,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 8388608,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 16777216,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 33554432,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 67108864,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 134217728,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 268435456,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 536870912,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 1073741824,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 2147483648,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 2067235387,
+      "cycles": 3067
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 3901228626,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 2728164664,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 1833752245,
+      "cycles": 3067
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 819382834,
+      "cycles": 3067
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 3440203246,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 404116653,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 1516865169,
+      "cycles": 3067
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 1341793782,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 437296270,
+      "cycles": 3067
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 1255293587,
+      "cycles": 1049
+    },
+    {
+      "mode": "elroy-2",
+      "pattern": 1168195575,
+      "cycles": 1049
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 0,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 4294967295,
+      "cycles": 2878
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 1431655765,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 2863311530,
+      "cycles": 2878
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 1,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 2,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 4,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 8,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 16,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 32,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 64,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 128,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 256,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 512,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 1024,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 2048,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 4096,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 8192,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 16384,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 32768,
+      "cycles": 2878
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 65536,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 131072,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 262144,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 524288,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 1048576,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 2097152,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 4194304,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 8388608,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 16777216,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 33554432,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 67108864,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 134217728,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 268435456,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 536870912,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 1073741824,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 2147483648,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 2067235387,
+      "cycles": 2878
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 3901228626,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 2728164664,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 1833752245,
+      "cycles": 2878
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 819382834,
+      "cycles": 2878
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 3440203246,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 404116653,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 1516865169,
+      "cycles": 2878
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 1341793782,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 437296270,
+      "cycles": 2878
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 1255293587,
+      "cycles": 1214
+    },
+    {
+      "mode": "frightened-elroy-2",
+      "pattern": 1168195575,
+      "cycles": 1214
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 0,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 4294967295,
+      "cycles": 2862
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 1431655765,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 2863311530,
+      "cycles": 2862
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 1,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 2,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 4,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 8,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 16,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 32,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 64,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 128,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 256,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 512,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 1024,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 2048,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 4096,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 8192,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 16384,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 32768,
+      "cycles": 2862
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 65536,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 131072,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 262144,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 524288,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 1048576,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 2097152,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 4194304,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 8388608,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 16777216,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 33554432,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 67108864,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 134217728,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 268435456,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 536870912,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 1073741824,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 2147483648,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 2067235387,
+      "cycles": 2862
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 3901228626,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 2728164664,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 1833752245,
+      "cycles": 2862
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 819382834,
+      "cycles": 2862
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 3440203246,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 404116653,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 1516865169,
+      "cycles": 2862
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 1341793782,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 437296270,
+      "cycles": 2862
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 1255293587,
+      "cycles": 1198
+    },
+    {
+      "mode": "tunnel-frightened-elroy-2",
+      "pattern": 1168195575,
+      "cycles": 1198
+    },
+    {
+      "mode": "in-house",
+      "pattern": 0,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 4294967295,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 1431655765,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 2863311530,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 1,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 2,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 4,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 8,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 16,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 32,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 64,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 128,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 256,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 512,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 1024,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 2048,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 4096,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 8192,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 16384,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 32768,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 65536,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 131072,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 262144,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 524288,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 1048576,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 2097152,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 4194304,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 8388608,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 16777216,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 33554432,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 67108864,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 134217728,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 268435456,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 536870912,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 1073741824,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 2147483648,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 2067235387,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 3901228626,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 2728164664,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 1833752245,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 819382834,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 3440203246,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 404116653,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 1516865169,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 1341793782,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 437296270,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 1255293587,
+      "cycles": 502
+    },
+    {
+      "mode": "in-house",
+      "pattern": 1168195575,
+      "cycles": 502
+    },
+    {
+      "mode": "returning",
+      "pattern": 0,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 4294967295,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 1431655765,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 2863311530,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 1,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 2,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 4,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 8,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 16,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 32,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 64,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 128,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 256,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 512,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 1024,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 2048,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 4096,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 8192,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 16384,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 32768,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 65536,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 131072,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 262144,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 524288,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 1048576,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 2097152,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 4194304,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 8388608,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 16777216,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 33554432,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 67108864,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 134217728,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 268435456,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 536870912,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 1073741824,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 2147483648,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 2067235387,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 3901228626,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 2728164664,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 1833752245,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 819382834,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 3440203246,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 404116653,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 1516865169,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 1341793782,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 437296270,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 1255293587,
+      "cycles": 2501
+    },
+    {
+      "mode": "returning",
+      "pattern": 1168195575,
+      "cycles": 2501
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 0,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 4294967295,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 1431655765,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 2863311530,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 1,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 2,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 4,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 8,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 16,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 32,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 64,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 128,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 256,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 512,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 1024,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 2048,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 4096,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 8192,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 16384,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 32768,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 65536,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 131072,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 262144,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 524288,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 1048576,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 2097152,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 4194304,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 8388608,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 16777216,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 33554432,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 67108864,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 134217728,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 268435456,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 536870912,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 1073741824,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 2147483648,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 2067235387,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 3901228626,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 2728164664,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 1833752245,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 819382834,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 3440203246,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 404116653,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 1516865169,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 1341793782,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 437296270,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 1255293587,
+      "cycles": 107
+    },
+    {
+      "mode": "death-pause",
+      "pattern": 1168195575,
+      "cycles": 107
+    }
+  ]
+}

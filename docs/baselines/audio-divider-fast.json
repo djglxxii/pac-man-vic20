@@ -1,0 +1,1467 @@
+{
+  "status": "Trial ready for live review; standard build unchanged",
+  "date": "2026-11-04",
+  "baseline_commit": "363f6a8",
+  "report": "docs/AUDIO_DIVIDER_OPTIMIZATION.md",
+  "native": {
+    "baseline": {
+      "method": "Measure VIC translation and repeated pitch inputs without changing the guest.",
+      "guest_modified": false,
+      "prg_sha256": "7774b36d39f4dbeb651113a7921ca3b0c2bfdfca447cdaa1ee40c0c50af59f73",
+      "native_sha256": "018f2215b6e59dc895d9b9cc59e17bf814740c24044693f779969c47a508fe35",
+      "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "converter_sha256": "9a924a7f98aac81fde1f42fcc84987717413051121a832488ffc04cb876ad5cb",
+      "depacked_bytes_verified": 33792,
+      "cpu_hz": 1022727,
+      "cycles": 20363986,
+      "seconds": 19.911458287499986,
+      "gameplay_states_checked": 1207,
+      "ticks_checked": 1639,
+      "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+      "all_outputs_match_host_model": true,
+      "phase_cycles": {
+        "logic_tasks_loop": 9799188,
+        "audio": 1168146,
+        "render": 9364034,
+        "wait": 32618
+      },
+      "phase_percent": {
+        "logic_tasks_loop": 48.12018629358712,
+        "audio": 5.736332759215214,
+        "render": 45.98330601877255,
+        "wait": 0.16017492842511286
+      },
+      "routine_inclusive_cycles": {
+        "divider": {
+          "count": 1893,
+          "mean": 238.14421553090332,
+          "p50": 235,
+          "p95": 256,
+          "max": 319,
+          "total": 450807
+        },
+        "audio": {
+          "count": 1207,
+          "mean": 967.8094449047225,
+          "p50": 1120,
+          "p95": 1268,
+          "max": 1449,
+          "total": 1168146
+        },
+        "render": {
+          "count": 549,
+          "mean": 17056.528233151184,
+          "p50": 16732,
+          "p95": 23056,
+          "max": 28774,
+          "total": 9364034
+        },
+        "wait": {
+          "count": 1206,
+          "mean": 27.046434494195687,
+          "p50": 27,
+          "p95": 27,
+          "max": 83,
+          "total": 32618
+        }
+      },
+      "completed_renders": 549,
+      "completed_render_interval_ms": {
+        "count": 548,
+        "mean": 36.27819523785126,
+        "p50": 35.124720477703235,
+        "p95": 53.152991951908966,
+        "max": 67.58695135652036
+      },
+      "actor_erase_to_paint_ms": {
+        "count": 0
+      },
+      "exclusive_audio": {
+        "divider": {
+          "cycles": 449463,
+          "cycles_per_tick": 372.38028169014086,
+          "audio_percent": 38.47661165641966,
+          "cpu_percent": 2.207146479083221
+        },
+        "save_restore": {
+          "cycles": 54315,
+          "cycles_per_tick": 45.0,
+          "audio_percent": 4.649675639860086,
+          "cpu_percent": 0.26672086692654373
+        },
+        "gating": {
+          "cycles": 74643,
+          "cycles_per_tick": 61.84175642087821,
+          "audio_percent": 6.389869074584855,
+          "cpu_percent": 0.3665441529963731
+        },
+        "pitch_registers": {
+          "cycles": 53028,
+          "cycles_per_tick": 43.93371996685998,
+          "audio_percent": 4.539501055518745,
+          "cpu_percent": 0.26040088615264223
+        },
+        "unpacking": {
+          "cycles": 111687,
+          "cycles_per_tick": 92.53272576636289,
+          "audio_percent": 9.56104801968247,
+          "cpu_percent": 0.5484535296773432
+        },
+        "scaling": {
+          "cycles": 332754,
+          "cycles_per_tick": 275.6868268434134,
+          "audio_percent": 28.485651622314332,
+          "cpu_percent": 1.6340317656867374
+        },
+        "zero_check_and_call": {
+          "cycles": 34100,
+          "cycles_per_tick": 28.251864125932062,
+          "audio_percent": 2.9191556534885192,
+          "cpu_percent": 0.1674524820435449
+        },
+        "volume_and_noise": {
+          "cycles": 54124,
+          "cycles_per_tick": 44.84175642087821,
+          "audio_percent": 4.633324943971044,
+          "cpu_percent": 0.265782936601901
+        }
+      },
+      "interrupt_and_other_audio_cycles": 4032,
+      "repeated_inputs_all": [
+        {
+          "ticks": 1639,
+          "silent_or_zero_pitch_ticks": 1438,
+          "divider_calls": 201,
+          "same_as_last_audible_frequency": 173,
+          "same_as_last_audible_raw_key": 173,
+          "unique_scaled_frequencies": 15,
+          "unique_output_pitches": 14,
+          "most_common_frequencies": [
+            [
+              1472,
+              56
+            ],
+            [
+              2208,
+              46
+            ],
+            [
+              1552,
+              28
+            ],
+            [
+              2336,
+              16
+            ],
+            [
+              2464,
+              14
+            ],
+            [
+              2768,
+              14
+            ],
+            [
+              2944,
+              14
+            ],
+            [
+              6912,
+              2
+            ],
+            [
+              5632,
+              2
+            ],
+            [
+              4352,
+              2
+            ],
+            [
+              3072,
+              2
+            ],
+            [
+              1792,
+              2
+            ]
+          ]
+        },
+        {
+          "ticks": 1639,
+          "silent_or_zero_pitch_ticks": 262,
+          "divider_calls": 1377,
+          "same_as_last_audible_frequency": 111,
+          "same_as_last_audible_raw_key": 111,
+          "unique_scaled_frequencies": 41,
+          "unique_output_pitches": 28,
+          "most_common_frequencies": [
+            [
+              1536,
+              118
+            ],
+            [
+              2304,
+              117
+            ],
+            [
+              768,
+              67
+            ],
+            [
+              3072,
+              67
+            ],
+            [
+              3840,
+              66
+            ],
+            [
+              4608,
+              66
+            ],
+            [
+              5376,
+              66
+            ],
+            [
+              6144,
+              64
+            ],
+            [
+              1408,
+              57
+            ],
+            [
+              1792,
+              57
+            ],
+            [
+              2176,
+              56
+            ],
+            [
+              1152,
+              51
+            ]
+          ]
+        },
+        {
+          "ticks": 1639,
+          "silent_or_zero_pitch_ticks": 939,
+          "divider_calls": 700,
+          "unique_scaled_frequencies": 31,
+          "unique_output_pitches": 21,
+          "most_common_frequencies": [
+            [
+              1792,
+              68
+            ],
+            [
+              2560,
+              68
+            ],
+            [
+              3328,
+              68
+            ],
+            [
+              4096,
+              68
+            ],
+            [
+              4864,
+              68
+            ],
+            [
+              5376,
+              68
+            ],
+            [
+              4608,
+              68
+            ],
+            [
+              3840,
+              68
+            ],
+            [
+              3072,
+              68
+            ],
+            [
+              2304,
+              67
+            ],
+            [
+              256,
+              1
+            ],
+            [
+              512,
+              1
+            ]
+          ]
+        }
+      ],
+      "repeated_inputs_play": [
+        {
+          "ticks": 1207,
+          "silent_or_zero_pitch_ticks": 1207,
+          "unique_scaled_frequencies": 0,
+          "unique_output_pitches": 0,
+          "most_common_frequencies": []
+        },
+        {
+          "ticks": 1207,
+          "divider_calls": 1207,
+          "unique_scaled_frequencies": 30,
+          "unique_output_pitches": 24,
+          "most_common_frequencies": [
+            [
+              2304,
+              115
+            ],
+            [
+              1536,
+              115
+            ],
+            [
+              768,
+              67
+            ],
+            [
+              3072,
+              67
+            ],
+            [
+              3840,
+              66
+            ],
+            [
+              4608,
+              66
+            ],
+            [
+              5376,
+              66
+            ],
+            [
+              6144,
+              64
+            ],
+            [
+              2176,
+              54
+            ],
+            [
+              1792,
+              54
+            ],
+            [
+              1408,
+              54
+            ],
+            [
+              2048,
+              48
+            ]
+          ]
+        },
+        {
+          "ticks": 1207,
+          "divider_calls": 686,
+          "silent_or_zero_pitch_ticks": 521,
+          "unique_scaled_frequencies": 31,
+          "unique_output_pitches": 21,
+          "most_common_frequencies": [
+            [
+              4864,
+              67
+            ],
+            [
+              5376,
+              67
+            ],
+            [
+              4608,
+              67
+            ],
+            [
+              3840,
+              67
+            ],
+            [
+              3072,
+              67
+            ],
+            [
+              2304,
+              66
+            ],
+            [
+              1792,
+              66
+            ],
+            [
+              2560,
+              66
+            ],
+            [
+              3328,
+              66
+            ],
+            [
+              4096,
+              66
+            ],
+            [
+              256,
+              1
+            ],
+            [
+              512,
+              1
+            ]
+          ]
+        }
+      ],
+      "completed_renders_per_second": 27.57206388768879,
+      "service_gaps": {
+        "input_service_ms": {
+          "count": 1205,
+          "mean": 16.498299577047707,
+          "p50": 13.371114676741692,
+          "p95": 29.905341308091014,
+          "max": 40.342144091238424
+        },
+        "audio_service_ms": {
+          "count": 1206,
+          "mean": 16.504105230282125,
+          "p50": 12.54782556830904,
+          "p95": 30.566319262129582,
+          "max": 38.15583239711086
+        }
+      },
+      "source_artifacts": {
+        "build/audio-translation-profile/baseline/summary.json": "e008af9384de2461dec9fc18285e0782403aff2df1c80c7d32c4479d4f9aca78",
+        "build/audio-translation-profile/baseline/active.profile": "65031c64a9a96fd5769f7e1f8fafd0809327c8d40f3b9d1649c1faad33fbe974",
+        "build/audio-translation-profile/baseline/active.trace": "35f9529c2420b199d5d340af9124d5d0f7cc1f654cbc19775fc3060edcc9f3bc",
+        "build/audio-translation-profile/baseline/ticks.json": "0d1ead158459950d22caededa393e441783a8ff2c56a40f22873828003a50dd3"
+      }
+    },
+    "trial": {
+      "method": "Measure VIC translation and repeated pitch inputs without changing the guest.",
+      "guest_modified": false,
+      "prg_sha256": "f0ca4b5135bb0cf7418996fc1e6cf9e05c245d92778fda566547f0f29bc39d7c",
+      "native_sha256": "aff3c13ed6102bc0a31e1365f6b202d6b6282f2ad8cf522a29db2874c67a0ca3",
+      "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "converter_sha256": "9a924a7f98aac81fde1f42fcc84987717413051121a832488ffc04cb876ad5cb",
+      "depacked_bytes_verified": 33792,
+      "cpu_hz": 1022727,
+      "cycles": 20367023,
+      "seconds": 19.91442779940297,
+      "gameplay_states_checked": 1207,
+      "ticks_checked": 1639,
+      "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+      "all_outputs_match_host_model": true,
+      "phase_cycles": {
+        "logic_tasks_loop": 9797035,
+        "audio": 779136,
+        "render": 9758178,
+        "wait": 32674
+      },
+      "phase_percent": {
+        "logic_tasks_loop": 48.102439909848385,
+        "audio": 3.8254780779694704,
+        "render": 47.911656013743396,
+        "wait": 0.16042599843875072
+      },
+      "routine_inclusive_cycles": {
+        "divider": {
+          "count": 1893,
+          "mean": 33.11833069202324,
+          "p50": 33,
+          "p95": 33,
+          "max": 89,
+          "total": 62693
+        },
+        "audio": {
+          "count": 1207,
+          "mean": 645.5144987572494,
+          "p50": 718,
+          "p95": 844,
+          "max": 970,
+          "total": 779136
+        },
+        "render": {
+          "count": 576,
+          "mean": 16941.28125,
+          "p50": 16489,
+          "p95": 22915,
+          "max": 28773,
+          "total": 9758178
+        },
+        "wait": {
+          "count": 1206,
+          "mean": 27.092868988391377,
+          "p50": 27,
+          "p95": 27,
+          "max": 83,
+          "total": 32674
+        }
+      },
+      "completed_renders": 576,
+      "completed_render_interval_ms": {
+        "count": 575,
+        "mean": 34.58489687481308,
+        "p50": 33.32169777467496,
+        "p95": 51.110413629443634,
+        "max": 66.56810664038399
+      },
+      "actor_erase_to_paint_ms": {
+        "count": 0
+      },
+      "exclusive_audio": {
+        "divider": {
+          "cycles": 62469,
+          "cycles_per_tick": 51.75559237779619,
+          "audio_percent": 8.017727328733367,
+          "cpu_percent": 0.3067164013120621
+        },
+        "save_restore": {
+          "cycles": 54315,
+          "cycles_per_tick": 45.0,
+          "audio_percent": 6.971183464760966,
+          "cpu_percent": 0.26668109521946337
+        },
+        "gating": {
+          "cycles": 74643,
+          "cycles_per_tick": 61.84175642087821,
+          "audio_percent": 9.580227328733367,
+          "cpu_percent": 0.3664894962803351
+        },
+        "pitch_registers": {
+          "cycles": 53028,
+          "cycles_per_tick": 43.93371996685998,
+          "audio_percent": 6.806000492853623,
+          "cpu_percent": 0.2603620568406094
+        },
+        "unpacking": {
+          "cycles": 111687,
+          "cycles_per_tick": 92.53272576636289,
+          "audio_percent": 14.334724618038443,
+          "cpu_percent": 0.5483717478003536
+        },
+        "scaling": {
+          "cycles": 332754,
+          "cycles_per_tick": 275.6868268434134,
+          "audio_percent": 42.7080766387383,
+          "cpu_percent": 1.633788109337334
+        },
+        "zero_check_and_call": {
+          "cycles": 34100,
+          "cycles_per_tick": 28.251864125932062,
+          "audio_percent": 4.376642845408247,
+          "cpu_percent": 0.16742751260211175
+        },
+        "volume_and_noise": {
+          "cycles": 54124,
+          "cycles_per_tick": 44.84175642087821,
+          "audio_percent": 6.9466691309347794,
+          "cpu_percent": 0.2657433047529823
+        }
+      },
+      "interrupt_and_other_audio_cycles": 2016,
+      "repeated_inputs_all": [
+        {
+          "ticks": 1639,
+          "silent_or_zero_pitch_ticks": 1438,
+          "divider_calls": 201,
+          "same_as_last_audible_frequency": 173,
+          "same_as_last_audible_raw_key": 173,
+          "unique_scaled_frequencies": 15,
+          "unique_output_pitches": 14,
+          "most_common_frequencies": [
+            [
+              1472,
+              56
+            ],
+            [
+              2208,
+              46
+            ],
+            [
+              1552,
+              28
+            ],
+            [
+              2336,
+              16
+            ],
+            [
+              2464,
+              14
+            ],
+            [
+              2768,
+              14
+            ],
+            [
+              2944,
+              14
+            ],
+            [
+              6912,
+              2
+            ],
+            [
+              5632,
+              2
+            ],
+            [
+              4352,
+              2
+            ],
+            [
+              3072,
+              2
+            ],
+            [
+              1792,
+              2
+            ]
+          ]
+        },
+        {
+          "ticks": 1639,
+          "silent_or_zero_pitch_ticks": 262,
+          "divider_calls": 1377,
+          "same_as_last_audible_frequency": 111,
+          "same_as_last_audible_raw_key": 111,
+          "unique_scaled_frequencies": 41,
+          "unique_output_pitches": 28,
+          "most_common_frequencies": [
+            [
+              1536,
+              118
+            ],
+            [
+              2304,
+              117
+            ],
+            [
+              768,
+              67
+            ],
+            [
+              3072,
+              67
+            ],
+            [
+              3840,
+              66
+            ],
+            [
+              4608,
+              66
+            ],
+            [
+              5376,
+              66
+            ],
+            [
+              6144,
+              64
+            ],
+            [
+              1408,
+              57
+            ],
+            [
+              1792,
+              57
+            ],
+            [
+              2176,
+              56
+            ],
+            [
+              1152,
+              51
+            ]
+          ]
+        },
+        {
+          "ticks": 1639,
+          "silent_or_zero_pitch_ticks": 939,
+          "divider_calls": 700,
+          "same_as_last_audible_frequency": 0,
+          "same_as_last_audible_raw_key": 0,
+          "unique_scaled_frequencies": 31,
+          "unique_output_pitches": 21,
+          "most_common_frequencies": [
+            [
+              1792,
+              68
+            ],
+            [
+              2560,
+              68
+            ],
+            [
+              3328,
+              68
+            ],
+            [
+              4096,
+              68
+            ],
+            [
+              4864,
+              68
+            ],
+            [
+              5376,
+              68
+            ],
+            [
+              4608,
+              68
+            ],
+            [
+              3840,
+              68
+            ],
+            [
+              3072,
+              68
+            ],
+            [
+              2304,
+              67
+            ],
+            [
+              256,
+              1
+            ],
+            [
+              512,
+              1
+            ]
+          ]
+        }
+      ],
+      "repeated_inputs_play": [
+        {
+          "ticks": 1207,
+          "silent_or_zero_pitch_ticks": 1207,
+          "divider_calls": 0,
+          "same_as_last_audible_frequency": 0,
+          "same_as_last_audible_raw_key": 0,
+          "unique_scaled_frequencies": 0,
+          "unique_output_pitches": 0,
+          "most_common_frequencies": []
+        },
+        {
+          "ticks": 1207,
+          "divider_calls": 1207,
+          "silent_or_zero_pitch_ticks": 0,
+          "same_as_last_audible_frequency": 0,
+          "same_as_last_audible_raw_key": 0,
+          "unique_scaled_frequencies": 30,
+          "unique_output_pitches": 24,
+          "most_common_frequencies": [
+            [
+              2304,
+              115
+            ],
+            [
+              1536,
+              115
+            ],
+            [
+              768,
+              67
+            ],
+            [
+              3072,
+              67
+            ],
+            [
+              3840,
+              66
+            ],
+            [
+              4608,
+              66
+            ],
+            [
+              5376,
+              66
+            ],
+            [
+              6144,
+              64
+            ],
+            [
+              2176,
+              54
+            ],
+            [
+              1792,
+              54
+            ],
+            [
+              1408,
+              54
+            ],
+            [
+              2048,
+              48
+            ]
+          ]
+        },
+        {
+          "ticks": 1207,
+          "divider_calls": 686,
+          "silent_or_zero_pitch_ticks": 521,
+          "same_as_last_audible_frequency": 0,
+          "same_as_last_audible_raw_key": 0,
+          "unique_scaled_frequencies": 31,
+          "unique_output_pitches": 21,
+          "most_common_frequencies": [
+            [
+              4864,
+              67
+            ],
+            [
+              5376,
+              67
+            ],
+            [
+              4608,
+              67
+            ],
+            [
+              3840,
+              67
+            ],
+            [
+              3072,
+              67
+            ],
+            [
+              2304,
+              66
+            ],
+            [
+              1792,
+              66
+            ],
+            [
+              2560,
+              66
+            ],
+            [
+              3328,
+              66
+            ],
+            [
+              4096,
+              66
+            ],
+            [
+              256,
+              1
+            ],
+            [
+              512,
+              1
+            ]
+          ]
+        }
+      ],
+      "completed_renders_per_second": 28.92375346166202,
+      "service_gaps": {
+        "input_service_ms": {
+          "count": 1205,
+          "mean": 16.503166558520764,
+          "p50": 14.941426206602545,
+          "p95": 29.534763431492472,
+          "max": 37.552543347344894
+        },
+        "audio_service_ms": {
+          "count": 1206,
+          "mean": 16.506896681183136,
+          "p50": 13.19902574196242,
+          "p95": 30.2622302921503,
+          "max": 37.779387852281204
+        }
+      },
+      "source_artifacts": {
+        "build/audio-divider-fast/evaluation/trial-cpu/summary.json": "154b1b502cf5d80354397bfab16b3c81deb2d213d53fef5df52760a84b20a733",
+        "build/audio-divider-fast/evaluation/trial-cpu/active.profile": "49ec82ce8311cf940e08338e0f9b0466e74cb5f87fb896fcf2df7db503fbe7fe",
+        "build/audio-divider-fast/evaluation/trial-cpu/active.trace": "3fb530a567f71770ae71675bad0950eb177f912b531e3accd453aa43d6e87b54",
+        "build/audio-divider-fast/evaluation/trial-cpu/ticks.json": "433b13e15d56812d7745067cba946bd3f257dc28cc2d00b2c1754e56d6d079dc"
+      }
+    }
+  },
+  "actual_vice": {
+    "baseline": {
+      "prg_sha256": "7774b36d39f4dbeb651113a7921ca3b0c2bfdfca447cdaa1ee40c0c50af59f73",
+      "video_frames": 1180,
+      "counter_interval_seconds": 19.55725917082467,
+      "completed_renders": 537,
+      "completed_renders_per_second": 27.457835237009665,
+      "calibration": {
+        "x": 8,
+        "y": 4,
+        "output_dots_per_vic_dot": 2,
+        "mismatch_pixels": 0,
+        "next_distinct_alignment_error": 3576
+      },
+      "min_diagnostic_pixels": 12,
+      "actors": {
+        "pacman": {
+          "frames": {
+            "present": 979,
+            "partial": 19,
+            "excluded": 182
+          },
+          "eligible_frames": 998,
+          "exclusions": {
+            "shared-colour-cell": 121,
+            "reward-slot-expansion": 61
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.9038076152304608,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_ms": {
+            "count": 364,
+            "mean": 39.920582074059986,
+            "p50": 33.176008846935694,
+            "p95": 66.35201769387139,
+            "max": 82.94002211733924
+          },
+          "visible_ink_color_mismatch_frames": 0
+        },
+        "blinky": {
+          "frames": {
+            "present": 873,
+            "partial": 23,
+            "excluded": 284
+          },
+          "eligible_frames": 896,
+          "exclusions": {
+            "shared-colour-cell": 189,
+            "reward-slot-expansion": 61,
+            "screen-edge-clipping": 24,
+            "hidden-or-empty": 10
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 2.5669642857142856,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_ms": {
+            "count": 294,
+            "mean": 43.670460625048,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 99.52802654080708
+          },
+          "visible_ink_color_mismatch_frames": 1
+        },
+        "pinky": {
+          "frames": {
+            "excluded": 331,
+            "present": 837,
+            "partial": 12
+          },
+          "eligible_frames": 849,
+          "exclusions": {
+            "shared-colour-cell": 108,
+            "screen-edge-clipping": 103,
+            "hidden-or-empty": 59,
+            "reward-slot-expansion": 61
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.4134275618374559,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_ms": {
+            "count": 280,
+            "mean": 44.60988332454032,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 116.11603096427493
+          },
+          "visible_ink_color_mismatch_frames": 2
+        },
+        "inky": {
+          "frames": {
+            "excluded": 240,
+            "present": 931,
+            "partial": 9
+          },
+          "eligible_frames": 940,
+          "exclusions": {
+            "shared-colour-cell": 179,
+            "reward-slot-expansion": 61
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 0.9574468085106383,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_ms": {
+            "count": 308,
+            "mean": 46.532583837260454,
+            "p50": 49.76401327040354,
+            "p95": 82.94002211733924,
+            "max": 116.11603096427493
+          },
+          "visible_ink_color_mismatch_frames": 4
+        },
+        "clyde": {
+          "frames": {
+            "excluded": 307,
+            "present": 862,
+            "partial": 11
+          },
+          "eligible_frames": 873,
+          "exclusions": {
+            "shared-colour-cell": 183,
+            "reward-slot-expansion": 61,
+            "insufficient-distinct-ink": 63
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.2600229095074456,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_ms": {
+            "count": 259,
+            "mean": 50.14829136515569,
+            "p50": 49.76401327040354,
+            "p95": 99.52802654080708,
+            "max": 132.70403538774278
+          },
+          "visible_ink_color_mismatch_frames": 5
+        }
+      },
+      "method": "exact distinct sprite ink; old/new poses; binary visibility separate from colour",
+      "guest_modified": false,
+      "validation": {
+        "complete_snapshots_checked": 516,
+        "excluded_complete_snapshots": {
+          "reward-slot-expansion": 39
+        },
+        "settled_actor_results": {
+          "present": 2085,
+          "excluded": 495
+        },
+        "false_absent_or_partial_on_settled_images": 0,
+        "synthetic_host_only_controls": {
+          "absent": 2085,
+          "partial": 2085
+        }
+      },
+      "evidence": [
+        {
+          "actor": "pacman",
+          "frame": 62,
+          "status": "partial"
+        }
+      ],
+      "render_interval_ms": {
+        "count": 536,
+        "mean": 36.437994957262994,
+        "p50": 34.83725373437878,
+        "p95": 54.503303423103134,
+        "max": 74.86553107525273
+      },
+      "render_interval_logical_ticks": {
+        "1": 73,
+        "2": 294,
+        "3": 154,
+        "4": 14,
+        "5": 1
+      },
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "018f2215b6e59dc895d9b9cc59e17bf814740c24044693f779969c47a508fe35"
+      },
+      "input_trace_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "source_artifacts": {
+        "build/audio-divider-fast/evaluation/baseline-vice/analysis.json": "a7146e938cbf55cde5582179d7d36c227b7dd953b2efa95b011dd4283613b8da",
+        "build/audio-divider-fast/evaluation/baseline-vice/recording.json": "dcc92d41a3aaea69054254a18b8f621d44a62454867de448246500b2d99c6bd7"
+      }
+    },
+    "trial": {
+      "prg_sha256": "f0ca4b5135bb0cf7418996fc1e6cf9e05c245d92778fda566547f0f29bc39d7c",
+      "video_frames": 1180,
+      "counter_interval_seconds": 19.55725917082467,
+      "completed_renders": 564,
+      "completed_renders_per_second": 28.8383967852392,
+      "calibration": {
+        "x": 8,
+        "y": 4,
+        "output_dots_per_vic_dot": 2,
+        "mismatch_pixels": 0,
+        "next_distinct_alignment_error": 3576
+      },
+      "min_diagnostic_pixels": 12,
+      "actors": {
+        "pacman": {
+          "frames": {
+            "present": 987,
+            "partial": 16,
+            "excluded": 177
+          },
+          "eligible_frames": 1003,
+          "exclusions": {
+            "shared-colour-cell": 118,
+            "reward-slot-expansion": 59
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.5952143569292123,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_ms": {
+            "count": 382,
+            "mean": 38.690868956308506,
+            "p50": 33.176008846935694,
+            "p95": 66.35201769387139,
+            "max": 82.94002211733924
+          },
+          "visible_ink_color_mismatch_frames": 0
+        },
+        "blinky": {
+          "frames": {
+            "present": 887,
+            "excluded": 279,
+            "partial": 14
+          },
+          "eligible_frames": 901,
+          "exclusions": {
+            "shared-colour-cell": 187,
+            "reward-slot-expansion": 59,
+            "screen-edge-clipping": 23,
+            "hidden-or-empty": 10
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.5538290788013318,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_ms": {
+            "count": 319,
+            "mean": 41.808011148802976,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 82.94002211733924
+          },
+          "visible_ink_color_mismatch_frames": 1
+        },
+        "pinky": {
+          "frames": {
+            "excluded": 325,
+            "present": 843,
+            "partial": 12
+          },
+          "eligible_frames": 855,
+          "exclusions": {
+            "shared-colour-cell": 107,
+            "screen-edge-clipping": 99,
+            "hidden-or-empty": 60,
+            "reward-slot-expansion": 59
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.4035087719298245,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_ms": {
+            "count": 290,
+            "mean": 43.64361163829644,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 116.11603096427493
+          },
+          "visible_ink_color_mismatch_frames": 2
+        },
+        "inky": {
+          "frames": {
+            "excluded": 236,
+            "present": 932,
+            "partial": 12
+          },
+          "eligible_frames": 944,
+          "exclusions": {
+            "shared-colour-cell": 177,
+            "reward-slot-expansion": 59
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.271186440677966,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_ms": {
+            "count": 314,
+            "mean": 44.2170691160592,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 99.52802654080708
+          },
+          "visible_ink_color_mismatch_frames": 7
+        },
+        "clyde": {
+          "frames": {
+            "excluded": 298,
+            "present": 873,
+            "partial": 9
+          },
+          "eligible_frames": 882,
+          "exclusions": {
+            "shared-colour-cell": 178,
+            "reward-slot-expansion": 59,
+            "insufficient-distinct-ink": 61
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.0204081632653061,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_ms": {
+            "count": 258,
+            "mean": 49.892602451980814,
+            "p50": 49.76401327040354,
+            "p95": 99.52802654080708,
+            "max": 132.70403538774278
+          },
+          "visible_ink_color_mismatch_frames": 6
+        }
+      },
+      "method": "exact distinct sprite ink; old/new poses; binary visibility separate from colour",
+      "guest_modified": false,
+      "validation": {
+        "complete_snapshots_checked": 543,
+        "excluded_complete_snapshots": {
+          "reward-slot-expansion": 40
+        },
+        "settled_actor_results": {
+          "present": 2199,
+          "excluded": 516
+        },
+        "false_absent_or_partial_on_settled_images": 0,
+        "synthetic_host_only_controls": {
+          "absent": 2199,
+          "partial": 2199
+        }
+      },
+      "evidence": [
+        {
+          "actor": "pacman",
+          "frame": 400,
+          "status": "partial"
+        }
+      ],
+      "render_interval_ms": {
+        "count": 563,
+        "mean": 34.727827693751884,
+        "p50": 33.70107565362017,
+        "p95": 51.058591393402146,
+        "max": 58.52783782964564
+      },
+      "render_interval_logical_ticks": {
+        "1": 93,
+        "2": 321,
+        "3": 146,
+        "4": 3
+      },
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "aff3c13ed6102bc0a31e1365f6b202d6b6282f2ad8cf522a29db2874c67a0ca3"
+      },
+      "input_trace_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "source_artifacts": {
+        "build/audio-divider-fast/evaluation/trial-vice/analysis.json": "049ea178828aaf8ef3d39f161d0cf9f7386878ea194d5c9ba48f5dc859ce7726",
+        "build/audio-divider-fast/evaluation/trial-vice/recording.json": "674c3cb29a06387360a9429eb1b187a111f4040d59bbafc43253f425cfe7444d"
+      }
+    }
+  },
+  "kernel": {
+    "method": "Actual PRG calls with IRQs masked, RTS included, JSR excluded",
+    "frequencies_checked": 65536,
+    "output_sha256": "4d2bffc358c42d330b963602c5b65ab26b071c5ccd064b355f394422b60a7fd5",
+    "programs": [
+      {
+        "path": "build/pool-stamp-fast/pacman.prg",
+        "sha256": "7774b36d39f4dbeb651113a7921ca3b0c2bfdfca447cdaa1ee40c0c50af59f73"
+      },
+      {
+        "path": "build/audio-divider-fast/pacman.prg",
+        "sha256": "f0ca4b5135bb0cf7418996fc1e6cf9e05c245d92778fda566547f0f29bc39d7c"
+      }
+    ],
+    "baseline": {
+      "grid": {
+        "count": 512,
+        "total": 115234,
+        "mean": 225.06640625,
+        "min": 223,
+        "max": 289
+      },
+      "fallback": {
+        "count": 65024,
+        "total": 14634806,
+        "mean": 225.06775959645668,
+        "min": 223,
+        "max": 289
+      }
+    },
+    "trial": {
+      "grid": {
+        "count": 512,
+        "total": 14336,
+        "mean": 28.0,
+        "min": 23,
+        "max": 33
+      },
+      "fallback": {
+        "count": 65024,
+        "total": 14959926,
+        "mean": 230.06775959645668,
+        "min": 228,
+        "max": 294
+      }
+    },
+    "saved_replay_weighting": {
+      "source_summary_sha256": "e008af9384de2461dec9fc18285e0782403aff2df1c80c7d32c4479d4f9aca78",
+      "divider_calls": 1893,
+      "baseline_cycles": 449463,
+      "trial_cycles": 62469,
+      "cycles_saved": 386994,
+      "baseline_workload_cpu_percent_saved": 1.9003843353653846
+    }
+  },
+  "audio_replay": {
+    "ticks_compared": 1639,
+    "all_sound_state_and_register_values_identical": true,
+    "first_tick": 1,
+    "last_tick": 1639,
+    "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+    "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+    "programs": [
+      {
+        "path": "build/pool-stamp-fast/pacman.prg",
+        "sha256": "7774b36d39f4dbeb651113a7921ca3b0c2bfdfca447cdaa1ee40c0c50af59f73"
+      },
+      {
+        "path": "build/audio-divider-fast/pacman.prg",
+        "sha256": "f0ca4b5135bb0cf7418996fc1e6cf9e05c245d92778fda566547f0f29bc39d7c"
+      }
+    ],
+    "guest_modified": false,
+    "method": "Compare tick-indexed arcade sound state and VIC registers on a live replay.\n\nHost PC observations only: no guest code, registers, clocks or sound are patched.\nCPU timestamps can differ; this checks the values produced at each logical tick."
+  },
+  "smoke": {
+    "screens": [
+      "attract",
+      "credits",
+      "maze",
+      "cherry",
+      "intermission-1",
+      "intermission-2",
+      "intermission-3"
+    ],
+    "stack_by_scene": {
+      "attract": {
+        "software_lowest_write": 32743,
+        "software_bytes_written": 25,
+        "hardware_lowest_write": 493,
+        "hardware_bytes_written": 19
+      },
+      "credits": {
+        "software_lowest_write": 32743,
+        "software_bytes_written": 25,
+        "hardware_lowest_write": 493,
+        "hardware_bytes_written": 19
+      },
+      "maze": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 493,
+        "hardware_bytes_written": 19
+      },
+      "cherry": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "intermission-1": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "intermission-2": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "intermission-3": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      }
+    },
+    "clock": {
+      "video_frames": 180,
+      "arcade_ticks": 181,
+      "expected": 180.96
+    },
+    "long_run_ticks": 7183,
+    "stack": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 490,
+      "hardware_bytes_written": 22
+    },
+    "boot": {
+      "entries": 1,
+      "released": true
+    },
+    "irq_vector_intact": true,
+    "stack_guard_intact": true,
+    "software_stack_reserved": 704
+  },
+  "memory": {
+    "baseline_resident_end": "7bb3",
+    "trial_resident_end": "7cb3",
+    "resident_bytes_added": 256,
+    "table_bytes": 256,
+    "kernel_bytes_added": 22,
+    "baseline_headroom": 397,
+    "trial_headroom": 141,
+    "blk5_headroom": 24,
+    "software_stack_bytes": 704,
+    "hardware": "NTSC +3K and BLK1/2/3/5"
+  },
+  "limits": [
+    "One saved active-play route; other gameplay can take the five-cycle-slower fallback.",
+    "Tick-indexed sound values match; CPU write timestamps differ; no new listening or physical-hardware test.",
+    "Partial poses and colour sharing remain; no flicker elimination or fixed 30 Hz claim."
+  ]
+}

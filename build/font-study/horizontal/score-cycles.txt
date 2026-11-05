@@ -1,0 +1,126 @@
+   13   lda #0                     $A9      2  
+   14   sta score_slot             $8D      4  
+   15   lda $0c2b                  $AD      4  
+   16   and #31                    $29      2  
+   17   beq score_hole_high        $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   19   lda $0c23                  $AD      4  
+   20   and #31                    $29      2  
+   21   bne score_expand_done      $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   22   lda #2                     $A9      2  
+   23   bne score_hole_ready       $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   25   lda #10                    $A9      2  
+   27   sta score_hole             $8D      4  
+   28   ldx #10                    $A2      2  
+   30   lda $0c21,x                $BD    4-5  +1 if page crossed
+   31   and #31                    $29      2  
+   32   cmp #24                    $C9      2  
+   33   bne score_find_next        $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   34   lda $0c20,x                $BD    4-5  +1 if page crossed
+   35   lsr                        $4A      2  
+   36   lsr                        $4A      2  
+   37   sec                        $38      2  
+   38   sbc #40                    $E9      2  
+   39   cmp #4                     $C9      2  
+   40   bcc score_found            $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+   42   dex                        $CA      2  
+   43   dex                        $CA      2  
+   44   bne score_find             $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   46   rts                        $60      6  
+   48   stx score_slot             $8E      4  
+   49   ldx #9                     $A2      2  
+   51   lda $0c22,x                $BD    4-5  +1 if page crossed
+   52   sta score_saved,x          $9D      5  
+   53   lda $0c32,x                $BD    4-5  +1 if page crossed
+   54   sta score_saved+10,x       $9D      5  
+   55   dex                        $CA      2  
+   56   bpl score_backup           $10    2-4  2 not taken / 3 taken / 4 taken+page cross
+   57   ldx score_hole             $AE      4  
+   58   cpx score_slot             $EC      4  
+   59   bcc score_move_low_start   $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+   60   dex                        $CA      2  
+   61   dex                        $CA      2  
+   63   cpx score_slot             $EC      4  
+   64   beq score_split            $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   65   lda $0c20,x                $BD    4-5  +1 if page crossed
+   66   sta $0c22,x                $9D      5  
+   67   lda $0c21,x                $BD    4-5  +1 if page crossed
+   68   sta $0c23,x                $9D      5  
+   69   lda $0c31,x                $BD    4-5  +1 if page crossed
+   70   sta $0c33,x                $9D      5  
+   71   lda $0c30,x                $BD    4-5  +1 if page crossed
+   72   cpx #4                     $E0      2  
+   73   bne score_move_x           $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   75   clc                        $18      2  
+   76   adc #1                     $69      2  
+   78   sta $0c32,x                $9D      5  
+   79   dex                        $CA      2  
+   80   dex                        $CA      2  
+   81   bne score_move             $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   83   inx                        $E8      2  
+   84   inx                        $E8      2  
+   86   cpx score_slot             $EC      4  
+   87   beq score_split            $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   88   lda $0c20,x                $BD    4-5  +1 if page crossed
+   89   sta $0c1e,x                $9D      5  
+   90   lda $0c21,x                $BD    4-5  +1 if page crossed
+   91   sta $0c1f,x                $9D      5  
+   92   lda $0c31,x                $BD    4-5  +1 if page crossed
+   93   sta $0c2f,x                $9D      5  
+   94   lda $0c30,x                $BD    4-5  +1 if page crossed
+   95   cpx #6                     $E0      2  
+   96   bne score_move_low_x       $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   97   sec                        $38      2  
+   98   sbc #1                     $E9      2  
+  100   sta $0c2e,x                $9D      5  
+  101   inx                        $E8      2  
+  102   inx                        $E8      2  
+  103   bne score_move_low         $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  105   txa                        $8A      2  
+  106   tay                        $A8      2  
+  107   cpx score_hole             $EC      4  
+  108   bcc score_split_high       $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  109   dey                        $88      2  
+  110   dey                        $88      2  
+  111   jmp score_split_ready      $4C      3  
+  113   iny                        $C8      2  
+  114   iny                        $C8      2  
+  116   lda $0c20,x                $BD    4-5  +1 if page crossed
+  117   sta $0c20,y                $99      5  
+  118   lda $0c31,x                $BD    4-5  +1 if page crossed
+  119   sta $0c31,y                $99      5  
+  120   lda $0c30,x                $BD    4-5  +1 if page crossed
+  121   sec                        $38      2  
+  122   sbc #8                     $E9      2  
+  123   cpx #4                     $E0      2  
+  124   bne score_right_low        $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  125   cpy #6                     $C0      2  
+  126   bne score_right_x          $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  127   clc                        $18      2  
+  128   adc #1                     $69      2  
+  129   jmp score_right_x          $4C      3  
+  131   cpx #6                     $E0      2  
+  132   bne score_right_x          $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  133   cpy #4                     $C0      2  
+  134   bne score_right_x          $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  135   sec                        $38      2  
+  136   sbc #1                     $E9      2  
+  138   sta $0c30,y                $99      5  
+  139   lda $0c30,x                $BD    4-5  +1 if page crossed
+  140   clc                        $18      2  
+  141   adc #8                     $69      2  
+  142   sta $0c30,x                $9D      5  
+  143   lda #24                    $A9      2  
+  144   sta $0c21,x                $9D      5  
+  145   lda #31                    $A9      2  
+  146   sta $0c21,y                $99      5  
+  147   lda $0c20,x                $BD    4-5  +1 if page crossed
+  148   and #2                     $29      2  
+  149   bne score_mirror           $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  150   rts                        $60      6  
+  153   lda #31                    $A9      2  
+  154   sta $0c21,x                $9D      5  
+  155   lda #24                    $A9      2  
+  156   sta $0c21,y                $99      5  
+  157   rts                        $60      6  
+-------------------------------------------------------
+bytes: 266   cycles: 370 .. 427   (straight-line sum; multiply loop bodies yourself)

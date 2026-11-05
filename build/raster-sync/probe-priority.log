@@ -1,0 +1,20 @@
+{3: 'PC', 0: 'A', 1: 'X', 2: 'Y', 4: 'SP', 55: '00', 56: '01', 5: 'FL', 53: 'LIN', 54: 'CYC'}
+protected updates 0
+Traceback (most recent call last):
+  File "/home/djglxxii/src/vic-man/build/raster-sync/probe-priority.py", line 60, in <module>
+    try:mod.capture(root/'build/raster-sync/after/pacman.prg',out,30,inputs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/djglxxii/src/vic-man/build/flicker/capture.py", line 100, in capture
+    mon.next_frame(checkpoint)
+  File "/home/djglxxii/src/vic-man/build/raster-sync/probe-priority.py", line 45, in next_frame
+    super().run_until_stop()
+  File "/home/djglxxii/src/vic-man/tools/arcade/record_playthrough.py", line 119, in run_until_stop
+    event, error, actual, _ = self.response()
+                              ^^^^^^^^^^^^^^^
+  File "/home/djglxxii/src/vic-man/tools/arcade/record_playthrough.py", line 95, in response
+    "<BBIBBI", self.read(12)
+               ^^^^^^^^^^^^^
+  File "/home/djglxxii/src/vic-man/tools/arcade/vice_check.py", line 18, in read
+    chunk = self.s.recv(n - len(data))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TimeoutError: timed out

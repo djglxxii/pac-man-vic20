@@ -1,0 +1,45 @@
+{
+  "video_file": "build/through-game-over/through-game-over.mp4",
+  "video_sha256": "dc0e1aeb22fede5e20c7501577c622a4a47938bc21da0ea8b163742da157d557",
+  "bytes": 22195956,
+  "dimensions": [
+    360,
+    464
+  ],
+  "duration_seconds": 601.1161042976279,
+  "video_frames": 36238,
+  "capture_fps": "340909/5655",
+  "report_file": "build/through-game-over/report.json",
+  "report_sha256": "a550afb71a1d2c44006196a809144c901a5611f79e6be4089917f7a87ed45b80",
+  "prg_sha256": "e148017c58097fb84bb09757dac6d1a132ca40a051d288e10290e9b870cda227",
+  "completed_boards": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "completed_intermission": 3,
+  "deaths_through_third_intermission": 0,
+  "intentional_game_over": true,
+  "intentional_deaths_afterwards": 4,
+  "remaining_lives_at_game_over": 0,
+  "joystick_only": true,
+  "forced_board_completion": false,
+  "patterns": "PacStrats patterns documented in 10yard/pactrainer",
+  "pattern_credit_url": "https://github.com/10yard/pactrainer",
+  "pattern_attribution_source": "User-supplied attribution, consistent with the project route documentation and upstream README.",
+  "report_checks": [
+    "Video SHA-256 matches capture report",
+    "Program SHA-256 matches accepted default",
+    "Boards 1 through 9 completed",
+    "No reported deaths until after third intermission",
+    "All reported deaths occur during intentional-ending phase",
+    "Game Over reached with zero lives remaining"
+  ],
+  "checks_not_performed": "No fresh gameplay run, frame-by-frame decode or independent replay of the pattern trace performed for this copy update."
+}

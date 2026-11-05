@@ -1,0 +1,7 @@
+test_07_raster_update_phases_and_colour_boundaries (__main__.Renderer.test_07_raster_update_phases_and_colour_boundaries) ... ok
+test_08_raster_overlap_and_visibility_fallbacks (__main__.Renderer.test_08_raster_overlap_and_visibility_fallbacks) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.180s
+
+OK

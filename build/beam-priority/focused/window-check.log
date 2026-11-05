@@ -1,0 +1,15 @@
+{
+  "prg_sha256": "a4d1ced4974ad5b2af6e2ea72b878654684a40ba20fd33d22fbca7a4fa332303",
+  "loaded_program": {
+    "all_depacked_regions_match": true,
+    "bytes_checked": 33792,
+    "loaded_image_sha256": "6ef14fe1adeb7a51e33d140a399c5f0329174fbc8f0b5fdf21ac1a1aa14893f5"
+  },
+  "groups_checked": 64,
+  "protected_groups_checked": 10,
+  "protected_player_groups_checked": 10,
+  "all_four_ghost_slots_observed": false,
+  "no_protected_group_crossed_its_colour_rows": true,
+  "all_protected_groups_within_budget": true,
+  "guest_patches": false
+}

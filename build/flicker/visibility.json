@@ -1,0 +1,26 @@
+{
+  "before": {
+    "6": {
+      "stationary_house_frames": 14,
+      "low_colour_frames": 1,
+      "median_colour_pixels": 441.5
+    },
+    "8": {
+      "stationary_house_frames": 37,
+      "low_colour_frames": 6,
+      "median_colour_pixels": 450
+    }
+  },
+  "after": {
+    "6": {
+      "stationary_house_frames": 17,
+      "low_colour_frames": 7,
+      "median_colour_pixels": 364
+    },
+    "8": {
+      "stationary_house_frames": 36,
+      "low_colour_frames": 6,
+      "median_colour_pixels": 449.0
+    }
+  }
+}

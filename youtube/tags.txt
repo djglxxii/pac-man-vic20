@@ -1,1 +1,1 @@
-VIC-20, VIC20, Commodore VIC-20, Pac-Man, Pacman, Pac Man, VIC-20 Pac-Man, homebrew, homebrew games, arcade conversion, retro gaming, retro computing, 6502, Commodore, VICE emulator, game development, Pac-Man intermission, LLVM-MOS
+VIC-20, VIC20, Commodore VIC-20, Pac-Man, Pacman, agentic homebrew, coding agents, AI coding, AI assisted development, homebrew, arcade conversion, retro gaming, retro computing, 6502, Commodore, VICE emulator, game development, Pac-Man intermission, LLVM-MOS

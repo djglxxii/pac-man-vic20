@@ -1,0 +1,116 @@
+{
+  "prg": "build/pacman.prg",
+  "prg_sha256": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+  "video_frames": 360,
+  "fps": "340909/5655",
+  "joystick_only": true,
+  "guest_patches": false,
+  "first": {
+    "tick": 431,
+    "attributes": [
+      0,
+      0,
+      148,
+      1,
+      156,
+      3,
+      156,
+      5,
+      156,
+      7,
+      186,
+      9,
+      252,
+      0,
+      0,
+      0
+    ],
+    "positions": [
+      0,
+      0,
+      162,
+      164,
+      134,
+      155,
+      151,
+      139,
+      119,
+      139,
+      161,
+      68,
+      7,
+      8,
+      0,
+      0
+    ],
+    "pellets": 3,
+    "raw_frame_sha256": "e08fc90fbf4b0101edd20d64844201e88866250954a2e2f387197a425fe994e2",
+    "completed_render_calls": 0
+  },
+  "last": {
+    "tick": 792,
+    "attributes": [
+      0,
+      0,
+      136,
+      1,
+      152,
+      3,
+      136,
+      5,
+      152,
+      7,
+      188,
+      9,
+      252,
+      0,
+      0,
+      0
+    ],
+    "positions": [
+      0,
+      0,
+      34,
+      226,
+      194,
+      233,
+      171,
+      149,
+      119,
+      143,
+      122,
+      41,
+      7,
+      8,
+      0,
+      0
+    ],
+    "pellets": 47,
+    "raw_frame_sha256": "b75fcf5bc744e540bd9f6fa165b4280de351a451c7b041e5889ebdce5b9bc1ad",
+    "completed_render_calls": 199
+  },
+  "audit": {
+    "snapshot_prg": "build/capture-audit/verified-beam/before/captured-program.prg",
+    "loaded_program": {
+      "all_depacked_regions_match": true,
+      "bytes_checked": 33792,
+      "loaded_image_sha256": "e30a02d7327331808d9a4ad494777040423d5f483303e8fc5afee8b4ff8ab142"
+    },
+    "completed_render_calls": 199,
+    "render_calls_per_second": 33.42,
+    "synthetic_control_after_recording": {
+      "after_recording": true,
+      "VIC_register_900f": "4b",
+      "normal_sha256": "b75fcf5bc744e540bd9f6fa165b4280de351a451c7b041e5889ebdce5b9bc1ad",
+      "forced_sha256": "8194e41c60d04308175bba555c890b043d96a04c6c687f6dfb7617ecd7321a65",
+      "different_raw_frames": true,
+      "normal_purple_pixels": 0,
+      "forced_purple_pixels": 42084,
+      "purple_RGB": [
+        225,
+        81,
+        112
+      ]
+    }
+  }
+}

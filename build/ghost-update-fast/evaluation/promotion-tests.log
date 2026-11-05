@@ -1,0 +1,576 @@
+python3 tests/arcade.py
+test_01_original_maze_and_attract (__main__.ArcadeParity.test_01_original_maze_and_attract) ... ok
+test_02_gameplay_and_turn_trace (__main__.ArcadeParity.test_02_gameplay_and_turn_trace) ... ok
+test_03_difficulty_and_fruit (__main__.ArcadeParity.test_03_difficulty_and_fruit) ... ok
+test_04_ghost_targets_ties_and_upward_bug (__main__.ArcadeParity.test_04_ghost_targets_ties_and_upward_bug) ... ok
+test_05_frightened_random_sequence (__main__.ArcadeParity.test_05_frightened_random_sequence) ... ok
+test_06_elroy_and_score (__main__.ArcadeParity.test_06_elroy_and_score) ... ok
+test_07_intermission_selection (__main__.ArcadeParity.test_07_intermission_selection) ... ok
+test_08_complete_intermission_traces (__main__.ArcadeParity.test_08_complete_intermission_traces) ... ok
+test_09_rng_storage_bound (__main__.ArcadeParity.test_09_rng_storage_bound) ... ok
+test_10_lives_history_and_split_screen (__main__.ArcadeParity.test_10_lives_history_and_split_screen) ... ok
+test_11_credits_and_two_player_start (__main__.ArcadeParity.test_11_credits_and_two_player_start) ... ok
+test_12_death_sequence (__main__.ArcadeParity.test_12_death_sequence) ... ok
+test_13_coin_debounce_and_queued_credits (__main__.ArcadeParity.test_13_coin_debounce_and_queued_credits) ... ok
+test_14_songs_effects_and_channel_priority (__main__.ArcadeParity.test_14_songs_effects_and_channel_priority) ... ok
+test_15_attract_maze_demo (__main__.ArcadeParity.test_15_attract_maze_demo) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 18.586s
+
+OK
+python3 tests/glyph_pool.py
+test_01_real_maze_white_walls_pellets_and_unchanged_pixels (__main__.PoolColors.test_01_real_maze_white_walls_pellets_and_unchanged_pixels) ... ok
+test_02_tile_order_does_not_change_white_maze (__main__.PoolColors.test_02_tile_order_does_not_change_white_maze) ... ok
+test_03_wall_stays_white_after_last_dot_and_power_pellet_blinks (__main__.PoolColors.test_03_wall_stays_white_after_last_dot_and_power_pellet_blinks) ... ok
+test_04_pellet_ink_at_every_cell_boundary (__main__.PoolColors.test_04_pellet_ink_at_every_cell_boundary) ... ok
+test_05_actor_releases_white_pellets_and_keeps_aligned_neighbor (__main__.PoolColors.test_05_actor_releases_white_pellets_and_keeps_aligned_neighbor) ... ok
+test_06_blue_is_limited_to_completion_flash (__main__.PoolColors.test_06_blue_is_limited_to_completion_flash) ... ok
+test_01_colours_pixels_and_sprite_underlays (__main__.PoolFlash.test_01_colours_pixels_and_sprite_underlays) ... ok
+test_02_complete_flash_timing (__main__.PoolFlash.test_02_complete_flash_timing) ... ok
+test_03_walls_survive_incremental_dot_removal (__main__.PoolFlash.test_03_walls_survive_incremental_dot_removal) ... ok
+test_01_all_fruit_values_and_erase_footprints (__main__.PoolFonts.test_01_all_fruit_values_and_erase_footprints) ... ok
+test_02_ghost_chain_keeps_original_score_frames (__main__.PoolFonts.test_02_ghost_chain_keeps_original_score_frames) ... ok
+test_01_speed_masks_and_mode_priorities (__main__.PoolGhosts.test_01_speed_masks_and_mode_priorities) ... ok
+test_01_loader_delivers_all_three_regions_before_boot (__main__.PoolMemory.test_01_loader_delivers_all_three_regions_before_boot) ... ok
+test_02_cold_ram_is_reused_after_startup (__main__.PoolMemory.test_02_cold_ram_is_reused_after_startup) ... ok
+test_03_stack_tracking_excludes_host_canaries (__main__.PoolMemory.test_03_stack_tracking_excludes_host_canaries) ... ok
+test_01_6502_movement_turns_and_score (__main__.PoolNativeParity.test_01_6502_movement_turns_and_score) ... ok
+test_02_6502_frightened_rng (__main__.PoolNativeParity.test_02_6502_frightened_rng) ... ok
+test_03_build_memory_limits (__main__.PoolNativeParity.test_03_build_memory_limits) ... ok
+test_04_square_table_equivalence (__main__.PoolNativeParity.test_04_square_table_equivalence) ... ok
+test_05_exact_audio_divider_boundaries (__main__.PoolNativeParity.test_05_exact_audio_divider_boundaries) ... ok
+test_06_audio_converter_registers (__main__.PoolNativeParity.test_06_audio_converter_registers) ... ok
+test_01_dirty_addresses_cover_all_four_pages (__main__.PoolRebuild.test_01_dirty_addresses_cover_all_four_pages) ... ok
+test_02_bulk_slices_match_original_rom (__main__.PoolRebuild.test_02_bulk_slices_match_original_rom) ... ok
+test_03_writes_behind_and_ahead_of_cursor (__main__.PoolRebuild.test_03_writes_behind_and_ahead_of_cursor) ... ok
+test_04_restart_in_every_rebuild_phase (__main__.PoolRebuild.test_04_restart_in_every_rebuild_phase) ... ok
+test_05_split_native_state_range_matches_rom (__main__.PoolRebuild.test_05_split_native_state_range_matches_rom) ... ok
+test_06_complete_transition_service_and_queue_order (__main__.PoolRebuild.test_06_complete_transition_service_and_queue_order) ... ok
+test_07_coin_is_serviced_during_rebuild (__main__.PoolRebuild.test_07_coin_is_serviced_during_rebuild) ... ok
+test_08_completion_uses_current_actor_positions (__main__.PoolRebuild.test_08_completion_uses_current_actor_positions) ... ok
+test_01_all_frames_shifts_and_flips (__main__.PoolRenderer.test_01_all_frames_shifts_and_flips) ... ok
+test_02_edges_overlap_priority_and_returning_eyes (__main__.PoolRenderer.test_02_edges_overlap_priority_and_returning_eyes) ... ok
+test_03_incremental_matches_full_redraw (__main__.PoolRenderer.test_03_incremental_matches_full_redraw) ... ok
+test_05_dirty_tiles_preserve_actors_and_shared_colours (__main__.PoolRenderer.test_05_dirty_tiles_preserve_actors_and_shared_colours) ... ok
+test_07_horizontal_rewards_priority_flips_edges_and_restoration (__main__.PoolRenderer.test_07_horizontal_rewards_priority_flips_edges_and_restoration) ... ok
+test_08_revised_pacman_masks_and_shared_closed_views (__main__.PoolRenderer.test_08_revised_pacman_masks_and_shared_closed_views) ... ok
+test_09_clean_home_glyphs_and_bounded_banks (__main__.PoolRenderer.test_09_clean_home_glyphs_and_bounded_banks) ... ok
+test_09_intermission_ghost_masks (__main__.PoolRenderer.test_09_intermission_ghost_masks) ... ok
+test_10_full_banks_teleports_and_epoch_wrap (__main__.PoolRenderer.test_10_full_banks_teleports_and_epoch_wrap) ... ok
+test_11_all_home_addresses_overlap_hits_and_cursor_page_carries (__main__.PoolRenderer.test_11_all_home_addresses_overlap_hits_and_cursor_page_carries) ... ok
+test_12_packed_home_decode_all_bytes_and_incoming_carries (__main__.PoolRenderer.test_12_packed_home_decode_all_bytes_and_incoming_carries) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 16.431s
+
+OK
+{
+  "phases": [
+    "blue",
+    "white",
+    "blue",
+    "white",
+    "blue",
+    "white",
+    "blue",
+    "white"
+  ],
+  "request_to_present_ms": [
+    19.038316187995427,
+    15.773515317381863,
+    15.773515317381863,
+    18.438938250383533,
+    15.773515317381863,
+    15.773515317381863,
+    15.773515317381863,
+    20.667294400167396
+  ],
+  "flash_spacing_ms": [
+    187.48893888593926,
+    197.99516390982149,
+    201.05854250450022,
+    194.99925199980052,
+    197.9482305639726,
+    198.00396391216816,
+    203.27809865193743
+  ],
+  "audio_update_gap_ms_max": 24.905962197145474
+}
+python3 tests/sound_effect.py
+test_01_all_real_effects_and_priorities (__main__.SoundEffectParity.test_01_all_real_effects_and_priorities) ... ok
+test_02_cancellation_and_inactive_state (__main__.SoundEffectParity.test_02_cancellation_and_inactive_state) ... ok
+test_03_random_state_and_duration_boundaries (__main__.SoundEffectParity.test_03_random_state_and_duration_boundaries) ... ok
+test_04_all_frequency_steps_scales_and_envelopes (__main__.SoundEffectParity.test_04_all_frequency_steps_scales_and_envelopes) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 9.142s
+
+OK
+python3 tests/audio_divider.py --trial build/pacman.prg --output build/evaluation/divider-kernel.json
+test_01_every_16_bit_frequency (__main__.DividerParity.test_01_every_16_bit_frequency) ... ok
+test_02_lookup_contents (__main__.DividerParity.test_02_lookup_contents) ... ok
+test_03_abi_and_input_guards (__main__.DividerParity.test_03_abi_and_input_guards) ... ok
+test_04_complete_converter_and_transitions (__main__.DividerParity.test_04_complete_converter_and_transitions) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 2.426s
+
+OK
+python3 tests/audio_update.py --trial build/pacman.prg --output build/evaluation/update-kernel.json
+test_01_every_frequency_and_shift (__main__.AudioUpdateParity.test_01_every_frequency_and_shift) ...   checked all 65536 inputs at shift 0
+  checked all 65536 inputs at shift 1
+  checked all 65536 inputs at shift 2
+  checked all 65536 inputs at shift 3
+  checked all 65536 inputs at shift 4
+  checked all 65536 inputs at shift 5
+  checked all 65536 inputs at shift 6
+  checked all 65536 inputs at shift 7
+ok
+test_02_masks_volumes_and_transitions (__main__.AudioUpdateParity.test_02_masks_volumes_and_transitions) ... ok
+test_03_abi_and_side_effects (__main__.AudioUpdateParity.test_03_abi_and_side_effects) ... ok
+test_04_saved_live_inputs (__main__.AudioUpdateParity.test_04_saved_live_inputs) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 34.229s
+
+OK
+python3 tests/ghost_update.py --trial build/pacman.prg --output build/evaluation/ghost-kernel.json
+test_01_speed_modes (__main__.GhostUpdate.test_01_speed_modes) ... ok
+test_02_state_transitions_and_collisions (__main__.GhostUpdate.test_02_state_transitions_and_collisions) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 17.377s
+
+OK
+python3 tests/tile_address.py --prg build/pacman.prg --output build/evaluation/tile-kernel.json
+test_01_all_coordinates_and_incoming_carries (__main__.TileAddress.test_01_all_coordinates_and_incoming_carries) ... ok
+test_02_distinguish_all_ten_address_bits (__main__.TileAddress.test_02_distinguish_all_ten_address_bits) ... ok
+test_03_full_colour_byte_comparison (__main__.TileAddress.test_03_full_colour_byte_comparison) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 7.589s
+
+OK
+python3 tools/arcade/pool_stamp_timing.py --baseline build/tile-address-fast/pacman.prg --trial build/pacman.prg --output build/evaluation/stamp-kernel.json
+{
+  "baseline": {
+    "prg_sha256": "cc5238c2d7a07df754e1d0280cc6144ecec7cc9146bc04c0cfd09fc250d3a3a4",
+    "method": "vicsim call pool_draw; IRQs masked; identical masks and destinations",
+    "background_sha256": "13e7cc89054bace115014df8bdf6e4422ec340dac502a323ae142a694e2f5574",
+    "cases_checked": 10496,
+    "groups": {
+      "all": {
+        "count": 10496,
+        "mean": 892.4298780487804,
+        "p50": 916,
+        "p95": 1257,
+        "max": 1392
+      },
+      "arcade_sprites": {
+        "count": 8192,
+        "mean": 924.859375,
+        "p50": 960,
+        "p95": 1257,
+        "max": 1392
+      },
+      "shift-0": {
+        "count": 1312,
+        "mean": 773.2682926829268,
+        "p50": 802,
+        "p95": 1052,
+        "max": 1056
+      },
+      "shift-1": {
+        "count": 1312,
+        "mean": 828.2439024390244,
+        "p50": 872,
+        "p95": 1136,
+        "max": 1140
+      },
+      "shift-2": {
+        "count": 1312,
+        "mean": 883.219512195122,
+        "p50": 938,
+        "p95": 1220,
+        "max": 1224
+      },
+      "shift-3": {
+        "count": 1312,
+        "mean": 938.1951219512196,
+        "p50": 1008,
+        "p95": 1304,
+        "max": 1308
+      },
+      "shift-4": {
+        "count": 1312,
+        "mean": 993.170731707317,
+        "p50": 1078,
+        "p95": 1388,
+        "max": 1392
+      },
+      "shift-5": {
+        "count": 1312,
+        "mean": 962.7560975609756,
+        "p50": 1039,
+        "p95": 1341,
+        "max": 1345
+      },
+      "shift-6": {
+        "count": 1312,
+        "mean": 907.780487804878,
+        "p50": 969,
+        "p95": 1257,
+        "max": 1261
+      },
+      "shift-7": {
+        "count": 1312,
+        "mean": 852.8048780487804,
+        "p50": 899,
+        "p95": 1173,
+        "max": 1177
+      },
+      "arcade_eyes": {
+        "count": 1024,
+        "mean": 621.8125,
+        "p50": 620,
+        "p95": 712,
+        "max": 744
+      },
+      "arcade_score_right": {
+        "count": 512,
+        "mean": 715.0,
+        "p50": 716,
+        "p95": 802,
+        "max": 825
+      },
+      "synthetic": {
+        "count": 768,
+        "mean": 1025.625,
+        "p50": 1117,
+        "p95": 1360,
+        "max": 1392
+      }
+    }
+  },
+  "trial": {
+    "prg_sha256": "b4bd4785b6885cc4080a72f5508646caa6507f13bdee3fa087512e65e3b90e04",
+    "method": "vicsim call pool_draw; IRQs masked; identical masks and destinations",
+    "background_sha256": "13e7cc89054bace115014df8bdf6e4422ec340dac502a323ae142a694e2f5574",
+    "cases_checked": 10496,
+    "groups": {
+      "all": {
+        "count": 10496,
+        "mean": 769.2256097560976,
+        "p50": 775,
+        "p95": 1147,
+        "max": 1242
+      },
+      "arcade_sprites": {
+        "count": 8192,
+        "mean": 797.484375,
+        "p50": 826,
+        "p95": 1142,
+        "max": 1242
+      },
+      "shift-0": {
+        "count": 1312,
+        "mean": 528.7073170731708,
+        "p50": 514,
+        "p95": 733,
+        "max": 738
+      },
+      "shift-1": {
+        "count": 1312,
+        "mean": 732.9024390243902,
+        "p50": 747,
+        "p95": 1045,
+        "max": 1050
+      },
+      "shift-2": {
+        "count": 1312,
+        "mean": 787.8780487804878,
+        "p50": 817,
+        "p95": 1129,
+        "max": 1134
+      },
+      "shift-3": {
+        "count": 1312,
+        "mean": 842.8536585365854,
+        "p50": 887,
+        "p95": 1213,
+        "max": 1218
+      },
+      "shift-4": {
+        "count": 1312,
+        "mean": 858.560975609756,
+        "p50": 907,
+        "p95": 1237,
+        "max": 1242
+      },
+      "shift-5": {
+        "count": 1312,
+        "mean": 835.0,
+        "p50": 877,
+        "p95": 1201,
+        "max": 1206
+      },
+      "shift-6": {
+        "count": 1312,
+        "mean": 811.439024390244,
+        "p50": 847,
+        "p95": 1165,
+        "max": 1170
+      },
+      "shift-7": {
+        "count": 1312,
+        "mean": 756.4634146341464,
+        "p50": 777,
+        "p95": 1081,
+        "max": 1086
+      },
+      "arcade_eyes": {
+        "count": 1024,
+        "mean": 533.4375,
+        "p50": 535,
+        "p95": 634,
+        "max": 658
+      },
+      "arcade_score_right": {
+        "count": 512,
+        "mean": 614.625,
+        "p50": 623,
+        "p95": 716,
+        "max": 731
+      },
+      "synthetic": {
+        "count": 768,
+        "mean": 885.25,
+        "p50": 987,
+        "p95": 1214,
+        "max": 1242
+      }
+    }
+  },
+  "cycle_savings": {
+    "all": {
+      "count": 10496,
+      "mean": 123.20426829268293,
+      "p50": 103,
+      "p95": 290,
+      "max": 366,
+      "min": 54
+    },
+    "arcade_sprites": {
+      "count": 8192,
+      "mean": 127.375,
+      "p50": 116,
+      "p95": 291,
+      "max": 366,
+      "min": 54
+    },
+    "shift-0": {
+      "count": 1312,
+      "mean": 244.5609756097561,
+      "p50": 274,
+      "p95": 366,
+      "max": 366,
+      "min": 54
+    },
+    "shift-1": {
+      "count": 1312,
+      "mean": 95.34146341463415,
+      "p50": 90,
+      "p95": 138,
+      "max": 138,
+      "min": 54
+    },
+    "shift-2": {
+      "count": 1312,
+      "mean": 95.34146341463415,
+      "p50": 90,
+      "p95": 138,
+      "max": 138,
+      "min": 54
+    },
+    "shift-3": {
+      "count": 1312,
+      "mean": 95.34146341463415,
+      "p50": 90,
+      "p95": 138,
+      "max": 138,
+      "min": 54
+    },
+    "shift-4": {
+      "count": 1312,
+      "mean": 134.609756097561,
+      "p50": 134,
+      "p95": 198,
+      "max": 198,
+      "min": 54
+    },
+    "shift-5": {
+      "count": 1312,
+      "mean": 127.7560975609756,
+      "p50": 126,
+      "p95": 187,
+      "max": 187,
+      "min": 55
+    },
+    "shift-6": {
+      "count": 1312,
+      "mean": 96.34146341463415,
+      "p50": 91,
+      "p95": 139,
+      "max": 139,
+      "min": 55
+    },
+    "shift-7": {
+      "count": 1312,
+      "mean": 96.34146341463415,
+      "p50": 91,
+      "p95": 139,
+      "max": 139,
+      "min": 55
+    },
+    "arcade_eyes": {
+      "count": 1024,
+      "mean": 88.375,
+      "p50": 84,
+      "p95": 142,
+      "max": 166,
+      "min": 63
+    },
+    "arcade_score_right": {
+      "count": 512,
+      "mean": 100.375,
+      "p50": 95,
+      "p95": 190,
+      "max": 191,
+      "min": 69
+    },
+    "synthetic": {
+      "count": 768,
+      "mean": 140.375,
+      "p50": 137,
+      "p95": 365,
+      "max": 366,
+      "min": 54
+    }
+  }
+}
+python3 tools/arcade/check_audio_replay.py --baseline build/audio-update-fast/pacman.prg --trial build/pacman.prg --output build/evaluation/audio-replay
+{
+  "ticks_compared": 1639,
+  "all_sound_state_and_register_values_identical": true,
+  "first_tick": 1,
+  "last_tick": 1639,
+  "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+  "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+  "programs": [
+    {
+      "path": "build/audio-update-fast/pacman.prg",
+      "sha256": "ead7a6aa4556b944eb88589af3673cc29fa7a059d33181f20b52c208bfb100af"
+    },
+    {
+      "path": "build/pacman.prg",
+      "sha256": "b4bd4785b6885cc4080a72f5508646caa6507f13bdee3fa087512e65e3b90e04"
+    }
+  ],
+  "guest_modified": false,
+  "method": "Compare tick-indexed arcade sound state and VIC registers on a live replay.\n\nHost PC observations only: no guest code, registers, clocks or sound are patched.\nCPU timestamps can differ; this checks the values produced at each logical tick."
+}
+python3 tests/display_profile.py
+test_absent_and_partial_have_distinct_results (__main__.Visibility.test_absent_and_partial_have_distinct_results) ... ok
+test_ambiguous_wall_and_overlap_are_excluded (__main__.Visibility.test_ambiguous_wall_and_overlap_are_excluded) ... ok
+test_complete_old_or_new_pose_is_present (__main__.Visibility.test_complete_old_or_new_pose_is_present) ... ok
+test_dropped_or_duplicate_video_frames_are_rejected (__main__.Visibility.test_dropped_or_duplicate_video_frames_are_rejected) ... ok
+test_edges_and_hidden_actors_are_excluded (__main__.Visibility.test_edges_and_hidden_actors_are_excluded) ... ok
+test_irq_sampling_jitter_keeps_exact_consecutive_frame_identity (__main__.Visibility.test_irq_sampling_jitter_keeps_exact_consecutive_frame_identity) ... ok
+test_mixed_old_new_scanlines_are_partial (__main__.Visibility.test_mixed_old_new_scanlines_are_partial) ... ok
+test_motion_does_not_bridge_unknown_frames (__main__.Visibility.test_motion_does_not_bridge_unknown_frames) ... ok
+test_phase_accounting_does_not_double_count_nested_routines (__main__.Visibility.test_phase_accounting_does_not_double_count_nested_routines) ... ok
+test_pool_display_uses_matrix_and_keeps_home_background (__main__.Visibility.test_pool_display_uses_matrix_and_keeps_home_background) ... ok
+test_prefix_window_preserves_source_and_excludes_future_events (__main__.Visibility.test_prefix_window_preserves_source_and_excludes_future_events) ... ok
+test_prefix_window_rejects_bad_limits_and_any_source_gap (__main__.Visibility.test_prefix_window_rejects_bad_limits_and_any_source_gap) ... ok
+test_wall_pixels_cannot_prove_actor_present (__main__.Visibility.test_wall_pixels_cannot_prove_actor_present) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.014s
+
+OK
+python3 tests/smoke.py
+{
+  "screens": [
+    "attract",
+    "credits",
+    "maze",
+    "cherry",
+    "intermission-1",
+    "intermission-2",
+    "intermission-3"
+  ],
+  "stack_by_scene": {
+    "attract": {
+      "software_lowest_write": 32743,
+      "software_bytes_written": 25,
+      "hardware_lowest_write": 493,
+      "hardware_bytes_written": 19
+    },
+    "credits": {
+      "software_lowest_write": 32743,
+      "software_bytes_written": 25,
+      "hardware_lowest_write": 493,
+      "hardware_bytes_written": 19
+    },
+    "maze": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 493,
+      "hardware_bytes_written": 19
+    },
+    "cherry": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 490,
+      "hardware_bytes_written": 22
+    },
+    "intermission-1": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 490,
+      "hardware_bytes_written": 22
+    },
+    "intermission-2": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 490,
+      "hardware_bytes_written": 22
+    },
+    "intermission-3": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 490,
+      "hardware_bytes_written": 22
+    }
+  },
+  "clock": {
+    "video_frames": 180,
+    "arcade_ticks": 181,
+    "expected": 180.96
+  },
+  "long_run_ticks": 7192,
+  "stack": {
+    "software_lowest_write": 32738,
+    "software_bytes_written": 30,
+    "hardware_lowest_write": 488,
+    "hardware_bytes_written": 24
+  },
+  "boot": {
+    "entries": 1,
+    "released": true
+  },
+  "irq_vector_intact": true,
+  "stack_guard_intact": true,
+  "software_stack_reserved": 704
+}

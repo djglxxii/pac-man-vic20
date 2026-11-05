@@ -1,0 +1,9 @@
+test_01_all_frames_shifts_and_flips (__main__.Renderer.test_01_all_frames_shifts_and_flips) ... ok
+test_02_edges_overlap_priority_and_returning_eyes (__main__.Renderer.test_02_edges_overlap_priority_and_returning_eyes) ... ok
+test_03_incremental_matches_full_redraw (__main__.Renderer.test_03_incremental_matches_full_redraw) ... ok
+test_04_preshifted_ghost_path (__main__.Renderer.test_04_preshifted_ghost_path) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.359s
+
+OK

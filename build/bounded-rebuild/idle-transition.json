@@ -1,0 +1,11 @@
+{
+  "phase_ms_max": {
+    "wait": 14.818,
+    "batch": 18.996,
+    "bulk": 13.209,
+    "rebuild": 6.083
+  },
+  "logic_gap_ms_max": 45.916,
+  "wait-end_gap_ms_max": 32.693,
+  "end_gap_ms_max": 2888.513
+}

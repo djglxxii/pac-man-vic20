@@ -1,0 +1,131 @@
+{
+  "boot": true,
+  "coin_and_start": true,
+  "game_state": [
+    3,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0,
+    0,
+    0
+  ],
+  "tick": 718,
+  "display": {
+    "width": 520,
+    "height": 234,
+    "inner": [
+      0,
+      0,
+      520,
+      234
+    ]
+  },
+  "emulator": "VICE NTSC VIC-20, full expansion",
+  "synthetic_reward_fixtures": [
+    {
+      "points": 200,
+      "image": "vice-reward-200.png",
+      "hidden_output_slot": 2,
+      "reward_output_slot": 4,
+      "attributes": [
+        0,
+        0,
+        178,
+        0,
+        160,
+        24,
+        132,
+        5,
+        156,
+        7,
+        140,
+        3,
+        252,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "points": 400,
+      "image": "vice-reward-400.png",
+      "hidden_output_slot": 2,
+      "reward_output_slot": 4,
+      "attributes": [
+        0,
+        0,
+        178,
+        0,
+        164,
+        24,
+        132,
+        5,
+        156,
+        7,
+        140,
+        3,
+        252,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "points": 800,
+      "image": "vice-reward-800.png",
+      "hidden_output_slot": 2,
+      "reward_output_slot": 4,
+      "attributes": [
+        0,
+        0,
+        178,
+        0,
+        168,
+        24,
+        132,
+        5,
+        156,
+        7,
+        140,
+        3,
+        252,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "points": 1600,
+      "image": "vice-reward-1600.png",
+      "hidden_output_slot": 2,
+      "reward_output_slot": 4,
+      "attributes": [
+        0,
+        0,
+        178,
+        0,
+        172,
+        24,
+        132,
+        5,
+        156,
+        7,
+        140,
+        3,
+        252,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "audio": {
+    "channels": 1,
+    "rate": 48000,
+    "frames": 554976,
+    "peak": 20098
+  }
+}

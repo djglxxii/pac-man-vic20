@@ -1,0 +1,40 @@
+  968   txa                    $8A      2  
+  969   tay                    $A8      2  
+  971   dey                    $88      2  
+  972   dey                    $88      2  
+  973   beq group_pair_next    $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  974   lda cache_dirty,x      $BD    4-5  +1 if page crossed
+  975   cmp cache_dirty,y      $D9    4-5  +1 if page crossed
+  976   beq group_pair         $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  977   lda group_right,x      $BD    4-5  +1 if page crossed
+  978   cmp group_left,y       $D9    4-5  +1 if page crossed
+  979   bcc group_pair         $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  980   lda group_right,y      $B9    4-5  +1 if page crossed
+  981   cmp group_left,x       $DD    4-5  +1 if page crossed
+  982   bcc group_pair         $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  983   lda group_bottom,x     $BD    4-5  +1 if page crossed
+  984   cmp group_top,y        $D9    4-5  +1 if page crossed
+  985   bcc group_pair         $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  986   lda group_bottom,y     $B9    4-5  +1 if page crossed
+  987   cmp group_top,x        $DD    4-5  +1 if page crossed
+  988   bcc group_pair         $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  989   lda cache_dirty,x      $BD    4-5  +1 if page crossed
+  990   ora cache_dirty,y      $19    4-5  +1 if page crossed
+  991   sta v_temp             $8D      4  
+  992   stx v_actor            $8E      4  
+  993   sty v_off              $8C      4  
+  994   ldx #12                $A2      2  
+  996   lda cache_dirty,x      $BD    4-5  +1 if page crossed
+  997   and v_temp             $2D      4  
+  998   and #63                $29      2  
+  999   beq group_merge_next   $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+ 1000   lda v_temp             $AD      4  
+ 1001   sta cache_dirty,x      $9D      5  
+ 1003   dex                    $CA      2  
+ 1004   dex                    $CA      2  
+ 1005   bne group_merge        $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+ 1006   ldx v_actor            $AE      4  
+ 1007   ldy v_off              $AC      4  
+ 1008   jmp group_pair         $4C      3  
+---------------------------------------------------
+bytes: 92   cycles: 120 .. 149   (straight-line sum; multiply loop bodies yourself)

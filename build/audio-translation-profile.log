@@ -1,0 +1,423 @@
+{
+  "method": "Measure VIC translation and repeated pitch inputs without changing the guest.",
+  "guest_modified": false,
+  "prg_sha256": "7774b36d39f4dbeb651113a7921ca3b0c2bfdfca447cdaa1ee40c0c50af59f73",
+  "native_sha256": "018f2215b6e59dc895d9b9cc59e17bf814740c24044693f779969c47a508fe35",
+  "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+  "converter_sha256": "9a924a7f98aac81fde1f42fcc84987717413051121a832488ffc04cb876ad5cb",
+  "depacked_bytes_verified": 33792,
+  "cpu_hz": 1022727,
+  "cycles": 20363986,
+  "seconds": 19.911458287499986,
+  "gameplay_states_checked": 1207,
+  "ticks_checked": 1639,
+  "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+  "all_outputs_match_host_model": true,
+  "phase_cycles": {
+    "logic_tasks_loop": 9799188,
+    "audio": 1168146,
+    "render": 9364034,
+    "wait": 32618
+  },
+  "phase_percent": {
+    "logic_tasks_loop": 48.12018629358712,
+    "audio": 5.736332759215214,
+    "render": 45.98330601877255,
+    "wait": 0.16017492842511286
+  },
+  "routine_inclusive_cycles": {
+    "divider": {
+      "count": 1893,
+      "mean": 238.14421553090332,
+      "p50": 235,
+      "p95": 256,
+      "max": 319,
+      "total": 450807
+    },
+    "audio": {
+      "count": 1207,
+      "mean": 967.8094449047225,
+      "p50": 1120,
+      "p95": 1268,
+      "max": 1449,
+      "total": 1168146
+    },
+    "render": {
+      "count": 549,
+      "mean": 17056.528233151184,
+      "p50": 16732,
+      "p95": 23056,
+      "max": 28774,
+      "total": 9364034
+    },
+    "wait": {
+      "count": 1206,
+      "mean": 27.046434494195687,
+      "p50": 27,
+      "p95": 27,
+      "max": 83,
+      "total": 32618
+    }
+  },
+  "completed_renders": 549,
+  "completed_render_interval_ms": {
+    "count": 548,
+    "mean": 36.27819523785126,
+    "p50": 35.124720477703235,
+    "p95": 53.152991951908966,
+    "max": 67.58695135652036
+  },
+  "actor_erase_to_paint_ms": {
+    "count": 0
+  },
+  "exclusive_audio": {
+    "divider": {
+      "cycles": 449463,
+      "cycles_per_tick": 372.38028169014086,
+      "audio_percent": 38.47661165641966,
+      "cpu_percent": 2.207146479083221
+    },
+    "save_restore": {
+      "cycles": 54315,
+      "cycles_per_tick": 45.0,
+      "audio_percent": 4.649675639860086,
+      "cpu_percent": 0.26672086692654373
+    },
+    "gating": {
+      "cycles": 74643,
+      "cycles_per_tick": 61.84175642087821,
+      "audio_percent": 6.389869074584855,
+      "cpu_percent": 0.3665441529963731
+    },
+    "pitch_registers": {
+      "cycles": 53028,
+      "cycles_per_tick": 43.93371996685998,
+      "audio_percent": 4.539501055518745,
+      "cpu_percent": 0.26040088615264223
+    },
+    "unpacking": {
+      "cycles": 111687,
+      "cycles_per_tick": 92.53272576636289,
+      "audio_percent": 9.56104801968247,
+      "cpu_percent": 0.5484535296773432
+    },
+    "scaling": {
+      "cycles": 332754,
+      "cycles_per_tick": 275.6868268434134,
+      "audio_percent": 28.485651622314332,
+      "cpu_percent": 1.6340317656867374
+    },
+    "zero_check_and_call": {
+      "cycles": 34100,
+      "cycles_per_tick": 28.251864125932062,
+      "audio_percent": 2.9191556534885192,
+      "cpu_percent": 0.1674524820435449
+    },
+    "volume_and_noise": {
+      "cycles": 54124,
+      "cycles_per_tick": 44.84175642087821,
+      "audio_percent": 4.633324943971044,
+      "cpu_percent": 0.265782936601901
+    }
+  },
+  "interrupt_and_other_audio_cycles": 4032,
+  "repeated_inputs_all": [
+    {
+      "ticks": 1639,
+      "silent_or_zero_pitch_ticks": 1438,
+      "divider_calls": 201,
+      "same_as_last_audible_frequency": 173,
+      "same_as_last_audible_raw_key": 173,
+      "unique_scaled_frequencies": 15,
+      "unique_output_pitches": 14,
+      "most_common_frequencies": [
+        [
+          1472,
+          56
+        ],
+        [
+          2208,
+          46
+        ],
+        [
+          1552,
+          28
+        ],
+        [
+          2336,
+          16
+        ],
+        [
+          2464,
+          14
+        ],
+        [
+          2768,
+          14
+        ],
+        [
+          2944,
+          14
+        ],
+        [
+          6912,
+          2
+        ],
+        [
+          5632,
+          2
+        ],
+        [
+          4352,
+          2
+        ],
+        [
+          3072,
+          2
+        ],
+        [
+          1792,
+          2
+        ]
+      ]
+    },
+    {
+      "ticks": 1639,
+      "silent_or_zero_pitch_ticks": 262,
+      "divider_calls": 1377,
+      "same_as_last_audible_frequency": 111,
+      "same_as_last_audible_raw_key": 111,
+      "unique_scaled_frequencies": 41,
+      "unique_output_pitches": 28,
+      "most_common_frequencies": [
+        [
+          1536,
+          118
+        ],
+        [
+          2304,
+          117
+        ],
+        [
+          768,
+          67
+        ],
+        [
+          3072,
+          67
+        ],
+        [
+          3840,
+          66
+        ],
+        [
+          4608,
+          66
+        ],
+        [
+          5376,
+          66
+        ],
+        [
+          6144,
+          64
+        ],
+        [
+          1408,
+          57
+        ],
+        [
+          1792,
+          57
+        ],
+        [
+          2176,
+          56
+        ],
+        [
+          1152,
+          51
+        ]
+      ]
+    },
+    {
+      "ticks": 1639,
+      "silent_or_zero_pitch_ticks": 939,
+      "divider_calls": 700,
+      "unique_scaled_frequencies": 31,
+      "unique_output_pitches": 21,
+      "most_common_frequencies": [
+        [
+          1792,
+          68
+        ],
+        [
+          2560,
+          68
+        ],
+        [
+          3328,
+          68
+        ],
+        [
+          4096,
+          68
+        ],
+        [
+          4864,
+          68
+        ],
+        [
+          5376,
+          68
+        ],
+        [
+          4608,
+          68
+        ],
+        [
+          3840,
+          68
+        ],
+        [
+          3072,
+          68
+        ],
+        [
+          2304,
+          67
+        ],
+        [
+          256,
+          1
+        ],
+        [
+          512,
+          1
+        ]
+      ]
+    }
+  ],
+  "repeated_inputs_play": [
+    {
+      "ticks": 1207,
+      "silent_or_zero_pitch_ticks": 1207,
+      "unique_scaled_frequencies": 0,
+      "unique_output_pitches": 0,
+      "most_common_frequencies": []
+    },
+    {
+      "ticks": 1207,
+      "divider_calls": 1207,
+      "unique_scaled_frequencies": 30,
+      "unique_output_pitches": 24,
+      "most_common_frequencies": [
+        [
+          2304,
+          115
+        ],
+        [
+          1536,
+          115
+        ],
+        [
+          768,
+          67
+        ],
+        [
+          3072,
+          67
+        ],
+        [
+          3840,
+          66
+        ],
+        [
+          4608,
+          66
+        ],
+        [
+          5376,
+          66
+        ],
+        [
+          6144,
+          64
+        ],
+        [
+          2176,
+          54
+        ],
+        [
+          1792,
+          54
+        ],
+        [
+          1408,
+          54
+        ],
+        [
+          2048,
+          48
+        ]
+      ]
+    },
+    {
+      "ticks": 1207,
+      "divider_calls": 686,
+      "silent_or_zero_pitch_ticks": 521,
+      "unique_scaled_frequencies": 31,
+      "unique_output_pitches": 21,
+      "most_common_frequencies": [
+        [
+          4864,
+          67
+        ],
+        [
+          5376,
+          67
+        ],
+        [
+          4608,
+          67
+        ],
+        [
+          3840,
+          67
+        ],
+        [
+          3072,
+          67
+        ],
+        [
+          2304,
+          66
+        ],
+        [
+          1792,
+          66
+        ],
+        [
+          2560,
+          66
+        ],
+        [
+          3328,
+          66
+        ],
+        [
+          4096,
+          66
+        ],
+        [
+          256,
+          1
+        ],
+        [
+          512,
+          1
+        ]
+      ]
+    }
+  ]
+}

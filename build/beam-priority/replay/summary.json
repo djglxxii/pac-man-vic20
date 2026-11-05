@@ -1,0 +1,61 @@
+{
+  "same_logical_tick_inputs": true,
+  "programs": {
+    "default": {
+      "prg_sha256": "9fb85cf61add5d729142183a48285041a47e55fa0f0fd16043f0d15b2aae35af",
+      "video_frames": 600,
+      "counter_interval_seconds": 9.93621464965724,
+      "completed_render_calls": 325,
+      "render_calls_per_second": 32.70863316255061,
+      "compared_active_input_states": 603,
+      "common_completed_pictures": 325,
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "d138600dae9a681b612830a6ea58f1ed136f0afb144c18e7d60acc902d86ace8"
+      }
+    },
+    "reference": {
+      "prg_sha256": "79299dc438863739d70b3c9620ebd4d9547b74cf6bcc8403c7319d226c037d57",
+      "video_frames": 600,
+      "counter_interval_seconds": 9.93621464965724,
+      "completed_render_calls": 228,
+      "render_calls_per_second": 22.94636418788166,
+      "compared_active_input_states": 603,
+      "common_completed_pictures": 147,
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "aa9a62a07cb63ba7e5b450a3b018c2f67b45bab51ddd34a381780fa0780127f1"
+      }
+    },
+    "strict": {
+      "prg_sha256": "afe8e2b0d83b25eb71bb85fd41cff3c5f5427b8fc61dd074f8b32047100ee5ed",
+      "video_frames": 600,
+      "counter_interval_seconds": 9.93621464965724,
+      "completed_render_calls": 226,
+      "render_calls_per_second": 22.745080291496734,
+      "compared_active_input_states": 603,
+      "common_completed_pictures": 138,
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "8e5ee2d9e33886c325530a2549373b2b35c5a2184d24540d3c653167915dd5fd"
+      }
+    },
+    "focused": {
+      "prg_sha256": "a4d1ced4974ad5b2af6e2ea72b878654684a40ba20fd33d22fbca7a4fa332303",
+      "video_frames": 600,
+      "counter_interval_seconds": 9.93621464965724,
+      "completed_render_calls": 233,
+      "render_calls_per_second": 23.44957392884398,
+      "compared_active_input_states": 603,
+      "common_completed_pictures": 142,
+      "loaded_program": {
+        "all_depacked_regions_match": true,
+        "bytes_checked": 33792,
+        "loaded_image_sha256": "6ef14fe1adeb7a51e33d140a399c5f0329174fbc8f0b5fdf21ac1a1aa14893f5"
+      }
+    }
+  }
+}

@@ -13,14 +13,18 @@
     1672,
     941
   ],
-  "thumbnail_bytes": 1108866,
-  "title_characters": 52,
-  "description_characters": 2019,
+  "thumbnail_bytes": 1164414,
+  "title_characters": 51,
+  "description_characters": 2502,
   "chapters_seconds": [
     0,
     68,
     124
   ],
   "video_sha256": "2f6fcfccee2026fe4beffa50bfe607b8922f94f452fa494ce4b11b44cd2c6da6",
-  "thumbnail_sha256": "2f3222217ae83bbb475ee7882bac995d5178f8b5816347d77a4ea53be278ba54"
+  "thumbnail_sha256": "42f60e5655da46b7e07679d42aae6ec1a7b959af2a857bfa0f5cf09ad8ba74fc",
+  "stage": "initial_pass",
+  "artwork_verification": "youtube/asset-verification.json",
+  "video_verification_note": "Historical recording verification retained. This update changes copy and thumbnails only.",
+  "video_sha256_rechecked": true
 }

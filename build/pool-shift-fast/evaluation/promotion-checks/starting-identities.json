@@ -1,0 +1,11 @@
+{
+  "build/pacman.prg": "2284d03b700e5d72b1a13c9f35257e96e0c48469c9eef9f3854d61489f8513dc",
+  "build/pacman.lbl": "2ce8630e35080202b5e7270927b8067d82807c8647c7d1e77eef0bed85a639d7",
+  "build/arcade/pacman-native.bin": "bdde04bba6d1e1663309606877801b916b544dc7925fc63c81c0c9c8c2dbf353",
+  "build/pool-shift-fast/pacman.prg": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31",
+  "build/pool-shift-fast/pacman.lbl": "dd3ef01a4c2cc758149ef18eb106d80b1d08396c1c36669f0f0900f8213a65d7",
+  "build/pool-shift-fast/pacman-native.bin": "cc3a94d4dbe6ad1b2b4cb46de587ec209ffb69bc81dee9365ffbd6dd7f7f2352",
+  "build/pool-shift-fast/pacman-native.bin.elf": "27971e9c46b1cd5d6f80f6b84b502372c91055cf476bb364f565aff9b103e620",
+  "build/pool-shift-fast/pacman.map": "4458beeb24328d41a2bc4f68c88f2a70d3e7dc9a48edc547aa2f07ccf5128686",
+  "docs/artwork/hires-pacman.json": "5cb6ca2564e54a15046772b7661325fc0abf2a0039cfa63ac8966c3f373f30d6"
+}

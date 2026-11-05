@@ -1,0 +1,46 @@
+Pac-Man on the VIC-20, after the flicker fix and fourteen accepted speed optimization passes. This is an AGENTIC HOMEBREW: coding agents performed the conversion and optimization work under my direction, with live play testing deciding which experiments became the standard build.
+
+ABOUT THIS PLAYTHROUGH
+This upload is through-game-over.mp4: a computer-controlled playthrough following the PacStrats patterns documented in 10yard's Pac-Man Trainer (pactrainer). Using normal joystick input in VICE, it clears boards 1 through 9 and completes the third intermission with no deaths.
+
+After the third intermission, we deliberately ended the run by allowing Pac-Man to die until Game Over, to show the death animation and Game Over screen. That intentional ending is separate from the death-free pattern run.
+
+WHAT CHANGED
+The biggest visual improvement is the finished-cell glyph pool. Instead of exposing an erased character while rebuilding it, the renderer composes the background and overlapping actors into hidden character slots, then publishes the completed cells. This greatly reduces the distracting disappearance flicker.
+
+We also refined the graphics for Pac-Man himself and the frightened (scared) ghosts, and reused Pac-Man's symmetrical closed-mouth frame. The fonts were redesigned for better legibility on the VIC-20's small display, with clearer letters, score numerals and horizontal reward scores. The arcade maze layout and game behavior remain intact.
+
+PROFILE, CHANGE, MEASURE, PLAY TEST
+Fourteen accepted speed improvements cover cell addressing, empty-row skipping, sound-effect processing, ghost tunnel lookup, sprite composition, precomputed VIC pitch translation, the audio adapter, ghost-state dispatch, cell allocation, background tiles, sprite preparation, destination setup, sprite shifts and ghost row control.
+
+On the saved VICE route, the first accepted glyph-pool renderer measured 22.07 completed redraws/s. The final optimized build measures 33.85: approximately 53% more redraws, with the pool renderer's improved visual continuity retained. These are route averages, not a locked 30 or 60 FPS promise, and not a direct speed comparison with the early video.
+
+ARCADE BEHAVIOR, VIC-20 PRESENTATION
+The conversion retains arcade movement patterns, ghost rules, scoring, fruit progression, sound sequencing and all three intermissions. Gameplay uses its approximately 60.606 Hz logic clock independently of display redraws. The accepted sound is preserved.
+
+The game runs native 6502 code compiled with LLVM-MOS, plus handwritten assembly.
+
+WHY COLOR CLASHES AND OTHER LIMITS REMAIN
+In our high-resolution mode, each 8x16 cell has one foreground color against the shared black background. A yellow Pac-Man or colored ghost sharing a cell with a white wall or pellet makes those pixels share its color, even without touching them. White walls reduce the visual patchwork; standing pellets are white when no colored actor shares their cell. Completion flashes blue and white.
+
+The VIC-20 has no hardware sprites or native bitmap mode. We redefine character pixels to draw moving actors. The roughly 1 MHz CPU must combine them with backgrounds and overlaps while also running game logic, input and sound. Redraw timing can vary, so some partial poses and uneven motion remain despite the glyph-pool flicker fix.
+
+Expansion RAM holds code and tables, but only a limited memory area is visible to the video chip. More RAM does not add sprite hardware or CPU speed. Multicolor mode trades away horizontal detail. The VIC's three tone voices share one volume control and approximate the arcade's different sound hardware.
+
+Target: NTSC VIC-20 with +3K and BLK1/2/3/5 RAM expansion. No exotic accelerator or new hardware requirement was introduced by these optimization passes. Physical hardware validation remains ahead.
+
+WHAT COMES NEXT
+Extended play testing, gameplay checks and presentation polish. Further optimization will target a measured, noticeable problem rather than another tiny benchmark gain.
+
+CREDITS
+Original game: Pac-Man, Namco; Midway arcade ROM set used as the reference.
+Game logic adapted from Mark Burkley's C translation:
+https://github.com/mburkley/pacman-c
+Gameplay routes: PacStrats patterns, documented in 10yard's Pac-Man Trainer:
+https://github.com/10yard/pactrainer
+Emulator: VICE
+https://vice-emu.sourceforge.io/
+
+Coding agents assisted the implementation, profiling, tests and documentation under human direction. Thumbnail artwork and upload copy also use AI assistance.
+
+#VIC20 #PacMan #AgenticHomebrew

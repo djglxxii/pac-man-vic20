@@ -1,0 +1,17 @@
+test_01_every_frequency_and_shift (__main__.AudioUpdateParity.test_01_every_frequency_and_shift) ...   checked all 65536 inputs at shift 0
+  checked all 65536 inputs at shift 1
+  checked all 65536 inputs at shift 2
+  checked all 65536 inputs at shift 3
+  checked all 65536 inputs at shift 4
+  checked all 65536 inputs at shift 5
+  checked all 65536 inputs at shift 6
+  checked all 65536 inputs at shift 7
+ok
+test_02_masks_volumes_and_transitions (__main__.AudioUpdateParity.test_02_masks_volumes_and_transitions) ... ok
+test_03_abi_and_side_effects (__main__.AudioUpdateParity.test_03_abi_and_side_effects) ... ok
+test_04_saved_live_inputs (__main__.AudioUpdateParity.test_04_saved_live_inputs) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 27.915s
+
+OK

@@ -144,7 +144,11 @@ sprite_check_eyes:
  lda #>arcade_eyes
  sta v_base+1
  lda #1
+#ifdef POOL_SETUP_FAST
+ jmp sprite_special_source
+#else
  jmp sprite_class_ready
+#endif
 sprite_score_right:
  lda v_code
  sec
@@ -162,8 +166,52 @@ sprite_score_frame:
  lda #24
  sta v_pal
  lda #1
+#ifdef POOL_SETUP_FAST
+ jmp sprite_special_source
+#else
  jmp sprite_class_ready
+#endif
 sprite_regular:
+#ifdef POOL_SETUP_FAST
+ /* Each regular-frame descriptor holds the artwork address and its class
+    in the pointer's two otherwise-zero low bits. A/X/Y and v_data clobbered;
+    all 64 frames retain their existing masks and palette selection. */
+ lda v_code
+ asl
+ tax
+ lda pool_sprite_descriptors,x
+ tay
+ and #$fc
+ sta v_data
+ lda pool_sprite_descriptors+1,x
+ sta v_data+1
+ tya
+ and #3
+ jmp sprite_class_ready
+sprite_special_source:
+ /* Eyes and the right half of a score keep their separate small atlases.
+    Prepare their source here; regular frames already have a full pointer. */
+ sta v_color
+ lda v_temp
+ asl
+ clc
+ adc v_temp
+ sta v_data
+ lda #0
+ sta v_data+1
+ asl v_data
+ rol v_data+1
+ asl v_data
+ rol v_data+1
+ lda v_data
+ clc
+ adc v_base
+ sta v_data
+ lda v_data+1
+ adc v_base+1
+ sta v_data+1
+ lda v_color
+#else
  lda v_code
  sta v_temp
  and #3
@@ -188,6 +236,7 @@ sprite_class_shifted:
  lda #>arcade_sprites
  sta v_base+1
  pla
+#endif
 sprite_class_ready:
  sta v_color
  lda v_pal
@@ -200,6 +249,7 @@ sprite_class_ready:
  jmp sprite_advance
 sprite_has_color:
  sta v_color
+#ifndef POOL_SETUP_FAST
  /* Source offset = frame * 12, added to the normal or eyes-only atlas. */
  lda v_temp
  asl
@@ -219,6 +269,7 @@ sprite_has_color:
  lda v_data+1
  adc v_base+1
  sta v_data+1
+#endif
  lda v_sx
  and #7
  sta v_shift
@@ -388,7 +439,9 @@ pool_shifts:
 /* Cell allocator: A=screen cell. Returns v_base=pool address. A/X/Y,
    v_col/v_lo/v_hi clobbered. v_data, flags, shift and actor cursor survive. */
 pool_cell:
+#ifndef POOL_ALLOC_FAST
  sta v_col
+#endif
  tay
  lda $96c4,y
  and #14
@@ -410,8 +463,17 @@ pool_cell:
  jsr pool_pointer
  jmp pool_colour
 pool_allocate:
+#ifdef POOL_ALLOC_FAST
+ /* Keep Y on the screen cell and X on the counter until it is incremented.
+    Then X holds the relative slot for both lookup nibbles. Convert to an
+    absolute slot only once, after recording those nibbles. The counter is
+    ordinary RAM; NMOS INC's intermediate write is safe. IRQs do not use it. */
+ ldx pool_bank
+ lda pool_count,x
+#else
  ldy pool_bank
  lda pool_count,y
+#endif
  cmp #24
  bcc pool_space
  lda #1
@@ -422,6 +484,25 @@ pool_allocate:
  sta v_base+1
  rts
 pool_space:
+#ifdef POOL_ALLOC_FAST
+ inc pool_count,x
+ tax
+ and #15
+ sta $94c4,y
+ txa
+ lsr
+ lsr
+ lsr
+ lsr
+ ora pool_epoch
+ sta $96c4,y
+ txa
+ clc
+ adc pool_start
+ tax
+ tya
+ sta pool_cells,x
+#else
  clc
  adc pool_start
  tax
@@ -445,6 +526,7 @@ pool_space:
  lsr
  ora pool_epoch
  sta $96c4,y
+#endif
 #ifdef POOL_ADDRESS_FAST
  /* Allocation is sequential within a bank. Reuse the unused old underlay
     cursor and the publication end byte (dead during composition) as a pointer.
@@ -461,7 +543,9 @@ pool_space:
 #else
  jsr pool_pointer
 #endif
+#ifndef POOL_ALLOC_FAST
  ldy v_col
+#endif
  lda home_codes,y
 #ifdef POOL_ADDRESS_FAST
  /* Table stores swapped code nibbles: high nibble = address low byte,
@@ -520,6 +604,77 @@ pool_pointer:
  rts
 
 pool_setup:
+#ifdef POOL_DEST_FAST
+ /* Prepare the destinations the twelve-row stamper can reach. Fill clipped
+    columns with the sink; bottom pointers are unused when (v_sy & 15) < 5.
+    A/X/Y, v_base and allocator scratch clobbered; actor/source inputs survive.
+    Allocation order remains top left, bottom left, top right, bottom right. */
+ lda v_flags
+ and #1
+ beq pool_setup_left_clipped
+ lda v_cell
+ jsr pool_cell
+ lda v_base
+ sta v_addr
+ lda v_base+1
+ sta v_addr+1
+ lda v_sy
+ and #15
+ cmp #5
+ bcc pool_setup_right
+ lda v_cell
+ clc
+ adc #14
+ jsr pool_cell
+ lda v_base
+ sta v_save
+ lda v_base+1
+ sta v_save+1
+ jmp pool_setup_right
+pool_setup_left_clipped:
+ lda #$f0
+ sta v_addr
+ sta v_save
+ lda #$1f
+ sta v_addr+1
+ sta v_save+1
+pool_setup_right:
+ lda v_flags
+ and #2
+ beq pool_setup_right_clipped
+ lda v_shift
+ beq pool_setup_right_clipped
+ lda v_cell
+ clc
+ adc #1
+ jsr pool_cell
+ lda v_base
+ sta v_right
+ lda v_base+1
+ sta v_right+1
+ lda v_sy
+ and #15
+ cmp #5
+ bcc pool_setup_done
+ lda v_cell
+ clc
+ adc #15
+ jsr pool_cell
+ lda v_base
+ sta v_saved_right
+ lda v_base+1
+ sta v_saved_right+1
+ rts
+pool_setup_right_clipped:
+ lda #$f0
+ sta v_right
+ sta v_saved_right
+ lda #$1f
+ sta v_right+1
+ sta v_saved_right+1
+pool_setup_done:
+ rts
+#else
  lda #$f0
  sta v_addr
  sta v_right
@@ -579,6 +734,7 @@ pool_setup_right:
  sta v_saved_right+1
 pool_setup_done:
  rts
+#endif
 
 video_restore:
  jsr pool_bank_start
@@ -733,8 +889,10 @@ pool_settle_skip:
 pool_published:
  rts
 
-/* Retain the accepted preshifted normal-ghost body path. Transparent first
-   and last rows need no work because each pool cell already has clean ink. */
+/* Preshifted normal-ghost body. X selects one of 16 source pointers; v_flip
+   bit 0 reverses rows, v_sy and the four destination pointers select glyph
+   rows. Transparent first/last rows need no work over already clean ink.
+   Clobbers A/X/Y, flags and existing v_* scratch; main-thread SMC only. */
 pool_draw_ghost:
  lda pool_ghost_sources,x
  sta pool_ghost_left+1
@@ -746,18 +904,31 @@ pool_draw_ghost:
  adc #0
  sta pool_ghost_right+2
  ldx #0
+#ifdef POOL_GHOST_ROW_FAST
+ /* Reuse the source index as the ten-row counter, as in the generic path.
+    Y carries the end index only until the destination-row setup below. */
+ ldy #10
+#endif
  lda #$e8
  lsr v_flip
  bcc pool_ghost_forward
  ldx #9
+#ifdef POOL_GHOST_ROW_FAST
+ ldy #255
+#endif
  lda #$ca
 pool_ghost_forward:
  sta pool_ghost_step
+#ifdef POOL_GHOST_ROW_FAST
+ sty pool_ghost_row_end+1
+#endif
  lda v_sy
  and #15
  tay
+#ifndef POOL_GHOST_ROW_FAST
  lda #10
  sta v_temp
+#endif
 pool_ghost_row:
  iny
  cpy #16
@@ -782,12 +953,27 @@ pool_ghost_right:
  sta (v_right),y
 pool_ghost_step:
  inx
+#ifdef POOL_GHOST_ROW_FAST
+pool_ghost_row_end:
+ cpx #10
+#else
  dec v_temp
+#endif
  bne pool_ghost_row
  rts
+#ifdef POOL_GHOST_ROW_FAST
+ /* Two unused bytes place this 32-byte table at $2f00 in the linked trial.
+    Avoid .p2align: it raises the whole section's alignment and moves code.
+    Check the linked table and row-branch addresses when changing layout. */
+ .byte 0,0
+#endif
 pool_ghost_sources:
 .set k,0
 .rept 16
  .word arcade_ghost_shifted+k*20
 .set k,k+1
 .endr
+#ifdef POOL_SETUP_FAST
+.section .graphics,"a",@progbits
+#include "sprite_setup.inc"
+#endif

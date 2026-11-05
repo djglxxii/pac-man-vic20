@@ -1,0 +1,10 @@
+{
+  "src/glyph_pool.S": "2997f448ff07607536403e3c3d03b4fca996a2d470485257e26df86a50067cd3",
+  "src/pool_stamp_fast.inc": "4dce6a03f67f9707c0314b5588f5a03beb03f9c19463477eae8ae5c094918396",
+  "docs/artwork/hires-pacman.json": "5cb6ca2564e54a15046772b7661325fc0abf2a0039cfa63ac8966c3f373f30d6",
+  "build/pool-ghost-row-fast/pacman.prg": "e148017c58097fb84bb09757dac6d1a132ca40a051d288e10290e9b870cda227",
+  "build/pool-ghost-row-fast/pacman.lbl": "e8a3463a5c6779b1e037ce0a42527a53432ac2ceca5768afa374a6c464db358f",
+  "build/pool-ghost-row-fast/pacman-native.bin": "c00c745b443e5e70638b7c1b235b23f85aabcf4acb69d018301caeb52ad6bc85",
+  "build/pool-ghost-row-fast/pacman-native.bin.elf": "f33850b185f8c5ae44426035725f03796970715e42aa7a582c0d0a56373ea791",
+  "build/pool-ghost-row-fast/pacman.map": "ed3357ec8358ee88f35615ae0f6ec1673c2c3520a848db73c771e731458b05dd"
+}

@@ -35,6 +35,7 @@ void controls(void) {
     HW(0x9120) = 255;
     HW(0x9122) = 127;
 }
+#ifndef AUDIO_UPDATE_FAST
 /* Read the actual arcade output registers. Sound selection, envelopes, song
  * sequencing and interruptions all remain in the original game routines. */
 static inline __attribute__((always_inline)) uint8_t audio_voice(uint8_t o, uint8_t wave,
@@ -80,3 +81,4 @@ __attribute__((noinline, section(".cold"))) void audio_update(void) {
 #endif
         (SOUNDENABLE ? volume : 0);
 }
+#endif

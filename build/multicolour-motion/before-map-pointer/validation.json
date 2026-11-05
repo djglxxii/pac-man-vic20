@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "prototype_sha256": "b7913c0555900029b1811bcb9e79b6e5ffd8e2434a71e6a105534e5c934723fa",
+  "scenes_checked": 2274,
+  "recorded_pose_scenes": 480,
+  "all_pose_shift_phase_cases": 864,
+  "edge_and_hud_cases": 99,
+  "random_and_overlap_cases": 180,
+  "partial_character_band_cases": 648,
+  "maximum_live_work_cells_per_image": 54,
+  "hidden_preparation_verified": true,
+  "background_and_guards_unchanged": true,
+  "discard_replace_invalid_input_recovery": true,
+  "capacity_guard_and_recovery": true,
+  "pacman_facing": {
+    "table_and_closed_hint_cases": 192,
+    "recorded_open_mouth_motion_checks": 297,
+    "recorded_closed_mouth_motion_checks": 101,
+    "all_four_directions_verified": true
+  },
+  "prepare": {
+    "mean_cycles": 18235.68,
+    "max_cycles": 24527,
+    "mean_ms": 17.83,
+    "p95_ms": 21.295,
+    "max_ms": 23.982
+  },
+  "commit_including_cleanup": {
+    "mean_cycles": 4616.15,
+    "max_cycles": 6637,
+    "mean_ms": 4.514,
+    "p95_ms": 5.543,
+    "max_ms": 6.49
+  },
+  "publication": {
+    "mean_cycles": 4507.65,
+    "max_cycles": 6529,
+    "mean_ms": 4.407,
+    "p95_ms": 5.436,
+    "max_ms": 6.384
+  },
+  "total_renderer": {
+    "mean_cycles": 22851.83,
+    "max_cycles": 30560,
+    "mean_ms": 22.344,
+    "p95_ms": 26.746,
+    "max_ms": 29.881
+  },
+  "scope": "renderer-only replay; no logic, audio, input or changing maze cost included"
+}

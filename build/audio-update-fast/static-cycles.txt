@@ -1,0 +1,73 @@
+    3     and enable $0301; conditionally writes pitch ports bass/s   $2D      4  
+   10     and preserves A/X/Y. Inline voices avoid wrapper saves an   $2D      4  
+   23    lda $0340+\offset+5                                          $AD      4  
+   24    and #15                                                      $29      2  
+   25    sta __rc3                                                    $85      3  
+   27    lda $0340+\offset+4                                          $AD      4  
+   28    and #15                                                      $29      2  
+   29    cmp __rc3                                                    $C5      3  
+   30    bcc audio_fast_voice_\number\()_volume_ready                 $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+   31    sta __rc3                                                    $85      3  
+   33    cmp #0                                                       $C9      2  
+   35   beq audio_fast_voice_\number\()_silent                        $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   36   lda $0301                                                     $AD      4  
+   37   beq audio_fast_voice_\number\()_silent                        $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   41    lda $0340+\offset+4                                          $AD      4  
+   42    and #15                                                      $29      2  
+   43    bne audio_fast_voice_\number\()_saturated                    $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   46   lda $0340+\offset+1                                           $AD      4  
+   47   asl                                                           $0A      2  
+   48   asl                                                           $0A      2  
+   49   asl                                                           $0A      2  
+   50   asl                                                           $0A      2  
+   51   sta __rc2                                                     $85      3  
+   52   lda $0340+\offset                                             $AD      4  
+   53   and #15                                                       $29      2  
+   54   ora __rc2                                                     $05      3  
+   55   sta __rc2                                                     $85      3  
+   56   lda $0340+\offset+3                                           $AD      4  
+   57   asl                                                           $0A      2  
+   58   asl                                                           $0A      2  
+   59   asl                                                           $0A      2  
+   60   asl                                                           $0A      2  
+   61   sta __rc4                                                     $85      3  
+   62   lda $0340+\offset+2                                           $AD      4  
+   63   and #15                                                       $29      2  
+   64   ora __rc4                                                     $05      3  
+   65   tay                                                           $A8      2  
+   68   lda $0340+\wave                                               $AD      4  
+   69   and #7                                                        $29      2  
+   70   tax                                                           $AA      2  
+   71   lda audio_fast_shifts,x                                       $B5      4  
+   73    clc                                                          $18      2  
+   74    adc #\bias                                                   $69      2  
+   76   tax                                                           $AA      2  
+   77   tya                                                           $98      2  
+   78   cpx #0                                                        $E0      2  
+   79   beq audio_fast_voice_\number\()_pitch                         $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   83   asl __rc2                                                     $06      5  
+   84   rol                                                           $2A      2  
+   85   bcs audio_fast_voice_\number\()_saturated                     $B0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   86   dex                                                           $CA      2  
+   87   bne audio_fast_voice_\number\()_shift                         $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   90   tax                                                           $AA      2  
+   91   ora __rc2                                                     $05      3  
+   92   beq audio_fast_voice_\number\()_silent                        $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   93   lda __rc2                                                     $A5      3  
+   94   jsr audio_divider                                             $20      6  
+   95   jmp audio_fast_voice_\number\()_write                         $4C      3  
+   98   lda #254                                                      $A9      2  
+   99   bne audio_fast_voice_\number\()_write                         $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  101   lda #0                                                        $A9      2  
+  103   cmp $900a+\port                                               $CD      4  
+  104   beq audio_fast_voice_\number\()_end                           $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  105   sta $900a+\port                                               $8D      4  
+  114   lda #0                                                        $A9      2  
+  115   sta $900d                                                     $8D      4  
+  116   ldx $0301                                                     $AE      4  
+  117   beq audio_fast_volume_ready                                   $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  118   lda __rc3                                                     $A5      3  
+  120   sta $900e                                                     $8D      4  
+  121   rts                                                           $60      6  
+------------------------------------------------------------------------------------------
+bytes: 143   cycles: 199 .. 221   (straight-line sum; multiply loop bodies yourself)

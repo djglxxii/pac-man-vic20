@@ -1,0 +1,11 @@
+reference: tick -1, phase boot, frames 0
+reference: tick 51, phase attract
+reference: tick 111, phase coin
+reference: tick 113, phase release
+reference: tick 143, phase start
+reference: tick 282, phase ready
+reference: tick 370, phase ready, frames 0
+reference: tick 402, phase lead-in
+reference: tick 432, phase play
+reference: tick 782, phase play, frames 346
+reference: 600 frames captured

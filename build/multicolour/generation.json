@@ -1,0 +1,95 @@
+{
+  "status": "isolated artwork and static display prototype; main game unchanged",
+  "main_game_prg_sha256": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+  "fixture_sha256": "e5c2476313353a23255f8878d452c31501c9ef55c6a30b8454fb78bf120a1c40",
+  "art_sha256": "53461e9cdc8d1ee5d7fdadfa5b25d7ad93984e4b05b53451aaa0ec882d509384",
+  "native_dots": [
+    168,
+    216
+  ],
+  "multicolour_pixels": [
+    84,
+    216
+  ],
+  "hardware_cells": [
+    21,
+    27
+  ],
+  "character_dimensions": [
+    8,
+    8
+  ],
+  "matrix_bytes": 567,
+  "palette_sources": {
+    "00": "black background",
+    "01": "blue border",
+    "10": "per-cell actor accent",
+    "11": "white auxiliary"
+  },
+  "regular_pellets": 240,
+  "power_pellets": 4,
+  "pellet_positions": "original logical tile centres; reauthored masks",
+  "actor_multicolour_dimensions": [
+    6,
+    14
+  ],
+  "hires_font_dimensions": [
+    5,
+    7
+  ],
+  "maze_all_pellet_state_characters": 146,
+  "hires_font_and_status_characters": 17,
+  "combined_permanent_characters": 163,
+  "permanent_character_bytes": 1304,
+  "remaining_work_characters": 93,
+  "remaining_work_bytes": 744,
+  "demand_loaded_background_and_hud_bound": {
+    "matching_size": 147,
+    "vertex_cover_size": 147,
+    "all_domain_edges_covered": true
+  },
+  "demand_loaded_work_characters": 109,
+  "six_actors_old_and_new_9_cell_footprints": 108,
+  "spare_characters_after_that_bound": 1,
+  "static_demo_visible_characters": 145,
+  "normal_actor_accent_clash_cells": 4,
+  "overlap_actor_accent_clash_cells": 6,
+  "regions": {
+    "charset": [
+      4096,
+      6144
+    ],
+    "matrix": [
+      6144,
+      6711
+    ],
+    "available_internal_gap": [
+      6711,
+      7232
+    ],
+    "virtual_io_retained": [
+      7232,
+      7488
+    ],
+    "software_stack_retained": [
+      7488,
+      8192
+    ],
+    "colour_ram": [
+      37888,
+      38455
+    ]
+  },
+  "static_prg_sha256": "2053151c33af1b374a36d75909895a1ed2a8970607ab7b0b0f9b339ae2aea230",
+  "limitations": [
+    "Static image and PRG: no game logic, sound, input, dynamic glyph allocator or moving-actor timing is implemented here.",
+    "Actors have more horizontal detail than a same-width multicolour conversion, but fewer independent columns than today's eight-pixel hires masks.",
+    "Each ghost is six multicolour pixels wide and fourteen scanlines tall; the graphic is one scanline taller above/below the current actor footprint.",
+    "Normal actor accents remain per colour cell; overlapping accents can clash. Shared blue walls and white dots do not adopt actor colours.",
+    "The permanent atlas covers this maze's every local present/absent pellet state and all defined HUD glyphs, not every attract, intermission or game-over screen.",
+    "Work-character headroom is not a complete renderer budget. Simultaneously live old/new actor cells and fruit must fit, with cache ownership and colour updates.",
+    "The demand-loaded bound requires a reference-counted background glyph cache; the static PRG does not implement that cache or actor buffering.",
+    "Blue is also the border colour in this palette. A black outer border would need a separately measured raster technique.",
+    "The white auxiliary colour occupies the high nibble of $900e; an integrated audio driver must preserve it while setting volume."
+  ]
+}

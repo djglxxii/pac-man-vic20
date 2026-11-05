@@ -1,0 +1,17 @@
+{
+  "frames": 1180,
+  "frame_rate": "340909/5655",
+  "audio": false,
+  "poses_retimed": false,
+  "sources": [
+    {
+      "path": "/home/djglxxii/src/vic-man/build/pool-dest-fast/evaluation/trial-vice",
+      "prg_sha256": "2284d03b700e5d72b1a13c9f35257e96e0c48469c9eef9f3854d61489f8513dc"
+    },
+    {
+      "path": "/home/djglxxii/src/vic-man/build/pool-shift-fast/evaluation/trial-vice",
+      "prg_sha256": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31"
+    }
+  ],
+  "video_sha256": "21d5047b64f04e61fca35f1423537e8db9e82ef3acc31a6304316f2fa93f6861"
+}

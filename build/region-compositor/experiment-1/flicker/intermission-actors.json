@@ -1,0 +1,380 @@
+[
+  {
+    "actor": 1,
+    "cycles": 4720,
+    "erase_raster_line": 187,
+    "paint_raster_line": 260
+  },
+  {
+    "actor": 1,
+    "cycles": 2414,
+    "erase_raster_line": 157,
+    "paint_raster_line": 194
+  },
+  {
+    "actor": 1,
+    "cycles": 2139,
+    "erase_raster_line": 150,
+    "paint_raster_line": 183
+  },
+  {
+    "actor": 1,
+    "cycles": 4208,
+    "erase_raster_line": 169,
+    "paint_raster_line": 234
+  },
+  {
+    "actor": 1,
+    "cycles": 1878,
+    "erase_raster_line": 135,
+    "paint_raster_line": 163
+  },
+  {
+    "actor": 1,
+    "cycles": 1890,
+    "erase_raster_line": 123,
+    "paint_raster_line": 152
+  },
+  {
+    "actor": 1,
+    "cycles": 4352,
+    "erase_raster_line": 147,
+    "paint_raster_line": 214
+  },
+  {
+    "actor": 1,
+    "cycles": 1878,
+    "erase_raster_line": 112,
+    "paint_raster_line": 141
+  },
+  {
+    "actor": 1,
+    "cycles": 1890,
+    "erase_raster_line": 101,
+    "paint_raster_line": 131
+  },
+  {
+    "actor": 1,
+    "cycles": 4352,
+    "erase_raster_line": 113,
+    "paint_raster_line": 180
+  },
+  {
+    "actor": 1,
+    "cycles": 1878,
+    "erase_raster_line": 82,
+    "paint_raster_line": 111
+  },
+  {
+    "actor": 1,
+    "cycles": 1878,
+    "erase_raster_line": 89,
+    "paint_raster_line": 118
+  },
+  {
+    "actor": 1,
+    "cycles": 1890,
+    "erase_raster_line": 79,
+    "paint_raster_line": 108
+  },
+  {
+    "actor": 1,
+    "cycles": 4352,
+    "erase_raster_line": 100,
+    "paint_raster_line": 167
+  },
+  {
+    "actor": 1,
+    "cycles": 1878,
+    "erase_raster_line": 68,
+    "paint_raster_line": 97
+  },
+  {
+    "actor": 1,
+    "cycles": 1894,
+    "erase_raster_line": 57,
+    "paint_raster_line": 86
+  },
+  {
+    "actor": 1,
+    "cycles": 4353,
+    "erase_raster_line": 76,
+    "paint_raster_line": 143
+  },
+  {
+    "actor": 1,
+    "cycles": 1879,
+    "erase_raster_line": 42,
+    "paint_raster_line": 71
+  },
+  {
+    "actor": 1,
+    "cycles": 1891,
+    "erase_raster_line": 31,
+    "paint_raster_line": 60
+  },
+  {
+    "actor": 1,
+    "cycles": 4353,
+    "erase_raster_line": 54,
+    "paint_raster_line": 121
+  },
+  {
+    "actor": 1,
+    "cycles": 1879,
+    "erase_raster_line": 24,
+    "paint_raster_line": 53
+  },
+  {
+    "actor": 1,
+    "cycles": 1891,
+    "erase_raster_line": 13,
+    "paint_raster_line": 42
+  },
+  {
+    "actor": 1,
+    "cycles": 4353,
+    "erase_raster_line": 37,
+    "paint_raster_line": 104
+  },
+  {
+    "actor": 1,
+    "cycles": 1879,
+    "erase_raster_line": 1,
+    "paint_raster_line": 30
+  },
+  {
+    "actor": 1,
+    "cycles": 1878,
+    "erase_raster_line": 0,
+    "paint_raster_line": 29
+  },
+  {
+    "actor": 1,
+    "cycles": 1890,
+    "erase_raster_line": 251,
+    "paint_raster_line": 19
+  },
+  {
+    "actor": 1,
+    "cycles": 4352,
+    "erase_raster_line": 11,
+    "paint_raster_line": 78
+  },
+  {
+    "actor": 1,
+    "cycles": 1878,
+    "erase_raster_line": 240,
+    "paint_raster_line": 8
+  },
+  {
+    "actor": 0,
+    "cycles": 2173,
+    "erase_raster_line": 1,
+    "paint_raster_line": 34
+  },
+  {
+    "actor": 3,
+    "cycles": 4634,
+    "erase_raster_line": 254,
+    "paint_raster_line": 64
+  },
+  {
+    "actor": 0,
+    "cycles": 2173,
+    "erase_raster_line": 12,
+    "paint_raster_line": 46
+  },
+  {
+    "actor": 3,
+    "cycles": 4634,
+    "erase_raster_line": 4,
+    "paint_raster_line": 76
+  },
+  {
+    "actor": 0,
+    "cycles": 2257,
+    "erase_raster_line": 2,
+    "paint_raster_line": 37
+  },
+  {
+    "actor": 1,
+    "cycles": 4198,
+    "erase_raster_line": 254,
+    "paint_raster_line": 58
+  },
+  {
+    "actor": 3,
+    "cycles": 6686,
+    "erase_raster_line": 247,
+    "paint_raster_line": 89
+  },
+  {
+    "actor": 0,
+    "cycles": 4807,
+    "erase_raster_line": 252,
+    "paint_raster_line": 65
+  },
+  {
+    "actor": 3,
+    "cycles": 7436,
+    "erase_raster_line": 244,
+    "paint_raster_line": 97
+  },
+  {
+    "actor": 0,
+    "cycles": 2226,
+    "erase_raster_line": 250,
+    "paint_raster_line": 23
+  },
+  {
+    "actor": 1,
+    "cycles": 4163,
+    "erase_raster_line": 241,
+    "paint_raster_line": 44
+  },
+  {
+    "actor": 3,
+    "cycles": 6596,
+    "erase_raster_line": 234,
+    "paint_raster_line": 74
+  },
+  {
+    "actor": 0,
+    "cycles": 2226,
+    "erase_raster_line": 2,
+    "paint_raster_line": 37
+  },
+  {
+    "actor": 3,
+    "cycles": 4689,
+    "erase_raster_line": 256,
+    "paint_raster_line": 67
+  },
+  {
+    "actor": 0,
+    "cycles": 2142,
+    "erase_raster_line": 251,
+    "paint_raster_line": 23
+  },
+  {
+    "actor": 3,
+    "cycles": 5959,
+    "erase_raster_line": 243,
+    "paint_raster_line": 74
+  },
+  {
+    "actor": 0,
+    "cycles": 2054,
+    "erase_raster_line": 236,
+    "paint_raster_line": 6
+  },
+  {
+    "actor": 3,
+    "cycles": 4396,
+    "erase_raster_line": 228,
+    "paint_raster_line": 35
+  },
+  {
+    "actor": 0,
+    "cycles": 2054,
+    "erase_raster_line": 246,
+    "paint_raster_line": 17
+  },
+  {
+    "actor": 3,
+    "cycles": 4396,
+    "erase_raster_line": 238,
+    "paint_raster_line": 45
+  },
+  {
+    "actor": 0,
+    "cycles": 2107,
+    "erase_raster_line": 236,
+    "paint_raster_line": 7
+  },
+  {
+    "actor": 1,
+    "cycles": 4026,
+    "erase_raster_line": 227,
+    "paint_raster_line": 28
+  },
+  {
+    "actor": 3,
+    "cycles": 6364,
+    "erase_raster_line": 220,
+    "paint_raster_line": 57
+  },
+  {
+    "actor": 0,
+    "cycles": 2251,
+    "erase_raster_line": 233,
+    "paint_raster_line": 6
+  },
+  {
+    "actor": 3,
+    "cycles": 4784,
+    "erase_raster_line": 223,
+    "paint_raster_line": 35
+  },
+  {
+    "actor": 0,
+    "cycles": 2335,
+    "erase_raster_line": 19,
+    "paint_raster_line": 54
+  },
+  {
+    "actor": 3,
+    "cycles": 6716,
+    "erase_raster_line": 8,
+    "paint_raster_line": 112
+  },
+  {
+    "actor": 0,
+    "cycles": 2419,
+    "erase_raster_line": 51,
+    "paint_raster_line": 88
+  },
+  {
+    "actor": 2,
+    "cycles": 6222,
+    "erase_raster_line": 44,
+    "paint_raster_line": 139
+  },
+  {
+    "actor": 3,
+    "cycles": 8734,
+    "erase_raster_line": 35,
+    "paint_raster_line": 169
+  },
+  {
+    "actor": 4,
+    "cycles": 11002,
+    "erase_raster_line": 28,
+    "paint_raster_line": 197
+  },
+  {
+    "actor": 0,
+    "cycles": 2419,
+    "erase_raster_line": 99,
+    "paint_raster_line": 136
+  },
+  {
+    "actor": 2,
+    "cycles": 4787,
+    "erase_raster_line": 92,
+    "paint_raster_line": 165
+  },
+  {
+    "actor": 3,
+    "cycles": 7355,
+    "erase_raster_line": 82,
+    "paint_raster_line": 195
+  },
+  {
+    "actor": 4,
+    "cycles": 9623,
+    "erase_raster_line": 75,
+    "paint_raster_line": 224
+  }
+]

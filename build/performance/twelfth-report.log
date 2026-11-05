@@ -1,0 +1,135 @@
+python3 tests/performance.py
+{
+  "cpu_hz": 1022727,
+  "video_frames_per_sample": 180,
+  "samples": [
+    {
+      "scene": "play",
+      "seconds": 2.9855,
+      "completed_renders": 122,
+      "fps": 40.86,
+      "logic_hz": 60.63,
+      "render_ms_mean": 12.13,
+      "frame_interval_ms_p95": 35.36,
+      "frame_interval_ms_max": 47.0,
+      "start_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "end_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "scene": "frightened",
+      "seconds": 2.9855,
+      "completed_renders": 124,
+      "fps": 41.53,
+      "logic_hz": 60.63,
+      "render_ms_mean": 11.94,
+      "frame_interval_ms_p95": 34.91,
+      "frame_interval_ms_max": 53.02,
+      "start_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "end_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "scene": "attract-chase",
+      "seconds": 2.9713,
+      "completed_renders": 113,
+      "fps": 38.03,
+      "logic_hz": 60.58,
+      "render_ms_mean": 12.54,
+      "frame_interval_ms_p95": 47.82,
+      "frame_interval_ms_max": 66.03,
+      "start_state": [
+        1,
+        0,
+        34,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "end_state": [
+        1,
+        0,
+        34,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "scene": "intermission",
+      "seconds": 2.9808,
+      "completed_renders": 179,
+      "fps": 60.05,
+      "logic_hz": 60.39,
+      "render_ms_mean": 3.65,
+      "frame_interval_ms_p95": 21.44,
+      "frame_interval_ms_max": 22.31,
+      "start_state": [
+        3,
+        0,
+        0,
+        0,
+        32,
+        0,
+        4,
+        0,
+        0
+      ],
+      "end_state": [
+        3,
+        0,
+        0,
+        0,
+        32,
+        0,
+        5,
+        0,
+        0
+      ]
+    }
+  ]
+}

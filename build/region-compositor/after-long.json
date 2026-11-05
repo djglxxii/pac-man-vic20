@@ -1,0 +1,49 @@
+{
+  "cpu_hz": 1022727,
+  "video_frames_per_sample": 1800,
+  "samples": [
+    {
+      "scene": "play",
+      "seconds": 29.8537,
+      "completed_renders": 1514,
+      "fps": 50.71,
+      "logic_hz": 60.63,
+      "render_ms_mean": 9.01,
+      "render_ms_max": 1390.33,
+      "frame_interval_ms_p95": 30.26,
+      "frame_interval_ms_max": 1486.34,
+      "start_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "end_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "start_board": 0,
+      "end_board": 0,
+      "video_frames": 1800,
+      "requested_video_frames": 1800,
+      "audio_update_gap_ms_max": 39.78,
+      "input_service_gap_ms_max": 29.03,
+      "render_batch_ms_max": 18.56,
+      "background_slice_ms_max": 6.37,
+      "bulk_slice_ms_max": 5.08,
+      "pending_rebuild_at_end": false
+    }
+  ]
+}

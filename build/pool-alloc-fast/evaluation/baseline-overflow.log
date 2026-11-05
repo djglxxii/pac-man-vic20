@@ -1,0 +1,6 @@
+test_13_full_bank_hits_and_overflow_preserve_existing_cells (__main__.PoolRenderer.test_13_full_bank_hits_and_overflow_preserve_existing_cells) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.089s
+
+OK

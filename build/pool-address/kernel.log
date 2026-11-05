@@ -1,0 +1,54 @@
+{
+  "baseline": {
+    "prg_sha256": "0d33d3747809a302d400ef530ac7abd599e46c267b9181f7e752fc6f1f778fe5",
+    "method": "vicsim call command; IRQs masked; identical home bytes and allocator inputs",
+    "cells_checked": 392,
+    "allocation_cycles": {
+      "count": 392,
+      "mean": 413.6938775510204,
+      "p50": 414,
+      "p95": 414,
+      "max": 414
+    },
+    "hit_cycles": {
+      "count": 392,
+      "mean": 119.08163265306122,
+      "p50": 120,
+      "p95": 120,
+      "max": 120
+    },
+    "begin_cycles": {
+      "count": 18,
+      "mean": 365.72222222222223,
+      "p50": 148,
+      "p95": 2111,
+      "max": 2112
+    }
+  },
+  "trial": {
+    "prg_sha256": "c96ed73ab9e7ea61e14eeceb56fd7e8c10eeedd62c11bb2dc67ad3f4fe20301c",
+    "method": "vicsim call command; IRQs masked; identical home bytes and allocator inputs",
+    "cells_checked": 392,
+    "allocation_cycles": {
+      "count": 392,
+      "mean": 377.6938775510204,
+      "p50": 378,
+      "p95": 378,
+      "max": 378
+    },
+    "hit_cycles": {
+      "count": 392,
+      "mean": 119.08163265306122,
+      "p50": 120,
+      "p95": 120,
+      "max": 120
+    },
+    "begin_cycles": {
+      "count": 18,
+      "mean": 384.72222222222223,
+      "p50": 167,
+      "p95": 2130,
+      "max": 2131
+    }
+  }
+}

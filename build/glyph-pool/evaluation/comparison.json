@@ -1,0 +1,17 @@
+{
+  "frames": 1200,
+  "frame_rate": "340909/5655",
+  "audio": false,
+  "poses_retimed": false,
+  "sources": [
+    {
+      "path": "/home/djglxxii/src/vic-man/build/glyph-pool/evaluation/baseline-vice",
+      "prg_sha256": "9fb85cf61add5d729142183a48285041a47e55fa0f0fd16043f0d15b2aae35af"
+    },
+    {
+      "path": "/home/djglxxii/src/vic-man/build/glyph-pool/evaluation/final-vice",
+      "prg_sha256": "0d33d3747809a302d400ef530ac7abd599e46c267b9181f7e752fc6f1f778fe5"
+    }
+  ],
+  "video_sha256": "6dcf61d3b8571e7cbeb05cd56be61097827982803a577413bc5ae1bcfd50ce20"
+}

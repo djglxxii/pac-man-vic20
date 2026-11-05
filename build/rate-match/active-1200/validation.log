@@ -1,0 +1,49 @@
+{
+  "comparison": "archived baseline versus archived actor-commit trial",
+  "common_tick_range": [
+    434,
+    1637
+  ],
+  "matched_completed_renders": 529,
+  "same_render_tick_sequence": true,
+  "same_completed_pictures": true,
+  "matched_active_input_states": 1207,
+  "same_active_inputs_and_states": true,
+  "all_frames_sampled_in_raster_window": true,
+  "logic_mismatches": 0,
+  "picture_mismatches": 0,
+  "render_tick_intervals": {
+    "1": 120,
+    "2": 180,
+    "3": 191,
+    "4": 35,
+    "5": 2
+  },
+  "baseline_pc_gate_decisions": 1206,
+  "baseline_frames": 1200,
+  "trial_frames": 1200,
+  "actual_capture_rates": {
+    "baseline": {
+      "completed_calls_in_counter_interval": 529,
+      "seconds": 19.889017,
+      "render_calls_per_second": 26.598,
+      "first_tick": 432,
+      "last_tick": 1638
+    },
+    "trial": {
+      "completed_calls_in_counter_interval": 529,
+      "seconds": 19.889017,
+      "render_calls_per_second": 26.598,
+      "first_tick": 432,
+      "last_tick": 1638
+    }
+  },
+  "raster_phase_matched": false,
+  "limits": [
+    "Render admissions match logical ticks; raster phase and completion times are not matched.",
+    "Baseline admission is controlled through VICE PC redirection; this is not an unmodified gameplay benchmark.",
+    "Archived programs predate the accepted font changes.",
+    "Visual review is required; no automatic absence classifier or H1/H2 conclusion is supplied."
+  ]
+}
+/home/djglxxii/src/vic-man/build/rate-match/active-1200/vic20-rate-matched-actor-commit.mp4

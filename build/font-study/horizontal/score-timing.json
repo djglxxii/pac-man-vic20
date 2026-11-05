@@ -1,0 +1,2100 @@
+{
+  "method": "Compiled 6502 calls with IRQs masked; identical isolated reward fixtures across four ghost slots, four values and eight shifts. Draw includes the full sprite frontend; steady is unchanged video_refresh; erase restores saved backgrounds.",
+  "cpu_hz": 1022727,
+  "variants": {
+    "stacked": {
+      "prg_sha256": "93d6b62284a007de32dae59a74622c9eb4a011ec4db8bc99f5e92dc1a7ae9ba3",
+      "cases": 128,
+      "cycles": {
+        "draw": {
+          "min": 2801,
+          "mean": 3329.8125,
+          "max": 3488
+        },
+        "steady": {
+          "min": 1986,
+          "mean": 1986.0,
+          "max": 1986
+        },
+        "erase": {
+          "min": 878,
+          "mean": 878.0,
+          "max": 878
+        }
+      },
+      "rows": [
+        {
+          "slot": 2,
+          "code": 40,
+          "shift": 0,
+          "draw": 2801,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 40,
+          "shift": 1,
+          "draw": 3238,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 40,
+          "shift": 2,
+          "draw": 3308,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 40,
+          "shift": 3,
+          "draw": 3378,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 40,
+          "shift": 4,
+          "draw": 3448,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 40,
+          "shift": 5,
+          "draw": 3409,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 40,
+          "shift": 6,
+          "draw": 3339,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 40,
+          "shift": 7,
+          "draw": 3269,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 41,
+          "shift": 0,
+          "draw": 3138,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 41,
+          "shift": 1,
+          "draw": 3250,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 41,
+          "shift": 2,
+          "draw": 3320,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 41,
+          "shift": 3,
+          "draw": 3390,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 41,
+          "shift": 4,
+          "draw": 3460,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 41,
+          "shift": 5,
+          "draw": 3421,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 41,
+          "shift": 6,
+          "draw": 3351,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 41,
+          "shift": 7,
+          "draw": 3281,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 42,
+          "shift": 0,
+          "draw": 3152,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 42,
+          "shift": 1,
+          "draw": 3264,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 42,
+          "shift": 2,
+          "draw": 3334,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 42,
+          "shift": 3,
+          "draw": 3404,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 42,
+          "shift": 4,
+          "draw": 3474,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 42,
+          "shift": 5,
+          "draw": 3435,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 42,
+          "shift": 6,
+          "draw": 3365,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 42,
+          "shift": 7,
+          "draw": 3295,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 43,
+          "shift": 0,
+          "draw": 3166,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 43,
+          "shift": 1,
+          "draw": 3278,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 43,
+          "shift": 2,
+          "draw": 3348,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 43,
+          "shift": 3,
+          "draw": 3418,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 43,
+          "shift": 4,
+          "draw": 3488,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 43,
+          "shift": 5,
+          "draw": 3449,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 43,
+          "shift": 6,
+          "draw": 3379,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 2,
+          "code": 43,
+          "shift": 7,
+          "draw": 3309,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 40,
+          "shift": 0,
+          "draw": 3061,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 40,
+          "shift": 1,
+          "draw": 3238,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 40,
+          "shift": 2,
+          "draw": 3308,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 40,
+          "shift": 3,
+          "draw": 3378,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 40,
+          "shift": 4,
+          "draw": 3448,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 40,
+          "shift": 5,
+          "draw": 3409,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 40,
+          "shift": 6,
+          "draw": 3339,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 40,
+          "shift": 7,
+          "draw": 3269,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 41,
+          "shift": 0,
+          "draw": 3138,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 41,
+          "shift": 1,
+          "draw": 3250,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 41,
+          "shift": 2,
+          "draw": 3320,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 41,
+          "shift": 3,
+          "draw": 3390,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 41,
+          "shift": 4,
+          "draw": 3460,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 41,
+          "shift": 5,
+          "draw": 3421,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 41,
+          "shift": 6,
+          "draw": 3351,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 41,
+          "shift": 7,
+          "draw": 3281,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 42,
+          "shift": 0,
+          "draw": 3152,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 42,
+          "shift": 1,
+          "draw": 3264,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 42,
+          "shift": 2,
+          "draw": 3334,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 42,
+          "shift": 3,
+          "draw": 3404,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 42,
+          "shift": 4,
+          "draw": 3474,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 42,
+          "shift": 5,
+          "draw": 3435,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 42,
+          "shift": 6,
+          "draw": 3365,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 42,
+          "shift": 7,
+          "draw": 3295,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 43,
+          "shift": 0,
+          "draw": 3166,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 43,
+          "shift": 1,
+          "draw": 3278,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 43,
+          "shift": 2,
+          "draw": 3348,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 43,
+          "shift": 3,
+          "draw": 3418,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 43,
+          "shift": 4,
+          "draw": 3488,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 43,
+          "shift": 5,
+          "draw": 3449,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 43,
+          "shift": 6,
+          "draw": 3379,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 4,
+          "code": 43,
+          "shift": 7,
+          "draw": 3309,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 40,
+          "shift": 0,
+          "draw": 3061,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 40,
+          "shift": 1,
+          "draw": 3238,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 40,
+          "shift": 2,
+          "draw": 3308,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 40,
+          "shift": 3,
+          "draw": 3378,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 40,
+          "shift": 4,
+          "draw": 3448,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 40,
+          "shift": 5,
+          "draw": 3409,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 40,
+          "shift": 6,
+          "draw": 3339,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 40,
+          "shift": 7,
+          "draw": 3269,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 41,
+          "shift": 0,
+          "draw": 3138,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 41,
+          "shift": 1,
+          "draw": 3250,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 41,
+          "shift": 2,
+          "draw": 3320,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 41,
+          "shift": 3,
+          "draw": 3390,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 41,
+          "shift": 4,
+          "draw": 3460,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 41,
+          "shift": 5,
+          "draw": 3421,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 41,
+          "shift": 6,
+          "draw": 3351,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 41,
+          "shift": 7,
+          "draw": 3281,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 42,
+          "shift": 0,
+          "draw": 3152,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 42,
+          "shift": 1,
+          "draw": 3264,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 42,
+          "shift": 2,
+          "draw": 3334,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 42,
+          "shift": 3,
+          "draw": 3404,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 42,
+          "shift": 4,
+          "draw": 3474,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 42,
+          "shift": 5,
+          "draw": 3435,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 42,
+          "shift": 6,
+          "draw": 3365,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 42,
+          "shift": 7,
+          "draw": 3295,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 43,
+          "shift": 0,
+          "draw": 3166,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 43,
+          "shift": 1,
+          "draw": 3278,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 43,
+          "shift": 2,
+          "draw": 3348,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 43,
+          "shift": 3,
+          "draw": 3418,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 43,
+          "shift": 4,
+          "draw": 3488,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 43,
+          "shift": 5,
+          "draw": 3449,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 43,
+          "shift": 6,
+          "draw": 3379,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 6,
+          "code": 43,
+          "shift": 7,
+          "draw": 3309,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 40,
+          "shift": 0,
+          "draw": 3061,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 40,
+          "shift": 1,
+          "draw": 3238,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 40,
+          "shift": 2,
+          "draw": 3308,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 40,
+          "shift": 3,
+          "draw": 3378,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 40,
+          "shift": 4,
+          "draw": 3448,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 40,
+          "shift": 5,
+          "draw": 3409,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 40,
+          "shift": 6,
+          "draw": 3339,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 40,
+          "shift": 7,
+          "draw": 3269,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 41,
+          "shift": 0,
+          "draw": 3138,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 41,
+          "shift": 1,
+          "draw": 3250,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 41,
+          "shift": 2,
+          "draw": 3320,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 41,
+          "shift": 3,
+          "draw": 3390,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 41,
+          "shift": 4,
+          "draw": 3460,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 41,
+          "shift": 5,
+          "draw": 3421,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 41,
+          "shift": 6,
+          "draw": 3351,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 41,
+          "shift": 7,
+          "draw": 3281,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 42,
+          "shift": 0,
+          "draw": 3152,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 42,
+          "shift": 1,
+          "draw": 3264,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 42,
+          "shift": 2,
+          "draw": 3334,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 42,
+          "shift": 3,
+          "draw": 3404,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 42,
+          "shift": 4,
+          "draw": 3474,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 42,
+          "shift": 5,
+          "draw": 3435,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 42,
+          "shift": 6,
+          "draw": 3365,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 42,
+          "shift": 7,
+          "draw": 3295,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 43,
+          "shift": 0,
+          "draw": 3166,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 43,
+          "shift": 1,
+          "draw": 3278,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 43,
+          "shift": 2,
+          "draw": 3348,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 43,
+          "shift": 3,
+          "draw": 3418,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 43,
+          "shift": 4,
+          "draw": 3488,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 43,
+          "shift": 5,
+          "draw": 3449,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 43,
+          "shift": 6,
+          "draw": 3379,
+          "steady": 1986,
+          "erase": 878
+        },
+        {
+          "slot": 8,
+          "code": 43,
+          "shift": 7,
+          "draw": 3309,
+          "steady": 1986,
+          "erase": 878
+        }
+      ]
+    },
+    "horizontal": {
+      "prg_sha256": "eb6b29810453418818a1ffb83f8b0057464a903682c20970cc6019617067a4e9",
+      "cases": 128,
+      "cycles": {
+        "draw": {
+          "min": 4927,
+          "mean": 5235.5,
+          "max": 5468
+        },
+        "steady": {
+          "min": 2732,
+          "mean": 2843.0,
+          "max": 2951
+        },
+        "erase": {
+          "min": 1397,
+          "mean": 1397.0,
+          "max": 1397
+        }
+      },
+      "rows": [
+        {
+          "slot": 2,
+          "code": 40,
+          "shift": 0,
+          "draw": 5166,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 40,
+          "shift": 1,
+          "draw": 5428,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 40,
+          "shift": 2,
+          "draw": 5358,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 40,
+          "shift": 3,
+          "draw": 5288,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 40,
+          "shift": 4,
+          "draw": 5146,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 40,
+          "shift": 5,
+          "draw": 5256,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 40,
+          "shift": 6,
+          "draw": 5326,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 40,
+          "shift": 7,
+          "draw": 5396,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 41,
+          "shift": 0,
+          "draw": 5434,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 41,
+          "shift": 1,
+          "draw": 5440,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 41,
+          "shift": 2,
+          "draw": 5370,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 41,
+          "shift": 3,
+          "draw": 5300,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 41,
+          "shift": 4,
+          "draw": 5158,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 41,
+          "shift": 5,
+          "draw": 5268,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 41,
+          "shift": 6,
+          "draw": 5338,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 41,
+          "shift": 7,
+          "draw": 5408,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 42,
+          "shift": 0,
+          "draw": 5448,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 42,
+          "shift": 1,
+          "draw": 5454,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 42,
+          "shift": 2,
+          "draw": 5384,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 42,
+          "shift": 3,
+          "draw": 5314,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 42,
+          "shift": 4,
+          "draw": 5172,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 42,
+          "shift": 5,
+          "draw": 5282,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 42,
+          "shift": 6,
+          "draw": 5352,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 42,
+          "shift": 7,
+          "draw": 5422,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 43,
+          "shift": 0,
+          "draw": 5462,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 43,
+          "shift": 1,
+          "draw": 5468,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 43,
+          "shift": 2,
+          "draw": 5398,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 43,
+          "shift": 3,
+          "draw": 5328,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 43,
+          "shift": 4,
+          "draw": 5186,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 43,
+          "shift": 5,
+          "draw": 5296,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 43,
+          "shift": 6,
+          "draw": 5366,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 2,
+          "code": 43,
+          "shift": 7,
+          "draw": 5436,
+          "steady": 2951,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 40,
+          "shift": 0,
+          "draw": 5288,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 40,
+          "shift": 1,
+          "draw": 5358,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 40,
+          "shift": 2,
+          "draw": 5288,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 40,
+          "shift": 3,
+          "draw": 5218,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 40,
+          "shift": 4,
+          "draw": 5076,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 40,
+          "shift": 5,
+          "draw": 5186,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 40,
+          "shift": 6,
+          "draw": 5256,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 40,
+          "shift": 7,
+          "draw": 5326,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 41,
+          "shift": 0,
+          "draw": 5364,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 41,
+          "shift": 1,
+          "draw": 5370,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 41,
+          "shift": 2,
+          "draw": 5300,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 41,
+          "shift": 3,
+          "draw": 5230,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 41,
+          "shift": 4,
+          "draw": 5088,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 41,
+          "shift": 5,
+          "draw": 5198,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 41,
+          "shift": 6,
+          "draw": 5268,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 41,
+          "shift": 7,
+          "draw": 5338,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 42,
+          "shift": 0,
+          "draw": 5378,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 42,
+          "shift": 1,
+          "draw": 5384,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 42,
+          "shift": 2,
+          "draw": 5314,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 42,
+          "shift": 3,
+          "draw": 5244,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 42,
+          "shift": 4,
+          "draw": 5102,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 42,
+          "shift": 5,
+          "draw": 5212,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 42,
+          "shift": 6,
+          "draw": 5282,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 42,
+          "shift": 7,
+          "draw": 5352,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 43,
+          "shift": 0,
+          "draw": 5392,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 43,
+          "shift": 1,
+          "draw": 5398,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 43,
+          "shift": 2,
+          "draw": 5328,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 43,
+          "shift": 3,
+          "draw": 5258,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 43,
+          "shift": 4,
+          "draw": 5116,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 43,
+          "shift": 5,
+          "draw": 5226,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 43,
+          "shift": 6,
+          "draw": 5296,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 4,
+          "code": 43,
+          "shift": 7,
+          "draw": 5366,
+          "steady": 2881,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 40,
+          "shift": 0,
+          "draw": 5215,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 40,
+          "shift": 1,
+          "draw": 5285,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 40,
+          "shift": 2,
+          "draw": 5215,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 40,
+          "shift": 3,
+          "draw": 5145,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 40,
+          "shift": 4,
+          "draw": 5003,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 40,
+          "shift": 5,
+          "draw": 5113,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 40,
+          "shift": 6,
+          "draw": 5183,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 40,
+          "shift": 7,
+          "draw": 5253,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 41,
+          "shift": 0,
+          "draw": 5291,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 41,
+          "shift": 1,
+          "draw": 5297,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 41,
+          "shift": 2,
+          "draw": 5227,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 41,
+          "shift": 3,
+          "draw": 5157,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 41,
+          "shift": 4,
+          "draw": 5015,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 41,
+          "shift": 5,
+          "draw": 5125,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 41,
+          "shift": 6,
+          "draw": 5195,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 41,
+          "shift": 7,
+          "draw": 5265,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 42,
+          "shift": 0,
+          "draw": 5305,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 42,
+          "shift": 1,
+          "draw": 5311,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 42,
+          "shift": 2,
+          "draw": 5241,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 42,
+          "shift": 3,
+          "draw": 5171,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 42,
+          "shift": 4,
+          "draw": 5029,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 42,
+          "shift": 5,
+          "draw": 5139,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 42,
+          "shift": 6,
+          "draw": 5209,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 42,
+          "shift": 7,
+          "draw": 5279,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 43,
+          "shift": 0,
+          "draw": 5319,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 43,
+          "shift": 1,
+          "draw": 5325,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 43,
+          "shift": 2,
+          "draw": 5255,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 43,
+          "shift": 3,
+          "draw": 5185,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 43,
+          "shift": 4,
+          "draw": 5043,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 43,
+          "shift": 5,
+          "draw": 5153,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 43,
+          "shift": 6,
+          "draw": 5223,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 6,
+          "code": 43,
+          "shift": 7,
+          "draw": 5293,
+          "steady": 2808,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 40,
+          "shift": 0,
+          "draw": 5139,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 40,
+          "shift": 1,
+          "draw": 5209,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 40,
+          "shift": 2,
+          "draw": 5139,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 40,
+          "shift": 3,
+          "draw": 5069,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 40,
+          "shift": 4,
+          "draw": 4927,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 40,
+          "shift": 5,
+          "draw": 5037,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 40,
+          "shift": 6,
+          "draw": 5107,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 40,
+          "shift": 7,
+          "draw": 5177,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 41,
+          "shift": 0,
+          "draw": 5215,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 41,
+          "shift": 1,
+          "draw": 5221,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 41,
+          "shift": 2,
+          "draw": 5151,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 41,
+          "shift": 3,
+          "draw": 5081,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 41,
+          "shift": 4,
+          "draw": 4939,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 41,
+          "shift": 5,
+          "draw": 5049,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 41,
+          "shift": 6,
+          "draw": 5119,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 41,
+          "shift": 7,
+          "draw": 5189,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 42,
+          "shift": 0,
+          "draw": 5229,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 42,
+          "shift": 1,
+          "draw": 5235,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 42,
+          "shift": 2,
+          "draw": 5165,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 42,
+          "shift": 3,
+          "draw": 5095,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 42,
+          "shift": 4,
+          "draw": 4953,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 42,
+          "shift": 5,
+          "draw": 5063,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 42,
+          "shift": 6,
+          "draw": 5133,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 42,
+          "shift": 7,
+          "draw": 5203,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 43,
+          "shift": 0,
+          "draw": 5243,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 43,
+          "shift": 1,
+          "draw": 5249,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 43,
+          "shift": 2,
+          "draw": 5179,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 43,
+          "shift": 3,
+          "draw": 5109,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 43,
+          "shift": 4,
+          "draw": 4967,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 43,
+          "shift": 5,
+          "draw": 5077,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 43,
+          "shift": 6,
+          "draw": 5147,
+          "steady": 2732,
+          "erase": 1397
+        },
+        {
+          "slot": 8,
+          "code": 43,
+          "shift": 7,
+          "draw": 5217,
+          "steady": 2732,
+          "erase": 1397
+        }
+      ]
+    }
+  }
+}

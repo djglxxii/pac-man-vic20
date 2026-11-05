@@ -1,0 +1,41 @@
+{
+  "purpose": "Identities of local inputs intentionally omitted from the current Git tree. No source or ROM payload is embedded.",
+  "files": {
+    "pacman.zip": {
+      "bytes": 13880,
+      "sha256": "5004768064896a65e2f36171c4b5af7e372b55c127646afb9d87f4d6b2190f0a"
+    },
+    "src/arcade/core.c": {
+      "bytes": 140170,
+      "sha256": "b810850a134a4776a8481a4f2487ac0b6801c0cd44c913f5e52a9ed28506c35e"
+    },
+    "src/arcade/consts.h": {
+      "bytes": 4558,
+      "sha256": "e1a656cdb20bcdc4312f4caf4e62b2a62b6a4dfbb16c0ee8b94585ba28ead2f8"
+    },
+    "src/arcade/cpu.h": {
+      "bytes": 1332,
+      "sha256": "fc2a802b514f79936d50836e134ab7818c6dbffbf7cbbcedb235112e985bff0f"
+    },
+    "src/arcade/data.h": {
+      "bytes": 2667,
+      "sha256": "dcff0dc5c5278e6fc7b7a7f5dcda8492a69d987f3ce0cba55024d6aaf00db64e"
+    },
+    "src/arcade/memmap.h": {
+      "bytes": 18783,
+      "sha256": "5e87fe259bb839f4e3c5406ae342b0340d95738a1ca5f8d2f33c5a79c8a078f0"
+    },
+    "src/arcade/protos.h": {
+      "bytes": 13325,
+      "sha256": "57d8ebb76072b17289bcc653cd4f0131343368e88a7627c6c7e66079c592c728"
+    },
+    "src/arcade/structs.h": {
+      "bytes": 1579,
+      "sha256": "6b91a014d6aa84d64c2264a8d07013ebf0c6d6229fe4cb98e7d4e255778e9f04"
+    },
+    "tools/arcade/z80.h": {
+      "bytes": 138218,
+      "sha256": "6ca70ffd91b1bdbaf00f7a41e7092b326145fd1c95dcdd7bb01183370de734f3"
+    }
+  }
+}

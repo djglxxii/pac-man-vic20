@@ -1,0 +1,63 @@
+  498   lda v_flags                    $A5      3  
+  499   and #1                         $29      2  
+  500   beq pool_setup_left_clipped    $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  501   lda v_cell                     $A5      3  
+  502   jsr pool_cell                  $20      6  
+  503   lda v_base                     $A5      3  
+  504   sta v_addr                     $85      3  
+  505   lda v_base+1                   $A5      3  
+  506   sta v_addr+1                   $85      3  
+  507   lda v_sy                       $A5      3  
+  508   and #15                        $29      2  
+  509   cmp #5                         $C9      2  
+  510   bcc pool_setup_right           $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  511   lda v_cell                     $A5      3  
+  512   clc                            $18      2  
+  513   adc #14                        $69      2  
+  514   jsr pool_cell                  $20      6  
+  515   lda v_base                     $A5      3  
+  516   sta v_save                     $85      3  
+  517   lda v_base+1                   $A5      3  
+  518   sta v_save+1                   $85      3  
+  519   jmp pool_setup_right           $4C      3  
+  521   lda #$f0                       $A9      2  
+  522   sta v_addr                     $85      3  
+  523   sta v_save                     $85      3  
+  524   lda #$1f                       $A9      2  
+  525   sta v_addr+1                   $85      3  
+  526   sta v_save+1                   $85      3  
+  528   lda v_flags                    $A5      3  
+  529   and #2                         $29      2  
+  530   beq pool_setup_right_clipped   $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  531   lda v_shift                    $A5      3  
+  532   beq pool_setup_right_clipped   $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  533   lda v_cell                     $A5      3  
+  534   clc                            $18      2  
+  535   adc #1                         $69      2  
+  536   jsr pool_cell                  $20      6  
+  537   lda v_base                     $A5      3  
+  538   sta v_right                    $85      3  
+  539   lda v_base+1                   $A5      3  
+  540   sta v_right+1                  $85      3  
+  541   lda v_sy                       $A5      3  
+  542   and #15                        $29      2  
+  543   cmp #5                         $C9      2  
+  544   bcc pool_setup_done            $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  545   lda v_cell                     $A5      3  
+  546   clc                            $18      2  
+  547   adc #15                        $69      2  
+  548   jsr pool_cell                  $20      6  
+  549   lda v_base                     $A5      3  
+  550   sta v_saved_right              $85      3  
+  551   lda v_base+1                   $A5      3  
+  552   sta v_saved_right+1            $85      3  
+  553   rts                            $60      6  
+  555   lda #$f0                       $A9      2  
+  556   sta v_right                    $85      3  
+  557   sta v_saved_right              $85      3  
+  558   lda #$1f                       $A9      2  
+  559   sta v_right+1                  $85      3  
+  560   sta v_saved_right+1            $85      3  
+  562   rts                            $60      6  
+-----------------------------------------------------------
+bytes: 122   cycles: 180 .. 190   (straight-line sum; multiply loop bodies yourself)

@@ -1,0 +1,11 @@
+test_01_6502_movement_turns_and_score (__main__.NativeParity.test_01_6502_movement_turns_and_score) ... ok
+test_02_6502_frightened_rng (__main__.NativeParity.test_02_6502_frightened_rng) ... ok
+test_03_build_memory_limits (__main__.NativeParity.test_03_build_memory_limits) ... ok
+test_04_square_table_equivalence (__main__.NativeParity.test_04_square_table_equivalence) ... ok
+test_05_exact_audio_divider_boundaries (__main__.NativeParity.test_05_exact_audio_divider_boundaries) ... ok
+test_06_audio_converter_registers (__main__.NativeParity.test_06_audio_converter_registers) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.613s
+
+OK

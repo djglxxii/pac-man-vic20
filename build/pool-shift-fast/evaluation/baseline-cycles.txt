@@ -1,0 +1,7 @@
+   87   sta v_hi              $85      3  
+   88   lda #0                $A9      2  
+   89   lsr v_hi              $46      5  
+   90   ror                   $6A      2  
+   91   jmp pool_merge_low    $4C      3  
+--------------------------------------------------
+bytes: 10   cycles: 15   (straight-line sum; multiply loop bodies yourself)

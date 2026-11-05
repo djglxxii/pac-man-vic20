@@ -1,0 +1,23 @@
+test_01_6502_movement_turns_and_score (__main__.ActorCommitParity.test_01_6502_movement_turns_and_score) ... ok
+test_02_6502_frightened_rng (__main__.ActorCommitParity.test_02_6502_frightened_rng) ... ok
+test_03_build_memory_limits (__main__.ActorCommitParity.test_03_build_memory_limits) ... ok
+test_04_square_table_equivalence (__main__.ActorCommitParity.test_04_square_table_equivalence) ... ok
+test_05_exact_audio_divider_boundaries (__main__.ActorCommitParity.test_05_exact_audio_divider_boundaries) ... ok
+test_06_audio_converter_registers (__main__.ActorCommitParity.test_06_audio_converter_registers) ... ok
+test_01_all_frames_shifts_and_flips (__main__.ActorCommitRenderer.test_01_all_frames_shifts_and_flips) ... ok
+test_02_edges_overlap_priority_and_returning_eyes (__main__.ActorCommitRenderer.test_02_edges_overlap_priority_and_returning_eyes) ... ok
+test_03_incremental_matches_full_redraw (__main__.ActorCommitRenderer.test_03_incremental_matches_full_redraw) ... ok
+test_04_preshifted_ghost_path (__main__.ActorCommitRenderer.test_04_preshifted_ghost_path) ... ok
+test_05_dirty_tiles_preserve_actors_and_shared_colours (__main__.ActorCommitRenderer.test_05_dirty_tiles_preserve_actors_and_shared_colours) ... ok
+test_06_clipped_kernel_memory_boundaries (__main__.ActorCommitRenderer.test_06_clipped_kernel_memory_boundaries) ... ok
+test_07_horizontal_rewards_priority_flips_edges_and_restoration (__main__.ActorCommitRenderer.test_07_horizontal_rewards_priority_flips_edges_and_restoration) ... ok
+test_07_separated_actors_commit_before_next_erase (__main__.ActorCommitRenderer.test_07_separated_actors_commit_before_next_erase) ... ok
+test_08_disjoint_pixels_sharing_restore_bytes_stay_together (__main__.ActorCommitRenderer.test_08_disjoint_pixels_sharing_restore_bytes_stay_together) ... ok
+test_09_old_new_crossing_and_colour_only_dependencies (__main__.ActorCommitRenderer.test_09_old_new_crossing_and_colour_only_dependencies) ... ok
+test_10_transitive_cluster_preserves_priority (__main__.ActorCommitRenderer.test_10_transitive_cluster_preserves_priority) ... ok
+test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 6.092s
+
+OK

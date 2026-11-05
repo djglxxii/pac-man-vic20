@@ -1,0 +1,24 @@
+test_01_all_frames_shifts_and_flips (__main__.Renderer.test_01_all_frames_shifts_and_flips) ... ok
+test_02_edges_overlap_priority_and_returning_eyes (__main__.Renderer.test_02_edges_overlap_priority_and_returning_eyes) ... ok
+test_03_incremental_matches_full_redraw (__main__.Renderer.test_03_incremental_matches_full_redraw) ... ok
+test_04_preshifted_ghost_path (__main__.Renderer.test_04_preshifted_ghost_path) ... ok
+test_05_dirty_tiles_preserve_actors_and_shared_colours (__main__.Renderer.test_05_dirty_tiles_preserve_actors_and_shared_colours) ... ok
+test_06_clipped_kernel_memory_boundaries (__main__.Renderer.test_06_clipped_kernel_memory_boundaries) ... ok
+test_07_raster_update_phases_and_colour_boundaries (__main__.Renderer.test_07_raster_update_phases_and_colour_boundaries) ... ERROR
+test_08_raster_overlap_and_visibility_fallbacks (__main__.Renderer.test_08_raster_overlap_and_visibility_fallbacks) ... ok
+
+======================================================================
+ERROR: test_07_raster_update_phases_and_colour_boundaries (__main__.Renderer.test_07_raster_update_phases_and_colour_boundaries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/djglxxii/src/vic-man/tests/render.py", line 334, in test_07_raster_update_phases_and_colour_boundaries
+    self.check_scene(new, incremental=True, retain=True)
+  File "/home/djglxxii/src/vic-man/tests/render.py", line 58, in check_scene
+    positions[off : off + 2] = bytes((raw_x, raw_y))
+                               ^^^^^^^^^^^^^^^^^^^^^
+ValueError: bytes must be in range(0, 256)
+
+----------------------------------------------------------------------
+Ran 8 tests in 3.041s
+
+FAILED (errors=1)

@@ -162,5 +162,6 @@ the 1,639-tick audio replay and smoke through all three intermissions. Its
 [log](../build/tile-address-fast/evaluation/promotion-tests.log) records the
 then-default build. All five default files were also byte-identical to their
 explicit tunnel-build counterparts. The queue records this first ghost-state
-experiment as accepted; the subsequent composition improvement is now standard,
-and the other three candidates remain queued/deferred.
+experiment as accepted. Later accepted improvements remain in the latest
+standard; see the [current queue](RESEARCH_OPTIMIZATION_PLAN.md#remaining-optimization-candidates)
+for each candidate’s disposition.

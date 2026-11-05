@@ -1,0 +1,14 @@
+Add VIC-native fonts and checkpoint renderer research
+
+Draw clear letters and digits at VIC resolution, with horizontal ghost and
+fruit rewards. Reuse the hidden Pac-Man slot for wider ghost scores while
+preserving draw priority, restoration and arcade output buffers.
+
+Checkpoint the earlier sprite and ghost optimizations, isolated renderer
+and multicolour experiments, artwork studies, profiling and capture tools,
+frozen measurements, and local VIC-20 development skills.
+
+Record user approval of the font and the hold on further flicker work.
+
+Validation: make test (51 checks and frontend smoke); VICE boot, coin/start
+and all four reward fixtures; baseline JSON and whitespace checks.

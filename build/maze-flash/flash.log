@@ -1,0 +1,40 @@
+test_01_colours_pixels_and_sprite_underlays (__main__.MazeFlash.test_01_colours_pixels_and_sprite_underlays) ... ok
+test_02_complete_flash_timing (__main__.MazeFlash.test_02_complete_flash_timing) ... ok
+test_03_walls_survive_incremental_dot_removal (__main__.MazeFlash.test_03_walls_survive_incremental_dot_removal) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.940s
+
+OK
+{
+  "phases": [
+    "white",
+    "blue",
+    "white",
+    "blue",
+    "white",
+    "blue",
+    "white",
+    "blue"
+  ],
+  "request_to_present_ms": [
+    15.563293039100365,
+    13.651736973796526,
+    13.6556480859506,
+    16.540093299580434,
+    13.6556480859506,
+    13.651736973796526,
+    13.6556480859506,
+    16.680893337127113
+  ],
+  "flash_spacing_ms": [
+    196.101207849211,
+    197.99907502197556,
+    201.5151648484884,
+    194.551429658159,
+    197.92867500320222,
+    198.01080835843777,
+    201.6461871056499
+  ],
+  "audio_update_gap_ms_max": 25.013517781382518
+}

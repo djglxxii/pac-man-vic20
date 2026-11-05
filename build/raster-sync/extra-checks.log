@@ -1,0 +1,7 @@
+test_09_deferred_masks_and_update_deadline (__main__.Renderer.test_09_deferred_masks_and_update_deadline) ... ok
+test_10_deferred_actor_and_queued_background_writes (__main__.Renderer.test_10_deferred_actor_and_queued_background_writes) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 2.658s
+
+OK

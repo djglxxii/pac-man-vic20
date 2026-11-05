@@ -1,0 +1,9 @@
+Use case: compositing / ads-marketing.
+Asset type: a finished YouTube thumbnail, strictly LANDSCAPE 16:9. Target 1920x1080.
+Input image 1: style reference only, the revised initial-pass thumbnail.
+Input image 2: gameplay content reference, a real raster frame from the current FINAL OPTIMIZED VIC-20 Pac-Man conversion. Use THIS frame for gameplay, not the earlier thumbnail's game art.
+Primary request: make a matching but distinct final-milestone thumbnail for this AGENTIC HOMEBREW conversion, built with coding agents and refined through profiling and fourteen accepted speed optimization passes.
+Composition: clean two-column layout, big warm-yellow PAC-MAN and white VIC-20 at left, very prominent cyan two-line AGENTIC / HOMEBREW identity, smaller legible BUILT WITH CODING AGENTS, and an unmistakable warm-yellow FINAL OPTIMIZED badge replacing INITIAL PASS. Full real gameplay view in a restrained frame at right. Give type and maze 7% outer breathing room and avoid important text in the bottom-right duration corner.
+Text, verbatim: "PAC-MAN", "VIC-20", "AGENTIC", "HOMEBREW", "BUILT WITH CODING AGENTS", "FINAL OPTIMIZED". No INITIAL PASS text. No FPS badge or extra claims. Spell AGENTIC exactly.
+Gameplay constraints: preserve the supplied current frame faithfully as an inserted screenshot: white maze geometry and pellets, black background, current small custom yellow Pac-Man and colored ghosts, tiny score digits. Keep existing color sharing visible. Do not substitute polished arcade graphics, blue walls, a different maze, large cartoon actors, or invented ghost positions. Preserve the supplied screen proportions.
+Style: polished black/yellow/white/cyan retro computing editorial artwork, crisp phone-readable typography, restrained cyan pixel accents, a clean warm-yellow final-status badge. No code wallpaper, robots, faces, computer photo, arrows, download/release claim, watermarks, fake 60 FPS text or invented benchmark. Opaque background.

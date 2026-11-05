@@ -1,0 +1,141 @@
+{
+  "prg_sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297",
+  "source_summary_sha256": "c0aa08d1dfaf1740e07b311c4a09234f898074bc8f2997fd3bc2bd3b22a27c0c",
+  "source_profile_sha256": "8c4e162675901cae2822581e3997f7d2daaa40ed32ef63d57b154dd091e53d71",
+  "method": "Exclusive instruction cycles in disjoint linked-label ranges; no guest changes",
+  "cycles": 20377842,
+  "completed_redraws": 645,
+  "groups": {
+    "reuse_guard": {
+      "begin": "29ad",
+      "end": "29b3",
+      "cycles": 46440,
+      "cycles_per_redraw": 72.0,
+      "cpu_percent": 0.2278945925677508
+    },
+    "actor_pose_and_setup": {
+      "begin": "29b3",
+      "end": "2b2a",
+      "cycles": 1484862,
+      "cycles_per_redraw": 2302.1116279069765,
+      "cpu_percent": 7.286649881768638
+    },
+    "generic_stamp": {
+      "begin": "2b2a",
+      "end": "2c35",
+      "cycles": 2218493,
+      "cycles_per_redraw": 3439.524031007752,
+      "cpu_percent": 10.886790662131936
+    },
+    "cell_lookup_and_allocation": {
+      "begin": "2c35",
+      "end": "2cb9",
+      "cycles": 1340315,
+      "cycles_per_redraw": 2078.0077519379847,
+      "cpu_percent": 6.577315694174094
+    },
+    "background_copy": {
+      "begin": "2cb9",
+      "end": "2d0b",
+      "cycles": 2086447,
+      "cycles_per_redraw": 3234.8015503875968,
+      "cpu_percent": 10.238802518932083
+    },
+    "colour_and_pointer": {
+      "begin": "2d0b",
+      "end": "2d26",
+      "cycles": 165640,
+      "cycles_per_redraw": 256.8062015503876,
+      "cpu_percent": 0.812843675988851
+    },
+    "destination_setup": {
+      "begin": "2d26",
+      "end": "2d98",
+      "cycles": 493212,
+      "cycles_per_redraw": 764.6697674418605,
+      "cpu_percent": 2.4203347930561048
+    },
+    "restore_control_and_publish": {
+      "begin": "2d98",
+      "end": "2ea7",
+      "cycles": 1001152,
+      "cycles_per_redraw": 1552.1736434108527,
+      "cpu_percent": 4.9129441674933
+    },
+    "normal_ghost_stamp": {
+      "begin": "2ea7",
+      "end": "2f01",
+      "cycles": 493601,
+      "cycles_per_redraw": 765.2728682170542,
+      "cpu_percent": 2.4222437292427728
+    }
+  },
+  "generic_detail": {
+    "setup": {
+      "begin": "2b2a",
+      "end": "2b75",
+      "cycles": 211882,
+      "cycles_per_redraw": 328.49922480620154,
+      "cpu_percent": 1.039766624944879
+    },
+    "fetch_and_dispatch": {
+      "begin": "2b75",
+      "end": "2b7d",
+      "cycles": 266614,
+      "cycles_per_redraw": 413.35503875968993,
+      "cpu_percent": 1.3083524742217552
+    },
+    "merge_low": {
+      "begin": "2b7d",
+      "end": "2b87",
+      "cycles": 269950,
+      "cycles_per_redraw": 418.52713178294573,
+      "cpu_percent": 1.3247231968919968
+    },
+    "row_control": {
+      "begin": "2b87",
+      "end": "2ba6",
+      "cycles": 438988,
+      "cycles_per_redraw": 680.601550387597,
+      "cpu_percent": 2.154241847591124
+    },
+    "merge_high": {
+      "begin": "2ba6",
+      "end": "2bb3",
+      "cycles": 388248,
+      "cycles_per_redraw": 601.9348837209302,
+      "cpu_percent": 1.9052459038596923
+    },
+    "mirror": {
+      "begin": "2bb3",
+      "end": "2bbe",
+      "cycles": 27540,
+      "cycles_per_redraw": 42.69767441860465,
+      "cpu_percent": 0.13514679326692197
+    },
+    "aligned_merge": {
+      "begin": "2bbe",
+      "end": "2bc5",
+      "cycles": 17486,
+      "cycles_per_redraw": 27.110077519379846,
+      "cpu_percent": 0.08580888987165569
+    },
+    "shifts": {
+      "begin": "2bc5",
+      "end": "2c25",
+      "cycles": 597785,
+      "cycles_per_redraw": 926.7984496124031,
+      "cpu_percent": 2.933504931483913
+    }
+  },
+  "counters": {
+    "generic_calls": 2557,
+    "normal_ghost_calls": 893,
+    "generic_rows": 30684,
+    "nonempty_generic_rows": 25913,
+    "cell_calls": 10437,
+    "fresh_cells": 9983,
+    "shared_cell_hits": 454
+  },
+  "caveat": "Different redraw cadence samples different poses; use identical-input kernels for isolated savings"
+}

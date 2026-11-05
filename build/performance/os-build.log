@@ -1,0 +1,12 @@
+python3 tools/arcade/mkrom.py --output build/arcade
+python3 tools/bootstrap-llvm-mos.py --output /home/djglxxii/src/vic-man/tools/llvm-mos
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Os -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -Tsrc/pacman.ld src/start.S src/clock.S src/bitmap.S src/sprites.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c build/arcade/rom.c -Wl,-Map,build/arcade/pacman.map -o build/arcade/pacman-native.bin
+ld.lld: error: section '.arcade_data' will not fit in region 'bank': overflowed by 1404 bytes
+ld.lld: error: section '.text' will not fit in region 'ram': overflowed by 2455 bytes
+ld.lld: error: section '.rodata' will not fit in region 'ram': overflowed by 2763 bytes
+ld.lld: error: section '.data' will not fit in region 'ram': overflowed by 2763 bytes
+ld.lld: error: section '.data' will not fit in region 'ram': overflowed by 2763 bytes
+ld.lld: error: section '.bss' will not fit in region 'ram': overflowed by 2763 bytes
+ld.lld: error: section '.noinit' will not fit in region 'ram': overflowed by 2763 bytes
+mos-sim-clang: error: ld.lld command failed with exit code 1 (use -v to see invocation)
+make: *** [Makefile:25: build/arcade/pacman-native.bin] Error 1

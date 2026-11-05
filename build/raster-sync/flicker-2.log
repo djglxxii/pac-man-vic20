@@ -1,0 +1,72 @@
+{
+  "cpu_hz": 1022727,
+  "video_frames_per_sample": 180,
+  "metric": "bitmap_erase entry to matching bitmap_draw return",
+  "prg_sha256": "05ee51522b43a3dd4dc395ef0e9a3638edc8b7a2ead584a565565f016cf13a08",
+  "samples": [
+    {
+      "scene": "play",
+      "completed_renders": 152,
+      "seconds": 2.9804,
+      "actor_erases": 488,
+      "actor_updates": 488,
+      "actor_window_ms_per_second": 909.16,
+      "erase_to_paint_ms_mean": 5.553,
+      "erase_to_paint_ms_p95": 10.789,
+      "erase_to_paint_ms_max": 17.201,
+      "raster_updates": 13,
+      "raster_wait_ms_mean": 0.021,
+      "raster_wait_ms_max": 0.022,
+      "raster_window_ms_max": 2.381,
+      "raster_exposed_windows": 0
+    },
+    {
+      "scene": "frightened",
+      "completed_renders": 162,
+      "seconds": 2.9804,
+      "actor_erases": 457,
+      "actor_updates": 457,
+      "actor_window_ms_per_second": 779.88,
+      "erase_to_paint_ms_mean": 5.086,
+      "erase_to_paint_ms_p95": 10.01,
+      "erase_to_paint_ms_max": 16.215,
+      "raster_updates": 0,
+      "raster_wait_ms_mean": 0,
+      "raster_wait_ms_max": 0,
+      "raster_window_ms_max": 0.0,
+      "raster_exposed_windows": 0
+    },
+    {
+      "scene": "attract-chase",
+      "completed_renders": 126,
+      "seconds": 2.9787,
+      "actor_erases": 339,
+      "actor_updates": 336,
+      "actor_window_ms_per_second": 752.4,
+      "erase_to_paint_ms_mean": 6.67,
+      "erase_to_paint_ms_p95": 10.704,
+      "erase_to_paint_ms_max": 12.59,
+      "raster_updates": 0,
+      "raster_wait_ms_mean": 0,
+      "raster_wait_ms_max": 0,
+      "raster_window_ms_max": 0.0,
+      "raster_exposed_windows": 0
+    },
+    {
+      "scene": "intermission",
+      "completed_renders": 179,
+      "seconds": 2.972,
+      "actor_erases": 90,
+      "actor_updates": 90,
+      "actor_window_ms_per_second": 92.93,
+      "erase_to_paint_ms_mean": 3.069,
+      "erase_to_paint_ms_p95": 6.218,
+      "erase_to_paint_ms_max": 10.59,
+      "raster_updates": 0,
+      "raster_wait_ms_mean": 0,
+      "raster_wait_ms_max": 0,
+      "raster_window_ms_max": 0.0,
+      "raster_exposed_windows": 0
+    }
+  ]
+}

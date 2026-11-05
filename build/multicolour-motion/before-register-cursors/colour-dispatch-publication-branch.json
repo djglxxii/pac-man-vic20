@@ -1,0 +1,12 @@
+{
+  "before": {
+    "branch_address": 9964,
+    "target_address": 9989,
+    "taken_branch_crosses_page": true
+  },
+  "after": {
+    "branch_address": 9982,
+    "target_address": 10007,
+    "taken_branch_crosses_page": false
+  }
+}

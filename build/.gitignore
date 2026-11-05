@@ -1,0 +1,77 @@
+# Preserve project media, evidence and source snapshots; omit machine payloads.
+*
+!*/
+!.gitignore
+!*.json
+!*.png
+!*.jpg
+!*.jpeg
+!*.webp
+!*.gif
+!*.ppm
+!*.mp4
+!*.wav
+!*.csv
+!*.log
+!*.txt
+!*.md
+!*.profile
+!*.trace
+!*.map
+!*.lbl
+!*.S
+!*.s
+!*.c
+!*.h
+!*.inc
+!*.ld
+!*.cfg
+!*.py
+!*.sh
+!*.diff
+!*.patch
+
+# Downloaded tools, upstream source and third-party reference publications.
+/capture/
+/format-tools/
+/hardware-research/
+/capture-audit/*.c
+/multicolour/research/
+/raster-sync/vice-source/
+
+# Original/adapted game source, extracted ROM tables and generated asset code.
+core.c
+core-before.c
+rom.c
+rom.h
+assets.c
+assets.h
+mc-assets.inc
+motion.inc
+tables.json
+poses.json
+
+# Disassembly or patches containing the excluded arcade core.
+*disasm*.txt
+*disassembly*.txt
+/precompose/before/worktree.patch
+/precompose/preview/implementation.patch
+
+# Python caches and working interpreter debris are not project artifacts.
+__pycache__/
+*.py[cod]
+
+# Additional audited files containing original source/disassembly or tables.
+/performance/debug.txt
+/performance/eighth.txt
+/performance/eleventh.txt
+/performance/fifth.txt
+/performance/first.txt
+/performance/fourth.txt
+/performance/last.txt
+/performance/ninth.txt
+/performance/second.txt
+/performance/seventh.txt
+/performance/sixth.txt
+/performance/tenth.txt
+/performance/third.txt

@@ -1,0 +1,177 @@
+{
+  "title": "Pac-Man on VIC-20 | Agentic Homebrew — Final Optimized",
+  "description": "Pac-Man on the VIC-20, after the flicker fix and fourteen accepted speed optimization passes. This is an AGENTIC HOMEBREW: coding agents performed the conversion and optimization work under my direction, with live play testing deciding which experiments became the standard build.\n\nABOUT THIS PLAYTHROUGH\nThis upload is through-game-over.mp4: a computer-controlled playthrough following the PacStrats patterns documented in 10yard's Pac-Man Trainer (pactrainer). Using normal joystick input in VICE, it clears boards 1 through 9 and completes the third intermission with no deaths.\n\nAfter the third intermission, we deliberately ended the run by allowing Pac-Man to die until Game Over, to show the death animation and Game Over screen. That intentional ending is separate from the death-free pattern run.\n\nWHAT CHANGED\nThe biggest visual improvement is the finished-cell glyph pool. Instead of exposing an erased character while rebuilding it, the renderer composes the background and overlapping actors into hidden character slots, then publishes the completed cells. This greatly reduces the distracting disappearance flicker.\n\nWe also refined the graphics for Pac-Man himself and the frightened (scared) ghosts, and reused Pac-Man's symmetrical closed-mouth frame. The fonts were redesigned for better legibility on the VIC-20's small display, with clearer letters, score numerals and horizontal reward scores. The arcade maze layout and game behavior remain intact.\n\nPROFILE, CHANGE, MEASURE, PLAY TEST\nFourteen accepted speed improvements cover cell addressing, empty-row skipping, sound-effect processing, ghost tunnel lookup, sprite composition, precomputed VIC pitch translation, the audio adapter, ghost-state dispatch, cell allocation, background tiles, sprite preparation, destination setup, sprite shifts and ghost row control.\n\nOn the saved VICE route, the first accepted glyph-pool renderer measured 22.07 completed redraws/s. The final optimized build measures 33.85: approximately 53% more redraws, with the pool renderer's improved visual continuity retained. These are route averages, not a locked 30 or 60 FPS promise, and not a direct speed comparison with the early video.\n\nARCADE BEHAVIOR, VIC-20 PRESENTATION\nThe conversion retains arcade movement patterns, ghost rules, scoring, fruit progression, sound sequencing and all three intermissions. Gameplay uses its approximately 60.606 Hz logic clock independently of display redraws. The accepted sound is preserved.\n\nThe game runs native 6502 code compiled with LLVM-MOS, plus handwritten assembly.\n\nWHY COLOR CLASHES AND OTHER LIMITS REMAIN\nIn our high-resolution mode, each 8x16 cell has one foreground color against the shared black background. A yellow Pac-Man or colored ghost sharing a cell with a white wall or pellet makes those pixels share its color, even without touching them. White walls reduce the visual patchwork; standing pellets are white when no colored actor shares their cell. Completion flashes blue and white.\n\nThe VIC-20 has no hardware sprites or native bitmap mode. We redefine character pixels to draw moving actors. The roughly 1 MHz CPU must combine them with backgrounds and overlaps while also running game logic, input and sound. Redraw timing can vary, so some partial poses and uneven motion remain despite the glyph-pool flicker fix.\n\nExpansion RAM holds code and tables, but only a limited memory area is visible to the video chip. More RAM does not add sprite hardware or CPU speed. Multicolor mode trades away horizontal detail. The VIC's three tone voices share one volume control and approximate the arcade's different sound hardware.\n\nTarget: NTSC VIC-20 with +3K and BLK1/2/3/5 RAM expansion. No exotic accelerator or new hardware requirement was introduced by these optimization passes. Physical hardware validation remains ahead.\n\nWHAT COMES NEXT\nExtended play testing, gameplay checks and presentation polish. Further optimization will target a measured, noticeable problem rather than another tiny benchmark gain.\n\nCREDITS\nOriginal game: Pac-Man, Namco; Midway arcade ROM set used as the reference.\nGame logic adapted from Mark Burkley's C translation:\nhttps://github.com/mburkley/pacman-c\nGameplay routes: PacStrats patterns, documented in 10yard's Pac-Man Trainer:\nhttps://github.com/10yard/pactrainer\nEmulator: VICE\nhttps://vice-emu.sourceforge.io/\n\nCoding agents assisted the implementation, profiling, tests and documentation under human direction. Thumbnail artwork and upload copy also use AI assistance.\n\n#VIC20 #PacMan #AgenticHomebrew",
+  "tags": [
+    "VIC-20",
+    "VIC20",
+    "Commodore VIC-20",
+    "Pac-Man",
+    "Pacman",
+    "agentic homebrew",
+    "coding agents",
+    "AI coding",
+    "AI assisted development",
+    "homebrew",
+    "arcade conversion",
+    "retro gaming",
+    "retro computing",
+    "6502",
+    "Commodore",
+    "VICE emulator",
+    "game development",
+    "Pac-Man intermission",
+    "LLVM-MOS",
+    "PacStrats",
+    "pactrainer",
+    "Pac-Man patterns"
+  ],
+  "chapters": [],
+  "recommended_category": "Gaming",
+  "game_search": "Pac-Man (1980)",
+  "playlist_title": "Agentic Homebrew: Pac-Man on the VIC-20",
+  "playlist_description": "Building and refining a native VIC-20 Pac-Man conversion with coding agents, human direction and live play testing, from the initial pass through the optimized milestone.",
+  "pinned_comment": "This is the Final Optimized milestone of our agentic homebrew Pac-Man conversion. Coding agents implemented and profiled the changes; I directed the work and play tested the results.\n\nThe playthrough follows the PacStrats patterns documented in 10yard's pactrainer: https://github.com/10yard/pactrainer. It completes the third intermission with no deaths. Afterwards, the run was intentionally ended to demonstrate Pac-Man's death animation and the Game Over screen.\n\nThe glyph pool made the biggest visible difference. We also refined Pac-Man himself and the frightened (scared) ghost graphics, and redesigned the fonts to make text and score numbers more legible. Fourteen speed improvements then raised its measured redraw rate from 22.07 to 33.85/s on our saved VICE route. That's an average, not a fixed frame rate; some color sharing and uneven pacing remain.\n\nWhy do nearby walls or pellets change color? In our high-resolution mode, each 8x16 cell has just one foreground color. A colored actor and any wall or pellet pixels in that cell must share it, even if their visible shapes do not touch.",
+  "video_file": null,
+  "thumbnail": "youtube/final/vic20-pacman-shorts-cover.png",
+  "thumbnail_info": {
+    "file": "youtube/final/vic20-pacman-shorts-cover.png",
+    "dimensions": [
+      916,
+      1717
+    ],
+    "bytes": 807485,
+    "mode": "RGB",
+    "sha256": "00efdd432d1cb49981f960d1ade7dcf6c0a033140fef6428e51c5c3148439329",
+    "generation_tool": "built-in imagegen",
+    "prompt_file": "youtube/final/thumbnail-shorts-prompt.txt",
+    "stage": "final_optimized",
+    "orientation": "portrait",
+    "artwork_kind": "AI-designed promotional artwork referencing real VICE frames; not pixel-exact gameplay evidence",
+    "white_yellow_essential_anchor_bounds": [
+      224,
+      470,
+      692,
+      1385
+    ],
+    "preview_checks": {
+      "9:16": {
+        "centered_crop": [
+          0,
+          44.27777777777783,
+          916,
+          1672.7222222222222
+        ],
+        "essential_anchor_bounds_inside_crop": true
+      },
+      "4:5": {
+        "centered_crop": [
+          0,
+          286.0,
+          916,
+          1431.0
+        ],
+        "essential_anchor_bounds_inside_crop": true
+      }
+    },
+    "visual_review": "Complete headings, cyan AGENTIC HOMEBREW lettering, stage badge and maze inspected; decorative cyan pixels outside preview crop are intentional.",
+    "crop_check_method": "White/yellow text and maze pixel bounds, with manual review of intermediate cyan lettering. Does not guarantee every platform crop or overlay."
+  },
+  "suggested_settings": {
+    "category": "Gaming",
+    "game_search": "Pac-Man (1980)",
+    "audience": "General audience; not made for kids",
+    "age_restriction": false,
+    "video_language": "English",
+    "title_description_language": "English",
+    "recording_date": null,
+    "recording_location": null,
+    "license": "Standard YouTube License",
+    "allow_embedding": true,
+    "notify_subscribers": true,
+    "automatic_chapters": false,
+    "automatic_featured_places": false,
+    "shorts_remixing": false,
+    "comments": "On, Basic moderation",
+    "comment_sort": "Top comments",
+    "show_like_count": true,
+    "cards": [],
+    "end_screen": null,
+    "visibility": "Public",
+    "premiere": false,
+    "paid_promotion": "Use actual sponsorship status",
+    "monetization": "Use channel setting"
+  },
+  "upload_format": "shorts",
+  "stage": "final_optimized",
+  "development_method": "agentic homebrew using coding agents under human direction",
+  "production_assistance": {
+    "development": "Coding agents performed implementation, debugging, profiling and validation under human direction and live play testing.",
+    "thumbnails": "Built-in imagegen, using real VICE frames as visual references.",
+    "upload_copy": "AI-assisted writing.",
+    "gameplay_recording": "Actual VICE gameplay using computer-controlled joystick input following PacStrats patterns documented in 10yard/pactrainer; deliberate game-over ending after the death-free third intermission."
+  },
+  "writeup": "youtube/final/WRITEUP.md",
+  "capture_status": "Portrait artwork and copy available; no separate Shorts excerpt selected from the full-length through-game-over.mp4 recording.",
+  "benchmark": {
+    "measurement": "Completed redraws/s, saved actual VICE route",
+    "first_accepted_glyph_pool": 22.07,
+    "final": 33.85,
+    "accepted_speed_passes": 14,
+    "not_fixed_frame_rate": true,
+    "not_directly_comparable_to_initial_video": true,
+    "source": "docs/baselines/pool-ghost-row-fast.json",
+    "accepted_program_sha256": "e148017c58097fb84bb09757dac6d1a132ca40a051d288e10290e9b870cda227"
+  },
+  "standard_video_alternative": {
+    "video_file": "build/through-game-over/through-game-over.mp4",
+    "thumbnail": "youtube/final/vic20-pacman-thumbnail.png",
+    "metadata_file": "youtube/final/upload-metadata.json"
+  },
+  "playthrough": {
+    "video_file": "build/through-game-over/through-game-over.mp4",
+    "video_sha256": "dc0e1aeb22fede5e20c7501577c622a4a47938bc21da0ea8b163742da157d557",
+    "bytes": 22195956,
+    "dimensions": [
+      360,
+      464
+    ],
+    "duration_seconds": 601.1161042976279,
+    "video_frames": 36238,
+    "capture_fps": "340909/5655",
+    "report_file": "build/through-game-over/report.json",
+    "report_sha256": "a550afb71a1d2c44006196a809144c901a5611f79e6be4089917f7a87ed45b80",
+    "prg_sha256": "e148017c58097fb84bb09757dac6d1a132ca40a051d288e10290e9b870cda227",
+    "completed_boards": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "completed_intermission": 3,
+    "deaths_through_third_intermission": 0,
+    "intentional_game_over": true,
+    "intentional_deaths_afterwards": 4,
+    "remaining_lives_at_game_over": 0,
+    "joystick_only": true,
+    "forced_board_completion": false,
+    "patterns": "PacStrats patterns documented in 10yard/pactrainer",
+    "pattern_credit_url": "https://github.com/10yard/pactrainer",
+    "pattern_attribution_source": "User-supplied attribution, consistent with the project route documentation and upstream README.",
+    "report_checks": [
+      "Video SHA-256 matches capture report",
+      "Program SHA-256 matches accepted default",
+      "Boards 1 through 9 completed",
+      "No reported deaths until after third intermission",
+      "All reported deaths occur during intentional-ending phase",
+      "Game Over reached with zero lives remaining"
+    ],
+    "checks_not_performed": "No fresh gameplay run, frame-by-frame decode or independent replay of the pattern trace performed for this copy update."
+  },
+  "source_video_file": "build/through-game-over/through-game-over.mp4",
+  "requires_excerpt": true
+}

@@ -1,0 +1,89 @@
+{
+  "programs": [
+    {
+      "path": "build/pool-skip-empty/pacman.prg",
+      "sha256": "b5fc1f254b0b702a04ebf080b72b3bf4fac9076899b031963bae1c6db73a5d29"
+    },
+    {
+      "path": "build/sound-effect-fast/pacman.prg",
+      "sha256": "e1b8a4e6a9cfe83caecb43cfb2ffa4b2605c7990ab8279f9c758fea73d1c09f7"
+    }
+  ],
+  "cases": 7748,
+  "output_sha256": "accd684a942b494f362d930adc47ee87af49dd84c94ce2a4f11b2d5c79be0056",
+  "method": "Actual PRG kernels, identical fixtures, IRQs masked for calls",
+  "baseline": {
+    "real-effect-traces": {
+      "count": 3648,
+      "mean": 629.2217653508771,
+      "min": 267,
+      "max": 1638,
+      "total": 2295401
+    },
+    "all": {
+      "count": 7748,
+      "mean": 806.9629581827569,
+      "min": 267,
+      "max": 1726,
+      "total": 6252349
+    },
+    "cancellation": {
+      "count": 4,
+      "mean": 320.25,
+      "min": 267,
+      "max": 338,
+      "total": 1281
+    },
+    "random-boundaries": {
+      "count": 2048,
+      "mean": 1152.72802734375,
+      "min": 338,
+      "max": 1726,
+      "total": 2360787
+    },
+    "pitch-scales-volume": {
+      "count": 2048,
+      "mean": 778.75,
+      "min": 684,
+      "max": 861,
+      "total": 1594880
+    }
+  },
+  "trial": {
+    "real-effect-traces": {
+      "count": 3648,
+      "mean": 255.3188048245614,
+      "min": 25,
+      "max": 873,
+      "total": 931403
+    },
+    "all": {
+      "count": 7748,
+      "mean": 355.7574858027878,
+      "min": 25,
+      "max": 873,
+      "total": 2756409
+    },
+    "cancellation": {
+      "count": 4,
+      "mean": 82.0,
+      "min": 25,
+      "max": 101,
+      "total": 328
+    },
+    "random-boundaries": {
+      "count": 2048,
+      "mean": 506.8310546875,
+      "min": 101,
+      "max": 854,
+      "total": 1037990
+    },
+    "pitch-scales-volume": {
+      "count": 2048,
+      "mean": 384.125,
+      "min": 334,
+      "max": 457,
+      "total": 786688
+    }
+  }
+}

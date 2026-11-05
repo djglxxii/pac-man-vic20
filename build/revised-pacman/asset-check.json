@@ -1,0 +1,14 @@
+{
+  "prg_sha256": "9fb85cf61add5d729142183a48285041a47e55fa0f0fd16043f0d15b2aae35af",
+  "native_sha256": "d138600dae9a681b612830a6ea58f1ed136f0afb144c18e7d60acc902d86ace8",
+  "native_bytes": 33792,
+  "changed_bytes": 124,
+  "only_revised_mask_bytes_changed": true,
+  "all_symbol_addresses_unchanged": true,
+  "sprite_atlas_address": "0xb314",
+  "stored_walking_masks": 5,
+  "stored_death_masks": 11,
+  "shared_closed_code": "30",
+  "sprite_atlas_bytes": 768,
+  "additional_sprite_bytes": 0
+}

@@ -117,6 +117,17 @@ class Visibility(unittest.TestCase):
         with self.assertRaisesRegex(AssertionError, 'Missing or duplicate'):
             validate_frame_spacing(frames[:1]+frames)
 
+    def test_irq_sampling_jitter_keeps_exact_consecutive_frame_identity(self):
+        frames = [dict(clock=65+FRAME_CYCLES*i+c, line=1, cycle=c)
+                  for i, c in enumerate((0, 14, 1, 13))]
+        validate_frame_spacing(frames)
+        with self.assertRaisesRegex(AssertionError, 'Missing or duplicate'):
+            validate_frame_spacing(frames[:1]+frames[2:])
+        # A merely close timestamp must not pass as a consecutive raster.
+        frames[1] = frames[1] | dict(clock=frames[1]['clock']+1)
+        with self.assertRaisesRegex(AssertionError, 'Missing or duplicate'):
+            validate_frame_spacing(frames)
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

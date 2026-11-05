@@ -1,0 +1,160 @@
+{
+  "cycles": 10172812,
+  "ticks": 601,
+  "updates": 62,
+  "updates_per_second": 6.233190390228385,
+  "spans": {
+    "frame_wait": {
+      "count": 601,
+      "mean": 335.0,
+      "max": 8894,
+      "total": 201360
+    },
+    "arcade_tasks": {
+      "count": 601,
+      "mean": 656.9,
+      "max": 2588,
+      "total": 394790
+    },
+    "audio_update": {
+      "count": 601,
+      "mean": 612.8,
+      "max": 702,
+      "total": 368281
+    },
+    "video_background": {
+      "count": 254,
+      "mean": 9815.7,
+      "max": 17166,
+      "total": 2493196
+    },
+    "video_refresh": {
+      "count": 231,
+      "mean": 22548.2,
+      "max": 71690,
+      "total": 5208634
+    },
+    "mc_update_hud": {
+      "count": 63,
+      "mean": 4898.4,
+      "max": 4942,
+      "total": 308602
+    },
+    "mc_live_actors": {
+      "count": 63,
+      "mean": 1396.6,
+      "max": 1449,
+      "total": 87983
+    },
+    "mc_prepare": {
+      "count": 62,
+      "mean": 37877.5,
+      "max": 48094,
+      "total": 2348407
+    },
+    "mc_commit": {
+      "count": 62,
+      "mean": 2752.5,
+      "max": 3318,
+      "total": 170658
+    }
+  },
+  "top_labels": [
+    [
+      "main",
+      1026833
+    ],
+    [
+      "mc_cell_pixel",
+      832818
+    ],
+    [
+      "updateGhostStates_1017",
+      658274
+    ],
+    [
+      "soundEffectOneChannel_2dee",
+      320729
+    ],
+    [
+      "mc_cell_pixel_ready",
+      314544
+    ],
+    [
+      "mc_shift_bit",
+      314003
+    ],
+    [
+      "mc_shift_ready",
+      313632
+    ],
+    [
+      "blinkyUpdateMovePat_1b36",
+      251041
+    ],
+    [
+      "mc_shift_row",
+      246962
+    ],
+    [
+      "mc_copy_actors",
+      238597
+    ],
+    [
+      "playGameMain_08cd",
+      228756
+    ],
+    [
+      "audio_update",
+      223729
+    ],
+    [
+      "mc_copy_background",
+      205994
+    ],
+    [
+      "pacmanUpdateMovePat_1806",
+      181447
+    ],
+    [
+      "spriteAnimation_14fe",
+      164358
+    ],
+    [
+      "mc_update_hud",
+      156366
+    ],
+    [
+      "load_row_id",
+      135408
+    ],
+    [
+      "mc_copy_sound",
+      135225
+    ],
+    [
+      "findBestOrientation_2966",
+      131122
+    ],
+    [
+      "arcade_tasks",
+      130247
+    ],
+    [
+      "mc_skip_left",
+      117936
+    ],
+    [
+      "mc_cell_subtract_row",
+      113544
+    ],
+    [
+      "pacmanCheckMoveClear_18e4",
+      109040
+    ],
+    [
+      "mc_cell_main_source",
+      107140
+    ]
+  ]
+}

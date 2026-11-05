@@ -1,0 +1,75 @@
+{
+  "screens": [
+    "attract",
+    "credits",
+    "maze",
+    "cherry",
+    "intermission-1",
+    "intermission-2",
+    "intermission-3"
+  ],
+  "stack_by_scene": {
+    "attract": {
+      "software_lowest_write": 8169,
+      "software_bytes_written": 23,
+      "hardware_lowest_write": 494,
+      "hardware_bytes_written": 18
+    },
+    "credits": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 494,
+      "hardware_bytes_written": 18
+    },
+    "maze": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 494,
+      "hardware_bytes_written": 18
+    },
+    "cherry": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 494,
+      "hardware_bytes_written": 18
+    },
+    "intermission-1": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 492,
+      "hardware_bytes_written": 20
+    },
+    "intermission-2": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 492,
+      "hardware_bytes_written": 20
+    },
+    "intermission-3": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 492,
+      "hardware_bytes_written": 20
+    }
+  },
+  "clock": {
+    "video_frames": 180,
+    "arcade_ticks": 180,
+    "expected": 180.96
+  },
+  "long_run_ticks": 7180,
+  "stack": {
+    "software_lowest_write": 8160,
+    "software_bytes_written": 32,
+    "hardware_lowest_write": 492,
+    "hardware_bytes_written": 20
+  },
+  "boot": {
+    "entries": 1,
+    "released": true
+  },
+  "irq_vector_intact": true,
+  "stack_guard_intact": true,
+  "software_stack_reserved": 128,
+  "beam_helper_intact_all_scenes": true
+}

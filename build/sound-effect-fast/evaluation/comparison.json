@@ -1,0 +1,17 @@
+{
+  "frames": 1180,
+  "frame_rate": "340909/5655",
+  "audio": false,
+  "poses_retimed": false,
+  "sources": [
+    {
+      "path": "/home/djglxxii/src/vic-man/build/pool-skip-empty/evaluation/trial-vice",
+      "prg_sha256": "e2ed39e298fefa8677eb7271056bedc8b7d5a4c410faabcbd99155bff3213211"
+    },
+    {
+      "path": "/home/djglxxii/src/vic-man/build/sound-effect-fast/evaluation/trial-vice",
+      "prg_sha256": "1f33cc8ed6eba5a7216edf6d94ae54c671ea12296bae4e05eeb2c57fd4b47659"
+    }
+  ],
+  "video_sha256": "ea53cd99b7475417d1a8530b85d18b91dff244abdf373a8ee00c96a95492497f"
+}

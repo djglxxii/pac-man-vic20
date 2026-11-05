@@ -1,0 +1,126 @@
+{
+  "prg": "build/beam-priority/focused/pacman.prg",
+  "prg_sha256": "36edfad14bf4f25bfa541bb60af720648ae0e9d3c5c092857657969827dab788",
+  "video_frames": 600,
+  "fps": "340909/5655",
+  "joystick_only": true,
+  "guest_patches": false,
+  "first": {
+    "tick": 431,
+    "attributes": [
+      0,
+      0,
+      37,
+      1,
+      39,
+      3,
+      39,
+      5,
+      39,
+      7,
+      174,
+      9,
+      63,
+      0,
+      0,
+      0
+    ],
+    "positions": [
+      0,
+      0,
+      162,
+      164,
+      134,
+      155,
+      151,
+      139,
+      119,
+      139,
+      161,
+      68,
+      7,
+      8,
+      0,
+      0
+    ],
+    "pellets": 3,
+    "raw_frame_sha256": "019f1f2e4105100acb1e5789d8ef8ee7e44ebb2a9b831fa7083c3eb8e9ded3ea",
+    "completed_render_calls": 0,
+    "feature_calls": {
+      "beam_group_begin": 0
+    },
+    "beam_frames": 143,
+    "beam_protected": 9,
+    "beam_fallback": 11
+  },
+  "last": {
+    "tick": 1033,
+    "attributes": [
+      0,
+      0,
+      181,
+      9,
+      116,
+      17,
+      116,
+      17,
+      116,
+      17,
+      116,
+      17,
+      0,
+      20,
+      0,
+      0
+    ],
+    "positions": [
+      0,
+      0,
+      235,
+      85,
+      202,
+      92,
+      219,
+      46,
+      119,
+      136,
+      98,
+      129,
+      135,
+      116,
+      0,
+      0
+    ],
+    "pellets": 72,
+    "raw_frame_sha256": "2930d834fed0f058ea2e084bd2215d0e3b551dc1bd8dfb24f1307caf2da57e7c",
+    "completed_render_calls": 230,
+    "feature_calls": {
+      "beam_group_begin": 452
+    },
+    "beam_frames": 248,
+    "beam_protected": 118,
+    "beam_fallback": 354
+  },
+  "audit": {
+    "snapshot_prg": "build/beam-priority/focused/vice/captured-program.prg",
+    "loaded_program": {
+      "all_depacked_regions_match": true,
+      "bytes_checked": 33792,
+      "loaded_image_sha256": "74646abe83efe2d987d41e826e5452b303ce76a6147029a0f6707f6ac5b5bd53"
+    },
+    "completed_render_calls": 230,
+    "render_calls_per_second": 23.15,
+    "executed_features": {
+      "beam_group_begin": 452
+    },
+    "synthetic_control_after_recording": {
+      "after_recording": true,
+      "VIC_register_900f": "4b",
+      "normal_sha256": "2930d834fed0f058ea2e084bd2215d0e3b551dc1bd8dfb24f1307caf2da57e7c",
+      "forced_sha256": "7f474430d90d16032197fdd50f67a5a98751cda8d88517c474c3acd2144aa1e8",
+      "normal_purple_pixels": 0,
+      "forced_purple_pixels": 41872,
+      "different_raw_frames": true
+    }
+  }
+}

@@ -1,0 +1,6 @@
+  707   inx                   $E8      2  
+  709   cpx #10               $E0      2  
+  710   bne pool_ghost_row    $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  711   rts                   $60      6  
+--------------------------------------------------
+bytes: 6   cycles: 12 .. 14   (straight-line sum; multiply loop bodies yourself)

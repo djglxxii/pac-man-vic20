@@ -1,0 +1,110 @@
+{
+  "boot": true,
+  "coin_and_start": true,
+  "game_state": [
+    3,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0,
+    0,
+    0
+  ],
+  "tick": 722,
+  "display": {
+    "width": 520,
+    "height": 234,
+    "inner": [
+      0,
+      0,
+      520,
+      234
+    ]
+  },
+  "emulator": "VICE NTSC VIC-20, full expansion",
+  "maze_flash": [
+    {
+      "level_state": 15,
+      "colour": 1
+    },
+    {
+      "level_state": 17,
+      "colour": 6
+    },
+    {
+      "level_state": 19,
+      "colour": 1
+    },
+    {
+      "level_state": 21,
+      "colour": 6
+    },
+    {
+      "level_state": 23,
+      "colour": 1
+    },
+    {
+      "level_state": 25,
+      "colour": 6
+    },
+    {
+      "level_state": 27,
+      "colour": 1
+    },
+    {
+      "level_state": 29,
+      "colour": 6
+    }
+  ],
+  "board_transition": {
+    "from_board": 0,
+    "to_board": 1,
+    "settled": true,
+    "partial_captures": [
+      {
+        "tick": 948,
+        "phase": 1
+      },
+      {
+        "tick": 962,
+        "phase": 1
+      },
+      {
+        "tick": 976,
+        "phase": 1
+      },
+      {
+        "tick": 990,
+        "phase": 2
+      },
+      {
+        "tick": 1002,
+        "phase": 2
+      },
+      {
+        "tick": 1014,
+        "phase": 2
+      },
+      {
+        "tick": 1020,
+        "phase": 2
+      },
+      {
+        "tick": 1034,
+        "phase": 2
+      },
+      {
+        "tick": 1049,
+        "phase": 2
+      }
+    ]
+  },
+  "audio": {
+    "channels": 1,
+    "rate": 48000,
+    "frames": 773913,
+    "peak": 19978
+  }
+}

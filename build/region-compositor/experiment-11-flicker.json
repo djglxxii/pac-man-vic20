@@ -1,0 +1,68 @@
+{
+  "cpu_hz": 1022727,
+  "video_frames_per_sample": 180,
+  "metric": "bitmap_erase entry to matching bitmap_draw return",
+  "prg_sha256": "84585c636491ab87676308d7eff2c215a4845e63ecd3af26c63483678f01210d",
+  "samples": [
+    {
+      "scene": "play",
+      "completed_renders": 144,
+      "seconds": 2.9768,
+      "actor_erases": 450,
+      "actor_updates": 450,
+      "actor_paints": 471,
+      "composed_updates": 21,
+      "composed_paint_ms_mean": 1.573,
+      "composed_paint_ms_max": 1.805,
+      "actor_window_ms_per_second": 954.45,
+      "erase_to_paint_ms_mean": 6.314,
+      "erase_to_paint_ms_p95": 11.983,
+      "erase_to_paint_ms_max": 15.905
+    },
+    {
+      "scene": "frightened",
+      "completed_renders": 153,
+      "seconds": 2.9768,
+      "actor_erases": 496,
+      "actor_updates": 496,
+      "actor_paints": 504,
+      "composed_updates": 8,
+      "composed_paint_ms_mean": 1.547,
+      "composed_paint_ms_max": 1.75,
+      "actor_window_ms_per_second": 900.25,
+      "erase_to_paint_ms_mean": 5.403,
+      "erase_to_paint_ms_p95": 10.496,
+      "erase_to_paint_ms_max": 16.44
+    },
+    {
+      "scene": "attract-chase",
+      "completed_renders": 125,
+      "seconds": 2.9815,
+      "actor_erases": 323,
+      "actor_updates": 320,
+      "actor_paints": 321,
+      "composed_updates": 0,
+      "composed_paint_ms_mean": 0,
+      "composed_paint_ms_max": 0,
+      "actor_window_ms_per_second": 734.09,
+      "erase_to_paint_ms_mean": 6.84,
+      "erase_to_paint_ms_p95": 11.043,
+      "erase_to_paint_ms_max": 12.914
+    },
+    {
+      "scene": "intermission",
+      "completed_renders": 179,
+      "seconds": 2.9762,
+      "actor_erases": 85,
+      "actor_updates": 85,
+      "actor_paints": 95,
+      "composed_updates": 5,
+      "composed_paint_ms_mean": 1.119,
+      "composed_paint_ms_max": 1.257,
+      "actor_window_ms_per_second": 92.68,
+      "erase_to_paint_ms_mean": 3.245,
+      "erase_to_paint_ms_p95": 6.484,
+      "erase_to_paint_ms_max": 11.093
+    }
+  ]
+}

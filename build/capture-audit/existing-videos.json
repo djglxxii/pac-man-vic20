@@ -1,0 +1,128 @@
+{
+  "first-flicker": {
+    "comparison": "build/flicker/comparison.mp4",
+    "sha256": "fed1312165c5ce66190a8e2493b6fc338813dc0c22afcd0046fe1cc602905b8f",
+    "decoded_frames": 600,
+    "identical_left_and_right_frames": 0,
+    "frames_with_at_least_100_pixels_different_by_more_than_24": 589,
+    "mean_changed_pixel_percent": 0.87,
+    "mean_RGB_error_to_expected_sources": [
+      0.2353,
+      0.3037
+    ],
+    "mean_RGB_error_to_swapped_sources": [
+      1.3493,
+      1.396
+    ],
+    "left_source": "build/flicker/before/vice/gameplay.mp4",
+    "right_source": "build/flicker/after/vice/gameplay.mp4"
+  },
+  "region-compositor": {
+    "comparison": "build/region-compositor/comparison.mp4",
+    "sha256": "957776b3797af824576ff45f7798902f8e217e03ce52dee4d973353bdcfa2596",
+    "decoded_frames": 600,
+    "identical_left_and_right_frames": 0,
+    "frames_with_at_least_100_pixels_different_by_more_than_24": 581,
+    "mean_changed_pixel_percent": 0.765,
+    "mean_RGB_error_to_expected_sources": [
+      0.2275,
+      0.3204
+    ],
+    "mean_RGB_error_to_swapped_sources": [
+      1.2081,
+      1.2801
+    ],
+    "left_source": "build/region-compositor/before/vice/gameplay.mp4",
+    "right_source": "build/region-compositor/after/vice/gameplay.mp4"
+  },
+  "sprite-kernels": {
+    "comparison": "build/sprite-kernel/comparison.mp4",
+    "sha256": "3fbd8a3db30ecfc7b713e5687efed5c4a91f3d44bd90677d1bdefa13fcf9bed1",
+    "decoded_frames": 600,
+    "identical_left_and_right_frames": 0,
+    "frames_with_at_least_100_pixels_different_by_more_than_24": 599,
+    "mean_changed_pixel_percent": 0.905,
+    "mean_RGB_error_to_expected_sources": [
+      0.2416,
+      0.2885
+    ],
+    "mean_RGB_error_to_swapped_sources": [
+      1.4014,
+      1.4406
+    ],
+    "left_source": "build/sprite-kernel/before/vice/gameplay.mp4",
+    "right_source": "build/sprite-kernel/after/vice/gameplay.mp4"
+  },
+  "raster-sync": {
+    "comparison": "build/raster-sync/comparison.mp4",
+    "sha256": "3accfcb87c2da706f652cb8a31059dd0cef3d26d224ce80c18a187cb3b3a26ed",
+    "decoded_frames": 600,
+    "identical_left_and_right_frames": 0,
+    "frames_with_at_least_100_pixels_different_by_more_than_24": 592,
+    "mean_changed_pixel_percent": 0.919,
+    "mean_RGB_error_to_expected_sources": [
+      0.2394,
+      0.2998
+    ],
+    "mean_RGB_error_to_swapped_sources": [
+      1.4305,
+      1.4659
+    ],
+    "left_source": "build/sprite-kernel/after/vice/gameplay.mp4",
+    "right_source": "build/raster-sync/after/vice/gameplay.mp4"
+  },
+  "precomposition": {
+    "comparison": "build/precompose/comparison.mp4",
+    "sha256": "9f7eb63e0f55646e0b9b39927c69b7d91a4ea8dae5028b10dc421a514209b94b",
+    "decoded_frames": 600,
+    "identical_left_and_right_frames": 0,
+    "frames_with_at_least_100_pixels_different_by_more_than_24": 597,
+    "mean_changed_pixel_percent": 1.029,
+    "mean_RGB_error_to_expected_sources": [
+      0.2354,
+      0.2839
+    ],
+    "mean_RGB_error_to_swapped_sources": [
+      1.6253,
+      1.6643
+    ],
+    "left_source": "build/precompose/before/vice/gameplay.mp4",
+    "right_source": "build/precompose/prototype-2/vice/gameplay.mp4"
+  },
+  "temporary-characters": {
+    "comparison": "build/ghost-shadow/vice/comparison.mp4",
+    "sha256": "5bcc8c4fbaa22a76e6516573c61da8241af4518cc859a04432e8bd22cc991db6",
+    "decoded_frames": 600,
+    "identical_left_and_right_frames": 0,
+    "frames_with_at_least_100_pixels_different_by_more_than_24": 597,
+    "mean_changed_pixel_percent": 1.083,
+    "mean_RGB_error_to_expected_sources": [
+      0.245,
+      0.3068
+    ],
+    "mean_RGB_error_to_swapped_sources": [
+      1.7168,
+      1.753
+    ],
+    "left_source": "build/ghost-shadow/vice/before/gameplay.mp4",
+    "right_source": "build/ghost-shadow/vice/after/gameplay.mp4"
+  },
+  "beam-follow": {
+    "comparison": "build/beam-follow/vice/comparison.mp4",
+    "sha256": "bdd54533b36d1990abd47dfbbf11bff70dd2599773bdbc9b14cf6c7c9dbc0019",
+    "decoded_frames": 600,
+    "identical_left_and_right_frames": 0,
+    "frames_with_at_least_100_pixels_different_by_more_than_24": 599,
+    "mean_changed_pixel_percent": 1.123,
+    "mean_RGB_error_to_expected_sources": [
+      0.2367,
+      0.2925
+    ],
+    "mean_RGB_error_to_swapped_sources": [
+      1.7715,
+      1.8055
+    ],
+    "left_source": "build/beam-follow/vice/before/gameplay.mp4",
+    "right_source": "build/beam-follow/vice/after/gameplay.mp4"
+  }
+}

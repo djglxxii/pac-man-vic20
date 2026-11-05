@@ -1,0 +1,187 @@
+python3 tests/performance.py
+{
+  "cpu_hz": 1022727,
+  "video_frames_per_sample": 180,
+  "samples": [
+    {
+      "scene": "play",
+      "seconds": 2.9829,
+      "completed_renders": 146,
+      "fps": 48.94,
+      "logic_hz": 61.01,
+      "render_ms_mean": 9.96,
+      "render_ms_max": 16.9,
+      "frame_interval_ms_p95": 33.05,
+      "frame_interval_ms_max": 38.38,
+      "start_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "end_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "start_board": 0,
+      "end_board": 0,
+      "video_frames": 180
+    },
+    {
+      "scene": "frightened",
+      "seconds": 2.9829,
+      "completed_renders": 158,
+      "fps": 52.97,
+      "logic_hz": 61.01,
+      "render_ms_mean": 8.47,
+      "render_ms_max": 17.39,
+      "frame_interval_ms_p95": 29.39,
+      "frame_interval_ms_max": 50.35,
+      "start_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "end_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "start_board": 0,
+      "end_board": 0,
+      "video_frames": 180
+    },
+    {
+      "scene": "attract-chase",
+      "seconds": 2.9858,
+      "completed_renders": 133,
+      "fps": 44.54,
+      "logic_hz": 60.96,
+      "render_ms_mean": 10.43,
+      "render_ms_max": 13.78,
+      "frame_interval_ms_p95": 43.96,
+      "frame_interval_ms_max": 51.28,
+      "start_state": [
+        1,
+        0,
+        34,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "end_state": [
+        1,
+        0,
+        34,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "start_board": 0,
+      "end_board": 0,
+      "video_frames": 180
+    },
+    {
+      "scene": "intermission",
+      "seconds": 2.9799,
+      "completed_renders": 179,
+      "fps": 60.07,
+      "logic_hz": 60.4,
+      "render_ms_mean": 3.41,
+      "render_ms_max": 12.41,
+      "frame_interval_ms_p95": 20.84,
+      "frame_interval_ms_max": 22.01,
+      "start_state": [
+        3,
+        0,
+        0,
+        0,
+        32,
+        0,
+        4,
+        0,
+        0
+      ],
+      "end_state": [
+        3,
+        0,
+        0,
+        0,
+        32,
+        0,
+        5,
+        0,
+        0
+      ],
+      "start_board": 1,
+      "end_board": 1,
+      "video_frames": 180
+    },
+    {
+      "scene": "board-transition",
+      "seconds": 5.9688,
+      "completed_renders": 251,
+      "fps": 42.05,
+      "logic_hz": 60.65,
+      "render_ms_mean": 7.33,
+      "render_ms_max": 828.87,
+      "frame_interval_ms_p95": 30.88,
+      "frame_interval_ms_max": 1277.65,
+      "start_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "end_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "start_board": 0,
+      "end_board": 1,
+      "video_frames": 360
+    }
+  ]
+}

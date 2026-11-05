@@ -1,0 +1,17 @@
+{
+  "frames": 1180,
+  "frame_rate": "340909/5655",
+  "audio": false,
+  "poses_retimed": false,
+  "sources": [
+    {
+      "path": "/home/djglxxii/src/vic-man/build/tile-stamp-fast/evaluation/trial-vice",
+      "prg_sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297"
+    },
+    {
+      "path": "/home/djglxxii/src/vic-man/build/pool-setup-fast/evaluation/trial-vice",
+      "prg_sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836"
+    }
+  ],
+  "video_sha256": "f79529294b6ed7f94bb5183e011b603f8f21e03fe9d4879813564c3af5dafef0"
+}

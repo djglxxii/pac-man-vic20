@@ -1,0 +1,1 @@
+Rejected by validate_frame_spacing: two doubled raster intervals (33930 rather than 16965 cycles), at sample pairs 119/120 and 493/494. Do not use these frames in rate/visibility comparisons. Valid baseline is baseline-vice, analysed over its first 1180 frames.

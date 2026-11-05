@@ -1,0 +1,33 @@
+{
+  "program": "build/pacman.prg",
+  "prg_sha256": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31",
+  "method": "Actual PRG kernel with IRQs masked; independent original C offset expression",
+  "groups": {
+    "carry-0": {
+      "count": 65536,
+      "total": 4589568,
+      "min": 69,
+      "max": 71
+    },
+    "carry-1": {
+      "count": 65536,
+      "total": 4589568,
+      "min": 69,
+      "max": 71
+    },
+    "address-bits": {
+      "count": 10240,
+      "total": 716800,
+      "min": 69,
+      "max": 71
+    },
+    "colours": {
+      "count": 256,
+      "total": 17666,
+      "min": 69,
+      "max": 71
+    }
+  },
+  "output_sha256": "ee39cd863546000ddf4349ca9278b3b5a63390b646abd546383efb282a45795a",
+  "cycles_include_five_cycle_carry_stub": true
+}

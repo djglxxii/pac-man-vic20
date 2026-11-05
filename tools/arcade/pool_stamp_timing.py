@@ -17,7 +17,7 @@ sys.path.insert(0, str(ROOT/'tests'))
 from native import Sim, WORK
 
 
-def measure(prg):
+def measure(prg, poison_unused_bottom=False):
     sim = Sim(prg)
     WORK.mkdir(parents=True, exist_ok=True)
     path = WORK/'pool-stamp.bin'
@@ -68,6 +68,11 @@ def measure(prg):
                             empty += contributions.count(0)
                         for pointer, dest in (('v_addr', 0x1c40), ('v_right', 0x1c50),
                                               ('v_save', 0x1c60), ('v_saved_right', 0x1c70)):
+                            # A twelve-row pose at y=0..4 cannot reach a bottom
+                            # glyph. Point its unused scratch at the guards to
+                            # catch an accidental dereference of those values.
+                            if poison_unused_bottom and y < 5:
+                                dest = {'v_save': 0x1c30, 'v_saved_right': 0x1c80}.get(pointer, dest)
                             poke(pointer, dest, 2)
                         poke('v_sy', y)
                         poke('v_flip', flip)
@@ -86,6 +91,7 @@ def measure(prg):
         return dict(prg_sha256=hashlib.sha256(prg.read_bytes()).hexdigest(),
                     method='vicsim call pool_draw; IRQs masked; identical masks and destinations',
                     background_sha256=hashlib.sha256(initial).hexdigest(),
+                    unused_bottom_pointers_poisoned=poison_unused_bottom,
                     sources=[dict(atlas=name, code=code, rows=mask.hex())
                              for name, code, address, mask in sources],
                     cases_checked=len(rows), groups={k: stats(v) for k, v in groups.items()},
@@ -99,8 +105,10 @@ def main():
     p.add_argument('--baseline', type=Path, default=ROOT/'build/pool-address/pacman.prg')
     p.add_argument('--trial', type=Path, default=ROOT/'build/pool-skip-empty/pacman.prg')
     p.add_argument('--output', type=Path, default=ROOT/'build/pool-skip-empty/evaluation/kernel.json')
+    p.add_argument('--poison-unused-bottom', action='store_true',
+                   help='Point unused bottom destinations at guards for y=0 and y=4')
     args = p.parse_args()
-    result = {name: measure(prg.resolve()) for name, prg in
+    result = {name: measure(prg.resolve(), args.poison_unused_bottom) for name, prg in
               (('baseline', args.baseline), ('trial', args.trial))}
     assert result['baseline']['sources'] == result['trial']['sources']
     assert result['baseline']['background_sha256'] == result['trial']['background_sha256']

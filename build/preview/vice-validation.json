@@ -1,0 +1,33 @@
+{
+  "boot": true,
+  "coin_and_start": true,
+  "game_state": [
+    3,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0,
+    0,
+    0
+  ],
+  "tick": 712,
+  "display": {
+    "width": 520,
+    "height": 234,
+    "inner": [
+      0,
+      0,
+      520,
+      234
+    ]
+  },
+  "emulator": "VICE NTSC VIC-20, full expansion",
+  "audio": {
+    "channels": 1,
+    "rate": 48000,
+    "frames": 491845,
+    "peak": 18672
+  }
+}

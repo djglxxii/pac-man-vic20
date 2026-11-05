@@ -1,0 +1,14 @@
+   80   ldx #48                        $A2      2  
+   82   lda colour_work,x              $BD    4-5  +1 if page crossed
+   83   sta $9600,x                    $9D      5  
+   84   lda colour_work+49,x           $BD    4-5  +1 if page crossed
+   85   sta $9631,x                    $9D      5  
+   86   lda colour_work+98,x           $BD    4-5  +1 if page crossed
+   87   sta $9662,x                    $9D      5  
+   88   lda colour_work+147,x          $BD    4-5  +1 if page crossed
+   89   sta $9693,x                    $9D      5  
+   90   dex                            $CA      2  
+   91   bpl colour_publish_full_loop   $10    2-4  2 not taken / 3 taken / 4 taken+page cross
+   94   jmp colour_publish_done        $4C      3  
+-----------------------------------------------------------
+bytes: 32   cycles: 45 .. 51   (straight-line sum; multiply loop bodies yourself)

@@ -1,0 +1,69 @@
+--- before
++++ after
+@@ -433,8 +433,8 @@
+  sbc band_top
+  sta row_limit+1
+  jsr resolve_row
+- lda mc_status
+- beq band_ready
++ ; Resolution reports allocation failure in carry as well as mc_status.
++ bcc band_ready
+  jmp prepare_failed
+ band_ready:
+  clc
+@@ -638,23 +638,22 @@
+  sta PTR+1
+  jmp ready
+ allocate:
+- lda mc_new_count
+- cmp #54
++ ldy mc_new_count
++ cpy #54
+  bcc fits
+  lda #1
+  sta mc_status
+  sec
+  rts
+ fits:
+- tay
+  lda cell_low
+  sta (new_lo),y
+  lda cell_high
+  sta (new_hi),y
+  lda #14
+  sta (new_color),y
+- lda mc_new_count
+- clc
++ ; Y still holds the list slot; the successful capacity check left C clear.
++ tya
+  adc mc_new_base
+  ldy #0
+  sta (map_ptr),y
+@@ -675,7 +674,9 @@
+ .repeat 8,N
+  lda background_row7-N*147,x
+  sta (PTR),y
+- dey
++ .if N < 7
++  dey
++ .endif
+ .endrepeat
+ ready:
+ .endmacro
+@@ -744,6 +745,8 @@
+ phase_offsets: .byte 0,14,28,42
+ resolve_lo: .lobytes resolve_cells_0,resolve_cells_1,resolve_cells_2,resolve_cells_3,resolve_cells_4,resolve_cells_5,resolve_cells_6,resolve_cells_7
+ .assert >resolve_lo = >(resolve_lo+7), lderror, "Resolution lookup must stay within a page"
++resolve_hi: .hibytes resolve_cells_0,resolve_cells_1,resolve_cells_2,resolve_cells_3,resolve_cells_4,resolve_cells_5,resolve_cells_6,resolve_cells_7
++.assert >resolve_hi = >(resolve_hi+7), lderror, "Resolution lookup must stay within a page"
+ mc_publish:
+  ; Keep Y as the old-list cursor and X as the cell's low byte. Consecutive
+  ; old cells usually share a page; cache all four absolute-X operands.
+@@ -858,7 +861,6 @@
+ clear_map_done:
+  rts
+ 
+-resolve_hi: .hibytes resolve_cells_0,resolve_cells_1,resolve_cells_2,resolve_cells_3,resolve_cells_4,resolve_cells_5,resolve_cells_6,resolve_cells_7
+ row_cell_lo:
+ .repeat 27,N
+  .byte <(N*21)

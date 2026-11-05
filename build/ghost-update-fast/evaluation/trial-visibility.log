@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/home/djglxxii/src/vic-man/tools/arcade/analyze_display.py", line 440, in <module>
+    main()
+  File "/home/djglxxii/src/vic-man/tools/arcade/analyze_display.py", line 436, in main
+    analyze(args.capture.resolve(), args.frames)
+  File "/home/djglxxii/src/vic-man/tools/arcade/analyze_display.py", line 332, in analyze
+    recording = frame_window(recording, frame_limit)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/djglxxii/src/vic-man/tools/arcade/analyze_display.py", line 35, in frame_window
+    validate_frame_spacing(recording['frames'])
+  File "/home/djglxxii/src/vic-man/tools/arcade/analyze_display.py", line 29, in validate_frame_spacing
+    assert all(abs((b['clock']-a['clock'])-FRAME_CYCLES) <= 8
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Missing or duplicate raster frame

@@ -1,0 +1,422 @@
+{
+  "emulator": "VICE NTSC VIC-20, full expansion",
+  "prg_sha256": "4736790596df483154f05f66a685447ad562c7626bfd9edb1c314ba09d2864f4",
+  "joystick_only": true,
+  "forced_board_completion": false,
+  "capture_fps": "340909/5655",
+  "capture_raster_line": 1,
+  "decision_interval_frames": 2,
+  "hazard_radius": 5,
+  "events": [
+    {
+      "frame": 0,
+      "phase": "boot",
+      "board": 256,
+      "level_state": 255,
+      "lives": 255,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 0,
+      "phase": "boot",
+      "board": 1,
+      "level_state": 0,
+      "lives": 0,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 1,
+      "phase": "attract",
+      "board": 1,
+      "level_state": 0,
+      "lives": 0,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 61,
+      "phase": "coin",
+      "board": 1,
+      "level_state": 0,
+      "lives": 0,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 63,
+      "phase": "release",
+      "board": 1,
+      "level_state": 0,
+      "lives": 0,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 93,
+      "phase": "start",
+      "board": 1,
+      "level_state": 0,
+      "lives": 0,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 95,
+      "phase": "start",
+      "board": 1,
+      "level_state": 0,
+      "lives": 3,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 230,
+      "phase": "ready",
+      "board": 1,
+      "level_state": 0,
+      "lives": 3,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 231,
+      "phase": "ready",
+      "board": 1,
+      "level_state": 1,
+      "lives": 3,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 232,
+      "phase": "ready",
+      "board": 1,
+      "level_state": 2,
+      "lives": 3,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 349,
+      "phase": "lead-in",
+      "board": 1,
+      "level_state": 3,
+      "lives": 3,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 379,
+      "phase": "play",
+      "board": 1,
+      "level_state": 3,
+      "lives": 3,
+      "pellets_eaten": 3
+    },
+    {
+      "frame": 3750,
+      "phase": "play",
+      "board": 1,
+      "level_state": 12,
+      "lives": 3,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 3751,
+      "phase": "play",
+      "board": 1,
+      "level_state": 13,
+      "lives": 3,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 3865,
+      "phase": "play",
+      "board": 1,
+      "level_state": 15,
+      "lives": 3,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 3877,
+      "phase": "play",
+      "board": 1,
+      "level_state": 17,
+      "lives": 3,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 3889,
+      "phase": "play",
+      "board": 1,
+      "level_state": 19,
+      "lives": 3,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 3900,
+      "phase": "play",
+      "board": 1,
+      "level_state": 20,
+      "lives": 3,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 3901,
+      "phase": "play",
+      "board": 1,
+      "level_state": 21,
+      "lives": 3,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 3912,
+      "phase": "play",
+      "board": 1,
+      "level_state": 23,
+      "lives": 3,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 3924,
+      "phase": "play",
+      "board": 1,
+      "level_state": 25,
+      "lives": 3,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 3936,
+      "phase": "play",
+      "board": 1,
+      "level_state": 27,
+      "lives": 3,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 3948,
+      "phase": "play",
+      "board": 1,
+      "level_state": 29,
+      "lives": 3,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 3960,
+      "phase": "play",
+      "board": 1,
+      "level_state": 31,
+      "lives": 3,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 3978,
+      "phase": "play",
+      "board": 1,
+      "level_state": 34,
+      "lives": 3,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 3979,
+      "phase": "play",
+      "board": 2,
+      "level_state": 35,
+      "lives": 3,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 3980,
+      "phase": "play",
+      "board": 2,
+      "level_state": 36,
+      "lives": 3,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 4097,
+      "phase": "play",
+      "board": 2,
+      "level_state": 3,
+      "lives": 3,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 6829,
+      "phase": "play",
+      "board": 2,
+      "level_state": 4,
+      "lives": 2,
+      "pellets_eaten": 237
+    },
+    {
+      "frame": 6831,
+      "phase": "play",
+      "board": 2,
+      "level_state": 9,
+      "lives": 2,
+      "pellets_eaten": 237
+    },
+    {
+      "frame": 6832,
+      "phase": "play",
+      "board": 2,
+      "level_state": 10,
+      "lives": 2,
+      "pellets_eaten": 237
+    },
+    {
+      "frame": 6950,
+      "phase": "play",
+      "board": 2,
+      "level_state": 3,
+      "lives": 2,
+      "pellets_eaten": 237
+    },
+    {
+      "frame": 7231,
+      "phase": "play",
+      "board": 2,
+      "level_state": 12,
+      "lives": 2,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 7232,
+      "phase": "play",
+      "board": 2,
+      "level_state": 13,
+      "lives": 2,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 7350,
+      "phase": "play",
+      "board": 2,
+      "level_state": 15,
+      "lives": 2,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 7362,
+      "phase": "play",
+      "board": 2,
+      "level_state": 17,
+      "lives": 2,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 7374,
+      "phase": "play",
+      "board": 2,
+      "level_state": 19,
+      "lives": 2,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 7386,
+      "phase": "play",
+      "board": 2,
+      "level_state": 21,
+      "lives": 2,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 7398,
+      "phase": "play",
+      "board": 2,
+      "level_state": 23,
+      "lives": 2,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 7410,
+      "phase": "play",
+      "board": 2,
+      "level_state": 25,
+      "lives": 2,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 7422,
+      "phase": "play",
+      "board": 2,
+      "level_state": 27,
+      "lives": 2,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 7434,
+      "phase": "play",
+      "board": 2,
+      "level_state": 29,
+      "lives": 2,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 7446,
+      "phase": "play",
+      "board": 2,
+      "level_state": 31,
+      "lives": 2,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 7464,
+      "phase": "play",
+      "board": 2,
+      "level_state": 32,
+      "lives": 2,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 8069,
+      "phase": "play",
+      "board": 2,
+      "level_state": 33,
+      "lives": 2,
+      "pellets_eaten": 244
+    },
+    {
+      "frame": 8096,
+      "phase": "play",
+      "board": 3,
+      "level_state": 35,
+      "lives": 2,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 8097,
+      "phase": "play",
+      "board": 3,
+      "level_state": 36,
+      "lives": 2,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 8215,
+      "phase": "play",
+      "board": 3,
+      "level_state": 37,
+      "lives": 2,
+      "pellets_eaten": 0
+    },
+    {
+      "frame": 8216,
+      "phase": "play",
+      "board": 3,
+      "level_state": 3,
+      "lives": 2,
+      "pellets_eaten": 0
+    }
+  ],
+  "completed_boards": [
+    1,
+    2
+  ],
+  "intermission_start_frame": 7477,
+  "intermission_finished_frame": 8215,
+  "remaining_lives": 2,
+  "audio": {
+    "sample_rate": 48000,
+    "channels": 1,
+    "duration_seconds": 138.25866666666667
+  },
+  "video_frames": 8336,
+  "duration_seconds": 138.27760487402796,
+  "audio_trim_seconds": 0,
+  "audio_duration_difference_seconds": -0.018938207361287596,
+  "host_seconds": 28.080067920003785,
+  "video_sha256": "aa2965ff2bf50f3e7ca182ad0fcee07d2be421669234a4b69ebaa989fc66d547"
+}

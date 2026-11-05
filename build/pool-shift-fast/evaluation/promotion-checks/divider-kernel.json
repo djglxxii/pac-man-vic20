@@ -1,0 +1,47 @@
+{
+  "method": "Actual PRG calls with IRQs masked, RTS included, JSR excluded",
+  "frequencies_checked": 65536,
+  "output_sha256": "4d2bffc358c42d330b963602c5b65ab26b071c5ccd064b355f394422b60a7fd5",
+  "programs": [
+    {
+      "path": "build/pool-stamp-fast/pacman.prg",
+      "sha256": "9520c17567a1a1ad0306e8aedcdb44c8cbd37d79a23529921a3c49b33014c149"
+    },
+    {
+      "path": "build/pacman.prg",
+      "sha256": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31"
+    }
+  ],
+  "baseline": {
+    "grid": {
+      "count": 512,
+      "total": 115234,
+      "mean": 225.06640625,
+      "min": 223,
+      "max": 289
+    },
+    "fallback": {
+      "count": 65024,
+      "total": 14634806,
+      "mean": 225.06775959645668,
+      "min": 223,
+      "max": 289
+    }
+  },
+  "trial": {
+    "grid": {
+      "count": 512,
+      "total": 14336,
+      "mean": 28.0,
+      "min": 23,
+      "max": 33
+    },
+    "fallback": {
+      "count": 65024,
+      "total": 14959926,
+      "mean": 230.06775959645668,
+      "min": 228,
+      "max": 294
+    }
+  }
+}

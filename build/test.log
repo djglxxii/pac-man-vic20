@@ -1,0 +1,59 @@
+python3 tools/arcade/mkrom.py --output build/arcade
+python3 tools/bootstrap-llvm-mos.py --output /home/djglxxii/src/vic-man/tools/llvm-mos
+cc -O2 -Wall -Wno-unused-variable -Wno-misleading-indentation -o tools/vicsim/vicsim tools/vicsim/vicsim.c
+cc -O2 -o build/arcade/oracle tools/arcade/oracle.c
+cc -O2 -fcommon -Wno-incompatible-pointer-types -Wno-pointer-sign -Isrc/arcade src/arcade/core.c tools/arcade/native.c -o build/arcade/native
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -mlto-zp=205 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -Tsrc/pacman.ld src/start.S src/clock.S src/bitmap.S src/pacman.c src/platform.c src/video.c src/arcade/core.c build/arcade/rom.c -Wl,-Map,build/arcade/pacman.map -o build/arcade/pacman-native.bin
+python3 tools/arcade/pack.py build/arcade/pacman-native.bin build/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/pacman.prg: 26607 bytes, entry $201b, verified backwards depacking
+python3 tests/arcade.py
+test_01_original_maze_and_attract (__main__.ArcadeParity.test_01_original_maze_and_attract) ... ok
+test_02_gameplay_and_turn_trace (__main__.ArcadeParity.test_02_gameplay_and_turn_trace) ... ok
+test_03_difficulty_and_fruit (__main__.ArcadeParity.test_03_difficulty_and_fruit) ... ok
+test_04_ghost_targets_ties_and_upward_bug (__main__.ArcadeParity.test_04_ghost_targets_ties_and_upward_bug) ... ok
+test_05_frightened_random_sequence (__main__.ArcadeParity.test_05_frightened_random_sequence) ... ok
+test_06_elroy_and_score (__main__.ArcadeParity.test_06_elroy_and_score) ... ok
+test_07_intermission_selection (__main__.ArcadeParity.test_07_intermission_selection) ... ok
+test_08_complete_intermission_traces (__main__.ArcadeParity.test_08_complete_intermission_traces) ... ok
+test_09_rng_storage_bound (__main__.ArcadeParity.test_09_rng_storage_bound) ... ok
+test_10_lives_history_and_split_screen (__main__.ArcadeParity.test_10_lives_history_and_split_screen) ... ok
+test_11_credits_and_two_player_start (__main__.ArcadeParity.test_11_credits_and_two_player_start) ... ok
+test_12_death_sequence (__main__.ArcadeParity.test_12_death_sequence) ... ok
+test_13_coin_debounce_and_queued_credits (__main__.ArcadeParity.test_13_coin_debounce_and_queued_credits) ... ok
+test_14_songs_effects_and_channel_priority (__main__.ArcadeParity.test_14_songs_effects_and_channel_priority) ... ok
+test_15_attract_maze_demo (__main__.ArcadeParity.test_15_attract_maze_demo) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 16.741s
+
+OK
+python3 tests/native.py
+test_01_6502_movement_turns_and_score (__main__.NativeParity.test_01_6502_movement_turns_and_score) ... ok
+test_02_6502_frightened_rng (__main__.NativeParity.test_02_6502_frightened_rng) ... ok
+test_03_build_memory_limits (__main__.NativeParity.test_03_build_memory_limits) ... ok
+test_04_square_table_equivalence (__main__.NativeParity.test_04_square_table_equivalence) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.474s
+
+OK
+python3 tests/smoke.py
+{
+  "screens": [
+    "attract",
+    "credits",
+    "maze",
+    "cherry",
+    "intermission-1",
+    "intermission-2",
+    "intermission-3"
+  ],
+  "clock": {
+    "video_frames": 180,
+    "arcade_ticks": 181,
+    "expected": 180.96
+  },
+  "long_run_ticks": 7200,
+  "irq_vector_intact": true,
+  "stack_guard_intact": true
+}

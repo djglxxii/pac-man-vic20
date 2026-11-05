@@ -1,0 +1,3227 @@
+{
+  "emulator": "VICE NTSC VIC-20, full expansion",
+  "prg": "build/pacman.prg",
+  "prg_sha256": "e148017c58097fb84bb09757dac6d1a132ca40a051d288e10290e9b870cda227",
+  "joystick_only": true,
+  "forced_board_completion": false,
+  "intentional_game_over": true,
+  "capture_fps": "340909/5655",
+  "events": [
+    {
+      "frame": 0,
+      "phase": "boot",
+      "board": 256,
+      "level_state": 255,
+      "lives": 255,
+      "pellets_eaten": 0,
+      "intro": 255,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 0,
+      "phase": "boot",
+      "board": 1,
+      "level_state": 0,
+      "lives": 0,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 1,
+      "phase": "attract",
+      "board": 1,
+      "level_state": 0,
+      "lives": 0,
+      "pellets_eaten": 0,
+      "intro": 1,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 588,
+      "phase": "attract",
+      "board": 1,
+      "level_state": 0,
+      "lives": 1,
+      "pellets_eaten": 0,
+      "intro": 29,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 1167,
+      "phase": "attract",
+      "board": 1,
+      "level_state": 1,
+      "lives": 1,
+      "pellets_eaten": 0,
+      "intro": 35,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 1168,
+      "phase": "attract",
+      "board": 1,
+      "level_state": 9,
+      "lives": 1,
+      "pellets_eaten": 0,
+      "intro": 35,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 1169,
+      "phase": "attract",
+      "board": 1,
+      "level_state": 10,
+      "lives": 1,
+      "pellets_eaten": 0,
+      "intro": 35,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 1285,
+      "phase": "attract",
+      "board": 1,
+      "level_state": 11,
+      "lives": 1,
+      "pellets_eaten": 0,
+      "intro": 35,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 1286,
+      "phase": "coin",
+      "board": 1,
+      "level_state": 3,
+      "lives": 1,
+      "pellets_eaten": 0,
+      "intro": 35,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 1289,
+      "phase": "release",
+      "board": 1,
+      "level_state": 3,
+      "lives": 1,
+      "pellets_eaten": 0,
+      "intro": 35,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 1290,
+      "phase": "release",
+      "board": 1,
+      "level_state": 0,
+      "lives": 1,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 1319,
+      "phase": "start",
+      "board": 1,
+      "level_state": 0,
+      "lives": 1,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 1321,
+      "phase": "start",
+      "board": 1,
+      "level_state": 0,
+      "lives": 3,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 1459,
+      "phase": "ready",
+      "board": 1,
+      "level_state": 0,
+      "lives": 3,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 1460,
+      "phase": "ready",
+      "board": 1,
+      "level_state": 1,
+      "lives": 3,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 1461,
+      "phase": "ready",
+      "board": 1,
+      "level_state": 2,
+      "lives": 3,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 1578,
+      "phase": "play",
+      "board": 1,
+      "level_state": 3,
+      "lives": 3,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 5013,
+      "phase": "play",
+      "board": 1,
+      "level_state": 12,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 5014,
+      "phase": "play",
+      "board": 1,
+      "level_state": 13,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 5129,
+      "phase": "play",
+      "board": 1,
+      "level_state": 15,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 5141,
+      "phase": "play",
+      "board": 1,
+      "level_state": 17,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 5153,
+      "phase": "play",
+      "board": 1,
+      "level_state": 19,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 5165,
+      "phase": "play",
+      "board": 1,
+      "level_state": 21,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 5177,
+      "phase": "play",
+      "board": 1,
+      "level_state": 23,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 5189,
+      "phase": "play",
+      "board": 1,
+      "level_state": 25,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 5200,
+      "phase": "play",
+      "board": 1,
+      "level_state": 26,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 5201,
+      "phase": "play",
+      "board": 1,
+      "level_state": 27,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 5212,
+      "phase": "play",
+      "board": 1,
+      "level_state": 29,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 5224,
+      "phase": "play",
+      "board": 1,
+      "level_state": 31,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 5242,
+      "phase": "play",
+      "board": 1,
+      "level_state": 34,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 5243,
+      "phase": "play",
+      "board": 2,
+      "level_state": 35,
+      "lives": 3,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 5244,
+      "phase": "play",
+      "board": 2,
+      "level_state": 36,
+      "lives": 3,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 5362,
+      "phase": "play",
+      "board": 2,
+      "level_state": 3,
+      "lives": 3,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 8562,
+      "phase": "play",
+      "board": 2,
+      "level_state": 12,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 8563,
+      "phase": "play",
+      "board": 2,
+      "level_state": 13,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 8680,
+      "phase": "play",
+      "board": 2,
+      "level_state": 15,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 8692,
+      "phase": "play",
+      "board": 2,
+      "level_state": 17,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 8704,
+      "phase": "play",
+      "board": 2,
+      "level_state": 19,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 8716,
+      "phase": "play",
+      "board": 2,
+      "level_state": 21,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 8728,
+      "phase": "play",
+      "board": 2,
+      "level_state": 23,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 8740,
+      "phase": "play",
+      "board": 2,
+      "level_state": 25,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 8752,
+      "phase": "play",
+      "board": 2,
+      "level_state": 27,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 8763,
+      "phase": "play",
+      "board": 2,
+      "level_state": 28,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 8764,
+      "phase": "play",
+      "board": 2,
+      "level_state": 29,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 8775,
+      "phase": "play",
+      "board": 2,
+      "level_state": 30,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 8776,
+      "phase": "play",
+      "board": 2,
+      "level_state": 31,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 8793,
+      "phase": "play",
+      "board": 2,
+      "level_state": 32,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 8808,
+      "phase": "play",
+      "board": 2,
+      "level_state": 32,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        1,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 8992,
+      "phase": "play",
+      "board": 2,
+      "level_state": 32,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        2,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 9003,
+      "phase": "play",
+      "board": 2,
+      "level_state": 32,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        3,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 9032,
+      "phase": "play",
+      "board": 2,
+      "level_state": 32,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        4,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 9193,
+      "phase": "play",
+      "board": 2,
+      "level_state": 32,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        5,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 9385,
+      "phase": "play",
+      "board": 2,
+      "level_state": 32,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        6,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 9399,
+      "phase": "play",
+      "board": 2,
+      "level_state": 33,
+      "lives": 3,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 9426,
+      "phase": "play",
+      "board": 3,
+      "level_state": 35,
+      "lives": 3,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 9427,
+      "phase": "play",
+      "board": 3,
+      "level_state": 36,
+      "lives": 3,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 9545,
+      "phase": "play",
+      "board": 3,
+      "level_state": 3,
+      "lives": 3,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 12239,
+      "phase": "play",
+      "board": 3,
+      "level_state": 3,
+      "lives": 4,
+      "pellets_eaten": 212,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 12695,
+      "phase": "play",
+      "board": 3,
+      "level_state": 13,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 12810,
+      "phase": "play",
+      "board": 3,
+      "level_state": 15,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 12822,
+      "phase": "play",
+      "board": 3,
+      "level_state": 17,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 12834,
+      "phase": "play",
+      "board": 3,
+      "level_state": 19,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 12846,
+      "phase": "play",
+      "board": 3,
+      "level_state": 21,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 12858,
+      "phase": "play",
+      "board": 3,
+      "level_state": 23,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 12870,
+      "phase": "play",
+      "board": 3,
+      "level_state": 25,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 12882,
+      "phase": "play",
+      "board": 3,
+      "level_state": 27,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 12893,
+      "phase": "play",
+      "board": 3,
+      "level_state": 28,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 12894,
+      "phase": "play",
+      "board": 3,
+      "level_state": 29,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 12905,
+      "phase": "play",
+      "board": 3,
+      "level_state": 30,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 12906,
+      "phase": "play",
+      "board": 3,
+      "level_state": 31,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 12923,
+      "phase": "play",
+      "board": 3,
+      "level_state": 34,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 12924,
+      "phase": "play",
+      "board": 4,
+      "level_state": 35,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 12926,
+      "phase": "play",
+      "board": 4,
+      "level_state": 36,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 13043,
+      "phase": "play",
+      "board": 4,
+      "level_state": 3,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 16139,
+      "phase": "play",
+      "board": 4,
+      "level_state": 12,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 16141,
+      "phase": "play",
+      "board": 4,
+      "level_state": 13,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 16260,
+      "phase": "play",
+      "board": 4,
+      "level_state": 15,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 16271,
+      "phase": "play",
+      "board": 4,
+      "level_state": 17,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 16283,
+      "phase": "play",
+      "board": 4,
+      "level_state": 19,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 16295,
+      "phase": "play",
+      "board": 4,
+      "level_state": 21,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 16307,
+      "phase": "play",
+      "board": 4,
+      "level_state": 23,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 16319,
+      "phase": "play",
+      "board": 4,
+      "level_state": 25,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 16331,
+      "phase": "play",
+      "board": 4,
+      "level_state": 27,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 16343,
+      "phase": "play",
+      "board": 4,
+      "level_state": 29,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 16355,
+      "phase": "play",
+      "board": 4,
+      "level_state": 31,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 16373,
+      "phase": "play",
+      "board": 4,
+      "level_state": 34,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 16374,
+      "phase": "play",
+      "board": 5,
+      "level_state": 35,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 16375,
+      "phase": "play",
+      "board": 5,
+      "level_state": 36,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 16492,
+      "phase": "play",
+      "board": 5,
+      "level_state": 3,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19387,
+      "phase": "play",
+      "board": 5,
+      "level_state": 12,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19389,
+      "phase": "play",
+      "board": 5,
+      "level_state": 13,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19507,
+      "phase": "play",
+      "board": 5,
+      "level_state": 15,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19518,
+      "phase": "play",
+      "board": 5,
+      "level_state": 17,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19530,
+      "phase": "play",
+      "board": 5,
+      "level_state": 19,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19542,
+      "phase": "play",
+      "board": 5,
+      "level_state": 21,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19554,
+      "phase": "play",
+      "board": 5,
+      "level_state": 23,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19566,
+      "phase": "play",
+      "board": 5,
+      "level_state": 25,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19578,
+      "phase": "play",
+      "board": 5,
+      "level_state": 27,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19590,
+      "phase": "play",
+      "board": 5,
+      "level_state": 29,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19602,
+      "phase": "play",
+      "board": 5,
+      "level_state": 31,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19620,
+      "phase": "play",
+      "board": 5,
+      "level_state": 32,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        1,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19638,
+      "phase": "play",
+      "board": 5,
+      "level_state": 32,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        2,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19721,
+      "phase": "play",
+      "board": 5,
+      "level_state": 32,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        3,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19813,
+      "phase": "play",
+      "board": 5,
+      "level_state": 32,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        4,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19817,
+      "phase": "play",
+      "board": 5,
+      "level_state": 32,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        5,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19834,
+      "phase": "play",
+      "board": 5,
+      "level_state": 32,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        6,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19850,
+      "phase": "play",
+      "board": 5,
+      "level_state": 32,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        7,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19862,
+      "phase": "play",
+      "board": 5,
+      "level_state": 32,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        8,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 19948,
+      "phase": "play",
+      "board": 5,
+      "level_state": 32,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        10,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 20008,
+      "phase": "play",
+      "board": 5,
+      "level_state": 32,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        12,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 20127,
+      "phase": "play",
+      "board": 5,
+      "level_state": 34,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 20128,
+      "phase": "play",
+      "board": 6,
+      "level_state": 35,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 20129,
+      "phase": "play",
+      "board": 6,
+      "level_state": 36,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 20246,
+      "phase": "play",
+      "board": 6,
+      "level_state": 3,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 23139,
+      "phase": "play",
+      "board": 6,
+      "level_state": 12,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 23140,
+      "phase": "play",
+      "board": 6,
+      "level_state": 13,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 23255,
+      "phase": "play",
+      "board": 6,
+      "level_state": 15,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 23266,
+      "phase": "play",
+      "board": 6,
+      "level_state": 17,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 23278,
+      "phase": "play",
+      "board": 6,
+      "level_state": 19,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 23290,
+      "phase": "play",
+      "board": 6,
+      "level_state": 21,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 23302,
+      "phase": "play",
+      "board": 6,
+      "level_state": 23,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 23314,
+      "phase": "play",
+      "board": 6,
+      "level_state": 25,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 23326,
+      "phase": "play",
+      "board": 6,
+      "level_state": 27,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 23338,
+      "phase": "play",
+      "board": 6,
+      "level_state": 29,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 23350,
+      "phase": "play",
+      "board": 6,
+      "level_state": 31,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 23368,
+      "phase": "play",
+      "board": 6,
+      "level_state": 34,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 23369,
+      "phase": "play",
+      "board": 7,
+      "level_state": 35,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 23370,
+      "phase": "play",
+      "board": 7,
+      "level_state": 36,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 23487,
+      "phase": "play",
+      "board": 7,
+      "level_state": 3,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 26322,
+      "phase": "play",
+      "board": 7,
+      "level_state": 12,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 26324,
+      "phase": "play",
+      "board": 7,
+      "level_state": 13,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 26442,
+      "phase": "play",
+      "board": 7,
+      "level_state": 15,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 26453,
+      "phase": "play",
+      "board": 7,
+      "level_state": 17,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 26465,
+      "phase": "play",
+      "board": 7,
+      "level_state": 19,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 26477,
+      "phase": "play",
+      "board": 7,
+      "level_state": 21,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 26489,
+      "phase": "play",
+      "board": 7,
+      "level_state": 23,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 26501,
+      "phase": "play",
+      "board": 7,
+      "level_state": 25,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 26513,
+      "phase": "play",
+      "board": 7,
+      "level_state": 27,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 26525,
+      "phase": "play",
+      "board": 7,
+      "level_state": 29,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 26537,
+      "phase": "play",
+      "board": 7,
+      "level_state": 31,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 26555,
+      "phase": "play",
+      "board": 7,
+      "level_state": 34,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 26556,
+      "phase": "play",
+      "board": 8,
+      "level_state": 35,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 26557,
+      "phase": "play",
+      "board": 8,
+      "level_state": 36,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 26674,
+      "phase": "play",
+      "board": 8,
+      "level_state": 3,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 29509,
+      "phase": "play",
+      "board": 8,
+      "level_state": 12,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 29511,
+      "phase": "play",
+      "board": 8,
+      "level_state": 13,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 29629,
+      "phase": "play",
+      "board": 8,
+      "level_state": 15,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 29640,
+      "phase": "play",
+      "board": 8,
+      "level_state": 17,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 29652,
+      "phase": "play",
+      "board": 8,
+      "level_state": 19,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 29664,
+      "phase": "play",
+      "board": 8,
+      "level_state": 21,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 29676,
+      "phase": "play",
+      "board": 8,
+      "level_state": 23,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 29688,
+      "phase": "play",
+      "board": 8,
+      "level_state": 25,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 29700,
+      "phase": "play",
+      "board": 8,
+      "level_state": 27,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 29712,
+      "phase": "play",
+      "board": 8,
+      "level_state": 29,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 29724,
+      "phase": "play",
+      "board": 8,
+      "level_state": 31,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 29742,
+      "phase": "play",
+      "board": 8,
+      "level_state": 34,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 29743,
+      "phase": "play",
+      "board": 9,
+      "level_state": 35,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 29744,
+      "phase": "play",
+      "board": 9,
+      "level_state": 36,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 29861,
+      "phase": "play",
+      "board": 9,
+      "level_state": 3,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 32640,
+      "phase": "play",
+      "board": 9,
+      "level_state": 13,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 32756,
+      "phase": "play",
+      "board": 9,
+      "level_state": 15,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 32767,
+      "phase": "play",
+      "board": 9,
+      "level_state": 16,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 32768,
+      "phase": "play",
+      "board": 9,
+      "level_state": 17,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 32779,
+      "phase": "play",
+      "board": 9,
+      "level_state": 19,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 32791,
+      "phase": "play",
+      "board": 9,
+      "level_state": 21,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 32803,
+      "phase": "play",
+      "board": 9,
+      "level_state": 23,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 32815,
+      "phase": "play",
+      "board": 9,
+      "level_state": 25,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 32827,
+      "phase": "play",
+      "board": 9,
+      "level_state": 27,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 32839,
+      "phase": "play",
+      "board": 9,
+      "level_state": 29,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 32851,
+      "phase": "play",
+      "board": 9,
+      "level_state": 31,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 32869,
+      "phase": "play",
+      "board": 9,
+      "level_state": 32,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 32908,
+      "phase": "play",
+      "board": 9,
+      "level_state": 32,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        1
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 33102,
+      "phase": "play",
+      "board": 9,
+      "level_state": 32,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        2
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 33161,
+      "phase": "play",
+      "board": 9,
+      "level_state": 32,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        3
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 33265,
+      "phase": "play",
+      "board": 9,
+      "level_state": 32,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        4
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 33357,
+      "phase": "play",
+      "board": 9,
+      "level_state": 32,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        5
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 33358,
+      "phase": "play",
+      "board": 9,
+      "level_state": 33,
+      "lives": 4,
+      "pellets_eaten": 244,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 33388,
+      "phase": "play",
+      "board": 10,
+      "level_state": 35,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 33389,
+      "phase": "play",
+      "board": 10,
+      "level_state": 36,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 33508,
+      "phase": "play",
+      "board": 10,
+      "level_state": 3,
+      "lives": 4,
+      "pellets_eaten": 0,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": false,
+      "deaths": 0
+    },
+    {
+      "frame": 33987,
+      "phase": "play",
+      "board": 10,
+      "level_state": 3,
+      "lives": 4,
+      "pellets_eaten": 58,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 0
+    },
+    {
+      "frame": 34025,
+      "phase": "play",
+      "board": 10,
+      "level_state": 3,
+      "lives": 4,
+      "pellets_eaten": 61,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 1
+    },
+    {
+      "frame": 34243,
+      "phase": "play",
+      "board": 10,
+      "level_state": 4,
+      "lives": 3,
+      "pellets_eaten": 61,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 1
+    },
+    {
+      "frame": 34245,
+      "phase": "play",
+      "board": 10,
+      "level_state": 9,
+      "lives": 3,
+      "pellets_eaten": 61,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 1
+    },
+    {
+      "frame": 34246,
+      "phase": "play",
+      "board": 10,
+      "level_state": 10,
+      "lives": 3,
+      "pellets_eaten": 61,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 1
+    },
+    {
+      "frame": 34361,
+      "phase": "play",
+      "board": 10,
+      "level_state": 3,
+      "lives": 3,
+      "pellets_eaten": 61,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 1
+    },
+    {
+      "frame": 34671,
+      "phase": "play",
+      "board": 10,
+      "level_state": 3,
+      "lives": 3,
+      "pellets_eaten": 85,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 2
+    },
+    {
+      "frame": 34889,
+      "phase": "play",
+      "board": 10,
+      "level_state": 4,
+      "lives": 2,
+      "pellets_eaten": 85,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 2
+    },
+    {
+      "frame": 34892,
+      "phase": "play",
+      "board": 10,
+      "level_state": 10,
+      "lives": 2,
+      "pellets_eaten": 85,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 2
+    },
+    {
+      "frame": 35011,
+      "phase": "play",
+      "board": 10,
+      "level_state": 11,
+      "lives": 2,
+      "pellets_eaten": 85,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 2
+    },
+    {
+      "frame": 35012,
+      "phase": "play",
+      "board": 10,
+      "level_state": 3,
+      "lives": 2,
+      "pellets_eaten": 85,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 2
+    },
+    {
+      "frame": 35314,
+      "phase": "play",
+      "board": 10,
+      "level_state": 3,
+      "lives": 2,
+      "pellets_eaten": 87,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 3
+    },
+    {
+      "frame": 35532,
+      "phase": "play",
+      "board": 10,
+      "level_state": 4,
+      "lives": 1,
+      "pellets_eaten": 87,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 3
+    },
+    {
+      "frame": 35534,
+      "phase": "play",
+      "board": 10,
+      "level_state": 9,
+      "lives": 1,
+      "pellets_eaten": 87,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 3
+    },
+    {
+      "frame": 35535,
+      "phase": "play",
+      "board": 10,
+      "level_state": 10,
+      "lives": 1,
+      "pellets_eaten": 87,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 3
+    },
+    {
+      "frame": 35650,
+      "phase": "play",
+      "board": 10,
+      "level_state": 3,
+      "lives": 1,
+      "pellets_eaten": 87,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 3
+    },
+    {
+      "frame": 35917,
+      "phase": "play",
+      "board": 10,
+      "level_state": 3,
+      "lives": 1,
+      "pellets_eaten": 87,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 4
+    },
+    {
+      "frame": 36136,
+      "phase": "play",
+      "board": 10,
+      "level_state": 4,
+      "lives": 0,
+      "pellets_eaten": 87,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 4
+    },
+    {
+      "frame": 36138,
+      "phase": "play",
+      "board": 10,
+      "level_state": 7,
+      "lives": 0,
+      "pellets_eaten": 87,
+      "intro": 0,
+      "scenes": [
+        0,
+        0,
+        0
+      ],
+      "hunting": true,
+      "deaths": 4
+    }
+  ],
+  "completed_boards": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "deaths": 4,
+  "demo_start_frame": 1285,
+  "demo.png": true,
+  "intermission_1_frame": 8807,
+  "intermission_2_frame": 19619,
+  "intermission_3_frame": 32907,
+  "game_over_frame": 36137,
+  "remaining_lives": 0,
+  "game-over.png": true,
+  "audio": {
+    "sample_rate": 48000,
+    "channels": 1,
+    "duration_seconds": 601.0986666666666
+  },
+  "video_frames": 36238,
+  "duration_seconds": 601.1161042976279,
+  "audio_trim_seconds": 0,
+  "audio_duration_difference_seconds": -0.017437630961239847,
+  "host_seconds": 194.0166964000091,
+  "play_frames_before_hunt": 1396,
+  "video_sha256": "dc0e1aeb22fede5e20c7501577c622a4a47938bc21da0ea8b163742da157d557"
+}

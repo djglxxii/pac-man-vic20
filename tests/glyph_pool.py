@@ -187,6 +187,41 @@ class PoolRenderer(render.Renderer):
             path.write_bytes(original)
             sim.cmd(f'load $0308 {path}')
 
+    def test_13_full_bank_hits_and_overflow_preserve_existing_cells(self):
+        # A full bank must still accept overlap hits. A new 25th cell must
+        # return the clipping sink without advancing the count or altering
+        # any previously prepared glyph, lookup entry, list or colour.
+        sim = self.sim
+        path = WORK / 'pf.bin'
+        for bank in (0, 1):
+            path.write_bytes(bytes(196))
+            sim.cmd(f'load $96c4 {path}')
+            sim.cmd('poke pool_epoch 0')
+            sim.cmd(f'poke pool_bank {bank ^ 1}')
+            sim.cmd('call video_update_begin')
+            for cell in range(24):
+                sim.cmd(f'poke v_color {cell % 7 + 1}\ncall pool_cell {cell}')
+            for cell in reversed(range(24)):
+                colour = (cell + 3) % 7 + 1
+                sim.cmd(f'poke v_color {colour}\ncall pool_cell {cell}')
+                self.assertEqual(int.from_bytes(sim.peek('v_base', 2), 'little'),
+                                 0x1c40 + (bank * 24 + cell) * 16)
+                self.assertEqual(sim.peek(sim.labels['pool_colours'] + bank * 24 + cell),
+                                 bytes([colour]))
+            self.assertEqual(sim.peek(sim.labels['pool_count'] + bank), b'\x18')
+            self.assertEqual(sim.peek('pool_failed'), b'\0')
+            regions = ((0x200, 196), (0x1000, 4096), (0x94c4, 196),
+                       (0x96c4, 196), (sim.labels['pool_cells'], 48),
+                       (sim.labels['pool_colours'], 48), (sim.labels['pool_count'], 2))
+            before = [sim.peek(a, n) for a, n in regions]
+            sim.cmd('call pool_cell 24')
+            self.assertEqual(sim.peek('v_base', 2), b'\xf0\x1f')
+            self.assertEqual(sim.peek('pool_failed'), b'\1')
+            self.assertEqual([sim.peek(a, n) for a, n in regions], before)
+        # These direct calls deliberately did not publish the temporary bank.
+        for bank in (0, 1):
+            sim.cmd(f"poke ${sim.labels['pool_count'] + bank:x} 0")
+
 
 class PoolColors(colors.Colors):
     pass

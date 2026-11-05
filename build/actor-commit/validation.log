@@ -1,0 +1,118 @@
+python3 tests/arcade.py
+test_01_original_maze_and_attract (__main__.ArcadeParity.test_01_original_maze_and_attract) ... ok
+test_02_gameplay_and_turn_trace (__main__.ArcadeParity.test_02_gameplay_and_turn_trace) ... ok
+test_03_difficulty_and_fruit (__main__.ArcadeParity.test_03_difficulty_and_fruit) ... ok
+test_04_ghost_targets_ties_and_upward_bug (__main__.ArcadeParity.test_04_ghost_targets_ties_and_upward_bug) ... ok
+test_05_frightened_random_sequence (__main__.ArcadeParity.test_05_frightened_random_sequence) ... ok
+test_06_elroy_and_score (__main__.ArcadeParity.test_06_elroy_and_score) ... ok
+test_07_intermission_selection (__main__.ArcadeParity.test_07_intermission_selection) ... ok
+test_08_complete_intermission_traces (__main__.ArcadeParity.test_08_complete_intermission_traces) ... ok
+test_09_rng_storage_bound (__main__.ArcadeParity.test_09_rng_storage_bound) ... ok
+test_10_lives_history_and_split_screen (__main__.ArcadeParity.test_10_lives_history_and_split_screen) ... ok
+test_11_credits_and_two_player_start (__main__.ArcadeParity.test_11_credits_and_two_player_start) ... ok
+test_12_death_sequence (__main__.ArcadeParity.test_12_death_sequence) ... ok
+test_13_coin_debounce_and_queued_credits (__main__.ArcadeParity.test_13_coin_debounce_and_queued_credits) ... ok
+test_14_songs_effects_and_channel_priority (__main__.ArcadeParity.test_14_songs_effects_and_channel_priority) ... ok
+test_15_attract_maze_demo (__main__.ArcadeParity.test_15_attract_maze_demo) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 17.997s
+
+OK
+python3 tests/actor_commit.py
+test_01_6502_movement_turns_and_score (__main__.ActorCommitParity.test_01_6502_movement_turns_and_score) ... ok
+test_02_6502_frightened_rng (__main__.ActorCommitParity.test_02_6502_frightened_rng) ... ok
+test_03_build_memory_limits (__main__.ActorCommitParity.test_03_build_memory_limits) ... ok
+test_04_square_table_equivalence (__main__.ActorCommitParity.test_04_square_table_equivalence) ... ok
+test_05_exact_audio_divider_boundaries (__main__.ActorCommitParity.test_05_exact_audio_divider_boundaries) ... ok
+test_06_audio_converter_registers (__main__.ActorCommitParity.test_06_audio_converter_registers) ... ok
+test_01_all_frames_shifts_and_flips (__main__.ActorCommitRenderer.test_01_all_frames_shifts_and_flips) ... ok
+test_02_edges_overlap_priority_and_returning_eyes (__main__.ActorCommitRenderer.test_02_edges_overlap_priority_and_returning_eyes) ... ok
+test_03_incremental_matches_full_redraw (__main__.ActorCommitRenderer.test_03_incremental_matches_full_redraw) ... ok
+test_04_preshifted_ghost_path (__main__.ActorCommitRenderer.test_04_preshifted_ghost_path) ... ok
+test_05_dirty_tiles_preserve_actors_and_shared_colours (__main__.ActorCommitRenderer.test_05_dirty_tiles_preserve_actors_and_shared_colours) ... ok
+test_06_clipped_kernel_memory_boundaries (__main__.ActorCommitRenderer.test_06_clipped_kernel_memory_boundaries) ... ok
+test_07_separated_actors_commit_before_next_erase (__main__.ActorCommitRenderer.test_07_separated_actors_commit_before_next_erase) ... ok
+test_08_disjoint_pixels_sharing_restore_bytes_stay_together (__main__.ActorCommitRenderer.test_08_disjoint_pixels_sharing_restore_bytes_stay_together) ... ok
+test_09_old_new_crossing_and_colour_only_dependencies (__main__.ActorCommitRenderer.test_09_old_new_crossing_and_colour_only_dependencies) ... ok
+test_10_transitive_cluster_preserves_priority (__main__.ActorCommitRenderer.test_10_transitive_cluster_preserves_priority) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 4.767s
+
+OK
+python3 tests/smoke.py --prg build/actor-commit/after/pacman.prg --output build/actor-commit/smoke
+{
+  "screens": [
+    "attract",
+    "credits",
+    "maze",
+    "cherry",
+    "intermission-1",
+    "intermission-2",
+    "intermission-3"
+  ],
+  "stack_by_scene": {
+    "attract": {
+      "software_lowest_write": 8169,
+      "software_bytes_written": 23,
+      "hardware_lowest_write": 492,
+      "hardware_bytes_written": 20
+    },
+    "credits": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 492,
+      "hardware_bytes_written": 20
+    },
+    "maze": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 488,
+      "hardware_bytes_written": 24
+    },
+    "cherry": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 488,
+      "hardware_bytes_written": 24
+    },
+    "intermission-1": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 488,
+      "hardware_bytes_written": 24
+    },
+    "intermission-2": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 488,
+      "hardware_bytes_written": 24
+    },
+    "intermission-3": {
+      "software_lowest_write": 8160,
+      "software_bytes_written": 32,
+      "hardware_lowest_write": 488,
+      "hardware_bytes_written": 24
+    }
+  },
+  "clock": {
+    "video_frames": 180,
+    "arcade_ticks": 181,
+    "expected": 180.96
+  },
+  "long_run_ticks": 7181,
+  "stack": {
+    "software_lowest_write": 8160,
+    "software_bytes_written": 32,
+    "hardware_lowest_write": 488,
+    "hardware_bytes_written": 24
+  },
+  "boot": {
+    "entries": 1,
+    "released": true
+  },
+  "irq_vector_intact": true,
+  "stack_guard_intact": true,
+  "software_stack_reserved": 704
+}

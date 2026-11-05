@@ -1,0 +1,2113 @@
+{
+  "status": "Trial ready for live review; standard remains accepted sprite-preparation build",
+  "date": "2026-11-04",
+  "report": "docs/POOL_DEST_OPTIMIZATION.md",
+  "hardware": {
+    "video": "NTSC",
+    "ram": "+3K and BLK1/2/3/5",
+    "software_stack_bytes": 704,
+    "game_tick_cycles": 16875,
+    "vic_frame_cycles": 16965,
+    "cpu_hz": 1022727
+  },
+  "change": {
+    "define": "POOL_DEST_FAST",
+    "scope": "Initialize only reached destination pointers and clipped columns; skip unused bottom-pointer initialization at offsets 0-4; same allocation order, kernels, cells, publication, arcade behavior and sound",
+    "new_readonly_table_bytes": 0,
+    "new_writable_bytes": 0,
+    "setup_code_bytes_added": 8,
+    "resident_bytes_changed": 0,
+    "unused_bottom_pointer_scratch_may_differ": true
+  },
+  "standard_unchanged": {
+    "build/pacman.prg": {
+      "sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+      "unchanged": true
+    },
+    "build/pacman.lbl": {
+      "sha256": "85ae3fe2f135103509e7b0b6b8e986b425d99908159dab54def979ffc18a0be5",
+      "unchanged": true
+    },
+    "build/arcade/pacman-native.bin": {
+      "sha256": "b4a2880ed4e3b7e6db178e33cbf84e3936da6bc99836fd2487690258eb64798e",
+      "unchanged": true
+    },
+    "build/arcade/pacman-native.bin.elf": {
+      "sha256": "0f332e3392f93a5834fccfa88dae0be832cae02bd6302155c29369f45508946c",
+      "unchanged": true
+    },
+    "build/arcade/pacman.map": {
+      "sha256": "456286e0f8a2eb3c2643c0a214f207174a35ad479d4b25d9ab69a1b36cb7b99c",
+      "unchanged": true
+    }
+  },
+  "identities": {
+    "baseline": {
+      "pacman.prg": {
+        "bytes": 26814,
+        "sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836"
+      },
+      "pacman.lbl": {
+        "bytes": 18220,
+        "sha256": "85ae3fe2f135103509e7b0b6b8e986b425d99908159dab54def979ffc18a0be5"
+      },
+      "pacman-native.bin": {
+        "bytes": 33792,
+        "sha256": "b4a2880ed4e3b7e6db178e33cbf84e3936da6bc99836fd2487690258eb64798e"
+      },
+      "pacman-native.bin.elf": {
+        "bytes": 106420,
+        "sha256": "ab3cd5f0e32dfd64c2229eb70aeb39515c93d6d4250241de180fe6087c41466f"
+      },
+      "pacman.map": {
+        "bytes": 75528,
+        "sha256": "f675f54879ef0d4ec4330daa857d81d67b10b45324467b15da83986d871de1b3"
+      }
+    },
+    "trial": {
+      "pacman.prg": {
+        "bytes": 26829,
+        "sha256": "2284d03b700e5d72b1a13c9f35257e96e0c48469c9eef9f3854d61489f8513dc"
+      },
+      "pacman.lbl": {
+        "bytes": 18291,
+        "sha256": "2ce8630e35080202b5e7270927b8067d82807c8647c7d1e77eef0bed85a639d7"
+      },
+      "pacman-native.bin": {
+        "bytes": 33792,
+        "sha256": "bdde04bba6d1e1663309606877801b916b544dc7925fc63c81c0c9c8c2dbf353"
+      },
+      "pacman-native.bin.elf": {
+        "bytes": 106580,
+        "sha256": "dc57091cbf359df10d53860dadede632ce97830553f8909a545316df123623b4"
+      },
+      "pacman.map": {
+        "bytes": 75469,
+        "sha256": "d3a9d3e9eacf98ccca53a332de888424eaf51e9d45c3b098044d3d1748b584cc"
+      }
+    }
+  },
+  "memory": {
+    "baseline": {
+      "resident_end": "7cb3",
+      "resident_free": 141,
+      "stack_bytes": 704,
+      "blk5_end": "bfe9",
+      "blk5_free": 23,
+      "native_bytes": 33792,
+      "prg_bytes": 26814,
+      "setup_code_bytes": 114,
+      "hot_branch_placement": {
+        "epoch_clear": {
+          "target": "2dea",
+          "branch_fallthrough_pc": "2df0",
+          "same_page": true
+        },
+        "normal_ghost_row": {
+          "target": "2ecd",
+          "branch_fallthrough_pc": "2ef7",
+          "same_page": true
+        }
+      }
+    },
+    "trial": {
+      "resident_end": "7cb3",
+      "resident_free": 141,
+      "stack_bytes": 704,
+      "blk5_end": "bfe9",
+      "blk5_free": 23,
+      "native_bytes": 33792,
+      "prg_bytes": 26829,
+      "setup_code_bytes": 122,
+      "hot_branch_placement": {
+        "epoch_clear": {
+          "target": "2df2",
+          "branch_fallthrough_pc": "2df8",
+          "same_page": true
+        },
+        "normal_ghost_row": {
+          "target": "2ed5",
+          "branch_fallthrough_pc": "2eff",
+          "same_page": true
+        }
+      }
+    }
+  },
+  "native": {
+    "baseline": {
+      "prg_sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+      "native_sha256": "b4a2880ed4e3b7e6db178e33cbf84e3936da6bc99836fd2487690258eb64798e",
+      "depacked_bytes_verified": 33792,
+      "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "map_sha256": "f1f9c36aaefa73a6c08c799385d4cf352a5f8b3ea1ed39c13328dc236458b582",
+      "cpu_hz": 1022727,
+      "cycles": 20366476,
+      "seconds": 19.9138929548159,
+      "guest_code_changed": false,
+      "watches": {
+        "frame_wait": "wait",
+        "video_refresh": "render",
+        "audio_update": "audio",
+        "video_update_begin": "restore",
+        "video_background": "background",
+        "video_update_end": "paint",
+        "updateGhostStates_1017": "ghost-state",
+        "soundEffectOneChannel_2dee": "sound-channel",
+        "playSongOneChannel_2d44": "song-channel"
+      },
+      "method": "vicsim instruction cycles and host-only routine watches",
+      "phase_cycles": {
+        "logic_tasks_loop": 9499158,
+        "audio": 474136,
+        "render": 10360620,
+        "wait": 32562
+      },
+      "phase_percent": {
+        "logic_tasks_loop": 46.641146951490285,
+        "audio": 2.3280217942465846,
+        "render": 50.870950870440225,
+        "wait": 0.15988038382290584
+      },
+      "routine_inclusive_cycles": {
+        "ghost-state": {
+          "count": 2414,
+          "mean": 1249.0911350455676,
+          "p50": 1262,
+          "p95": 2142,
+          "max": 4038,
+          "total": 3015306
+        },
+        "sound-channel": {
+          "count": 2009,
+          "mean": 375.1577899452464,
+          "p50": 371,
+          "p95": 651,
+          "max": 794,
+          "total": 753692
+        },
+        "audio": {
+          "count": 1207,
+          "mean": 392.8218724109362,
+          "p50": 454,
+          "p95": 496,
+          "max": 594,
+          "total": 474136
+        },
+        "background": {
+          "count": 665,
+          "mean": 1395.9639097744362,
+          "p50": 29,
+          "p95": 5247,
+          "max": 9558,
+          "total": 928316
+        },
+        "restore": {
+          "count": 665,
+          "mean": 450.27218045112784,
+          "p50": 167,
+          "p95": 2131,
+          "max": 2187,
+          "total": 299431
+        },
+        "paint": {
+          "count": 665,
+          "mean": 13679.306766917292,
+          "p50": 13503,
+          "p95": 16642,
+          "max": 17589,
+          "total": 9096739
+        },
+        "render": {
+          "count": 665,
+          "mean": 15579.87969924812,
+          "p50": 15275,
+          "p95": 20747,
+          "max": 26119,
+          "total": 10360620
+        },
+        "wait": {
+          "count": 1206,
+          "mean": 27.0,
+          "p50": 27,
+          "p95": 27,
+          "max": 27,
+          "total": 32562
+        }
+      },
+      "completed_renders": 665,
+      "completed_render_interval_ms": {
+        "count": 664,
+        "mean": 29.951402900026046,
+        "p50": 29.773341272891006,
+        "p95": 45.85094556025215,
+        "max": 54.39672561690461
+      },
+      "actor_erase_to_paint_ms": {
+        "count": 0
+      },
+      "completed_renders_per_second": 33.39377195151483,
+      "unattributed_interrupt_entry_cycles": 8449,
+      "game_states_matched": 1207
+    },
+    "trial": {
+      "prg_sha256": "2284d03b700e5d72b1a13c9f35257e96e0c48469c9eef9f3854d61489f8513dc",
+      "native_sha256": "bdde04bba6d1e1663309606877801b916b544dc7925fc63c81c0c9c8c2dbf353",
+      "depacked_bytes_verified": 33792,
+      "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "map_sha256": "d3a9d3e9eacf98ccca53a332de888424eaf51e9d45c3b098044d3d1748b584cc",
+      "cpu_hz": 1022727,
+      "cycles": 20377204,
+      "seconds": 19.924382557613125,
+      "guest_code_changed": false,
+      "watches": {
+        "frame_wait": "wait",
+        "video_refresh": "render",
+        "audio_update": "audio",
+        "video_update_begin": "restore",
+        "video_background": "background",
+        "video_update_end": "paint",
+        "updateGhostStates_1017": "ghost-state",
+        "soundEffectOneChannel_2dee": "sound-channel",
+        "playSongOneChannel_2d44": "song-channel"
+      },
+      "method": "vicsim instruction cycles and host-only routine watches",
+      "phase_cycles": {
+        "logic_tasks_loop": 9494333,
+        "audio": 473688,
+        "render": 10376565,
+        "wait": 32618
+      },
+      "phase_percent": {
+        "logic_tasks_loop": 46.59291333590222,
+        "audio": 2.3245976238938373,
+        "render": 50.92241801181359,
+        "wait": 0.16007102839035228
+      },
+      "routine_inclusive_cycles": {
+        "ghost-state": {
+          "count": 2414,
+          "mean": 1247.629246064623,
+          "p50": 1261,
+          "p95": 2141,
+          "max": 4094,
+          "total": 3011777
+        },
+        "sound-channel": {
+          "count": 2009,
+          "mean": 375.62767546042807,
+          "p50": 371,
+          "p95": 651,
+          "max": 794,
+          "total": 754636
+        },
+        "audio": {
+          "count": 1207,
+          "mean": 392.4507042253521,
+          "p50": 454,
+          "p95": 496,
+          "max": 594,
+          "total": 473688
+        },
+        "background": {
+          "count": 673,
+          "mean": 1379.3818722139672,
+          "p50": 29,
+          "p95": 5301,
+          "max": 8798,
+          "total": 928324
+        },
+        "restore": {
+          "count": 673,
+          "mean": 449.4011887072808,
+          "p50": 167,
+          "p95": 2131,
+          "max": 2187,
+          "total": 302447
+        },
+        "paint": {
+          "count": 673,
+          "mean": 13535.589895988112,
+          "p50": 13388,
+          "p95": 16486,
+          "max": 17372,
+          "total": 9109452
+        },
+        "render": {
+          "count": 673,
+          "mean": 15418.372956909361,
+          "p50": 14984,
+          "p95": 20474,
+          "max": 24543,
+          "total": 10376565
+        },
+        "wait": {
+          "count": 1206,
+          "mean": 27.046434494195687,
+          "p50": 27,
+          "p95": 27,
+          "max": 83,
+          "total": 32618
+        }
+      },
+      "completed_renders": 673,
+      "completed_render_interval_ms": {
+        "count": 672,
+        "mean": 29.6215819731626,
+        "p50": 29.266852248938378,
+        "p95": 45.15085648467284,
+        "max": 62.5758389091126
+      },
+      "actor_erase_to_paint_ms": {
+        "count": 0
+      },
+      "completed_renders_per_second": 33.77770919896567,
+      "unattributed_interrupt_entry_cycles": 8449,
+      "game_states_matched": 1207
+    }
+  },
+  "pool_profile": {
+    "baseline": {
+      "prg_sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+      "source_summary_sha256": "6651fa6e5de48283b5dbb9d1e0aff202a58a69022c2f10d7b31e0529a9de2dfb",
+      "source_profile_sha256": "b3eef5f18529c00e2dda496cf53906c0616584da2d1cf1e2cf69ed3c45ade732",
+      "method": "Exclusive instruction cycles in disjoint linked-label ranges; no guest changes",
+      "cycles": 20366476,
+      "completed_redraws": 665,
+      "groups": {
+        "reuse_guard": {
+          "begin": "29ad",
+          "end": "29b3",
+          "cycles": 47880,
+          "cycles_per_redraw": 72.0,
+          "cpu_percent": 0.23509221722992235
+        },
+        "actor_pose_and_setup": {
+          "begin": "29b3",
+          "end": "2b21",
+          "cycles": 1218836,
+          "cycles_per_redraw": 1832.836090225564,
+          "cpu_percent": 5.984520837085414
+        },
+        "generic_stamp": {
+          "begin": "2b21",
+          "end": "2c2c",
+          "cycles": 2283620,
+          "cycles_per_redraw": 3434.0150375939847,
+          "cpu_percent": 11.212641794289793
+        },
+        "cell_lookup_and_allocation": {
+          "begin": "2c2c",
+          "end": "2cb0",
+          "cycles": 1384842,
+          "cycles_per_redraw": 2082.469172932331,
+          "cpu_percent": 6.7996152108003365
+        },
+        "background_copy": {
+          "begin": "2cb0",
+          "end": "2d02",
+          "cycles": 2156253,
+          "cycles_per_redraw": 3242.4857142857145,
+          "cpu_percent": 10.587266054274682
+        },
+        "colour_and_pointer": {
+          "begin": "2d02",
+          "end": "2d1d",
+          "cycles": 170886,
+          "cycles_per_redraw": 256.9714285714286,
+          "cpu_percent": 0.83905531816108
+        },
+        "destination_setup": {
+          "begin": "2d1d",
+          "end": "2d8f",
+          "cycles": 508998,
+          "cycles_per_redraw": 765.4105263157895,
+          "cpu_percent": 2.4991952461486218
+        },
+        "restore_control_and_publish": {
+          "begin": "2d8f",
+          "end": "2e9e",
+          "cycles": 1033565,
+          "cycles_per_redraw": 1554.233082706767,
+          "cpu_percent": 5.074834743133765
+        },
+        "normal_ghost_stamp": {
+          "begin": "2e9e",
+          "end": "2ef8",
+          "cycles": 504934,
+          "cycles_per_redraw": 759.2992481203007,
+          "cpu_percent": 2.479240885855756
+        }
+      },
+      "generic_detail": {
+        "setup": {
+          "begin": "2b21",
+          "end": "2b6c",
+          "cycles": 218043,
+          "cycles_per_redraw": 327.88421052631577,
+          "cpu_percent": 1.0705975839904753
+        },
+        "fetch_and_dispatch": {
+          "begin": "2b6c",
+          "end": "2b74",
+          "cycles": 274338,
+          "cycles_per_redraw": 412.53834586466166,
+          "cpu_percent": 1.3470077003012204
+        },
+        "merge_low": {
+          "begin": "2b74",
+          "end": "2b7e",
+          "cycles": 278550,
+          "cycles_per_redraw": 418.8721804511278,
+          "cpu_percent": 1.3676887449748303
+        },
+        "row_control": {
+          "begin": "2b7e",
+          "end": "2b9d",
+          "cycles": 452072,
+          "cycles_per_redraw": 679.8075187969924,
+          "cpu_percent": 2.219686901160515
+        },
+        "merge_high": {
+          "begin": "2b9d",
+          "end": "2baa",
+          "cycles": 398076,
+          "cycles_per_redraw": 598.6105263157895,
+          "cpu_percent": 1.9545649428993017
+        },
+        "mirror": {
+          "begin": "2baa",
+          "end": "2bb5",
+          "cycles": 28980,
+          "cycles_per_redraw": 43.578947368421055,
+          "cpu_percent": 0.14229265779705827
+        },
+        "aligned_merge": {
+          "begin": "2bb5",
+          "end": "2bbc",
+          "cycles": 18312,
+          "cycles_per_redraw": 27.53684210526316,
+          "cpu_percent": 0.0899124620282861
+        },
+        "shifts": {
+          "begin": "2bbc",
+          "end": "2c1c",
+          "cycles": 615249,
+          "cycles_per_redraw": 925.1864661654135,
+          "cpu_percent": 3.0208908011381057
+        }
+      },
+      "counters": {
+        "generic_calls": 2631,
+        "normal_ghost_calls": 926,
+        "generic_rows": 31572,
+        "nonempty_generic_rows": 26667,
+        "cell_calls": 10781,
+        "fresh_cells": 10317,
+        "shared_cell_hits": 464
+      },
+      "caveat": "Different redraw cadence samples different poses; use identical-input kernels for isolated savings"
+    },
+    "trial": {
+      "prg_sha256": "2284d03b700e5d72b1a13c9f35257e96e0c48469c9eef9f3854d61489f8513dc",
+      "source_summary_sha256": "9a7900488c7463a8a104e9cf2619572d576ff7bfe18971707af38c22aa672743",
+      "source_profile_sha256": "9a4b27cad5145680dfe162c34a5df9418cd86d7ae80b48a1b7de3a575a9ce534",
+      "method": "Exclusive instruction cycles in disjoint linked-label ranges; no guest changes",
+      "cycles": 20377204,
+      "completed_redraws": 673,
+      "groups": {
+        "reuse_guard": {
+          "begin": "29ad",
+          "end": "29b3",
+          "cycles": 48456,
+          "cycles_per_redraw": 72.0,
+          "cpu_percent": 0.2377951361727546
+        },
+        "actor_pose_and_setup": {
+          "begin": "29b3",
+          "end": "2b21",
+          "cycles": 1232984,
+          "cycles_per_redraw": 1832.0713224368499,
+          "cpu_percent": 6.050800688848185
+        },
+        "generic_stamp": {
+          "begin": "2b21",
+          "end": "2c2c",
+          "cycles": 2308108,
+          "cycles_per_redraw": 3429.580980683507,
+          "cpu_percent": 11.326912171071164
+        },
+        "cell_lookup_and_allocation": {
+          "begin": "2c2c",
+          "end": "2cb0",
+          "cycles": 1400595,
+          "cycles_per_redraw": 2081.1218424962854,
+          "cpu_percent": 6.873342387895807
+        },
+        "background_copy": {
+          "begin": "2cb0",
+          "end": "2d02",
+          "cycles": 2181124,
+          "cycles_per_redraw": 3240.897473997028,
+          "cpu_percent": 10.703745224320274
+        },
+        "colour_and_pointer": {
+          "begin": "2d02",
+          "end": "2d1d",
+          "cycles": 172666,
+          "cycles_per_redraw": 256.56166419019314,
+          "cpu_percent": 0.8473488315668822
+        },
+        "destination_setup": {
+          "begin": "2d1d",
+          "end": "2d97",
+          "cycles": 423747,
+          "cycles_per_redraw": 629.6389301634473,
+          "cpu_percent": 2.0795149324706177
+        },
+        "restore_control_and_publish": {
+          "begin": "2d97",
+          "end": "2ea6",
+          "cycles": 1045207,
+          "cycles_per_redraw": 1553.0564635958394,
+          "cpu_percent": 5.12929546173263
+        },
+        "normal_ghost_stamp": {
+          "begin": "2ea6",
+          "end": "2f00",
+          "cycles": 510937,
+          "cycles_per_redraw": 759.1931649331352,
+          "cpu_percent": 2.507395028287492
+        }
+      },
+      "generic_detail": {
+        "setup": {
+          "begin": "2b21",
+          "end": "2b6c",
+          "cycles": 220175,
+          "cycles_per_redraw": 327.1545319465082,
+          "cpu_percent": 1.0804966176910238
+        },
+        "fetch_and_dispatch": {
+          "begin": "2b6c",
+          "end": "2b74",
+          "cycles": 277046,
+          "cycles_per_redraw": 411.65824665676075,
+          "cpu_percent": 1.359587900283081
+        },
+        "merge_low": {
+          "begin": "2b74",
+          "end": "2b7e",
+          "cycles": 283050,
+          "cycles_per_redraw": 420.57949479940567,
+          "cpu_percent": 1.3890521977401806
+        },
+        "row_control": {
+          "begin": "2b7e",
+          "end": "2b9d",
+          "cycles": 456576,
+          "cycles_per_redraw": 678.4190193164933,
+          "cpu_percent": 2.240621431674336
+        },
+        "merge_high": {
+          "begin": "2b9d",
+          "end": "2baa",
+          "cycles": 401912,
+          "cycles_per_redraw": 597.1946508172363,
+          "cpu_percent": 1.9723608793434075
+        },
+        "mirror": {
+          "begin": "2baa",
+          "end": "2bb5",
+          "cycles": 28980,
+          "cycles_per_redraw": 43.06092124814265,
+          "cpu_percent": 0.14221774488786587
+        },
+        "aligned_merge": {
+          "begin": "2bb5",
+          "end": "2bbc",
+          "cycles": 17542,
+          "cycles_per_redraw": 26.065378900445765,
+          "cpu_percent": 0.08608639340313813
+        },
+        "shifts": {
+          "begin": "2bbc",
+          "end": "2c1c",
+          "cycles": 622827,
+          "cycles_per_redraw": 925.4487369985142,
+          "cpu_percent": 3.056489006048131
+        }
+      },
+      "counters": {
+        "generic_calls": 2657,
+        "normal_ghost_calls": 940,
+        "generic_rows": 31884,
+        "nonempty_generic_rows": 26929,
+        "cell_calls": 10902,
+        "fresh_cells": 10436,
+        "shared_cell_hits": 466
+      },
+      "caveat": "Different redraw cadence samples different poses; use identical-input kernels for isolated savings"
+    }
+  },
+  "actual_vice": {
+    "baseline": {
+      "prg_sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+      "video_frames": 1180,
+      "counter_interval_seconds": 19.557255259712512,
+      "completed_renders": 651,
+      "completed_renders_per_second": 33.2868795418877,
+      "calibration": {
+        "x": 8,
+        "y": 4,
+        "output_dots_per_vic_dot": 2,
+        "mismatch_pixels": 0,
+        "next_distinct_alignment_error": 3576
+      },
+      "min_diagnostic_pixels": 12,
+      "actors": {
+        "pacman": {
+          "frames": {
+            "present": 990,
+            "partial": 17,
+            "excluded": 173
+          },
+          "eligible_frames": 1007,
+          "exclusions": {
+            "shared-colour-cell": 113,
+            "reward-slot-expansion": 60
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.6881827209533267,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 63,
+            "2": 229,
+            "3": 96,
+            "4": 21,
+            "5": 3
+          },
+          "displayed_move_interval_ms": {
+            "count": 412,
+            "mean": 36.55802916628351,
+            "p50": 33.176008846935694,
+            "p95": 66.35201769387139,
+            "max": 82.94002211733924
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 307,
+            "2": 97,
+            "3": 24,
+            "4": 6
+          },
+          "visible_ink_color_mismatch_frames": 0,
+          "motion_change_count": 434
+        },
+        "blinky": {
+          "frames": {
+            "present": 889,
+            "excluded": 281,
+            "partial": 10
+          },
+          "eligible_frames": 899,
+          "exclusions": {
+            "shared-colour-cell": 188,
+            "reward-slot-expansion": 60,
+            "screen-edge-clipping": 24,
+            "hidden-or-empty": 9
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.1123470522803114,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 60,
+            "2": 151,
+            "3": 71,
+            "4": 52,
+            "5": 10
+          },
+          "displayed_move_interval_ms": {
+            "count": 344,
+            "mean": 40.16804559519976,
+            "p50": 33.176008846935694,
+            "p95": 66.35201769387139,
+            "max": 82.94002211733924
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 294,
+            "2": 61,
+            "3": 4
+          },
+          "visible_ink_color_mismatch_frames": 2,
+          "motion_change_count": 359
+        },
+        "pinky": {
+          "frames": {
+            "excluded": 329,
+            "present": 838,
+            "partial": 13
+          },
+          "eligible_frames": 851,
+          "exclusions": {
+            "shared-colour-cell": 108,
+            "screen-edge-clipping": 99,
+            "hidden-or-empty": 62,
+            "reward-slot-expansion": 60
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.527614571092832,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 59,
+            "2": 154,
+            "3": 60,
+            "4": 28,
+            "5": 17,
+            "6": 2
+          },
+          "displayed_move_interval_ms": {
+            "count": 320,
+            "mean": 39.18916045044279,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 99.52802654080708
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 267,
+            "2": 69,
+            "3": 3
+          },
+          "visible_ink_color_mismatch_frames": 1,
+          "motion_change_count": 339
+        },
+        "inky": {
+          "frames": {
+            "excluded": 239,
+            "present": 923,
+            "partial": 18
+          },
+          "eligible_frames": 941,
+          "exclusions": {
+            "shared-colour-cell": 179,
+            "reward-slot-expansion": 60
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.9128586609989373,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 49,
+            "2": 144,
+            "3": 60,
+            "4": 44,
+            "5": 15,
+            "6": 7,
+            "7": 3
+          },
+          "displayed_move_interval_ms": {
+            "count": 322,
+            "mean": 42.80941514255211,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 116.11603096427493
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 300,
+            "2": 44,
+            "3": 2
+          },
+          "visible_ink_color_mismatch_frames": 4,
+          "motion_change_count": 346
+        },
+        "clyde": {
+          "frames": {
+            "excluded": 301,
+            "present": 869,
+            "partial": 10
+          },
+          "eligible_frames": 879,
+          "exclusions": {
+            "shared-colour-cell": 176,
+            "reward-slot-expansion": 60,
+            "insufficient-distinct-ink": 65
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.1376564277588168,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 38,
+            "2": 113,
+            "3": 46,
+            "4": 42,
+            "5": 18,
+            "6": 13,
+            "7": 6,
+            "8": 1
+          },
+          "displayed_move_interval_ms": {
+            "count": 277,
+            "mean": 47.1889800927533,
+            "p50": 33.176008846935694,
+            "p95": 99.52802654080708,
+            "max": 132.70403538774278
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 282,
+            "2": 11,
+            "5": 1
+          },
+          "visible_ink_color_mismatch_frames": 3,
+          "motion_change_count": 294
+        }
+      },
+      "method": "exact distinct sprite ink; old/new poses; binary visibility separate from colour",
+      "guest_modified": false,
+      "validation": {
+        "complete_snapshots_checked": 628,
+        "excluded_complete_snapshots": {
+          "reward-slot-expansion": 45
+        },
+        "settled_actor_results": {
+          "present": 2545,
+          "excluded": 595
+        },
+        "false_absent_or_partial_on_settled_images": 0,
+        "synthetic_host_only_controls": {
+          "absent": 2545,
+          "partial": 2545
+        }
+      },
+      "evidence": [
+        {
+          "actor": "pacman",
+          "frame": 18,
+          "status": "partial"
+        }
+      ],
+      "render_interval_ms": {
+        "count": 650,
+        "mean": 30.05964220393878,
+        "p50": 29.685341249424333,
+        "p95": 45.6485455062788,
+        "max": 61.27637189592139
+      },
+      "render_interval_logical_ticks": {
+        "1": 193,
+        "2": 381,
+        "3": 75,
+        "4": 1
+      }
+    },
+    "trial": {
+      "prg_sha256": "2284d03b700e5d72b1a13c9f35257e96e0c48469c9eef9f3854d61489f8513dc",
+      "video_frames": 1180,
+      "counter_interval_seconds": 19.55725819304663,
+      "completed_renders": 658,
+      "completed_renders_per_second": 33.64479793153954,
+      "calibration": {
+        "x": 8,
+        "y": 4,
+        "output_dots_per_vic_dot": 2,
+        "mismatch_pixels": 0,
+        "next_distinct_alignment_error": 3576
+      },
+      "min_diagnostic_pixels": 12,
+      "actors": {
+        "pacman": {
+          "frames": {
+            "present": 982,
+            "partial": 22,
+            "excluded": 176
+          },
+          "eligible_frames": 1004,
+          "exclusions": {
+            "shared-colour-cell": 115,
+            "reward-slot-expansion": 61
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 2.191235059760956,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 85,
+            "2": 217,
+            "3": 95,
+            "4": 16,
+            "5": 4
+          },
+          "displayed_move_interval_ms": {
+            "count": 417,
+            "mean": 35.32409575069412,
+            "p50": 33.176008846935694,
+            "p95": 49.76401327040354,
+            "max": 82.94002211733924
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 333,
+            "2": 80,
+            "3": 25,
+            "4": 3,
+            "5": 2
+          },
+          "visible_ink_color_mismatch_frames": 0,
+          "motion_change_count": 443
+        },
+        "blinky": {
+          "frames": {
+            "present": 883,
+            "excluded": 280,
+            "partial": 17
+          },
+          "eligible_frames": 900,
+          "exclusions": {
+            "shared-colour-cell": 187,
+            "reward-slot-expansion": 61,
+            "screen-edge-clipping": 24,
+            "hidden-or-empty": 8
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.8888888888888888,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 52,
+            "2": 158,
+            "3": 73,
+            "4": 38,
+            "5": 11
+          },
+          "displayed_move_interval_ms": {
+            "count": 332,
+            "mean": 39.671311783835755,
+            "p50": 33.176008846935694,
+            "p95": 66.35201769387139,
+            "max": 82.94002211733924
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 294,
+            "2": 56,
+            "3": 3
+          },
+          "visible_ink_color_mismatch_frames": 3,
+          "motion_change_count": 353
+        },
+        "pinky": {
+          "frames": {
+            "excluded": 331,
+            "present": 831,
+            "partial": 18
+          },
+          "eligible_frames": 849,
+          "exclusions": {
+            "shared-colour-cell": 107,
+            "screen-edge-clipping": 104,
+            "hidden-or-empty": 59,
+            "reward-slot-expansion": 61
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 2.1201413427561837,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 60,
+            "2": 155,
+            "3": 56,
+            "4": 24,
+            "5": 20,
+            "6": 1
+          },
+          "displayed_move_interval_ms": {
+            "count": 316,
+            "mean": 38.845326814450026,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 99.52802654080708
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 274,
+            "2": 62,
+            "3": 3
+          },
+          "visible_ink_color_mismatch_frames": 2,
+          "motion_change_count": 339
+        },
+        "inky": {
+          "frames": {
+            "excluded": 240,
+            "present": 928,
+            "partial": 12
+          },
+          "eligible_frames": 940,
+          "exclusions": {
+            "shared-colour-cell": 179,
+            "reward-slot-expansion": 61
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.2765957446808511,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 48,
+            "2": 158,
+            "3": 67,
+            "4": 42,
+            "5": 15,
+            "6": 4,
+            "7": 2,
+            "8": 1
+          },
+          "displayed_move_interval_ms": {
+            "count": 337,
+            "mean": 42.03607055679983,
+            "p50": 33.176008846935694,
+            "p95": 82.94002211733924,
+            "max": 132.70403538774278
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 305,
+            "2": 49
+          },
+          "visible_ink_color_mismatch_frames": 4,
+          "motion_change_count": 354
+        },
+        "clyde": {
+          "frames": {
+            "excluded": 305,
+            "present": 859,
+            "partial": 16
+          },
+          "eligible_frames": 875,
+          "exclusions": {
+            "shared-colour-cell": 181,
+            "reward-slot-expansion": 61,
+            "insufficient-distinct-ink": 63
+          },
+          "absent_frame_percent": 0.0,
+          "partial_frame_percent": 1.8285714285714285,
+          "absence_runs": 0,
+          "absence_run_frames": {},
+          "absence_runs_per_eligible_second": 0.0,
+          "displayed_move_interval_vic_frames": {
+            "1": 35,
+            "2": 104,
+            "3": 52,
+            "4": 41,
+            "5": 13,
+            "6": 14,
+            "7": 5,
+            "8": 2
+          },
+          "displayed_move_interval_ms": {
+            "count": 266,
+            "mean": 47.58138110942093,
+            "p50": 33.176008846935694,
+            "p95": 99.52802654080708,
+            "max": 132.70403538774278
+          },
+          "displayed_move_distance_vic_pixels": {
+            "1": 273,
+            "2": 15,
+            "3": 1,
+            "4": 1
+          },
+          "visible_ink_color_mismatch_frames": 3,
+          "motion_change_count": 290
+        }
+      },
+      "method": "exact distinct sprite ink; old/new poses; binary visibility separate from colour",
+      "guest_modified": false,
+      "validation": {
+        "complete_snapshots_checked": 634,
+        "excluded_complete_snapshots": {
+          "reward-slot-expansion": 46
+        },
+        "settled_actor_results": {
+          "present": 2575,
+          "excluded": 595
+        },
+        "false_absent_or_partial_on_settled_images": 0,
+        "synthetic_host_only_controls": {
+          "absent": 2575,
+          "partial": 2575
+        }
+      },
+      "evidence": [
+        {
+          "actor": "pacman",
+          "frame": 23,
+          "status": "partial"
+        }
+      ],
+      "render_interval_ms": {
+        "count": 657,
+        "mean": 29.735385030738225,
+        "p50": 29.371474499059868,
+        "p95": 45.437345449958784,
+        "max": 61.512994181242895
+      },
+      "render_interval_logical_ticks": {
+        "1": 205,
+        "2": 378,
+        "3": 73,
+        "4": 1
+      }
+    }
+  },
+  "kernel": {
+    "baseline": {
+      "prg_sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+      "native_sha256": "b4a2880ed4e3b7e6db178e33cbf84e3936da6bc99836fd2487690258eb64798e",
+      "method": "Unpatched complete video_sprites calls, RTS included, caller JSR excluded; IRQs masked",
+      "oracle": "Independent Renderer.check_scene pixels, colours, retained inputs and restoration",
+      "cases_checked": 8768,
+      "output_sha256": "1c8e70e6e820b3f41d989da46703592dc0bd8d6adb36a322fa4eaf5ab8b9140d",
+      "artwork_sha256": "8eee98d422cdef3f46b0f28a24e3838d02eaca88a4f9274e4655488d2b5c7188",
+      "exclusive_setup": {
+        "actor_preparation": {
+          "cycles": 7279482,
+          "cycles_per_scene": 830.2328923357665
+        },
+        "destination_setup": {
+          "cycles": 622290,
+          "cycles_per_scene": 70.97285583941606
+        }
+      },
+      "groups": {
+        "all": {
+          "count": 8768,
+          "mean": 2575.768704379562,
+          "p50": 2674,
+          "p95": 4745,
+          "max": 6187
+        },
+        "hidden-palette": {
+          "count": 64,
+          "mean": 1339.1875,
+          "p50": 1063,
+          "p95": 3027,
+          "max": 3027
+        },
+        "regular": {
+          "count": 7372,
+          "mean": 2714.6184210526317,
+          "p50": 2713,
+          "p95": 4840,
+          "max": 6187
+        },
+        "eyes": {
+          "count": 248,
+          "mean": 2826.0685483870966,
+          "p50": 2680,
+          "p95": 4653,
+          "max": 5597
+        },
+        "score-right": {
+          "count": 124,
+          "mean": 2900.9032258064517,
+          "p50": 2742,
+          "p95": 4735,
+          "max": 5712
+        },
+        "clipped": {
+          "count": 960,
+          "mean": 1485.3,
+          "p50": 1093,
+          "p95": 3057,
+          "max": 3057
+        }
+      }
+    },
+    "trial": {
+      "prg_sha256": "2284d03b700e5d72b1a13c9f35257e96e0c48469c9eef9f3854d61489f8513dc",
+      "native_sha256": "bdde04bba6d1e1663309606877801b916b544dc7925fc63c81c0c9c8c2dbf353",
+      "method": "Unpatched complete video_sprites calls, RTS included, caller JSR excluded; IRQs masked",
+      "oracle": "Independent Renderer.check_scene pixels, colours, retained inputs and restoration",
+      "cases_checked": 8768,
+      "output_sha256": "1c8e70e6e820b3f41d989da46703592dc0bd8d6adb36a322fa4eaf5ab8b9140d",
+      "artwork_sha256": "8eee98d422cdef3f46b0f28a24e3838d02eaca88a4f9274e4655488d2b5c7188",
+      "exclusive_setup": {
+        "actor_preparation": {
+          "cycles": 7279482,
+          "cycles_per_scene": 830.2328923357665
+        },
+        "destination_setup": {
+          "cycles": 546547,
+          "cycles_per_scene": 62.33428375912409
+        }
+      },
+      "groups": {
+        "all": {
+          "count": 8768,
+          "mean": 2567.103216240876,
+          "p50": 2665,
+          "p95": 4733,
+          "max": 6162
+        },
+        "hidden-palette": {
+          "count": 64,
+          "mean": 1339.1875,
+          "p50": 1063,
+          "p95": 3027,
+          "max": 3027
+        },
+        "regular": {
+          "count": 7372,
+          "mean": 2704.8761530113943,
+          "p50": 2701,
+          "p95": 4831,
+          "max": 6162
+        },
+        "eyes": {
+          "count": 248,
+          "mean": 2814.8629032258063,
+          "p50": 2671,
+          "p95": 4641,
+          "max": 5572
+        },
+        "score-right": {
+          "count": 124,
+          "mean": 2889.7741935483873,
+          "p50": 2733,
+          "p95": 4726,
+          "max": 5687
+        },
+        "clipped": {
+          "count": 960,
+          "mean": 1485.3,
+          "p50": 1093,
+          "p95": 3057,
+          "max": 3057
+        }
+      }
+    },
+    "cycle_savings": {
+      "all": {
+        "count": 8768,
+        "mean": 8.66548813868613,
+        "p50": 9,
+        "p95": 25,
+        "max": 30,
+        "min": 0
+      },
+      "hidden-palette": {
+        "count": 64,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      },
+      "regular": {
+        "count": 7372,
+        "mean": 9.742268041237113,
+        "p50": 9,
+        "p95": 25,
+        "max": 30,
+        "min": 0
+      },
+      "eyes": {
+        "count": 248,
+        "mean": 11.205645161290322,
+        "p50": 12,
+        "p95": 12,
+        "max": 28,
+        "min": 9
+      },
+      "score-right": {
+        "count": 124,
+        "mean": 11.129032258064516,
+        "p50": 12,
+        "p95": 12,
+        "max": 25,
+        "min": 9
+      },
+      "clipped": {
+        "count": 960,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      }
+    },
+    "faster_cases": 5634,
+    "unchanged_cases": 3134,
+    "slower_cases": 0
+  },
+  "unused_bottom_guard_kernel": {
+    "baseline": {
+      "prg_sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+      "method": "vicsim call pool_draw; IRQs masked; identical masks and destinations",
+      "background_sha256": "13e7cc89054bace115014df8bdf6e4422ec340dac502a323ae142a694e2f5574",
+      "unused_bottom_pointers_poisoned": true,
+      "cases_checked": 10496,
+      "groups": {
+        "all": {
+          "count": 10496,
+          "mean": 769.2256097560976,
+          "p50": 775,
+          "p95": 1147,
+          "max": 1242
+        },
+        "arcade_sprites": {
+          "count": 8192,
+          "mean": 797.484375,
+          "p50": 826,
+          "p95": 1142,
+          "max": 1242
+        },
+        "shift-0": {
+          "count": 1312,
+          "mean": 528.7073170731708,
+          "p50": 514,
+          "p95": 733,
+          "max": 738
+        },
+        "shift-1": {
+          "count": 1312,
+          "mean": 732.9024390243902,
+          "p50": 747,
+          "p95": 1045,
+          "max": 1050
+        },
+        "shift-2": {
+          "count": 1312,
+          "mean": 787.8780487804878,
+          "p50": 817,
+          "p95": 1129,
+          "max": 1134
+        },
+        "shift-3": {
+          "count": 1312,
+          "mean": 842.8536585365854,
+          "p50": 887,
+          "p95": 1213,
+          "max": 1218
+        },
+        "shift-4": {
+          "count": 1312,
+          "mean": 858.560975609756,
+          "p50": 907,
+          "p95": 1237,
+          "max": 1242
+        },
+        "shift-5": {
+          "count": 1312,
+          "mean": 835.0,
+          "p50": 877,
+          "p95": 1201,
+          "max": 1206
+        },
+        "shift-6": {
+          "count": 1312,
+          "mean": 811.439024390244,
+          "p50": 847,
+          "p95": 1165,
+          "max": 1170
+        },
+        "shift-7": {
+          "count": 1312,
+          "mean": 756.4634146341464,
+          "p50": 777,
+          "p95": 1081,
+          "max": 1086
+        },
+        "arcade_eyes": {
+          "count": 1024,
+          "mean": 533.4375,
+          "p50": 535,
+          "p95": 634,
+          "max": 658
+        },
+        "arcade_score_right": {
+          "count": 512,
+          "mean": 614.625,
+          "p50": 623,
+          "p95": 716,
+          "max": 731
+        },
+        "synthetic": {
+          "count": 768,
+          "mean": 885.25,
+          "p50": 987,
+          "p95": 1214,
+          "max": 1242
+        }
+      },
+      "source_count": 82,
+      "sources_sha256": "198018ef905d3a12aca71bfada62a9ef1768b10edf9ff73b191416b98f53d082"
+    },
+    "trial": {
+      "prg_sha256": "2284d03b700e5d72b1a13c9f35257e96e0c48469c9eef9f3854d61489f8513dc",
+      "method": "vicsim call pool_draw; IRQs masked; identical masks and destinations",
+      "background_sha256": "13e7cc89054bace115014df8bdf6e4422ec340dac502a323ae142a694e2f5574",
+      "unused_bottom_pointers_poisoned": true,
+      "cases_checked": 10496,
+      "groups": {
+        "all": {
+          "count": 10496,
+          "mean": 769.2256097560976,
+          "p50": 775,
+          "p95": 1147,
+          "max": 1242
+        },
+        "arcade_sprites": {
+          "count": 8192,
+          "mean": 797.484375,
+          "p50": 826,
+          "p95": 1142,
+          "max": 1242
+        },
+        "shift-0": {
+          "count": 1312,
+          "mean": 528.7073170731708,
+          "p50": 514,
+          "p95": 733,
+          "max": 738
+        },
+        "shift-1": {
+          "count": 1312,
+          "mean": 732.9024390243902,
+          "p50": 747,
+          "p95": 1045,
+          "max": 1050
+        },
+        "shift-2": {
+          "count": 1312,
+          "mean": 787.8780487804878,
+          "p50": 817,
+          "p95": 1129,
+          "max": 1134
+        },
+        "shift-3": {
+          "count": 1312,
+          "mean": 842.8536585365854,
+          "p50": 887,
+          "p95": 1213,
+          "max": 1218
+        },
+        "shift-4": {
+          "count": 1312,
+          "mean": 858.560975609756,
+          "p50": 907,
+          "p95": 1237,
+          "max": 1242
+        },
+        "shift-5": {
+          "count": 1312,
+          "mean": 835.0,
+          "p50": 877,
+          "p95": 1201,
+          "max": 1206
+        },
+        "shift-6": {
+          "count": 1312,
+          "mean": 811.439024390244,
+          "p50": 847,
+          "p95": 1165,
+          "max": 1170
+        },
+        "shift-7": {
+          "count": 1312,
+          "mean": 756.4634146341464,
+          "p50": 777,
+          "p95": 1081,
+          "max": 1086
+        },
+        "arcade_eyes": {
+          "count": 1024,
+          "mean": 533.4375,
+          "p50": 535,
+          "p95": 634,
+          "max": 658
+        },
+        "arcade_score_right": {
+          "count": 512,
+          "mean": 614.625,
+          "p50": 623,
+          "p95": 716,
+          "max": 731
+        },
+        "synthetic": {
+          "count": 768,
+          "mean": 885.25,
+          "p50": 987,
+          "p95": 1214,
+          "max": 1242
+        }
+      },
+      "source_count": 82,
+      "sources_sha256": "198018ef905d3a12aca71bfada62a9ef1768b10edf9ff73b191416b98f53d082"
+    },
+    "cycle_savings": {
+      "all": {
+        "count": 10496,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      },
+      "arcade_sprites": {
+        "count": 8192,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      },
+      "shift-0": {
+        "count": 1312,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      },
+      "shift-1": {
+        "count": 1312,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      },
+      "shift-2": {
+        "count": 1312,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      },
+      "shift-3": {
+        "count": 1312,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      },
+      "shift-4": {
+        "count": 1312,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      },
+      "shift-5": {
+        "count": 1312,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      },
+      "shift-6": {
+        "count": 1312,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      },
+      "shift-7": {
+        "count": 1312,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      },
+      "arcade_eyes": {
+        "count": 1024,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      },
+      "arcade_score_right": {
+        "count": 512,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      },
+      "synthetic": {
+        "count": 768,
+        "mean": 0.0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0
+      }
+    }
+  },
+  "sound_replay": {
+    "ticks_compared": 1639,
+    "all_sound_state_and_register_values_identical": true,
+    "first_tick": 1,
+    "last_tick": 1639,
+    "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+    "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+    "programs": [
+      {
+        "path": "build/pool-setup-fast/pacman.prg",
+        "sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836"
+      },
+      {
+        "path": "build/pool-dest-fast/pacman.prg",
+        "sha256": "2284d03b700e5d72b1a13c9f35257e96e0c48469c9eef9f3854d61489f8513dc"
+      }
+    ],
+    "guest_modified": false,
+    "method": "Compare tick-indexed arcade sound state and VIC registers on a live replay.\n\nHost PC observations only: no guest code, registers, clocks or sound are patched.\nCPU timestamps can differ; this checks the values produced at each logical tick."
+  },
+  "smoke": {
+    "screens": [
+      "attract",
+      "credits",
+      "maze",
+      "cherry",
+      "intermission-1",
+      "intermission-2",
+      "intermission-3"
+    ],
+    "stack_by_scene": {
+      "attract": {
+        "software_lowest_write": 32743,
+        "software_bytes_written": 25,
+        "hardware_lowest_write": 494,
+        "hardware_bytes_written": 18
+      },
+      "credits": {
+        "software_lowest_write": 32743,
+        "software_bytes_written": 25,
+        "hardware_lowest_write": 494,
+        "hardware_bytes_written": 18
+      },
+      "maze": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 494,
+        "hardware_bytes_written": 18
+      },
+      "cherry": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "intermission-1": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "intermission-2": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "intermission-3": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      }
+    },
+    "clock": {
+      "video_frames": 180,
+      "arcade_ticks": 180,
+      "expected": 180.96
+    },
+    "long_run_ticks": 7181,
+    "stack": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 490,
+      "hardware_bytes_written": 22
+    },
+    "boot": {
+      "entries": 1,
+      "released": true
+    },
+    "irq_vector_intact": true,
+    "stack_guard_intact": true,
+    "software_stack_reserved": 704
+  },
+  "checks": {
+    "original_rom_tests": 15,
+    "pooled_gameplay_render_color_font_memory_tests": 41,
+    "display_classifier_tests": 13,
+    "complete_scene_cases_per_build": 8768,
+    "poisoned_bottom_generic_kernel_cases_per_build": 10496,
+    "native_game_states_matched": 1207,
+    "exact_sound_ticks": 1639,
+    "three_intermission_smoke": true,
+    "guest_code_patched_in_captures_or_profiles": false,
+    "raw_same_index_video_frames_differ": 681,
+    "comparison_images_inspected": true
+  },
+  "rejected_first_draft": {
+    "path": "build/pool-dest-fast/evaluation/rejected-eager-bottom",
+    "reason": "Sixteen extra setup code bytes moved epoch-clear and normal-ghost row loops across pages; complete-scene calls slower despite setup savings",
+    "kernel": {
+      "baseline": {
+        "prg_sha256": "65d22c5a872db590a591e9b292b09cd4c48a9e3dbe791178dd7d1c4393cab836",
+        "native_sha256": "b4a2880ed4e3b7e6db178e33cbf84e3936da6bc99836fd2487690258eb64798e",
+        "method": "Unpatched complete video_sprites calls, RTS included, caller JSR excluded; IRQs masked",
+        "oracle": "Independent Renderer.check_scene pixels, colours, retained inputs and restoration",
+        "cases_checked": 8768,
+        "output_sha256": "1c8e70e6e820b3f41d989da46703592dc0bd8d6adb36a322fa4eaf5ab8b9140d",
+        "artwork_sha256": "8eee98d422cdef3f46b0f28a24e3838d02eaca88a4f9274e4655488d2b5c7188",
+        "exclusive_setup": {
+          "actor_preparation": {
+            "cycles": 7279482,
+            "cycles_per_scene": 830.2328923357665
+          },
+          "destination_setup": {
+            "cycles": 622290,
+            "cycles_per_scene": 70.97285583941606
+          }
+        },
+        "groups": {
+          "all": {
+            "count": 8768,
+            "mean": 2575.768704379562,
+            "p50": 2674,
+            "p95": 4745,
+            "max": 6187
+          },
+          "hidden-palette": {
+            "count": 64,
+            "mean": 1339.1875,
+            "p50": 1063,
+            "p95": 3027,
+            "max": 3027
+          },
+          "regular": {
+            "count": 7372,
+            "mean": 2714.6184210526317,
+            "p50": 2713,
+            "p95": 4840,
+            "max": 6187
+          },
+          "eyes": {
+            "count": 248,
+            "mean": 2826.0685483870966,
+            "p50": 2680,
+            "p95": 4653,
+            "max": 5597
+          },
+          "score-right": {
+            "count": 124,
+            "mean": 2900.9032258064517,
+            "p50": 2742,
+            "p95": 4735,
+            "max": 5712
+          },
+          "clipped": {
+            "count": 960,
+            "mean": 1485.3,
+            "p50": 1093,
+            "p95": 3057,
+            "max": 3057
+          }
+        }
+      },
+      "trial": {
+        "prg_sha256": "c9af728de8f74dcfda6dce7da0a2f9679ffec453484b4054e6cc181afd21dd41",
+        "native_sha256": "f56b833735daac18262448cffee708ae372911dde9b1d99f8a7a3a3630fb84a9",
+        "method": "Unpatched complete video_sprites calls, RTS included, caller JSR excluded; IRQs masked",
+        "oracle": "Independent Renderer.check_scene pixels, colours, retained inputs and restoration",
+        "cases_checked": 8768,
+        "output_sha256": "1c8e70e6e820b3f41d989da46703592dc0bd8d6adb36a322fa4eaf5ab8b9140d",
+        "artwork_sha256": "8eee98d422cdef3f46b0f28a24e3838d02eaca88a4f9274e4655488d2b5c7188",
+        "exclusive_setup": {
+          "actor_preparation": {
+            "cycles": 7279482,
+            "cycles_per_scene": 830.2328923357665
+          },
+          "destination_setup": {
+            "cycles": 584609,
+            "cycles_per_scene": 66.67529653284672
+          }
+        },
+        "groups": {
+          "all": {
+            "count": 8768,
+            "mean": 2600.3306341240877,
+            "p50": 2672,
+            "p95": 4932,
+            "max": 6357
+          },
+          "hidden-palette": {
+            "count": 64,
+            "mean": 1367.46875,
+            "p50": 1064,
+            "p95": 3222,
+            "max": 3222
+          },
+          "regular": {
+            "count": 7372,
+            "mean": 2737.2065925122083,
+            "p50": 2710,
+            "p95": 5030,
+            "max": 6357
+          },
+          "eyes": {
+            "count": 248,
+            "mean": 2849.516129032258,
+            "p50": 2676,
+            "p95": 4840,
+            "max": 5767
+          },
+          "score-right": {
+            "count": 124,
+            "mean": 2925.1451612903224,
+            "p50": 2738,
+            "p95": 4925,
+            "max": 5882
+          },
+          "clipped": {
+            "count": 960,
+            "mean": 1525.1,
+            "p50": 1094,
+            "p95": 3252,
+            "max": 3252
+          }
+        }
+      },
+      "cycle_savings": {
+        "all": {
+          "count": 8768,
+          "mean": -24.561929744525546,
+          "p50": -1,
+          "p95": 24,
+          "max": 24,
+          "min": -199
+        },
+        "hidden-palette": {
+          "count": 64,
+          "mean": -28.28125,
+          "p50": -1,
+          "p95": -1,
+          "max": -1,
+          "min": -195
+        },
+        "regular": {
+          "count": 7372,
+          "mean": -22.588171459576778,
+          "p50": -1,
+          "p95": 24,
+          "max": 24,
+          "min": -199
+        },
+        "eyes": {
+          "count": 248,
+          "mean": -23.447580645161292,
+          "p50": 4,
+          "p95": 7,
+          "max": 24,
+          "min": -197
+        },
+        "score-right": {
+          "count": 124,
+          "mean": -24.241935483870968,
+          "p50": 4,
+          "p95": 7,
+          "max": 24,
+          "min": -197
+        },
+        "clipped": {
+          "count": 960,
+          "mean": -39.8,
+          "p50": -1,
+          "p95": -1,
+          "max": -1,
+          "min": -195
+        }
+      }
+    }
+  },
+  "limitations": [
+    "One saved workload, not a fixed-rate or worst-case guarantee",
+    "Maximum actual redraw interval and native input gap increase slightly",
+    "Partial poses remain and several counts increase; shared color, clipping and other classifier exclusions retained",
+    "Exact sound values do not prove identical write timestamps or PCM",
+    "No physical-hardware validation",
+    "Current default is unchanged; live trial acceptance is pending"
+  ],
+  "artifacts": {
+    "build/pool-dest-fast/evaluation/kernel.json": {
+      "sha256": "17a428bea0d245169053580ed9ad3afcec6bd95cc372032c0a6541a219b8bbf7",
+      "bytes": 2956165
+    },
+    "build/pool-dest-fast/evaluation/stamp-guards.json": {
+      "sha256": "da019983e2e3154fa4505c86d17a5dfa20f324f5829dc3fdd48bdbaa9dfb6911",
+      "bytes": 3726479
+    },
+    "build/pool-dest-fast/evaluation/tests.log": {
+      "sha256": "0a18f037c263404a48b35c397cabaaf74db61f7e1ce1fc916531ffd45537f48f",
+      "bytes": 18957
+    },
+    "build/pool-dest-fast/evaluation/stamp-guards.log": {
+      "sha256": "cbde4d74ed62bfbc2f50e1e5df36f64383c6b868f8dd8b0c90c6b19f7faa24dd",
+      "bytes": 6201
+    },
+    "build/pool-dest-fast/evaluation/starting-identities.json": {
+      "sha256": "cab65195ed81bc2cbc789e8fc9b4695f92455c11fa43d053413ef52f5ed4e4d2",
+      "bytes": 869
+    },
+    "build/pool-dest-fast/evaluation/baseline-cycles.txt": {
+      "sha256": "97730f20a2b6d7c2e88c828d3b47eed6409ad402ca5a83d4b8f83e874fab8da5",
+      "bytes": 2855
+    },
+    "build/pool-dest-fast/evaluation/trial-cycles.txt": {
+      "sha256": "849b3e9c8061f26fad3c855f33fdb30828b1c72743f91a2901c0f3309f29f2d7",
+      "bytes": 3527
+    },
+    "build/pool-dest-fast/evaluation/baseline-glyph_pool.S": {
+      "sha256": "813d5527294b072a03f41564db4d264a542a6972907523ca2a43db3c5afc7622",
+      "bytes": 11841
+    },
+    "build/pool-dest-fast/evaluation/trial-glyph_pool.S": {
+      "sha256": "a1fabb2477c40996c2518a036c0ae1fe4a88a697496111b09c63a753f6546317",
+      "bytes": 11964
+    },
+    "build/pool-dest-fast/evaluation/comparison.json": {
+      "sha256": "cb5f940fedd819c4268a464bccae656da8952663cc50cf6cdd80219d3058a6bc",
+      "bytes": 576
+    },
+    "build/pool-dest-fast/evaluation/comparison.png": {
+      "sha256": "43a8b4fd726935de1b75149403d0e98005874b7c516aaaa9b7533a49fad3b97f",
+      "bytes": 19228
+    },
+    "build/pool-dest-fast/evaluation/glyph-pool-comparison.mp4": {
+      "sha256": "c6466c358592a8e809782525946860b20f5a0e75261dd34da90915168b829eed",
+      "bytes": 640908
+    },
+    "build/pool-dest-fast/smoke/native-validation.json": {
+      "sha256": "9accf54cef0e19952892b9a7f4e8cb6b84aa004d0d17be4e77a4f3c198b5bbf5",
+      "bytes": 1791
+    },
+    "build/pool-dest-fast/evaluation/audio-replay/summary.json": {
+      "sha256": "c32842891a3a821f7642adb0d73e8aa8abc1503351073fa352143af6bef44ef4",
+      "bytes": 895
+    },
+    "build/pool-setup-fast/evaluation/trial-cpu/active.profile": {
+      "sha256": "b3eef5f18529c00e2dda496cf53906c0616584da2d1cf1e2cf69ed3c45ade732",
+      "bytes": 75107
+    },
+    "build/pool-setup-fast/evaluation/trial-cpu/active.trace": {
+      "sha256": "3e4479c80c46508e0cd4d9f4f91ad65fce29eaafe19d0ef801daac964907299d",
+      "bytes": 485905
+    },
+    "build/pool-setup-fast/evaluation/trial-cpu/summary.json": {
+      "sha256": "6651fa6e5de48283b5dbb9d1e0aff202a58a69022c2f10d7b31e0529a9de2dfb",
+      "bytes": 160830
+    },
+    "build/pool-setup-fast/evaluation/trial-cpu/pool-costs.json": {
+      "sha256": "8ba4985fe98e7ddf55f6fca8398b9a9935389708294f95b5a866e61f3c3c1f85",
+      "bytes": 3940
+    },
+    "build/pool-dest-fast/evaluation/trial-cpu/active.profile": {
+      "sha256": "9a4b27cad5145680dfe162c34a5df9418cd86d7ae80b48a1b7de3a575a9ce534",
+      "bytes": 75129
+    },
+    "build/pool-dest-fast/evaluation/trial-cpu/active.trace": {
+      "sha256": "d9d467b6bac52405f1b72ef03ab37209f5494cb9ea53ed4136f8f8027fbb88f3",
+      "bytes": 487537
+    },
+    "build/pool-dest-fast/evaluation/trial-cpu/summary.json": {
+      "sha256": "9a7900488c7463a8a104e9cf2619572d576ff7bfe18971707af38c22aa672743",
+      "bytes": 160841
+    },
+    "build/pool-dest-fast/evaluation/trial-cpu/pool-costs.json": {
+      "sha256": "06dd098a4065a7625c548faa0646e1564c23347ed57334c28be6847442c835e8",
+      "bytes": 3940
+    },
+    "build/pool-setup-fast/evaluation/trial-vice/recording.json": {
+      "sha256": "20688f3c35f75b341c9681f032917372f4d116cae003a13dedae2253a0f7560b",
+      "bytes": 1665143
+    },
+    "build/pool-setup-fast/evaluation/trial-vice/analysis.json": {
+      "sha256": "54351a59e301802e4273b4ffeae5d1ecb5f3a0b592adb18b9783b00daf422767",
+      "bytes": 374732
+    },
+    "build/pool-setup-fast/evaluation/trial-vice/actors.json": {
+      "sha256": "3aa7e68b789fa9a9739aab59689a649dccf11c3e828e2420c72db5c5ecabf905",
+      "bytes": 2192356
+    },
+    "build/pool-setup-fast/evaluation/trial-vice/memory.zip": {
+      "sha256": "562984248027cd20d55878f355661d5e20e57d649f278b476e0e73d0b83becb8",
+      "bytes": 5287096
+    },
+    "build/pool-setup-fast/evaluation/trial-vice/evidence.png": {
+      "sha256": "0f0fd27f5d5a86df165b53b4888a0a6fdd3518d3dcd7172a102684262260849b",
+      "bytes": 11256
+    },
+    "build/pool-dest-fast/evaluation/trial-vice/recording.json": {
+      "sha256": "7f69b719afa780f2decf8dabc6b8db80e135104fcc26b8e4563984e80fa4bd63",
+      "bytes": 1668210
+    },
+    "build/pool-dest-fast/evaluation/trial-vice/analysis.json": {
+      "sha256": "7f3897f7ea3fdec80795437f8bffbfe9bea2b89f520c912735e61f1ba1657866",
+      "bytes": 376245
+    },
+    "build/pool-dest-fast/evaluation/trial-vice/actors.json": {
+      "sha256": "ca5e899a81860fd6c7f3978db6a78d78cdfd06c50ae38e62fff21ba2ddf8f2e7",
+      "bytes": 2195240
+    },
+    "build/pool-dest-fast/evaluation/trial-vice/memory.zip": {
+      "sha256": "c8d7a04d242c6bf58d75abca64b2a624f491c845047ab332e27350fab01d7d7f",
+      "bytes": 5314554
+    },
+    "build/pool-dest-fast/evaluation/trial-vice/evidence.png": {
+      "sha256": "b7a5993110e77cd1183f6a7f6c765f8f889ba8ae0c888fec6eb4d67c1178cda9",
+      "bytes": 10975
+    },
+    "build/pool-dest-fast/evaluation/baseline-source-glyph_pool.S": {
+      "sha256": "86c064445192a78621f7e64acf53a768f048c4d4040ea7147b897c23c041acca",
+      "bytes": 13775
+    }
+  },
+  "source_files": {
+    "Makefile": "cddbbf64c36b500a8d11c3d519525dc586df19be4cc1002e4bb762155d6efdac",
+    "README.md": "115136210552d146a3461b358f93d4b1281ed60a2aada7dc797e31e1890b655a",
+    "src/glyph_pool.S": "9141c8242f9b8e64ba56252259a7112a7f03a60d6dd087c4a90806150a5cd45d",
+    "src/pool_stamp_fast.inc": "dfb8ad9186a30cfaa906d5440497788010fe02f253305fc5743adae55ae93f2a",
+    "tools/arcade/pool_setup_timing.py": "e1d0f04970e1e77090e241b7f92cb466764207dd77b302079fe6e13e427e41e9",
+    "tools/arcade/pool_stamp_timing.py": "4c3e8e72af716334baf719a5ddd8d04630e9d0fee1c8981e92e4a61e2324a322",
+    "tools/arcade/pool_profile.py": "14378580842dd3fc19f106c6c3ac254d867db76be9f3b3d0831415fa2d7f3d8e",
+    "tools/arcade/profile_game.py": "dffb4a8e3d820afdd466853b09277b3b3f5003d9d002c27873ccd74365721394",
+    "tools/arcade/measure_display.py": "c0fcb4a23b24a5ed9e2d6799dcc9cb1f94ba57233438fbd9c8cfa1e8e7adc563",
+    "tools/arcade/analyze_display.py": "ea2949b70bdf6b6d326e22ccede9c9498745c28b5f17aa82175abc85c88c5cfa",
+    "tools/arcade/compare_display.py": "0a5e0a761feabb320f1ef2d99e9003ceab922406656300b4495210c9c2512ec0",
+    "tools/arcade/mkrom.py": "1ce90943cf0adf20cefcccc9f7cb89c8335978b2649e7d79f98af2b86853dc18",
+    "tests/glyph_pool.py": "ca64d985f04f14ce328a523f600419c1453a779519868e2c4636f2b73998f39d",
+    "tests/render.py": "5d5ff7cb1f853fd597773f9dccdeb13d148c7b0f27e8749c503373a01e987591",
+    "tests/fixtures/active-replay.json": "f3d0e00c049736b1c5ada729ea14be5df77ff2358c0f2959260d42816e6c9c72",
+    "docs/artwork/hires-pacman.json": "5cb6ca2564e54a15046772b7661325fc0abf2a0039cfa63ac8966c3f373f30d6",
+    "docs/POOL_DEST_OPTIMIZATION.md": "867ccfcb16b94f9b7dced475af4eaa2bb4ab118c94ebec272897505f873903d9",
+    "docs/RESEARCH_OPTIMIZATION_PLAN.md": "9b8058966b402988d254331b83eeb05e93da9e82bd03ef0784e5d423bfbf15ef",
+    "docs/baselines/pool-setup-promotion.json": "f26634220177248fde3e23b32cc6c208a5c6e9dc3a1ae03b6f80599cfc7d523f"
+  }
+}

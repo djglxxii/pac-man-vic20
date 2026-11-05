@@ -97,23 +97,47 @@ pool_shift_0:
  sta (v_addr),y
  jmp pool_step
 pool_shift_1:
+#ifdef POOL_SHIFT_FAST
+ /* First shift in A: preserve its carry while storing the shifted half.
+    Same halves as the zero-page RMW path, three cycles and one byte less. */
+ lsr
+ sta v_hi
+ lda #0
+#else
  sta v_hi
  lda #0
  lsr v_hi
+#endif
  ror
  jmp pool_merge_low
 pool_shift_2:
+#ifdef POOL_SHIFT_FAST
+ /* First shift in A: preserve its carry while storing the shifted half.
+    Same halves as the zero-page RMW path, three cycles and one byte less. */
+ lsr
+ sta v_hi
+ lda #0
+#else
  sta v_hi
  lda #0
  lsr v_hi
+#endif
  ror
  lsr v_hi
  ror
  jmp pool_merge_low
 pool_shift_3:
+#ifdef POOL_SHIFT_FAST
+ /* First shift in A: preserve its carry while storing the shifted half.
+    Same halves as the zero-page RMW path, three cycles and one byte less. */
+ lsr
+ sta v_hi
+ lda #0
+#else
  sta v_hi
  lda #0
  lsr v_hi
+#endif
  ror
  lsr v_hi
  ror
@@ -147,17 +171,33 @@ pool_left_3:
  asl
  jmp pool_merge_low
 pool_left_2:
+#ifdef POOL_SHIFT_FAST
+ /* First shift in A: preserve its carry while storing the shifted half.
+    Same halves as the zero-page RMW path, three cycles and one byte less. */
+ asl
+ sta v_lo
+ lda #0
+#else
  sta v_lo
  lda #0
  asl v_lo
+#endif
  rol
  asl v_lo
  rol
  jmp pool_merge_high
 pool_left_1:
+#ifdef POOL_SHIFT_FAST
+ /* First shift in A: preserve its carry while storing the shifted half.
+    Same halves as the zero-page RMW path, three cycles and one byte less. */
+ asl
+ sta v_lo
+ lda #0
+#else
  sta v_lo
  lda #0
  asl v_lo
+#endif
  rol
  jmp pool_merge_high
 pool_shifts:

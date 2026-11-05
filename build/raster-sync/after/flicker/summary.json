@@ -1,0 +1,72 @@
+{
+  "cpu_hz": 1022727,
+  "video_frames_per_sample": 180,
+  "metric": "bitmap_erase entry to matching bitmap_draw return",
+  "prg_sha256": "4710472c962bcf84905727ec807487f69dddc108e2730543f92229eced9d6912",
+  "samples": [
+    {
+      "scene": "play",
+      "completed_renders": 153,
+      "seconds": 2.9773,
+      "actor_erases": 480,
+      "actor_updates": 480,
+      "actor_window_ms_per_second": 880.79,
+      "erase_to_paint_ms_mean": 5.463,
+      "erase_to_paint_ms_p95": 10.601,
+      "erase_to_paint_ms_max": 14.302,
+      "raster_updates": 16,
+      "raster_wait_ms_mean": 0.041,
+      "raster_wait_ms_max": 0.194,
+      "raster_window_ms_max": 2.404,
+      "raster_exposed_windows": 0
+    },
+    {
+      "scene": "frightened",
+      "completed_renders": 155,
+      "seconds": 2.9796,
+      "actor_erases": 509,
+      "actor_updates": 507,
+      "actor_window_ms_per_second": 908.84,
+      "erase_to_paint_ms_mean": 5.341,
+      "erase_to_paint_ms_p95": 10.312,
+      "erase_to_paint_ms_max": 16.198,
+      "raster_updates": 0,
+      "raster_wait_ms_mean": 0,
+      "raster_wait_ms_max": 0,
+      "raster_window_ms_max": 0.0,
+      "raster_exposed_windows": 0
+    },
+    {
+      "scene": "attract-chase",
+      "completed_renders": 127,
+      "seconds": 2.9815,
+      "actor_erases": 334,
+      "actor_updates": 331,
+      "actor_window_ms_per_second": 741.05,
+      "erase_to_paint_ms_mean": 6.675,
+      "erase_to_paint_ms_p95": 10.714,
+      "erase_to_paint_ms_max": 12.68,
+      "raster_updates": 0,
+      "raster_wait_ms_mean": 0,
+      "raster_wait_ms_max": 0,
+      "raster_window_ms_max": 0.0,
+      "raster_exposed_windows": 0
+    },
+    {
+      "scene": "intermission",
+      "completed_renders": 179,
+      "seconds": 2.9706,
+      "actor_erases": 90,
+      "actor_updates": 90,
+      "actor_window_ms_per_second": 74.15,
+      "erase_to_paint_ms_mean": 2.448,
+      "erase_to_paint_ms_p95": 6.03,
+      "erase_to_paint_ms_max": 8.83,
+      "raster_updates": 58,
+      "raster_wait_ms_mean": 1.442,
+      "raster_wait_ms_max": 5.73,
+      "raster_window_ms_max": 2.152,
+      "raster_exposed_windows": 0
+    }
+  ]
+}

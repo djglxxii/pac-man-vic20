@@ -1,0 +1,127 @@
+{
+  "prg_sha256": "5104973e43a2e0db2e1112ee18454012bbbbaa89646d914d3a9fa3663f0d40b4",
+  "source_summary_sha256": "5873829fce0c5e5b13b9d09f46523af644c9777ce4c5715fceb7e654db2e0679",
+  "source_profile_sha256": "9e860904ccdc08102cb82d4c3c8e8a5897033999caf0364f27d9e0013674d414",
+  "method": "Exclusive instruction cycles in disjoint linked-label ranges; no guest changes",
+  "cycles": 20360911,
+  "completed_redraws": 529,
+  "groups": {
+    "reuse_guard": {
+      "begin": "29a4",
+      "end": "29aa",
+      "cycles": 38088,
+      "cycles_per_redraw": 72.0,
+      "cpu_percent": 0.18706432143434054
+    },
+    "actor_pose_and_setup": {
+      "begin": "29aa",
+      "end": "2b21",
+      "cycles": 1214359,
+      "cycles_per_redraw": 2295.5746691871454,
+      "cpu_percent": 5.964168302685474
+    },
+    "generic_stamp": {
+      "begin": "2b21",
+      "end": "2bed",
+      "cycles": 2126103,
+      "cycles_per_redraw": 4019.0982986767485,
+      "cpu_percent": 10.442081889164978
+    },
+    "cell_lookup_and_allocation": {
+      "begin": "2bed",
+      "end": "2c81",
+      "cycles": 1304506,
+      "cycles_per_redraw": 2465.9848771266543,
+      "cpu_percent": 6.406913718153377
+    },
+    "background_copy": {
+      "begin": "2c81",
+      "end": "2cd3",
+      "cycles": 1716935,
+      "cycles_per_redraw": 3245.6238185255197,
+      "cpu_percent": 8.432505795050133
+    },
+    "colour_and_pointer": {
+      "begin": "2cd3",
+      "end": "2cee",
+      "cycles": 136157,
+      "cycles_per_redraw": 257.38563327032136,
+      "cpu_percent": 0.6687176227036207
+    },
+    "destination_setup": {
+      "begin": "2cee",
+      "end": "2d60",
+      "cycles": 404905,
+      "cycles_per_redraw": 765.4158790170133,
+      "cpu_percent": 1.9886389169914844
+    },
+    "restore_control_and_publish": {
+      "begin": "2d60",
+      "end": "2e6f",
+      "cycles": 824498,
+      "cycles_per_redraw": 1558.5973534971645,
+      "cpu_percent": 4.04941606001814
+    },
+    "normal_ghost_stamp": {
+      "begin": "2e6f",
+      "end": "2ec9",
+      "cycles": 404504,
+      "cycles_per_redraw": 764.6578449905483,
+      "cpu_percent": 1.986669456980584
+    }
+  },
+  "generic_detail": {
+    "setup": {
+      "begin": "2b21",
+      "end": "2b7b",
+      "cycles": 234119,
+      "cycles_per_redraw": 442.56899810964086,
+      "cpu_percent": 1.1498454072118875
+    },
+    "fetch_and_mirror": {
+      "begin": "2b7b",
+      "end": "2b8b",
+      "cycles": 235686,
+      "cycles_per_redraw": 445.531190926276,
+      "cpu_percent": 1.1575415265063533
+    },
+    "right_shifts": {
+      "begin": "2b8b",
+      "end": "2ba0",
+      "cycles": 486580,
+      "cycles_per_redraw": 919.8109640831758,
+      "cpu_percent": 2.3897751922789703
+    },
+    "merge": {
+      "begin": "2ba0",
+      "end": "2bac",
+      "cycles": 590268,
+      "cycles_per_redraw": 1115.8185255198487,
+      "cpu_percent": 2.899025490558846
+    },
+    "row_control": {
+      "begin": "2bac",
+      "end": "2bcb",
+      "cycles": 432648,
+      "cycles_per_redraw": 817.8601134215501,
+      "cpu_percent": 2.1248950992418756
+    },
+    "left_shifts": {
+      "begin": "2bcb",
+      "end": "2bd9",
+      "cycles": 146802,
+      "cycles_per_redraw": 277.5085066162571,
+      "cpu_percent": 0.7209991733670463
+    }
+  },
+  "counters": {
+    "generic_calls": 2081,
+    "normal_ghost_calls": 744,
+    "generic_rows": 24972,
+    "nonempty_generic_rows": 21081,
+    "cell_calls": 8586,
+    "fresh_cells": 8215,
+    "shared_cell_hits": 371
+  },
+  "caveat": "Different redraw cadence samples different poses; use identical-input kernels for isolated savings"
+}

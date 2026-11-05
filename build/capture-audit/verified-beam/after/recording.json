@@ -1,0 +1,122 @@
+{
+  "prg": "build/pacman-beam.prg",
+  "prg_sha256": "e8a7ae03f68528f4e2d57ef49c59ace8fce9baf3e38f48a5b51e24620621c5e0",
+  "video_frames": 360,
+  "fps": "340909/5655",
+  "joystick_only": true,
+  "guest_patches": false,
+  "first": {
+    "tick": 431,
+    "attributes": [
+      0,
+      0,
+      148,
+      1,
+      156,
+      3,
+      156,
+      5,
+      156,
+      7,
+      186,
+      9,
+      252,
+      0,
+      0,
+      0
+    ],
+    "positions": [
+      0,
+      0,
+      162,
+      164,
+      134,
+      155,
+      151,
+      139,
+      119,
+      139,
+      161,
+      68,
+      7,
+      8,
+      0,
+      0
+    ],
+    "pellets": 3,
+    "raw_frame_sha256": "e08fc90fbf4b0101edd20d64844201e88866250954a2e2f387197a425fe994e2",
+    "completed_render_calls": 0,
+    "beam_frames": 144,
+    "beam_protected": 20,
+    "beam_fallback": 0
+  },
+  "last": {
+    "tick": 792,
+    "attributes": [
+      0,
+      0,
+      136,
+      1,
+      152,
+      3,
+      136,
+      5,
+      152,
+      7,
+      188,
+      9,
+      252,
+      0,
+      0,
+      0
+    ],
+    "positions": [
+      0,
+      0,
+      34,
+      227,
+      194,
+      232,
+      171,
+      150,
+      119,
+      143,
+      121,
+      42,
+      7,
+      8,
+      0,
+      0
+    ],
+    "pellets": 47,
+    "raw_frame_sha256": "64aec6dec7362cd24b0095ea1dd4d628c859e0d70ce0c1146d2ad45ad4a68d8e",
+    "completed_render_calls": 140,
+    "beam_frames": 212,
+    "beam_protected": 313,
+    "beam_fallback": 0
+  },
+  "audit": {
+    "snapshot_prg": "build/capture-audit/verified-beam/after/captured-program.prg",
+    "loaded_program": {
+      "all_depacked_regions_match": true,
+      "bytes_checked": 33792,
+      "loaded_image_sha256": "34b3d92a84a73b947b3a1f54804017a2bc056925b5335505d4978475a374b102"
+    },
+    "completed_render_calls": 140,
+    "render_calls_per_second": 23.51,
+    "synthetic_control_after_recording": {
+      "after_recording": true,
+      "VIC_register_900f": "4b",
+      "normal_sha256": "64aec6dec7362cd24b0095ea1dd4d628c859e0d70ce0c1146d2ad45ad4a68d8e",
+      "forced_sha256": "89e2216b27c80431bc7d839f6c15d5f462e4eca05936a448ad17f6123e299faf",
+      "different_raw_frames": true,
+      "normal_purple_pixels": 200,
+      "forced_purple_pixels": 41996,
+      "purple_RGB": [
+        225,
+        81,
+        112
+      ]
+    }
+  }
+}

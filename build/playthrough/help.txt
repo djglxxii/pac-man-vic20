@@ -1,0 +1,13 @@
+usage: record_playthrough.py [-h] [--output OUTPUT] [--vice VICE]
+                             [--ffmpeg FFMPEG] [--radius RADIUS]
+                             [--max-frames MAX_FRAMES]
+
+Drive the unchanged VIC PRG with joystick input and record VICE video/audio.
+
+options:
+  -h, --help            show this help message and exit
+  --output OUTPUT
+  --vice VICE
+  --ffmpeg FFMPEG
+  --radius RADIUS
+  --max-frames MAX_FRAMES

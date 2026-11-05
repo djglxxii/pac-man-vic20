@@ -1,0 +1,1 @@
+Incomplete initial capture: requested 1200 frames exceeded the saved input trace by one tick. This older trial is not final. Use final-trial-vice, a complete 1180-frame capture.

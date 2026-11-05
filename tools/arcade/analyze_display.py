@@ -20,13 +20,14 @@ from profile_game import stats
 
 WIDTH, HEIGHT = 112, 224
 FRAME_CYCLES = 65*261
+RASTER_WINDOW_CYCLES = 16
 MIN_EVIDENCE = 12
 
 
 def validate_frame_spacing(frames):
     assert len(frames) >= 2
-    assert all(f['line'] == 1 and f['cycle'] < 8 for f in frames)
-    assert all(abs((b['clock']-a['clock'])-FRAME_CYCLES) <= 8
+    assert all(f['line'] == 1 and 0 <= f['cycle'] < RASTER_WINDOW_CYCLES for f in frames)
+    assert all(b['clock']-a['clock'] == FRAME_CYCLES+b['cycle']-a['cycle']
                for a, b in zip(frames, frames[1:])), 'Missing or duplicate raster frame'
 
 

@@ -1,0 +1,841 @@
+{
+  "status": "Accepted after live review and promoted to standard build",
+  "date": "2026-11-04",
+  "user_request": "that looks great. make this the standard build",
+  "default_target": "build/tile-stamp-fast/pacman.prg",
+  "accepted_prg_sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297",
+  "identical_files": [
+    {
+      "default": "build/pacman.prg",
+      "accepted_build": "build/tile-stamp-fast/pacman.prg",
+      "sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297"
+    },
+    {
+      "default": "build/pacman.lbl",
+      "accepted_build": "build/tile-stamp-fast/pacman.lbl",
+      "sha256": "68d544cc690134bb3c0530cd7a7c4e81087df9fc88f8b0a1b456607fa4b53ef8"
+    },
+    {
+      "default": "build/arcade/pacman-native.bin",
+      "accepted_build": "build/tile-stamp-fast/pacman-native.bin",
+      "sha256": "9f8e854bdf04e99ad7582e5f72fe17e9137944b1592389968d3ad50e0b9f9b6b"
+    },
+    {
+      "default": "build/arcade/pacman-native.bin.elf",
+      "accepted_build": "build/tile-stamp-fast/pacman-native.bin.elf",
+      "sha256": "41002fc744253ea9f8e1ad766c784360666a5dac88e52e723164ab9b9228c047"
+    },
+    {
+      "default": "build/arcade/pacman.map",
+      "accepted_build": "build/tile-stamp-fast/pacman.map",
+      "sha256": "3ad3758740d8c2700c6e8f6345e552656432c1b402c49c8a090d2520aef59a53"
+    }
+  ],
+  "original_measurements": {
+    "path": "docs/baselines/tile-stamp-fast.json",
+    "sha256": "5e90ea41e041512d10b2f2084c06cdbdb9251bd9af2bc886ad8d2a043472937a",
+    "historical_status_preserved": true,
+    "historical_status": "Trial ready for live review; standard remains accepted pool-allocation build"
+  },
+  "runtime_changed_by_promotion": false,
+  "measured_actual_vice": {
+    "completed_renders_per_second": 32.21310923408487,
+    "video_frames": 1180,
+    "depacked_bytes_verified": 33792,
+    "measurements_reused_because_program_is_byte_identical": true
+  },
+  "hardware": {
+    "video": "NTSC",
+    "ram": "+3K and BLK1/2/3/5",
+    "software_stack_bytes": 704,
+    "game_tick_cycles": 16875,
+    "vic_frame_cycles": 16965,
+    "cpu_hz": 1022727
+  },
+  "memory": {
+    "resident_end": "7cb3",
+    "resident_free": 141,
+    "stack_bytes": 704,
+    "blk5_free": 151,
+    "native_bytes": 33792,
+    "prg_bytes": 26701
+  },
+  "previous_build_preserved": {
+    "prg_sha256": "feed65059a7ad52ac007868b4ac8f982710478608e310d9ea8f56c54e43b14cf",
+    "native_sha256": "1420abdb2eed61fa231008d8a728135b54a59738485fc6167401ecdb6a85da7d",
+    "labels_sha256": "ed0971ebffee4ee4953e17a7e3030e7d0459b54ae2fca22ef4c37faf6306d713"
+  },
+  "verification": {
+    "command": "make test",
+    "exit_code": 0,
+    "unit_tests": 86,
+    "original_rom_tests": 15,
+    "pooled_tests": 41,
+    "sound_effect_tests": 4,
+    "audio_divider_tests": 4,
+    "audio_update_tests": 4,
+    "ghost_update_tests": 2,
+    "tunnel_tests": 3,
+    "classifier_tests": 13,
+    "divider": {
+      "method": "Actual PRG calls with IRQs masked, RTS included, JSR excluded",
+      "frequencies_checked": 65536,
+      "output_sha256": "4d2bffc358c42d330b963602c5b65ab26b071c5ccd064b355f394422b60a7fd5",
+      "programs": [
+        {
+          "path": "build/pool-stamp-fast/pacman.prg",
+          "sha256": "9520c17567a1a1ad0306e8aedcdb44c8cbd37d79a23529921a3c49b33014c149"
+        },
+        {
+          "path": "build/pacman.prg",
+          "sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297"
+        }
+      ]
+    },
+    "audio_adapter": {
+      "method": "Actual complete audio_update calls, identical inputs, IRQs masked; RTS included, JSR excluded",
+      "frequency_shift_pairs": 524288,
+      "cases": 530794,
+      "output_sha256": "88ee656135021b3821765efb9b48626687817876b9670909842830e2b0fbd180",
+      "saved_input_corpus": {
+        "path": "build/audio-divider-fast/evaluation/trial-cpu",
+        "summary_sha256": "154b1b502cf5d80354397bfab16b3c81deb2d213d53fef5df52760a84b20a733",
+        "ticks_sha256": "433b13e15d56812d7745067cba946bd3f257dc28cc2d00b2c1754e56d6d079dc",
+        "captured_prg_sha256": "f0ca4b5135bb0cf7418996fc1e6cf9e05c245d92778fda566547f0f29bc39d7c",
+        "captured_native_sha256": "aff3c13ed6102bc0a31e1365f6b202d6b6282f2ad8cf522a29db2874c67a0ca3",
+        "ticks_checked": 1639,
+        "historical_profile_cycles_reused": false
+      },
+      "programs": [
+        {
+          "path": "build/audio-divider-fast/pacman.prg",
+          "sha256": "ee86a2c661c6fa089aca07b442467bfe990d7eb958c33e4ce1427a2097d4885d"
+        },
+        {
+          "path": "build/pacman.prg",
+          "sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297"
+        }
+      ]
+    },
+    "ghosts": {
+      "method": "Actual 6502 routines vs original Z80 $1017; IRQs masked, RTS included, JSR excluded",
+      "cases": 2458,
+      "fixture_sha256": "e5c2476313353a23255f8878d452c31501c9ef55c6a30b8454fb78bf120a1c40",
+      "programs": [
+        {
+          "path": "build/audio-update-fast/pacman.prg",
+          "sha256": "ead7a6aa4556b944eb88589af3673cc29fa7a059d33181f20b52c208bfb100af",
+          "output_sha256": "235e92821b25d7786b75d873a61529e86b55a62a22d2fa3c38b09194f79e31ba"
+        },
+        {
+          "path": "build/pacman.prg",
+          "sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297",
+          "output_sha256": "235e92821b25d7786b75d873a61529e86b55a62a22d2fa3c38b09194f79e31ba"
+        }
+      ]
+    },
+    "allocator": {
+      "baseline": {
+        "prg_sha256": "b4bd4785b6885cc4080a72f5508646caa6507f13bdee3fa087512e65e3b90e04",
+        "method": "vicsim call command; IRQs masked; identical home bytes and allocator inputs",
+        "cells_checked": 392,
+        "allocation_cycles": {
+          "count": 392,
+          "mean": 378.41326530612247,
+          "p50": 379,
+          "p95": 379,
+          "max": 379
+        },
+        "hit_cycles": {
+          "count": 392,
+          "mean": 119.08163265306122,
+          "p50": 120,
+          "p95": 120,
+          "max": 120
+        },
+        "begin_cycles": {
+          "count": 18,
+          "mean": 384.72222222222223,
+          "p50": 167,
+          "p95": 2130,
+          "max": 2131
+        }
+      },
+      "trial": {
+        "prg_sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297",
+        "method": "vicsim call command; IRQs masked; identical home bytes and allocator inputs",
+        "cells_checked": 392,
+        "allocation_cycles": {
+          "count": 392,
+          "mean": 354.25,
+          "p50": 355,
+          "p95": 355,
+          "max": 355
+        },
+        "hit_cycles": {
+          "count": 392,
+          "mean": 116.08163265306122,
+          "p50": 117,
+          "p95": 117,
+          "max": 117
+        },
+        "begin_cycles": {
+          "count": 18,
+          "mean": 384.72222222222223,
+          "p50": 167,
+          "p95": 2130,
+          "max": 2131
+        }
+      }
+    },
+    "tile_stamp": {
+      "baseline": {
+        "prg_sha256": "feed65059a7ad52ac007868b4ac8f982710478608e310d9ea8f56c54e43b14cf",
+        "native_sha256": "1420abdb2eed61fa231008d8a728135b54a59738485fc6167401ecdb6a85da7d",
+        "method": "Complete bitmap_tile call; IRQs masked; RTS included, caller JSR/fixture loading excluded",
+        "cases_checked": 17408,
+        "tiles_sha256": "a3981276773d149e354b531a2703ccd1ea1cd7df35310972d906ef11cafb379b",
+        "output_sha256": "c06e50cead28822094d6720e532ed1da9e81e7aac35421276b68b253acc6d9e9",
+        "groups": {
+          "all": {
+            "count": 17408,
+            "mean": 900.5746208639706,
+            "p50": 923,
+            "p95": 1043,
+            "max": 1085,
+            "min": 57
+          },
+          "clipped": {
+            "count": 16,
+            "mean": 61.0,
+            "p50": 61,
+            "p95": 65,
+            "max": 65,
+            "min": 57
+          },
+          "visible": {
+            "count": 17392,
+            "mean": 901.3469986200552,
+            "p50": 923,
+            "p95": 1043,
+            "max": 1085,
+            "min": 711
+          },
+          "nibble-1": {
+            "count": 8696,
+            "mean": 901.5264489420423,
+            "p50": 923,
+            "p95": 1043,
+            "max": 1078,
+            "min": 712
+          },
+          "nibble-0": {
+            "count": 8696,
+            "mean": 901.167548298068,
+            "p50": 923,
+            "p95": 1042,
+            "max": 1085,
+            "min": 711
+          },
+          "destination-page-crossing": {
+            "count": 528,
+            "mean": 964.3219696969697,
+            "p50": 1033,
+            "p95": 1074,
+            "max": 1078,
+            "min": 716
+          },
+          "source-page-crossing": {
+            "count": 132,
+            "mean": 922.3181818181819,
+            "p50": 933,
+            "p95": 1047,
+            "max": 1052,
+            "min": 859
+          }
+        }
+      },
+      "trial": {
+        "prg_sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297",
+        "native_sha256": "9f8e854bdf04e99ad7582e5f72fe17e9137944b1592389968d3ad50e0b9f9b6b",
+        "method": "Complete bitmap_tile call; IRQs masked; RTS included, caller JSR/fixture loading excluded",
+        "cases_checked": 17408,
+        "tiles_sha256": "a3981276773d149e354b531a2703ccd1ea1cd7df35310972d906ef11cafb379b",
+        "output_sha256": "c06e50cead28822094d6720e532ed1da9e81e7aac35421276b68b253acc6d9e9",
+        "groups": {
+          "all": {
+            "count": 17408,
+            "mean": 757.6696346507352,
+            "p50": 780,
+            "p95": 900,
+            "max": 942,
+            "min": 57
+          },
+          "clipped": {
+            "count": 16,
+            "mean": 61.0,
+            "p50": 61,
+            "p95": 65,
+            "max": 65,
+            "min": 57
+          },
+          "visible": {
+            "count": 17392,
+            "mean": 758.3105450781969,
+            "p50": 780,
+            "p95": 900,
+            "max": 942,
+            "min": 568
+          },
+          "nibble-1": {
+            "count": 8696,
+            "mean": 758.4908003679852,
+            "p50": 780,
+            "p95": 900,
+            "max": 931,
+            "min": 569
+          },
+          "nibble-0": {
+            "count": 8696,
+            "mean": 758.1302897884085,
+            "p50": 780,
+            "p95": 899,
+            "max": 942,
+            "min": 568
+          },
+          "destination-page-crossing": {
+            "count": 528,
+            "mean": 821.2424242424242,
+            "p50": 890,
+            "p95": 931,
+            "max": 931,
+            "min": 573
+          },
+          "source-page-crossing": {
+            "count": 132,
+            "mean": 776.8181818181819,
+            "p50": 788,
+            "p95": 902,
+            "max": 907,
+            "min": 713
+          }
+        }
+      },
+      "cycle_savings": {
+        "all": {
+          "count": 17408,
+          "mean": 142.9049862132353,
+          "p50": 143,
+          "p95": 143,
+          "max": 147,
+          "min": 0
+        },
+        "clipped": {
+          "count": 16,
+          "mean": 0.0,
+          "p50": 0,
+          "p95": 0,
+          "max": 0,
+          "min": 0
+        },
+        "visible": {
+          "count": 17392,
+          "mean": 143.03645354185832,
+          "p50": 143,
+          "p95": 143,
+          "max": 147,
+          "min": 143
+        },
+        "nibble-1": {
+          "count": 8696,
+          "mean": 143.03564857405703,
+          "p50": 143,
+          "p95": 143,
+          "max": 147,
+          "min": 143
+        },
+        "nibble-0": {
+          "count": 8696,
+          "mean": 143.0372585096596,
+          "p50": 143,
+          "p95": 143,
+          "max": 147,
+          "min": 143
+        },
+        "destination-page-crossing": {
+          "count": 528,
+          "mean": 143.07954545454547,
+          "p50": 143,
+          "p95": 143,
+          "max": 147,
+          "min": 143
+        },
+        "source-page-crossing": {
+          "count": 132,
+          "mean": 145.5,
+          "p50": 145,
+          "p95": 146,
+          "max": 146,
+          "min": 145
+        }
+      }
+    },
+    "sprites": {
+      "baseline": {
+        "prg_sha256": "cc5238c2d7a07df754e1d0280cc6144ecec7cc9146bc04c0cfd09fc250d3a3a4",
+        "method": "vicsim call pool_draw; IRQs masked; identical masks and destinations",
+        "background_sha256": "13e7cc89054bace115014df8bdf6e4422ec340dac502a323ae142a694e2f5574",
+        "cases_checked": 10496,
+        "groups": {
+          "all": {
+            "count": 10496,
+            "mean": 892.4298780487804,
+            "p50": 916,
+            "p95": 1257,
+            "max": 1392
+          },
+          "arcade_sprites": {
+            "count": 8192,
+            "mean": 924.859375,
+            "p50": 960,
+            "p95": 1257,
+            "max": 1392
+          },
+          "shift-0": {
+            "count": 1312,
+            "mean": 773.2682926829268,
+            "p50": 802,
+            "p95": 1052,
+            "max": 1056
+          },
+          "shift-1": {
+            "count": 1312,
+            "mean": 828.2439024390244,
+            "p50": 872,
+            "p95": 1136,
+            "max": 1140
+          },
+          "shift-2": {
+            "count": 1312,
+            "mean": 883.219512195122,
+            "p50": 938,
+            "p95": 1220,
+            "max": 1224
+          },
+          "shift-3": {
+            "count": 1312,
+            "mean": 938.1951219512196,
+            "p50": 1008,
+            "p95": 1304,
+            "max": 1308
+          },
+          "shift-4": {
+            "count": 1312,
+            "mean": 993.170731707317,
+            "p50": 1078,
+            "p95": 1388,
+            "max": 1392
+          },
+          "shift-5": {
+            "count": 1312,
+            "mean": 962.7560975609756,
+            "p50": 1039,
+            "p95": 1341,
+            "max": 1345
+          },
+          "shift-6": {
+            "count": 1312,
+            "mean": 907.780487804878,
+            "p50": 969,
+            "p95": 1257,
+            "max": 1261
+          },
+          "shift-7": {
+            "count": 1312,
+            "mean": 852.8048780487804,
+            "p50": 899,
+            "p95": 1173,
+            "max": 1177
+          },
+          "arcade_eyes": {
+            "count": 1024,
+            "mean": 621.8125,
+            "p50": 620,
+            "p95": 712,
+            "max": 744
+          },
+          "arcade_score_right": {
+            "count": 512,
+            "mean": 715.0,
+            "p50": 716,
+            "p95": 802,
+            "max": 825
+          },
+          "synthetic": {
+            "count": 768,
+            "mean": 1025.625,
+            "p50": 1117,
+            "p95": 1360,
+            "max": 1392
+          }
+        }
+      },
+      "trial": {
+        "prg_sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297",
+        "method": "vicsim call pool_draw; IRQs masked; identical masks and destinations",
+        "background_sha256": "13e7cc89054bace115014df8bdf6e4422ec340dac502a323ae142a694e2f5574",
+        "cases_checked": 10496,
+        "groups": {
+          "all": {
+            "count": 10496,
+            "mean": 769.2256097560976,
+            "p50": 775,
+            "p95": 1147,
+            "max": 1242
+          },
+          "arcade_sprites": {
+            "count": 8192,
+            "mean": 797.484375,
+            "p50": 826,
+            "p95": 1142,
+            "max": 1242
+          },
+          "shift-0": {
+            "count": 1312,
+            "mean": 528.7073170731708,
+            "p50": 514,
+            "p95": 733,
+            "max": 738
+          },
+          "shift-1": {
+            "count": 1312,
+            "mean": 732.9024390243902,
+            "p50": 747,
+            "p95": 1045,
+            "max": 1050
+          },
+          "shift-2": {
+            "count": 1312,
+            "mean": 787.8780487804878,
+            "p50": 817,
+            "p95": 1129,
+            "max": 1134
+          },
+          "shift-3": {
+            "count": 1312,
+            "mean": 842.8536585365854,
+            "p50": 887,
+            "p95": 1213,
+            "max": 1218
+          },
+          "shift-4": {
+            "count": 1312,
+            "mean": 858.560975609756,
+            "p50": 907,
+            "p95": 1237,
+            "max": 1242
+          },
+          "shift-5": {
+            "count": 1312,
+            "mean": 835.0,
+            "p50": 877,
+            "p95": 1201,
+            "max": 1206
+          },
+          "shift-6": {
+            "count": 1312,
+            "mean": 811.439024390244,
+            "p50": 847,
+            "p95": 1165,
+            "max": 1170
+          },
+          "shift-7": {
+            "count": 1312,
+            "mean": 756.4634146341464,
+            "p50": 777,
+            "p95": 1081,
+            "max": 1086
+          },
+          "arcade_eyes": {
+            "count": 1024,
+            "mean": 533.4375,
+            "p50": 535,
+            "p95": 634,
+            "max": 658
+          },
+          "arcade_score_right": {
+            "count": 512,
+            "mean": 614.625,
+            "p50": 623,
+            "p95": 716,
+            "max": 731
+          },
+          "synthetic": {
+            "count": 768,
+            "mean": 885.25,
+            "p50": 987,
+            "p95": 1214,
+            "max": 1242
+          }
+        }
+      },
+      "cycle_savings": {
+        "all": {
+          "count": 10496,
+          "mean": 123.20426829268293,
+          "p50": 103,
+          "p95": 290,
+          "max": 366,
+          "min": 54
+        },
+        "arcade_sprites": {
+          "count": 8192,
+          "mean": 127.375,
+          "p50": 116,
+          "p95": 291,
+          "max": 366,
+          "min": 54
+        },
+        "shift-0": {
+          "count": 1312,
+          "mean": 244.5609756097561,
+          "p50": 274,
+          "p95": 366,
+          "max": 366,
+          "min": 54
+        },
+        "shift-1": {
+          "count": 1312,
+          "mean": 95.34146341463415,
+          "p50": 90,
+          "p95": 138,
+          "max": 138,
+          "min": 54
+        },
+        "shift-2": {
+          "count": 1312,
+          "mean": 95.34146341463415,
+          "p50": 90,
+          "p95": 138,
+          "max": 138,
+          "min": 54
+        },
+        "shift-3": {
+          "count": 1312,
+          "mean": 95.34146341463415,
+          "p50": 90,
+          "p95": 138,
+          "max": 138,
+          "min": 54
+        },
+        "shift-4": {
+          "count": 1312,
+          "mean": 134.609756097561,
+          "p50": 134,
+          "p95": 198,
+          "max": 198,
+          "min": 54
+        },
+        "shift-5": {
+          "count": 1312,
+          "mean": 127.7560975609756,
+          "p50": 126,
+          "p95": 187,
+          "max": 187,
+          "min": 55
+        },
+        "shift-6": {
+          "count": 1312,
+          "mean": 96.34146341463415,
+          "p50": 91,
+          "p95": 139,
+          "max": 139,
+          "min": 55
+        },
+        "shift-7": {
+          "count": 1312,
+          "mean": 96.34146341463415,
+          "p50": 91,
+          "p95": 139,
+          "max": 139,
+          "min": 55
+        },
+        "arcade_eyes": {
+          "count": 1024,
+          "mean": 88.375,
+          "p50": 84,
+          "p95": 142,
+          "max": 166,
+          "min": 63
+        },
+        "arcade_score_right": {
+          "count": 512,
+          "mean": 100.375,
+          "p50": 95,
+          "p95": 190,
+          "max": 191,
+          "min": 69
+        },
+        "synthetic": {
+          "count": 768,
+          "mean": 140.375,
+          "p50": 137,
+          "p95": 365,
+          "max": 366,
+          "min": 54
+        }
+      }
+    },
+    "tunnel": {
+      "program": "build/pacman.prg",
+      "prg_sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297",
+      "method": "Actual PRG kernel with IRQs masked; independent original C offset expression",
+      "groups": {
+        "carry-0": {
+          "count": 65536,
+          "total": 4589568,
+          "min": 69,
+          "max": 71
+        },
+        "carry-1": {
+          "count": 65536,
+          "total": 4589568,
+          "min": 69,
+          "max": 71
+        },
+        "address-bits": {
+          "count": 10240,
+          "total": 716800,
+          "min": 69,
+          "max": 71
+        },
+        "colours": {
+          "count": 256,
+          "total": 17666,
+          "min": 69,
+          "max": 71
+        }
+      },
+      "output_sha256": "ee39cd863546000ddf4349ca9278b3b5a63390b646abd546383efb282a45795a",
+      "cycles_include_five_cycle_carry_stub": true
+    },
+    "audio": {
+      "ticks_compared": 1639,
+      "all_sound_state_and_register_values_identical": true,
+      "first_tick": 1,
+      "last_tick": 1639,
+      "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+      "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "programs": [
+        {
+          "path": "build/pool-alloc-fast/pacman.prg",
+          "sha256": "feed65059a7ad52ac007868b4ac8f982710478608e310d9ea8f56c54e43b14cf"
+        },
+        {
+          "path": "build/pacman.prg",
+          "sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297"
+        }
+      ],
+      "guest_modified": false,
+      "method": "Compare tick-indexed arcade sound state and VIC registers on a live replay.\n\nHost PC observations only: no guest code, registers, clocks or sound are patched.\nCPU timestamps can differ; this checks the values produced at each logical tick."
+    },
+    "smoke": {
+      "screens": [
+        "attract",
+        "credits",
+        "maze",
+        "cherry",
+        "intermission-1",
+        "intermission-2",
+        "intermission-3"
+      ],
+      "stack_by_scene": {
+        "attract": {
+          "software_lowest_write": 32743,
+          "software_bytes_written": 25,
+          "hardware_lowest_write": 494,
+          "hardware_bytes_written": 18
+        },
+        "credits": {
+          "software_lowest_write": 32743,
+          "software_bytes_written": 25,
+          "hardware_lowest_write": 494,
+          "hardware_bytes_written": 18
+        },
+        "maze": {
+          "software_lowest_write": 32738,
+          "software_bytes_written": 30,
+          "hardware_lowest_write": 488,
+          "hardware_bytes_written": 24
+        },
+        "cherry": {
+          "software_lowest_write": 32738,
+          "software_bytes_written": 30,
+          "hardware_lowest_write": 488,
+          "hardware_bytes_written": 24
+        },
+        "intermission-1": {
+          "software_lowest_write": 32738,
+          "software_bytes_written": 30,
+          "hardware_lowest_write": 488,
+          "hardware_bytes_written": 24
+        },
+        "intermission-2": {
+          "software_lowest_write": 32738,
+          "software_bytes_written": 30,
+          "hardware_lowest_write": 488,
+          "hardware_bytes_written": 24
+        },
+        "intermission-3": {
+          "software_lowest_write": 32738,
+          "software_bytes_written": 30,
+          "hardware_lowest_write": 488,
+          "hardware_bytes_written": 24
+        }
+      },
+      "clock": {
+        "video_frames": 180,
+        "arcade_ticks": 181,
+        "expected": 180.96
+      },
+      "long_run_ticks": 7192,
+      "stack": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 488,
+        "hardware_bytes_written": 24
+      },
+      "boot": {
+        "entries": 1,
+        "released": true
+      },
+      "irq_vector_intact": true,
+      "stack_guard_intact": true,
+      "software_stack_reserved": 704
+    }
+  },
+  "source_artifacts": {
+    "build/tile-stamp-fast/evaluation/promotion-tests.log": "2eba7b82dd12d18da1f7d6b2a6625169b5e4a976bf94bf8422164927cf77e64d",
+    "build/evaluation/divider-kernel.json": "480c49a3bf6d2218c8fbaa31d2d8998377165026d5cc9eee0be45ab825dd5886",
+    "build/evaluation/update-kernel.json": "149a9d6bafa785d5808e1809be4c743a6e7ae46a745bf2ca4a15b012c866687b",
+    "build/evaluation/ghost-kernel.json": "25fcd92ef6bdc6cd1a960a0b34acda9b916d045f870f145487f7ec9828cb2b25",
+    "build/evaluation/allocator-kernel.json": "5ff046efdb6f190b8db611143ba2b17702b1727a9057c740a0d51e2112d70c90",
+    "build/evaluation/tile-stamp-kernel.json": "79e7a05c18ea0bb1199a55968574773f0fa78413e871a316dcb1ced32a7b2448",
+    "build/evaluation/stamp-kernel.json": "7143cbf9daae1bb48e7bbaa54da98cfdf1c7748df2fadc56454dbe0302a7f85a",
+    "build/evaluation/tile-kernel.json": "f0865e39b7e625023ae1da4fbfff80f9c865c4462059cdab512cf19962b589ea",
+    "build/sound-effect-fast/evaluation/effect-kernel.json": "7a58125ab21ed4749c6cec0c297333d7e35ec78bf22b94521778379085893217",
+    "build/evaluation/audio-replay/summary.json": "d60e4ce19175b2d52592bcba8c0661e089fe8ddb3fed7bbbca3bf46c69737554",
+    "build/preview/native-validation.json": "e59037724f801f025b32b8984b9b5c6982d7264902cf12116de9791377633694"
+  },
+  "source_files": {
+    "Makefile": "dc61c1ede07b5e3cbb9dab2ee20e95a6cf3f35f2ad1bb46b73fb85bb12285abe",
+    "README.md": "7a5e82985cb988ef5ce71c41b133bffc3fd03b8935a43670259d30d8da92b7ac",
+    "src/bitmap.S": "cbac61abb63d1ddf6cd78d4c6e3259de23a431b0942be1393e787b66ff91195f",
+    "tools/arcade/tile_stamp_timing.py": "c550079d6e14c0a78771ce6b8ab4ade6e3732aad839ede781af124e805e4eb84",
+    "docs/TILE_STAMP_OPTIMIZATION.md": "021c0d37cd9c24433e8efa82ab6c50c912e7923c163a1d921515271f1a9e952f",
+    "docs/POOL_ALLOC_OPTIMIZATION.md": "549991b3df45775cd849d1e848e0f05f1523da25bc78bce1390874b6660d9d46",
+    "docs/GHOST_UPDATE_OPTIMIZATION.md": "441ef758e8ccae6b74d9d5294b50180260d61dbcd7f6077a10cb7b3b4ce693c4",
+    "docs/AUDIO_UPDATE_OPTIMIZATION.md": "d3d9bc7f4e3df7f44fa92afd199404351654d5f31fa5341d4a3cc772b87ab3a9",
+    "docs/RESEARCH_OPTIMIZATION_PLAN.md": "c86f5807d35706453996438295f2450670b8fd21da7d6492737e605452a24255"
+  }
+}

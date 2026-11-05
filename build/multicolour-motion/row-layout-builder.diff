@@ -1,0 +1,32 @@
+--- build/multicolour-motion/before-row-layout/build-source.py
++++ tools/arcade/build_multicolour_motion.py
+@@ -1,6 +1,7 @@
+ #!/usr/bin/env python3
+ """Build a separate moving-character renderer test, using recorded game poses."""
+ import argparse
++from collections import Counter
+ import hashlib
+ import json
+ from pathlib import Path
+@@ -186,6 +187,13 @@
+                     record_codes[record] = len(records); records.append(record)
+                 row_ids.append(record_codes[record])
+     assert len(records) <= 256
++    # Common rows get small indices, reducing absolute-X page crossings. Count
++    # the complete artwork (every pose and shift), independently of the replay.
++    frequency = Counter(row_ids)
++    order = sorted(range(len(records)), key=lambda row: (-frequency[row], row))
++    remap = {old: new for new, old in enumerate(order)}
++    row_ids = bytes(remap[row] for row in row_ids)
++    records = [records[row] for row in order]
+     (output / "pose-rows.bin").write_bytes(row_ids)
+     (output / "row-records.bin").write_bytes(bytes(record[field] for field in range(7) for record in records))
+     (output / "poses.json").write_text(json.dumps({"names": names, "images": images}, indent=2) + "\n")
+@@ -241,6 +249,7 @@
+               "work_banks": [[147, 200], [201, 254]], "actors_supported": 6,
+               "pose_row_index_bytes": len(row_ids), "unique_shifted_row_records": len(records),
+               "shifted_row_record_bytes": len(records) * 7,
++              "shifted_row_lookup_layout": "frequent artwork rows first; page-friendly field order without padding",
+               "pacman_facing": "screen-space arcade masks and flip bits; closed mouth follows recorded movement",
+               "fallback_artwork_samples": fallbacks,
+               "limitations": ["Frozen full-pellet maze and score; recorded actor positions only.",

@@ -1,0 +1,63 @@
+{
+  "cpu_hz": 1022727,
+  "prg_sha256": "34a552f6377bf64ec3373882464c028244b43697a1471cbc3d6e06ede4dbc442",
+  "method": "Sim.call bitmap_draw with IRQs masked; frontend excluded",
+  "cases": 13824,
+  "groups": {
+    "all": {
+      "min": 626,
+      "mean": 1005.671875,
+      "max": 1468
+    },
+    "clipped": {
+      "min": 649,
+      "mean": 1013.3385416666666,
+      "max": 1468
+    },
+    "shift-0": {
+      "min": 626,
+      "mean": 893.75,
+      "max": 1132
+    },
+    "full": {
+      "min": 626,
+      "mean": 990.3385416666666,
+      "max": 1445
+    },
+    "shift-1": {
+      "min": 626,
+      "mean": 945.375,
+      "max": 1216
+    },
+    "shift-2": {
+      "min": 626,
+      "mean": 997.0,
+      "max": 1300
+    },
+    "shift-3": {
+      "min": 626,
+      "mean": 1048.625,
+      "max": 1384
+    },
+    "shift-4": {
+      "min": 626,
+      "mean": 1100.25,
+      "max": 1468
+    },
+    "shift-5": {
+      "min": 627,
+      "mean": 1071.75,
+      "max": 1421
+    },
+    "shift-6": {
+      "min": 627,
+      "mean": 1020.125,
+      "max": 1337
+    },
+    "shift-7": {
+      "min": 627,
+      "mean": 968.5,
+      "max": 1253
+    }
+  }
+}

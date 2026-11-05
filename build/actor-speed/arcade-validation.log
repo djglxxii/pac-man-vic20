@@ -1,0 +1,20 @@
+test_01_original_maze_and_attract (__main__.ArcadeParity.test_01_original_maze_and_attract) ... ok
+test_02_gameplay_and_turn_trace (__main__.ArcadeParity.test_02_gameplay_and_turn_trace) ... ok
+test_03_difficulty_and_fruit (__main__.ArcadeParity.test_03_difficulty_and_fruit) ... ok
+test_04_ghost_targets_ties_and_upward_bug (__main__.ArcadeParity.test_04_ghost_targets_ties_and_upward_bug) ... ok
+test_05_frightened_random_sequence (__main__.ArcadeParity.test_05_frightened_random_sequence) ... ok
+test_06_elroy_and_score (__main__.ArcadeParity.test_06_elroy_and_score) ... ok
+test_07_intermission_selection (__main__.ArcadeParity.test_07_intermission_selection) ... ok
+test_08_complete_intermission_traces (__main__.ArcadeParity.test_08_complete_intermission_traces) ... ok
+test_09_rng_storage_bound (__main__.ArcadeParity.test_09_rng_storage_bound) ... ok
+test_10_lives_history_and_split_screen (__main__.ArcadeParity.test_10_lives_history_and_split_screen) ... ok
+test_11_credits_and_two_player_start (__main__.ArcadeParity.test_11_credits_and_two_player_start) ... ok
+test_12_death_sequence (__main__.ArcadeParity.test_12_death_sequence) ... ok
+test_13_coin_debounce_and_queued_credits (__main__.ArcadeParity.test_13_coin_debounce_and_queued_credits) ... ok
+test_14_songs_effects_and_channel_priority (__main__.ArcadeParity.test_14_songs_effects_and_channel_priority) ... ok
+test_15_attract_maze_demo (__main__.ArcadeParity.test_15_attract_maze_demo) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 21.542s
+
+OK

@@ -1,4 +1,10 @@
-/build/
+# Project recordings and measurements are selected by build/.gitignore.
+# Local third-party game inputs stay available for builds but are not published.
+/pacman.zip
+/roms/
+/src/arcade/*.c
+/src/arcade/*.h
+/tools/arcade/z80.h
 /tools/cc65/
 /tools/vicsim/vicsim
 __pycache__/

@@ -13,6 +13,7 @@ import zipfile
 from rate_match import ROOT, Observer, call_sites, digest, game_state, write_json
 from record_playthrough import FPS
 from record_shadow import launch, verify_loaded_program
+from analyze_display import RASTER_WINDOW_CYCLES, validate_frame_spacing
 
 FRAME_CYCLES = 65*261
 
@@ -40,8 +41,11 @@ def capture(source, reference, out, count):
         mon.joystick('-')
         identity = verify_loaded_program(mon, prg, labels)
         names = mon.register_names()
-        raster = mon.checkpoint(0, 65535, '(RL == $1) && (CY < $8)')
-        rearm = mon.checkpoint(0, 65535, '(RL != $1) || (CY >= $8)')
+        # An instruction followed by IRQ entry can span the entire old
+        # eight-cycle window. Sixteen cycles covers that boundary while
+        # remaining in the top border. No guest clocks or code are changed.
+        raster = mon.checkpoint(0, 65535, f'(RL == $1) && (CY < ${RASTER_WINDOW_CYCLES:x})')
+        rearm = mon.checkpoint(0, 65535, f'(RL != $1) || (CY >= ${RASTER_WINDOW_CYCLES:x})')
         mon.enable(rearm, False)
         hooks = {
             mon.checkpoint(sites['frame_wait']+3): 'controls',
@@ -72,7 +76,7 @@ def capture(source, reference, out, count):
             # VICE reports just one checkpoint then advances past the others.
             # Sample ANY stop in the window once, so that collision cannot
             # silently drop an entire displayed frame.
-            if active and line == 1 and cycle < 8 and captured_epoch != epoch:
+            if active and line == 1 and cycle < RASTER_WINDOW_CYCLES and captured_epoch != epoch:
                 mon.enable(raster, False)
                 mon.enable(rearm, True)
                 captured_epoch = epoch
@@ -134,7 +138,7 @@ def capture(source, reference, out, count):
             raise RuntimeError('Capture timed out')
         mon.cmd(0xbb)
         vice.wait(timeout=10)
-        assert all(f['line'] == 1 and f['cycle'] < 8 for f in frames)
+        validate_frame_spacing(frames)
         result = dict(prg_sha256=digest(prg.read_bytes()), loaded_program=identity,
                       emulator='VICE 3.7.1 xvic, vic20ntsc, -memory all',
                       input_trace_sha256=digest(json.dumps(reference, sort_keys=True).encode()),
@@ -142,6 +146,7 @@ def capture(source, reference, out, count):
                       frame_rate=str(FPS), palette=palette[:48],
                       frames=frames, inputs=inputs, events=events,
                       cpu_hz=1022727, cycles_per_vic_frame=FRAME_CYCLES,
+                      raster_window_cycles=RASTER_WINDOW_CYCLES,
                       image_source='VICE raster drawing buffer, lossless RGB PNG',
                       renderer='glyph-pool' if '__pool_capacity' in labels else 'underlays',
                       memory_layout='8 KiB $0000-$1fff followed by 196 colour nibbles $9600')

@@ -1,0 +1,7 @@
+{
+  "same_logical_video": true,
+  "same_bitmap": true,
+  "wall_cells": 162,
+  "white_wall_cells_before": 113,
+  "white_wall_cells_after": 162
+}

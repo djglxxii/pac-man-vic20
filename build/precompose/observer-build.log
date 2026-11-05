@@ -1,0 +1,1 @@
+cc -O2 -Wall -Wno-unused-variable -Wno-misleading-indentation -o tools/vicsim/vicsim tools/vicsim/vicsim.c

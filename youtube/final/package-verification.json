@@ -1,0 +1,83 @@
+{
+  "stage": "final_optimized",
+  "video_file": "build/through-game-over/through-game-over.mp4",
+  "video_verification": "youtube/final/playthrough-verification.json",
+  "artwork_verification": "youtube/asset-verification.json",
+  "landscape": {
+    "file": "youtube/final/vic20-pacman-thumbnail.png",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "bytes": 1168423,
+    "mode": "RGB",
+    "sha256": "b48ea68e500faaf27b0800021a51536596637016f1c37ad35b4be2653d79dd84",
+    "generation_tool": "built-in imagegen",
+    "prompt_file": "youtube/final/thumbnail-prompt.txt",
+    "stage": "final_optimized",
+    "orientation": "landscape",
+    "artwork_kind": "AI-designed promotional artwork referencing real VICE frames; not pixel-exact gameplay evidence",
+    "white_yellow_essential_anchor_bounds": [
+      86,
+      85,
+      1620,
+      879
+    ]
+  },
+  "portrait": {
+    "file": "youtube/final/vic20-pacman-shorts-cover.png",
+    "dimensions": [
+      916,
+      1717
+    ],
+    "bytes": 807485,
+    "mode": "RGB",
+    "sha256": "00efdd432d1cb49981f960d1ade7dcf6c0a033140fef6428e51c5c3148439329",
+    "generation_tool": "built-in imagegen",
+    "prompt_file": "youtube/final/thumbnail-shorts-prompt.txt",
+    "stage": "final_optimized",
+    "orientation": "portrait",
+    "artwork_kind": "AI-designed promotional artwork referencing real VICE frames; not pixel-exact gameplay evidence",
+    "white_yellow_essential_anchor_bounds": [
+      224,
+      470,
+      692,
+      1385
+    ],
+    "preview_checks": {
+      "9:16": {
+        "centered_crop": [
+          0,
+          44.27777777777783,
+          916,
+          1672.7222222222222
+        ],
+        "essential_anchor_bounds_inside_crop": true
+      },
+      "4:5": {
+        "centered_crop": [
+          0,
+          286.0,
+          916,
+          1431.0
+        ],
+        "essential_anchor_bounds_inside_crop": true
+      }
+    },
+    "visual_review": "Complete headings, cyan AGENTIC HOMEBREW lettering, stage badge and maze inspected; decorative cyan pixels outside preview crop are intentional.",
+    "crop_check_method": "White/yellow text and maze pixel bounds, with manual review of intermediate cyan lettering. Does not guarantee every platform crop or overlay."
+  },
+  "title_characters": 54,
+  "description_characters": 4564,
+  "accepted_build_record": "docs/baselines/pool-ghost-row-promotion.json",
+  "accepted_program_sha256": "e148017c58097fb84bb09757dac6d1a132ca40a051d288e10290e9b870cda227",
+  "full_playthrough_recorded_for_package": true,
+  "video_sha256": "dc0e1aeb22fede5e20c7501577c622a4a47938bc21da0ea8b163742da157d557",
+  "video_dimensions": [
+    360,
+    464
+  ],
+  "duration_seconds": 601.1161042976279,
+  "video_frames": 36238,
+  "capture_source": "Existing user-selected capture; no video regenerated or modified by this copy update."
+}

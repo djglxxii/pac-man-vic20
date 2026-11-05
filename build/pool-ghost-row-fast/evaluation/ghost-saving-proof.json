@@ -1,0 +1,6 @@
+{
+  "cases_checked": 1024,
+  "all_cases_exact_predicted_saving": true,
+  "formula": "29 cycles forward or 27 reverse, plus baseline pointer-load page-crossing cycles (0..2)",
+  "source_sha256": "37b6f70d0fd986a68224afa427036e85df9979a6b76cb73fd8b8606029eb337e"
+}

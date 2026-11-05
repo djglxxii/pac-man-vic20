@@ -1,0 +1,39 @@
+   78   lda beam_count           $AD      4  
+   79   bne beam_choose_active   $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   80   jmp beam_complete        $4C      3  
+   82   lda $9004                $AD      4  
+   83   sta beam_now             $8D      4  
+   84   ldx #5                   $A2      2  
+   86   lda beam_masks,x         $BD    4-5  +1 if page crossed
+   87   beq beam_next_choice     $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   88   lda beam_early,x         $BD    4-5  +1 if page crossed
+   89   cmp #255                 $C9      2  
+   90   beq beam_ready           $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   91   cmp beam_ends,x          $DD    4-5  +1 if page crossed
+   92   bcs beam_safe_middle     $B0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   93   lda beam_now             $AD      4  
+   94   cmp beam_ends,x          $DD    4-5  +1 if page crossed
+   95   bcs beam_ready           $B0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   96   cmp beam_early,x         $DD    4-5  +1 if page crossed
+   97   bcc beam_ready           $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+   98   bcs beam_next_choice     $B0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  100   lda beam_now             $AD      4  
+  101   cmp beam_ends,x          $DD    4-5  +1 if page crossed
+  102   bcc beam_next_choice     $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  103   cmp beam_early,x         $DD    4-5  +1 if page crossed
+  104   bcc beam_ready           $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  106   dex                      $CA      2  
+  107   bpl beam_find_ready      $10    2-4  2 not taken / 3 taken / 4 taken+page cross
+  108   jmp beam_choose          $4C      3  
+  110   stx beam_group           $8E      4  
+  111   lda beam_masks,x         $BD    4-5  +1 if page crossed
+  112   sta beam_mask            $8D      4  
+  113   ldx #5                   $A2      2  
+  115   lda beam_mask            $AD      4  
+  116   and beam_bits,x          $35      4  
+  117   ldy beam_slots,x         $B4      4  
+  118   sta cache_dirty,y        $99      5  
+  119   dex                      $CA      2  
+  120   bpl beam_select_flags    $10    2-4  2 not taken / 3 taken / 4 taken+page cross
+-----------------------------------------------------
+bytes: 91   cycles: 115 .. 145   (straight-line sum; multiply loop bodies yourself)

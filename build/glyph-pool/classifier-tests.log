@@ -1,0 +1,15 @@
+test_absent_and_partial_have_distinct_results (__main__.Visibility.test_absent_and_partial_have_distinct_results) ... ok
+test_ambiguous_wall_and_overlap_are_excluded (__main__.Visibility.test_ambiguous_wall_and_overlap_are_excluded) ... ok
+test_complete_old_or_new_pose_is_present (__main__.Visibility.test_complete_old_or_new_pose_is_present) ... ok
+test_dropped_or_duplicate_video_frames_are_rejected (__main__.Visibility.test_dropped_or_duplicate_video_frames_are_rejected) ... ok
+test_edges_and_hidden_actors_are_excluded (__main__.Visibility.test_edges_and_hidden_actors_are_excluded) ... ok
+test_mixed_old_new_scanlines_are_partial (__main__.Visibility.test_mixed_old_new_scanlines_are_partial) ... ok
+test_motion_does_not_bridge_unknown_frames (__main__.Visibility.test_motion_does_not_bridge_unknown_frames) ... ok
+test_phase_accounting_does_not_double_count_nested_routines (__main__.Visibility.test_phase_accounting_does_not_double_count_nested_routines) ... ok
+test_pool_display_uses_matrix_and_keeps_home_background (__main__.Visibility.test_pool_display_uses_matrix_and_keeps_home_background) ... ok
+test_wall_pixels_cannot_prove_actor_present (__main__.Visibility.test_wall_pixels_cannot_prove_actor_present) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.012s
+
+OK

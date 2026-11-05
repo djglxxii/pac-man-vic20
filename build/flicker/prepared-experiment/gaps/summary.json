@@ -1,0 +1,40 @@
+{
+  "cpu_hz": 1022727,
+  "video_frames_per_sample": 180,
+  "metric": "bitmap_erase entry to matching bitmap_draw return",
+  "prg_sha256": "e0b541589c6762cc642c99b5093214dee8d755a105a795db9a1256913a9f4f59",
+  "samples": [
+    {
+      "scene": "play",
+      "completed_renders": 129,
+      "actor_updates": 480,
+      "erase_to_paint_ms_mean": 6.275,
+      "erase_to_paint_ms_p95": 12.795,
+      "erase_to_paint_ms_max": 16.834
+    },
+    {
+      "scene": "frightened",
+      "completed_renders": 145,
+      "actor_updates": 515,
+      "erase_to_paint_ms_mean": 5.263,
+      "erase_to_paint_ms_p95": 11.504,
+      "erase_to_paint_ms_max": 15.298
+    },
+    {
+      "scene": "attract-chase",
+      "completed_renders": 122,
+      "actor_updates": 510,
+      "erase_to_paint_ms_mean": 5.78,
+      "erase_to_paint_ms_p95": 9.805,
+      "erase_to_paint_ms_max": 11.612
+    },
+    {
+      "scene": "intermission",
+      "completed_renders": 179,
+      "actor_updates": 87,
+      "erase_to_paint_ms_mean": 2.783,
+      "erase_to_paint_ms_p95": 5.71,
+      "erase_to_paint_ms_max": 9.843
+    }
+  ]
+}

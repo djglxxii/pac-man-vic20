@@ -1,0 +1,205 @@
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -Tsrc/glyph_pool.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c src/score.S src/glyph_pool.S src/glyph_pool.c build/arcade/rom.c -Wl,-Map,build/pool-skip-empty/pacman.map -o build/pool-skip-empty/pacman-native.bin
+python3 tools/arcade/pack.py build/pool-skip-empty/pacman-native.bin build/pool-skip-empty/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/pool-skip-empty/pacman.prg: 26747 bytes, entry $0400, verified backwards depacking
+cc -O2 -fcommon -Wno-incompatible-pointer-types -Wno-pointer-sign -Isrc/arcade src/arcade/core.c tools/arcade/native.c -o build/arcade/native
+python3 tests/arcade.py
+test_01_original_maze_and_attract (__main__.ArcadeParity.test_01_original_maze_and_attract) ... ok
+test_02_gameplay_and_turn_trace (__main__.ArcadeParity.test_02_gameplay_and_turn_trace) ... ok
+test_03_difficulty_and_fruit (__main__.ArcadeParity.test_03_difficulty_and_fruit) ... ok
+test_04_ghost_targets_ties_and_upward_bug (__main__.ArcadeParity.test_04_ghost_targets_ties_and_upward_bug) ... ok
+test_05_frightened_random_sequence (__main__.ArcadeParity.test_05_frightened_random_sequence) ... ok
+test_06_elroy_and_score (__main__.ArcadeParity.test_06_elroy_and_score) ... ok
+test_07_intermission_selection (__main__.ArcadeParity.test_07_intermission_selection) ... ok
+test_08_complete_intermission_traces (__main__.ArcadeParity.test_08_complete_intermission_traces) ... ok
+test_09_rng_storage_bound (__main__.ArcadeParity.test_09_rng_storage_bound) ... ok
+test_10_lives_history_and_split_screen (__main__.ArcadeParity.test_10_lives_history_and_split_screen) ... ok
+test_11_credits_and_two_player_start (__main__.ArcadeParity.test_11_credits_and_two_player_start) ... ok
+test_12_death_sequence (__main__.ArcadeParity.test_12_death_sequence) ... ok
+test_13_coin_debounce_and_queued_credits (__main__.ArcadeParity.test_13_coin_debounce_and_queued_credits) ... ok
+test_14_songs_effects_and_channel_priority (__main__.ArcadeParity.test_14_songs_effects_and_channel_priority) ... ok
+test_15_attract_maze_demo (__main__.ArcadeParity.test_15_attract_maze_demo) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 21.238s
+
+OK
+PACMAN_PRG=build/sound-effect-fast/pacman.prg python3 tests/glyph_pool.py
+test_01_real_maze_white_walls_pellets_and_unchanged_pixels (__main__.PoolColors.test_01_real_maze_white_walls_pellets_and_unchanged_pixels) ... ok
+test_02_tile_order_does_not_change_white_maze (__main__.PoolColors.test_02_tile_order_does_not_change_white_maze) ... ok
+test_03_wall_stays_white_after_last_dot_and_power_pellet_blinks (__main__.PoolColors.test_03_wall_stays_white_after_last_dot_and_power_pellet_blinks) ... ok
+test_04_pellet_ink_at_every_cell_boundary (__main__.PoolColors.test_04_pellet_ink_at_every_cell_boundary) ... ok
+test_05_actor_releases_white_pellets_and_keeps_aligned_neighbor (__main__.PoolColors.test_05_actor_releases_white_pellets_and_keeps_aligned_neighbor) ... ok
+test_06_blue_is_limited_to_completion_flash (__main__.PoolColors.test_06_blue_is_limited_to_completion_flash) ... ok
+test_01_colours_pixels_and_sprite_underlays (__main__.PoolFlash.test_01_colours_pixels_and_sprite_underlays) ... ok
+test_02_complete_flash_timing (__main__.PoolFlash.test_02_complete_flash_timing) ... ok
+test_03_walls_survive_incremental_dot_removal (__main__.PoolFlash.test_03_walls_survive_incremental_dot_removal) ... ok
+test_01_all_fruit_values_and_erase_footprints (__main__.PoolFonts.test_01_all_fruit_values_and_erase_footprints) ... ok
+test_02_ghost_chain_keeps_original_score_frames (__main__.PoolFonts.test_02_ghost_chain_keeps_original_score_frames) ... ok
+test_01_speed_masks_and_mode_priorities (__main__.PoolGhosts.test_01_speed_masks_and_mode_priorities) ... ok
+test_01_loader_delivers_all_three_regions_before_boot (__main__.PoolMemory.test_01_loader_delivers_all_three_regions_before_boot) ... ok
+test_02_cold_ram_is_reused_after_startup (__main__.PoolMemory.test_02_cold_ram_is_reused_after_startup) ... ok
+test_03_stack_tracking_excludes_host_canaries (__main__.PoolMemory.test_03_stack_tracking_excludes_host_canaries) ... ok
+test_01_6502_movement_turns_and_score (__main__.PoolNativeParity.test_01_6502_movement_turns_and_score) ... ok
+test_02_6502_frightened_rng (__main__.PoolNativeParity.test_02_6502_frightened_rng) ... ok
+test_03_build_memory_limits (__main__.PoolNativeParity.test_03_build_memory_limits) ... ok
+test_04_square_table_equivalence (__main__.PoolNativeParity.test_04_square_table_equivalence) ... ok
+test_05_exact_audio_divider_boundaries (__main__.PoolNativeParity.test_05_exact_audio_divider_boundaries) ... ok
+test_06_audio_converter_registers (__main__.PoolNativeParity.test_06_audio_converter_registers) ... ok
+test_01_dirty_addresses_cover_all_four_pages (__main__.PoolRebuild.test_01_dirty_addresses_cover_all_four_pages) ... ok
+test_02_bulk_slices_match_original_rom (__main__.PoolRebuild.test_02_bulk_slices_match_original_rom) ... ok
+test_03_writes_behind_and_ahead_of_cursor (__main__.PoolRebuild.test_03_writes_behind_and_ahead_of_cursor) ... ok
+test_04_restart_in_every_rebuild_phase (__main__.PoolRebuild.test_04_restart_in_every_rebuild_phase) ... ok
+test_05_split_native_state_range_matches_rom (__main__.PoolRebuild.test_05_split_native_state_range_matches_rom) ... ok
+test_06_complete_transition_service_and_queue_order (__main__.PoolRebuild.test_06_complete_transition_service_and_queue_order) ... ok
+test_07_coin_is_serviced_during_rebuild (__main__.PoolRebuild.test_07_coin_is_serviced_during_rebuild) ... ok
+test_08_completion_uses_current_actor_positions (__main__.PoolRebuild.test_08_completion_uses_current_actor_positions) ... ok
+test_01_all_frames_shifts_and_flips (__main__.PoolRenderer.test_01_all_frames_shifts_and_flips) ... ok
+test_02_edges_overlap_priority_and_returning_eyes (__main__.PoolRenderer.test_02_edges_overlap_priority_and_returning_eyes) ... ok
+test_03_incremental_matches_full_redraw (__main__.PoolRenderer.test_03_incremental_matches_full_redraw) ... ok
+test_05_dirty_tiles_preserve_actors_and_shared_colours (__main__.PoolRenderer.test_05_dirty_tiles_preserve_actors_and_shared_colours) ... ok
+test_07_horizontal_rewards_priority_flips_edges_and_restoration (__main__.PoolRenderer.test_07_horizontal_rewards_priority_flips_edges_and_restoration) ... ok
+test_08_revised_pacman_masks_and_shared_closed_views (__main__.PoolRenderer.test_08_revised_pacman_masks_and_shared_closed_views) ... ok
+test_09_clean_home_glyphs_and_bounded_banks (__main__.PoolRenderer.test_09_clean_home_glyphs_and_bounded_banks) ... ok
+test_10_full_banks_teleports_and_epoch_wrap (__main__.PoolRenderer.test_10_full_banks_teleports_and_epoch_wrap) ... ok
+test_11_all_home_addresses_overlap_hits_and_cursor_page_carries (__main__.PoolRenderer.test_11_all_home_addresses_overlap_hits_and_cursor_page_carries) ... ok
+test_12_packed_home_decode_all_bytes_and_incoming_carries (__main__.PoolRenderer.test_12_packed_home_decode_all_bytes_and_incoming_carries) ... ok
+
+----------------------------------------------------------------------
+Ran 39 tests in 23.100s
+
+OK
+{
+  "phases": [
+    "blue",
+    "white",
+    "blue",
+    "white",
+    "blue",
+    "white",
+    "blue",
+    "white"
+  ],
+  "request_to_present_ms": [
+    15.80969310480705,
+    15.851737560463349,
+    17.772093628113858,
+    18.51129382523391,
+    15.851737560463349,
+    15.851737560463349,
+    15.851737560463349,
+    18.819293907367264
+  ],
+  "flash_spacing_ms": [
+    193.6772960917234,
+    199.89400886062458,
+    199.16165310977416,
+    194.99729644372349,
+    197.94040833966446,
+    197.99418613178298,
+    201.36849814271062
+  ],
+  "audio_update_gap_ms_max": 25.36649565328773
+}
+python3 tests/sound_effect.py
+test_01_all_real_effects_and_priorities (__main__.SoundEffectParity.test_01_all_real_effects_and_priorities) ... ok
+test_02_cancellation_and_inactive_state (__main__.SoundEffectParity.test_02_cancellation_and_inactive_state) ... ok
+test_03_random_state_and_duration_boundaries (__main__.SoundEffectParity.test_03_random_state_and_duration_boundaries) ... ok
+test_04_all_frequency_steps_scales_and_envelopes (__main__.SoundEffectParity.test_04_all_frequency_steps_scales_and_envelopes) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 14.915s
+
+OK
+python3 tests/display_profile.py
+test_absent_and_partial_have_distinct_results (__main__.Visibility.test_absent_and_partial_have_distinct_results) ... ok
+test_ambiguous_wall_and_overlap_are_excluded (__main__.Visibility.test_ambiguous_wall_and_overlap_are_excluded) ... ok
+test_complete_old_or_new_pose_is_present (__main__.Visibility.test_complete_old_or_new_pose_is_present) ... ok
+test_dropped_or_duplicate_video_frames_are_rejected (__main__.Visibility.test_dropped_or_duplicate_video_frames_are_rejected) ... ok
+test_edges_and_hidden_actors_are_excluded (__main__.Visibility.test_edges_and_hidden_actors_are_excluded) ... ok
+test_mixed_old_new_scanlines_are_partial (__main__.Visibility.test_mixed_old_new_scanlines_are_partial) ... ok
+test_motion_does_not_bridge_unknown_frames (__main__.Visibility.test_motion_does_not_bridge_unknown_frames) ... ok
+test_phase_accounting_does_not_double_count_nested_routines (__main__.Visibility.test_phase_accounting_does_not_double_count_nested_routines) ... ok
+test_pool_display_uses_matrix_and_keeps_home_background (__main__.Visibility.test_pool_display_uses_matrix_and_keeps_home_background) ... ok
+test_prefix_window_preserves_source_and_excludes_future_events (__main__.Visibility.test_prefix_window_preserves_source_and_excludes_future_events) ... ok
+test_prefix_window_rejects_bad_limits_and_any_source_gap (__main__.Visibility.test_prefix_window_rejects_bad_limits_and_any_source_gap) ... ok
+test_wall_pixels_cannot_prove_actor_present (__main__.Visibility.test_wall_pixels_cannot_prove_actor_present) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.015s
+
+OK
+python3 tests/smoke.py --prg build/sound-effect-fast/pacman.prg --output build/sound-effect-fast/smoke
+{
+  "screens": [
+    "attract",
+    "credits",
+    "maze",
+    "cherry",
+    "intermission-1",
+    "intermission-2",
+    "intermission-3"
+  ],
+  "stack_by_scene": {
+    "attract": {
+      "software_lowest_write": 32743,
+      "software_bytes_written": 25,
+      "hardware_lowest_write": 491,
+      "hardware_bytes_written": 21
+    },
+    "credits": {
+      "software_lowest_write": 32743,
+      "software_bytes_written": 25,
+      "hardware_lowest_write": 491,
+      "hardware_bytes_written": 21
+    },
+    "maze": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 491,
+      "hardware_bytes_written": 21
+    },
+    "cherry": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 491,
+      "hardware_bytes_written": 21
+    },
+    "intermission-1": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 491,
+      "hardware_bytes_written": 21
+    },
+    "intermission-2": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 491,
+      "hardware_bytes_written": 21
+    },
+    "intermission-3": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 491,
+      "hardware_bytes_written": 21
+    }
+  },
+  "clock": {
+    "video_frames": 180,
+    "arcade_ticks": 181,
+    "expected": 180.96
+  },
+  "long_run_ticks": 7183,
+  "stack": {
+    "software_lowest_write": 32738,
+    "software_bytes_written": 30,
+    "hardware_lowest_write": 490,
+    "hardware_bytes_written": 22
+  },
+  "boot": {
+    "entries": 1,
+    "released": true
+  },
+  "irq_vector_intact": true,
+  "stack_guard_intact": true,
+  "software_stack_reserved": 704
+}

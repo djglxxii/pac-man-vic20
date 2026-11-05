@@ -1,5 +1,9 @@
 # Native arcade core provenance
 
+The adapted C source and headers described below are local inputs, omitted
+from the current Git tree at the project owner's request. Their working
+copies remain available locally; see [local inputs](../../docs/LOCAL_INPUTS.md).
+
 The game routines and memory-map definitions are adapted from Mark Burkley's
 MIT-licensed C translation of Pac-Man's Z80 program:
 

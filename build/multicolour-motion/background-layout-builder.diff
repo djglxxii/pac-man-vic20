@@ -1,0 +1,25 @@
+--- before/build_multicolour_motion.py
++++ after/build_multicolour_motion.py
+@@ -160,7 +160,13 @@
+     patterns, colors, _, _, _ = frame(fixture, walls, assets, "maze")
+     font_patterns = {font_glyph(rows) for rows in assets["font"].values()}
+     font_patterns |= {font_glyph(assets["life_icon"], 0), font_glyph(assets["cherry_icon"], 0)}
+-    background = sorted(set(patterns) | font_patterns)
++    # Work characters copy only the playfield (HUD rows are clipped out).
++    # Give its common patterns small codes to avoid indexed-read page
++    # crossings in the eight background row planes. Use the whole static
++    # maze, independently of the recorded actor positions.
++    background_frequency = Counter(patterns[2 * 21:26 * 21])
++    background = sorted(set(patterns) | font_patterns,
++                        key=lambda pattern: (-background_frequency[pattern], pattern))
+     assert len(background) <= 147
+     codes = {pattern: code for code, pattern in enumerate(background)}
+     charset = b"".join(background).ljust(147 * 8, b"\0")
+@@ -246,6 +252,7 @@
+               "background_characters_loaded": len(background), "background_slots_reserved": 147,
+               "background_copy_layout": "eight 147-byte row planes; replaces character-major data in the PRG",
+               "background_copy_bytes": 147 * 8,
++              "background_code_layout": "frequent playfield patterns first; no replay weighting or padding",
+               "work_banks": [[147, 200], [201, 254]], "actors_supported": 6,
+               "pose_row_index_bytes": len(row_ids), "unique_shifted_row_records": len(records),
+               "shifted_row_record_bytes": len(records) * 7,

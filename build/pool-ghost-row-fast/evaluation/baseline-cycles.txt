@@ -1,0 +1,6 @@
+  706   inx                   $E8      2  
+  707   dec v_temp            $C6      5  
+  708   bne pool_ghost_row    $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  709   rts                   $60      6  
+--------------------------------------------------
+bytes: 6   cycles: 15 .. 17   (straight-line sum; multiply loop bodies yourself)

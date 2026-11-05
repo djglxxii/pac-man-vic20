@@ -1,0 +1,14 @@
+{
+  "phase_ms_max": {
+    "wait": 11.073,
+    "fill": 30.211,
+    "clear-pills": 41.403,
+    "rebuild": 819.168,
+    "palette": 34.421,
+    "maze": 111.11,
+    "pills": 58.451
+  },
+  "logic_gap_ms_max": 832.293,
+  "wait-end_gap_ms_max": 832.173,
+  "end_gap_ms_max": 1277.648
+}

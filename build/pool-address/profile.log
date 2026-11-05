@@ -1,0 +1,111 @@
+{
+  "prg_sha256": "c96ed73ab9e7ea61e14eeceb56fd7e8c10eeedd62c11bb2dc67ad3f4fe20301c",
+  "map_sha256": "5d7f722a6b101437e4946c5a039936d736fa021f023dfa6256740b30607a59a9",
+  "cpu_hz": 1022727,
+  "cycles": 20361429,
+  "seconds": 19.908958109055497,
+  "guest_code_changed": false,
+  "watches": {
+    "frame_wait": "wait",
+    "video_refresh": "render",
+    "audio_update": "audio",
+    "video_update_begin": "restore",
+    "video_background": "background",
+    "video_update_end": "paint",
+    "updateGhostStates_1017": "ghost-state",
+    "soundEffectOneChannel_2dee": "sound-channel",
+    "playSongOneChannel_2d44": "song-channel"
+  },
+  "method": "vicsim instruction cycles and host-only routine watches",
+  "phase_cycles": {
+    "logic_tasks_loop": 10802508,
+    "audio": 1170380,
+    "wait": 32618,
+    "render": 8355923
+  },
+  "phase_percent": {
+    "logic_tasks_loop": 53.05378124492147,
+    "audio": 5.748024856212204,
+    "wait": 0.1601950432850268,
+    "render": 41.03799885558131
+  },
+  "routine_inclusive_cycles": {
+    "ghost-state": {
+      "count": 2414,
+      "mean": 1475.7990886495443,
+      "p50": 1446,
+      "p95": 2379,
+      "max": 4178,
+      "total": 3562579
+    },
+    "sound-channel": {
+      "count": 2009,
+      "mean": 819.0831259333002,
+      "p50": 772,
+      "p95": 1424,
+      "max": 1576,
+      "total": 1645538
+    },
+    "audio": {
+      "count": 1207,
+      "mean": 969.6603148301574,
+      "p50": 1122,
+      "p95": 1282,
+      "max": 1458,
+      "total": 1170380
+    },
+    "wait": {
+      "count": 1206,
+      "mean": 27.046434494195687,
+      "p50": 27,
+      "p95": 27,
+      "max": 83,
+      "total": 32618
+    },
+    "background": {
+      "count": 456,
+      "mean": 2377.1403508771928,
+      "p50": 2749,
+      "p95": 6928,
+      "max": 11253,
+      "total": 1083976
+    },
+    "restore": {
+      "count": 456,
+      "mean": 449.4035087719298,
+      "p50": 167,
+      "p95": 2131,
+      "max": 2187,
+      "total": 204928
+    },
+    "paint": {
+      "count": 456,
+      "mean": 15443.603070175439,
+      "p50": 15091,
+      "p95": 18872,
+      "max": 20006,
+      "total": 7042283
+    },
+    "render": {
+      "count": 456,
+      "mean": 18324.39254385965,
+      "p50": 17841,
+      "p95": 25221,
+      "max": 31340,
+      "total": 8355923
+    }
+  },
+  "completed_renders": 456,
+  "completed_render_interval_ms": {
+    "count": 455,
+    "mean": 43.69246508233745,
+    "p50": 42.58223357748451,
+    "p95": 66.23077321709508,
+    "max": 83.44357780717631
+  },
+  "actor_erase_to_paint_ms": {
+    "count": 0
+  },
+  "completed_renders_per_second": 22.904262367832825,
+  "unattributed_interrupt_entry_cycles": 8449
+}

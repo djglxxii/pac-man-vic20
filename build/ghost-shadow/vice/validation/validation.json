@@ -1,0 +1,10 @@
+{
+  "prg_sha256": "1aead2a2d0d42da4ef59e86b07691c867d94882fb193ff9bad98cde3e089418d",
+  "live_restore_checks": 32,
+  "protected_cells": 366,
+  "old_character_bits_preserved": true,
+  "published_matrix_restored_checks": 31,
+  "all_50176_native_monitor_pixels_match": true,
+  "validation_scene_frozen_only_for_pixel_comparison": true,
+  "colours_update_live": true
+}

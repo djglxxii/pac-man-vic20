@@ -1,0 +1,58 @@
+{
+  "prg_sha256": "b8ec0dac2182f256ff6b47678162e421a64f59cc0ef22c86f60d29e6bf2fce43",
+  "validation": {
+    "boot_coin_start_via_joystick": true,
+    "warmup_video_frames": 917,
+    "successive_live_scenes": 32,
+    "hidden_preparation_and_published_pixels": true,
+    "hidden_actor_slices": 96,
+    "ntsc_origin": [
+      6,
+      18
+    ],
+    "vacated_cells_restored": 98,
+    "all_36288_native_pixels_match": true,
+    "validation_scene_frozen_only_for_pixel_comparison": true
+  },
+  "recording": {
+    "frames": 600,
+    "capture_fps": "340909/5655",
+    "completed_updates": 89,
+    "observed_updates_per_second": 8.96,
+    "first": {
+      "frame": 0,
+      "ticks": 543,
+      "updates": 2,
+      "pellets": 1,
+      "score": [
+        16,
+        0,
+        0
+      ],
+      "lives": 3
+    },
+    "last": {
+      "frame": 599,
+      "ticks": 1146,
+      "updates": 91,
+      "pellets": 70,
+      "score": [
+        64,
+        7,
+        0
+      ],
+      "lives": 3
+    },
+    "audio": {
+      "sample_rate": 48000,
+      "channels": 1,
+      "nonzero_samples": 477604,
+      "sample_span": 31786
+    },
+    "video": "build/multicolour-game/vice/playable-preview.mp4",
+    "sha256": "60dccc89be77dd1317c48e09e0ab58a4b73a5bbac0a892571691d48fe3c393a0",
+    "joystick_only": true,
+    "guest_memory_or_code_patched": false,
+    "all_video_and_audio_decode": true
+  }
+}

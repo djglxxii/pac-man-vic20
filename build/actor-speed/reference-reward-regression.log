@@ -1,0 +1,118 @@
+test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) ... 
+  test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) (hole=2, slot=10, code=40, shift=0) ... FAIL
+  test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) (hole=2, slot=10, code=40, shift=5) ... FAIL
+  test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) (hole=2, slot=10, code=41, shift=0) ... FAIL
+  test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) (hole=2, slot=10, code=41, shift=5) ... FAIL
+  test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) (hole=2, slot=10, code=42, shift=0) ... FAIL
+  test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) (hole=2, slot=10, code=42, shift=5) ... FAIL
+  test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) (hole=2, slot=10, code=43, shift=0) ... FAIL
+  test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) (hole=2, slot=10, code=43, shift=5) ... FAIL
+
+======================================================================
+FAIL: test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) (hole=2, slot=10, code=40, shift=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/djglxxii/src/vic-man/tests/actor_commit.py", line 137, in test_11_reward_appears_with_no_underlay_in_borrowed_slot
+    self.check_scene(new, incremental=True, retain=True)
+  File "/home/djglxxii/src/vic-man/tests/actor_commit.py", line 42, in check_scene
+    return super().check_scene(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/djglxxii/src/vic-man/tests/render.py", line 130, in check_scene
+    self.assertEqual(actual[0x1000:0x1C40], expected, f"sprite pixels: {actors}")
+AssertionError: b'\x04\x03\xd8\x8bYu\x81\\C\x9di\x11\x8f\x[8855 chars]\xbc' != bytearray(b'\x04\x03\xd8\x8bYu\x81\\C\x9di[8869 chars]xbc') : sprite pixels: [[32, 0, 0, 159, 168], [40, 0, 24, 175, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168]]
+
+======================================================================
+FAIL: test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) (hole=2, slot=10, code=40, shift=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/djglxxii/src/vic-man/tests/actor_commit.py", line 137, in test_11_reward_appears_with_no_underlay_in_borrowed_slot
+    self.check_scene(new, incremental=True, retain=True)
+  File "/home/djglxxii/src/vic-man/tests/actor_commit.py", line 42, in check_scene
+    return super().check_scene(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/djglxxii/src/vic-man/tests/render.py", line 130, in check_scene
+    self.assertEqual(actual[0x1000:0x1C40], expected, f"sprite pixels: {actors}")
+AssertionError: b'\x04\x03\xd8\x8bYu\x81\\C\x9di\x11\x8f\x[8858 chars]\xbc' != bytearray(b'\x04\x03\xd8\x8bYu\x81\\C\x9di[8869 chars]xbc') : sprite pixels: [[32, 0, 0, 159, 168], [40, 0, 24, 165, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168]]
+
+======================================================================
+FAIL: test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) (hole=2, slot=10, code=41, shift=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/djglxxii/src/vic-man/tests/actor_commit.py", line 137, in test_11_reward_appears_with_no_underlay_in_borrowed_slot
+    self.check_scene(new, incremental=True, retain=True)
+  File "/home/djglxxii/src/vic-man/tests/actor_commit.py", line 42, in check_scene
+    return super().check_scene(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/djglxxii/src/vic-man/tests/render.py", line 130, in check_scene
+    self.assertEqual(actual[0x1000:0x1C40], expected, f"sprite pixels: {actors}")
+AssertionError: b'\x04\x03\xd8\x8bYu\x81\\C\x9di\x11\x8f\x[8858 chars]\xbc' != bytearray(b'\x04\x03\xd8\x8bYu\x81\\C\x9di[8872 chars]xbc') : sprite pixels: [[32, 0, 0, 159, 168], [41, 0, 24, 175, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168]]
+
+======================================================================
+FAIL: test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) (hole=2, slot=10, code=41, shift=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/djglxxii/src/vic-man/tests/actor_commit.py", line 137, in test_11_reward_appears_with_no_underlay_in_borrowed_slot
+    self.check_scene(new, incremental=True, retain=True)
+  File "/home/djglxxii/src/vic-man/tests/actor_commit.py", line 42, in check_scene
+    return super().check_scene(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/djglxxii/src/vic-man/tests/render.py", line 130, in check_scene
+    self.assertEqual(actual[0x1000:0x1C40], expected, f"sprite pixels: {actors}")
+AssertionError: b'\x04\x03\xd8\x8bYu\x81\\C\x9di\x11\x8f\x[8858 chars]\xbc' != bytearray(b'\x04\x03\xd8\x8bYu\x81\\C\x9di[8869 chars]xbc') : sprite pixels: [[32, 0, 0, 159, 168], [41, 0, 24, 165, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168]]
+
+======================================================================
+FAIL: test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) (hole=2, slot=10, code=42, shift=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/djglxxii/src/vic-man/tests/actor_commit.py", line 137, in test_11_reward_appears_with_no_underlay_in_borrowed_slot
+    self.check_scene(new, incremental=True, retain=True)
+  File "/home/djglxxii/src/vic-man/tests/actor_commit.py", line 42, in check_scene
+    return super().check_scene(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/djglxxii/src/vic-man/tests/render.py", line 130, in check_scene
+    self.assertEqual(actual[0x1000:0x1C40], expected, f"sprite pixels: {actors}")
+AssertionError: b'\x04\x03\xd8\x8bYu\x81\\C\x9di\x11\x8f\x[8858 chars]\xbc' != bytearray(b'\x04\x03\xd8\x8bYu\x81\\C\x9di[8872 chars]xbc') : sprite pixels: [[32, 0, 0, 159, 168], [42, 0, 24, 175, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168]]
+
+======================================================================
+FAIL: test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) (hole=2, slot=10, code=42, shift=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/djglxxii/src/vic-man/tests/actor_commit.py", line 137, in test_11_reward_appears_with_no_underlay_in_borrowed_slot
+    self.check_scene(new, incremental=True, retain=True)
+  File "/home/djglxxii/src/vic-man/tests/actor_commit.py", line 42, in check_scene
+    return super().check_scene(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/djglxxii/src/vic-man/tests/render.py", line 130, in check_scene
+    self.assertEqual(actual[0x1000:0x1C40], expected, f"sprite pixels: {actors}")
+AssertionError: b'\x04\x03\xd8\x8bYu\x81\\C\x9di\x11\x8f\x[8858 chars]\xbc' != bytearray(b'\x04\x03\xd8\x8bYu\x81\\C\x9di[8869 chars]xbc') : sprite pixels: [[32, 0, 0, 159, 168], [42, 0, 24, 165, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168]]
+
+======================================================================
+FAIL: test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) (hole=2, slot=10, code=43, shift=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/djglxxii/src/vic-man/tests/actor_commit.py", line 137, in test_11_reward_appears_with_no_underlay_in_borrowed_slot
+    self.check_scene(new, incremental=True, retain=True)
+  File "/home/djglxxii/src/vic-man/tests/actor_commit.py", line 42, in check_scene
+    return super().check_scene(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/djglxxii/src/vic-man/tests/render.py", line 130, in check_scene
+    self.assertEqual(actual[0x1000:0x1C40], expected, f"sprite pixels: {actors}")
+AssertionError: b'\x04\x03\xd8\x8bYu\x81\\C\x9di\x11\x8f\x[8855 chars]\xbc' != bytearray(b'\x04\x03\xd8\x8bYu\x81\\C\x9di[8872 chars]xbc') : sprite pixels: [[32, 0, 0, 159, 168], [43, 0, 24, 175, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168]]
+
+======================================================================
+FAIL: test_11_reward_appears_with_no_underlay_in_borrowed_slot (__main__.ActorCommitRenderer.test_11_reward_appears_with_no_underlay_in_borrowed_slot) (hole=2, slot=10, code=43, shift=5)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/djglxxii/src/vic-man/tests/actor_commit.py", line 137, in test_11_reward_appears_with_no_underlay_in_borrowed_slot
+    self.check_scene(new, incremental=True, retain=True)
+  File "/home/djglxxii/src/vic-man/tests/actor_commit.py", line 42, in check_scene
+    return super().check_scene(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/djglxxii/src/vic-man/tests/render.py", line 130, in check_scene
+    self.assertEqual(actual[0x1000:0x1C40], expected, f"sprite pixels: {actors}")
+AssertionError: b'\x04\x03\xd8\x8bYu\x81\\C\x9di\x11\x8f\x[8855 chars]\xbc' != bytearray(b'\x04\x03\xd8\x8bYu\x81\\C\x9di[8869 chars]xbc') : sprite pixels: [[32, 0, 0, 159, 168], [43, 0, 24, 165, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168], [32, 0, 0, 159, 168]]
+
+----------------------------------------------------------------------
+Ran 1 test in 0.159s
+
+FAILED (failures=8)

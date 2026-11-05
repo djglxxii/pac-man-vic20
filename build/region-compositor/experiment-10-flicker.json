@@ -1,0 +1,68 @@
+{
+  "cpu_hz": 1022727,
+  "video_frames_per_sample": 180,
+  "metric": "bitmap_erase entry to matching bitmap_draw return",
+  "prg_sha256": "3af15c81d204b24c07216f8d4f646df5f5ceb2a7b304e4ce5b0632c6754e21ef",
+  "samples": [
+    {
+      "scene": "play",
+      "completed_renders": 146,
+      "seconds": 2.9788,
+      "actor_erases": 470,
+      "actor_updates": 470,
+      "actor_paints": 482,
+      "composed_updates": 12,
+      "composed_paint_ms_mean": 1.253,
+      "composed_paint_ms_max": 1.398,
+      "actor_window_ms_per_second": 984.44,
+      "erase_to_paint_ms_mean": 6.239,
+      "erase_to_paint_ms_p95": 11.611,
+      "erase_to_paint_ms_max": 17.772
+    },
+    {
+      "scene": "frightened",
+      "completed_renders": 156,
+      "seconds": 2.9813,
+      "actor_erases": 495,
+      "actor_updates": 492,
+      "actor_paints": 492,
+      "composed_updates": 0,
+      "composed_paint_ms_mean": 0,
+      "composed_paint_ms_max": 0,
+      "actor_window_ms_per_second": 904.5,
+      "erase_to_paint_ms_mean": 5.481,
+      "erase_to_paint_ms_p95": 10.442,
+      "erase_to_paint_ms_max": 16.44
+    },
+    {
+      "scene": "attract-chase",
+      "completed_renders": 123,
+      "seconds": 2.9732,
+      "actor_erases": 326,
+      "actor_updates": 322,
+      "actor_paints": 324,
+      "composed_updates": 0,
+      "composed_paint_ms_mean": 0,
+      "composed_paint_ms_max": 0,
+      "actor_window_ms_per_second": 739.38,
+      "erase_to_paint_ms_mean": 6.827,
+      "erase_to_paint_ms_p95": 10.986,
+      "erase_to_paint_ms_max": 12.941
+    },
+    {
+      "scene": "intermission",
+      "completed_renders": 179,
+      "seconds": 2.9694,
+      "actor_erases": 45,
+      "actor_updates": 45,
+      "actor_paints": 95,
+      "composed_updates": 45,
+      "composed_paint_ms_mean": 1.101,
+      "composed_paint_ms_max": 1.257,
+      "actor_window_ms_per_second": 60.91,
+      "erase_to_paint_ms_mean": 4.019,
+      "erase_to_paint_ms_p95": 7.271,
+      "erase_to_paint_ms_max": 11.136
+    }
+  ]
+}

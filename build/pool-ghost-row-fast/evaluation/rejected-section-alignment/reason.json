@@ -1,0 +1,5 @@
+{
+  "status": "Rejected before profiling",
+  "reason": "p2align 5 raises the entire .text.pool input section alignment; linker reorders code and resident headroom shrinks from 141 to 109 bytes. Replace with two explicit unused bytes, verify final table placement.",
+  "tests": "Stopped during original-ROM checks; no correctness or speed result claimed."
+}

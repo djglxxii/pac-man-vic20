@@ -1,0 +1,65 @@
+{"frame": 0, "phase": "boot", "board": 256, "level_state": 255, "lives": 255, "pellets_eaten": 0}
+frame=0 recorded=0 host_seconds=0.0
+{"frame": 0, "phase": "boot", "board": 1, "level_state": 0, "lives": 0, "pellets_eaten": 0}
+{"frame": 1, "phase": "attract", "board": 1, "level_state": 0, "lives": 0, "pellets_eaten": 0}
+{"frame": 61, "phase": "coin", "board": 1, "level_state": 0, "lives": 0, "pellets_eaten": 0}
+{"frame": 63, "phase": "release", "board": 1, "level_state": 0, "lives": 0, "pellets_eaten": 0}
+{"frame": 93, "phase": "start", "board": 1, "level_state": 0, "lives": 0, "pellets_eaten": 0}
+{"frame": 95, "phase": "start", "board": 1, "level_state": 0, "lives": 3, "pellets_eaten": 0}
+frame=600 recorded=197 host_seconds=1.1
+{"frame": 230, "phase": "ready", "board": 1, "level_state": 0, "lives": 3, "pellets_eaten": 0}
+{"frame": 231, "phase": "ready", "board": 1, "level_state": 1, "lives": 3, "pellets_eaten": 0}
+{"frame": 232, "phase": "ready", "board": 1, "level_state": 2, "lives": 3, "pellets_eaten": 0}
+{"frame": 349, "phase": "lead-in", "board": 1, "level_state": 3, "lives": 3, "pellets_eaten": 0}
+{"frame": 379, "phase": "play", "board": 1, "level_state": 3, "lives": 3, "pellets_eaten": 3}
+frame=1200 recorded=797 host_seconds=3.0
+frame=1800 recorded=1397 host_seconds=4.9
+frame=2400 recorded=1997 host_seconds=6.8
+frame=3000 recorded=2597 host_seconds=9.0
+frame=3600 recorded=3197 host_seconds=11.1
+{"frame": 3750, "phase": "play", "board": 1, "level_state": 12, "lives": 3, "pellets_eaten": 244}
+{"frame": 3751, "phase": "play", "board": 1, "level_state": 13, "lives": 3, "pellets_eaten": 244}
+frame=4200 recorded=3797 host_seconds=13.1
+{"frame": 3865, "phase": "play", "board": 1, "level_state": 15, "lives": 3, "pellets_eaten": 244}
+{"frame": 3877, "phase": "play", "board": 1, "level_state": 17, "lives": 3, "pellets_eaten": 244}
+{"frame": 3889, "phase": "play", "board": 1, "level_state": 19, "lives": 3, "pellets_eaten": 244}
+{"frame": 3900, "phase": "play", "board": 1, "level_state": 20, "lives": 3, "pellets_eaten": 244}
+{"frame": 3901, "phase": "play", "board": 1, "level_state": 21, "lives": 3, "pellets_eaten": 244}
+{"frame": 3912, "phase": "play", "board": 1, "level_state": 23, "lives": 3, "pellets_eaten": 244}
+{"frame": 3924, "phase": "play", "board": 1, "level_state": 25, "lives": 3, "pellets_eaten": 244}
+{"frame": 3936, "phase": "play", "board": 1, "level_state": 27, "lives": 3, "pellets_eaten": 244}
+{"frame": 3948, "phase": "play", "board": 1, "level_state": 29, "lives": 3, "pellets_eaten": 244}
+{"frame": 3960, "phase": "play", "board": 1, "level_state": 31, "lives": 3, "pellets_eaten": 244}
+{"frame": 3978, "phase": "play", "board": 1, "level_state": 34, "lives": 3, "pellets_eaten": 244}
+{"frame": 3979, "phase": "play", "board": 2, "level_state": 35, "lives": 3, "pellets_eaten": 0}
+{"frame": 3980, "phase": "play", "board": 2, "level_state": 36, "lives": 3, "pellets_eaten": 0}
+{"frame": 4097, "phase": "play", "board": 2, "level_state": 3, "lives": 3, "pellets_eaten": 0}
+frame=4800 recorded=4397 host_seconds=15.1
+frame=5400 recorded=4997 host_seconds=17.2
+frame=6000 recorded=5597 host_seconds=19.1
+frame=6600 recorded=6197 host_seconds=21.1
+frame=7200 recorded=6797 host_seconds=23.1
+{"frame": 6829, "phase": "play", "board": 2, "level_state": 4, "lives": 2, "pellets_eaten": 237}
+{"frame": 6831, "phase": "play", "board": 2, "level_state": 9, "lives": 2, "pellets_eaten": 237}
+{"frame": 6832, "phase": "play", "board": 2, "level_state": 10, "lives": 2, "pellets_eaten": 237}
+{"frame": 6950, "phase": "play", "board": 2, "level_state": 3, "lives": 2, "pellets_eaten": 237}
+{"frame": 7231, "phase": "play", "board": 2, "level_state": 12, "lives": 2, "pellets_eaten": 244}
+{"frame": 7232, "phase": "play", "board": 2, "level_state": 13, "lives": 2, "pellets_eaten": 244}
+{"frame": 7350, "phase": "play", "board": 2, "level_state": 15, "lives": 2, "pellets_eaten": 244}
+{"frame": 7362, "phase": "play", "board": 2, "level_state": 17, "lives": 2, "pellets_eaten": 244}
+{"frame": 7374, "phase": "play", "board": 2, "level_state": 19, "lives": 2, "pellets_eaten": 244}
+{"frame": 7386, "phase": "play", "board": 2, "level_state": 21, "lives": 2, "pellets_eaten": 244}
+frame=7800 recorded=7397 host_seconds=25.1
+{"frame": 7398, "phase": "play", "board": 2, "level_state": 23, "lives": 2, "pellets_eaten": 244}
+{"frame": 7410, "phase": "play", "board": 2, "level_state": 25, "lives": 2, "pellets_eaten": 244}
+{"frame": 7422, "phase": "play", "board": 2, "level_state": 27, "lives": 2, "pellets_eaten": 244}
+{"frame": 7434, "phase": "play", "board": 2, "level_state": 29, "lives": 2, "pellets_eaten": 244}
+{"frame": 7446, "phase": "play", "board": 2, "level_state": 31, "lives": 2, "pellets_eaten": 244}
+{"frame": 7464, "phase": "play", "board": 2, "level_state": 32, "lives": 2, "pellets_eaten": 244}
+frame=8400 recorded=7997 host_seconds=26.8
+{"frame": 8069, "phase": "play", "board": 2, "level_state": 33, "lives": 2, "pellets_eaten": 244}
+{"frame": 8096, "phase": "play", "board": 3, "level_state": 35, "lives": 2, "pellets_eaten": 0}
+{"frame": 8097, "phase": "play", "board": 3, "level_state": 36, "lives": 2, "pellets_eaten": 0}
+{"frame": 8215, "phase": "play", "board": 3, "level_state": 37, "lives": 2, "pellets_eaten": 0}
+{"frame": 8216, "phase": "play", "board": 3, "level_state": 3, "lives": 2, "pellets_eaten": 0}
+/home/djglxxii/src/vic-man/build/playthrough/first-intermission.mp4

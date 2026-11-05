@@ -1,0 +1,5 @@
+cp build/pool-shift-fast/pacman-native.bin build/arcade/pacman-native.bin
+cp build/pool-shift-fast/pacman-native.bin.elf build/arcade/pacman-native.bin.elf
+cp build/pool-shift-fast/pacman.map build/arcade/pacman.map
+cp build/pool-shift-fast/pacman.prg build/pacman.prg
+cp build/pool-shift-fast/pacman.lbl build/pacman.lbl

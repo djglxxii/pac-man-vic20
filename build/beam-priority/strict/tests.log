@@ -1,0 +1,41 @@
+test_01_grouped_updates_match_original (__main__.Groups.test_01_grouped_updates_match_original) ... ok
+test_02_live_groups_finish_before_beam_returns (__main__.Groups.test_02_live_groups_finish_before_beam_returns) ... ok
+test_03_all_raster_phases_and_large_groups (__main__.Groups.test_03_all_raster_phases_and_large_groups) ... ok
+test_04_player_slot_and_nearby_boundaries (__main__.Groups.test_04_player_slot_and_nearby_boundaries) ... ok
+test_01_6502_movement_turns_and_score (__main__.Parity.test_01_6502_movement_turns_and_score) ... ok
+test_02_6502_frightened_rng (__main__.Parity.test_02_6502_frightened_rng) ... ok
+test_03_build_memory_limits (__main__.Parity.test_03_build_memory_limits) ... ok
+test_04_square_table_equivalence (__main__.Parity.test_04_square_table_equivalence) ... ok
+test_05_exact_audio_divider_boundaries (__main__.Parity.test_05_exact_audio_divider_boundaries) ... ok
+test_06_audio_converter_registers (__main__.Parity.test_06_audio_converter_registers) ... ok
+test_01_all_frames_shifts_and_flips (__main__.Renderer.test_01_all_frames_shifts_and_flips) ... ok
+test_02_edges_overlap_priority_and_returning_eyes (__main__.Renderer.test_02_edges_overlap_priority_and_returning_eyes) ... ok
+test_03_incremental_matches_full_redraw (__main__.Renderer.test_03_incremental_matches_full_redraw) ... ok
+test_04_preshifted_ghost_path (__main__.Renderer.test_04_preshifted_ghost_path) ... ok
+test_05_dirty_tiles_preserve_actors_and_shared_colours (__main__.Renderer.test_05_dirty_tiles_preserve_actors_and_shared_colours) ... ok
+test_06_clipped_kernel_memory_boundaries (__main__.Renderer.test_06_clipped_kernel_memory_boundaries) ... ok
+test_07_horizontal_rewards_priority_flips_edges_and_restoration (__main__.Renderer.test_07_horizontal_rewards_priority_flips_edges_and_restoration) ... ok
+test_08_revised_pacman_masks_and_shared_closed_views (__main__.Renderer.test_08_revised_pacman_masks_and_shared_closed_views) ... ok
+test_09_focus_order_and_nearby_windows (__main__.Renderer.test_09_focus_order_and_nearby_windows) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 7.457s
+
+OK
+{
+  "video_frames": 600,
+  "groups": 817,
+  "protected_groups": 26,
+  "actor_erases": 1307,
+  "protected_actor_erases": 36,
+  "max_protected_group_cycles": 4786,
+  "max_protected_group_ms": 4.68,
+  "no_protected_group_crossed_its_colour_rows": true,
+  "all_protected_groups_within_budget": true
+}
+{
+  "phase_fixture_calls": 1179,
+  "protected_groups": 1179,
+  "fallback_groups": 262,
+  "largest_protected_group": 5
+}

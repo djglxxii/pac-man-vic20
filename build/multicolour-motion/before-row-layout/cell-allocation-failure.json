@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "failure_branch": 9058,
+  "native_test_only": true,
+  "capacity_fault_injected": true,
+  "cases": [
+    {
+      "allocation_path": "left",
+      "caller_reached_failure_branch": true,
+      "visible_image_and_guard_preserved": true,
+      "map_cleanup_and_subsequent_recovery": true
+    },
+    {
+      "allocation_path": "middle",
+      "caller_reached_failure_branch": true,
+      "visible_image_and_guard_preserved": true,
+      "map_cleanup_and_subsequent_recovery": true
+    },
+    {
+      "allocation_path": "right",
+      "caller_reached_failure_branch": true,
+      "visible_image_and_guard_preserved": true,
+      "map_cleanup_and_subsequent_recovery": true
+    }
+  ]
+}

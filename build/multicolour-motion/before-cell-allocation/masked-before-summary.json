@@ -1,0 +1,17 @@
+{
+  "row_fetch_and_dispatch": {
+    "cycles_per_scene": 522.04
+  },
+  "row_colour": {
+    "cycles_per_scene": 1481.18
+  },
+  "row_advance": {
+    "cycles_per_scene": 656.19
+  },
+  "draw_programs": {
+    "cycles_per_scene": 3432.1
+  },
+  "get_work_cell": {
+    "cycles_per_scene": 8081.48
+  }
+}

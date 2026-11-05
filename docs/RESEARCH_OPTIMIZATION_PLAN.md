@@ -2,24 +2,54 @@
 
 **Current direction, 2026-11-04:** live play testing accepted the
 [glyph-pool renderer](GLYPH_POOL.md) as a large visible improvement. The user
-reports occasional slowdown and accepts the speed tradeoff. The five speed
+reports occasional slowdown and accepts the speed tradeoff. The fourteen speed
 improvements below are now accepted as the standard build: `make run` launches
 the pool with faster addressing, empty-row skipping and optimized sound-effect
-processing, plus faster ghost tunnel lookups and sprite composition, measured
-at **27.46 actual redraws/s**. Preserve the accepted appearance and sound in
+processing, plus faster ghost tunnel lookups, sprite composition and
+precomputed VIC pitches, the compact audio adapter and a common-state ghost
+dispatch fast path, cheaper pool cell allocation, faster background-tile
+drawing, precomputed sprite preparation, cheaper destination setup and
+accumulator-first sprite shifts and cheaper normal-ghost row control, measured
+at **33.85 actual redraws/s**.
+Preserve the accepted appearance and sound in
 further work. The stopped colour investigation remains stopped.
 
 The [remaining optimization candidates](#remaining-optimization-candidates)
 below are the current work queue. Its first [ghost-state experiment](TILE_ADDRESS_OPTIMIZATION.md)
 is accepted after live review, as is the first
 [glyph-composition experiment](POOL_STAMP_OPTIMIZATION.md). Both are included
-in the standard build. Measuring opportunities to reuse unchanged display
-content is the next queued investigation. The earlier investigations and
+in the standard build. The [unchanged-display opportunity measurement](POOL_REUSE_MEASUREMENT.md)
+is complete; persistent reuse is deferred pending a costed design. VIC audio
+translation is now profiled, and the [exact pitch lookup](AUDIO_DIVIDER_OPTIMIZATION.md)
+is accepted after live review and included in the standard build. The earlier investigations and
 implementation lists are historical context.
+
+The [background-tile drawing follow-up](TILE_STAMP_OPTIMIZATION.md) is accepted
+and promoted to the standard: **32.21 actual redraws/s**, about **2.1%** above
+the preceding cell-allocation build. It saves 143–147 cycles per visible tile
+with no additional memory allocation. `make run-tile-stamp-fast` preserves
+this intermediate version. Its improved actual redraw/audio gaps, slightly larger
+maximum input gap and remaining partial poses are documented in the report.
+
+**Latest accepted build:** [normal-ghost row control](POOL_GHOST_ROW_OPTIMIZATION.md)
+is accepted after live review and promoted. The user authorized keeping or
+discarding it; the measured cycle saving supports keeping it. `make run` and `make run-pool-ghost-row-fast` select the same
+version: **33.85 actual redraws/s**, about **0.3%** above accumulator shifts.
+Each normal-ghost call saves 27–31 cycles, with the same 141/23-byte headroom
+and full stack. All 1,024 guarded ghost kernels, 8,768 complete scenes, 10,496
+generic masks, exact game/sound replays and all intermissions pass. The actual
+95th-percentile redraw gap, worst native input/audio gaps and several partial
+counts grow on the saved route. Those tradeoffs remain documented; the proven
+CPU saving, no extra memory requirement and acceptable live result support
+keeping it. See the [promotion evidence](baselines/pool-ghost-row-promotion.json).
+`make run-pool-shift-fast` preserves the preceding 33.75 build.
+
+No new runtime experiment is active. Persistent caching and redraw pacing
+remain deferred; the measured remaining candidates below are preserved.
 
 | Original idea | Current disposition |
 | --- | --- |
-| 1. Finished-cell glyph pool | [Accepted after live play testing](GLYPH_POOL.md) and promoted to default. Initially 22.07 versus 32.88 underlay redraws/s; the five accepted speed improvements below now reach 27.46. No fully absent actors among classified capture cases. Same hardware and full stack. |
+| 1. Finished-cell glyph pool | [Accepted after live play testing](GLYPH_POOL.md) and promoted to default. Initially 22.07 versus 32.88 underlay redraws/s; the fourteen accepted speed improvements below now reach 33.85. No fully absent actors among classified capture cases. Same hardware and full stack. |
 | 2. Write-once compositing with a full background shadow | No assigned home for the 3,136-byte shadow under the current memory target; the other agent withdrew this fallback. |
 | 3. Raster lock / beam scheduling | Several trials rejected after user review and throughput loss. Preserve the 16,875-cycle arcade clock. |
 | 4. Pacing / partial updates | Measured uneven cadence remains relevant; partial updates need coherent displayed poses and shared-cell handling. No fixed-rate or IRQ-renderer rewrite is started. |
@@ -78,10 +108,103 @@ graphics tables or writable scratch. All 10,496 identical-input sprite cases
 match the independent pixel oracle and use fewer cycles. Actual capture
 improves **26.44 → 27.46 redraws/s**, about **3.9%**, at a cost of 64 resident
 bytes. Gameplay, sound and all intermissions pass. The user accepted the live
-result and requested promotion: `make run` and `make run-pool-stamp-fast` now
-launch the same measured binary. The longest captured redraw interval grows
+result and requested promotion; its changes remain in the standard build.
+`make run-pool-stamp-fast` retains this intermediate version. Its longest captured redraw interval grows
 68.54 → 74.87 ms and partial poses remain. See the report and
 [frozen evidence](baselines/pool-stamp-fast.json) for the complete tradeoffs.
+
+**Sixth speed follow-up:** the [exact VIC pitch lookup](AUDIO_DIVIDER_OPTIMIZATION.md)
+precomputes the nearest divider for the common frequency grid, retaining the
+original calculation for all other inputs. Actual capture improves
+**27.46 → 28.84 redraws/s**, about **5.0%**. All 65,536 frequency inputs and
+1,639 replayed sound ticks match. Mean audio translation falls from 968 to
+646 cycles per tick. The user accepted the live result and requested promotion;
+its changes remain included in the standard. `make run-audio-divider-fast`
+retains this intermediate version.
+The 256-byte resident increase leaves **141 bytes** before the full stack.
+See the report and [frozen evidence](baselines/audio-divider-fast.json).
+
+**Seventh speed follow-up:** the [compact audio adapter](AUDIO_UPDATE_OPTIMIZATION.md)
+replaces C register unpacking, saturating pitch scaling and output bookkeeping
+with assembly using existing caller scratch. Actual capture improves
+**28.84 → 29.81 redraws/s**, about **3.4%**, and mean audio cost falls
+**646 → 393 cycles per tick**. All 524,288 frequency/shift pairs per build,
+1,639 sound ticks and 1,207 game states match. The user accepted the live result
+and requested promotion; `make run-audio-update-fast` retains this intermediate version.
+Resident headroom stays 141 bytes; BLK5 free space grows to 151 bytes. The
+longest captured redraw gap grows **58.53 → 61.04 ms** and partial poses remain.
+See the report and [frozen evidence](baselines/audio-update-fast.json).
+
+**Eighth speed follow-up:** the [common-state ghost dispatch fast path](GHOST_UPDATE_OPTIMIZATION.md)
+bypasses no-op death/returning-state handlers when all six relevant state bytes
+are zero. Movement and state-transition order remain unchanged. Actual capture
+improves **29.81 → 30.78 redraws/s**, about **3.3%**, and mean ghost processing
+falls **1,376 → 1,249 cycles/call**. All 2,458 identical-input fixtures match
+the original Z80 and predecessor; gameplay, sound and intermissions pass.
+The user accepted the result and requested promotion. `make run-ghost-update-fast`
+retains this intermediate version, whose changes are included in the standard.
+It left resident headroom at **109 bytes**;
+BLK5 retains **151 bytes** and the full 704-byte stack remains intact.
+The longest redraw gap grows **61.04 → 63.43 ms** and partial poses remain.
+See the report, [frozen measurements](baselines/ghost-update-fast.json) and
+[promotion evidence](baselines/ghost-update-promotion.json).
+
+**Ninth speed follow-up:** [cheaper cell allocation](POOL_ALLOC_OPTIMIZATION.md)
+removes repeated relative/absolute slot conversions and the cell save/reload.
+Every identical-input allocation saves 24–25 cycles and each overlap hit saves
+3 cycles. Actual capture improves **30.78 → 31.55 redraws/s**, about **2.5%**,
+while alignment recovers 32 resident bytes. Gameplay, sound and intermissions
+pass. The user accepted live play testing and requested promotion;
+`make run-pool-alloc-fast` retains this intermediate version, whose changes
+remain included in the standard. Resident/bank headroom is **141/151
+bytes**, with the full stack and existing hardware retained. See the report,
+[frozen measurements](baselines/pool-alloc-fast.json) and
+[promotion evidence](baselines/pool-alloc-promotion.json).
+
+**Tenth speed follow-up:** [faster background-tile drawing](TILE_STAMP_OPTIMIZATION.md)
+replaces six per-row calls and pointer increments with an indexed walk. Every
+visible identical-input tile saves 143–147 cycles. Actual capture improves
+**31.55 → 32.21 redraws/s**, about **2.1%**, with the same 141/151-byte
+resident/bank headroom and full stack. Gameplay, pixels, sound and intermissions
+pass. The user accepted live play testing and requested promotion;
+`make run-tile-stamp-fast` preserves this intermediate build. See the report,
+[frozen measurements](baselines/tile-stamp-fast.json) and
+[promotion evidence](baselines/tile-stamp-promotion.json).
+
+**Eleventh speed follow-up:** [precomputed sprite preparation](POOL_SETUP_OPTIMIZATION.md)
+packs regular-atlas source pointers and classes into 64 two-byte descriptors.
+Actual capture improves **32.21 → 33.29 redraws/s**, about **3.3%**. The
+128-byte read-only table leaves **141/23 bytes** resident/BLK5 headroom with
+the full stack. The maximum captured redraw gap grows **55.74 → 61.28 ms**.
+Gameplay, pixels, sound and intermissions pass. The user accepted live testing
+and requested promotion: `make run-pool-setup-fast` preserves this intermediate build.
+See the report, [frozen measurements](baselines/pool-setup-fast.json) and
+[promotion evidence](baselines/pool-setup-promotion.json).
+
+**Twelfth speed follow-up:** [destination setup](POOL_DEST_OPTIMIZATION.md)
+removes redundant sink-pointer initialization. Actual throughput improves
+**33.29 → 33.64 redraws/s**, with 141/23-byte headroom and the full stack.
+The user requested promotion; `make run-pool-dest-fast` preserves it.
+Exact pixels, gameplay, sound and all intermissions pass. The slightly longer
+maximum redraw gap and remaining partial poses are recorded in the report and
+[promotion evidence](baselines/pool-dest-promotion.json).
+
+**Thirteenth speed follow-up:** [accumulator-first sprite shifts](POOL_SHIFT_OPTIMIZATION.md)
+improve actual throughput **33.64 → 33.75 redraws/s**, about **0.3%**, with no
+extra state or tables. All generic masks, complete scenes, game/sound replays
+and intermissions pass. The user accepted live review and requested promotion;
+`make run-pool-shift-fast` preserves this version. See the report
+and [promotion record](baselines/pool-shift-promotion.json) for tradeoffs.
+
+**Fourteenth speed follow-up:** [normal-ghost row control](POOL_GHOST_ROW_OPTIMIZATION.md)
+improves actual throughput **33.75 → 33.85 redraws/s**, about **0.3%**, without
+additional RAM or a stack reduction. Guarded pixels, complete scenes, unchanged
+generic kernels, game/sound replays and all intermissions pass. The live result
+is acceptable; the user authorized keeping or discarding it. It is kept for
+the proven cycle saving and unchanged memory headroom. `make run` and
+`make run-pool-ghost-row-fast` select it. See the report and
+[promotion record](baselines/pool-ghost-row-promotion.json) for the timing and
+partial-pose tradeoffs.
 
 ## Remaining optimization candidates
 
@@ -90,39 +213,78 @@ five candidates preserve the discussion's proposed order. Candidate 1's first
 experiment, the [tunnel lookup](TILE_ADDRESS_OPTIMIZATION.md), is accepted and
 included in the standard build. Candidate 2's first
 [composition experiment](POOL_STAMP_OPTIMIZATION.md) is also accepted and
-promoted; candidate 3 is the next investigation, while 3–5 remain
-queued/deferred. Update this queue after each experiment
+promoted. Candidate 3's [opportunity measurement](POOL_REUSE_MEASUREMENT.md)
+is complete, with implementation deferred; candidate 4's pitch lookup is
+accepted and included in the standard build, and candidate
+4's unpacking/scaling follow-up is also accepted and standard. Candidate 5 remains
+deferred. Candidate 1's second experiment, a
+[common-state dispatch fast path](GHOST_UPDATE_OPTIMIZATION.md), is also
+accepted and included in the standard. Candidate 2's
+[cell-allocation follow-up](POOL_ALLOC_OPTIMIZATION.md) is also accepted and
+included. Candidate 2's [background-tile follow-up](TILE_STAMP_OPTIMIZATION.md)
+is accepted and included. Candidate 2's
+[sprite-preparation follow-up](POOL_SETUP_OPTIMIZATION.md) is accepted and
+included. Candidate 2's [destination-setup follow-up](POOL_DEST_OPTIMIZATION.md)
+is also accepted and included. The
+[accumulator-first shifts](POOL_SHIFT_OPTIMIZATION.md) are also accepted and
+included.
+[Normal-ghost row control](POOL_GHOST_ROW_OPTIMIZATION.md) is also accepted and
+standard at **33.85 actual redraws/s**.
+Update this queue after each experiment
 with its result, evidence link and accepted, rejected or deferred status.
 
 ### Current measurement baseline
 
-Use the accepted [composition build](POOL_STAMP_OPTIMIZATION.md) and its
-[frozen measurements](baselines/pool-stamp-fast.json), whose `programs.trial`
-entry is now the standard `build/pacman.prg`:
+Use the accepted [normal-ghost row-control build](POOL_GHOST_ROW_OPTIMIZATION.md)
+and its [frozen measurements](baselines/pool-ghost-row-fast.json). The `native.trial`
+and `actual_vice.trial` entries describe the standard `build/pacman.prg`:
 
-- Actual VICE throughput: **27.46 redraws/s**, with **54.50 ms** at the 95th
-  percentile and **74.87 ms** maximum between completed redraws on this route.
-- Native replay: **48.12%** logic/tasks, **45.98%** rendering, **5.74%** VIC
+- Actual VICE throughput: **33.85 redraws/s**, with **45.69 ms** at the 95th
+  percentile and **54.17 ms** maximum between completed redraws on this route.
+- Native replay: **46.61%** logic/tasks, **50.90%** rendering, **2.33%** VIC
   audio translation and **0.16%** waiting. These phase percentages are separate
   from the actual VICE throughput measurement.
-- The ghost-state routine and its callees account for **16.33%** of native
-  CPU time, inside logic/tasks. This is measured work, not a predicted saving.
-- Resident headroom is **397 bytes** before the full **704-byte stack**.
-  The hardware remains NTSC with +3K and BLK1/2/3/5 expansion.
+- Generic stamping uses **11.20%** of native CPU time, including **2.86%**
+  in shift kernels and **2.26%** in row control. The normal-ghost stamper is
+  separate at **2.39%**.
+- Resident headroom is **141 bytes** before the full **704-byte stack**.
+  BLK5 has **23 bytes free**. Hardware remains NTSC with +3K and BLK1/2/3/5.
 
-These are one saved workload's measurements, not worst-case guarantees. The
-raw native profile is at
-`build/pool-stamp-fast/evaluation/trial-cpu/active.profile`, with routine
-timings in the sibling `summary.json`. Those generated files are ignored by
-Git; the frozen JSON above retains the compact baseline evidence.
+These are one saved workload's measurements, not worst-case guarantees.
+Raw native evidence is under `build/pool-ghost-row-fast/evaluation/trial-cpu/`.
+The generated files are ignored by Git; the frozen record retains compact
+measurements and their identities.
 
 | Order | Candidate | Status | First investigation |
 | --- | --- | --- | --- |
-| 1 | Ghost-state and movement processing | First experiment accepted; included in standard | [Faster tunnel lookup](TILE_ADDRESS_OPTIMIZATION.md): 25.67 → 26.44 actual redraws/s, about 3.0%; accepted after live review. |
-| 2 | Faster glyph composition | First experiment accepted; now standard | [Faster generic stamping](POOL_STAMP_OPTIMIZATION.md): 26.44 → 27.46 actual redraws/s, about 3.9%; accepted after live review. |
-| 3 | Reuse unchanged display content | Queued; design needed | Measure how much composition is truly redundant and define shared-cell/background dependencies. |
-| 4 | Cheaper VIC audio translation | Queued; not started | Separate register unpacking, pitch scaling and divider lookup costs while retaining exact output values. |
+| 1 | Ghost-state and movement processing | Tunnel lookup and common-state fast path accepted; included in standard | [Faster tunnel lookup](TILE_ADDRESS_OPTIMIZATION.md): 25.67 → 26.44. [Common-state fast path](GHOST_UPDATE_OPTIMIZATION.md): 29.81 → 30.78 actual redraws/s, about 3.3%; now standard. |
+| 2 | Faster glyph composition and background drawing | Generic stamping, allocation, background tiles, sprite preparation, destination setup, accumulator shifts and normal-ghost row control accepted | [Faster generic stamping](POOL_STAMP_OPTIMIZATION.md): 26.44 → 27.46. [Cheaper allocation](POOL_ALLOC_OPTIMIZATION.md): 30.78 → 31.55. [Background tiles](TILE_STAMP_OPTIMIZATION.md): 31.55 → 32.21. [Sprite preparation](POOL_SETUP_OPTIMIZATION.md): 32.21 → 33.29. [Destination setup](POOL_DEST_OPTIMIZATION.md): 33.29 → 33.64, same headroom, slightly longer maximum gap. [Accumulator shifts](POOL_SHIFT_OPTIMIZATION.md): 33.64 → 33.75. [Ghost row control](POOL_GHOST_ROW_OPTIMIZATION.md): 33.75 → 33.85 standard, same headroom, worse service/partial-pose counts. |
+| 3 | Reuse unchanged display content | [Measured; persistent cache deferred](POOL_REUSE_MEASUREMENT.md) | 25.51% of fresh cells repeat previous pixels/colour; conservative same-hidden-slot reuse covers 14.64%, or 8.99% in redraws with changing coordinates. Copy-only ceiling 1.28% total CPU before checks. |
+| 4 | Cheaper VIC audio translation | [Pitch lookup](AUDIO_DIVIDER_OPTIMIZATION.md) and [adapter follow-up](AUDIO_UPDATE_OPTIMIZATION.md) accepted; both included in standard | Standalone audio adapter reaches 29.81 actual redraws/s, about 3.4% above the pitch lookup alone; later ghost/rendering work reaches 33.85. All 524,288 frequency/shift pairs per build and 1,639 sound ticks match. Current resident/bank headroom: 141/23 bytes. |
 | 5 | More consistent redraw pacing | Deferred until processing headroom is demonstrated | Measure redraw deadlines and held poses before considering a scheduling change. |
+
+**Previous accepted experiment:** candidate 2's [background-tile writer](TILE_STAMP_OPTIMIZATION.md)
+removes six per-row calls and pointer increments. All 17,408 identical-input
+cases per build match; visible tiles save 143–147 cycles. Actual VICE throughput
+improves **31.55 → 32.21 redraws/s** with the same 141/151-byte resident/BLK5
+headroom and full stack. Gameplay, sound, settled images and intermissions pass.
+The maximum input gap grows slightly; partial poses remain. The user accepted
+live review and requested promotion; `make run-tile-stamp-fast`
+preserves this intermediate version. Persistent caching and pacing rewrites remain deferred.
+
+**Preceding accepted experiment:** candidate 2's
+[sprite preparation](POOL_SETUP_OPTIMIZATION.md) replaces regular-atlas class
+unpacking and source-pointer arithmetic with 64 two-byte descriptors. All
+8,768 identical-scene cases per build match; regular-atlas scenes save 18–123
+cycles, while eyes/reward halves cost 5–6 more. Actual throughput improves
+**32.21 → 33.29 redraws/s**. The 95th-percentile redraw interval and native
+input/audio gaps improve; maximum actual gap grows **55.74 → 61.28 ms**.
+The code shrinks nine bytes but the table consumes 128 BLK5 bytes: 141 resident
+and 23 BLK5 bytes remain, with the full stack. All 1,207 game states, 1,639
+sound ticks, pooled checks and intermissions pass. The user accepted live
+review and requested promotion. `make run-pool-setup-fast` preserves that
+intermediate version. Its [promotion record](baselines/pool-setup-promotion.json)
+identifies the default artifacts and regression checks.
 
 ### 1. Ghost-state and movement processing
 
@@ -141,6 +303,32 @@ patterns, collision decisions, RNG, house/death transitions and arcade timing.
 Use the existing original-ROM ghost comparisons and active gameplay replay;
 reducing how often ghosts update is outside this candidate.
 
+**Second experiment accepted and standard:** a fresh baseline profile measures
+ghost updates at **16.31%** of native CPU time, or **1,376 cycles/call** including
+callees/IRQs. The [common-state fast path](GHOST_UPDATE_OPTIMIZATION.md) bypasses
+no-op death/ghost-state dispatch only when all six relevant states are zero.
+All movement, collisions, house-release work and nonzero transitions retain
+their original ordering. The predicate succeeds on 2,210 of 2,414 native calls.
+
+Actual VICE throughput becomes **29.81 → 30.78 redraws/s**, about **3.3%**;
+native throughput becomes 29.93 → 30.94. Mean ghost processing falls to
+**1,249 cycles/call**, a **9.27%** reduction, with the same call count.
+All 2,458 identical-input fixtures match both the original Z80 and predecessor;
+1,207 active replay states, 1,639 sound ticks and all intermissions pass.
+The guard saves 139–142 cycles on zero-state fixtures but adds 21–23 on
+nonzero-state fixtures. Resident headroom falls **141 → 109 bytes**, with
+151 bytes still free in BLK5 and the full 704-byte stack retained.
+
+Both fresh captures contain 1,180 consecutive VICE raster frames and verified
+PRGs. The 95th-percentile redraw interval improves 50.24 → 48.65 ms, while
+the maximum grows 61.04 → 63.43 ms and maximum native input gap grows
+38.31 → 41.72 ms. Partial poses remain and vary in both directions. This does
+not prove fixed 30 Hz pacing or perceptible flicker reduction. The user accepted
+the result and requested promotion; `make run-ghost-update-fast` retains it,
+and its changes remain included in the latest standard. See the report,
+[frozen evidence](baselines/ghost-update-fast.json)
+and [promotion checks](baselines/ghost-update-promotion.json).
+
 **First experiment accepted:** the [tunnel lookup](TILE_ADDRESS_OPTIMIZATION.md)
 replaces repeated maze-metadata addressing with a bounded assembly lookup and
 64 bytes of column tables. All 528 identical-input ghost fixtures match the
@@ -152,9 +340,9 @@ retains the measured intermediate version. See the
 [frozen evidence](baselines/tile-address-fast.json), including remaining partial
 poses and the slightly larger maximum audio-service gap on this route.
 
-### 2. Faster glyph composition
+### 2. Faster glyph composition and background drawing
 
-Rendering remains a large cost at 45.98% of native CPU time. Investigate the
+Rendering remains a large cost at 50.92% of native CPU time. Investigate the
 remaining clean-background copies, cell/pointer setup and generic shifted
 stamping used by Pac-Man, frightened ghosts, returning eyes and rewards.
 The address optimization, empty-row skip and first composition improvement
@@ -177,15 +365,153 @@ per native redraw falls to 3,435 cycles. Actual capture improves **26.44 →
 27.46 redraws/s**, about **3.9%**, at a cost of 64 resident bytes. Gameplay,
 sound and all intermissions pass. The maximum captured redraw interval grows
 68.54 → 74.87 ms and partial poses remain. Live review accepted the result;
-`make run` and `make run-pool-stamp-fast` now select it. See the report and
+its changes remain included in the standard, and `make run-pool-stamp-fast`
+retains this intermediate version. See the report and
 [frozen evidence](baselines/pool-stamp-fast.json) before selecting another
-change; candidate 3's measurement is next in the queue.
+change; candidate 3's measurement is documented below.
+
+**Second experiment accepted and standard:** [cheaper cell allocation](POOL_ALLOC_OPTIMIZATION.md)
+keeps the relative slot for its lookup nibbles and adds the bank offset only
+once. All 392 identical-input allocations save 24–25 cycles, and all 392
+existing-cell hits save 3 cycles. Background copying remains unchanged at 209
+exclusive cycles per fresh cell. The allocator shrinks by 16 code bytes;
+alignment recovers 32 resident bytes, raising headroom from 109 to 141 with
+the full stack retained and no new storage.
+
+Actual VICE throughput improves **30.78 → 31.55 redraws/s**, about **2.5%**.
+The 95th-percentile and maximum actual redraw intervals improve 48.65 → 47.21
+and 63.43 → 56.02 ms. Maximum native input gap improves 41.72 → 37.07 ms,
+but the audio gap grows 36.85 → 38.67 ms and maximum native refresh grows
+28,783 → 30,307 cycles. All 1,207 active game states, 1,639 sound ticks, 41
+pooled checks and all intermissions pass. Partial poses remain and vary in
+both directions; this is not a fixed 30 Hz or perceptible flicker claim.
+The report and [frozen evidence](baselines/pool-alloc-fast.json) retain the
+comparison. The user accepted live review and requested promotion;
+`make run-pool-alloc-fast` retains this intermediate version, whose changes
+remain in the standard. The
+[promotion checks](baselines/pool-alloc-promotion.json) identify the then-default
+artifacts and validation; the frozen trial status remains historical evidence.
+
+**Third experiment accepted and standard:** the
+[background-tile writer](TILE_STAMP_OPTIMIZATION.md) targets the accepted build's
+1,129 tile calls, whose own instructions use 4.41% of native CPU time. The
+already-unrolled clean-home copy stays unchanged. One indexed loop now writes
+the six tile rows, replacing per-row calls and pointer increments. All 17,392
+visible cases save 143–147 cycles; the sixteen clipped corners are unchanged.
+Independent pixels/guards and accumulated colour/wall outputs match across
+17,408 cases per build. The routine shrinks by one byte, while alignment leaves
+resident and BLK5 headroom at 141/151 bytes with the full stack intact.
+
+Actual throughput improves **31.55 → 32.21 redraws/s**, about **2.1%**; native
+throughput improves 31.80 → 32.37. Actual 95th-percentile/maximum redraw gaps
+improve 47.21 → 46.45 and 56.02 → 55.74 ms. Maximum native audio gap improves
+38.67 → 37.32 ms, but maximum input gap grows 37.07 → 37.29 ms. All 1,207 game
+states, 1,639 sound ticks, 41 pooled checks and all intermissions pass. The
+actual capture verifies 1,180 consecutive frames and 607 settled snapshots;
+partial poses remain, with no fixed-rate or perceptible flicker claim.
+The report and [frozen evidence](baselines/tile-stamp-fast.json) retain the
+comparison. The user accepted live review and requested promotion;
+`make run-tile-stamp-fast` preserves this intermediate version. The
+[promotion checks](baselines/tile-stamp-promotion.json) identify the default
+artifacts and regression results; the frozen trial status remains historical.
+
+**Fourth experiment accepted and standard:** the
+[sprite-preparation improvement](POOL_SETUP_OPTIMIZATION.md) isolates the preceding build's
+7.29% actor-preparation and 2.42% destination-setup costs. It changes only
+regular-atlas metadata preparation. Each relocated two-byte descriptor packs
+the source pointer and class into the pointer's unused low bits. The packed
+original class table is retained for the independent actual-display observer;
+separate eyes and score-half source calculations remain intact.
+
+Mean actor preparation falls **2,302 → 1,833 cycles/native redraw**, about
+20.4%; destination setup remains unchanged on identical inputs. Full native
+throughput becomes 32.37 → 33.39, and actual VICE becomes 32.21 → 33.29.
+All 8,768 independent scene oracles per build pass, along with the 41 pooled
+checks, exact game/sound replays and three intermissions. Both real captures
+contain 1,180 consecutive frames with verified executable images. The trial
+passes 628 settled-picture oracles and 5,090 synthetic absent/partial controls;
+partial poses remain, with no eligible fully absent actor. Maximum captured
+redraw gap grows to 61.28 ms, so the average gain is not a fixed-rate claim.
+
+The 128-byte descriptor table leaves only 23 bytes in BLK5, versus 151 in the
+previous build. Resident headroom stays 141 and the full 704-byte stack is preserved.
+See the report and [frozen evidence](baselines/pool-setup-fast.json) before
+considering another table. The user accepted live review and requested promotion;
+`make run-pool-setup-fast` preserves this intermediate version. The
+[promotion checks](baselines/pool-setup-promotion.json) identify the default
+artifacts and regression results. Persistent caching and pacing remain deferred.
+
+**Fifth experiment accepted and standard:** the
+[destination-setup trial](POOL_DEST_OPTIMIZATION.md) targets the latest
+standard's 2.50% exclusive setup cost. It assigns real pointers directly,
+uses sinks for clipped columns, and leaves unreachable bottom-pointer scratch
+alone at row offsets 0–4. Allocation/publication order and both stampers stay
+unchanged. All 8,768 complete-scene oracles per build match; 5,634 save 1–30
+cycles and 3,134 are unchanged. Another 10,496 generic-kernel cases per build
+point unused bottom pointers at guards and pass with identical kernel timing.
+
+Native destination setup falls **765.41 → 629.64 cycles/redraw**; actual VICE
+throughput becomes **33.29 → 33.64 redraws/s**. Resident code grows eight
+bytes within alignment slack, leaving the same 141 resident / 23 BLK5 bytes
+and full stack. The first 16-byte-growth draft was slower because two loops
+crossed pages; it was rejected, and the smaller final version keeps both loops
+within pages without padding. Exact game/sound replays, pooled checks, settled
+images and all intermissions pass. Maximum actual redraw and native input gaps
+grow slightly, and several partial-pose counts increase. See the
+[frozen evidence](baselines/pool-dest-fast.json). `make run-pool-dest-fast`
+selects this intermediate version. The
+[promotion record](baselines/pool-dest-promotion.json) identifies that historical
+default and its checks. The generic-shift optimization below is now accepted; persistent caching
+and pacing remain deferred.
+
+**Sixth experiment accepted and standard:** [accumulator-first shifts](POOL_SHIFT_OPTIMIZATION.md)
+replace the first zero-page shift with an accumulator shift in five kernels.
+All 10,496 identical-mask cases per build have exact predicted savings of
+0–36 cycles and matching guarded pixels. Across 8,768 complete scenes, 3,637
+are faster, 4,997 unchanged and 134 cost 1–2 cycles more because the normal-ghost
+pointer table moved across a page. Mean complete cost still falls by 11.01
+cycles. No tables or writable bytes are added; resident/BLK5 free space remains
+141/23 bytes and the full stack is retained.
+
+Actual throughput improves **33.64 → 33.75 redraws/s**, about **0.3%**, and native
+throughput improves 33.78 → 33.94. Actual 95th-percentile/maximum redraw gaps
+improve 45.44→45.07 / 61.51→54.20 ms, as do input/audio gaps. Maximum native
+refresh grows 24,543→27,061 cycles. Exact game/sound replays, pixel oracles,
+settled images, pooled checks and all intermissions pass. Partial poses remain
+and Inky's count grows. The report and [frozen evidence](baselines/pool-shift-fast.json)
+record the tradeoffs. `make run-pool-shift-fast` preserves this accepted
+intermediate version. The [promotion record](baselines/pool-shift-promotion.json)
+identifies that historical default. The accepted row-control follow-up follows.
+
+**Seventh experiment accepted and standard:**
+[normal-ghost row control](POOL_GHOST_ROW_OPTIMIZATION.md) replaces a redundant
+zero-page row decrement with an immediate source-index comparison. Both
+forward/reverse row walks and destination transitions retain their masks.
+Two unused bytes keep the source-pointer table at $2F00; an alignment-directive
+draft was rejected because it moved the entire section and reduced headroom.
+The final trial leaves 141 resident / 23 BLK5 bytes and the full stack.
+
+All 1,024 guarded normal-ghost cases save exactly **27–31 cycles**. Across
+8,768 complete scenes, **180 are faster and 8,588 unchanged**, with no slower
+cases; all 10,496 generic cases have unchanged output/timing. Exact game/sound
+replays, pooled checks, display controls and all intermissions pass. Actual
+throughput improves **33.75 → 33.85 redraws/s**, about **0.3%**, and native
+throughput improves 33.94 → 34.04. The actual 95th-percentile gap worsens
+45.07→45.69 ms; native maximum input/audio gaps worsen 35.95→40.73 /
+34.58→35.11 ms. Several partial-pose counts also grow. See the report and
+[frozen record](baselines/pool-ghost-row-fast.json). Live review found it
+acceptable; the user authorized keeping or discarding it. The cycle saving and
+unchanged memory budget support keeping it. `make run-pool-ghost-row-fast` and
+`make run` select the accepted version. The
+[promotion record](baselines/pool-ghost-row-promotion.json) identifies the
+default artifacts and regression checks.
 
 ### 3. Reuse unchanged display content
 
 Explore avoiding composition when a cell's final pixels and colour would be
-unchanged. This is a structural candidate with no measured benefit yet.
-Count eligible cases before designing persistent pool assignments or caches.
+unchanged. The [opportunity measurement](POOL_REUSE_MEASUREMENT.md) is complete;
+no runtime cache or performance gain has been demonstrated. The persistent
+cache is deferred; candidate 4's bounded pitch lookup is now accepted and standard.
 
 Unchanged actor position alone is insufficient: animation masks, colour,
 other actors sharing the cell, pellets, score/background edits and maze
@@ -194,12 +520,57 @@ affected cells to update. Define old/new footprints, displayed poses,
 invalidation and pool-capacity/reuse rules before implementation. Do not
 recompose a displayed glyph in place without proving visibility is preserved.
 
+**Measurement result:** 2,136 of 8,374 fresh cells (25.51%) repeat their previous
+displayed pixels and colour. Only 1,226 (14.64%) also match conservative
+pose/home/shared-cell dependencies at the same physical hidden slot. That
+falls to 703 of 7,816 cells (8.99%) in redraws with changing actor coordinates.
+Their copy-only ceiling is 477 cycles per redraw, 1.28% of sample CPU time,
+before checks; moving-redraw copy opportunity is about 296 cycles per redraw.
+Whole-stamp savings remain unmeasured. Only 31 entire pictures repeat, 30
+while a reward score is visible; eight other unchanged-pose redraws still
+have background changes. A whole-picture early exit mainly helps pauses on
+this route. Preserve the [frozen evidence](baselines/pool-reuse.json) and design
+requirements before revisiting implementation. That measurement used a 397-byte
+resident budget; the current accepted cell-allocation build leaves 141 bytes.
+
 ### 4. Cheaper VIC audio translation
 
-`audio_update` still consumes 5.74% of native CPU time, averaging 968 cycles
-per tick. This is separate from the now-optimized effect interpreter. Inspect
-frequency-register unpacking, saturating pitch scaling and the existing
-divider lookup before considering assembly or caching unchanged inputs.
+The [audio profiling and pitch-table report](AUDIO_DIVIDER_OPTIMIZATION.md)
+separates the preceding converter's costs: divider search uses 372 cycles per
+tick, saturating scaling 276, unpacking 93 and other work the remainder of
+968 total cycles including IRQs, or 5.74% of native CPU time. This is separate
+from the already-optimized effect interpreter. All 1,893 active-play divider
+inputs are multiples of 128; a per-voice last-pitch cache gets zero active-play
+hits on this route.
+
+**First experiment accepted and included in standard:** the pitch lookup
+uses a 256-byte table for that full input grid and retains the exact original calculation for
+other pitches, with a five-cycle fallback overhead. All 65,536 input values
+match. Mean audio cost falls **968 → 646 cycles per tick**, and actual capture
+improves **27.46 → 28.84 redraws/s**, about **5.0%**. All 1,639 replayed sound
+ticks match, gameplay/image checks and intermissions pass, and the full stack
+and hardware target remain intact. Resident headroom falls from 397 to
+**141 bytes**. `make run-audio-divider-fast` retains this intermediate version.
+Preserve the [frozen evidence](baselines/audio-divider-fast.json) and
+[promotion checks](baselines/audio-divider-promotion.json).
+
+**Follow-up accepted and standard after live review:** the [assembly adapter](AUDIO_UPDATE_OPTIMIZATION.md)
+replaces register unpacking, saturating scaling and output bookkeeping with
+compact code using existing caller scratch. `make run-audio-update-fast`
+retains this intermediate version. Mean complete audio cost
+falls **646 → 393 cycles/tick** and actual capture improves
+**28.84 → 29.81 redraws/s**, about **3.4%**.
+All **524,288 frequency/shift pairs per build** match, as do 1,639 sound-replay
+ticks and 1,207 game states. Gameplay, settled-picture and intermission checks
+pass. Resident headroom stays **141 bytes**, while BLK5 free space grows from
+24 to **151 bytes**. The longest redraw gap increases **58.53 → 61.04 ms**,
+maximum input-service gap increases **37.55 → 38.31 ms**, and partial poses
+remain. The current default includes this adapter and the later ghost-update,
+cell-allocation, background-tile and sprite-preparation improvements. The audio promotion record also distinguishes a subsequent concurrent
+death-frame artwork rebuild. Preserve the
+[frozen evidence](baselines/audio-update-fast.json) and
+[promotion checks](baselines/audio-update-promotion.json). Another table or cache
+requires a new cost/memory measurement.
 
 The accepted sound is the reference. Preserve channel mapping, waveform
 approximation, pitch rounding/saturation, volume, enable/disable behaviour
@@ -211,7 +582,7 @@ or replace a listening check.
 ### 5. More consistent redraw pacing
 
 Investigate scheduling only after measuring enough headroom for the desired
-deadlines. A 27.46 redraws/s average does not establish a sustainable fixed
+deadlines. A 33.64 redraws/s average does not establish a sustainable fixed
 30 Hz display. Compare held poses, movement intervals, longest redraw gaps
 and input/audio service delays as well as average throughput.
 

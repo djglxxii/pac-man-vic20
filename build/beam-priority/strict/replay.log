@@ -1,0 +1,11 @@
+strict: tick -1, phase boot, frames 0
+strict: tick 51, phase attract
+strict: tick 111, phase coin
+strict: tick 113, phase release
+strict: tick 143, phase start
+strict: tick 282, phase ready
+strict: tick 370, phase ready, frames 0
+strict: tick 402, phase lead-in
+strict: tick 432, phase play
+strict: tick 781, phase play, frames 347
+strict: 600 frames captured

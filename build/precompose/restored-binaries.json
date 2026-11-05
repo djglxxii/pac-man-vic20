@@ -1,0 +1,12 @@
+{
+  "build/pacman.prg": {
+    "sha256": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+    "bytes": 26715,
+    "identical_to_baseline": true
+  },
+  "build/arcade/pacman-native.bin": {
+    "sha256": "e30a02d7327331808d9a4ad494777040423d5f483303e8fc5afee8b4ff8ab142",
+    "bytes": 33792,
+    "identical_to_baseline": true
+  }
+}

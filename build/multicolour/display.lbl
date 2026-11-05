@@ -1,0 +1,2 @@
+al 00209B .display_ready
+al 002000 .entry

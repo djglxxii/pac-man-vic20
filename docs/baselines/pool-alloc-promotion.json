@@ -1,0 +1,275 @@
+{
+  "status": "Accepted after live review and promoted to standard build",
+  "date": "2026-11-04",
+  "user_request": "looks great. make this our default build",
+  "default_target": "build/pool-alloc-fast/pacman.prg",
+  "accepted_prg_sha256": "feed65059a7ad52ac007868b4ac8f982710478608e310d9ea8f56c54e43b14cf",
+  "identical_files": [
+    {
+      "default": "build/pacman.prg",
+      "accepted_build": "build/pool-alloc-fast/pacman.prg",
+      "sha256": "feed65059a7ad52ac007868b4ac8f982710478608e310d9ea8f56c54e43b14cf"
+    },
+    {
+      "default": "build/pacman.lbl",
+      "accepted_build": "build/pool-alloc-fast/pacman.lbl",
+      "sha256": "ed0971ebffee4ee4953e17a7e3030e7d0459b54ae2fca22ef4c37faf6306d713"
+    },
+    {
+      "default": "build/arcade/pacman-native.bin",
+      "accepted_build": "build/pool-alloc-fast/pacman-native.bin",
+      "sha256": "1420abdb2eed61fa231008d8a728135b54a59738485fc6167401ecdb6a85da7d"
+    },
+    {
+      "default": "build/arcade/pacman-native.bin.elf",
+      "accepted_build": "build/pool-alloc-fast/pacman-native.bin.elf",
+      "sha256": "d199285fc0971e13ff38d94668e688c953a53bb85d35064c9c263bfdb25c5bae"
+    },
+    {
+      "default": "build/arcade/pacman.map",
+      "accepted_build": "build/pool-alloc-fast/pacman.map",
+      "sha256": "52b67225cb9e09a17a5c85cf9c68581841a90273d3c88884896dc1a390a691ff"
+    }
+  ],
+  "original_measurements": {
+    "path": "docs/baselines/pool-alloc-fast.json",
+    "sha256": "05f659f4c50ed81f846629b1922f59f6713e8214d6100ae8512e2bfcf85963cd",
+    "historical_status_preserved": true
+  },
+  "runtime_changed_by_promotion": false,
+  "measured_actual_vice": {
+    "completed_renders_per_second": 31.548392704352533,
+    "video_frames": 1180,
+    "depacked_bytes_verified": 33792,
+    "measurements_reused_because_program_is_byte_identical": true
+  },
+  "hardware": {
+    "video": "NTSC",
+    "ram": "+3K and BLK1/2/3/5",
+    "software_stack_bytes": 704,
+    "game_tick_cycles": 16875,
+    "vic_frame_cycles": 16965,
+    "cpu_hz": 1022727
+  },
+  "memory": {
+    "resident_end": "7cb3",
+    "resident_free": 141,
+    "blk5_free": 151,
+    "packed_bytes": 26702,
+    "native_image_bytes": 33792
+  },
+  "validation": {
+    "command": "make test",
+    "exit_code": 0,
+    "passed": true,
+    "unittest_counts": {
+      "original_rom": 15,
+      "pooled": 41,
+      "sound_effect": 4,
+      "divider": 4,
+      "adapter": 4,
+      "ghost": 2,
+      "tunnel": 3,
+      "classifier": 13
+    },
+    "divider_frequencies": 65536,
+    "adapter_frequency_shift_pairs": 524288,
+    "adapter_cases": 530794,
+    "adapter_output_sha256": "88ee656135021b3821765efb9b48626687817876b9670909842830e2b0fbd180",
+    "adapter_saved_input_corpus": {
+      "path": "build/audio-divider-fast/evaluation/trial-cpu",
+      "summary_sha256": "154b1b502cf5d80354397bfab16b3c81deb2d213d53fef5df52760a84b20a733",
+      "ticks_sha256": "433b13e15d56812d7745067cba946bd3f257dc28cc2d00b2c1754e56d6d079dc",
+      "captured_prg_sha256": "f0ca4b5135bb0cf7418996fc1e6cf9e05c245d92778fda566547f0f29bc39d7c",
+      "captured_native_sha256": "aff3c13ed6102bc0a31e1365f6b202d6b6282f2ad8cf522a29db2874c67a0ca3",
+      "ticks_checked": 1639,
+      "historical_profile_cycles_reused": false
+    },
+    "ghost_cases": 2458,
+    "ghost_fixture_sha256": "e5c2476313353a23255f8878d452c31501c9ef55c6a30b8454fb78bf120a1c40",
+    "ghost_programs": [
+      {
+        "path": "build/audio-update-fast/pacman.prg",
+        "sha256": "ead7a6aa4556b944eb88589af3673cc29fa7a059d33181f20b52c208bfb100af",
+        "output_sha256": "235e92821b25d7786b75d873a61529e86b55a62a22d2fa3c38b09194f79e31ba"
+      },
+      {
+        "path": "build/pacman.prg",
+        "sha256": "feed65059a7ad52ac007868b4ac8f982710478608e310d9ea8f56c54e43b14cf",
+        "output_sha256": "235e92821b25d7786b75d873a61529e86b55a62a22d2fa3c38b09194f79e31ba"
+      }
+    ],
+    "allocator": {
+      "baseline": {
+        "prg_sha256": "b4bd4785b6885cc4080a72f5508646caa6507f13bdee3fa087512e65e3b90e04",
+        "method": "vicsim call command; IRQs masked; identical home bytes and allocator inputs",
+        "cells_checked": 392,
+        "allocation_cycles": {
+          "count": 392,
+          "mean": 378.41326530612247,
+          "p50": 379,
+          "p95": 379,
+          "max": 379
+        },
+        "hit_cycles": {
+          "count": 392,
+          "mean": 119.08163265306122,
+          "p50": 120,
+          "p95": 120,
+          "max": 120
+        },
+        "begin_cycles": {
+          "count": 18,
+          "mean": 384.72222222222223,
+          "p50": 167,
+          "p95": 2130,
+          "max": 2131
+        }
+      },
+      "trial": {
+        "prg_sha256": "feed65059a7ad52ac007868b4ac8f982710478608e310d9ea8f56c54e43b14cf",
+        "method": "vicsim call command; IRQs masked; identical home bytes and allocator inputs",
+        "cells_checked": 392,
+        "allocation_cycles": {
+          "count": 392,
+          "mean": 354.25,
+          "p50": 355,
+          "p95": 355,
+          "max": 355
+        },
+        "hit_cycles": {
+          "count": 392,
+          "mean": 116.08163265306122,
+          "p50": 117,
+          "p95": 117,
+          "max": 117
+        },
+        "begin_cycles": {
+          "count": 18,
+          "mean": 384.72222222222223,
+          "p50": 167,
+          "p95": 2130,
+          "max": 2131
+        }
+      }
+    },
+    "sprite_cases_per_build": 10496,
+    "sound_replay": {
+      "ticks_compared": 1639,
+      "all_sound_state_and_register_values_identical": true,
+      "first_tick": 1,
+      "last_tick": 1639,
+      "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+      "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "programs": [
+        {
+          "path": "build/ghost-update-fast/pacman.prg",
+          "sha256": "b4bd4785b6885cc4080a72f5508646caa6507f13bdee3fa087512e65e3b90e04"
+        },
+        {
+          "path": "build/pacman.prg",
+          "sha256": "feed65059a7ad52ac007868b4ac8f982710478608e310d9ea8f56c54e43b14cf"
+        }
+      ],
+      "guest_modified": false,
+      "method": "Compare tick-indexed arcade sound state and VIC registers on a live replay.\n\nHost PC observations only: no guest code, registers, clocks or sound are patched.\nCPU timestamps can differ; this checks the values produced at each logical tick."
+    },
+    "smoke": {
+      "screens": [
+        "attract",
+        "credits",
+        "maze",
+        "cherry",
+        "intermission-1",
+        "intermission-2",
+        "intermission-3"
+      ],
+      "stack_by_scene": {
+        "attract": {
+          "software_lowest_write": 32743,
+          "software_bytes_written": 25,
+          "hardware_lowest_write": 494,
+          "hardware_bytes_written": 18
+        },
+        "credits": {
+          "software_lowest_write": 32743,
+          "software_bytes_written": 25,
+          "hardware_lowest_write": 494,
+          "hardware_bytes_written": 18
+        },
+        "maze": {
+          "software_lowest_write": 32738,
+          "software_bytes_written": 30,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "cherry": {
+          "software_lowest_write": 32738,
+          "software_bytes_written": 30,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-1": {
+          "software_lowest_write": 32738,
+          "software_bytes_written": 30,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-2": {
+          "software_lowest_write": 32738,
+          "software_bytes_written": 30,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-3": {
+          "software_lowest_write": 32738,
+          "software_bytes_written": 30,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        }
+      },
+      "clock": {
+        "video_frames": 180,
+        "arcade_ticks": 181,
+        "expected": 180.96
+      },
+      "long_run_ticks": 7183,
+      "stack": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 488,
+        "hardware_bytes_written": 24
+      },
+      "boot": {
+        "entries": 1,
+        "released": true
+      },
+      "irq_vector_intact": true,
+      "stack_guard_intact": true,
+      "software_stack_reserved": 704
+    }
+  },
+  "source_artifacts": {
+    "build/pool-alloc-fast/evaluation/promotion-tests.log": "15bce448dae4cec7f738132732c01e4088c35ee5fdb1c099ab45e47223d075f4",
+    "build/evaluation/divider-kernel.json": "fde4b5d80a5e557512a032c6288bed1b4b99cad29e603924e84434f0e293ac7e",
+    "build/evaluation/update-kernel.json": "adc10a4cdd4b3281a7a8ac35176d820ac8aa05cc2d69d6c52a215ccabe2ece89",
+    "build/evaluation/ghost-kernel.json": "6b977508dfcf5c67a1e5c6ee49950e03d59a920244d50696048810526a29de9c",
+    "build/evaluation/allocator-kernel.json": "fedc3d5501352412a0e101cee9e7d8dbbd31cdc8af9de5f6d4a9974a178bcd4e",
+    "build/evaluation/stamp-kernel.json": "07ff2866af43d8f02a8ea9d52faa82d303cb7880892871297bf21fb2d832f5fc",
+    "build/evaluation/tile-kernel.json": "c67793f14373aee845c01ad93cd3a85ee9030074df44108cbebb58dd2ede6b10",
+    "build/sound-effect-fast/evaluation/effect-kernel.json": "7a58125ab21ed4749c6cec0c297333d7e35ec78bf22b94521778379085893217",
+    "build/evaluation/audio-replay/summary.json": "06156ec78f4869d761a0965898606b6f63e65b4ce38524efce58683a80ce8723",
+    "build/preview/native-validation.json": "04734f72cd5729db493655452d5eb3284145a55b4d461b8093056220e9ad97aa"
+  },
+  "source_files": {
+    "Makefile": "13230a883a070b8b25757b5b3504d119d2ed84445f4f0b382706fc20a8278370",
+    "README.md": "b060e084dee49cd590d6152d86645accce043a1aa621f106ed97c80edd97859a",
+    "src/glyph_pool.S": "86413f337fdb3fdac49562d9e0af75c0e1912885be9cbf2047717e94a6fe62b6",
+    "tests/glyph_pool.py": "ca64d985f04f14ce328a523f600419c1453a779519868e2c4636f2b73998f39d",
+    "docs/POOL_ALLOC_OPTIMIZATION.md": "ea578483482cb7874975a58fd537cc5064a9e9adfd42059bfb0ea74044262dce",
+    "docs/GHOST_UPDATE_OPTIMIZATION.md": "c02c6fbd565b730acbe6a9af233911273b3dadff1bedf93fdda4ef43047567f2",
+    "docs/AUDIO_UPDATE_OPTIMIZATION.md": "b6ca9027e28a5c31148e348479626bb998c2133657c478a5c11aa7a1fe5c5e4b",
+    "docs/POOL_REUSE_MEASUREMENT.md": "401b1159334499feec3e1eefc36f83cc79fc0b7ff3a30057db778791463802e9",
+    "docs/RESEARCH_OPTIMIZATION_PLAN.md": "f9a7d6126d3600b1fb73e931c2e95b5cb8abb62cd752ad112690cccfbf12283a"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "initial_pass": {
+    "file": "youtube/references/initial-pass-vice.png",
+    "source": "build/white-maze/vice/vice-game.png",
+    "sha256": "97b3450e75e90d7a1490d7d97d1862b35e987f6fe480d6a2c85a29c0a32edb12",
+    "role": "Early-renderer gameplay reference"
+  },
+  "final_optimized": {
+    "file": "youtube/references/final-optimized-vice.png",
+    "source": "build/pool-ghost-row-fast/evaluation/trial-vice/frames/00029.png",
+    "sha256": "0ffd67f17a277f09eee1f792a06ea02cba55010de3fe4c486e487a2edbb71661",
+    "capture_frame": 29,
+    "capture_game_tick": 462,
+    "source_recording": "build/pool-ghost-row-fast/evaluation/trial-vice/recording.json",
+    "program_sha256": "e148017c58097fb84bb09757dac6d1a132ca40a051d288e10290e9b870cda227",
+    "accepted_build_record": "docs/baselines/pool-ghost-row-promotion.json",
+    "unmodified_guest": true,
+    "role": "Current accepted optimized renderer reference"
+  }
+}

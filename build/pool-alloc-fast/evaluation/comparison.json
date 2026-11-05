@@ -1,0 +1,17 @@
+{
+  "frames": 1180,
+  "frame_rate": "340909/5655",
+  "audio": false,
+  "poses_retimed": false,
+  "sources": [
+    {
+      "path": "/home/djglxxii/src/vic-man/build/ghost-update-fast/evaluation/trial-vice-16",
+      "prg_sha256": "b4bd4785b6885cc4080a72f5508646caa6507f13bdee3fa087512e65e3b90e04"
+    },
+    {
+      "path": "/home/djglxxii/src/vic-man/build/pool-alloc-fast/evaluation/trial-vice",
+      "prg_sha256": "feed65059a7ad52ac007868b4ac8f982710478608e310d9ea8f56c54e43b14cf"
+    }
+  ],
+  "video_sha256": "9399382ff0997d25362d1bfb17acab5253fbd112a176175513e9129c6094c8db"
+}

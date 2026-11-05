@@ -1,0 +1,38 @@
+Modules list:
+-------------
+motion.o:
+    CODE              Offs=000000  Size=00078C  Align=00001  Fill=0000
+    BSS               Offs=000000  Size=000237  Align=00001  Fill=0000
+    DATA              Offs=000000  Size=004424  Align=00001  Fill=0000
+    ZEROPAGE          Offs=000000  Size=00001D  Align=00001  Fill=0000
+    LOADADDR          Offs=000000  Size=000002  Align=00001  Fill=0000
+    BASIC             Offs=000000  Size=00000F  Align=00001  Fill=0000
+    STATE             Offs=000000  Size=000182  Align=00001  Fill=0000
+
+
+Segment list:
+-------------
+Name                   Start     End    Size  Align
+----------------------------------------------------
+ZEROPAGE              000002  00001E  00001D  00001
+LOADADDR              0011FF  001200  000002  00001
+BASIC                 001201  00120F  00000F  00001
+STATE                 001A37  001BB8  000182  00001
+CODE                  002000  00278B  00078C  00001
+DATA                  002800  006C23  004424  00001
+BSS                   006D00  006F36  000237  00001
+
+
+Exports list by name:
+---------------------
+
+
+
+Exports list by value:
+----------------------
+
+
+
+Imports list:
+-------------
+

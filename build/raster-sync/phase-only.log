@@ -1,0 +1,14 @@
+test_07_raster_update_phases_and_colour_boundaries (__main__.Renderer.test_07_raster_update_phases_and_colour_boundaries) ... FAIL
+
+======================================================================
+FAIL: test_07_raster_update_phases_and_colour_boundaries (__main__.Renderer.test_07_raster_update_phases_and_colour_boundaries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/djglxxii/src/vic-man/tests/render.py", line 346, in test_07_raster_update_phases_and_colour_boundaries
+    self.assertFalse(start < frame * 16965 + bottom * 65
+AssertionError: True is not false : (12, 222)
+
+----------------------------------------------------------------------
+Ran 1 test in 0.206s
+
+FAILED (failures=1)

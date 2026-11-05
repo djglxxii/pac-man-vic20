@@ -1,0 +1,55 @@
+{
+  "method": "Actual PRG calls with IRQs masked, RTS included, JSR excluded",
+  "frequencies_checked": 65536,
+  "output_sha256": "4d2bffc358c42d330b963602c5b65ab26b071c5ccd064b355f394422b60a7fd5",
+  "programs": [
+    {
+      "path": "build/pool-stamp-fast/pacman.prg",
+      "sha256": "7774b36d39f4dbeb651113a7921ca3b0c2bfdfca447cdaa1ee40c0c50af59f73"
+    },
+    {
+      "path": "build/audio-divider-fast/pacman.prg",
+      "sha256": "f0ca4b5135bb0cf7418996fc1e6cf9e05c245d92778fda566547f0f29bc39d7c"
+    }
+  ],
+  "baseline": {
+    "grid": {
+      "count": 512,
+      "total": 115234,
+      "mean": 225.06640625,
+      "min": 223,
+      "max": 289
+    },
+    "fallback": {
+      "count": 65024,
+      "total": 14634806,
+      "mean": 225.06775959645668,
+      "min": 223,
+      "max": 289
+    }
+  },
+  "trial": {
+    "grid": {
+      "count": 512,
+      "total": 14336,
+      "mean": 28.0,
+      "min": 23,
+      "max": 33
+    },
+    "fallback": {
+      "count": 65024,
+      "total": 14959926,
+      "mean": 230.06775959645668,
+      "min": 228,
+      "max": 294
+    }
+  },
+  "saved_replay_weighting": {
+    "source_summary_sha256": "e008af9384de2461dec9fc18285e0782403aff2df1c80c7d32c4479d4f9aca78",
+    "divider_calls": 1893,
+    "baseline_cycles": 449463,
+    "trial_cycles": 62469,
+    "cycles_saved": 386994,
+    "baseline_workload_cpu_percent_saved": 1.9003843353653846
+  }
+}

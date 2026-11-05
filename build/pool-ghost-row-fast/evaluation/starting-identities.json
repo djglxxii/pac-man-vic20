@@ -1,0 +1,8 @@
+{
+  "build/pacman.prg": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31",
+  "build/pacman.lbl": "dd3ef01a4c2cc758149ef18eb106d80b1d08396c1c36669f0f0900f8213a65d7",
+  "build/arcade/pacman-native.bin": "cc3a94d4dbe6ad1b2b4cb46de587ec209ffb69bc81dee9365ffbd6dd7f7f2352",
+  "build/pool-shift-fast/pacman.prg": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31",
+  "build/pool-shift-fast/pacman.lbl": "dd3ef01a4c2cc758149ef18eb106d80b1d08396c1c36669f0f0900f8213a65d7",
+  "build/pool-shift-fast/pacman-native.bin": "cc3a94d4dbe6ad1b2b4cb46de587ec209ffb69bc81dee9365ffbd6dd7f7f2352"
+}

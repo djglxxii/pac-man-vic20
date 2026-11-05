@@ -1,0 +1,53 @@
+{
+  "all_1512_decoded_artwork_rows_identical": true,
+  "all_480_cycle_deltas_exactly_explained_by_page_crossings": true,
+  "row_ids_ordered_by": "frequency across all artwork poses and shifts; no replay weighting",
+  "field_order": [
+    "row_data0",
+    "row_accent",
+    "row_data1",
+    "row_data2",
+    "row_mask0",
+    "row_mask1",
+    "row_mask2"
+  ],
+  "field_addresses": {
+    "before": {
+      "row_data0": 14655,
+      "row_data1": 14802,
+      "row_data2": 14949,
+      "row_mask0": 15096,
+      "row_mask1": 15243,
+      "row_mask2": 15390,
+      "row_accent": 15537
+    },
+    "after": {
+      "row_data0": 14655,
+      "row_data1": 14949,
+      "row_data2": 15096,
+      "row_mask0": 15243,
+      "row_mask1": 15390,
+      "row_mask2": 15537,
+      "row_accent": 14802
+    }
+  },
+  "crossing_counts": {
+    "before": {
+      "row_mask0": 28950,
+      "row_data1": 9595,
+      "row_accent": 1083,
+      "row_mask1": 1441
+    },
+    "after": {
+      "row_data2": 5333,
+      "row_accent": 1141,
+      "row_mask2": 2015,
+      "row_mask0": 2311
+    }
+  },
+  "mean_crossings_per_scene": {
+    "before": 85.56,
+    "after": 22.5
+  },
+  "no_table_padding": true
+}

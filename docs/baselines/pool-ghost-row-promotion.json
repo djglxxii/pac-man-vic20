@@ -1,0 +1,431 @@
+{
+  "status": "Accepted after live review and promoted using user-authorized discretion",
+  "date": "2026-11-04",
+  "user_request": "this seems fine. you can make it the default build or discard it if you feel the gains aren't worth it",
+  "decision": "Keep the proven 27\u201331-cycle ghost-call saving and 0.3% route throughput gain: live review is acceptable and RAM headroom is unchanged. Retain recorded timing and partial-pose tradeoffs.",
+  "default_target": "make / make run / make test",
+  "runtime_changed_by_promotion": false,
+  "identical_files": {
+    "prg": {
+      "default": "build/pacman.prg",
+      "explicit": "build/pool-ghost-row-fast/pacman.prg",
+      "sha256": "e148017c58097fb84bb09757dac6d1a132ca40a051d288e10290e9b870cda227"
+    },
+    "labels": {
+      "default": "build/pacman.lbl",
+      "explicit": "build/pool-ghost-row-fast/pacman.lbl",
+      "sha256": "e8a3463a5c6779b1e037ce0a42527a53432ac2ceca5768afa374a6c464db358f"
+    },
+    "native": {
+      "default": "build/arcade/pacman-native.bin",
+      "explicit": "build/pool-ghost-row-fast/pacman-native.bin",
+      "sha256": "c00c745b443e5e70638b7c1b235b23f85aabcf4acb69d018301caeb52ad6bc85"
+    },
+    "elf": {
+      "default": "build/arcade/pacman-native.bin.elf",
+      "explicit": "build/pool-ghost-row-fast/pacman-native.bin.elf",
+      "sha256": "f33850b185f8c5ae44426035725f03796970715e42aa7a582c0d0a56373ea791"
+    },
+    "map": {
+      "default": "build/arcade/pacman.map",
+      "explicit": "build/pool-ghost-row-fast/pacman.map",
+      "sha256": "ed3357ec8358ee88f35615ae0f6ec1673c2c3520a848db73c771e731458b05dd"
+    }
+  },
+  "original_measurements": "docs/baselines/pool-ghost-row-fast.json",
+  "original_trial_status_is_historical": true,
+  "measured_actual_vice": {
+    "prg_sha256": "e148017c58097fb84bb09757dac6d1a132ca40a051d288e10290e9b870cda227",
+    "video_frames": 1180,
+    "counter_interval_seconds": 19.557262104158784,
+    "completed_renders": 662,
+    "completed_renders_per_second": 33.84931880926359,
+    "calibration": {
+      "x": 8,
+      "y": 4,
+      "output_dots_per_vic_dot": 2,
+      "mismatch_pixels": 0,
+      "next_distinct_alignment_error": 3580
+    },
+    "min_diagnostic_pixels": 12,
+    "actors": {
+      "pacman": {
+        "frames": {
+          "present": 979,
+          "partial": 27,
+          "excluded": 174
+        },
+        "eligible_frames": 1006,
+        "exclusions": {
+          "shared-colour-cell": 114,
+          "reward-slot-expansion": 60
+        },
+        "absent_frame_percent": 0.0,
+        "partial_frame_percent": 2.68389662027833,
+        "absence_runs": 0,
+        "absence_run_frames": {},
+        "absence_runs_per_eligible_second": 0.0,
+        "displayed_move_interval_vic_frames": {
+          "1": 76,
+          "2": 206,
+          "3": 76,
+          "4": 34,
+          "5": 2
+        },
+        "displayed_move_interval_ms": {
+          "count": 394,
+          "mean": 36.29152236809463,
+          "p50": 33.176008846935694,
+          "p95": 66.35201769387139,
+          "max": 82.94002211733924
+        },
+        "displayed_move_distance_vic_pixels": {
+          "1": 305,
+          "2": 90,
+          "3": 27,
+          "4": 3
+        },
+        "visible_ink_color_mismatch_frames": 0,
+        "motion_change_count": 425
+      },
+      "blinky": {
+        "frames": {
+          "present": 883,
+          "excluded": 280,
+          "partial": 17
+        },
+        "eligible_frames": 900,
+        "exclusions": {
+          "shared-colour-cell": 187,
+          "reward-slot-expansion": 60,
+          "screen-edge-clipping": 23,
+          "hidden-or-empty": 10
+        },
+        "absent_frame_percent": 0.0,
+        "partial_frame_percent": 1.8888888888888888,
+        "absence_runs": 0,
+        "absence_run_frames": {},
+        "absence_runs_per_eligible_second": 0.0,
+        "displayed_move_interval_vic_frames": {
+          "1": 65,
+          "2": 148,
+          "3": 69,
+          "4": 46,
+          "5": 6,
+          "6": 2
+        },
+        "displayed_move_interval_ms": {
+          "count": 336,
+          "mean": 39.19903426259961,
+          "p50": 33.176008846935694,
+          "p95": 66.35201769387139,
+          "max": 99.52802654080708
+        },
+        "displayed_move_distance_vic_pixels": {
+          "1": 301,
+          "2": 55,
+          "3": 1
+        },
+        "visible_ink_color_mismatch_frames": 2,
+        "motion_change_count": 357
+      },
+      "pinky": {
+        "frames": {
+          "excluded": 331,
+          "present": 832,
+          "partial": 17
+        },
+        "eligible_frames": 849,
+        "exclusions": {
+          "shared-colour-cell": 111,
+          "screen-edge-clipping": 100,
+          "hidden-or-empty": 60,
+          "reward-slot-expansion": 60
+        },
+        "absent_frame_percent": 0.0,
+        "partial_frame_percent": 2.0023557126030624,
+        "absence_runs": 0,
+        "absence_run_frames": {},
+        "absence_runs_per_eligible_second": 0.0,
+        "displayed_move_interval_vic_frames": {
+          "1": 63,
+          "2": 135,
+          "3": 61,
+          "4": 36,
+          "5": 10,
+          "6": 5,
+          "7": 1
+        },
+        "displayed_move_interval_ms": {
+          "count": 311,
+          "mean": 39.84321319720412,
+          "p50": 33.176008846935694,
+          "p95": 66.35201769387139,
+          "max": 116.11603096427493
+        },
+        "displayed_move_distance_vic_pixels": {
+          "1": 262,
+          "2": 70,
+          "3": 1
+        },
+        "visible_ink_color_mismatch_frames": 1,
+        "motion_change_count": 333
+      },
+      "inky": {
+        "frames": {
+          "excluded": 239,
+          "present": 925,
+          "partial": 16
+        },
+        "eligible_frames": 941,
+        "exclusions": {
+          "shared-colour-cell": 179,
+          "reward-slot-expansion": 60
+        },
+        "absent_frame_percent": 0.0,
+        "partial_frame_percent": 1.7003188097768331,
+        "absence_runs": 0,
+        "absence_run_frames": {},
+        "absence_runs_per_eligible_second": 0.0,
+        "displayed_move_interval_vic_frames": {
+          "1": 50,
+          "2": 142,
+          "3": 55,
+          "4": 50,
+          "5": 17,
+          "6": 7,
+          "7": 1
+        },
+        "displayed_move_interval_ms": {
+          "count": 322,
+          "mean": 42.912446225927695,
+          "p50": 33.176008846935694,
+          "p95": 82.94002211733924,
+          "max": 116.11603096427493
+        },
+        "displayed_move_distance_vic_pixels": {
+          "1": 292,
+          "2": 52
+        },
+        "visible_ink_color_mismatch_frames": 5,
+        "motion_change_count": 344
+      },
+      "clyde": {
+        "frames": {
+          "excluded": 299,
+          "present": 872,
+          "partial": 9
+        },
+        "eligible_frames": 881,
+        "exclusions": {
+          "shared-colour-cell": 175,
+          "reward-slot-expansion": 60,
+          "insufficient-distinct-ink": 64
+        },
+        "absent_frame_percent": 0.0,
+        "partial_frame_percent": 1.0215664018161181,
+        "absence_runs": 0,
+        "absence_run_frames": {},
+        "absence_runs_per_eligible_second": 0.0,
+        "displayed_move_interval_vic_frames": {
+          "1": 31,
+          "2": 115,
+          "3": 46,
+          "4": 47,
+          "5": 18,
+          "6": 13,
+          "7": 4,
+          "8": 1
+        },
+        "displayed_move_interval_ms": {
+          "count": 275,
+          "mean": 47.71313272350206,
+          "p50": 33.176008846935694,
+          "p95": 99.52802654080708,
+          "max": 132.70403538774278
+        },
+        "displayed_move_distance_vic_pixels": {
+          "1": 271,
+          "2": 17,
+          "3": 2,
+          "4": 1
+        },
+        "visible_ink_color_mismatch_frames": 4,
+        "motion_change_count": 291
+      }
+    },
+    "method": "exact distinct sprite ink; old/new poses; binary visibility separate from colour",
+    "guest_modified": false,
+    "validation": {
+      "complete_snapshots_checked": 639,
+      "excluded_complete_snapshots": {
+        "reward-slot-expansion": 46
+      },
+      "settled_actor_results": {
+        "present": 2593,
+        "excluded": 602
+      },
+      "false_absent_or_partial_on_settled_images": 0,
+      "synthetic_host_only_controls": {
+        "absent": 2593,
+        "partial": 2593
+      }
+    },
+    "evidence": [
+      {
+        "actor": "pacman",
+        "frame": 30,
+        "status": "partial"
+      }
+    ],
+    "render_interval_ms": {
+      "count": 661,
+      "mean": 29.5347782238985,
+      "p50": 29.54356343383914,
+      "p95": 45.68863440585806,
+      "max": 54.17477000216089
+    },
+    "render_interval_logical_ticks": {
+      "1": 212,
+      "2": 376,
+      "3": 73
+    }
+  },
+  "hardware": {
+    "video": "NTSC",
+    "ram": "+3K and BLK1/2/3/5",
+    "software_stack_bytes": 704,
+    "game_tick_cycles": 16875,
+    "vic_frame_cycles": 16965,
+    "cpu_hz": 1022727
+  },
+  "memory": {
+    "resident_end": "7cb3",
+    "resident_free": 141,
+    "stack_bytes": 704,
+    "blk5_end": "bfe9",
+    "blk5_free": 23,
+    "native_bytes": 33792,
+    "prg_bytes": 26840,
+    "generic_code_bytes": 262,
+    "normal_ghost_pointer_table": "2f00",
+    "hot_branch_placement": {
+      "epoch_clear": {
+        "target": "2ded",
+        "branch_fallthrough_pc": "2df3",
+        "same_page": true
+      },
+      "normal_ghost_row": {
+        "target": "2ed3",
+        "branch_fallthrough_pc": "2efd",
+        "same_page": true
+      }
+    },
+    "normal_ghost_code_and_padding_bytes": 95
+  },
+  "previous_build_preserved": "make run-pool-shift-fast",
+  "verification": {
+    "command": "make test",
+    "result": "passed",
+    "unit_checks": 86,
+    "guarded_ghost_cases_per_build": 1024,
+    "complete_scene_cases_per_build": 8768,
+    "guarded_generic_cases_per_build": 10496,
+    "new_default_kernels_exactly_match_accepted_trial": true,
+    "additional_checks": "Exhaustive divider/adapter, ghost state, allocation, background tile, preparation, destination and stamp oracles; 1639 sound ticks; all three intermissions and 7192 logical smoke ticks",
+    "all_five_default_artifacts_match_accepted_trial": true,
+    "runtime_sources_and_artwork_unchanged": true
+  },
+  "artifacts": {
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/Makefile": {
+      "sha256": "99b2dab9afcb46eb0f6988f7a0aea08177239080b45cb10b3f41f01d3f0dafe1"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/POOL_GHOST_ROW_OPTIMIZATION.md": {
+      "sha256": "eaf5a61ef9abcc4980a64a588a6ed15d5f0d67336f63fa5471fe8c8cc3432b33"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/POOL_SHIFT_OPTIMIZATION.md": {
+      "sha256": "ec04b35bdeb256060f9175a824f18b2ca30a9430f79b63f269b4025a7aa02826"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/README.md": {
+      "sha256": "671ad28e955a519d8c688605f9a7e2989c10b4bb5e4790b77dabb1b581f183d2"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/RESEARCH_OPTIMIZATION_PLAN.md": {
+      "sha256": "474e429b1a4e2cf297425cb6590fb249693001e7a3a74a3a37d412084efff64b"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/allocator-kernel.json": {
+      "sha256": "8e1ca965e0375b6df0676085a92bb5f4375f4b05d9d5e19e65ff75f2d9c76c71"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/audio.json": {
+      "sha256": "73543ced6ee9aa3f629a4c61ccb98d88e6e0b4661e5b5639a2a5952685fa2b40"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/divider-kernel.json": {
+      "sha256": "f49b10ff908d947c0e5686eacfd48185d35aac60b0ea6c7537f2bb9311e430e9"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/ghost-kernel.json": {
+      "sha256": "6cabc88972f1972c210e3ef42c5ad271d9a5a5edf801adb25036ab8b37df3423"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/pool-dest-guards.json": {
+      "sha256": "0018fe5a96c4b04e108ac6c7ce3a4284160170b1333521e2f3748c9da4787000"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/pool-dest-kernel.json": {
+      "sha256": "7c7061781e8fa55903abd5947819f2978a3c00c4f146630c433fcf1c4686ece2"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/pool-ghost-row-generic.json": {
+      "sha256": "3c4cd6e770b8c45499be6e0f1bd61ee8629af39aca62b19674ca323311e41cef"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/pool-ghost-row-kernel.json": {
+      "sha256": "37b6f70d0fd986a68224afa427036e85df9979a6b76cb73fd8b8606029eb337e"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/pool-ghost-row-scenes.json": {
+      "sha256": "ebf1bcc03f0e922d53496ca27938b3cdfa289b04c5ea55f2117af41e76e9efd8"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/pool-setup-kernel.json": {
+      "sha256": "3aff6119909c1d7b480464764e14ce1470aa54a278aee611a95df919ba66fd13"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/pool-shift-guards.json": {
+      "sha256": "03ea79f4181d3100ecdb74053362815b0017bc158b1641c65fa8aa54d7c5e01a"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/pool-shift-kernel.json": {
+      "sha256": "d7490ff3804ecabbd8c8d8e2c0a6dc2e4929d23c1fbd8e6e673de61159a89d67"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/smoke.json": {
+      "sha256": "487966cd790124f48827aa62e1dea8980f11db1cdef83958f43fd3fbcf5bcaa9"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/stamp-kernel.json": {
+      "sha256": "820d450fbd5c01b2f85fbf000528d130817899dfba7fdc14660dfede733c39e1"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/starting-identities.json": {
+      "sha256": "dceef3fc9a647b13f882646becd68dea5b057f1f14bec0b92414512e6eddfd8e"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/tile-kernel.json": {
+      "sha256": "7f409a2f1795c841f2e1bb59ffc9297fb6454becf3f20638500a304109dfac46"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/tile-stamp-kernel.json": {
+      "sha256": "4b2698266fa2a49ca4322bbba1a7953dadc3cf2fe861151bea424e539be56ab3"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-checks/update-kernel.json": {
+      "sha256": "44a56a03df36d660e1d299c55c4c2752060a1e373ff045c5d41f72451e29cdc5"
+    },
+    "build/pool-ghost-row-fast/evaluation/promotion-tests.log": {
+      "sha256": "391cc82317c81df32bfe0f7f208d62347169d0ce760424734723a0a0102857e7"
+    }
+  },
+  "source_files": {
+    "Makefile": "9c52e7db63e326f46dc21a2b72a6d5455029a30b752023f944e0e724e49a1da2",
+    "README.md": "36790eb556c5f48d61a6350c440b7a14eb11102fe987f796828cddc56f4e620d",
+    "src/glyph_pool.S": "2997f448ff07607536403e3c3d03b4fca996a2d470485257e26df86a50067cd3",
+    "src/pool_stamp_fast.inc": "4dce6a03f67f9707c0314b5588f5a03beb03f9c19463477eae8ae5c094918396",
+    "docs/artwork/hires-pacman.json": "5cb6ca2564e54a15046772b7661325fc0abf2a0039cfa63ac8966c3f373f30d6",
+    "docs/RESEARCH_OPTIMIZATION_PLAN.md": "8218c1d59c6cb5a28c7ee27843bbb8193c6c0967d100ff1a2179835c9f4ad93c",
+    "docs/POOL_GHOST_ROW_OPTIMIZATION.md": "9387b58c887997781d88109e81c6e00d8a89bf015c83ef99e92b3ddf6fc43335",
+    "docs/POOL_SHIFT_OPTIMIZATION.md": "095cbf1e51a4779839b44d64a4453c3dec2748a2f50badef996ee727c19ba5de",
+    "docs/POOL_DEST_OPTIMIZATION.md": "3eaa49adcadbc77e8a3060a7f4ae50f2d2df5ab52c96a2d6f701574d25af29cf",
+    "docs/POOL_SETUP_OPTIMIZATION.md": "7db02f3b27bcd4c674b68b288dd37b3e48339e14ee106542370af34efe070937",
+    "docs/TILE_STAMP_OPTIMIZATION.md": "88e6b352fdee78c838c2dd34d46bf8ab0bfe6b10071b7ac15e2e911eb376b5d9",
+    "docs/TILE_ADDRESS_OPTIMIZATION.md": "946efbcc8c05c3505d9ca437db5d06d3ba33fbca5564fa838b3598070761660f",
+    "docs/AUDIO_UPDATE_OPTIMIZATION.md": "b2b25ebf6bca5caeaf929d18b344a252113b158a52244dac1218a1da1374a1ad",
+    "docs/POOL_ALLOC_OPTIMIZATION.md": "8d60e662ff53a719cc46f876f56f64ac46ca8f28dbfd1b999d376bc836a2eae4",
+    "docs/GHOST_UPDATE_OPTIMIZATION.md": "b10bd057f36bf1d5dedd52536d56ec555d7793ff88280d5269c9db8436d1a037",
+    "tools/arcade/pool_ghost_timing.py": "d9ce446f81ece64e701646fdcc04ee0a58aeb4c360be7be45f917a96cafdcbbe"
+  }
+}

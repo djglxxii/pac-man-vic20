@@ -1,14 +1,16 @@
-Pac-Man on an expanded VIC-20! This work-in-progress homebrew conversion adapts the original arcade game logic into native 6502 code, with graphics and sound built around the VIC-20's limits.
+An agentic homebrew Pac-Man conversion for the Commodore VIC-20: coding agents carried out the porting, 6502 implementation, debugging and testing, guided by my requirements and live play testing.
 
-This computer-controlled playthrough clears the first two boards and reaches the complete first intermission. It was captured in the VICE emulator using normal joystick input, with original game audio and no commentary. The game handles movement, collisions, scoring and progression throughout.
+This is the INITIAL PASS, recorded before the later glyph-pool renderer and optimization series. It already preserves the arcade maze, ghost behavior, scoring, sound sequencing and intermissions, but the software sprites visibly flicker.
 
-WHY THE WHITE MAZE?
-The VIC-20 shares one foreground color across each 8x16 display cell. White walls and pellets give the maze a consistent appearance, while completion flashes blue and white four times. Colored characters can still tint nearby pixels sharing their cell.
+The computer-controlled playthrough clears the first two boards and completes the first intermission. A joystick bot supplies ordinary inputs in VICE; movement, collisions, scoring and progression are handled by the game. The bot recording the video is separate from the coding agents that helped build the conversion. There is no spoken commentary.
 
-UNDER THE HOOD
-The conversion combines C compiled with LLVM-MOS and handwritten 6502 assembly. Artwork, music, effect data and difficulty tables come from the arcade ROM set. Gameplay retains its approximately 60.606 Hz update clock, including the original ghost behavior and intermissions.
+HOW IT WAS BUILT
+The conversion builds on Mark Burkley's C translation of the original arcade program, compiled to native 6502 code with LLVM-MOS, plus handwritten assembly. Coding agents adapted the platform code, character graphics, sound driver and validation tools. I directed the work, reviewed experiments and decided what to keep.
 
-Rendering currently measures around 48 FPS in normal play and 54 FPS with frightened ghosts. Flicker is still visible. Our next priority is reducing the gaps between erasing and redrawing sprites, followed by memory reuse and further rendering optimizations.
+The VIC-20 has no hardware sprites. Moving actors are drawn into programmable character graphics. White maze walls and pellets help manage the shared foreground color in each 8x16 cell; colored actors can still tint neighboring pixels. Maze completion flashes blue and white.
+
+AFTER THIS INITIAL PASS
+Later work introduced a finished-cell glyph pool to greatly reduce the visible erase/redraw flicker, revised the character artwork and lettering, and optimized rendering, ghost processing and audio. Those changes belong to the separate Final Optimized milestone, not this recording.
 
 CHAPTERS
 00:00 Start and board 1
@@ -16,17 +18,18 @@ CHAPTERS
 02:04 First intermission
 
 TECHNICAL NOTES
-Target: NTSC VIC-20 with +3K and BLK1/2/3/5 RAM expansion.
-Capture: VICE, with a joystick-driven bot. Both boards reach 244 eaten pellets through gameplay.
-The video includes one lost life and a brief look at the third board after the intermission.
+Target: expanded NTSC VIC-20, with +3K and BLK1/2/3/5 RAM enabled.
+Capture: VICE, joystick input only; both boards reach 244 eaten pellets through gameplay.
+This recording includes one lost life and a brief look at board 3 after the intermission.
+Gameplay uses its approximately 60.606 Hz logic clock; display redraws are separate.
 
 CREDITS
-Original game: Pac-Man (Namco), using the Midway arcade ROM set as the reference.
+Original game: Pac-Man, Namco; Midway arcade ROM set used as the reference.
 Game logic adapted from Mark Burkley's C translation:
 https://github.com/mburkley/pacman-c
 Emulator: VICE
 https://vice-emu.sourceforge.io/
 
-How does the flicker look on your display? Feedback from VIC-20 owners and homebrew developers is welcome.
+Development used coding agents under human direction. Thumbnail artwork and upload copy also use AI assistance.
 
-#VIC20 #PacMan #RetroGaming
+#VIC20 #PacMan #AgenticHomebrew

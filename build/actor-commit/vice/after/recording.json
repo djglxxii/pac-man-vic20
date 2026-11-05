@@ -1,0 +1,120 @@
+{
+  "prg": "build/actor-commit/after/pacman.prg",
+  "prg_sha256": "3c4cf04b05a1c70df8ffd23a68a5be69c54644a5fc4b1f1cb55c856f3acc1d42",
+  "video_frames": 1200,
+  "fps": "340909/5655",
+  "joystick_only": true,
+  "guest_patches": false,
+  "first": {
+    "tick": 431,
+    "attributes": [
+      0,
+      0,
+      148,
+      1,
+      156,
+      3,
+      156,
+      5,
+      156,
+      7,
+      194,
+      9,
+      252,
+      0,
+      0,
+      0
+    ],
+    "positions": [
+      0,
+      0,
+      162,
+      164,
+      134,
+      155,
+      151,
+      139,
+      119,
+      139,
+      161,
+      68,
+      7,
+      8,
+      0,
+      0
+    ],
+    "pellets": 3,
+    "raw_frame_sha256": "788cc86f9aa307457da96138041ba1784a928bae6278d3a226d077b4eeea97dc",
+    "completed_render_calls": 0,
+    "feature_calls": {
+      "commit_group": 0
+    }
+  },
+  "last": {
+    "tick": 1637,
+    "attributes": [
+      0,
+      0,
+      178,
+      9,
+      112,
+      18,
+      112,
+      18,
+      112,
+      18,
+      112,
+      18,
+      0,
+      20,
+      0,
+      0
+    ],
+    "positions": [
+      0,
+      0,
+      84,
+      212,
+      106,
+      116,
+      75,
+      162,
+      123,
+      69,
+      193,
+      212,
+      7,
+      8,
+      0,
+      0
+    ],
+    "pellets": 140,
+    "raw_frame_sha256": "1208499dee2269231615a2236a29933cf335f1c0cc66c5b68ed84e553d547175",
+    "completed_render_calls": 480,
+    "feature_calls": {
+      "commit_group": 1551
+    }
+  },
+  "audit": {
+    "snapshot_prg": "build/actor-commit/vice/after/captured-program.prg",
+    "loaded_program": {
+      "all_depacked_regions_match": true,
+      "bytes_checked": 33792,
+      "loaded_image_sha256": "6bf3a95816ce156aba5c94b9a80b0642cbd27bc590c5925cfca80460b53c87ca"
+    },
+    "completed_render_calls": 480,
+    "render_calls_per_second": 24.13,
+    "executed_features": {
+      "commit_group": 1551
+    },
+    "synthetic_control_after_recording": {
+      "after_recording": true,
+      "VIC_register_900f": "4b",
+      "normal_sha256": "1208499dee2269231615a2236a29933cf335f1c0cc66c5b68ed84e553d547175",
+      "forced_sha256": "6578d199cd6a8407b03bed0b3c11f37a3e70b63e1935e8184c275c5a1044dba8",
+      "normal_purple_pixels": 0,
+      "forced_purple_pixels": 42196,
+      "different_raw_frames": true
+    }
+  }
+}

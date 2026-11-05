@@ -1,0 +1,27 @@
+{
+  "comparison": "archived baseline versus archived actor-commit trial",
+  "common_tick_range": [
+    434,
+    490
+  ],
+  "matched_completed_renders": 26,
+  "same_render_tick_sequence": true,
+  "same_completed_pictures": true,
+  "logic_mismatches": 0,
+  "picture_mismatches": 0,
+  "render_tick_intervals": {
+    "1": 1,
+    "2": 17,
+    "3": 7
+  },
+  "baseline_pc_gate_decisions": 60,
+  "baseline_frames": 60,
+  "trial_frames": 60,
+  "raster_phase_matched": false,
+  "limits": [
+    "Render admissions match logical ticks; raster phase and completion times are not matched.",
+    "Baseline admission is controlled through VICE PC redirection; this is not an unmodified gameplay benchmark.",
+    "Archived programs predate the accepted font changes.",
+    "Visual review is required; no automatic absence classifier or H1/H2 conclusion is supplied."
+  ]
+}

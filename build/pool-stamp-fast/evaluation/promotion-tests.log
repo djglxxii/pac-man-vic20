@@ -1,0 +1,572 @@
+MATCH build/pacman.prg 480fa052510ac687a9477e4da305d9e1accb6aaeb39d77c7d444e63a51d315c5
+MATCH build/pacman.lbl bf613d5651b484a8eeb81902da18ea0ee62eccc30e67d26ec0beff25723a3ec2
+MATCH build/arcade/pacman-native.bin 35b362b12a0c064796f2fa931be4cd2f1f4632bd11db65414b356a611a7c83d0
+MATCH build/arcade/pacman-native.bin.elf 09d59ea8da7bac7fa5d01b0c0002f8077032c0aaf1bbd125ab35dfc8abc9df1c
+MATCH build/arcade/pacman.map 2a5585ab5d2be1fd0f0a54c84596a001414bf5d381a333c7131cf91bc47d83d2
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -Tsrc/glyph_pool.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c src/score.S src/glyph_pool.S src/glyph_pool.c build/arcade/rom.c -Wl,-Map,build/pool-skip-empty/pacman.map -o build/pool-skip-empty/pacman-native.bin
+python3 tools/arcade/pack.py build/pool-skip-empty/pacman-native.bin build/pool-skip-empty/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/pool-skip-empty/pacman.prg: 26747 bytes, entry $0400, verified backwards depacking
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -DSOUND_EFFECT_FAST -Tsrc/glyph_pool.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c src/score.S src/glyph_pool.S src/glyph_pool.c src/sound_effect.S build/arcade/rom.c -Wl,-Map,build/sound-effect-fast/pacman.map -o build/sound-effect-fast/pacman-native.bin
+python3 tools/arcade/pack.py build/sound-effect-fast/pacman-native.bin build/sound-effect-fast/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/sound-effect-fast/pacman.prg: 26591 bytes, entry $0400, verified backwards depacking
+python3 tests/arcade.py
+test_01_original_maze_and_attract (__main__.ArcadeParity.test_01_original_maze_and_attract) ... ok
+test_02_gameplay_and_turn_trace (__main__.ArcadeParity.test_02_gameplay_and_turn_trace) ... ok
+test_03_difficulty_and_fruit (__main__.ArcadeParity.test_03_difficulty_and_fruit) ... ok
+test_04_ghost_targets_ties_and_upward_bug (__main__.ArcadeParity.test_04_ghost_targets_ties_and_upward_bug) ... ok
+test_05_frightened_random_sequence (__main__.ArcadeParity.test_05_frightened_random_sequence) ... ok
+test_06_elroy_and_score (__main__.ArcadeParity.test_06_elroy_and_score) ... ok
+test_07_intermission_selection (__main__.ArcadeParity.test_07_intermission_selection) ... ok
+test_08_complete_intermission_traces (__main__.ArcadeParity.test_08_complete_intermission_traces) ... ok
+test_09_rng_storage_bound (__main__.ArcadeParity.test_09_rng_storage_bound) ... ok
+test_10_lives_history_and_split_screen (__main__.ArcadeParity.test_10_lives_history_and_split_screen) ... ok
+test_11_credits_and_two_player_start (__main__.ArcadeParity.test_11_credits_and_two_player_start) ... ok
+test_12_death_sequence (__main__.ArcadeParity.test_12_death_sequence) ... ok
+test_13_coin_debounce_and_queued_credits (__main__.ArcadeParity.test_13_coin_debounce_and_queued_credits) ... ok
+test_14_songs_effects_and_channel_priority (__main__.ArcadeParity.test_14_songs_effects_and_channel_priority) ... ok
+test_15_attract_maze_demo (__main__.ArcadeParity.test_15_attract_maze_demo) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 19.129s
+
+OK
+python3 tests/glyph_pool.py
+test_01_real_maze_white_walls_pellets_and_unchanged_pixels (__main__.PoolColors.test_01_real_maze_white_walls_pellets_and_unchanged_pixels) ... ok
+test_02_tile_order_does_not_change_white_maze (__main__.PoolColors.test_02_tile_order_does_not_change_white_maze) ... ok
+test_03_wall_stays_white_after_last_dot_and_power_pellet_blinks (__main__.PoolColors.test_03_wall_stays_white_after_last_dot_and_power_pellet_blinks) ... ok
+test_04_pellet_ink_at_every_cell_boundary (__main__.PoolColors.test_04_pellet_ink_at_every_cell_boundary) ... ok
+test_05_actor_releases_white_pellets_and_keeps_aligned_neighbor (__main__.PoolColors.test_05_actor_releases_white_pellets_and_keeps_aligned_neighbor) ... ok
+test_06_blue_is_limited_to_completion_flash (__main__.PoolColors.test_06_blue_is_limited_to_completion_flash) ... ok
+test_01_colours_pixels_and_sprite_underlays (__main__.PoolFlash.test_01_colours_pixels_and_sprite_underlays) ... ok
+test_02_complete_flash_timing (__main__.PoolFlash.test_02_complete_flash_timing) ... ok
+test_03_walls_survive_incremental_dot_removal (__main__.PoolFlash.test_03_walls_survive_incremental_dot_removal) ... ok
+test_01_all_fruit_values_and_erase_footprints (__main__.PoolFonts.test_01_all_fruit_values_and_erase_footprints) ... ok
+test_02_ghost_chain_keeps_original_score_frames (__main__.PoolFonts.test_02_ghost_chain_keeps_original_score_frames) ... ok
+test_01_speed_masks_and_mode_priorities (__main__.PoolGhosts.test_01_speed_masks_and_mode_priorities) ... ok
+test_01_loader_delivers_all_three_regions_before_boot (__main__.PoolMemory.test_01_loader_delivers_all_three_regions_before_boot) ... ok
+test_02_cold_ram_is_reused_after_startup (__main__.PoolMemory.test_02_cold_ram_is_reused_after_startup) ... ok
+test_03_stack_tracking_excludes_host_canaries (__main__.PoolMemory.test_03_stack_tracking_excludes_host_canaries) ... ok
+test_01_6502_movement_turns_and_score (__main__.PoolNativeParity.test_01_6502_movement_turns_and_score) ... ok
+test_02_6502_frightened_rng (__main__.PoolNativeParity.test_02_6502_frightened_rng) ... ok
+test_03_build_memory_limits (__main__.PoolNativeParity.test_03_build_memory_limits) ... ok
+test_04_square_table_equivalence (__main__.PoolNativeParity.test_04_square_table_equivalence) ... ok
+test_05_exact_audio_divider_boundaries (__main__.PoolNativeParity.test_05_exact_audio_divider_boundaries) ... ok
+test_06_audio_converter_registers (__main__.PoolNativeParity.test_06_audio_converter_registers) ... ok
+test_01_dirty_addresses_cover_all_four_pages (__main__.PoolRebuild.test_01_dirty_addresses_cover_all_four_pages) ... ok
+test_02_bulk_slices_match_original_rom (__main__.PoolRebuild.test_02_bulk_slices_match_original_rom) ... ok
+test_03_writes_behind_and_ahead_of_cursor (__main__.PoolRebuild.test_03_writes_behind_and_ahead_of_cursor) ... ok
+test_04_restart_in_every_rebuild_phase (__main__.PoolRebuild.test_04_restart_in_every_rebuild_phase) ... ok
+test_05_split_native_state_range_matches_rom (__main__.PoolRebuild.test_05_split_native_state_range_matches_rom) ... ok
+test_06_complete_transition_service_and_queue_order (__main__.PoolRebuild.test_06_complete_transition_service_and_queue_order) ... ok
+test_07_coin_is_serviced_during_rebuild (__main__.PoolRebuild.test_07_coin_is_serviced_during_rebuild) ... ok
+test_08_completion_uses_current_actor_positions (__main__.PoolRebuild.test_08_completion_uses_current_actor_positions) ... ok
+test_01_all_frames_shifts_and_flips (__main__.PoolRenderer.test_01_all_frames_shifts_and_flips) ... ok
+test_02_edges_overlap_priority_and_returning_eyes (__main__.PoolRenderer.test_02_edges_overlap_priority_and_returning_eyes) ... ok
+test_03_incremental_matches_full_redraw (__main__.PoolRenderer.test_03_incremental_matches_full_redraw) ... ok
+test_05_dirty_tiles_preserve_actors_and_shared_colours (__main__.PoolRenderer.test_05_dirty_tiles_preserve_actors_and_shared_colours) ... ok
+test_07_horizontal_rewards_priority_flips_edges_and_restoration (__main__.PoolRenderer.test_07_horizontal_rewards_priority_flips_edges_and_restoration) ... ok
+test_08_revised_pacman_masks_and_shared_closed_views (__main__.PoolRenderer.test_08_revised_pacman_masks_and_shared_closed_views) ... ok
+test_09_clean_home_glyphs_and_bounded_banks (__main__.PoolRenderer.test_09_clean_home_glyphs_and_bounded_banks) ... ok
+test_10_full_banks_teleports_and_epoch_wrap (__main__.PoolRenderer.test_10_full_banks_teleports_and_epoch_wrap) ... ok
+test_11_all_home_addresses_overlap_hits_and_cursor_page_carries (__main__.PoolRenderer.test_11_all_home_addresses_overlap_hits_and_cursor_page_carries) ... ok
+test_12_packed_home_decode_all_bytes_and_incoming_carries (__main__.PoolRenderer.test_12_packed_home_decode_all_bytes_and_incoming_carries) ... ok
+
+----------------------------------------------------------------------
+Ran 39 tests in 13.650s
+
+OK
+{
+  "phases": [
+    "blue",
+    "white",
+    "blue",
+    "white",
+    "blue",
+    "white",
+    "blue",
+    "white"
+  ],
+  "request_to_present_ms": [
+    15.810670882845569,
+    15.85075978242483,
+    17.960804789547943,
+    18.516182715426503,
+    15.85075978242483,
+    15.85075978242483,
+    15.85075978242483,
+    18.824182797559857
+  ],
+  "flash_spacing_ms": [
+    196.56663019554583,
+    200.10814225106014,
+    198.9631641679549,
+    194.97480754883756,
+    197.93454167143332,
+    198.03525280940076,
+    201.3567648062484
+  ],
+  "audio_update_gap_ms_max": 24.92942887006992
+}
+python3 tests/sound_effect.py
+test_01_all_real_effects_and_priorities (__main__.SoundEffectParity.test_01_all_real_effects_and_priorities) ... ok
+test_02_cancellation_and_inactive_state (__main__.SoundEffectParity.test_02_cancellation_and_inactive_state) ... ok
+test_03_random_state_and_duration_boundaries (__main__.SoundEffectParity.test_03_random_state_and_duration_boundaries) ... ok
+test_04_all_frequency_steps_scales_and_envelopes (__main__.SoundEffectParity.test_04_all_frequency_steps_scales_and_envelopes) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 8.751s
+
+OK
+python3 tests/tile_address.py --prg build/pacman.prg --output build/evaluation/tile-kernel.json
+test_01_all_coordinates_and_incoming_carries (__main__.TileAddress.test_01_all_coordinates_and_incoming_carries) ... ok
+test_02_distinguish_all_ten_address_bits (__main__.TileAddress.test_02_distinguish_all_ten_address_bits) ... ok
+test_03_full_colour_byte_comparison (__main__.TileAddress.test_03_full_colour_byte_comparison) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 4.463s
+
+OK
+python3 tools/arcade/pool_stamp_timing.py --baseline build/tile-address-fast/pacman.prg --trial build/pacman.prg --output build/evaluation/stamp-kernel.json
+{
+  "baseline": {
+    "prg_sha256": "5104973e43a2e0db2e1112ee18454012bbbbaa89646d914d3a9fa3663f0d40b4",
+    "method": "vicsim call pool_draw; IRQs masked; identical masks and destinations",
+    "background_sha256": "13e7cc89054bace115014df8bdf6e4422ec340dac502a323ae142a694e2f5574",
+    "cases_checked": 10496,
+    "groups": {
+      "all": {
+        "count": 10496,
+        "mean": 889.3993902439024,
+        "p50": 912,
+        "p95": 1257,
+        "max": 1392
+      },
+      "arcade_sprites": {
+        "count": 8192,
+        "mean": 920.9765625,
+        "p50": 950,
+        "p95": 1257,
+        "max": 1392
+      },
+      "shift-0": {
+        "count": 1312,
+        "mean": 770.9756097560976,
+        "p50": 802,
+        "p95": 1052,
+        "max": 1056
+      },
+      "shift-1": {
+        "count": 1312,
+        "mean": 825.609756097561,
+        "p50": 872,
+        "p95": 1136,
+        "max": 1140
+      },
+      "shift-2": {
+        "count": 1312,
+        "mean": 880.2439024390244,
+        "p50": 938,
+        "p95": 1220,
+        "max": 1224
+      },
+      "shift-3": {
+        "count": 1312,
+        "mean": 934.8780487804878,
+        "p50": 1008,
+        "p95": 1304,
+        "max": 1308
+      },
+      "shift-4": {
+        "count": 1312,
+        "mean": 989.5121951219512,
+        "p50": 1068,
+        "p95": 1388,
+        "max": 1392
+      },
+      "shift-5": {
+        "count": 1312,
+        "mean": 959.2926829268292,
+        "p50": 1037,
+        "p95": 1341,
+        "max": 1345
+      },
+      "shift-6": {
+        "count": 1312,
+        "mean": 904.6585365853658,
+        "p50": 969,
+        "p95": 1257,
+        "max": 1261
+      },
+      "shift-7": {
+        "count": 1312,
+        "mean": 850.0243902439024,
+        "p50": 899,
+        "p95": 1173,
+        "max": 1177
+      },
+      "arcade_eyes": {
+        "count": 1024,
+        "mean": 621.8125,
+        "p50": 620,
+        "p95": 712,
+        "max": 744
+      },
+      "arcade_score_right": {
+        "count": 512,
+        "mean": 715.0,
+        "p50": 716,
+        "p95": 802,
+        "max": 825
+      },
+      "synthetic": {
+        "count": 768,
+        "mean": 1025.625,
+        "p50": 1117,
+        "p95": 1360,
+        "max": 1392
+      }
+    }
+  },
+  "trial": {
+    "prg_sha256": "480fa052510ac687a9477e4da305d9e1accb6aaeb39d77c7d444e63a51d315c5",
+    "method": "vicsim call pool_draw; IRQs masked; identical masks and destinations",
+    "background_sha256": "13e7cc89054bace115014df8bdf6e4422ec340dac502a323ae142a694e2f5574",
+    "cases_checked": 10496,
+    "groups": {
+      "all": {
+        "count": 10496,
+        "mean": 766.5853658536586,
+        "p50": 770,
+        "p95": 1147,
+        "max": 1242
+      },
+      "arcade_sprites": {
+        "count": 8192,
+        "mean": 794.1015625,
+        "p50": 817,
+        "p95": 1142,
+        "max": 1242
+      },
+      "shift-0": {
+        "count": 1312,
+        "mean": 527.560975609756,
+        "p50": 514,
+        "p95": 733,
+        "max": 738
+      },
+      "shift-1": {
+        "count": 1312,
+        "mean": 730.4878048780488,
+        "p50": 747,
+        "p95": 1045,
+        "max": 1050
+      },
+      "shift-2": {
+        "count": 1312,
+        "mean": 785.1219512195122,
+        "p50": 817,
+        "p95": 1129,
+        "max": 1134
+      },
+      "shift-3": {
+        "count": 1312,
+        "mean": 839.7560975609756,
+        "p50": 887,
+        "p95": 1213,
+        "max": 1218
+      },
+      "shift-4": {
+        "count": 1312,
+        "mean": 855.3658536585366,
+        "p50": 907,
+        "p95": 1237,
+        "max": 1242
+      },
+      "shift-5": {
+        "count": 1312,
+        "mean": 831.9512195121952,
+        "p50": 877,
+        "p95": 1201,
+        "max": 1206
+      },
+      "shift-6": {
+        "count": 1312,
+        "mean": 808.5365853658536,
+        "p50": 847,
+        "p95": 1165,
+        "max": 1170
+      },
+      "shift-7": {
+        "count": 1312,
+        "mean": 753.9024390243902,
+        "p50": 777,
+        "p95": 1081,
+        "max": 1086
+      },
+      "arcade_eyes": {
+        "count": 1024,
+        "mean": 533.4375,
+        "p50": 535,
+        "p95": 634,
+        "max": 658
+      },
+      "arcade_score_right": {
+        "count": 512,
+        "mean": 614.625,
+        "p50": 623,
+        "p95": 716,
+        "max": 731
+      },
+      "synthetic": {
+        "count": 768,
+        "mean": 885.25,
+        "p50": 987,
+        "p95": 1214,
+        "max": 1242
+      }
+    }
+  },
+  "cycle_savings": {
+    "all": {
+      "count": 10496,
+      "mean": 122.8140243902439,
+      "p50": 102,
+      "p95": 275,
+      "max": 366,
+      "min": 54
+    },
+    "arcade_sprites": {
+      "count": 8192,
+      "mean": 126.875,
+      "p50": 114,
+      "p95": 291,
+      "max": 366,
+      "min": 54
+    },
+    "shift-0": {
+      "count": 1312,
+      "mean": 243.41463414634146,
+      "p50": 266,
+      "p95": 366,
+      "max": 366,
+      "min": 54
+    },
+    "shift-1": {
+      "count": 1312,
+      "mean": 95.1219512195122,
+      "p50": 90,
+      "p95": 138,
+      "max": 138,
+      "min": 54
+    },
+    "shift-2": {
+      "count": 1312,
+      "mean": 95.1219512195122,
+      "p50": 90,
+      "p95": 138,
+      "max": 138,
+      "min": 54
+    },
+    "shift-3": {
+      "count": 1312,
+      "mean": 95.1219512195122,
+      "p50": 90,
+      "p95": 138,
+      "max": 138,
+      "min": 54
+    },
+    "shift-4": {
+      "count": 1312,
+      "mean": 134.14634146341464,
+      "p50": 134,
+      "p95": 198,
+      "max": 198,
+      "min": 54
+    },
+    "shift-5": {
+      "count": 1312,
+      "mean": 127.34146341463415,
+      "p50": 126,
+      "p95": 187,
+      "max": 187,
+      "min": 55
+    },
+    "shift-6": {
+      "count": 1312,
+      "mean": 96.1219512195122,
+      "p50": 91,
+      "p95": 139,
+      "max": 139,
+      "min": 55
+    },
+    "shift-7": {
+      "count": 1312,
+      "mean": 96.1219512195122,
+      "p50": 91,
+      "p95": 139,
+      "max": 139,
+      "min": 55
+    },
+    "arcade_eyes": {
+      "count": 1024,
+      "mean": 88.375,
+      "p50": 84,
+      "p95": 142,
+      "max": 166,
+      "min": 63
+    },
+    "arcade_score_right": {
+      "count": 512,
+      "mean": 100.375,
+      "p50": 95,
+      "p95": 190,
+      "max": 191,
+      "min": 69
+    },
+    "synthetic": {
+      "count": 768,
+      "mean": 140.375,
+      "p50": 137,
+      "p95": 365,
+      "max": 366,
+      "min": 54
+    }
+  }
+}
+python3 tools/arcade/check_audio_replay.py --baseline build/tile-address-fast/pacman.prg --trial build/pacman.prg --output build/evaluation/audio-replay
+{
+  "ticks_compared": 1639,
+  "all_sound_state_and_register_values_identical": true,
+  "first_tick": 1,
+  "last_tick": 1639,
+  "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+  "input_sha256": "9546fe8fbbe5108f48b665d41c20ea6a3d22646d7b0ed5ed481e237e0878bb8f",
+  "programs": [
+    {
+      "path": "build/tile-address-fast/pacman.prg",
+      "sha256": "5104973e43a2e0db2e1112ee18454012bbbbaa89646d914d3a9fa3663f0d40b4"
+    },
+    {
+      "path": "build/pacman.prg",
+      "sha256": "480fa052510ac687a9477e4da305d9e1accb6aaeb39d77c7d444e63a51d315c5"
+    }
+  ],
+  "guest_modified": false,
+  "method": "Compare tick-indexed arcade sound state and VIC registers on a live replay.\n\nHost PC observations only: no guest code, registers, clocks or sound are patched.\nCPU timestamps can differ; this checks the values produced at each logical tick."
+}
+python3 tests/display_profile.py
+test_absent_and_partial_have_distinct_results (__main__.Visibility.test_absent_and_partial_have_distinct_results) ... ok
+test_ambiguous_wall_and_overlap_are_excluded (__main__.Visibility.test_ambiguous_wall_and_overlap_are_excluded) ... ok
+test_complete_old_or_new_pose_is_present (__main__.Visibility.test_complete_old_or_new_pose_is_present) ... ok
+test_dropped_or_duplicate_video_frames_are_rejected (__main__.Visibility.test_dropped_or_duplicate_video_frames_are_rejected) ... ok
+test_edges_and_hidden_actors_are_excluded (__main__.Visibility.test_edges_and_hidden_actors_are_excluded) ... ok
+test_mixed_old_new_scanlines_are_partial (__main__.Visibility.test_mixed_old_new_scanlines_are_partial) ... ok
+test_motion_does_not_bridge_unknown_frames (__main__.Visibility.test_motion_does_not_bridge_unknown_frames) ... ok
+test_phase_accounting_does_not_double_count_nested_routines (__main__.Visibility.test_phase_accounting_does_not_double_count_nested_routines) ... ok
+test_pool_display_uses_matrix_and_keeps_home_background (__main__.Visibility.test_pool_display_uses_matrix_and_keeps_home_background) ... ok
+test_prefix_window_preserves_source_and_excludes_future_events (__main__.Visibility.test_prefix_window_preserves_source_and_excludes_future_events) ... ok
+test_prefix_window_rejects_bad_limits_and_any_source_gap (__main__.Visibility.test_prefix_window_rejects_bad_limits_and_any_source_gap) ... ok
+test_wall_pixels_cannot_prove_actor_present (__main__.Visibility.test_wall_pixels_cannot_prove_actor_present) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.017s
+
+OK
+python3 tests/smoke.py
+{
+  "screens": [
+    "attract",
+    "credits",
+    "maze",
+    "cherry",
+    "intermission-1",
+    "intermission-2",
+    "intermission-3"
+  ],
+  "stack_by_scene": {
+    "attract": {
+      "software_lowest_write": 32743,
+      "software_bytes_written": 25,
+      "hardware_lowest_write": 492,
+      "hardware_bytes_written": 20
+    },
+    "credits": {
+      "software_lowest_write": 32743,
+      "software_bytes_written": 25,
+      "hardware_lowest_write": 492,
+      "hardware_bytes_written": 20
+    },
+    "maze": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 492,
+      "hardware_bytes_written": 20
+    },
+    "cherry": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 490,
+      "hardware_bytes_written": 22
+    },
+    "intermission-1": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 490,
+      "hardware_bytes_written": 22
+    },
+    "intermission-2": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 490,
+      "hardware_bytes_written": 22
+    },
+    "intermission-3": {
+      "software_lowest_write": 32738,
+      "software_bytes_written": 30,
+      "hardware_lowest_write": 490,
+      "hardware_bytes_written": 22
+    }
+  },
+  "clock": {
+    "video_frames": 180,
+    "arcade_ticks": 180,
+    "expected": 180.96
+  },
+  "long_run_ticks": 7181,
+  "stack": {
+    "software_lowest_write": 32738,
+    "software_bytes_written": 30,
+    "hardware_lowest_write": 488,
+    "hardware_bytes_written": 24
+  },
+  "boot": {
+    "entries": 1,
+    "released": true
+  },
+  "irq_vector_intact": true,
+  "stack_guard_intact": true,
+  "software_stack_reserved": 704
+}
+
+Checked-in fixture verification: all 1,639 inputs match the archived route.
+Audio replay rerun with checked-in fixture: PASS, identical output digest.
+{
+  "ticks_compared": 1639,
+  "all_sound_state_and_register_values_identical": true,
+  "first_tick": 1,
+  "last_tick": 1639,
+  "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+  "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+  "programs": [
+    {
+      "path": "build/tile-address-fast/pacman.prg",
+      "sha256": "5104973e43a2e0db2e1112ee18454012bbbbaa89646d914d3a9fa3663f0d40b4"
+    },
+    {
+      "path": "build/pacman.prg",
+      "sha256": "480fa052510ac687a9477e4da305d9e1accb6aaeb39d77c7d444e63a51d315c5"
+    }
+  ],
+  "guest_modified": false,
+  "method": "Compare tick-indexed arcade sound state and VIC registers on a live replay.\n\nHost PC observations only: no guest code, registers, clocks or sound are patched.\nCPU timestamps can differ; this checks the values produced at each logical tick."
+}

@@ -1,0 +1,32 @@
+  248   sta v_flags            $85      3  
+  249   lda #3                 $A9      2  
+  250   sta v_row              $85      3  
+  252   ldy #0                 $A0      2  
+  253   lda (v_data),y         $B1    5-6  +1 if page crossed
+  254   sta v_hi               $85      3  
+  255   and #240               $29      2  
+  256   ldx v_flip             $AE      4  
+  257   beq tile_upper         $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  258   lsr                    $4A      2  
+  259   lsr                    $4A      2  
+  260   lsr                    $4A      2  
+  261   lsr                    $4A      2  
+  263   sta v_lo               $85      3  
+  264   jsr tile_pixel         $20      6  
+  265   lda v_hi               $A5      3  
+  266   and #15                $29      2  
+  267   ldx v_flip             $AE      4  
+  268   bne tile_lower         $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  269   asl                    $0A      2  
+  270   asl                    $0A      2  
+  271   asl                    $0A      2  
+  272   asl                    $0A      2  
+  274   sta v_lo               $85      3  
+  275   jsr tile_pixel         $20      6  
+  276   inc v_data             $E6      5  
+  277   bne tile_source_next   $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  278   inc v_data+1           $E6      5  
+  280   dec v_row              $C6      5  
+  281   bne tile_pair          $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+---------------------------------------------------
+bytes: 56   cycles: 90 .. 99   (straight-line sum; multiply loop bodies yourself)

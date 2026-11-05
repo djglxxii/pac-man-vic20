@@ -1,0 +1,11 @@
+{
+  "video_frames": 600,
+  "groups": 818,
+  "protected_groups": 17,
+  "actor_erases": 1319,
+  "protected_actor_erases": 21,
+  "max_protected_group_cycles": 4786,
+  "max_protected_group_ms": 4.68,
+  "no_protected_group_crossed_its_colour_rows": true,
+  "all_protected_groups_within_budget": true
+}

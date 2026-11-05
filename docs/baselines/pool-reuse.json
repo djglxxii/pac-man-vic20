@@ -1,0 +1,256 @@
+{
+  "status": "Measurement complete; persistent cache deferred; no runtime trial",
+  "date": "2026-11-04",
+  "baseline_commit": "98f290a",
+  "report": "docs/POOL_REUSE_MEASUREMENT.md",
+  "next_investigation": "Profile VIC audio translation (candidate 4)",
+  "prg_sha256": "480fa052510ac687a9477e4da305d9e1accb6aaeb39d77c7d444e63a51d315c5",
+  "input_trace_sha256": "9546fe8fbbe5108f48b665d41c20ea6a3d22646d7b0ed5ed481e237e0878bb8f",
+  "sources": {
+    "recording.json": "4f7de3764d8ac5b80d684c17f0032982b90d670be078157ce28e222fa9e8a5d1",
+    "memory.zip": "169c24e7865c4a2cebe3c9938302d0401d2b333a2700e3918ed2089c55c17ded",
+    "tables.json": "acc09c1b728926b905b39bbf56658ae469998f11d6fb6ad12b13a4d4f020ffac",
+    "captured-program.lbl": "bf613d5651b484a8eeb81902da18ea0ee62eccc30e67d26ec0beff25723a3ec2"
+  },
+  "profile_source_summary_sha256": "2d08a6be89275c1fa4fb0197394fa8bb674da206520e2e96d7e3f1e2b30f5ec2",
+  "profile_source_profile_sha256": "65031c64a9a96fd5769f7e1f8fafd0809327c8d40f3b9d1649c1faad33fbe974",
+  "method": "Offline exact glyph/colour comparison and conservative pose/home/shared-cell dependency keys",
+  "guest_code_changed": false,
+  "cache_implemented": false,
+  "window": {
+    "raster_frames": 1180,
+    "first_clock": 7651283,
+    "last_clock": 27653019,
+    "cpu_cycles": 20001736,
+    "seconds": 19.55725819304663
+  },
+  "metrics": {
+    "all": {
+      "counts": {
+        "cells": 8374,
+        "redraws": 537,
+        "same_previous_colour": 7895,
+        "actor_stamps": 2885,
+        "whole_display_identical": 31,
+        "all_poses_identical": 39,
+        "all_actor_composition_dependencies_identical": 39,
+        "same_poses_and_background_idle_at_entry": 31,
+        "whole_clean_background_identical": 287,
+        "whole_display_identical_and_poses_and_background_identical": 31,
+        "shared_actor_cells": 348,
+        "pool_cells_with_only_home_pixels": 1097,
+        "same_previous_pixels_and_colour": 2136,
+        "same_previous_pixels": 2341,
+        "same_previous_dependencies": 1786,
+        "hidden_same_slot_pixels_any_cell": 1356,
+        "hidden_same_cell_pixels_any_slot": 1472,
+        "hidden_same_slot_cell_pixels": 1354,
+        "hidden_same_slot_cell_dependencies": 1226,
+        "whole_actor_stamps_with_all_cells_reusable": 367
+      },
+      "percent_of_pool_cells": {
+        "same_previous_colour": 94.27991401958442,
+        "same_previous_pixels_and_colour": 25.507523286362552,
+        "same_previous_pixels": 27.955576785287796,
+        "same_previous_dependencies": 21.327919751612132,
+        "hidden_same_slot_pixels_any_cell": 16.19297826606162,
+        "hidden_same_cell_pixels_any_slot": 17.578218294721758,
+        "hidden_same_slot_cell_pixels": 16.16909481729162,
+        "hidden_same_slot_cell_dependencies": 14.640554096011464
+      }
+    },
+    "some_actor_coordinates_changed": {
+      "counts": {
+        "cells": 7816,
+        "redraws": 497,
+        "same_previous_colour": 7337,
+        "actor_stamps": 2647,
+        "whole_display_identical": 0,
+        "all_poses_identical": 0,
+        "all_actor_composition_dependencies_identical": 0,
+        "same_poses_and_background_idle_at_entry": 0,
+        "whole_clean_background_identical": 256,
+        "whole_display_identical_and_poses_and_background_identical": 0,
+        "shared_actor_cells": 270,
+        "pool_cells_with_only_home_pixels": 1020,
+        "same_previous_pixels_and_colour": 1581,
+        "same_previous_pixels": 1786,
+        "same_previous_dependencies": 1232,
+        "hidden_same_slot_pixels_any_cell": 833,
+        "hidden_same_cell_pixels_any_slot": 949,
+        "hidden_same_slot_cell_pixels": 831,
+        "hidden_same_slot_cell_dependencies": 703,
+        "whole_actor_stamps_with_all_cells_reusable": 144
+      },
+      "percent_of_pool_cells": {
+        "same_previous_colour": 93.87154554759468,
+        "same_previous_pixels_and_colour": 20.22773797338792,
+        "same_previous_pixels": 22.850562947799386,
+        "same_previous_dependencies": 15.762538382804504,
+        "hidden_same_slot_pixels_any_cell": 10.657625383828044,
+        "hidden_same_cell_pixels_any_slot": 12.141760491299898,
+        "hidden_same_slot_cell_pixels": 10.632036847492323,
+        "hidden_same_slot_cell_dependencies": 8.994370522006141
+      }
+    },
+    "no_reward_score_visible": {
+      "counts": {
+        "cells": 7828,
+        "redraws": 498,
+        "same_previous_colour": 7352,
+        "actor_stamps": 2651,
+        "whole_display_identical": 1,
+        "all_poses_identical": 1,
+        "all_actor_composition_dependencies_identical": 1,
+        "same_poses_and_background_idle_at_entry": 1,
+        "whole_clean_background_identical": 257,
+        "whole_display_identical_and_poses_and_background_identical": 1,
+        "shared_actor_cells": 270,
+        "pool_cells_with_only_home_pixels": 1019,
+        "same_previous_pixels_and_colour": 1599,
+        "same_previous_pixels": 1804,
+        "same_previous_dependencies": 1249,
+        "hidden_same_slot_pixels_any_cell": 829,
+        "hidden_same_cell_pixels_any_slot": 945,
+        "hidden_same_slot_cell_pixels": 827,
+        "hidden_same_slot_cell_dependencies": 699,
+        "whole_actor_stamps_with_all_cells_reusable": 143
+      },
+      "percent_of_pool_cells": {
+        "same_previous_colour": 93.91926417986714,
+        "same_previous_pixels_and_colour": 20.426673479816046,
+        "same_previous_pixels": 23.045477772100153,
+        "same_previous_dependencies": 15.955544200306592,
+        "hidden_same_slot_pixels_any_cell": 10.590189064895247,
+        "hidden_same_cell_pixels_any_slot": 12.072049054675524,
+        "hidden_same_slot_cell_pixels": 10.564639754726622,
+        "hidden_same_slot_cell_dependencies": 8.929483903934594
+      }
+    },
+    "all_actor_coordinates_held": {
+      "counts": {
+        "cells": 558,
+        "redraws": 40,
+        "same_previous_pixels_and_colour": 555,
+        "same_previous_pixels": 555,
+        "same_previous_colour": 558,
+        "same_previous_dependencies": 554,
+        "actor_stamps": 238,
+        "whole_display_identical": 31,
+        "all_poses_identical": 39,
+        "all_actor_composition_dependencies_identical": 39,
+        "same_poses_and_background_idle_at_entry": 31,
+        "whole_clean_background_identical": 31,
+        "whole_display_identical_and_poses_and_background_identical": 31,
+        "shared_actor_cells": 78,
+        "pool_cells_with_only_home_pixels": 77,
+        "hidden_same_slot_pixels_any_cell": 523,
+        "hidden_same_cell_pixels_any_slot": 523,
+        "hidden_same_slot_cell_pixels": 523,
+        "hidden_same_slot_cell_dependencies": 523,
+        "whole_actor_stamps_with_all_cells_reusable": 223
+      },
+      "percent_of_pool_cells": {
+        "same_previous_pixels_and_colour": 99.46236559139786,
+        "same_previous_pixels": 99.46236559139786,
+        "same_previous_colour": 100.0,
+        "same_previous_dependencies": 99.2831541218638,
+        "hidden_same_slot_pixels_any_cell": 93.72759856630825,
+        "hidden_same_cell_pixels_any_slot": 93.72759856630825,
+        "hidden_same_slot_cell_pixels": 93.72759856630825,
+        "hidden_same_slot_cell_dependencies": 93.72759856630825
+      }
+    },
+    "reward_score_visible": {
+      "counts": {
+        "cells": 546,
+        "redraws": 39,
+        "same_previous_pixels_and_colour": 537,
+        "same_previous_pixels": 537,
+        "same_previous_colour": 543,
+        "same_previous_dependencies": 537,
+        "hidden_same_slot_pixels_any_cell": 527,
+        "hidden_same_cell_pixels_any_slot": 527,
+        "hidden_same_slot_cell_pixels": 527,
+        "hidden_same_slot_cell_dependencies": 527,
+        "actor_stamps": 234,
+        "whole_actor_stamps_with_all_cells_reusable": 224,
+        "whole_display_identical": 30,
+        "all_poses_identical": 38,
+        "all_actor_composition_dependencies_identical": 38,
+        "same_poses_and_background_idle_at_entry": 30,
+        "whole_clean_background_identical": 30,
+        "whole_display_identical_and_poses_and_background_identical": 30,
+        "shared_actor_cells": 78,
+        "pool_cells_with_only_home_pixels": 78
+      },
+      "percent_of_pool_cells": {
+        "same_previous_pixels_and_colour": 98.35164835164835,
+        "same_previous_pixels": 98.35164835164835,
+        "same_previous_colour": 99.45054945054945,
+        "same_previous_dependencies": 98.35164835164835,
+        "hidden_same_slot_pixels_any_cell": 96.52014652014653,
+        "hidden_same_cell_pixels_any_slot": 96.52014652014653,
+        "hidden_same_slot_cell_pixels": 96.52014652014653,
+        "hidden_same_slot_cell_dependencies": 96.52014652014653
+      }
+    }
+  },
+  "same_previous_cells_per_redraw": {
+    "0": 140,
+    "1": 30,
+    "2": 65,
+    "3": 35,
+    "4": 92,
+    "5": 33,
+    "6": 39,
+    "7": 19,
+    "8": 19,
+    "9": 6,
+    "10": 10,
+    "11": 4,
+    "12": 5,
+    "14": 39,
+    "15": 1
+  },
+  "whole_display_repeat_run_redraws": {
+    "1": 2,
+    "2": 1,
+    "3": 1,
+    "4": 3,
+    "6": 2
+  },
+  "background_copy_cycles_per_cell": 209.0,
+  "copy_only_upper_bounds": {
+    "hidden_same_slot_cell_pixels": {
+      "cells": 1354,
+      "cycles": 282986.0,
+      "cycles_per_redraw": 526.975791433892,
+      "percent_of_capture_cpu_cycles": 1.414807194735497
+    },
+    "hidden_same_slot_cell_dependencies": {
+      "cells": 1226,
+      "cycles": 256234.0,
+      "cycles_per_redraw": 477.1582867783985,
+      "percent_of_capture_cpu_cycles": 1.2810588040958044
+    }
+  },
+  "validation": {
+    "snapshot_triplets": 555,
+    "pending_published_exactly": true,
+    "pending_bank_not_visible": true,
+    "hidden_bytes_retained": true,
+    "allocator_footprints_and_colour_priority_match": true,
+    "false_dependency_hits": 0
+  },
+  "limitations": [
+    "Exact equality is known after composition; checking bytes then cannot recover composition cost.",
+    "Dependency keys keep full poses, so equivalent masks or unchanged local fragments can be missed.",
+    "A byte equality count is not a speedup; invalidation, comparisons, allocation and bookkeeping cost cycles.",
+    "Copy-only bounds assume zero checking overhead and no cadence changes; stamp savings are not included.",
+    "Previous-display reuse needs mixed-bank ownership/capacity design; it is not the hidden-slot opportunity.",
+    "Whole-display repeats include game pauses; coordinate-held does not establish that game logic is paused.",
+    "Snapshots omit home colour RAM $9400: future invalidation must cover it as well as clean glyph bytes.",
+    "One active-play replay does not cover all intermissions, maze flashes, attract screens or worst cases."
+  ]
+}

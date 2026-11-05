@@ -1,0 +1,8 @@
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -DGLYPH_POOL -Tsrc/glyph_pool.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c src/score.S src/glyph_pool.S src/glyph_pool.c build/arcade/rom.c -Wl,-Map,build/glyph-pool/pacman.map -o build/glyph-pool/pacman-native.bin
+python3 tools/arcade/pack.py build/glyph-pool/pacman-native.bin build/glyph-pool/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/glyph-pool/pacman.prg: 26710 bytes, entry $0400, verified backwards depacking
+cp build/glyph-pool/pacman-native.bin build/arcade/pacman-native.bin
+cp build/glyph-pool/pacman-native.bin.elf build/arcade/pacman-native.bin.elf
+cp build/glyph-pool/pacman.map build/arcade/pacman.map
+cp build/glyph-pool/pacman.prg build/pacman.prg
+cp build/glyph-pool/pacman.lbl build/pacman.lbl

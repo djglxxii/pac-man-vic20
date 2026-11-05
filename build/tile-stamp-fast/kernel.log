@@ -1,0 +1,192 @@
+{
+  "baseline": {
+    "prg_sha256": "feed65059a7ad52ac007868b4ac8f982710478608e310d9ea8f56c54e43b14cf",
+    "native_sha256": "1420abdb2eed61fa231008d8a728135b54a59738485fc6167401ecdb6a85da7d",
+    "method": "Complete bitmap_tile call; IRQs masked; RTS included, caller JSR/fixture loading excluded",
+    "cases_checked": 17408,
+    "tiles_sha256": "a3981276773d149e354b531a2703ccd1ea1cd7df35310972d906ef11cafb379b",
+    "output_sha256": "c06e50cead28822094d6720e532ed1da9e81e7aac35421276b68b253acc6d9e9",
+    "groups": {
+      "all": {
+        "count": 17408,
+        "mean": 900.5746208639706,
+        "p50": 923,
+        "p95": 1043,
+        "max": 1085,
+        "min": 57
+      },
+      "clipped": {
+        "count": 16,
+        "mean": 61.0,
+        "p50": 61,
+        "p95": 65,
+        "max": 65,
+        "min": 57
+      },
+      "visible": {
+        "count": 17392,
+        "mean": 901.3469986200552,
+        "p50": 923,
+        "p95": 1043,
+        "max": 1085,
+        "min": 711
+      },
+      "nibble-1": {
+        "count": 8696,
+        "mean": 901.5264489420423,
+        "p50": 923,
+        "p95": 1043,
+        "max": 1078,
+        "min": 712
+      },
+      "nibble-0": {
+        "count": 8696,
+        "mean": 901.167548298068,
+        "p50": 923,
+        "p95": 1042,
+        "max": 1085,
+        "min": 711
+      },
+      "destination-page-crossing": {
+        "count": 528,
+        "mean": 964.3219696969697,
+        "p50": 1033,
+        "p95": 1074,
+        "max": 1078,
+        "min": 716
+      },
+      "source-page-crossing": {
+        "count": 132,
+        "mean": 922.3181818181819,
+        "p50": 933,
+        "p95": 1047,
+        "max": 1052,
+        "min": 859
+      }
+    }
+  },
+  "trial": {
+    "prg_sha256": "76189cb29cb0b56402ebc0eebe02867261373983acd4f0ae89038ae1a88e2297",
+    "native_sha256": "9f8e854bdf04e99ad7582e5f72fe17e9137944b1592389968d3ad50e0b9f9b6b",
+    "method": "Complete bitmap_tile call; IRQs masked; RTS included, caller JSR/fixture loading excluded",
+    "cases_checked": 17408,
+    "tiles_sha256": "a3981276773d149e354b531a2703ccd1ea1cd7df35310972d906ef11cafb379b",
+    "output_sha256": "c06e50cead28822094d6720e532ed1da9e81e7aac35421276b68b253acc6d9e9",
+    "groups": {
+      "all": {
+        "count": 17408,
+        "mean": 757.6696346507352,
+        "p50": 780,
+        "p95": 900,
+        "max": 942,
+        "min": 57
+      },
+      "clipped": {
+        "count": 16,
+        "mean": 61.0,
+        "p50": 61,
+        "p95": 65,
+        "max": 65,
+        "min": 57
+      },
+      "visible": {
+        "count": 17392,
+        "mean": 758.3105450781969,
+        "p50": 780,
+        "p95": 900,
+        "max": 942,
+        "min": 568
+      },
+      "nibble-1": {
+        "count": 8696,
+        "mean": 758.4908003679852,
+        "p50": 780,
+        "p95": 900,
+        "max": 931,
+        "min": 569
+      },
+      "nibble-0": {
+        "count": 8696,
+        "mean": 758.1302897884085,
+        "p50": 780,
+        "p95": 899,
+        "max": 942,
+        "min": 568
+      },
+      "destination-page-crossing": {
+        "count": 528,
+        "mean": 821.2424242424242,
+        "p50": 890,
+        "p95": 931,
+        "max": 931,
+        "min": 573
+      },
+      "source-page-crossing": {
+        "count": 132,
+        "mean": 776.8181818181819,
+        "p50": 788,
+        "p95": 902,
+        "max": 907,
+        "min": 713
+      }
+    }
+  },
+  "cycle_savings": {
+    "all": {
+      "count": 17408,
+      "mean": 142.9049862132353,
+      "p50": 143,
+      "p95": 143,
+      "max": 147,
+      "min": 0
+    },
+    "clipped": {
+      "count": 16,
+      "mean": 0.0,
+      "p50": 0,
+      "p95": 0,
+      "max": 0,
+      "min": 0
+    },
+    "visible": {
+      "count": 17392,
+      "mean": 143.03645354185832,
+      "p50": 143,
+      "p95": 143,
+      "max": 147,
+      "min": 143
+    },
+    "nibble-1": {
+      "count": 8696,
+      "mean": 143.03564857405703,
+      "p50": 143,
+      "p95": 143,
+      "max": 147,
+      "min": 143
+    },
+    "nibble-0": {
+      "count": 8696,
+      "mean": 143.0372585096596,
+      "p50": 143,
+      "p95": 143,
+      "max": 147,
+      "min": 143
+    },
+    "destination-page-crossing": {
+      "count": 528,
+      "mean": 143.07954545454547,
+      "p50": 143,
+      "p95": 143,
+      "max": 147,
+      "min": 143
+    },
+    "source-page-crossing": {
+      "count": 132,
+      "mean": 145.5,
+      "p50": 145,
+      "p95": 146,
+      "max": 146,
+      "min": 145
+    }
+  }
+}

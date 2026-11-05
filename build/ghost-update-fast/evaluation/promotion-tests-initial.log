@@ -1,0 +1,169 @@
+cp build/ghost-update-fast/pacman-native.bin build/arcade/pacman-native.bin
+cp build/ghost-update-fast/pacman-native.bin.elf build/arcade/pacman-native.bin.elf
+cp build/ghost-update-fast/pacman.map build/arcade/pacman.map
+cp build/ghost-update-fast/pacman.prg build/pacman.prg
+cp build/ghost-update-fast/pacman.lbl build/pacman.lbl
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -Tsrc/glyph_pool.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c src/score.S src/glyph_pool.S src/glyph_pool.c build/arcade/rom.c -Wl,-Map,build/pool-skip-empty/pacman.map -o build/pool-skip-empty/pacman-native.bin
+python3 tools/arcade/pack.py build/pool-skip-empty/pacman-native.bin build/pool-skip-empty/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/pool-skip-empty/pacman.prg: 26764 bytes, entry $0400, verified backwards depacking
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -DSOUND_EFFECT_FAST -Tsrc/glyph_pool.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c src/score.S src/glyph_pool.S src/glyph_pool.c src/sound_effect.S build/arcade/rom.c -Wl,-Map,build/sound-effect-fast/pacman.map -o build/sound-effect-fast/pacman-native.bin
+python3 tools/arcade/pack.py build/sound-effect-fast/pacman-native.bin build/sound-effect-fast/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/sound-effect-fast/pacman.prg: 26608 bytes, entry $0400, verified backwards depacking
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -DSOUND_EFFECT_FAST -DTILE_ADDRESS_FAST -Tsrc/tile_address.ld -Tsrc/glyph_pool.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c src/score.S src/glyph_pool.S src/glyph_pool.c src/sound_effect.S src/tile_address.S build/arcade/rom.c -Wl,-Map,build/tile-address-fast/pacman.map -o build/tile-address-fast/pacman-native.bin
+python3 tools/arcade/pack.py build/tile-address-fast/pacman-native.bin build/tile-address-fast/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/tile-address-fast/pacman.prg: 26712 bytes, entry $0400, verified backwards depacking
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -DSOUND_EFFECT_FAST -DTILE_ADDRESS_FAST -DPOOL_STAMP_FAST -Tsrc/tile_address.ld -Tsrc/glyph_pool.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c src/score.S src/glyph_pool.S src/glyph_pool.c src/sound_effect.S src/tile_address.S build/arcade/rom.c -Wl,-Map,build/pool-stamp-fast/pacman.map -o build/pool-stamp-fast/pacman-native.bin
+python3 tools/arcade/pack.py build/pool-stamp-fast/pacman-native.bin build/pool-stamp-fast/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/pool-stamp-fast/pacman.prg: 26758 bytes, entry $0400, verified backwards depacking
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=92 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -DGLYPH_POOL -DPOOL_ADDRESS_FAST -DPOOL_SKIP_EMPTY -DSOUND_EFFECT_FAST -DTILE_ADDRESS_FAST -DPOOL_STAMP_FAST -DAUDIO_DIVIDER_FAST -Tsrc/tile_address.ld -Tsrc/glyph_pool.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c src/score.S src/glyph_pool.S src/glyph_pool.c src/sound_effect.S src/tile_address.S build/arcade/rom.c -Wl,-Map,build/audio-divider-fast/pacman.map -o build/audio-divider-fast/pacman-native.bin
+python3 tools/arcade/pack.py build/audio-divider-fast/pacman-native.bin build/audio-divider-fast/pacman.prg --ca65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ca65 --ld65 /home/djglxxii/src/vic-man/tools/cc65/usr/bin/ld65 --nm /home/djglxxii/src/vic-man/tools/llvm-mos/bin/llvm-nm
+build/audio-divider-fast/pacman.prg: 26854 bytes, entry $0400, verified backwards depacking
+python3 tests/arcade.py
+test_01_original_maze_and_attract (__main__.ArcadeParity.test_01_original_maze_and_attract) ... ok
+test_02_gameplay_and_turn_trace (__main__.ArcadeParity.test_02_gameplay_and_turn_trace) ... ok
+test_03_difficulty_and_fruit (__main__.ArcadeParity.test_03_difficulty_and_fruit) ... ok
+test_04_ghost_targets_ties_and_upward_bug (__main__.ArcadeParity.test_04_ghost_targets_ties_and_upward_bug) ... ok
+test_05_frightened_random_sequence (__main__.ArcadeParity.test_05_frightened_random_sequence) ... ok
+test_06_elroy_and_score (__main__.ArcadeParity.test_06_elroy_and_score) ... ok
+test_07_intermission_selection (__main__.ArcadeParity.test_07_intermission_selection) ... ok
+test_08_complete_intermission_traces (__main__.ArcadeParity.test_08_complete_intermission_traces) ... ok
+test_09_rng_storage_bound (__main__.ArcadeParity.test_09_rng_storage_bound) ... ok
+test_10_lives_history_and_split_screen (__main__.ArcadeParity.test_10_lives_history_and_split_screen) ... ok
+test_11_credits_and_two_player_start (__main__.ArcadeParity.test_11_credits_and_two_player_start) ... ok
+test_12_death_sequence (__main__.ArcadeParity.test_12_death_sequence) ... ok
+test_13_coin_debounce_and_queued_credits (__main__.ArcadeParity.test_13_coin_debounce_and_queued_credits) ... ok
+test_14_songs_effects_and_channel_priority (__main__.ArcadeParity.test_14_songs_effects_and_channel_priority) ... ok
+test_15_attract_maze_demo (__main__.ArcadeParity.test_15_attract_maze_demo) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 18.897s
+
+OK
+python3 tests/glyph_pool.py
+test_01_real_maze_white_walls_pellets_and_unchanged_pixels (__main__.PoolColors.test_01_real_maze_white_walls_pellets_and_unchanged_pixels) ... ok
+test_02_tile_order_does_not_change_white_maze (__main__.PoolColors.test_02_tile_order_does_not_change_white_maze) ... ok
+test_03_wall_stays_white_after_last_dot_and_power_pellet_blinks (__main__.PoolColors.test_03_wall_stays_white_after_last_dot_and_power_pellet_blinks) ... ok
+test_04_pellet_ink_at_every_cell_boundary (__main__.PoolColors.test_04_pellet_ink_at_every_cell_boundary) ... ok
+test_05_actor_releases_white_pellets_and_keeps_aligned_neighbor (__main__.PoolColors.test_05_actor_releases_white_pellets_and_keeps_aligned_neighbor) ... ok
+test_06_blue_is_limited_to_completion_flash (__main__.PoolColors.test_06_blue_is_limited_to_completion_flash) ... ok
+test_01_colours_pixels_and_sprite_underlays (__main__.PoolFlash.test_01_colours_pixels_and_sprite_underlays) ... ok
+test_02_complete_flash_timing (__main__.PoolFlash.test_02_complete_flash_timing) ... ok
+test_03_walls_survive_incremental_dot_removal (__main__.PoolFlash.test_03_walls_survive_incremental_dot_removal) ... ok
+test_01_all_fruit_values_and_erase_footprints (__main__.PoolFonts.test_01_all_fruit_values_and_erase_footprints) ... ok
+test_02_ghost_chain_keeps_original_score_frames (__main__.PoolFonts.test_02_ghost_chain_keeps_original_score_frames) ... ok
+test_01_speed_masks_and_mode_priorities (__main__.PoolGhosts.test_01_speed_masks_and_mode_priorities) ... ok
+test_01_loader_delivers_all_three_regions_before_boot (__main__.PoolMemory.test_01_loader_delivers_all_three_regions_before_boot) ... ok
+test_02_cold_ram_is_reused_after_startup (__main__.PoolMemory.test_02_cold_ram_is_reused_after_startup) ... ok
+test_03_stack_tracking_excludes_host_canaries (__main__.PoolMemory.test_03_stack_tracking_excludes_host_canaries) ... ok
+test_01_6502_movement_turns_and_score (__main__.PoolNativeParity.test_01_6502_movement_turns_and_score) ... ok
+test_02_6502_frightened_rng (__main__.PoolNativeParity.test_02_6502_frightened_rng) ... ok
+test_03_build_memory_limits (__main__.PoolNativeParity.test_03_build_memory_limits) ... ok
+test_04_square_table_equivalence (__main__.PoolNativeParity.test_04_square_table_equivalence) ... ok
+test_05_exact_audio_divider_boundaries (__main__.PoolNativeParity.test_05_exact_audio_divider_boundaries) ... ok
+test_06_audio_converter_registers (__main__.PoolNativeParity.test_06_audio_converter_registers) ... ok
+test_01_dirty_addresses_cover_all_four_pages (__main__.PoolRebuild.test_01_dirty_addresses_cover_all_four_pages) ... ok
+test_02_bulk_slices_match_original_rom (__main__.PoolRebuild.test_02_bulk_slices_match_original_rom) ... ok
+test_03_writes_behind_and_ahead_of_cursor (__main__.PoolRebuild.test_03_writes_behind_and_ahead_of_cursor) ... ok
+test_04_restart_in_every_rebuild_phase (__main__.PoolRebuild.test_04_restart_in_every_rebuild_phase) ... ok
+test_05_split_native_state_range_matches_rom (__main__.PoolRebuild.test_05_split_native_state_range_matches_rom) ... ok
+test_06_complete_transition_service_and_queue_order (__main__.PoolRebuild.test_06_complete_transition_service_and_queue_order) ... ok
+test_07_coin_is_serviced_during_rebuild (__main__.PoolRebuild.test_07_coin_is_serviced_during_rebuild) ... ok
+test_08_completion_uses_current_actor_positions (__main__.PoolRebuild.test_08_completion_uses_current_actor_positions) ... ok
+test_01_all_frames_shifts_and_flips (__main__.PoolRenderer.test_01_all_frames_shifts_and_flips) ... ok
+test_02_edges_overlap_priority_and_returning_eyes (__main__.PoolRenderer.test_02_edges_overlap_priority_and_returning_eyes) ... ok
+test_03_incremental_matches_full_redraw (__main__.PoolRenderer.test_03_incremental_matches_full_redraw) ... ok
+test_05_dirty_tiles_preserve_actors_and_shared_colours (__main__.PoolRenderer.test_05_dirty_tiles_preserve_actors_and_shared_colours) ... ok
+test_07_horizontal_rewards_priority_flips_edges_and_restoration (__main__.PoolRenderer.test_07_horizontal_rewards_priority_flips_edges_and_restoration) ... ok
+test_08_revised_pacman_masks_and_shared_closed_views (__main__.PoolRenderer.test_08_revised_pacman_masks_and_shared_closed_views) ... ok
+test_09_clean_home_glyphs_and_bounded_banks (__main__.PoolRenderer.test_09_clean_home_glyphs_and_bounded_banks) ... ok
+test_09_intermission_ghost_masks (__main__.PoolRenderer.test_09_intermission_ghost_masks) ... ok
+test_10_full_banks_teleports_and_epoch_wrap (__main__.PoolRenderer.test_10_full_banks_teleports_and_epoch_wrap) ... ok
+test_11_all_home_addresses_overlap_hits_and_cursor_page_carries (__main__.PoolRenderer.test_11_all_home_addresses_overlap_hits_and_cursor_page_carries) ... ok
+test_12_packed_home_decode_all_bytes_and_incoming_carries (__main__.PoolRenderer.test_12_packed_home_decode_all_bytes_and_incoming_carries) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 14.953s
+
+OK
+{
+  "phases": [
+    "blue",
+    "white",
+    "blue",
+    "white",
+    "blue",
+    "white",
+    "blue",
+    "white"
+  ],
+  "request_to_present_ms": [
+    19.038316187995427,
+    15.773515317381863,
+    15.773515317381863,
+    18.438938250383533,
+    15.773515317381863,
+    15.773515317381863,
+    15.773515317381863,
+    20.667294400167396
+  ],
+  "flash_spacing_ms": [
+    187.48893888593926,
+    197.99516390982149,
+    201.05854250450022,
+    194.99925199980052,
+    197.9482305639726,
+    198.00396391216816,
+    203.27809865193743
+  ],
+  "audio_update_gap_ms_max": 24.905962197145474
+}
+python3 tests/sound_effect.py
+test_01_all_real_effects_and_priorities (__main__.SoundEffectParity.test_01_all_real_effects_and_priorities) ... ok
+test_02_cancellation_and_inactive_state (__main__.SoundEffectParity.test_02_cancellation_and_inactive_state) ... ok
+test_03_random_state_and_duration_boundaries (__main__.SoundEffectParity.test_03_random_state_and_duration_boundaries) ... ok
+test_04_all_frequency_steps_scales_and_envelopes (__main__.SoundEffectParity.test_04_all_frequency_steps_scales_and_envelopes) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 8.713s
+
+OK
+python3 tests/audio_divider.py --trial build/pacman.prg --output build/evaluation/divider-kernel.json
+test_01_every_16_bit_frequency (__main__.DividerParity.test_01_every_16_bit_frequency) ... ok
+test_02_lookup_contents (__main__.DividerParity.test_02_lookup_contents) ... ok
+test_03_abi_and_input_guards (__main__.DividerParity.test_03_abi_and_input_guards) ... ok
+test_04_complete_converter_and_transitions (__main__.DividerParity.test_04_complete_converter_and_transitions) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 2.459s
+
+OK
+python3 tests/audio_update.py --trial build/pacman.prg --output build/evaluation/update-kernel.json
+test_01_every_frequency_and_shift (__main__.AudioUpdateParity.test_01_every_frequency_and_shift) ...   checked all 65536 inputs at shift 0
+  checked all 65536 inputs at shift 1
+  checked all 65536 inputs at shift 2
+  checked all 65536 inputs at shift 3
+  checked all 65536 inputs at shift 4
+  checked all 65536 inputs at shift 5
+  checked all 65536 inputs at shift 6
+  checked all 65536 inputs at shift 7
+ok
+test_02_masks_volumes_and_transitions (__main__.AudioUpdateParity.test_02_masks_volumes_and_transitions) ... ok
+test_03_abi_and_side_effects (__main__.AudioUpdateParity.test_03_abi_and_side_effects) ... ok
+test_04_saved_live_inputs (__main__.AudioUpdateParity.test_04_saved_live_inputs) ... FAIL
+
+======================================================================
+FAIL: test_04_saved_live_inputs (__main__.AudioUpdateParity.test_04_saved_live_inputs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/djglxxii/src/vic-man/tests/audio_update.py", line 159, in test_04_saved_live_inputs
+    self.assertEqual(source['prg_sha256'], hashlib.sha256(self.baseline.read_bytes()).hexdigest())
+AssertionError: 'f0ca4b5135bb0cf7418996fc1e6cf9e05c245d92778fda566547f0f29bc39d7c' != 'ee86a2c661c6fa089aca07b442467bfe990d7eb958c33e4ce1427a2097d4885d'
+- f0ca4b5135bb0cf7418996fc1e6cf9e05c245d92778fda566547f0f29bc39d7c
++ ee86a2c661c6fa089aca07b442467bfe990d7eb958c33e4ce1427a2097d4885d
+
+
+----------------------------------------------------------------------
+Ran 4 tests in 41.548s
+
+FAILED (failures=1)
+make: *** [Makefile:418: test] Error 1

@@ -1,0 +1,41 @@
+  248   sta v_flags           $85      3  
+  249   lda v_data            $A5      3  
+  250   sta tile_fetch+1      $8D      4  
+  251   lda v_data+1          $A5      3  
+  252   sta tile_fetch+2      $8D      4  
+  253   ldx #0                $A2      2  
+  254   ldy #0                $A0      2  
+  257   lda $ffff,x           $BD    4-5  +1 if page crossed
+  258   sta v_hi              $85      3  
+  259   and #240              $29      2  
+  260   bit v_flags           $24      3  
+  261   bpl tile_upper        $10    2-4  2 not taken / 3 taken / 4 taken+page cross
+  262   lsr                   $4A      2  
+  263   lsr                   $4A      2  
+  264   lsr                   $4A      2  
+  265   lsr                   $4A      2  
+  267   sta v_lo              $85      3  
+  268   lda (v_addr),y        $B1    5-6  +1 if page crossed
+  269   and v_flags           $25      3  
+  270   ora v_lo              $05      3  
+  271   sta (v_addr),y        $91      6  
+  272   iny                   $C8      2  
+  273   lda v_hi              $A5      3  
+  274   and #15               $29      2  
+  275   bit v_flags           $24      3  
+  276   bmi tile_lower        $30    2-4  2 not taken / 3 taken / 4 taken+page cross
+  277   asl                   $0A      2  
+  278   asl                   $0A      2  
+  279   asl                   $0A      2  
+  280   asl                   $0A      2  
+  282   sta v_lo              $85      3  
+  283   lda (v_addr),y        $B1    5-6  +1 if page crossed
+  284   and v_flags           $25      3  
+  285   ora v_lo              $05      3  
+  286   sta (v_addr),y        $91      6  
+  287   iny                   $C8      2  
+  288   inx                   $E8      2  
+  289   cpx #3                $E0      2  
+  290   bne tile_pair         $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+--------------------------------------------------
+bytes: 70   cycles: 111 .. 120   (straight-line sum; multiply loop bodies yourself)

@@ -1,0 +1,141 @@
+{
+  "prg_sha256": "feed65059a7ad52ac007868b4ac8f982710478608e310d9ea8f56c54e43b14cf",
+  "source_summary_sha256": "186e408cef38cd5a4579605ea455d150363150196c39b3bba32c41a2f2aba2c6",
+  "source_profile_sha256": "009cf672558278c2fd48317f0bdcfcdaee2e93c272af626dbcd38832f5700828",
+  "method": "Exclusive instruction cycles in disjoint linked-label ranges; no guest changes",
+  "cycles": 20360440,
+  "completed_redraws": 633,
+  "groups": {
+    "reuse_guard": {
+      "begin": "29ae",
+      "end": "29b4",
+      "cycles": 45576,
+      "cycles_per_redraw": 72.0,
+      "cpu_percent": 0.22384585008968372
+    },
+    "actor_pose_and_setup": {
+      "begin": "29b4",
+      "end": "2b2b",
+      "cycles": 1456697,
+      "cycles_per_redraw": 2301.2590837282783,
+      "cpu_percent": 7.154545776024487
+    },
+    "generic_stamp": {
+      "begin": "2b2b",
+      "end": "2c36",
+      "cycles": 2169698,
+      "cycles_per_redraw": 3427.6429699842024,
+      "cpu_percent": 10.656439644722806
+    },
+    "cell_lookup_and_allocation": {
+      "begin": "2c36",
+      "end": "2cba",
+      "cycles": 1315888,
+      "cycles_per_redraw": 2078.8120063191154,
+      "cpu_percent": 6.462964454599213
+    },
+    "background_copy": {
+      "begin": "2cba",
+      "end": "2d0c",
+      "cycles": 2048618,
+      "cycles_per_redraw": 3236.3633491311216,
+      "cpu_percent": 10.061757015074331
+    },
+    "colour_and_pointer": {
+      "begin": "2d0c",
+      "end": "2d27",
+      "cycles": 162536,
+      "cycles_per_redraw": 256.77093206951025,
+      "cpu_percent": 0.7982931606586106
+    },
+    "destination_setup": {
+      "begin": "2d27",
+      "end": "2d99",
+      "cycles": 484048,
+      "cycles_per_redraw": 764.6887835703002,
+      "cpu_percent": 2.3773945946158332
+    },
+    "restore_control_and_publish": {
+      "begin": "2d99",
+      "end": "2ea8",
+      "cycles": 982393,
+      "cycles_per_redraw": 1551.9636650868879,
+      "cpu_percent": 4.825008693328828
+    },
+    "normal_ghost_stamp": {
+      "begin": "2ea8",
+      "end": "2f02",
+      "cycles": 486796,
+      "cycles_per_redraw": 769.0300157977883,
+      "cpu_percent": 2.390891355982484
+    }
+  },
+  "generic_detail": {
+    "setup": {
+      "begin": "2b2b",
+      "end": "2b76",
+      "cycles": 207508,
+      "cycles_per_redraw": 327.8167456556082,
+      "cpu_percent": 1.0191724736793508
+    },
+    "fetch_and_dispatch": {
+      "begin": "2b76",
+      "end": "2b7e",
+      "cycles": 261090,
+      "cycles_per_redraw": 412.46445497630333,
+      "cpu_percent": 1.2823396743881763
+    },
+    "merge_low": {
+      "begin": "2b7e",
+      "end": "2b88",
+      "cycles": 264650,
+      "cycles_per_redraw": 418.08846761453395,
+      "cpu_percent": 1.2998245617481745
+    },
+    "row_control": {
+      "begin": "2b88",
+      "end": "2ba7",
+      "cycles": 430160,
+      "cycles_per_redraw": 679.5576619273302,
+      "cpu_percent": 2.1127244794316824
+    },
+    "merge_high": {
+      "begin": "2ba7",
+      "end": "2bb4",
+      "cycles": 377048,
+      "cycles_per_redraw": 595.652448657188,
+      "cpu_percent": 1.8518656767731936
+    },
+    "mirror": {
+      "begin": "2bb4",
+      "end": "2bbf",
+      "cycles": 27000,
+      "cycles_per_redraw": 42.654028436018955,
+      "cpu_percent": 0.13261010076403065
+    },
+    "aligned_merge": {
+      "begin": "2bbf",
+      "end": "2bc6",
+      "cycles": 18550,
+      "cycles_per_redraw": 29.30489731437599,
+      "cpu_percent": 0.09110805071010253
+    },
+    "shifts": {
+      "begin": "2bc6",
+      "end": "2c26",
+      "cycles": 583692,
+      "cycles_per_redraw": 922.1042654028436,
+      "cpu_percent": 2.8667946272280953
+    }
+  },
+  "counters": {
+    "generic_calls": 2504,
+    "normal_ghost_calls": 881,
+    "generic_rows": 30048,
+    "nonempty_generic_rows": 25377,
+    "cell_calls": 10246,
+    "fresh_cells": 9802,
+    "shared_cell_hits": 444
+  },
+  "caveat": "Different redraw cadence samples different poses; use identical-input kernels for isolated savings"
+}

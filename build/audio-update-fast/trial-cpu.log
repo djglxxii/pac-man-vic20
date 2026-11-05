@@ -1,0 +1,510 @@
+{
+  "method": "Measure VIC translation and repeated pitch inputs without changing the guest.",
+  "guest_modified": false,
+  "prg_sha256": "358a4f93334164904a12ecf60df43f13559df92feb6c534f634517e5b67b8672",
+  "native_sha256": "24dabed301a88f5b0f42c46272fa46d395224dedf0bceedf45f87c1ce19a2192",
+  "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+  "converter_sha256": "2f6ffabe911209a41079761f7f24ee8dfda7aaa1c6bbca4cdf80a352fc5554fd",
+  "depacked_bytes_verified": 33792,
+  "converter_layout": "Assembly adapter with explicit disjoint linked-label ranges",
+  "converter_ranges": [
+    {
+      "group": "gating",
+      "begin": "b8c2",
+      "end": "b8d0"
+    },
+    {
+      "group": "unpacking",
+      "begin": "b8d0",
+      "end": "b8fa"
+    },
+    {
+      "group": "scaling",
+      "begin": "b8fa",
+      "end": "b911"
+    },
+    {
+      "group": "zero_check_and_call",
+      "begin": "b911",
+      "end": "b924"
+    },
+    {
+      "group": "pitch_registers",
+      "begin": "b924",
+      "end": "b92c"
+    },
+    {
+      "group": "gating",
+      "begin": "b92c",
+      "end": "b940"
+    },
+    {
+      "group": "unpacking",
+      "begin": "b940",
+      "end": "b963"
+    },
+    {
+      "group": "scaling",
+      "begin": "b963",
+      "end": "b97d"
+    },
+    {
+      "group": "zero_check_and_call",
+      "begin": "b97d",
+      "end": "b990"
+    },
+    {
+      "group": "pitch_registers",
+      "begin": "b990",
+      "end": "b998"
+    },
+    {
+      "group": "gating",
+      "begin": "b998",
+      "end": "b9ac"
+    },
+    {
+      "group": "unpacking",
+      "begin": "b9ac",
+      "end": "b9cf"
+    },
+    {
+      "group": "scaling",
+      "begin": "b9cf",
+      "end": "b9e9"
+    },
+    {
+      "group": "zero_check_and_call",
+      "begin": "b9e9",
+      "end": "b9fc"
+    },
+    {
+      "group": "pitch_registers",
+      "begin": "b9fc",
+      "end": "ba04"
+    },
+    {
+      "group": "volume_and_noise",
+      "begin": "ba04",
+      "end": "ba14"
+    }
+  ],
+  "cpu_hz": 1022727,
+  "cycles": 20368132,
+  "seconds": 19.915512155247686,
+  "gameplay_states_checked": 1207,
+  "ticks_checked": 1639,
+  "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+  "all_outputs_match_host_model": true,
+  "phase_cycles": {
+    "logic_tasks_loop": 9805275,
+    "audio": 474559,
+    "render": 10055512,
+    "wait": 32786
+  },
+  "phase_percent": {
+    "logic_tasks_loop": 48.14027619223992,
+    "audio": 2.3299092916326347,
+    "render": 49.368847373927075,
+    "wait": 0.16096714220037459
+  },
+  "routine_inclusive_cycles": {
+    "divider": {
+      "count": 1893,
+      "mean": 33.059165346011625,
+      "p50": 33,
+      "p95": 33,
+      "max": 89,
+      "total": 62581
+    },
+    "audio": {
+      "count": 1207,
+      "mean": 393.17232808616404,
+      "p50": 455,
+      "p95": 497,
+      "max": 592,
+      "total": 474559
+    },
+    "render": {
+      "count": 596,
+      "mean": 16871.664429530203,
+      "p50": 16499,
+      "p95": 22530,
+      "max": 27156,
+      "total": 10055512
+    },
+    "wait": {
+      "count": 1206,
+      "mean": 27.185737976782754,
+      "p50": 27,
+      "p95": 27,
+      "max": 83,
+      "total": 32786
+    }
+  },
+  "completed_renders": 596,
+  "completed_render_interval_ms": {
+    "count": 595,
+    "mean": 33.42519106090996,
+    "p50": 32.51796422701268,
+    "p95": 49.15387977436794,
+    "max": 66.22392877082545
+  },
+  "actor_erase_to_paint_ms": {
+    "count": 0
+  },
+  "exclusive_audio": {
+    "divider": {
+      "cycles": 62469,
+      "cycles_per_tick": 51.75559237779619,
+      "audio_percent": 13.16358977492788,
+      "cpu_percent": 0.3066997012784481
+    },
+    "gating": {
+      "cycles": 69980,
+      "cycles_per_tick": 57.978458989229495,
+      "audio_percent": 14.746322375089294,
+      "cpu_percent": 0.3435759351913077
+    },
+    "zero_check_and_call": {
+      "cycles": 39423,
+      "cycles_per_tick": 32.66197183098591,
+      "audio_percent": 8.307291611791157,
+      "cpu_percent": 0.19355235914614063
+    },
+    "pitch_registers": {
+      "cycles": 31302,
+      "cycles_per_tick": 25.933719966859982,
+      "audio_percent": 6.596018619391899,
+      "cpu_percent": 0.15368125069103047
+    },
+    "unpacking": {
+      "cycles": 100329,
+      "cycles_per_tick": 83.12261806130903,
+      "audio_percent": 21.141522971853867,
+      "cpu_percent": 0.4925783081138712
+    },
+    "scaling": {
+      "cycles": 139313,
+      "cycles_per_tick": 115.4208782104391,
+      "audio_percent": 29.356307645624675,
+      "cpu_percent": 0.6839753395156708
+    },
+    "volume_and_noise": {
+      "cycles": 30175,
+      "cycles_per_tick": 25.0,
+      "audio_percent": 6.3585349766836154,
+      "cpu_percent": 0.14814809723346256
+    }
+  },
+  "interrupt_and_other_audio_cycles": 1568,
+  "repeated_inputs_all": [
+    {
+      "ticks": 1639,
+      "silent_or_zero_pitch_ticks": 1438,
+      "divider_calls": 201,
+      "same_as_last_audible_frequency": 173,
+      "same_as_last_audible_raw_key": 173,
+      "unique_scaled_frequencies": 15,
+      "unique_output_pitches": 14,
+      "most_common_frequencies": [
+        [
+          1472,
+          56
+        ],
+        [
+          2208,
+          46
+        ],
+        [
+          1552,
+          28
+        ],
+        [
+          2336,
+          16
+        ],
+        [
+          2464,
+          14
+        ],
+        [
+          2768,
+          14
+        ],
+        [
+          2944,
+          14
+        ],
+        [
+          6912,
+          2
+        ],
+        [
+          5632,
+          2
+        ],
+        [
+          4352,
+          2
+        ],
+        [
+          3072,
+          2
+        ],
+        [
+          1792,
+          2
+        ]
+      ]
+    },
+    {
+      "ticks": 1639,
+      "silent_or_zero_pitch_ticks": 262,
+      "divider_calls": 1377,
+      "same_as_last_audible_frequency": 111,
+      "same_as_last_audible_raw_key": 111,
+      "unique_scaled_frequencies": 41,
+      "unique_output_pitches": 28,
+      "most_common_frequencies": [
+        [
+          1536,
+          118
+        ],
+        [
+          2304,
+          117
+        ],
+        [
+          768,
+          67
+        ],
+        [
+          3072,
+          67
+        ],
+        [
+          3840,
+          66
+        ],
+        [
+          4608,
+          66
+        ],
+        [
+          5376,
+          66
+        ],
+        [
+          6144,
+          64
+        ],
+        [
+          1408,
+          57
+        ],
+        [
+          1792,
+          57
+        ],
+        [
+          2176,
+          56
+        ],
+        [
+          1152,
+          51
+        ]
+      ]
+    },
+    {
+      "ticks": 1639,
+      "silent_or_zero_pitch_ticks": 939,
+      "divider_calls": 700,
+      "same_as_last_audible_frequency": 0,
+      "same_as_last_audible_raw_key": 0,
+      "unique_scaled_frequencies": 31,
+      "unique_output_pitches": 21,
+      "most_common_frequencies": [
+        [
+          1792,
+          68
+        ],
+        [
+          2560,
+          68
+        ],
+        [
+          3328,
+          68
+        ],
+        [
+          4096,
+          68
+        ],
+        [
+          4864,
+          68
+        ],
+        [
+          5376,
+          68
+        ],
+        [
+          4608,
+          68
+        ],
+        [
+          3840,
+          68
+        ],
+        [
+          3072,
+          68
+        ],
+        [
+          2304,
+          67
+        ],
+        [
+          256,
+          1
+        ],
+        [
+          512,
+          1
+        ]
+      ]
+    }
+  ],
+  "repeated_inputs_play": [
+    {
+      "ticks": 1207,
+      "silent_or_zero_pitch_ticks": 1207,
+      "divider_calls": 0,
+      "same_as_last_audible_frequency": 0,
+      "same_as_last_audible_raw_key": 0,
+      "unique_scaled_frequencies": 0,
+      "unique_output_pitches": 0,
+      "most_common_frequencies": []
+    },
+    {
+      "ticks": 1207,
+      "divider_calls": 1207,
+      "silent_or_zero_pitch_ticks": 0,
+      "same_as_last_audible_frequency": 0,
+      "same_as_last_audible_raw_key": 0,
+      "unique_scaled_frequencies": 30,
+      "unique_output_pitches": 24,
+      "most_common_frequencies": [
+        [
+          2304,
+          115
+        ],
+        [
+          1536,
+          115
+        ],
+        [
+          768,
+          67
+        ],
+        [
+          3072,
+          67
+        ],
+        [
+          3840,
+          66
+        ],
+        [
+          4608,
+          66
+        ],
+        [
+          5376,
+          66
+        ],
+        [
+          6144,
+          64
+        ],
+        [
+          2176,
+          54
+        ],
+        [
+          1792,
+          54
+        ],
+        [
+          1408,
+          54
+        ],
+        [
+          2048,
+          48
+        ]
+      ]
+    },
+    {
+      "ticks": 1207,
+      "divider_calls": 686,
+      "silent_or_zero_pitch_ticks": 521,
+      "same_as_last_audible_frequency": 0,
+      "same_as_last_audible_raw_key": 0,
+      "unique_scaled_frequencies": 31,
+      "unique_output_pitches": 21,
+      "most_common_frequencies": [
+        [
+          4864,
+          67
+        ],
+        [
+          5376,
+          67
+        ],
+        [
+          4608,
+          67
+        ],
+        [
+          3840,
+          67
+        ],
+        [
+          3072,
+          67
+        ],
+        [
+          2304,
+          66
+        ],
+        [
+          1792,
+          66
+        ],
+        [
+          2560,
+          66
+        ],
+        [
+          3328,
+          66
+        ],
+        [
+          4096,
+          66
+        ],
+        [
+          256,
+          1
+        ],
+        [
+          512,
+          1
+        ]
+      ]
+    }
+  ]
+}

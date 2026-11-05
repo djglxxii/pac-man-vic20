@@ -1,0 +1,42 @@
+{
+  "cpu_hz": 1022727,
+  "video_frames_per_sample": 180,
+  "samples": [
+    {
+      "scene": "board-transition",
+      "seconds": 5.9671,
+      "completed_renders": 233,
+      "fps": 39.05,
+      "logic_hz": 60.67,
+      "render_ms_mean": 7.77,
+      "render_ms_max": 843.84,
+      "frame_interval_ms_p95": 31.08,
+      "frame_interval_ms_max": 1293.65,
+      "start_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "end_state": [
+        3,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "start_board": 0,
+      "end_board": 1,
+      "video_frames": 360
+    }
+  ]
+}

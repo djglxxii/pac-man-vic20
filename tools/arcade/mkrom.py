@@ -251,6 +251,17 @@ def main():
         )
         hdr.append(f"extern const uint8_t {name}[{len(values)}];\n")
         src.append(array(name, values, ".graphics"))
+    # Optional pooled-renderer descriptors: an aligned artwork pointer has
+    # two spare low bits for its dominant pixel class. Link-time relocations
+    # keep the table valid when the graphics bank moves. The trial linker
+    # assertion enforces that alignment; the normal builds do not link it.
+    descriptors = ["/* Generated from the same classes as arcade_sprite_class. */\n",
+                   ".global pool_sprite_descriptors,pool_sprite_descriptors_end\n",
+                   "pool_sprite_descriptors:\n"]
+    descriptors.extend(f" .word arcade_sprites+{code * 12 + pixel}\n"
+                       for code, pixel in enumerate(sprite_classes))
+    descriptors.append("pool_sprite_descriptors_end:\n")
+    (out / "sprite_setup.inc").write_text("".join(descriptors))
     prom = data["82s123.7f"]
     lookup = data["82s126.4a"]
     vic = [

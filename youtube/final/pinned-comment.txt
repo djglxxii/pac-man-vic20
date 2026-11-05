@@ -1,0 +1,7 @@
+This is the Final Optimized milestone of our agentic homebrew Pac-Man conversion. Coding agents implemented and profiled the changes; I directed the work and play tested the results.
+
+The playthrough follows the PacStrats patterns documented in 10yard's pactrainer: https://github.com/10yard/pactrainer. It completes the third intermission with no deaths. Afterwards, the run was intentionally ended to demonstrate Pac-Man's death animation and the Game Over screen.
+
+The glyph pool made the biggest visible difference. We also refined Pac-Man himself and the frightened (scared) ghost graphics, and redesigned the fonts to make text and score numbers more legible. Fourteen speed improvements then raised its measured redraw rate from 22.07 to 33.85/s on our saved VICE route. That's an average, not a fixed frame rate; some color sharing and uneven pacing remain.
+
+Why do nearby walls or pellets change color? In our high-resolution mode, each 8x16 cell has just one foreground color. A colored actor and any wall or pellet pixels in that cell must share it, even if their visible shapes do not touch.

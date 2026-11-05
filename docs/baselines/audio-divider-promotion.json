@@ -1,0 +1,155 @@
+{
+  "status": "Accepted after live review and promoted to standard build",
+  "date": "2026-11-04",
+  "accepted_prg_sha256": "f0ca4b5135bb0cf7418996fc1e6cf9e05c245d92778fda566547f0f29bc39d7c",
+  "identical_files": [
+    {
+      "default": "build/pacman.prg",
+      "accepted_build": "build/audio-divider-fast/pacman.prg",
+      "sha256": "f0ca4b5135bb0cf7418996fc1e6cf9e05c245d92778fda566547f0f29bc39d7c"
+    },
+    {
+      "default": "build/pacman.lbl",
+      "accepted_build": "build/audio-divider-fast/pacman.lbl",
+      "sha256": "44b447aaea751af42c3e7793ed95551543de2257464de41ffab911e9d5a626ee"
+    },
+    {
+      "default": "build/arcade/pacman-native.bin",
+      "accepted_build": "build/audio-divider-fast/pacman-native.bin",
+      "sha256": "aff3c13ed6102bc0a31e1365f6b202d6b6282f2ad8cf522a29db2874c67a0ca3"
+    },
+    {
+      "default": "build/arcade/pacman-native.bin.elf",
+      "accepted_build": "build/audio-divider-fast/pacman-native.bin.elf",
+      "sha256": "dc07aea7779ba4d29e097da613f7cde9b26a358eb3b667619c27936b6787cacc"
+    },
+    {
+      "default": "build/arcade/pacman.map",
+      "accepted_build": "build/audio-divider-fast/pacman.map",
+      "sha256": "6973fd66ee6c5328826544705f88c62520246b783d2384f2513396f10c04f438"
+    }
+  ],
+  "original_measurements": {
+    "path": "docs/baselines/audio-divider-fast.json",
+    "sha256": "5f58ecf3382f3ca8da4eac2806bcc1f296a553e5cdce4185436d1ad2704f6723",
+    "historical_status_preserved": true
+  },
+  "validation": {
+    "command": "make test",
+    "passed": true,
+    "unittest_counts": {
+      "original_rom": 15,
+      "pooled": 40,
+      "sound_effect": 4,
+      "divider": 4,
+      "tunnel": 3,
+      "classifier": 12
+    },
+    "divider_frequencies": 65536,
+    "divider_output_sha256": "4d2bffc358c42d330b963602c5b65ab26b071c5ccd064b355f394422b60a7fd5",
+    "sprite_cases_per_build": 10496,
+    "sound_replay": {
+      "ticks_compared": 1639,
+      "all_sound_state_and_register_values_identical": true,
+      "first_tick": 1,
+      "last_tick": 1639,
+      "output_sha256": "036d6b018d706342f9bc5344f1f5ef89a91b07515c86de0d7be9d5af4d777e26",
+      "input_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+      "programs": [
+        {
+          "path": "build/pool-stamp-fast/pacman.prg",
+          "sha256": "7774b36d39f4dbeb651113a7921ca3b0c2bfdfca447cdaa1ee40c0c50af59f73"
+        },
+        {
+          "path": "build/pacman.prg",
+          "sha256": "f0ca4b5135bb0cf7418996fc1e6cf9e05c245d92778fda566547f0f29bc39d7c"
+        }
+      ],
+      "guest_modified": false,
+      "method": "Compare tick-indexed arcade sound state and VIC registers on a live replay.\n\nHost PC observations only: no guest code, registers, clocks or sound are patched.\nCPU timestamps can differ; this checks the values produced at each logical tick."
+    },
+    "smoke": {
+      "screens": [
+        "attract",
+        "credits",
+        "maze",
+        "cherry",
+        "intermission-1",
+        "intermission-2",
+        "intermission-3"
+      ],
+      "stack_by_scene": {
+        "attract": {
+          "software_lowest_write": 32743,
+          "software_bytes_written": 25,
+          "hardware_lowest_write": 493,
+          "hardware_bytes_written": 19
+        },
+        "credits": {
+          "software_lowest_write": 32743,
+          "software_bytes_written": 25,
+          "hardware_lowest_write": 493,
+          "hardware_bytes_written": 19
+        },
+        "maze": {
+          "software_lowest_write": 32738,
+          "software_bytes_written": 30,
+          "hardware_lowest_write": 493,
+          "hardware_bytes_written": 19
+        },
+        "cherry": {
+          "software_lowest_write": 32738,
+          "software_bytes_written": 30,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-1": {
+          "software_lowest_write": 32738,
+          "software_bytes_written": 30,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-2": {
+          "software_lowest_write": 32738,
+          "software_bytes_written": 30,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        },
+        "intermission-3": {
+          "software_lowest_write": 32738,
+          "software_bytes_written": 30,
+          "hardware_lowest_write": 490,
+          "hardware_bytes_written": 22
+        }
+      },
+      "clock": {
+        "video_frames": 180,
+        "arcade_ticks": 181,
+        "expected": 180.96
+      },
+      "long_run_ticks": 7183,
+      "stack": {
+        "software_lowest_write": 32738,
+        "software_bytes_written": 30,
+        "hardware_lowest_write": 490,
+        "hardware_bytes_written": 22
+      },
+      "boot": {
+        "entries": 1,
+        "released": true
+      },
+      "irq_vector_intact": true,
+      "stack_guard_intact": true,
+      "software_stack_reserved": 704
+    }
+  },
+  "source_artifacts": {
+    "build/audio-divider-fast/evaluation/promotion-tests.log": "b76edf8e81731a3294f91c79fe40c89bbac01b57a2ef2f7823fb992f4426d336",
+    "build/evaluation/divider-kernel.json": "d28a74d4896acf32b0c108fc077a3cf61cdc2f9af1debefb0b672e9df2327774",
+    "build/evaluation/stamp-kernel.json": "5276996617df3f0fc5c97be6cf8513a42ba176990e302b26026a90b2b48d8e8b",
+    "build/evaluation/tile-kernel.json": "92ec5f7a6c80025e6f8a36f441c21db4cd877123750946d2ee64c3a58c351599",
+    "build/sound-effect-fast/evaluation/effect-kernel.json": "a0c4e1e639e353467b4156219e165d7c5182dc21eac146ee06707e6679a8113d",
+    "build/evaluation/audio-replay/summary.json": "6fc32123820274ef1dbd5bc3d304dad582bed2a4cf47ce5dd2927f2f60d2feff",
+    "build/preview/native-validation.json": "f8c5d7e5eaa5e1c7050c8e768288a53b687eaad63e0a73a60f69fdedc728fed9"
+  }
+}

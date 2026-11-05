@@ -1,0 +1,44 @@
+  403   clc                   $18      2  
+  404   adc pool_start        $6D      4  
+  405   tax                   $AA      2  
+  406   lda pool_count,y      $B9    4-5  +1 if page crossed
+  407   clc                   $18      2  
+  408   adc #1                $69      2  
+  409   sta pool_count,y      $99      5  
+  410   lda v_col             $A5      3  
+  411   sta pool_cells,x      $9D      5  
+  412   tay                   $A8      2  
+  413   txa                   $8A      2  
+  414   sec                   $38      2  
+  415   sbc pool_start        $ED      4  
+  416   pha                   $48      3  
+  417   and #15               $29      2  
+  418   sta $94c4,y           $99      5  
+  419   pla                   $68      4  
+  420   lsr                   $4A      2  
+  421   lsr                   $4A      2  
+  422   lsr                   $4A      2  
+  423   lsr                   $4A      2  
+  424   ora pool_epoch        $0D      4  
+  425   sta $96c4,y           $99      5  
+  426   lda pool_next_low     $A5      3  
+  427   sta v_base            $85      3  
+  428   clc                   $18      2  
+  429   adc #16               $69      2  
+  430   sta pool_next_low     $85      3  
+  431   lda pool_code_end     $AD      4  
+  432   sta v_base+1          $85      3  
+  433   adc #0                $69      2  
+  434   sta pool_code_end     $8D      4  
+  435   ldy v_col             $A4      3  
+  436   lda home_codes,y      $B9    4-5  +1 if page crossed
+  437   sta v_hi              $85      3  
+  438   and #$f0              $29      2  
+  439   sta v_lo              $85      3  
+  440   lda v_hi              $A5      3  
+  441   and #15               $29      2  
+  442   ora #$10              $09      2  
+  443   sta v_hi              $85      3  
+  444   ldy #0                $A0      2  
+--------------------------------------------------
+bytes: 82   cycles: 123 .. 125   (straight-line sum; multiply loop bodies yourself)

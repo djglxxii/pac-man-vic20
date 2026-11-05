@@ -1,0 +1,19 @@
+{
+  "frames": 480,
+  "old_cells_visited": 14424,
+  "cache_misses": 1576,
+  "cache_hits": 12848,
+  "hit_percent": 89.07,
+  "vacated_cells_restored": 763,
+  "shared_cells_left_for_publication": 13661,
+  "code_addresses": {
+    "restore_page": 9928,
+    "restore_map": 9963,
+    "restore_background": 9970,
+    "restore_code": 9973,
+    "restore_color": 9978
+  },
+  "cached_branch_same_page": true,
+  "background_load_cycles": 3518,
+  "background_index_page_crossings": 466
+}

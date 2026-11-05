@@ -1,0 +1,36 @@
+{
+  "prg_sha256": "4ab98e30378d1bbc610f393308b1c94963c71b6fb684c3a5752e42fc3aaceb6c",
+  "ntsc_cpu_hz": 1022727,
+  "video_frames": 600,
+  "seconds": 9.9528,
+  "logic_ticks": 600,
+  "logic_hz": 60.28,
+  "publications": 50,
+  "updates_per_second": 5.02,
+  "max_audio_gap_ms": 102.17,
+  "max_picture_gap_ms": 251.84,
+  "routines": {
+    "mc_prepare": {
+      "count": 50,
+      "mean_cycles": 47081.2,
+      "max_cycles": 59460
+    },
+    "mc_commit": {
+      "count": 50,
+      "mean_cycles": 3465.8,
+      "max_cycles": 4229
+    },
+    "audio_update": {
+      "count": 600,
+      "mean_cycles": 971.5,
+      "max_cycles": 1323
+    },
+    "video_background": {
+      "count": 50,
+      "mean_cycles": 15110.8,
+      "max_cycles": 19213
+    }
+  },
+  "cache_and_actor_errors": 0,
+  "joystick_only": true
+}

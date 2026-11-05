@@ -1,0 +1,6 @@
+{
+  "queue_entries_max": 11,
+  "settled_board_ms": 1827.3390650681952,
+  "audio_update_gap_ms_max": 27.588007356801963,
+  "input_service_gap_ms_max": 24.676184358093607
+}

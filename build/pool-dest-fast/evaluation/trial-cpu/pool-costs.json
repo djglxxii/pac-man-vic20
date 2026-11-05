@@ -1,0 +1,141 @@
+{
+  "prg_sha256": "2284d03b700e5d72b1a13c9f35257e96e0c48469c9eef9f3854d61489f8513dc",
+  "source_summary_sha256": "9a7900488c7463a8a104e9cf2619572d576ff7bfe18971707af38c22aa672743",
+  "source_profile_sha256": "9a4b27cad5145680dfe162c34a5df9418cd86d7ae80b48a1b7de3a575a9ce534",
+  "method": "Exclusive instruction cycles in disjoint linked-label ranges; no guest changes",
+  "cycles": 20377204,
+  "completed_redraws": 673,
+  "groups": {
+    "reuse_guard": {
+      "begin": "29ad",
+      "end": "29b3",
+      "cycles": 48456,
+      "cycles_per_redraw": 72.0,
+      "cpu_percent": 0.2377951361727546
+    },
+    "actor_pose_and_setup": {
+      "begin": "29b3",
+      "end": "2b21",
+      "cycles": 1232984,
+      "cycles_per_redraw": 1832.0713224368499,
+      "cpu_percent": 6.050800688848185
+    },
+    "generic_stamp": {
+      "begin": "2b21",
+      "end": "2c2c",
+      "cycles": 2308108,
+      "cycles_per_redraw": 3429.580980683507,
+      "cpu_percent": 11.326912171071164
+    },
+    "cell_lookup_and_allocation": {
+      "begin": "2c2c",
+      "end": "2cb0",
+      "cycles": 1400595,
+      "cycles_per_redraw": 2081.1218424962854,
+      "cpu_percent": 6.873342387895807
+    },
+    "background_copy": {
+      "begin": "2cb0",
+      "end": "2d02",
+      "cycles": 2181124,
+      "cycles_per_redraw": 3240.897473997028,
+      "cpu_percent": 10.703745224320274
+    },
+    "colour_and_pointer": {
+      "begin": "2d02",
+      "end": "2d1d",
+      "cycles": 172666,
+      "cycles_per_redraw": 256.56166419019314,
+      "cpu_percent": 0.8473488315668822
+    },
+    "destination_setup": {
+      "begin": "2d1d",
+      "end": "2d97",
+      "cycles": 423747,
+      "cycles_per_redraw": 629.6389301634473,
+      "cpu_percent": 2.0795149324706177
+    },
+    "restore_control_and_publish": {
+      "begin": "2d97",
+      "end": "2ea6",
+      "cycles": 1045207,
+      "cycles_per_redraw": 1553.0564635958394,
+      "cpu_percent": 5.12929546173263
+    },
+    "normal_ghost_stamp": {
+      "begin": "2ea6",
+      "end": "2f00",
+      "cycles": 510937,
+      "cycles_per_redraw": 759.1931649331352,
+      "cpu_percent": 2.507395028287492
+    }
+  },
+  "generic_detail": {
+    "setup": {
+      "begin": "2b21",
+      "end": "2b6c",
+      "cycles": 220175,
+      "cycles_per_redraw": 327.1545319465082,
+      "cpu_percent": 1.0804966176910238
+    },
+    "fetch_and_dispatch": {
+      "begin": "2b6c",
+      "end": "2b74",
+      "cycles": 277046,
+      "cycles_per_redraw": 411.65824665676075,
+      "cpu_percent": 1.359587900283081
+    },
+    "merge_low": {
+      "begin": "2b74",
+      "end": "2b7e",
+      "cycles": 283050,
+      "cycles_per_redraw": 420.57949479940567,
+      "cpu_percent": 1.3890521977401806
+    },
+    "row_control": {
+      "begin": "2b7e",
+      "end": "2b9d",
+      "cycles": 456576,
+      "cycles_per_redraw": 678.4190193164933,
+      "cpu_percent": 2.240621431674336
+    },
+    "merge_high": {
+      "begin": "2b9d",
+      "end": "2baa",
+      "cycles": 401912,
+      "cycles_per_redraw": 597.1946508172363,
+      "cpu_percent": 1.9723608793434075
+    },
+    "mirror": {
+      "begin": "2baa",
+      "end": "2bb5",
+      "cycles": 28980,
+      "cycles_per_redraw": 43.06092124814265,
+      "cpu_percent": 0.14221774488786587
+    },
+    "aligned_merge": {
+      "begin": "2bb5",
+      "end": "2bbc",
+      "cycles": 17542,
+      "cycles_per_redraw": 26.065378900445765,
+      "cpu_percent": 0.08608639340313813
+    },
+    "shifts": {
+      "begin": "2bbc",
+      "end": "2c1c",
+      "cycles": 622827,
+      "cycles_per_redraw": 925.4487369985142,
+      "cpu_percent": 3.056489006048131
+    }
+  },
+  "counters": {
+    "generic_calls": 2657,
+    "normal_ghost_calls": 940,
+    "generic_rows": 31884,
+    "nonempty_generic_rows": 26929,
+    "cell_calls": 10902,
+    "fresh_cells": 10436,
+    "shared_cell_hits": 466
+  },
+  "caveat": "Different redraw cadence samples different poses; use identical-input kernels for isolated savings"
+}

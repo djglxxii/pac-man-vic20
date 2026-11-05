@@ -1,0 +1,3 @@
+draw: 3329.8 -> 5235.5 cycles; +1.863 ms
+steady: 1986.0 -> 2843.0 cycles; +0.838 ms
+erase: 878.0 -> 1397.0 cycles; +0.507 ms

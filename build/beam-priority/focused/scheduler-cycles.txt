@@ -1,0 +1,34 @@
+   78   lda beam_count           $AD      4  
+   79   bne beam_choose_active   $D0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   80   jmp beam_complete        $4C      3  
+   82   lda $9004                $AD      4  
+   83   sta beam_now             $8D      4  
+   84   ldx beam_focus_group     $AE      4  
+   85   bpl beam_find_ready      $10    2-4  2 not taken / 3 taken / 4 taken+page cross
+   86   ldx #5                   $A2      2  
+   88   lda beam_masks,x         $BD    4-5  +1 if page crossed
+   89   beq beam_skip_choice     $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   90   lda beam_early,x         $BD    4-5  +1 if page crossed
+   91   cmp #255                 $C9      2  
+   92   beq beam_ready           $F0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   93   cmp beam_ends,x          $DD    4-5  +1 if page crossed
+   94   bcs beam_safe_middle     $B0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   95   lda beam_now             $AD      4  
+   96   cmp beam_ends,x          $DD    4-5  +1 if page crossed
+   97   bcs beam_ready           $B0    2-4  2 not taken / 3 taken / 4 taken+page cross
+   98   cmp beam_early,x         $DD    4-5  +1 if page crossed
+   99   bcc beam_ready           $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  100   bcs beam_next_choice     $B0    2-4  2 not taken / 3 taken / 4 taken+page cross
+  102   lda beam_now             $AD      4  
+  103   cmp beam_ends,x          $DD    4-5  +1 if page crossed
+  104   bcc beam_next_choice     $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  105   cmp beam_early,x         $DD    4-5  +1 if page crossed
+  106   bcc beam_ready           $90    2-4  2 not taken / 3 taken / 4 taken+page cross
+  108   lda #255                 $A9      2  
+  109   sta beam_early,x         $9D      5  
+  110   jmp beam_ready           $4C      3  
+  112   dex                      $CA      2  
+  113   bpl beam_find_ready      $10    2-4  2 not taken / 3 taken / 4 taken+page cross
+  114   jmp beam_choose          $4C      3  
+-----------------------------------------------------
+bytes: 80   cycles: 96 .. 125   (straight-line sum; multiply loop bodies yourself)

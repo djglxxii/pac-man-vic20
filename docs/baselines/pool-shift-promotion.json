@@ -1,0 +1,421 @@
+{
+  "status": "Accepted and promoted to default at user request",
+  "date": "2026-11-04",
+  "user_request": "make this the default build and move on to the next optimization idea",
+  "default_target": "make / make run / make test",
+  "runtime_changed_by_promotion": false,
+  "identical_files": {
+    "prg": {
+      "default": "build/pacman.prg",
+      "explicit": "build/pool-shift-fast/pacman.prg",
+      "sha256": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31"
+    },
+    "labels": {
+      "default": "build/pacman.lbl",
+      "explicit": "build/pool-shift-fast/pacman.lbl",
+      "sha256": "dd3ef01a4c2cc758149ef18eb106d80b1d08396c1c36669f0f0900f8213a65d7"
+    },
+    "native": {
+      "default": "build/arcade/pacman-native.bin",
+      "explicit": "build/pool-shift-fast/pacman-native.bin",
+      "sha256": "cc3a94d4dbe6ad1b2b4cb46de587ec209ffb69bc81dee9365ffbd6dd7f7f2352"
+    },
+    "elf": {
+      "default": "build/arcade/pacman-native.bin.elf",
+      "explicit": "build/pool-shift-fast/pacman-native.bin.elf",
+      "sha256": "c71b43b9bdba03cc3782c547f8abb4ac6b7b489b361b20cf1e2432bd4981ca12",
+      "before_promotion_sha256": "27971e9c46b1cd5d6f80f6b84b502372c91055cf476bb364f565aff9b103e620",
+      "rebuild_note": "Conditional next-trial source changes debug locations/temp object names; tested PRG/native/labels unchanged."
+    },
+    "map": {
+      "default": "build/arcade/pacman.map",
+      "explicit": "build/pool-shift-fast/pacman.map",
+      "sha256": "c0b2d47be800845fab635259b0a699be184b05ecdd11adcc10de07718de9f6c0",
+      "before_promotion_sha256": "4458beeb24328d41a2bc4f68c88f2a70d3e7dc9a48edc547aa2f07ccf5128686",
+      "rebuild_note": "Conditional next-trial source changes debug locations/temp object names; tested PRG/native/labels unchanged."
+    }
+  },
+  "original_measurements": "docs/baselines/pool-shift-fast.json",
+  "measured_actual_vice": {
+    "prg_sha256": "c3524ca97644c785110ac641e170e6e351f8dccccca789740086b2fea1604f31",
+    "video_frames": 1180,
+    "counter_interval_seconds": 19.557257215268592,
+    "completed_renders": 660,
+    "completed_renders_per_second": 33.747063442246386,
+    "calibration": {
+      "x": 8,
+      "y": 4,
+      "output_dots_per_vic_dot": 2,
+      "mismatch_pixels": 0,
+      "next_distinct_alignment_error": 3576
+    },
+    "min_diagnostic_pixels": 12,
+    "actors": {
+      "pacman": {
+        "frames": {
+          "present": 989,
+          "partial": 17,
+          "excluded": 174
+        },
+        "eligible_frames": 1006,
+        "exclusions": {
+          "shared-colour-cell": 116,
+          "reward-slot-expansion": 58
+        },
+        "absent_frame_percent": 0.0,
+        "partial_frame_percent": 1.6898608349900597,
+        "absence_runs": 0,
+        "absence_run_frames": {},
+        "absence_runs_per_eligible_second": 0.0,
+        "displayed_move_interval_vic_frames": {
+          "1": 76,
+          "2": 230,
+          "3": 96,
+          "4": 20,
+          "5": 2
+        },
+        "displayed_move_interval_ms": {
+          "count": 424,
+          "mean": 35.75810387511701,
+          "p50": 33.176008846935694,
+          "p95": 49.76401327040354,
+          "max": 82.94002211733924
+        },
+        "displayed_move_distance_vic_pixels": {
+          "1": 324,
+          "2": 94,
+          "3": 25,
+          "4": 2
+        },
+        "visible_ink_color_mismatch_frames": 0,
+        "motion_change_count": 445
+      },
+      "blinky": {
+        "frames": {
+          "present": 888,
+          "excluded": 285,
+          "partial": 7
+        },
+        "eligible_frames": 895,
+        "exclusions": {
+          "shared-colour-cell": 194,
+          "reward-slot-expansion": 58,
+          "screen-edge-clipping": 24,
+          "hidden-or-empty": 9
+        },
+        "absent_frame_percent": 0.0,
+        "partial_frame_percent": 0.7821229050279329,
+        "absence_runs": 0,
+        "absence_run_frames": {},
+        "absence_runs_per_eligible_second": 0.0,
+        "displayed_move_interval_vic_frames": {
+          "1": 68,
+          "2": 166,
+          "3": 70,
+          "4": 45,
+          "5": 10
+        },
+        "displayed_move_interval_ms": {
+          "count": 359,
+          "mean": 38.81315798248744,
+          "p50": 33.176008846935694,
+          "p95": 66.35201769387139,
+          "max": 82.94002211733924
+        },
+        "displayed_move_distance_vic_pixels": {
+          "1": 319,
+          "2": 47,
+          "3": 5
+        },
+        "visible_ink_color_mismatch_frames": 3,
+        "motion_change_count": 371
+      },
+      "pinky": {
+        "frames": {
+          "excluded": 329,
+          "present": 842,
+          "partial": 9
+        },
+        "eligible_frames": 851,
+        "exclusions": {
+          "shared-colour-cell": 109,
+          "screen-edge-clipping": 105,
+          "hidden-or-empty": 57,
+          "reward-slot-expansion": 58
+        },
+        "absent_frame_percent": 0.0,
+        "partial_frame_percent": 1.0575793184488838,
+        "absence_runs": 0,
+        "absence_run_frames": {},
+        "absence_runs_per_eligible_second": 0.0,
+        "displayed_move_interval_vic_frames": {
+          "1": 70,
+          "2": 140,
+          "3": 62,
+          "4": 42,
+          "5": 14,
+          "6": 2
+        },
+        "displayed_move_interval_ms": {
+          "count": 330,
+          "mean": 39.509610535896144,
+          "p50": 33.176008846935694,
+          "p95": 66.35201769387139,
+          "max": 99.52802654080708
+        },
+        "displayed_move_distance_vic_pixels": {
+          "1": 269,
+          "2": 72,
+          "3": 2
+        },
+        "visible_ink_color_mismatch_frames": 1,
+        "motion_change_count": 343
+      },
+      "inky": {
+        "frames": {
+          "excluded": 234,
+          "present": 927,
+          "partial": 19
+        },
+        "eligible_frames": 946,
+        "exclusions": {
+          "shared-colour-cell": 176,
+          "reward-slot-expansion": 58
+        },
+        "absent_frame_percent": 0.0,
+        "partial_frame_percent": 2.0084566596194504,
+        "absence_runs": 0,
+        "absence_run_frames": {},
+        "absence_runs_per_eligible_second": 0.0,
+        "displayed_move_interval_vic_frames": {
+          "1": 46,
+          "2": 163,
+          "3": 49,
+          "4": 44,
+          "5": 21,
+          "6": 3,
+          "8": 1
+        },
+        "displayed_move_interval_ms": {
+          "count": 327,
+          "mean": 41.90119771799523,
+          "p50": 33.176008846935694,
+          "p95": 82.94002211733924,
+          "max": 132.70403538774278
+        },
+        "displayed_move_distance_vic_pixels": {
+          "1": 306,
+          "2": 45,
+          "3": 1
+        },
+        "visible_ink_color_mismatch_frames": 8,
+        "motion_change_count": 352
+      },
+      "clyde": {
+        "frames": {
+          "excluded": 304,
+          "present": 870,
+          "partial": 6
+        },
+        "eligible_frames": 876,
+        "exclusions": {
+          "shared-colour-cell": 182,
+          "reward-slot-expansion": 58,
+          "insufficient-distinct-ink": 64
+        },
+        "absent_frame_percent": 0.0,
+        "partial_frame_percent": 0.684931506849315,
+        "absence_runs": 0,
+        "absence_run_frames": {},
+        "absence_runs_per_eligible_second": 0.0,
+        "displayed_move_interval_vic_frames": {
+          "1": 30,
+          "2": 118,
+          "3": 63,
+          "4": 45,
+          "5": 16,
+          "6": 12,
+          "7": 2,
+          "8": 2
+        },
+        "displayed_move_interval_ms": {
+          "count": 288,
+          "mean": 47.056943104073724,
+          "p50": 33.176008846935694,
+          "p95": 99.52802654080708,
+          "max": 132.70403538774278
+        },
+        "displayed_move_distance_vic_pixels": {
+          "1": 286,
+          "2": 14,
+          "3": 1,
+          "4": 1
+        },
+        "visible_ink_color_mismatch_frames": 3,
+        "motion_change_count": 302
+      }
+    },
+    "method": "exact distinct sprite ink; old/new poses; binary visibility separate from colour",
+    "guest_modified": false,
+    "validation": {
+      "complete_snapshots_checked": 637,
+      "excluded_complete_snapshots": {
+        "reward-slot-expansion": 45
+      },
+      "settled_actor_results": {
+        "present": 2577,
+        "excluded": 608
+      },
+      "false_absent_or_partial_on_settled_images": 0,
+      "synthetic_host_only_controls": {
+        "absent": 2577,
+        "partial": 2577
+      }
+    },
+    "evidence": [
+      {
+        "actor": "pacman",
+        "frame": 106,
+        "status": "partial"
+      }
+    ],
+    "render_interval_ms": {
+      "count": 659,
+      "mean": 29.643946667487107,
+      "p50": 29.573874553033214,
+      "p95": 45.06774535139876,
+      "max": 54.1962811190083
+    },
+    "render_interval_logical_ticks": {
+      "1": 202,
+      "2": 389,
+      "3": 68
+    },
+    "loaded_program": {
+      "all_depacked_regions_match": true,
+      "bytes_checked": 33792,
+      "loaded_image_sha256": "cc3a94d4dbe6ad1b2b4cb46de587ec209ffb69bc81dee9365ffbd6dd7f7f2352"
+    },
+    "input_trace_sha256": "7fca441cff21e0c30e0fdd4e64c86f3f5c899df76cb24fda18c5a0ee1d6f0319",
+    "raster_frames": 1180
+  },
+  "hardware": {
+    "video": "NTSC",
+    "ram": "+3K and BLK1/2/3/5",
+    "software_stack_bytes": 704,
+    "game_tick_cycles": 16875,
+    "vic_frame_cycles": 16965,
+    "cpu_hz": 1022727
+  },
+  "memory": {
+    "resident_end": "7cb3",
+    "resident_free": 141,
+    "stack_bytes": 704,
+    "blk5_end": "bfe9",
+    "blk5_free": 23,
+    "native_bytes": 33792,
+    "prg_bytes": 26838,
+    "generic_code_bytes": 262,
+    "normal_ghost_pointer_table": "2efb",
+    "hot_branch_placement": {
+      "epoch_clear": {
+        "target": "2ded",
+        "branch_fallthrough_pc": "2df3",
+        "same_page": true
+      },
+      "normal_ghost_row": {
+        "target": "2ed0",
+        "branch_fallthrough_pc": "2efa",
+        "same_page": true
+      }
+    }
+  },
+  "previous_build_preserved": "make run-pool-dest-fast",
+  "verification": {
+    "command": "make test",
+    "result": "passed",
+    "unit_checks": 86,
+    "additional_checks": "Exhaustive divider/adapter, ghost, allocation, tile, preparation, destination and stamp oracles; 1639 sound ticks; all three intermissions",
+    "default_matches_accepted_trial": true,
+    "runtime_unchanged_after_conditional_next_trial_source": true
+  },
+  "artifacts": {
+    "build/pool-shift-fast/evaluation/promotion-checks/Makefile": {
+      "sha256": "49d2f76a1263fd0585ecd9e6c48db98fd59358408389621252c4c78ca6aaae55"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/POOL_SHIFT_OPTIMIZATION.md": {
+      "sha256": "5381ccfa705d939f9b97a65f07b82a260bb7294c458984ef25be48d2983435e5"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/README.md": {
+      "sha256": "d1a775540bc84c725f9a9131893d09d051687605fee3160947f9d62380b62a94"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/RESEARCH_OPTIMIZATION_PLAN.md": {
+      "sha256": "8900ad59b5297dde4bd29acef43fc0cccbbd2936eafe41cadb2ad98e42fdfa2d"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/allocator-kernel.json": {
+      "sha256": "0ca53449a2ea3f6b8f192a30f2eff2659bc1730054d4dc86e449962aedc14352"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/audio.json": {
+      "sha256": "b3aa67c93b594f7c54e3f5319344dbe3e55f6b3da86f1ab8feec91af079b9906"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/divider-kernel.json": {
+      "sha256": "6bc5dc94a165fdebedd63ae8d2735f7355660dd16d4d9c7eb980c60787423210"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/ghost-kernel.json": {
+      "sha256": "f497a18d73ea3bdf8c0cb9bfddab7d0cb0562f9136bcad76d66dda966e35ce3c"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/glyph_pool.S": {
+      "sha256": "9141c8242f9b8e64ba56252259a7112a7f03a60d6dd087c4a90806150a5cd45d"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/pool-dest-guards.json": {
+      "sha256": "a4c15dd2d8e6a9fe0087a0a5fccb6cea942c8333916f91da8070aeaa863b6cfc"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/pool-dest-kernel.json": {
+      "sha256": "88bd83cc53ef7a7ca427e6a9381a0a2497a758eb3827d40812a552483420fdeb"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/pool-setup-kernel.json": {
+      "sha256": "a464d816d7a43bd192e3a3c4e66afe373e9a95b524699e2ff16bdd92d4135f8f"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/pool-shift-guards.json": {
+      "sha256": "365dfeb47fb7613c85be81275de6e1d6a492eeda0f05c13cf5dbd20ed92fe9bf"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/pool-shift-kernel.json": {
+      "sha256": "6b5769505598fc951fef6d6605b1934eb29af6479edd117a5e00811d84c93ea2"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/pool_stamp_fast.inc": {
+      "sha256": "4dce6a03f67f9707c0314b5588f5a03beb03f9c19463477eae8ae5c094918396"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/smoke.json": {
+      "sha256": "aae009f6d971691630aef19025e13486b7a0895dfcb99e213ace1aaa73649e28"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/stamp-kernel.json": {
+      "sha256": "0ecb6c3b4ac6da1fdaa1d0bc8c2fde5d7a1afb0d66e9cc9aca6fc361d2783965"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/starting-identities.json": {
+      "sha256": "802375fb02ca9f6a6c053fac3adc3fd2976d5fc6247be713ad6ba9b41ac4d536"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/tile-kernel.json": {
+      "sha256": "fa86a2c1e8da9e7eb429d02e6a0af59f211d1383e93561da06fd7a8ae860945d"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/tile-stamp-kernel.json": {
+      "sha256": "598484c09dd3dc5e9d4bf2de15115c9e1664f94eeeee56aff680501b8ec465c7"
+    },
+    "build/pool-shift-fast/evaluation/promotion-checks/update-kernel.json": {
+      "sha256": "4e2bb2483f1d79d39cb7776a78143d68952b8d700eafc8dbe68c7737cbaccf11"
+    },
+    "build/pool-shift-fast/evaluation/promotion-tests.log": {
+      "sha256": "aa1a9f6110834ea8ba52913f4fa26f0f72149e11aa21f867f99d15f53cd9e931"
+    },
+    "build/pool-shift-fast/evaluation/promotion-final-build.log": {
+      "sha256": "48a05a4781825d606b9843a59fce448750c49d198024f6b8e60114f3c08586bd"
+    }
+  },
+  "source_files": {
+    "Makefile": "99b2dab9afcb46eb0f6988f7a0aea08177239080b45cb10b3f41f01d3f0dafe1",
+    "README.md": "671ad28e955a519d8c688605f9a7e2989c10b4bb5e4790b77dabb1b581f183d2",
+    "src/glyph_pool.S": "2997f448ff07607536403e3c3d03b4fca996a2d470485257e26df86a50067cd3",
+    "src/pool_stamp_fast.inc": "4dce6a03f67f9707c0314b5588f5a03beb03f9c19463477eae8ae5c094918396",
+    "docs/POOL_SHIFT_OPTIMIZATION.md": "ec04b35bdeb256060f9175a824f18b2ca30a9430f79b63f269b4025a7aa02826",
+    "docs/RESEARCH_OPTIMIZATION_PLAN.md": "474e429b1a4e2cf297425cb6590fb249693001e7a3a74a3a37d412084efff64b"
+  }
+}

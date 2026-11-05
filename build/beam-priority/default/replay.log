@@ -1,0 +1,11 @@
+default: tick -1, phase boot, frames 0
+default: tick 51, phase attract
+default: tick 111, phase coin
+default: tick 113, phase release
+default: tick 143, phase start
+default: tick 282, phase ready
+default: tick 370, phase ready, frames 0
+default: tick 402, phase lead-in
+default: tick 432, phase play
+default: tick 755, phase play, frames 322
+default: 600 frames captured

@@ -1,0 +1,74 @@
+test_01_speed_masks_and_mode_priorities (__main__.GhostParity.test_01_speed_masks_and_mode_priorities) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.116s
+
+OK
+{
+  "prg_sha256": "8e62f44052d280cf63674878c362ba72493d8e5aeba55363913e5cc5cf99b621",
+  "fixture_sha256": "e5c2476313353a23255f8878d452c31501c9ef55c6a30b8454fb78bf120a1c40",
+  "method": "call updateGhostStates_1017 with IRQs masked; compare Z80 call $1017",
+  "cases": 528,
+  "groups": {
+    "all": {
+      "min": 107,
+      "mean": 1443.6969696969697,
+      "max": 3256
+    },
+    "normal": {
+      "min": 1228,
+      "mean": 1564.8333333333333,
+      "max": 3249
+    },
+    "frightened": {
+      "min": 1389,
+      "mean": 1666.8333333333333,
+      "max": 3056
+    },
+    "tunnel": {
+      "min": 1199,
+      "mean": 1535.8333333333333,
+      "max": 3220
+    },
+    "tunnel-frightened": {
+      "min": 1364,
+      "mean": 1641.8333333333333,
+      "max": 3031
+    },
+    "elroy-1": {
+      "min": 1235,
+      "mean": 1571.8333333333333,
+      "max": 3256
+    },
+    "elroy-2": {
+      "min": 1194,
+      "mean": 1530.8333333333333,
+      "max": 3215
+    },
+    "frightened-elroy-2": {
+      "min": 1359,
+      "mean": 1636.8333333333333,
+      "max": 3026
+    },
+    "tunnel-frightened-elroy-2": {
+      "min": 1334,
+      "mean": 1611.8333333333333,
+      "max": 3001
+    },
+    "in-house": {
+      "min": 505,
+      "mean": 505.0,
+      "max": 505
+    },
+    "returning": {
+      "min": 2508,
+      "mean": 2508.0,
+      "max": 2508
+    },
+    "death-pause": {
+      "min": 107,
+      "mean": 107.0,
+      "max": 107
+    }
+  }
+}

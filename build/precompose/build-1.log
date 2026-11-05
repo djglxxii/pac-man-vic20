@@ -1,0 +1,23 @@
+/home/djglxxii/src/vic-man/tools/llvm-mos/bin/mos-sim-clang -Oz -gline-tables-only -mlto-zp=90 -nostartfiles -DVIC20 -Wno-everything -Isrc/arcade -Ibuild/arcade -Tsrc/pacman.ld src/start.S src/clock.S src/bitmap.S src/rebuild.S src/tasks.S src/sprites.S src/compose.S src/audio.S src/pacman.c src/platform.c src/video.c src/arcade/core.c build/arcade/rom.c -Wl,-Map,build/arcade/pacman.map -o build/arcade/pacman-native.bin
+/tmp/compose-a03305.s:23:6: error: 8-bit branch target out of range
+ bne compose_no
+     ^
+/tmp/compose-a03305.s:30:6: error: 8-bit branch target out of range
+ bne compose_no
+     ^
+/tmp/compose-a03305.s:35:6: error: 8-bit branch target out of range
+ bcc compose_no
+     ^
+/tmp/compose-a03305.s:39:6: error: 8-bit branch target out of range
+ bcc compose_no
+     ^
+/tmp/compose-a03305.s:59:6: error: 8-bit branch target out of range
+ bne compose_no
+     ^
+/tmp/compose-a03305.s:88:6: error: 8-bit branch target out of range
+ bcs compose_no
+     ^
+/tmp/compose-a03305.s:91:6: error: 8-bit branch target out of range
+ bcs compose_no
+     ^
+make: *** [Makefile:27: build/arcade/pacman-native.bin] Error 1

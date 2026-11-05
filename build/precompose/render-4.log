@@ -1,0 +1,14 @@
+test_01_all_frames_shifts_and_flips (__main__.Renderer.test_01_all_frames_shifts_and_flips) ... ok
+test_02_edges_overlap_priority_and_returning_eyes (__main__.Renderer.test_02_edges_overlap_priority_and_returning_eyes) ... ok
+test_03_incremental_matches_full_redraw (__main__.Renderer.test_03_incremental_matches_full_redraw) ... ok
+test_04_preshifted_ghost_path (__main__.Renderer.test_04_preshifted_ghost_path) ... ok
+test_05_dirty_tiles_preserve_actors_and_shared_colours (__main__.Renderer.test_05_dirty_tiles_preserve_actors_and_shared_colours) ... ok
+test_06_clipped_kernel_memory_boundaries (__main__.Renderer.test_06_clipped_kernel_memory_boundaries) ... ok
+test_07_composed_overlaps_movement_and_underlay_restoration (__main__.Renderer.test_07_composed_overlaps_movement_and_underlay_restoration) ... ok
+test_08_composition_keeps_live_pixels_and_colours_until_publish (__main__.Renderer.test_08_composition_keeps_live_pixels_and_colours_until_publish) ... ok
+test_09_composition_fallbacks_restore_pointer_and_stack (__main__.Renderer.test_09_composition_fallbacks_restore_pointer_and_stack) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 3.321s
+
+OK

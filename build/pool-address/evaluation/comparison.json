@@ -1,0 +1,17 @@
+{
+  "frames": 1180,
+  "frame_rate": "340909/5655",
+  "audio": false,
+  "poses_retimed": false,
+  "sources": [
+    {
+      "path": "/home/djglxxii/src/vic-man/build/pool-address/evaluation/baseline-vice",
+      "prg_sha256": "0d33d3747809a302d400ef530ac7abd599e46c267b9181f7e752fc6f1f778fe5"
+    },
+    {
+      "path": "/home/djglxxii/src/vic-man/build/pool-address/evaluation/final-trial-vice",
+      "prg_sha256": "c96ed73ab9e7ea61e14eeceb56fd7e8c10eeedd62c11bb2dc67ad3f4fe20301c"
+    }
+  ],
+  "video_sha256": "6ce410117ad279dfbcef6bdd6127797428c594d248fa671211a6b052ce45ba17"
+}

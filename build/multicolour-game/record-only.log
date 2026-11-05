@@ -1,0 +1,39 @@
+{
+  "frames": 600,
+  "capture_fps": "340909/5655",
+  "completed_updates": 49,
+  "observed_updates_per_second": 4.93,
+  "first": {
+    "frame": 0,
+    "ticks": 1207,
+    "updates": 2,
+    "pellets": 49,
+    "score": [
+      144,
+      4,
+      0
+    ],
+    "lives": 3
+  },
+  "last": {
+    "frame": 599,
+    "ticks": 1814,
+    "updates": 51,
+    "pellets": 115,
+    "score": [
+      48,
+      18,
+      0
+    ],
+    "lives": 3
+  },
+  "audio": {
+    "sample_rate": 48000,
+    "channels": 1,
+    "nonzero_samples": 476868
+  },
+  "video": "build/multicolour-game/vice/playable-preview.mp4",
+  "sha256": "2cc1a0f9db6eedbcdd5106f6de2d2688a5c599b37870b5786cbed67935029b10",
+  "joystick_only": true,
+  "guest_memory_or_code_patched": false
+}
